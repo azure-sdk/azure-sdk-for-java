@@ -22,17 +22,25 @@
 - [Delete](#privateendpointconnections_delete)
 - [Get](#privateendpointconnections_get)
 - [List](#privateendpointconnections_list)
+
+## PrivateLinkResources
+
+- [ListByProvider](#privatelinkresources_listbyprovider)
 ### AttestationProviders_Create
 
 ```java
 import com.azure.resourcemanager.attestation.models.AttestationServiceCreationSpecificParams;
+import com.azure.resourcemanager.attestation.models.PublicNetworkAccessType;
+import com.azure.resourcemanager.attestation.models.TpmAttestationAuthenticationType;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Samples for AttestationProviders Create.
  */
 public final class AttestationProvidersCreateSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/
      * Create_AttestationProvider.json
      */
     /**
@@ -43,10 +51,25 @@ public final class AttestationProvidersCreateSamples {
     public static void attestationProvidersCreate(com.azure.resourcemanager.attestation.AttestationManager manager) {
         manager.attestationProviders()
             .define("myattestationprovider")
-            .withRegion((String) null)
+            .withRegion("East US")
             .withExistingResourceGroup("MyResourceGroup")
-            .withProperties((AttestationServiceCreationSpecificParams) null)
+            .withProperties(
+                new AttestationServiceCreationSpecificParams().withPublicNetworkAccess(PublicNetworkAccessType.ENABLED)
+                    .withTpmAttestationAuthentication(TpmAttestationAuthenticationType.ENABLED))
+            .withTags(mapOf("Property1", "Value1", "Property2", "Value2", "Property3", "Value3"))
             .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
@@ -59,7 +82,7 @@ public final class AttestationProvidersCreateSamples {
  */
 public final class AttestationProvidersDeleteSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/
      * Delete_AttestationProvider.json
      */
     /**
@@ -83,7 +106,7 @@ public final class AttestationProvidersDeleteSamples {
  */
 public final class AttestationProvidersGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/
      * Get_AttestationProvider.json
      */
     /**
@@ -107,7 +130,7 @@ public final class AttestationProvidersGetByResourceGroupSamples {
  */
 public final class AttestationProvidersGetDefaultByLocationSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/
      * Get_DefaultProviderByLocation.json
      */
     /**
@@ -130,7 +153,7 @@ public final class AttestationProvidersGetDefaultByLocationSamples {
  */
 public final class AttestationProvidersListSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/
      * Get_AttestationProvidersList.json
      */
     /**
@@ -152,7 +175,7 @@ public final class AttestationProvidersListSamples {
  */
 public final class AttestationProvidersListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/
      * Get_AttestationProvidersListByResourceGroup.json
      */
     /**
@@ -176,7 +199,7 @@ public final class AttestationProvidersListByResourceGroupSamples {
 public final class AttestationProvidersListDefaultSamples {
     /*
      * x-ms-original-file:
-     * specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/Get_DefaultProviders.
+     * specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/Get_DefaultProviders.
      * json
      */
     /**
@@ -195,6 +218,9 @@ public final class AttestationProvidersListDefaultSamples {
 
 ```java
 import com.azure.resourcemanager.attestation.models.AttestationProvider;
+import com.azure.resourcemanager.attestation.models.AttestationServicePatchSpecificParams;
+import com.azure.resourcemanager.attestation.models.PublicNetworkAccessType;
+import com.azure.resourcemanager.attestation.models.TpmAttestationAuthenticationType;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -203,7 +229,7 @@ import java.util.Map;
  */
 public final class AttestationProvidersUpdateSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/
      * Update_AttestationProvider.json
      */
     /**
@@ -216,7 +242,12 @@ public final class AttestationProvidersUpdateSamples {
             .getByResourceGroupWithResponse("MyResourceGroup", "myattestationprovider",
                 com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withTags(mapOf("Property1", "Value1", "Property2", "Value2", "Property3", "Value3")).apply();
+        resource.update()
+            .withTags(mapOf("Property1", "Value1", "Property2", "Value2", "Property3", "Value3"))
+            .withProperties(
+                new AttestationServicePatchSpecificParams().withPublicNetworkAccess(PublicNetworkAccessType.DISABLED)
+                    .withTpmAttestationAuthentication(TpmAttestationAuthenticationType.DISABLED))
+            .apply();
     }
 
     // Use "Map.of" if available
@@ -242,7 +273,7 @@ public final class AttestationProvidersUpdateSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/Operations_List.json
+     * specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/Operations_List.json
      */
     /**
      * Sample code: Operations_List.
@@ -266,7 +297,7 @@ import com.azure.resourcemanager.attestation.models.PrivateLinkServiceConnection
  */
 public final class PrivateEndpointConnectionsCreateSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/
      * AttestationProviderPutPrivateEndpointConnection.json
      */
     /**
@@ -295,7 +326,7 @@ public final class PrivateEndpointConnectionsCreateSamples {
  */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/
      * AttestationProviderDeletePrivateEndpointConnection.json
      */
     /**
@@ -320,7 +351,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
  */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/
      * AttestationProviderGetPrivateEndpointConnection.json
      */
     /**
@@ -344,7 +375,7 @@ public final class PrivateEndpointConnectionsGetSamples {
  */
 public final class PrivateEndpointConnectionsListSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/
      * AttestationProviderListPrivateEndpointConnections.json
      */
     /**
@@ -355,6 +386,30 @@ public final class PrivateEndpointConnectionsListSamples {
     public static void attestationProviderListPrivateEndpointConnections(
         com.azure.resourcemanager.attestation.AttestationManager manager) {
         manager.privateEndpointConnections().list("res6977", "sto2527", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateLinkResources_ListByProvider
+
+```java
+/**
+ * Samples for PrivateLinkResources ListByProvider.
+ */
+public final class PrivateLinkResourcesListByProviderSamples {
+    /*
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/
+     * AttestationProviderListPrivateLinkResources.json
+     */
+    /**
+     * Sample code: AttestationProviderListPrivateLinkResources.
+     * 
+     * @param manager Entry point to AttestationManager.
+     */
+    public static void
+        attestationProviderListPrivateLinkResources(com.azure.resourcemanager.attestation.AttestationManager manager) {
+        manager.privateLinkResources()
+            .listByProviderWithResponse("MyResourceGroup", "myattestationprovider", com.azure.core.util.Context.NONE);
     }
 }
 ```
