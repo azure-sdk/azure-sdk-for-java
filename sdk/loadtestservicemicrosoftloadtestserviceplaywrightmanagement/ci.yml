@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/loadtestservicemicrosoftloadtestserviceplaywrightmanagement/ci.yml
+      - sdk/loadtestservicemicrosoftloadtestserviceplaywrightmanagement/azure-resourcemanager-loadtestservicemicrosoftloadtestserviceplaywrightmanagement/
+    exclude:
+      - sdk/loadtestservicemicrosoftloadtestserviceplaywrightmanagement/pom.xml
+      - sdk/loadtestservicemicrosoftloadtestserviceplaywrightmanagement/azure-resourcemanager-loadtestservicemicrosoftloadtestserviceplaywrightmanagement/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/loadtestservicemicrosoftloadtestserviceplaywrightmanagement/ci.yml
+      - sdk/loadtestservicemicrosoftloadtestserviceplaywrightmanagement/azure-resourcemanager-loadtestservicemicrosoftloadtestserviceplaywrightmanagement/
+    exclude:
+      - sdk/loadtestservicemicrosoftloadtestserviceplaywrightmanagement/pom.xml
+      - sdk/loadtestservicemicrosoftloadtestserviceplaywrightmanagement/azure-resourcemanager-loadtestservicemicrosoftloadtestserviceplaywrightmanagement/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerloadtestservicemicrosoftloadtestserviceplaywrightmanagement
+    displayName: azure-resourcemanager-loadtestservicemicrosoftloadtestserviceplaywrightmanagement
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: loadtestservicemicrosoftloadtestserviceplaywrightmanagement
+    Artifacts:
+      - name: azure-resourcemanager-loadtestservicemicrosoftloadtestserviceplaywrightmanagement
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerloadtestservicemicrosoftloadtestserviceplaywrightmanagement
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerloadtestservicemicrosoftloadtestserviceplaywrightmanagement }}

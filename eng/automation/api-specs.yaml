@@ -72,6 +72,8 @@ liftrqumulo:
   service: qumulo
 loadtestservice:
   service: loadtesting
+loadtestservice/Microsoft.LoadTestService/Playwright.Management:
+  service: loadtestservicemicrosoftloadtestserviceplaywrightmanagement
 machinelearningservices:
   service: machinelearning
 migrate/Microsoft.Migrate/AssessmentProjects:
