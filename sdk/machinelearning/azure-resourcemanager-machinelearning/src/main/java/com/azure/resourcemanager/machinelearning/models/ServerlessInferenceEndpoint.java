@@ -19,19 +19,28 @@ import java.util.Map;
 @Fluent
 public final class ServerlessInferenceEndpoint implements JsonSerializable<ServerlessInferenceEndpoint> {
     /*
-     * [Required] The inference uri to target when making requests against the Serverless Endpoint.
-     */
-    private String uri;
-
-    /*
      * Specifies any required headers to target this serverless endpoint.
      */
     private Map<String, String> headers;
+
+    /*
+     * [Required] The inference uri to target when making requests against the Serverless Endpoint.
+     */
+    private String uri;
 
     /**
      * Creates an instance of ServerlessInferenceEndpoint class.
      */
     public ServerlessInferenceEndpoint() {
+    }
+
+    /**
+     * Get the headers property: Specifies any required headers to target this serverless endpoint.
+     * 
+     * @return the headers value.
+     */
+    public Map<String, String> headers() {
+        return this.headers;
     }
 
     /**
@@ -54,15 +63,6 @@ public final class ServerlessInferenceEndpoint implements JsonSerializable<Serve
     public ServerlessInferenceEndpoint withUri(String uri) {
         this.uri = uri;
         return this;
-    }
-
-    /**
-     * Get the headers property: Specifies any required headers to target this serverless endpoint.
-     * 
-     * @return the headers value.
-     */
-    public Map<String, String> headers() {
-        return this.headers;
     }
 
     /**

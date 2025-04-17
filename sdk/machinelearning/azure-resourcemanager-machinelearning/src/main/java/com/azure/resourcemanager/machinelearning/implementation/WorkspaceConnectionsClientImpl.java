@@ -12,6 +12,7 @@ import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
+import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
@@ -32,6 +33,7 @@ import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.machinelearning.fluent.WorkspaceConnectionsClient;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceConnectionPropertiesV2BasicResourceInner;
 import com.azure.resourcemanager.machinelearning.models.WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult;
+import com.azure.resourcemanager.machinelearning.models.WorkspaceConnectionUpdateParameter;
 import reactor.core.publisher.Mono;
 
 /**
@@ -98,6 +100,17 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/connections/{connectionName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<WorkspaceConnectionPropertiesV2BasicResourceInner>> update(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("connectionName") String connectionName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") WorkspaceConnectionUpdateParameter body,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/connections")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -105,7 +118,8 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
             @HostParam("$host") String endpoint, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @QueryParam("target") String target, @QueryParam("category") String category,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion, @QueryParam("includeAll") Boolean includeAll,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/connections/{connectionName}/listsecrets")
@@ -537,20 +551,166 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
     }
 
     /**
+     * Update machine learning workspaces connections under the specified workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param connectionName Friendly name of the workspace connection.
+     * @param body Parameters for workspace connection update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<WorkspaceConnectionPropertiesV2BasicResourceInner>> updateWithResponseAsync(
+        String resourceGroupName, String workspaceName, String connectionName,
+        WorkspaceConnectionUpdateParameter body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (connectionName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter connectionName is required and cannot be null."));
+        }
+        if (body != null) {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, workspaceName, connectionName, this.client.getApiVersion(), body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Update machine learning workspaces connections under the specified workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param connectionName Friendly name of the workspace connection.
+     * @param body Parameters for workspace connection update.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<WorkspaceConnectionPropertiesV2BasicResourceInner>> updateWithResponseAsync(
+        String resourceGroupName, String workspaceName, String connectionName, WorkspaceConnectionUpdateParameter body,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (connectionName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter connectionName is required and cannot be null."));
+        }
+        if (body != null) {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, connectionName, this.client.getApiVersion(), body, accept, context);
+    }
+
+    /**
+     * Update machine learning workspaces connections under the specified workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param connectionName Friendly name of the workspace connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<WorkspaceConnectionPropertiesV2BasicResourceInner> updateAsync(String resourceGroupName,
+        String workspaceName, String connectionName) {
+        final WorkspaceConnectionUpdateParameter body = null;
+        return updateWithResponseAsync(resourceGroupName, workspaceName, connectionName, body)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Update machine learning workspaces connections under the specified workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param connectionName Friendly name of the workspace connection.
+     * @param body Parameters for workspace connection update.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<WorkspaceConnectionPropertiesV2BasicResourceInner> updateWithResponse(String resourceGroupName,
+        String workspaceName, String connectionName, WorkspaceConnectionUpdateParameter body, Context context) {
+        return updateWithResponseAsync(resourceGroupName, workspaceName, connectionName, body, context).block();
+    }
+
+    /**
+     * Update machine learning workspaces connections under the specified workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param connectionName Friendly name of the workspace connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public WorkspaceConnectionPropertiesV2BasicResourceInner update(String resourceGroupName, String workspaceName,
+        String connectionName) {
+        final WorkspaceConnectionUpdateParameter body = null;
+        return updateWithResponse(resourceGroupName, workspaceName, connectionName, body, Context.NONE).getValue();
+    }
+
+    /**
      * The list operation.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param target Target of the workspace connection.
      * @param category Category of the workspace connection.
+     * @param includeAll query parameter that indicates if get connection call should return both connections and
+     * datastores.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkspaceConnectionPropertiesV2BasicResourceInner>>
-        listSinglePageAsync(String resourceGroupName, String workspaceName, String target, String category) {
+    private Mono<PagedResponse<WorkspaceConnectionPropertiesV2BasicResourceInner>> listSinglePageAsync(
+        String resourceGroupName, String workspaceName, String target, String category, Boolean includeAll) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -568,8 +728,9 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, target, category, this.client.getApiVersion(), accept, context))
+            .withContext(
+                context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    workspaceName, target, category, this.client.getApiVersion(), includeAll, accept, context))
             .<PagedResponse<WorkspaceConnectionPropertiesV2BasicResourceInner>>map(
                 res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                     res.getValue().value(), res.getValue().nextLink(), null))
@@ -583,6 +744,8 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param target Target of the workspace connection.
      * @param category Category of the workspace connection.
+     * @param includeAll query parameter that indicates if get connection call should return both connections and
+     * datastores.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -591,7 +754,8 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceConnectionPropertiesV2BasicResourceInner>> listSinglePageAsync(
-        String resourceGroupName, String workspaceName, String target, String category, Context context) {
+        String resourceGroupName, String workspaceName, String target, String category, Boolean includeAll,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -611,7 +775,7 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
         context = this.client.mergeContext(context);
         return service
             .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workspaceName, target,
-                category, this.client.getApiVersion(), accept, context)
+                category, this.client.getApiVersion(), includeAll, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -623,6 +787,8 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param target Target of the workspace connection.
      * @param category Category of the workspace connection.
+     * @param includeAll query parameter that indicates if get connection call should return both connections and
+     * datastores.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -630,8 +796,9 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WorkspaceConnectionPropertiesV2BasicResourceInner> listAsync(String resourceGroupName,
-        String workspaceName, String target, String category) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, workspaceName, target, category),
+        String workspaceName, String target, String category, Boolean includeAll) {
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(resourceGroupName, workspaceName, target, category, includeAll),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -650,7 +817,9 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
         String workspaceName) {
         final String target = null;
         final String category = null;
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, workspaceName, target, category),
+        final Boolean includeAll = null;
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(resourceGroupName, workspaceName, target, category, includeAll),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -661,6 +830,8 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param target Target of the workspace connection.
      * @param category Category of the workspace connection.
+     * @param includeAll query parameter that indicates if get connection call should return both connections and
+     * datastores.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -669,8 +840,9 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WorkspaceConnectionPropertiesV2BasicResourceInner> listAsync(String resourceGroupName,
-        String workspaceName, String target, String category, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, workspaceName, target, category, context),
+        String workspaceName, String target, String category, Boolean includeAll, Context context) {
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(resourceGroupName, workspaceName, target, category, includeAll, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -689,7 +861,8 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
         String workspaceName) {
         final String target = null;
         final String category = null;
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, target, category));
+        final Boolean includeAll = null;
+        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, target, category, includeAll));
     }
 
     /**
@@ -699,6 +872,8 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param target Target of the workspace connection.
      * @param category Category of the workspace connection.
+     * @param includeAll query parameter that indicates if get connection call should return both connections and
+     * datastores.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -707,8 +882,8 @@ public final class WorkspaceConnectionsClientImpl implements WorkspaceConnection
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WorkspaceConnectionPropertiesV2BasicResourceInner> list(String resourceGroupName,
-        String workspaceName, String target, String category, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, target, category, context));
+        String workspaceName, String target, String category, Boolean includeAll, Context context) {
+        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, target, category, includeAll, context));
     }
 
     /**

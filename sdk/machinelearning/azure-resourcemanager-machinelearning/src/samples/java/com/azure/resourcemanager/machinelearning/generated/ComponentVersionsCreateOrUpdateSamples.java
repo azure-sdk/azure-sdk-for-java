@@ -17,7 +17,7 @@ import java.util.Map;
 public final class ComponentVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Workspace/ComponentVersion/createOrUpdate.json
      */
     /**
@@ -31,8 +31,8 @@ public final class ComponentVersionsCreateOrUpdateSamples {
             .define("string")
             .withExistingComponent("test-rg", "my-aml-workspace", "string")
             .withProperties(new ComponentVersionProperties().withDescription("string")
-                .withTags(mapOf("string", "string"))
                 .withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string"))
                 .withIsAnonymous(false)
                 .withComponentSpec(SerializerFactory.createDefaultManagementSerializerAdapter()
                     .deserialize("{\"8ced901b-d826-477d-bfef-329da9672513\":null}", Object.class,
