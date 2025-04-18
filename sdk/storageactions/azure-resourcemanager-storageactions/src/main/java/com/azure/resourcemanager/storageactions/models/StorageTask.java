@@ -284,7 +284,7 @@ public interface StorageTask {
              * @param properties Properties of the storage task.
              * @return the next definition stage.
              */
-            Update withProperties(StorageTaskProperties properties);
+            Update withProperties(StorageTaskUpdateProperties properties);
         }
     }
 
