@@ -59,7 +59,6 @@ import com.azure.messaging.eventgrid.systemevents.ApiManagementApiReleaseDeleted
 import com.azure.messaging.eventgrid.systemevents.ApiManagementApiReleaseUpdatedEventData;
 import com.azure.messaging.eventgrid.systemevents.ApiManagementApiUpdatedEventData;
 import com.azure.messaging.eventgrid.systemevents.ApiManagementGatewayApiAddedEventData;
-import com.azure.messaging.eventgrid.systemevents.ApiManagementGatewayApiRemovedEventData;
 import com.azure.messaging.eventgrid.systemevents.ApiManagementGatewayCertificateAuthorityCreatedEventData;
 import com.azure.messaging.eventgrid.systemevents.ApiManagementGatewayCertificateAuthorityDeletedEventData;
 import com.azure.messaging.eventgrid.systemevents.ApiManagementGatewayCertificateAuthorityUpdatedEventData;
@@ -515,11 +514,6 @@ public final class SystemEventNames {
      * Schema of the Data property of an EventGridEvent for a Microsoft.ApiManagement.GatewayAPIAdded event.
      */
     public static final String API_MANAGEMENT_GATEWAY_API_ADDED = "Microsoft.ApiManagement.GatewayAPIAdded";
-
-    /**
-     * Schema of the Data property of an EventGridEvent for a Microsoft.ApiManagement.GatewayAPIRemoved event.
-     */
-    public static final String API_MANAGEMENT_GATEWAY_API_REMOVED = "Microsoft.ApiManagement.GatewayAPIRemoved";
 
     /**
      * Schema of the Data property of an EventGridEvent for a Microsoft.ApiManagement.GatewayCertificateAuthorityCreated
@@ -1324,7 +1318,6 @@ public final class SystemEventNames {
             put(API_MANAGEMENT_API_RELEASE_UPDATED, ApiManagementApiReleaseUpdatedEventData.class);
             put(API_MANAGEMENT_API_UPDATED, ApiManagementApiUpdatedEventData.class);
             put(API_MANAGEMENT_GATEWAY_API_ADDED, ApiManagementGatewayApiAddedEventData.class);
-            put(API_MANAGEMENT_GATEWAY_API_REMOVED, ApiManagementGatewayApiRemovedEventData.class);
             put(API_MANAGEMENT_GATEWAY_CERTIFICATE_AUTHORITY_CREATED,
                 ApiManagementGatewayCertificateAuthorityCreatedEventData.class);
             put(API_MANAGEMENT_GATEWAY_CERTIFICATE_AUTHORITY_DELETED,
