@@ -1,14 +1,60 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-21)
+
+- Azure Resource Manager Healthbot client library for Java. This package contains Microsoft Azure SDK for Healthbot Management SDK. Azure Health Bot is a cloud platform that empowers developers in Healthcare organizations to build and deploy their compliant, AI-powered virtual health assistants and health bots, that help them improve processes and reduce costs. Package tag package-2024-02. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.UserAssignedIdentity` was added
 
-### Bugs Fixed
+* `models.HealthBotKey` was added
 
-### Other Changes
+* `models.ResourceIdentityType` was added
+
+* `models.Identity` was added
+
+* `models.KeyVaultProperties` was added
+
+* `models.HealthBotKeysResponse` was added
+
+#### `models.HealthBotUpdateParameters` was modified
+
+* `identity()` was added
+* `properties()` was added
+* `withIdentity(models.Identity)` was added
+* `withLocation(java.lang.String)` was added
+* `location()` was added
+* `withProperties(models.HealthBotProperties)` was added
+
+#### `models.HealthBot$Definition` was modified
+
+* `withIdentity(models.Identity)` was added
+
+#### `models.HealthBotProperties` was modified
+
+* `keyVaultProperties()` was added
+* `withKeyVaultProperties(models.KeyVaultProperties)` was added
+
+#### `models.HealthBot` was modified
+
+* `listSecrets()` was added
+* `regenerateApiJwtSecret()` was added
+* `listSecretsWithResponse(com.azure.core.util.Context)` was added
+* `identity()` was added
+* `regenerateApiJwtSecretWithResponse(com.azure.core.util.Context)` was added
+
+#### `models.Bots` was modified
+
+* `regenerateApiJwtSecretWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `regenerateApiJwtSecret(java.lang.String,java.lang.String)` was added
+* `listSecretsWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listSecrets(java.lang.String,java.lang.String)` was added
+
+#### `models.HealthBot$Update` was modified
+
+* `withProperties(models.HealthBotProperties)` was added
+* `withIdentity(models.Identity)` was added
 
 ## 1.0.0 (2024-12-23)
 
