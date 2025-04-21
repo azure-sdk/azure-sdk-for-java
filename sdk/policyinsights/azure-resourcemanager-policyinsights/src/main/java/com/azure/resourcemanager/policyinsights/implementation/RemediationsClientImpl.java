@@ -390,7 +390,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listDeploymentsAtManagementGroup(this.client.getEndpoint(),
@@ -429,7 +429,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -561,7 +561,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.cancelAtManagementGroup(this.client.getEndpoint(),
@@ -596,7 +596,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.cancelAtManagementGroup(this.client.getEndpoint(), managementGroupsNamespace, managementGroupId,
@@ -675,7 +675,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter managementGroupId is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listForManagementGroup(this.client.getEndpoint(), managementGroupsNamespace,
@@ -710,7 +710,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter managementGroupId is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -840,7 +840,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             parameters.validate();
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateAtManagementGroup(this.client.getEndpoint(),
@@ -881,7 +881,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             parameters.validate();
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateAtManagementGroup(this.client.getEndpoint(), managementGroupsNamespace,
@@ -970,7 +970,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getAtManagementGroup(this.client.getEndpoint(), managementGroupsNamespace,
@@ -1006,7 +1006,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getAtManagementGroup(this.client.getEndpoint(), managementGroupsNamespace, managementGroupId,
@@ -1087,7 +1087,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteAtManagementGroup(this.client.getEndpoint(),
@@ -1122,7 +1122,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteAtManagementGroup(this.client.getEndpoint(), managementGroupsNamespace, managementGroupId,
@@ -1203,7 +1203,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listDeploymentsAtSubscription(this.client.getEndpoint(),
@@ -1240,7 +1240,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1356,7 +1356,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.cancelAtSubscription(this.client.getEndpoint(),
@@ -1389,7 +1389,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.cancelAtSubscription(this.client.getEndpoint(), this.client.getSubscriptionId(), remediationName,
@@ -1460,7 +1460,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), top,
@@ -1492,7 +1492,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1609,7 +1609,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateAtSubscription(this.client.getEndpoint(),
@@ -1648,7 +1648,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateAtSubscription(this.client.getEndpoint(), this.client.getSubscriptionId(),
@@ -1728,7 +1728,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getAtSubscription(this.client.getEndpoint(),
@@ -1762,7 +1762,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getAtSubscription(this.client.getEndpoint(), this.client.getSubscriptionId(), remediationName,
@@ -1835,7 +1835,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteAtSubscription(this.client.getEndpoint(),
@@ -1868,7 +1868,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteAtSubscription(this.client.getEndpoint(), this.client.getSubscriptionId(), remediationName,
@@ -1949,7 +1949,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listDeploymentsAtResourceGroup(this.client.getEndpoint(),
@@ -1991,7 +1991,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2126,7 +2126,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.cancelAtResourceGroup(this.client.getEndpoint(),
@@ -2164,7 +2164,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.cancelAtResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
@@ -2246,7 +2246,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
@@ -2284,7 +2284,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2416,7 +2416,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateAtResourceGroup(this.client.getEndpoint(),
@@ -2461,7 +2461,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateAtResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
@@ -2553,7 +2553,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(),
@@ -2592,7 +2592,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
@@ -2675,7 +2675,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
@@ -2713,7 +2713,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
@@ -2794,7 +2794,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listDeploymentsAtResource(this.client.getEndpoint(), resourceId,
@@ -2831,7 +2831,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2956,7 +2956,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.cancelAtResource(this.client.getEndpoint(), resourceId, remediationName,
@@ -2989,7 +2989,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.cancelAtResource(this.client.getEndpoint(), resourceId, remediationName, apiVersion, accept,
@@ -3066,7 +3066,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listForResource(this.client.getEndpoint(), resourceId, top, filter,
@@ -3099,7 +3099,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
         if (resourceId == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listForResource(this.client.getEndpoint(), resourceId, top, filter, apiVersion, accept, context)
@@ -3224,7 +3224,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdateAtResource(this.client.getEndpoint(), resourceId,
@@ -3263,7 +3263,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdateAtResource(this.client.getEndpoint(), resourceId, remediationName, apiVersion,
@@ -3347,7 +3347,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getAtResource(this.client.getEndpoint(), resourceId, remediationName,
@@ -3381,7 +3381,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getAtResource(this.client.getEndpoint(), resourceId, remediationName, apiVersion, accept,
@@ -3460,7 +3460,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deleteAtResource(this.client.getEndpoint(), resourceId, remediationName,
@@ -3493,7 +3493,7 @@ public final class RemediationsClientImpl implements RemediationsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter remediationName is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2024-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deleteAtResource(this.client.getEndpoint(), resourceId, remediationName, apiVersion, accept,
