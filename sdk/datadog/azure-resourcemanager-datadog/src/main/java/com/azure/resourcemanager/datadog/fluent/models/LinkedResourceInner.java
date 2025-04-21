@@ -21,6 +21,11 @@ public final class LinkedResourceInner implements JsonSerializable<LinkedResourc
      */
     private String id;
 
+    /*
+     * The location of the linked resource.
+     */
+    private String location;
+
     /**
      * Creates an instance of LinkedResourceInner class.
      */
@@ -48,6 +53,26 @@ public final class LinkedResourceInner implements JsonSerializable<LinkedResourc
     }
 
     /**
+     * Get the location property: The location of the linked resource.
+     * 
+     * @return the location value.
+     */
+    public String location() {
+        return this.location;
+    }
+
+    /**
+     * Set the location property: The location of the linked resource.
+     * 
+     * @param location the location value to set.
+     * @return the LinkedResourceInner object itself.
+     */
+    public LinkedResourceInner withLocation(String location) {
+        this.location = location;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -62,6 +87,7 @@ public final class LinkedResourceInner implements JsonSerializable<LinkedResourc
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("id", this.id);
+        jsonWriter.writeStringField("location", this.location);
         return jsonWriter.writeEndObject();
     }
 
@@ -82,6 +108,8 @@ public final class LinkedResourceInner implements JsonSerializable<LinkedResourc
 
                 if ("id".equals(fieldName)) {
                     deserializedLinkedResourceInner.id = reader.getString();
+                } else if ("location".equals(fieldName)) {
+                    deserializedLinkedResourceInner.location = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

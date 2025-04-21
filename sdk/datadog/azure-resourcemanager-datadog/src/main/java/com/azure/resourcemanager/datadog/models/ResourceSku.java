@@ -18,7 +18,7 @@ import java.io.IOException;
 @Fluent
 public final class ResourceSku implements JsonSerializable<ResourceSku> {
     /*
-     * Name of the SKU in {PlanId} format. For Terraform, the only allowed value is 'linking'.
+     * Name of the SKU in {PlanId} format. For Terraform, the only allowed value is 'Linked'.
      */
     private String name;
 
@@ -29,7 +29,7 @@ public final class ResourceSku implements JsonSerializable<ResourceSku> {
     }
 
     /**
-     * Get the name property: Name of the SKU in {PlanId} format. For Terraform, the only allowed value is 'linking'.
+     * Get the name property: Name of the SKU in {PlanId} format. For Terraform, the only allowed value is 'Linked'.
      * 
      * @return the name value.
      */
@@ -38,7 +38,7 @@ public final class ResourceSku implements JsonSerializable<ResourceSku> {
     }
 
     /**
-     * Set the name property: Name of the SKU in {PlanId} format. For Terraform, the only allowed value is 'linking'.
+     * Set the name property: Name of the SKU in {PlanId} format. For Terraform, the only allowed value is 'Linked'.
      * 
      * @param name the name value to set.
      * @return the ResourceSku object itself.

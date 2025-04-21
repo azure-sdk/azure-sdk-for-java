@@ -10,7 +10,7 @@ package com.azure.resourcemanager.datadog.generated;
 public final class MonitorsListHostsSamples {
     /*
      * x-ms-original-file:
-     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-01-01/examples/Hosts_List.json
+     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-10-20/examples/Hosts_List.json
      */
     /**
      * Sample code: Monitors_ListHosts.
