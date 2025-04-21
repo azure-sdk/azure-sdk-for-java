@@ -96,7 +96,7 @@ public interface PeerAsn {
          * created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate extends DefinitionStages.WithPeerAsn, DefinitionStages.WithPeerContactDetail,
-            DefinitionStages.WithPeerName, DefinitionStages.WithValidationState {
+            DefinitionStages.WithPeerName {
             /**
              * Executes the create request.
              * 
@@ -151,19 +151,6 @@ public interface PeerAsn {
              */
             WithCreate withPeerName(String peerName);
         }
-
-        /**
-         * The stage of the PeerAsn definition allowing to specify validationState.
-         */
-        interface WithValidationState {
-            /**
-             * Specifies the validationState property: The validation state of the ASN associated with the peer..
-             * 
-             * @param validationState The validation state of the ASN associated with the peer.
-             * @return the next definition stage.
-             */
-            WithCreate withValidationState(ValidationState validationState);
-        }
     }
 
     /**
@@ -176,8 +163,7 @@ public interface PeerAsn {
     /**
      * The template for PeerAsn update.
      */
-    interface Update extends UpdateStages.WithPeerAsn, UpdateStages.WithPeerContactDetail, UpdateStages.WithPeerName,
-        UpdateStages.WithValidationState {
+    interface Update extends UpdateStages.WithPeerAsn, UpdateStages.WithPeerContactDetail, UpdateStages.WithPeerName {
         /**
          * Executes the update request.
          * 
@@ -235,19 +221,6 @@ public interface PeerAsn {
              * @return the next definition stage.
              */
             Update withPeerName(String peerName);
-        }
-
-        /**
-         * The stage of the PeerAsn update allowing to specify validationState.
-         */
-        interface WithValidationState {
-            /**
-             * Specifies the validationState property: The validation state of the ASN associated with the peer..
-             * 
-             * @param validationState The validation state of the ASN associated with the peer.
-             * @return the next definition stage.
-             */
-            Update withValidationState(ValidationState validationState);
         }
     }
 

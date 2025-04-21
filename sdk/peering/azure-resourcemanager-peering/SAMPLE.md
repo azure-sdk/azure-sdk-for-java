@@ -5,9 +5,20 @@
 
 - [List](#cdnpeeringprefixes_list)
 
+## ConnectionMonitorTests
+
+- [CreateOrUpdate](#connectionmonitortests_createorupdate)
+- [Delete](#connectionmonitortests_delete)
+- [Get](#connectionmonitortests_get)
+- [ListByPeeringService](#connectionmonitortests_listbypeeringservice)
+
 ## LegacyPeerings
 
 - [List](#legacypeerings_list)
+
+## LookingGlass
+
+- [Invoke](#lookingglass_invoke)
 
 ## Operations
 
@@ -41,6 +52,7 @@
 - [CreateOrUpdate](#peeringservices_createorupdate)
 - [Delete](#peeringservices_delete)
 - [GetByResourceGroup](#peeringservices_getbyresourcegroup)
+- [InitializeConnectionMonitor](#peeringservices_initializeconnectionmonitor)
 - [List](#peeringservices_list)
 - [ListByResourceGroup](#peeringservices_listbyresourcegroup)
 - [Update](#peeringservices_update)
@@ -78,117 +90,16 @@
 - [Delete](#registeredprefixes_delete)
 - [Get](#registeredprefixes_get)
 - [ListByPeering](#registeredprefixes_listbypeering)
+- [Validate](#registeredprefixes_validate)
 
 ## ResourceProvider
 
 - [CheckServiceProviderAvailability](#resourceprovider_checkserviceprovideravailability)
+
+## RpUnbilledPrefixes
+
+- [List](#rpunbilledprefixes_list)
 ### CdnPeeringPrefixes_List
-
-```java
-/**
- * Samples for CdnPeeringPrefixes List.
- */
-public final class CdnPeeringPrefixesListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListCdnPeeringPrefixes.json
-     */
-    /**
-     * Sample code: List all the cdn peering prefixes advertised at a particular peering location.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void listAllTheCdnPeeringPrefixesAdvertisedAtAParticularPeeringLocation(
-        com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.cdnPeeringPrefixes().list("peeringLocation0", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### LegacyPeerings_List
-
-```java
-import com.azure.resourcemanager.peering.models.LegacyPeeringsKind;
-
-/**
- * Samples for LegacyPeerings List.
- */
-public final class LegacyPeeringsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListLegacyPeerings.json
-     */
-    /**
-     * Sample code: List legacy peerings.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void listLegacyPeerings(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.legacyPeerings()
-            .list("peeringLocation0", LegacyPeeringsKind.EXCHANGE, null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListPeeringOperations.json
-     */
-    /**
-     * Sample code: List peering operations.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void listPeeringOperations(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PeerAsns_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.peering.models.ContactDetail;
-import com.azure.resourcemanager.peering.models.Role;
-import java.util.Arrays;
-
-/**
- * Samples for PeerAsns CreateOrUpdate.
- */
-public final class PeerAsnsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/CreatePeerAsn.json
-     */
-    /**
-     * Sample code: Create a peer ASN.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void createAPeerASN(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.peerAsns()
-            .define("peerAsnName")
-            .withPeerAsn(65000)
-            .withPeerContactDetail(Arrays.asList(
-                new ContactDetail().withRole(Role.NOC).withEmail("noc@contoso.com").withPhone("+1 (234) 567-8999"),
-                new ContactDetail().withRole(Role.POLICY).withEmail("abc@contoso.com").withPhone("+1 (234) 567-8900"),
-                new ContactDetail().withRole(Role.TECHNICAL)
-                    .withEmail("xyz@contoso.com")
-                    .withPhone("+1 (234) 567-8900")))
-            .withPeerName("Contoso")
-            .create();
-    }
-}
-```
-
-### PeerAsns_Delete
 
 ```java
 /**
@@ -197,7 +108,7 @@ public final class PeerAsnsCreateOrUpdateSamples {
 public final class PeerAsnsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/DeletePeerAsn.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/DeletePeerAsn.json
      */
     /**
      * Sample code: Delete a peer ASN.
@@ -210,29 +121,180 @@ public final class PeerAsnsDeleteSamples {
 }
 ```
 
-### PeerAsns_Get
+### ConnectionMonitorTests_CreateOrUpdate
 
 ```java
 /**
- * Samples for PeerAsns Get.
+ * Samples for RegisteredAsns CreateOrUpdate.
  */
-public final class PeerAsnsGetSamples {
+public final class RegisteredAsnsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/GetPeerAsn.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/CreateRegisteredAsn.json
      */
     /**
-     * Sample code: Get a peer ASN.
+     * Sample code: Create or update a registered ASN for the peering.
      * 
      * @param manager Entry point to PeeringManager.
      */
-    public static void getAPeerASN(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.peerAsns().getWithResponse("peerAsnName", com.azure.core.util.Context.NONE);
+    public static void
+        createOrUpdateARegisteredASNForThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.registeredAsns()
+            .define("registeredAsnName")
+            .withExistingPeering("rgName", "peeringName")
+            .withAsn(65000)
+            .create();
     }
 }
 ```
 
-### PeerAsns_List
+### ConnectionMonitorTests_Delete
+
+```java
+/**
+ * Samples for RegisteredPrefixes Validate.
+ */
+public final class RegisteredPrefixesValidateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ValidateRegisteredPrefix.json
+     */
+    /**
+     * Sample code: Validate a registered prefix associated with the peering.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void
+        validateARegisteredPrefixAssociatedWithThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.registeredPrefixes()
+            .validateWithResponse("rgName", "peeringName", "registeredPrefixName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ConnectionMonitorTests_Get
+
+```java
+/**
+ * Samples for RegisteredPrefixes CreateOrUpdate.
+ */
+public final class RegisteredPrefixesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/CreateRegisteredPrefix.json
+     */
+    /**
+     * Sample code: Create or update a registered prefix for the peering.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void
+        createOrUpdateARegisteredPrefixForThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.registeredPrefixes()
+            .define("registeredPrefixName")
+            .withExistingPeering("rgName", "peeringName")
+            .withPrefix("10.22.20.0/24")
+            .create();
+    }
+}
+```
+
+### ConnectionMonitorTests_ListByPeeringService
+
+```java
+/**
+ * Samples for ConnectionMonitorTests Delete.
+ */
+public final class ConnectionMonitorTestsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/DeleteConnectionMonitorTest.
+     * json
+     */
+    /**
+     * Sample code: Delete Connection Monitor Test.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void deleteConnectionMonitorTest(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.connectionMonitorTests()
+            .deleteWithResponse("rgName", "peeringServiceName", "connectionMonitorTestName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### LegacyPeerings_List
+
+```java
+/**
+ * Samples for RegisteredPrefixes Delete.
+ */
+public final class RegisteredPrefixesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/DeleteRegisteredPrefix.json
+     */
+    /**
+     * Sample code: Deletes a registered prefix associated with the peering.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void
+        deletesARegisteredPrefixAssociatedWithThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.registeredPrefixes()
+            .deleteWithResponse("rgName", "peeringName", "registeredPrefixName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### LookingGlass_Invoke
+
+```java
+/**
+ * Samples for RpUnbilledPrefixes List.
+ */
+public final class RpUnbilledPrefixesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ListRpUnbilledPrefixes.json
+     */
+    /**
+     * Sample code: List all the RP unbilled prefixes advertised at a particular peering location.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void listAllTheRPUnbilledPrefixesAdvertisedAtAParticularPeeringLocation(
+        com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.rpUnbilledPrefixes().list("rgName", "peeringName", true, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+/**
+ * Samples for Peerings List.
+ */
+public final class PeeringsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ListPeeringsBySubscription.
+     * json
+     */
+    /**
+     * Sample code: List peerings in a subscription.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void listPeeringsInASubscription(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.peerings().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PeerAsns_CreateOrUpdate
 
 ```java
 /**
@@ -241,7 +303,7 @@ public final class PeerAsnsGetSamples {
 public final class PeerAsnsListSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListPeerAsnsBySubscription.
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ListPeerAsnsBySubscription.
      * json
      */
     /**
@@ -255,143 +317,7 @@ public final class PeerAsnsListSamples {
 }
 ```
 
-### PeeringLocations_List
-
-```java
-import com.azure.resourcemanager.peering.models.PeeringLocationsKind;
-
-/**
- * Samples for PeeringLocations List.
- */
-public final class PeeringLocationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListExchangePeeringLocations.
-     * json
-     */
-    /**
-     * Sample code: List exchange peering locations.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void listExchangePeeringLocations(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.peeringLocations().list(PeeringLocationsKind.EXCHANGE, null, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListDirectPeeringLocations.
-     * json
-     */
-    /**
-     * Sample code: List direct peering locations.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void listDirectPeeringLocations(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.peeringLocations().list(PeeringLocationsKind.DIRECT, null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PeeringServiceCountries_List
-
-```java
-/**
- * Samples for PeeringServiceCountries List.
- */
-public final class PeeringServiceCountriesListSamples {
-    /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/
-     * ListPeeringServiceCountriesBySubscription.json
-     */
-    /**
-     * Sample code: List peering service countries.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void listPeeringServiceCountries(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.peeringServiceCountries().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PeeringServiceLocations_List
-
-```java
-/**
- * Samples for PeeringServiceLocations List.
- */
-public final class PeeringServiceLocationsListSamples {
-    /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/
-     * ListPeeringServiceLocationsBySubscription.json
-     */
-    /**
-     * Sample code: List peering service locations.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void listPeeringServiceLocations(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.peeringServiceLocations().list(null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PeeringServiceProviders_List
-
-```java
-/**
- * Samples for PeeringServiceProviders List.
- */
-public final class PeeringServiceProvidersListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListPeeringServiceProviders.
-     * json
-     */
-    /**
-     * Sample code: List peering service providers.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void listPeeringServiceProviders(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.peeringServiceProviders().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PeeringServices_CreateOrUpdate
-
-```java
-/**
- * Samples for PeeringServices CreateOrUpdate.
- */
-public final class PeeringServicesCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/CreatePeeringService.json
-     */
-    /**
-     * Sample code: Create a peering service.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void createAPeeringService(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.peeringServices()
-            .define("peeringServiceName")
-            .withRegion("eastus")
-            .withExistingResourceGroup("rgName")
-            .withPeeringServiceLocation("state1")
-            .withPeeringServiceProvider("serviceProvider1")
-            .withProviderPrimaryPeeringLocation("peeringLocation1")
-            .withProviderBackupPeeringLocation("peeringLocation2")
-            .create();
-    }
-}
-```
-
-### PeeringServices_Delete
+### PeerAsns_Delete
 
 ```java
 /**
@@ -400,7 +326,7 @@ public final class PeeringServicesCreateOrUpdateSamples {
 public final class PeeringServicesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/DeletePeeringService.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/DeletePeeringService.json
      */
     /**
      * Sample code: Delete a peering service.
@@ -414,7 +340,76 @@ public final class PeeringServicesDeleteSamples {
 }
 ```
 
-### PeeringServices_GetByResourceGroup
+### PeerAsns_Get
+
+```java
+/**
+ * Samples for PeeringServiceCountries List.
+ */
+public final class PeeringServiceCountriesListSamples {
+    /*
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/
+     * ListPeeringServiceCountriesBySubscription.json
+     */
+    /**
+     * Sample code: List peering service countries.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void listPeeringServiceCountries(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.peeringServiceCountries().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PeerAsns_List
+
+```java
+/**
+ * Samples for PeeringServiceProviders List.
+ */
+public final class PeeringServiceProvidersListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ListPeeringServiceProviders.
+     * json
+     */
+    /**
+     * Sample code: List peering service providers.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void listPeeringServiceProviders(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.peeringServiceProviders().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PeeringLocations_List
+
+```java
+/**
+ * Samples for RegisteredAsns ListByPeering.
+ */
+public final class RegisteredAsnsListByPeeringSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ListRegisteredAsnsByPeering.
+     * json
+     */
+    /**
+     * Sample code: List all the registered ASNs associated with the peering.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void
+        listAllTheRegisteredASNsAssociatedWithThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.registeredAsns().listByPeering("rgName", "peeringName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PeeringServiceCountries_List
 
 ```java
 /**
@@ -423,7 +418,7 @@ public final class PeeringServicesDeleteSamples {
 public final class PeeringServicesGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/GetPeeringService.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/GetPeeringService.json
      */
     /**
      * Sample code: Get a peering service.
@@ -437,7 +432,102 @@ public final class PeeringServicesGetByResourceGroupSamples {
 }
 ```
 
-### PeeringServices_List
+### PeeringServiceLocations_List
+
+```java
+/**
+ * Samples for PeeringServices InitializeConnectionMonitor.
+ */
+public final class PeeringServicesInitializeConnectionMonitorSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/InitializeConnectionMonitor.
+     * json
+     */
+    /**
+     * Sample code: Initialize Peering Service for Connection Monitor functionality.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void initializePeeringServiceForConnectionMonitorFunctionality(
+        com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.peeringServices().initializeConnectionMonitorWithResponse(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PeeringServiceProviders_List
+
+```java
+/**
+ * Samples for ConnectionMonitorTests Get.
+ */
+public final class ConnectionMonitorTestsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/GetConnectionMonitorTest.json
+     */
+    /**
+     * Sample code: Get Connection Monitor Test.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void getConnectionMonitorTest(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.connectionMonitorTests()
+            .getWithResponse("rgName", "peeringServiceName", "connectionMonitorTestName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PeeringServices_CreateOrUpdate
+
+```java
+/**
+ * Samples for Peerings GetByResourceGroup.
+ */
+public final class PeeringsGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/GetPeering.json
+     */
+    /**
+     * Sample code: Get a peering.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void getAPeering(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.peerings().getByResourceGroupWithResponse("rgName", "peeringName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PeeringServices_Delete
+
+```java
+/**
+ * Samples for Prefixes Get.
+ */
+public final class PrefixesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/GetPeeringServicePrefix.json
+     */
+    /**
+     * Sample code: Get a prefix associated with the peering service.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void
+        getAPrefixAssociatedWithThePeeringService(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.prefixes()
+            .getWithResponse("rgName", "peeringServiceName", "peeringServicePrefixName", null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PeeringServices_GetByResourceGroup
 
 ```java
 /**
@@ -445,7 +535,7 @@ public final class PeeringServicesGetByResourceGroupSamples {
  */
 public final class PeeringServicesListSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/
      * ListPeeringServicesBySubscription.json
      */
     /**
@@ -459,7 +549,170 @@ public final class PeeringServicesListSamples {
 }
 ```
 
+### PeeringServices_InitializeConnectionMonitor
+
+```java
+/**
+ * Samples for Peerings Delete.
+ */
+public final class PeeringsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/DeletePeering.json
+     */
+    /**
+     * Sample code: Delete a peering.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void deleteAPeering(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.peerings().deleteByResourceGroupWithResponse("rgName", "peeringName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PeeringServices_List
+
+```java
+/**
+ * Samples for PeerAsns Get.
+ */
+public final class PeerAsnsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/GetPeerAsn.json
+     */
+    /**
+     * Sample code: Get a peer ASN.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void getAPeerASN(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.peerAsns().getWithResponse("peerAsnName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### PeeringServices_ListByResourceGroup
+
+```java
+/**
+ * Samples for CdnPeeringPrefixes List.
+ */
+public final class CdnPeeringPrefixesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ListCdnPeeringPrefixes.json
+     */
+    /**
+     * Sample code: List all the cdn peering prefixes advertised at a particular peering location.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void listAllTheCdnPeeringPrefixesAdvertisedAtAParticularPeeringLocation(
+        com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.cdnPeeringPrefixes().list("peeringLocation0", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PeeringServices_Update
+
+```java
+/**
+ * Samples for Prefixes ListByPeeringService.
+ */
+public final class PrefixesListByPeeringServiceSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ListPrefixesByPeeringService.
+     * json
+     */
+    /**
+     * Sample code: List all the prefixes associated with the peering service.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void
+        listAllThePrefixesAssociatedWithThePeeringService(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.prefixes().listByPeeringService("rgName", "peeringServiceName", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Peerings_CreateOrUpdate
+
+```java
+/**
+ * Samples for RegisteredAsns Delete.
+ */
+public final class RegisteredAsnsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/DeleteRegisteredAsn.json
+     */
+    /**
+     * Sample code: Deletes a registered ASN associated with the peering.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void
+        deletesARegisteredASNAssociatedWithThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.registeredAsns()
+            .deleteWithResponse("rgName", "peeringName", "registeredAsnName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Peerings_Delete
+
+```java
+/**
+ * Samples for RegisteredAsns Get.
+ */
+public final class RegisteredAsnsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/GetRegisteredAsn.json
+     */
+    /**
+     * Sample code: Get a registered ASN associated with the peering.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void
+        getARegisteredASNAssociatedWithThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.registeredAsns()
+            .getWithResponse("rgName", "peeringName", "registeredAsnName0", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Peerings_GetByResourceGroup
+
+```java
+/**
+ * Samples for RegisteredPrefixes Get.
+ */
+public final class RegisteredPrefixesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/GetRegisteredPrefix.json
+     */
+    /**
+     * Sample code: Get a registered prefix associated with the peering.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void
+        getARegisteredPrefixAssociatedWithThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.registeredPrefixes()
+            .getWithResponse("rgName", "peeringName", "registeredPrefixName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Peerings_List
 
 ```java
 /**
@@ -467,7 +720,7 @@ public final class PeeringServicesListSamples {
  */
 public final class PeeringServicesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/
      * ListPeeringServicesByResourceGroup.json
      */
     /**
@@ -481,48 +734,7 @@ public final class PeeringServicesListByResourceGroupSamples {
 }
 ```
 
-### PeeringServices_Update
-
-```java
-import com.azure.resourcemanager.peering.models.PeeringService;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for PeeringServices Update.
- */
-public final class PeeringServicesUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/UpdatePeeringServiceTags.json
-     */
-    /**
-     * Sample code: Update peering service tags.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void updatePeeringServiceTags(com.azure.resourcemanager.peering.PeeringManager manager) {
-        PeeringService resource = manager.peeringServices()
-            .getByResourceGroupWithResponse("rgName", "peeringServiceName", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("tag0", "value0", "tag1", "value1")).apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### Peerings_CreateOrUpdate
+### Peerings_ListByResourceGroup
 
 ```java
 import com.azure.core.management.SubResource;
@@ -542,7 +754,7 @@ import java.util.Arrays;
  */
 public final class PeeringsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/
      * CreatePeeringWithExchangeRouteServer.json
      */
     /**
@@ -577,7 +789,7 @@ public final class PeeringsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/CreateExchangePeering.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/CreateExchangePeering.json
      */
     /**
      * Sample code: Create an exchange peering.
@@ -615,7 +827,7 @@ public final class PeeringsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/CreateDirectPeering.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/CreateDirectPeering.json
      */
     /**
      * Sample code: Create a direct peering.
@@ -655,74 +867,59 @@ public final class PeeringsCreateOrUpdateSamples {
 }
 ```
 
-### Peerings_Delete
+### Peerings_Update
 
 ```java
 /**
- * Samples for Peerings Delete.
+ * Samples for PeeringServices CreateOrUpdate.
  */
-public final class PeeringsDeleteSamples {
+public final class PeeringServicesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/DeletePeering.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/CreatePeeringService.json
      */
     /**
-     * Sample code: Delete a peering.
+     * Sample code: Create a peering service.
      * 
      * @param manager Entry point to PeeringManager.
      */
-    public static void deleteAPeering(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.peerings().deleteByResourceGroupWithResponse("rgName", "peeringName", com.azure.core.util.Context.NONE);
+    public static void createAPeeringService(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.peeringServices()
+            .define("peeringServiceName")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rgName")
+            .withPeeringServiceLocation("state1")
+            .withPeeringServiceProvider("serviceProvider1")
+            .withProviderPrimaryPeeringLocation("peeringLocation1")
+            .withProviderBackupPeeringLocation("peeringLocation2")
+            .create();
     }
 }
 ```
 
-### Peerings_GetByResourceGroup
+### Prefixes_CreateOrUpdate
 
 ```java
 /**
- * Samples for Peerings GetByResourceGroup.
+ * Samples for PeeringServiceLocations List.
  */
-public final class PeeringsGetByResourceGroupSamples {
+public final class PeeringServiceLocationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/GetPeering.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/
+     * ListPeeringServiceLocationsBySubscription.json
      */
     /**
-     * Sample code: Get a peering.
+     * Sample code: List peering service locations.
      * 
      * @param manager Entry point to PeeringManager.
      */
-    public static void getAPeering(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.peerings().getByResourceGroupWithResponse("rgName", "peeringName", com.azure.core.util.Context.NONE);
+    public static void listPeeringServiceLocations(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.peeringServiceLocations().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Peerings_List
-
-```java
-/**
- * Samples for Peerings List.
- */
-public final class PeeringsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListPeeringsBySubscription.
-     * json
-     */
-    /**
-     * Sample code: List peerings in a subscription.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void listPeeringsInASubscription(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.peerings().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Peerings_ListByResourceGroup
+### Prefixes_Delete
 
 ```java
 /**
@@ -731,7 +928,7 @@ public final class PeeringsListSamples {
 public final class PeeringsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListPeeringsByResourceGroup.
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ListPeeringsByResourceGroup.
      * json
      */
     /**
@@ -745,7 +942,275 @@ public final class PeeringsListByResourceGroupSamples {
 }
 ```
 
-### Peerings_Update
+### Prefixes_Get
+
+```java
+/**
+ * Samples for Prefixes CreateOrUpdate.
+ */
+public final class PrefixesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/CreatePeeringServicePrefix.
+     * json
+     */
+    /**
+     * Sample code: Create or update a prefix for the peering service.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void
+        createOrUpdateAPrefixForThePeeringService(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.prefixes()
+            .define("peeringServicePrefixName")
+            .withExistingPeeringService("rgName", "peeringServiceName")
+            .withPrefix("192.168.1.0/24")
+            .withPeeringServicePrefixKey("00000000-0000-0000-0000-000000000000")
+            .create();
+    }
+}
+```
+
+### Prefixes_ListByPeeringService
+
+```java
+import com.azure.resourcemanager.peering.models.PeeringService;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for PeeringServices Update.
+ */
+public final class PeeringServicesUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/UpdatePeeringServiceTags.json
+     */
+    /**
+     * Sample code: Update peering service tags.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void updatePeeringServiceTags(com.azure.resourcemanager.peering.PeeringManager manager) {
+        PeeringService resource = manager.peeringServices()
+            .getByResourceGroupWithResponse("rgName", "peeringServiceName", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("tag0", "value0", "tag1", "value1")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### ReceivedRoutes_ListByPeering
+
+```java
+import com.azure.resourcemanager.peering.models.DirectPeeringType;
+import com.azure.resourcemanager.peering.models.LegacyPeeringsKind;
+
+/**
+ * Samples for LegacyPeerings List.
+ */
+public final class LegacyPeeringsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ListLegacyPeerings.json
+     */
+    /**
+     * Sample code: List legacy peerings.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void listLegacyPeerings(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.legacyPeerings()
+            .list("peeringLocation0", LegacyPeeringsKind.EXCHANGE, null, DirectPeeringType.EDGE,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### RegisteredAsns_CreateOrUpdate
+
+```java
+/**
+ * Samples for ConnectionMonitorTests CreateOrUpdate.
+ */
+public final class ConnectionMonitorTestsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/
+     * CreateOrUpdateConnectionMonitorTest.json
+     */
+    /**
+     * Sample code: Create or Update Connection Monitor Test.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void createOrUpdateConnectionMonitorTest(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.connectionMonitorTests()
+            .define("connectionMonitorTestName")
+            .withExistingPeeringService("rgName", "peeringServiceName")
+            .withSourceAgent("Example Source Agent")
+            .withDestination("Example Destination")
+            .withDestinationPort(443)
+            .withTestFrequencyInSec(30)
+            .create();
+    }
+}
+```
+
+### RegisteredAsns_Delete
+
+```java
+import com.azure.resourcemanager.peering.models.LookingGlassCommand;
+import com.azure.resourcemanager.peering.models.LookingGlassSourceType;
+
+/**
+ * Samples for LookingGlass Invoke.
+ */
+public final class LookingGlassInvokeSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/LookingGlassInvokeCommand.
+     * json
+     */
+    /**
+     * Sample code: Call looking glass to execute a command.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void callLookingGlassToExecuteACommand(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.lookingGlass()
+            .invokeWithResponse(LookingGlassCommand.TRACEROUTE, LookingGlassSourceType.AZURE_REGION, "West US",
+                "0.0.0.0", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### RegisteredAsns_Get
+
+```java
+/**
+ * Samples for RegisteredPrefixes ListByPeering.
+ */
+public final class RegisteredPrefixesListByPeeringSamples {
+    /*
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/
+     * ListRegisteredPrefixesByPeering.json
+     */
+    /**
+     * Sample code: List all the registered prefixes associated with the peering.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void
+        listAllTheRegisteredPrefixesAssociatedWithThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.registeredPrefixes().listByPeering("rgName", "peeringName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### RegisteredAsns_ListByPeering
+
+```java
+import com.azure.resourcemanager.peering.models.ContactDetail;
+import com.azure.resourcemanager.peering.models.Role;
+import java.util.Arrays;
+
+/**
+ * Samples for PeerAsns CreateOrUpdate.
+ */
+public final class PeerAsnsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/CreatePeerAsn.json
+     */
+    /**
+     * Sample code: Create a peer ASN.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void createAPeerASN(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.peerAsns()
+            .define("peerAsnName")
+            .withPeerAsn(65000)
+            .withPeerContactDetail(Arrays.asList(
+                new ContactDetail().withRole(Role.NOC).withEmail("noc@contoso.com").withPhone("+1 (234) 567-8999"),
+                new ContactDetail().withRole(Role.POLICY).withEmail("abc@contoso.com").withPhone("+1 (234) 567-8900"),
+                new ContactDetail().withRole(Role.TECHNICAL)
+                    .withEmail("xyz@contoso.com")
+                    .withPhone("+1 (234) 567-8900")))
+            .withPeerName("Contoso")
+            .create();
+    }
+}
+```
+
+### RegisteredPrefixes_CreateOrUpdate
+
+```java
+/**
+ * Samples for ReceivedRoutes ListByPeering.
+ */
+public final class ReceivedRoutesListByPeeringSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/GetPeeringReceivedRoutes.json
+     */
+    /**
+     * Sample code: Lists the prefixes received over the specified peering under the given subscription and resource
+     * group.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void listsThePrefixesReceivedOverTheSpecifiedPeeringUnderTheGivenSubscriptionAndResourceGroup(
+        com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.receivedRoutes()
+            .listByPeering("rgName", "peeringName", "1.1.1.0/24", "123 456", "Valid", "Valid", null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### RegisteredPrefixes_Delete
+
+```java
+import com.azure.resourcemanager.peering.models.CheckServiceProviderAvailabilityInput;
+
+/**
+ * Samples for ResourceProvider CheckServiceProviderAvailability.
+ */
+public final class ResourceProviderCheckServiceProviderAvailabilitySamples {
+    /*
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/
+     * CheckServiceProviderAvailability.json
+     */
+    /**
+     * Sample code: Check if peering service provider is available in customer location.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void checkIfPeeringServiceProviderIsAvailableInCustomerLocation(
+        com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.resourceProviders()
+            .checkServiceProviderAvailabilityWithResponse(
+                new CheckServiceProviderAvailabilityInput().withPeeringServiceLocation("peeringServiceLocation1")
+                    .withPeeringServiceProvider("peeringServiceProvider1"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### RegisteredPrefixes_Get
 
 ```java
 import com.azure.resourcemanager.peering.models.Peering;
@@ -758,7 +1223,7 @@ import java.util.Map;
 public final class PeeringsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/UpdatePeeringTags.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/UpdatePeeringTags.json
      */
     /**
      * Sample code: Update peering tags.
@@ -786,36 +1251,7 @@ public final class PeeringsUpdateSamples {
 }
 ```
 
-### Prefixes_CreateOrUpdate
-
-```java
-/**
- * Samples for Prefixes CreateOrUpdate.
- */
-public final class PrefixesCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/CreatePeeringServicePrefix.
-     * json
-     */
-    /**
-     * Sample code: Create or update a prefix for the peering service.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void
-        createOrUpdateAPrefixForThePeeringService(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.prefixes()
-            .define("peeringServicePrefixName")
-            .withExistingPeeringService("rgName", "peeringServiceName")
-            .withPrefix("192.168.1.0/24")
-            .withPeeringServicePrefixKey("00000000-0000-0000-0000-000000000000")
-            .create();
-    }
-}
-```
-
-### Prefixes_Delete
+### RegisteredPrefixes_ListByPeering
 
 ```java
 /**
@@ -824,7 +1260,7 @@ public final class PrefixesCreateOrUpdateSamples {
 public final class PrefixesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/DeletePeeringServicePrefix.
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/DeletePeeringServicePrefix.
      * json
      */
     /**
@@ -841,274 +1277,24 @@ public final class PrefixesDeleteSamples {
 }
 ```
 
-### Prefixes_Get
+### RegisteredPrefixes_Validate
 
 ```java
 /**
- * Samples for Prefixes Get.
+ * Samples for Operations List.
  */
-public final class PrefixesGetSamples {
+public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/GetPeeringServicePrefix.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ListPeeringOperations.json
      */
     /**
-     * Sample code: Get a prefix associated with the peering service.
+     * Sample code: List peering operations.
      * 
      * @param manager Entry point to PeeringManager.
      */
-    public static void
-        getAPrefixAssociatedWithThePeeringService(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.prefixes()
-            .getWithResponse("rgName", "peeringServiceName", "peeringServicePrefixName", null,
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Prefixes_ListByPeeringService
-
-```java
-/**
- * Samples for Prefixes ListByPeeringService.
- */
-public final class PrefixesListByPeeringServiceSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListPrefixesByPeeringService.
-     * json
-     */
-    /**
-     * Sample code: List all the prefixes associated with the peering service.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void
-        listAllThePrefixesAssociatedWithThePeeringService(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.prefixes().listByPeeringService("rgName", "peeringServiceName", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ReceivedRoutes_ListByPeering
-
-```java
-/**
- * Samples for ReceivedRoutes ListByPeering.
- */
-public final class ReceivedRoutesListByPeeringSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/GetPeeringReceivedRoutes.json
-     */
-    /**
-     * Sample code: Lists the prefixes received over the specified peering under the given subscription and resource
-     * group.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void listsThePrefixesReceivedOverTheSpecifiedPeeringUnderTheGivenSubscriptionAndResourceGroup(
-        com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.receivedRoutes()
-            .listByPeering("rgName", "peeringName", "1.1.1.0/24", "123 456", "Valid", "Valid", null,
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### RegisteredAsns_CreateOrUpdate
-
-```java
-/**
- * Samples for RegisteredAsns CreateOrUpdate.
- */
-public final class RegisteredAsnsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/CreateRegisteredAsn.json
-     */
-    /**
-     * Sample code: Create or update a registered ASN for the peering.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void
-        createOrUpdateARegisteredASNForThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.registeredAsns()
-            .define("registeredAsnName")
-            .withExistingPeering("rgName", "peeringName")
-            .withAsn(65000)
-            .create();
-    }
-}
-```
-
-### RegisteredAsns_Delete
-
-```java
-/**
- * Samples for RegisteredAsns Delete.
- */
-public final class RegisteredAsnsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/DeleteRegisteredAsn.json
-     */
-    /**
-     * Sample code: Deletes a registered ASN associated with the peering.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void
-        deletesARegisteredASNAssociatedWithThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.registeredAsns()
-            .deleteWithResponse("rgName", "peeringName", "registeredAsnName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### RegisteredAsns_Get
-
-```java
-/**
- * Samples for RegisteredAsns Get.
- */
-public final class RegisteredAsnsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/GetRegisteredAsn.json
-     */
-    /**
-     * Sample code: Get a registered ASN associated with the peering.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void
-        getARegisteredASNAssociatedWithThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.registeredAsns()
-            .getWithResponse("rgName", "peeringName", "registeredAsnName0", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### RegisteredAsns_ListByPeering
-
-```java
-/**
- * Samples for RegisteredAsns ListByPeering.
- */
-public final class RegisteredAsnsListByPeeringSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListRegisteredAsnsByPeering.
-     * json
-     */
-    /**
-     * Sample code: List all the registered ASNs associated with the peering.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void
-        listAllTheRegisteredASNsAssociatedWithThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.registeredAsns().listByPeering("rgName", "peeringName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### RegisteredPrefixes_CreateOrUpdate
-
-```java
-/**
- * Samples for RegisteredPrefixes CreateOrUpdate.
- */
-public final class RegisteredPrefixesCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/CreateRegisteredPrefix.json
-     */
-    /**
-     * Sample code: Create or update a registered prefix for the peering.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void
-        createOrUpdateARegisteredPrefixForThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.registeredPrefixes()
-            .define("registeredPrefixName")
-            .withExistingPeering("rgName", "peeringName")
-            .withPrefix("10.22.20.0/24")
-            .create();
-    }
-}
-```
-
-### RegisteredPrefixes_Delete
-
-```java
-/**
- * Samples for RegisteredPrefixes Delete.
- */
-public final class RegisteredPrefixesDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/DeleteRegisteredPrefix.json
-     */
-    /**
-     * Sample code: Deletes a registered prefix associated with the peering.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void
-        deletesARegisteredPrefixAssociatedWithThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.registeredPrefixes()
-            .deleteWithResponse("rgName", "peeringName", "registeredPrefixName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### RegisteredPrefixes_Get
-
-```java
-/**
- * Samples for RegisteredPrefixes Get.
- */
-public final class RegisteredPrefixesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/GetRegisteredPrefix.json
-     */
-    /**
-     * Sample code: Get a registered prefix associated with the peering.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void
-        getARegisteredPrefixAssociatedWithThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.registeredPrefixes()
-            .getWithResponse("rgName", "peeringName", "registeredPrefixName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### RegisteredPrefixes_ListByPeering
-
-```java
-/**
- * Samples for RegisteredPrefixes ListByPeering.
- */
-public final class RegisteredPrefixesListByPeeringSamples {
-    /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/
-     * ListRegisteredPrefixesByPeering.json
-     */
-    /**
-     * Sample code: List all the registered prefixes associated with the peering.
-     * 
-     * @param manager Entry point to PeeringManager.
-     */
-    public static void
-        listAllTheRegisteredPrefixesAssociatedWithThePeering(com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.registeredPrefixes().listByPeering("rgName", "peeringName", com.azure.core.util.Context.NONE);
+    public static void listPeeringOperations(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1116,28 +1302,62 @@ public final class RegisteredPrefixesListByPeeringSamples {
 ### ResourceProvider_CheckServiceProviderAvailability
 
 ```java
-import com.azure.resourcemanager.peering.models.CheckServiceProviderAvailabilityInput;
-
 /**
- * Samples for ResourceProvider CheckServiceProviderAvailability.
+ * Samples for ConnectionMonitorTests ListByPeeringService.
  */
-public final class ResourceProviderCheckServiceProviderAvailabilitySamples {
+public final class ConnectionMonitorTestsListByPeeringServiceSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/
-     * CheckServiceProviderAvailability.json
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/
+     * ListConnectionMonitorTestsByPeeringService.json
      */
     /**
-     * Sample code: Check if peering service provider is available in customer location.
+     * Sample code: List all Connection Monitor Tests associated with the peering service.
      * 
      * @param manager Entry point to PeeringManager.
      */
-    public static void checkIfPeeringServiceProviderIsAvailableInCustomerLocation(
+    public static void listAllConnectionMonitorTestsAssociatedWithThePeeringService(
         com.azure.resourcemanager.peering.PeeringManager manager) {
-        manager.resourceProviders()
-            .checkServiceProviderAvailabilityWithResponse(
-                new CheckServiceProviderAvailabilityInput().withPeeringServiceLocation("peeringServiceLocation1")
-                    .withPeeringServiceProvider("peeringServiceProvider1"),
-                com.azure.core.util.Context.NONE);
+        manager.connectionMonitorTests()
+            .listByPeeringService("rgName", "peeringServiceName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### RpUnbilledPrefixes_List
+
+```java
+import com.azure.resourcemanager.peering.models.PeeringLocationsKind;
+
+/**
+ * Samples for PeeringLocations List.
+ */
+public final class PeeringLocationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ListExchangePeeringLocations.
+     * json
+     */
+    /**
+     * Sample code: List exchange peering locations.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void listExchangePeeringLocations(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.peeringLocations().list(PeeringLocationsKind.EXCHANGE, null, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ListDirectPeeringLocations.
+     * json
+     */
+    /**
+     * Sample code: List direct peering locations.
+     * 
+     * @param manager Entry point to PeeringManager.
+     */
+    public static void listDirectPeeringLocations(com.azure.resourcemanager.peering.PeeringManager manager) {
+        manager.peeringLocations().list(PeeringLocationsKind.DIRECT, null, com.azure.core.util.Context.NONE);
     }
 }
 ```

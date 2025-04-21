@@ -10,7 +10,7 @@ package com.azure.resourcemanager.peering.generated;
 public final class PeeringServicesGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/GetPeeringService.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/GetPeeringService.json
      */
     /**
      * Sample code: Get a peering service.

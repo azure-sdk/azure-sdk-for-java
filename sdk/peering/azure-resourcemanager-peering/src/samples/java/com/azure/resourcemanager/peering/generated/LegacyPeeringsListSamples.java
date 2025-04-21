@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.peering.generated;
 
+import com.azure.resourcemanager.peering.models.DirectPeeringType;
 import com.azure.resourcemanager.peering.models.LegacyPeeringsKind;
 
 /**
@@ -12,7 +13,7 @@ import com.azure.resourcemanager.peering.models.LegacyPeeringsKind;
 public final class LegacyPeeringsListSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/ListLegacyPeerings.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/ListLegacyPeerings.json
      */
     /**
      * Sample code: List legacy peerings.
@@ -21,6 +22,7 @@ public final class LegacyPeeringsListSamples {
      */
     public static void listLegacyPeerings(com.azure.resourcemanager.peering.PeeringManager manager) {
         manager.legacyPeerings()
-            .list("peeringLocation0", LegacyPeeringsKind.EXCHANGE, null, com.azure.core.util.Context.NONE);
+            .list("peeringLocation0", LegacyPeeringsKind.EXCHANGE, null, DirectPeeringType.EDGE,
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -10,7 +10,7 @@ package com.azure.resourcemanager.peering.generated;
 public final class PrefixesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/GetPeeringServicePrefix.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2022-10-01/examples/GetPeeringServicePrefix.json
      */
     /**
      * Sample code: Get a prefix associated with the peering service.
