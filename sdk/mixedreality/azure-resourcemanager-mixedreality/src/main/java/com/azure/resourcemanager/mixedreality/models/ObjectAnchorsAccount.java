@@ -8,13 +8,13 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.mixedreality.fluent.models.RemoteRenderingAccountInner;
+import com.azure.resourcemanager.mixedreality.fluent.models.ObjectAnchorsAccountInner;
 import java.util.Map;
 
 /**
- * An immutable client-side representation of RemoteRenderingAccount.
+ * An immutable client-side representation of ObjectAnchorsAccount.
  */
-public interface RemoteRenderingAccount {
+public interface ObjectAnchorsAccount {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
      * 
@@ -51,11 +51,11 @@ public interface RemoteRenderingAccount {
     Map<String, String> tags();
 
     /**
-     * Gets the identity property: The identity associated with this account.
+     * Gets the identity property: The identity property.
      * 
      * @return the identity value.
      */
-    Identity identity();
+    ObjectAnchorsAccountIdentity identity();
 
     /**
      * Gets the plan property: The plan associated with this account.
@@ -79,7 +79,7 @@ public interface RemoteRenderingAccount {
     Sku kind();
 
     /**
-     * Gets the systemData property: System metadata for this account.
+     * Gets the systemData property: The system metadata related to an object anchors account.
      * 
      * @return the systemData value.
      */
@@ -128,31 +128,31 @@ public interface RemoteRenderingAccount {
     String resourceGroupName();
 
     /**
-     * Gets the inner com.azure.resourcemanager.mixedreality.fluent.models.RemoteRenderingAccountInner object.
+     * Gets the inner com.azure.resourcemanager.mixedreality.fluent.models.ObjectAnchorsAccountInner object.
      * 
      * @return the inner object.
      */
-    RemoteRenderingAccountInner innerModel();
+    ObjectAnchorsAccountInner innerModel();
 
     /**
-     * The entirety of the RemoteRenderingAccount definition.
+     * The entirety of the ObjectAnchorsAccount definition.
      */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
         DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
 
     /**
-     * The RemoteRenderingAccount definition stages.
+     * The ObjectAnchorsAccount definition stages.
      */
     interface DefinitionStages {
         /**
-         * The first stage of the RemoteRenderingAccount definition.
+         * The first stage of the ObjectAnchorsAccount definition.
          */
         interface Blank extends WithLocation {
         }
 
         /**
-         * The stage of the RemoteRenderingAccount definition allowing to specify location.
+         * The stage of the ObjectAnchorsAccount definition allowing to specify location.
          */
         interface WithLocation {
             /**
@@ -173,7 +173,7 @@ public interface RemoteRenderingAccount {
         }
 
         /**
-         * The stage of the RemoteRenderingAccount definition allowing to specify parent resource.
+         * The stage of the ObjectAnchorsAccount definition allowing to specify parent resource.
          */
         interface WithResourceGroup {
             /**
@@ -186,7 +186,7 @@ public interface RemoteRenderingAccount {
         }
 
         /**
-         * The stage of the RemoteRenderingAccount definition which contains all the minimum required properties for the
+         * The stage of the ObjectAnchorsAccount definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
@@ -197,7 +197,7 @@ public interface RemoteRenderingAccount {
              * 
              * @return the created resource.
              */
-            RemoteRenderingAccount create();
+            ObjectAnchorsAccount create();
 
             /**
              * Executes the create request.
@@ -205,11 +205,11 @@ public interface RemoteRenderingAccount {
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
-            RemoteRenderingAccount create(Context context);
+            ObjectAnchorsAccount create(Context context);
         }
 
         /**
-         * The stage of the RemoteRenderingAccount definition allowing to specify tags.
+         * The stage of the ObjectAnchorsAccount definition allowing to specify tags.
          */
         interface WithTags {
             /**
@@ -222,20 +222,20 @@ public interface RemoteRenderingAccount {
         }
 
         /**
-         * The stage of the RemoteRenderingAccount definition allowing to specify identity.
+         * The stage of the ObjectAnchorsAccount definition allowing to specify identity.
          */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity associated with this account.
+             * Specifies the identity property: The identity property..
              * 
-             * @param identity The identity associated with this account.
+             * @param identity The identity property.
              * @return the next definition stage.
              */
-            WithCreate withIdentity(Identity identity);
+            WithCreate withIdentity(ObjectAnchorsAccountIdentity identity);
         }
 
         /**
-         * The stage of the RemoteRenderingAccount definition allowing to specify plan.
+         * The stage of the ObjectAnchorsAccount definition allowing to specify plan.
          */
         interface WithPlan {
             /**
@@ -248,7 +248,7 @@ public interface RemoteRenderingAccount {
         }
 
         /**
-         * The stage of the RemoteRenderingAccount definition allowing to specify sku.
+         * The stage of the ObjectAnchorsAccount definition allowing to specify sku.
          */
         interface WithSku {
             /**
@@ -261,7 +261,7 @@ public interface RemoteRenderingAccount {
         }
 
         /**
-         * The stage of the RemoteRenderingAccount definition allowing to specify kind.
+         * The stage of the ObjectAnchorsAccount definition allowing to specify kind.
          */
         interface WithKind {
             /**
@@ -274,7 +274,7 @@ public interface RemoteRenderingAccount {
         }
 
         /**
-         * The stage of the RemoteRenderingAccount definition allowing to specify storageAccountName.
+         * The stage of the ObjectAnchorsAccount definition allowing to specify storageAccountName.
          */
         interface WithStorageAccountName {
             /**
@@ -289,14 +289,14 @@ public interface RemoteRenderingAccount {
     }
 
     /**
-     * Begins update for the RemoteRenderingAccount resource.
+     * Begins update for the ObjectAnchorsAccount resource.
      * 
      * @return the stage of resource update.
      */
-    RemoteRenderingAccount.Update update();
+    ObjectAnchorsAccount.Update update();
 
     /**
-     * The template for RemoteRenderingAccount update.
+     * The template for ObjectAnchorsAccount update.
      */
     interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithPlan,
         UpdateStages.WithSku, UpdateStages.WithKind, UpdateStages.WithStorageAccountName {
@@ -305,7 +305,7 @@ public interface RemoteRenderingAccount {
          * 
          * @return the updated resource.
          */
-        RemoteRenderingAccount apply();
+        ObjectAnchorsAccount apply();
 
         /**
          * Executes the update request.
@@ -313,15 +313,15 @@ public interface RemoteRenderingAccount {
          * @param context The context to associate with this operation.
          * @return the updated resource.
          */
-        RemoteRenderingAccount apply(Context context);
+        ObjectAnchorsAccount apply(Context context);
     }
 
     /**
-     * The RemoteRenderingAccount update stages.
+     * The ObjectAnchorsAccount update stages.
      */
     interface UpdateStages {
         /**
-         * The stage of the RemoteRenderingAccount update allowing to specify tags.
+         * The stage of the ObjectAnchorsAccount update allowing to specify tags.
          */
         interface WithTags {
             /**
@@ -334,20 +334,20 @@ public interface RemoteRenderingAccount {
         }
 
         /**
-         * The stage of the RemoteRenderingAccount update allowing to specify identity.
+         * The stage of the ObjectAnchorsAccount update allowing to specify identity.
          */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity associated with this account.
+             * Specifies the identity property: The identity property..
              * 
-             * @param identity The identity associated with this account.
+             * @param identity The identity property.
              * @return the next definition stage.
              */
-            Update withIdentity(Identity identity);
+            Update withIdentity(ObjectAnchorsAccountIdentity identity);
         }
 
         /**
-         * The stage of the RemoteRenderingAccount update allowing to specify plan.
+         * The stage of the ObjectAnchorsAccount update allowing to specify plan.
          */
         interface WithPlan {
             /**
@@ -360,7 +360,7 @@ public interface RemoteRenderingAccount {
         }
 
         /**
-         * The stage of the RemoteRenderingAccount update allowing to specify sku.
+         * The stage of the ObjectAnchorsAccount update allowing to specify sku.
          */
         interface WithSku {
             /**
@@ -373,7 +373,7 @@ public interface RemoteRenderingAccount {
         }
 
         /**
-         * The stage of the RemoteRenderingAccount update allowing to specify kind.
+         * The stage of the ObjectAnchorsAccount update allowing to specify kind.
          */
         interface WithKind {
             /**
@@ -386,7 +386,7 @@ public interface RemoteRenderingAccount {
         }
 
         /**
-         * The stage of the RemoteRenderingAccount update allowing to specify storageAccountName.
+         * The stage of the ObjectAnchorsAccount update allowing to specify storageAccountName.
          */
         interface WithStorageAccountName {
             /**
@@ -405,7 +405,7 @@ public interface RemoteRenderingAccount {
      * 
      * @return the refreshed resource.
      */
-    RemoteRenderingAccount refresh();
+    ObjectAnchorsAccount refresh();
 
     /**
      * Refreshes the resource to sync with Azure.
@@ -413,7 +413,7 @@ public interface RemoteRenderingAccount {
      * @param context The context to associate with this operation.
      * @return the refreshed resource.
      */
-    RemoteRenderingAccount refresh(Context context);
+    ObjectAnchorsAccount refresh(Context context);
 
     /**
      * &gt; [!NOTE]
@@ -422,7 +422,7 @@ public interface RemoteRenderingAccount {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Both of the 2 Keys of a Remote Rendering Account.
+     * List Both of the 2 Keys of an object anchors Account.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -439,7 +439,7 @@ public interface RemoteRenderingAccount {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Both of the 2 Keys of a Remote Rendering Account.
+     * List Both of the 2 Keys of an object anchors Account.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -454,7 +454,7 @@ public interface RemoteRenderingAccount {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Regenerate specified Key of a Remote Rendering Account.
+     * Regenerate specified Key of an object anchors Account.
      * 
      * @param regenerate Required information for key regeneration.
      * @param context The context to associate with this operation.
@@ -472,7 +472,7 @@ public interface RemoteRenderingAccount {
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Regenerate specified Key of a Remote Rendering Account.
+     * Regenerate specified Key of an object anchors Account.
      * 
      * @param regenerate Required information for key regeneration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

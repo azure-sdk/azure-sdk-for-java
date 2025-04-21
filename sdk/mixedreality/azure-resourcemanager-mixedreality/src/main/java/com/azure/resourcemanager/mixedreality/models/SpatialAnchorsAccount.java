@@ -416,6 +416,12 @@ public interface SpatialAnchorsAccount {
     SpatialAnchorsAccount refresh(Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Both of the 2 Keys of a Spatial Anchors Account.
      * 
      * @param context The context to associate with this operation.
@@ -427,6 +433,12 @@ public interface SpatialAnchorsAccount {
     Response<AccountKeys> listKeysWithResponse(Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Both of the 2 Keys of a Spatial Anchors Account.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -436,6 +448,12 @@ public interface SpatialAnchorsAccount {
     AccountKeys listKeys();
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Regenerate specified Key of a Spatial Anchors Account.
      * 
      * @param regenerate Required information for key regeneration.
@@ -448,6 +466,12 @@ public interface SpatialAnchorsAccount {
     Response<AccountKeys> regenerateKeysWithResponse(AccountKeyRegenerateRequest regenerate, Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Regenerate specified Key of a Spatial Anchors Account.
      * 
      * @param regenerate Required information for key regeneration.
