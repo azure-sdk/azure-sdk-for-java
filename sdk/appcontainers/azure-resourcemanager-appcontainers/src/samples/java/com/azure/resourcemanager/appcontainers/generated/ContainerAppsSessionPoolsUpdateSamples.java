@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.appcontainers.generated;
 
 import com.azure.resourcemanager.appcontainers.models.CustomContainerTemplate;
+import com.azure.resourcemanager.appcontainers.models.DynamicPoolConfiguration;
+import com.azure.resourcemanager.appcontainers.models.ExecutionType;
 import com.azure.resourcemanager.appcontainers.models.ScaleConfiguration;
 import com.azure.resourcemanager.appcontainers.models.SessionContainer;
 import com.azure.resourcemanager.appcontainers.models.SessionContainerResources;
@@ -20,7 +22,7 @@ import java.util.Arrays;
 public final class ContainerAppsSessionPoolsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/app/resource-manager/Microsoft.App/stable/2025-01-01/examples/SessionPools_Patch.json
+     * specification/app/resource-manager/Microsoft.App/preview/2025-02-02-preview/examples/SessionPools_Patch.json
      */
     /**
      * Sample code: Update Session Pool.
@@ -34,6 +36,8 @@ public final class ContainerAppsSessionPoolsUpdateSamples {
         resource.update()
             .withScaleConfiguration(
                 new ScaleConfiguration().withMaxConcurrentSessions(500).withReadySessionInstances(100))
+            .withDynamicPoolConfiguration(
+                new DynamicPoolConfiguration().withExecutionType(ExecutionType.TIMED).withCooldownPeriodInSeconds(600))
             .withCustomContainerTemplate(new CustomContainerTemplate()
                 .withContainers(Arrays.asList(new SessionContainer().withImage("repo/testcontainer:v4")
                     .withName("testinitcontainer")

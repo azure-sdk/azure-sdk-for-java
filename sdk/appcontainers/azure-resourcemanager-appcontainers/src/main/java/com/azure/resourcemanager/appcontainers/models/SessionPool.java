@@ -418,8 +418,8 @@ public interface SessionPool {
     /**
      * The template for SessionPool update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithScaleConfiguration,
-        UpdateStages.WithSecrets, UpdateStages.WithDynamicPoolConfiguration, UpdateStages.WithCustomContainerTemplate,
+    interface Update extends UpdateStages.WithIdentity, UpdateStages.WithScaleConfiguration, UpdateStages.WithSecrets,
+        UpdateStages.WithDynamicPoolConfiguration, UpdateStages.WithCustomContainerTemplate,
         UpdateStages.WithSessionNetworkConfiguration {
         /**
          * Executes the update request.
@@ -441,19 +441,6 @@ public interface SessionPool {
      * The SessionPool update stages.
      */
     interface UpdateStages {
-        /**
-         * The stage of the SessionPool update allowing to specify tags.
-         */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags..
-             * 
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            Update withTags(Map<String, String> tags);
-        }
-
         /**
          * The stage of the SessionPool update allowing to specify identity.
          */

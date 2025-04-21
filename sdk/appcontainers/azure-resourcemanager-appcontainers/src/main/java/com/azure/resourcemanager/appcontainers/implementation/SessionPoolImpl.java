@@ -225,13 +225,8 @@ public final class SessionPoolImpl implements SessionPool, SessionPool.Definitio
     }
 
     public SessionPoolImpl withTags(Map<String, String> tags) {
-        if (isInCreateMode()) {
-            this.innerModel().withTags(tags);
-            return this;
-        } else {
-            this.updateSessionPoolEnvelope.withTags(tags);
-            return this;
-        }
+        this.innerModel().withTags(tags);
+        return this;
     }
 
     public SessionPoolImpl withIdentity(ManagedServiceIdentity identity) {
