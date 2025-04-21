@@ -25,22 +25,21 @@
 
 ```java
 /**
- * Samples for FluidRelayContainers Delete.
+ * Samples for FluidRelayServers ListByResourceGroup.
  */
-public final class FluidRelayContainersDeleteSamples {
+public final class FluidRelayServersListByResourceGroupSamples {
     /*
      * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/
-     * FluidRelayContainers_Delete.json
+     * FluidRelayServers_ListByResourceGroup.json
      */
     /**
-     * Sample code: Delete a Fluid Relay container.
+     * Sample code: List all Fluid Relay servers in a resource group.
      * 
      * @param manager Entry point to FluidRelayManager.
      */
-    public static void deleteAFluidRelayContainer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayContainers()
-            .deleteWithResponse("myResourceGroup", "myFluidRelayServer", "myFluidRelayContainer",
-                com.azure.core.util.Context.NONE);
+    public static void
+        listAllFluidRelayServersInAResourceGroup(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
+        manager.fluidRelayServers().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -49,51 +48,26 @@ public final class FluidRelayContainersDeleteSamples {
 
 ```java
 /**
- * Samples for FluidRelayContainers Get.
+ * Samples for FluidRelayServers ListKeys.
  */
-public final class FluidRelayContainersGetSamples {
+public final class FluidRelayServersListKeysSamples {
     /*
      * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/
-     * FluidRelayContainers_Get.json
+     * FluidRelayServers_ListKeys.json
      */
     /**
-     * Sample code: Get Fluid Relay container details.
+     * Sample code: Get keys for a Fluid Relay server.
      * 
      * @param manager Entry point to FluidRelayManager.
      */
-    public static void getFluidRelayContainerDetails(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayContainers()
-            .getWithResponse("myResourceGroup", "myFluidRelayServer", "myFluidRelayContainer",
-                com.azure.core.util.Context.NONE);
+    public static void getKeysForAFluidRelayServer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
+        manager.fluidRelayServers()
+            .listKeysWithResponse("myResourceGroup", "myFluidRelayServer", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### FluidRelayContainers_ListByFluidRelayServers
-
-```java
-/**
- * Samples for FluidRelayContainers ListByFluidRelayServers.
- */
-public final class FluidRelayContainersListByFluidRelayServersSamples {
-    /*
-     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/
-     * FluidRelayContainers_ListByFluidRelayServer.json
-     */
-    /**
-     * Sample code: List all Fluid Relay containers in a Fluid Relay server.
-     * 
-     * @param manager Entry point to FluidRelayManager.
-     */
-    public static void
-        listAllFluidRelayContainersInAFluidRelayServer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayContainers()
-            .listByFluidRelayServers("myResourceGroup", "myFluidRelayServer", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FluidRelayOperations_List
 
 ```java
 /**
@@ -115,7 +89,59 @@ public final class FluidRelayOperationsListSamples {
 }
 ```
 
+### FluidRelayOperations_List
+
+```java
+/**
+ * Samples for FluidRelayServers GetByResourceGroup.
+ */
+public final class FluidRelayServersGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/FluidRelayServers_Get.
+     * json
+     */
+    /**
+     * Sample code: Get Fluid Relay server details.
+     * 
+     * @param manager Entry point to FluidRelayManager.
+     */
+    public static void getFluidRelayServerDetails(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
+        manager.fluidRelayServers()
+            .getByResourceGroupWithResponse("myResourceGroup", "myFluidRelayServer", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### FluidRelayServers_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.fluidrelay.models.KeyName;
+import com.azure.resourcemanager.fluidrelay.models.RegenerateKeyRequest;
+
+/**
+ * Samples for FluidRelayServers RegenerateKey.
+ */
+public final class FluidRelayServersRegenerateKeySamples {
+    /*
+     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/
+     * FluidRelayServers_RegenerateKeys.json
+     */
+    /**
+     * Sample code: Regenerate keys for a Fluid Relay server.
+     * 
+     * @param manager Entry point to FluidRelayManager.
+     */
+    public static void
+        regenerateKeysForAFluidRelayServer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
+        manager.fluidRelayServers()
+            .regenerateKeyWithResponse("myResourceGroup", "myFluidRelayServer",
+                new RegenerateKeyRequest().withKeyName(KeyName.KEY1), com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FluidRelayServers_Delete
 
 ```java
 import com.azure.resourcemanager.fluidrelay.models.CmkIdentityType;
@@ -222,7 +248,31 @@ public final class FluidRelayServersCreateOrUpdateSamples {
 }
 ```
 
-### FluidRelayServers_Delete
+### FluidRelayServers_GetByResourceGroup
+
+```java
+/**
+ * Samples for FluidRelayContainers Delete.
+ */
+public final class FluidRelayContainersDeleteSamples {
+    /*
+     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/
+     * FluidRelayContainers_Delete.json
+     */
+    /**
+     * Sample code: Delete a Fluid Relay container.
+     * 
+     * @param manager Entry point to FluidRelayManager.
+     */
+    public static void deleteAFluidRelayContainer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
+        manager.fluidRelayContainers()
+            .deleteWithResponse("myResourceGroup", "myFluidRelayServer", "myFluidRelayContainer",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FluidRelayServers_List
 
 ```java
 /**
@@ -246,31 +296,31 @@ public final class FluidRelayServersDeleteSamples {
 }
 ```
 
-### FluidRelayServers_GetByResourceGroup
+### FluidRelayServers_ListByResourceGroup
 
 ```java
 /**
- * Samples for FluidRelayServers GetByResourceGroup.
+ * Samples for FluidRelayContainers ListByFluidRelayServers.
  */
-public final class FluidRelayServersGetByResourceGroupSamples {
+public final class FluidRelayContainersListByFluidRelayServersSamples {
     /*
-     * x-ms-original-file:
-     * specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/FluidRelayServers_Get.
-     * json
+     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/
+     * FluidRelayContainers_ListByFluidRelayServer.json
      */
     /**
-     * Sample code: Get Fluid Relay server details.
+     * Sample code: List all Fluid Relay containers in a Fluid Relay server.
      * 
      * @param manager Entry point to FluidRelayManager.
      */
-    public static void getFluidRelayServerDetails(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayServers()
-            .getByResourceGroupWithResponse("myResourceGroup", "myFluidRelayServer", com.azure.core.util.Context.NONE);
+    public static void
+        listAllFluidRelayContainersInAFluidRelayServer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
+        manager.fluidRelayContainers()
+            .listByFluidRelayServers("myResourceGroup", "myFluidRelayServer", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### FluidRelayServers_List
+### FluidRelayServers_ListKeys
 
 ```java
 /**
@@ -293,81 +343,7 @@ public final class FluidRelayServersListSamples {
 }
 ```
 
-### FluidRelayServers_ListByResourceGroup
-
-```java
-/**
- * Samples for FluidRelayServers ListByResourceGroup.
- */
-public final class FluidRelayServersListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/
-     * FluidRelayServers_ListByResourceGroup.json
-     */
-    /**
-     * Sample code: List all Fluid Relay servers in a resource group.
-     * 
-     * @param manager Entry point to FluidRelayManager.
-     */
-    public static void
-        listAllFluidRelayServersInAResourceGroup(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayServers().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FluidRelayServers_ListKeys
-
-```java
-/**
- * Samples for FluidRelayServers ListKeys.
- */
-public final class FluidRelayServersListKeysSamples {
-    /*
-     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/
-     * FluidRelayServers_ListKeys.json
-     */
-    /**
-     * Sample code: Get keys for a Fluid Relay server.
-     * 
-     * @param manager Entry point to FluidRelayManager.
-     */
-    public static void getKeysForAFluidRelayServer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayServers()
-            .listKeysWithResponse("myResourceGroup", "myFluidRelayServer", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### FluidRelayServers_RegenerateKey
-
-```java
-import com.azure.resourcemanager.fluidrelay.models.KeyName;
-import com.azure.resourcemanager.fluidrelay.models.RegenerateKeyRequest;
-
-/**
- * Samples for FluidRelayServers RegenerateKey.
- */
-public final class FluidRelayServersRegenerateKeySamples {
-    /*
-     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/
-     * FluidRelayServers_RegenerateKeys.json
-     */
-    /**
-     * Sample code: Regenerate keys for a Fluid Relay server.
-     * 
-     * @param manager Entry point to FluidRelayManager.
-     */
-    public static void
-        regenerateKeysForAFluidRelayServer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayServers()
-            .regenerateKeyWithResponse("myResourceGroup", "myFluidRelayServer",
-                new RegenerateKeyRequest().withKeyName(KeyName.KEY1), com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FluidRelayServers_Update
 
 ```java
 import com.azure.resourcemanager.fluidrelay.models.FluidRelayServer;
@@ -404,6 +380,30 @@ public final class FluidRelayServersUpdateSamples {
             map.put(key, value);
         }
         return map;
+    }
+}
+```
+
+### FluidRelayServers_Update
+
+```java
+/**
+ * Samples for FluidRelayContainers Get.
+ */
+public final class FluidRelayContainersGetSamples {
+    /*
+     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/
+     * FluidRelayContainers_Get.json
+     */
+    /**
+     * Sample code: Get Fluid Relay container details.
+     * 
+     * @param manager Entry point to FluidRelayManager.
+     */
+    public static void getFluidRelayContainerDetails(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
+        manager.fluidRelayContainers()
+            .getWithResponse("myResourceGroup", "myFluidRelayServer", "myFluidRelayContainer",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
