@@ -12,7 +12,7 @@ import com.azure.resourcemanager.devcenter.models.GitCatalog;
 public final class ProjectCatalogsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/ProjectCatalogs_CreateAdo
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2025-02-01/examples/ProjectCatalogs_CreateAdo
      * .json
      */
     /**
@@ -33,7 +33,7 @@ public final class ProjectCatalogsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2025-02-01/examples/
      * ProjectCatalogs_CreateGitHub.json
      */
     /**

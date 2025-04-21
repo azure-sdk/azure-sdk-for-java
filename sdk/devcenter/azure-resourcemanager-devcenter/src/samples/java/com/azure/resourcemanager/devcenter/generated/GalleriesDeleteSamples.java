@@ -10,7 +10,7 @@ package com.azure.resourcemanager.devcenter.generated;
 public final class GalleriesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Galleries_Delete.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2025-02-01/examples/Galleries_Delete.json
      */
     /**
      * Sample code: Galleries_Delete.

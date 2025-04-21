@@ -9,7 +9,7 @@ package com.azure.resourcemanager.devcenter.generated;
  */
 public final class NetworkConnectionsListSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2025-02-01/examples/
      * NetworkConnections_ListBySubscription.json
      */
     /**
