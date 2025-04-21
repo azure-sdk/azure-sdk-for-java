@@ -42,6 +42,27 @@ public interface SessionHost {
     SystemData systemData();
 
     /**
+     * Gets the activeSessions property: Number of active sessions on SessionHost.
+     * 
+     * @return the activeSessions value.
+     */
+    Integer activeSessions();
+
+    /**
+     * Gets the disconnectedSessions property: Number of disconnected sessions on SessionHost.
+     * 
+     * @return the disconnectedSessions value.
+     */
+    Integer disconnectedSessions();
+
+    /**
+     * Gets the pendingSessions property: Number of pending sessions on SessionHost.
+     * 
+     * @return the pendingSessions value.
+     */
+    Integer pendingSessions();
+
+    /**
      * Gets the objectId property: ObjectId of SessionHost. (internal use).
      * 
      * @return the objectId value.
@@ -152,6 +173,21 @@ public interface SessionHost {
      * @return the updateErrorMessage value.
      */
     String updateErrorMessage();
+
+    /**
+     * Gets the lastSessionHostUpdateTime property: The last time update was completed.
+     * 
+     * @return the lastSessionHostUpdateTime value.
+     */
+    OffsetDateTime lastSessionHostUpdateTime();
+
+    /**
+     * Gets the sessionHostConfiguration property: SessionHostConfiguration version reference at the time the update is
+     * initiated, in the format of date time. Example: 2024-04-26T04:56:45Z.
+     * 
+     * @return the sessionHostConfiguration value.
+     */
+    String sessionHostConfiguration();
 
     /**
      * Gets the sessionHostHealthCheckResults property: List of SessionHostHealthCheckReports.

@@ -41,6 +41,18 @@ public final class SessionHostImpl implements SessionHost {
         return this.innerModel().systemData();
     }
 
+    public Integer activeSessions() {
+        return this.innerModel().activeSessions();
+    }
+
+    public Integer disconnectedSessions() {
+        return this.innerModel().disconnectedSessions();
+    }
+
+    public Integer pendingSessions() {
+        return this.innerModel().pendingSessions();
+    }
+
     public String objectId() {
         return this.innerModel().objectId();
     }
@@ -103,6 +115,14 @@ public final class SessionHostImpl implements SessionHost {
 
     public String updateErrorMessage() {
         return this.innerModel().updateErrorMessage();
+    }
+
+    public OffsetDateTime lastSessionHostUpdateTime() {
+        return this.innerModel().lastSessionHostUpdateTime();
+    }
+
+    public String sessionHostConfiguration() {
+        return this.innerModel().sessionHostConfiguration();
     }
 
     public List<SessionHostHealthCheckReport> sessionHostHealthCheckResults() {
