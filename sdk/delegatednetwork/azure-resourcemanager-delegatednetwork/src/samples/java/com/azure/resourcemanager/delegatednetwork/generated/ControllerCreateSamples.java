@@ -4,13 +4,17 @@
 
 package com.azure.resourcemanager.delegatednetwork.generated;
 
+import com.azure.resourcemanager.delegatednetwork.models.ControllerPurpose;
+import com.azure.resourcemanager.delegatednetwork.models.DelegatedControllerProperties;
+
 /**
  * Samples for Controller Create.
  */
 public final class ControllerCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/putController.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/putController.
+     * json
      */
     /**
      * Sample code: Create controller.
@@ -22,6 +26,7 @@ public final class ControllerCreateSamples {
             .define("testcontroller")
             .withRegion("West US")
             .withExistingResourceGroup("TestRG")
+            .withProperties(new DelegatedControllerProperties().withPurpose(ControllerPurpose.TEST))
             .create();
     }
 }

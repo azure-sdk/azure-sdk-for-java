@@ -10,7 +10,8 @@ package com.azure.resourcemanager.delegatednetwork.generated;
 public final class OrchestratorInstanceServiceGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/getOrchestrator.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/getOrchestrator
+     * .json
      */
     /**
      * Sample code: Get details of a orchestratorInstance.
