@@ -10,7 +10,8 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
 public final class DatabasesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mysql/resource-manager/Microsoft.DBforMySQL/legacy/stable/2021-05-01/examples/DatabaseCreate.json
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Databases/stable/2023-12-30/examples/DatabaseCreate.
+     * json
      */
     /**
      * Sample code: Create a database.

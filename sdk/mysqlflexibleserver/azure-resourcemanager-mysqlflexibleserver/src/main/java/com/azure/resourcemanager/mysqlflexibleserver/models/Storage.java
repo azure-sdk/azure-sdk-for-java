@@ -32,9 +32,24 @@ public final class Storage implements JsonSerializable<Storage> {
     private EnableStatusEnum autoGrow;
 
     /*
+     * Enable Log On Disk or not.
+     */
+    private EnableStatusEnum logOnDisk;
+
+    /*
      * The sku name of the server storage.
      */
     private String storageSku;
+
+    /*
+     * Enable IO Auto Scaling or not.
+     */
+    private EnableStatusEnum autoIoScaling;
+
+    /*
+     * The redundant type of the server storage. The parameter is used for server creation.
+     */
+    private StorageRedundancyEnum storageRedundancy;
 
     /**
      * Creates an instance of Storage class.
@@ -103,12 +118,74 @@ public final class Storage implements JsonSerializable<Storage> {
     }
 
     /**
+     * Get the logOnDisk property: Enable Log On Disk or not.
+     * 
+     * @return the logOnDisk value.
+     */
+    public EnableStatusEnum logOnDisk() {
+        return this.logOnDisk;
+    }
+
+    /**
+     * Set the logOnDisk property: Enable Log On Disk or not.
+     * 
+     * @param logOnDisk the logOnDisk value to set.
+     * @return the Storage object itself.
+     */
+    public Storage withLogOnDisk(EnableStatusEnum logOnDisk) {
+        this.logOnDisk = logOnDisk;
+        return this;
+    }
+
+    /**
      * Get the storageSku property: The sku name of the server storage.
      * 
      * @return the storageSku value.
      */
     public String storageSku() {
         return this.storageSku;
+    }
+
+    /**
+     * Get the autoIoScaling property: Enable IO Auto Scaling or not.
+     * 
+     * @return the autoIoScaling value.
+     */
+    public EnableStatusEnum autoIoScaling() {
+        return this.autoIoScaling;
+    }
+
+    /**
+     * Set the autoIoScaling property: Enable IO Auto Scaling or not.
+     * 
+     * @param autoIoScaling the autoIoScaling value to set.
+     * @return the Storage object itself.
+     */
+    public Storage withAutoIoScaling(EnableStatusEnum autoIoScaling) {
+        this.autoIoScaling = autoIoScaling;
+        return this;
+    }
+
+    /**
+     * Get the storageRedundancy property: The redundant type of the server storage. The parameter is used for server
+     * creation.
+     * 
+     * @return the storageRedundancy value.
+     */
+    public StorageRedundancyEnum storageRedundancy() {
+        return this.storageRedundancy;
+    }
+
+    /**
+     * Set the storageRedundancy property: The redundant type of the server storage. The parameter is used for server
+     * creation.
+     * 
+     * @param storageRedundancy the storageRedundancy value to set.
+     * @return the Storage object itself.
+     */
+    public Storage withStorageRedundancy(StorageRedundancyEnum storageRedundancy) {
+        this.storageRedundancy = storageRedundancy;
+        return this;
     }
 
     /**
@@ -128,6 +205,10 @@ public final class Storage implements JsonSerializable<Storage> {
         jsonWriter.writeNumberField("storageSizeGB", this.storageSizeGB);
         jsonWriter.writeNumberField("iops", this.iops);
         jsonWriter.writeStringField("autoGrow", this.autoGrow == null ? null : this.autoGrow.toString());
+        jsonWriter.writeStringField("logOnDisk", this.logOnDisk == null ? null : this.logOnDisk.toString());
+        jsonWriter.writeStringField("autoIoScaling", this.autoIoScaling == null ? null : this.autoIoScaling.toString());
+        jsonWriter.writeStringField("storageRedundancy",
+            this.storageRedundancy == null ? null : this.storageRedundancy.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -152,8 +233,14 @@ public final class Storage implements JsonSerializable<Storage> {
                     deserializedStorage.iops = reader.getNullable(JsonReader::getInt);
                 } else if ("autoGrow".equals(fieldName)) {
                     deserializedStorage.autoGrow = EnableStatusEnum.fromString(reader.getString());
+                } else if ("logOnDisk".equals(fieldName)) {
+                    deserializedStorage.logOnDisk = EnableStatusEnum.fromString(reader.getString());
                 } else if ("storageSku".equals(fieldName)) {
                     deserializedStorage.storageSku = reader.getString();
+                } else if ("autoIoScaling".equals(fieldName)) {
+                    deserializedStorage.autoIoScaling = EnableStatusEnum.fromString(reader.getString());
+                } else if ("storageRedundancy".equals(fieldName)) {
+                    deserializedStorage.storageRedundancy = StorageRedundancyEnum.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

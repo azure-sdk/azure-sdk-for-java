@@ -14,8 +14,11 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.Backup;
 import com.azure.resourcemanager.mysqlflexibleserver.models.CreateMode;
 import com.azure.resourcemanager.mysqlflexibleserver.models.DataEncryption;
 import com.azure.resourcemanager.mysqlflexibleserver.models.HighAvailability;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ImportSourceProperties;
+import com.azure.resourcemanager.mysqlflexibleserver.models.MaintenancePolicy;
 import com.azure.resourcemanager.mysqlflexibleserver.models.MaintenanceWindow;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Network;
+import com.azure.resourcemanager.mysqlflexibleserver.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ReplicationRole;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerState;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerVersion;
@@ -23,6 +26,7 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.Storage;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 /**
  * The properties of a server.
@@ -41,9 +45,14 @@ public final class ServerProperties implements JsonSerializable<ServerProperties
     private String administratorLoginPassword;
 
     /*
-     * Server version.
+     * Major version of MySQL. 8.0.21 stands for MySQL 8.0, 5.7.44 stands for MySQL 5.7
      */
     private ServerVersion version;
+
+    /*
+     * Major version and actual engine version
+     */
+    private String fullVersion;
 
     /*
      * availability Zone information of the server.
@@ -91,6 +100,11 @@ public final class ServerProperties implements JsonSerializable<ServerProperties
     private String fullyQualifiedDomainName;
 
     /*
+     * The server database port. Can only be specified when the server is being created.
+     */
+    private Integer databasePort;
+
+    /*
      * Storage related properties of a server.
      */
     private Storage storage;
@@ -111,9 +125,25 @@ public final class ServerProperties implements JsonSerializable<ServerProperties
     private Network network;
 
     /*
-     * Maintenance window of a server.
+     * PrivateEndpointConnections related properties of a server.
+     */
+    private List<PrivateEndpointConnection> privateEndpointConnections;
+
+    /*
+     * Maintenance policy of a server.
+     */
+    private MaintenancePolicy maintenancePolicy;
+
+    /*
+     * Maintenance window of a server. Known issue: cannot be set during server creation or updated with other
+     * properties during server update; must be updated separately.
      */
     private MaintenanceWindow maintenanceWindow;
+
+    /*
+     * Source properties for import from storage.
+     */
+    private ImportSourceProperties importSourceProperties;
 
     /**
      * Creates an instance of ServerProperties class.
@@ -166,7 +196,7 @@ public final class ServerProperties implements JsonSerializable<ServerProperties
     }
 
     /**
-     * Get the version property: Server version.
+     * Get the version property: Major version of MySQL. 8.0.21 stands for MySQL 8.0, 5.7.44 stands for MySQL 5.7.
      * 
      * @return the version value.
      */
@@ -175,13 +205,33 @@ public final class ServerProperties implements JsonSerializable<ServerProperties
     }
 
     /**
-     * Set the version property: Server version.
+     * Set the version property: Major version of MySQL. 8.0.21 stands for MySQL 8.0, 5.7.44 stands for MySQL 5.7.
      * 
      * @param version the version value to set.
      * @return the ServerProperties object itself.
      */
     public ServerProperties withVersion(ServerVersion version) {
         this.version = version;
+        return this;
+    }
+
+    /**
+     * Get the fullVersion property: Major version and actual engine version.
+     * 
+     * @return the fullVersion value.
+     */
+    public String fullVersion() {
+        return this.fullVersion;
+    }
+
+    /**
+     * Set the fullVersion property: Major version and actual engine version.
+     * 
+     * @param fullVersion the fullVersion value to set.
+     * @return the ServerProperties object itself.
+     */
+    public ServerProperties withFullVersion(String fullVersion) {
+        this.fullVersion = fullVersion;
         return this;
     }
 
@@ -335,6 +385,26 @@ public final class ServerProperties implements JsonSerializable<ServerProperties
     }
 
     /**
+     * Get the databasePort property: The server database port. Can only be specified when the server is being created.
+     * 
+     * @return the databasePort value.
+     */
+    public Integer databasePort() {
+        return this.databasePort;
+    }
+
+    /**
+     * Set the databasePort property: The server database port. Can only be specified when the server is being created.
+     * 
+     * @param databasePort the databasePort value to set.
+     * @return the ServerProperties object itself.
+     */
+    public ServerProperties withDatabasePort(Integer databasePort) {
+        this.databasePort = databasePort;
+        return this;
+    }
+
+    /**
      * Get the storage property: Storage related properties of a server.
      * 
      * @return the storage value.
@@ -415,7 +485,37 @@ public final class ServerProperties implements JsonSerializable<ServerProperties
     }
 
     /**
-     * Get the maintenanceWindow property: Maintenance window of a server.
+     * Get the privateEndpointConnections property: PrivateEndpointConnections related properties of a server.
+     * 
+     * @return the privateEndpointConnections value.
+     */
+    public List<PrivateEndpointConnection> privateEndpointConnections() {
+        return this.privateEndpointConnections;
+    }
+
+    /**
+     * Get the maintenancePolicy property: Maintenance policy of a server.
+     * 
+     * @return the maintenancePolicy value.
+     */
+    public MaintenancePolicy maintenancePolicy() {
+        return this.maintenancePolicy;
+    }
+
+    /**
+     * Set the maintenancePolicy property: Maintenance policy of a server.
+     * 
+     * @param maintenancePolicy the maintenancePolicy value to set.
+     * @return the ServerProperties object itself.
+     */
+    public ServerProperties withMaintenancePolicy(MaintenancePolicy maintenancePolicy) {
+        this.maintenancePolicy = maintenancePolicy;
+        return this;
+    }
+
+    /**
+     * Get the maintenanceWindow property: Maintenance window of a server. Known issue: cannot be set during server
+     * creation or updated with other properties during server update; must be updated separately.
      * 
      * @return the maintenanceWindow value.
      */
@@ -424,13 +524,34 @@ public final class ServerProperties implements JsonSerializable<ServerProperties
     }
 
     /**
-     * Set the maintenanceWindow property: Maintenance window of a server.
+     * Set the maintenanceWindow property: Maintenance window of a server. Known issue: cannot be set during server
+     * creation or updated with other properties during server update; must be updated separately.
      * 
      * @param maintenanceWindow the maintenanceWindow value to set.
      * @return the ServerProperties object itself.
      */
     public ServerProperties withMaintenanceWindow(MaintenanceWindow maintenanceWindow) {
         this.maintenanceWindow = maintenanceWindow;
+        return this;
+    }
+
+    /**
+     * Get the importSourceProperties property: Source properties for import from storage.
+     * 
+     * @return the importSourceProperties value.
+     */
+    public ImportSourceProperties importSourceProperties() {
+        return this.importSourceProperties;
+    }
+
+    /**
+     * Set the importSourceProperties property: Source properties for import from storage.
+     * 
+     * @param importSourceProperties the importSourceProperties value to set.
+     * @return the ServerProperties object itself.
+     */
+    public ServerProperties withImportSourceProperties(ImportSourceProperties importSourceProperties) {
+        this.importSourceProperties = importSourceProperties;
         return this;
     }
 
@@ -455,8 +576,17 @@ public final class ServerProperties implements JsonSerializable<ServerProperties
         if (network() != null) {
             network().validate();
         }
+        if (privateEndpointConnections() != null) {
+            privateEndpointConnections().forEach(e -> e.validate());
+        }
+        if (maintenancePolicy() != null) {
+            maintenancePolicy().validate();
+        }
         if (maintenanceWindow() != null) {
             maintenanceWindow().validate();
+        }
+        if (importSourceProperties() != null) {
+            importSourceProperties().validate();
         }
     }
 
@@ -469,6 +599,7 @@ public final class ServerProperties implements JsonSerializable<ServerProperties
         jsonWriter.writeStringField("administratorLogin", this.administratorLogin);
         jsonWriter.writeStringField("administratorLoginPassword", this.administratorLoginPassword);
         jsonWriter.writeStringField("version", this.version == null ? null : this.version.toString());
+        jsonWriter.writeStringField("fullVersion", this.fullVersion);
         jsonWriter.writeStringField("availabilityZone", this.availabilityZone);
         jsonWriter.writeStringField("createMode", this.createMode == null ? null : this.createMode.toString());
         jsonWriter.writeStringField("sourceServerResourceId", this.sourceServerResourceId);
@@ -479,11 +610,14 @@ public final class ServerProperties implements JsonSerializable<ServerProperties
         jsonWriter.writeStringField("replicationRole",
             this.replicationRole == null ? null : this.replicationRole.toString());
         jsonWriter.writeJsonField("dataEncryption", this.dataEncryption);
+        jsonWriter.writeNumberField("databasePort", this.databasePort);
         jsonWriter.writeJsonField("storage", this.storage);
         jsonWriter.writeJsonField("backup", this.backup);
         jsonWriter.writeJsonField("highAvailability", this.highAvailability);
         jsonWriter.writeJsonField("network", this.network);
+        jsonWriter.writeJsonField("maintenancePolicy", this.maintenancePolicy);
         jsonWriter.writeJsonField("maintenanceWindow", this.maintenanceWindow);
+        jsonWriter.writeJsonField("importSourceProperties", this.importSourceProperties);
         return jsonWriter.writeEndObject();
     }
 
@@ -508,6 +642,8 @@ public final class ServerProperties implements JsonSerializable<ServerProperties
                     deserializedServerProperties.administratorLoginPassword = reader.getString();
                 } else if ("version".equals(fieldName)) {
                     deserializedServerProperties.version = ServerVersion.fromString(reader.getString());
+                } else if ("fullVersion".equals(fieldName)) {
+                    deserializedServerProperties.fullVersion = reader.getString();
                 } else if ("availabilityZone".equals(fieldName)) {
                     deserializedServerProperties.availabilityZone = reader.getString();
                 } else if ("createMode".equals(fieldName)) {
@@ -527,6 +663,8 @@ public final class ServerProperties implements JsonSerializable<ServerProperties
                     deserializedServerProperties.state = ServerState.fromString(reader.getString());
                 } else if ("fullyQualifiedDomainName".equals(fieldName)) {
                     deserializedServerProperties.fullyQualifiedDomainName = reader.getString();
+                } else if ("databasePort".equals(fieldName)) {
+                    deserializedServerProperties.databasePort = reader.getNullable(JsonReader::getInt);
                 } else if ("storage".equals(fieldName)) {
                     deserializedServerProperties.storage = Storage.fromJson(reader);
                 } else if ("backup".equals(fieldName)) {
@@ -535,8 +673,16 @@ public final class ServerProperties implements JsonSerializable<ServerProperties
                     deserializedServerProperties.highAvailability = HighAvailability.fromJson(reader);
                 } else if ("network".equals(fieldName)) {
                     deserializedServerProperties.network = Network.fromJson(reader);
+                } else if ("privateEndpointConnections".equals(fieldName)) {
+                    List<PrivateEndpointConnection> privateEndpointConnections
+                        = reader.readArray(reader1 -> PrivateEndpointConnection.fromJson(reader1));
+                    deserializedServerProperties.privateEndpointConnections = privateEndpointConnections;
+                } else if ("maintenancePolicy".equals(fieldName)) {
+                    deserializedServerProperties.maintenancePolicy = MaintenancePolicy.fromJson(reader);
                 } else if ("maintenanceWindow".equals(fieldName)) {
                     deserializedServerProperties.maintenanceWindow = MaintenanceWindow.fromJson(reader);
+                } else if ("importSourceProperties".equals(fieldName)) {
+                    deserializedServerProperties.importSourceProperties = ImportSourceProperties.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

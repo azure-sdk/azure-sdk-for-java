@@ -10,7 +10,8 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
 public final class ServersStopSamples {
     /*
      * x-ms-original-file:
-     * specification/mysql/resource-manager/Microsoft.DBforMySQL/legacy/stable/2021-05-01/examples/ServerStop.json
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/FlexibleServers/preview/2024-10-01-preview/examples/
+     * ServerStop.json
      */
     /**
      * Sample code: Stop a server.

@@ -23,7 +23,7 @@ public final class DatabaseInner extends ProxyResource {
     private DatabaseProperties innerProperties;
 
     /*
-     * The system metadata relating to this resource.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
 
@@ -58,7 +58,7 @@ public final class DatabaseInner extends ProxyResource {
     }
 
     /**
-     * Get the systemData property: The system metadata relating to this resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
