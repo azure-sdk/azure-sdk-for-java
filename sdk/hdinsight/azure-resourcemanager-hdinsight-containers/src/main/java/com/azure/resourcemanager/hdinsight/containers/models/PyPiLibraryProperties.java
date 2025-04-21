@@ -11,7 +11,6 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 
 /**
  * Properties of a PyPi library in the cluster.
@@ -32,21 +31,6 @@ public final class PyPiLibraryProperties extends ClusterLibraryProperties {
      * Version of the PyPi package.
      */
     private String version;
-
-    /*
-     * Timestamp of the latest library management operation.
-     */
-    private OffsetDateTime timestamp;
-
-    /*
-     * Status of the library.
-     */
-    private Status status;
-
-    /*
-     * Error message of the library operation when a failure occurs.
-     */
-    private String message;
 
     /**
      * Creates an instance of PyPiLibraryProperties class.
@@ -105,36 +89,6 @@ public final class PyPiLibraryProperties extends ClusterLibraryProperties {
     }
 
     /**
-     * Get the timestamp property: Timestamp of the latest library management operation.
-     * 
-     * @return the timestamp value.
-     */
-    @Override
-    public OffsetDateTime timestamp() {
-        return this.timestamp;
-    }
-
-    /**
-     * Get the status property: Status of the library.
-     * 
-     * @return the status value.
-     */
-    @Override
-    public Status status() {
-        return this.status;
-    }
-
-    /**
-     * Get the message property: Error message of the library operation when a failure occurs.
-     * 
-     * @return the message value.
-     */
-    @Override
-    public String message() {
-        return this.message;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -150,7 +104,6 @@ public final class PyPiLibraryProperties extends ClusterLibraryProperties {
      */
     @Override
     public void validate() {
-        super.validate();
         if (name() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property name in model PyPiLibraryProperties"));
@@ -191,12 +144,12 @@ public final class PyPiLibraryProperties extends ClusterLibraryProperties {
                 if ("remarks".equals(fieldName)) {
                     deserializedPyPiLibraryProperties.withRemarks(reader.getString());
                 } else if ("timestamp".equals(fieldName)) {
-                    deserializedPyPiLibraryProperties.timestamp = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                    deserializedPyPiLibraryProperties.withTimestamp(reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("status".equals(fieldName)) {
-                    deserializedPyPiLibraryProperties.status = Status.fromString(reader.getString());
+                    deserializedPyPiLibraryProperties.withStatus(Status.fromString(reader.getString()));
                 } else if ("message".equals(fieldName)) {
-                    deserializedPyPiLibraryProperties.message = reader.getString();
+                    deserializedPyPiLibraryProperties.withMessage(reader.getString());
                 } else if ("name".equals(fieldName)) {
                     deserializedPyPiLibraryProperties.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
