@@ -55,27 +55,33 @@
 ### Accounts_CheckNameAvailability
 
 ```java
-import com.azure.resourcemanager.datalakeanalytics.models.CheckNameAvailabilityParameters;
+import com.azure.resourcemanager.datalakeanalytics.models.AadObjectType;
+import java.util.UUID;
 
 /**
- * Samples for Accounts CheckNameAvailability.
+ * Samples for ComputePolicies CreateOrUpdate.
  */
-public final class AccountsCheckNameAvailabilitySamples {
+public final class ComputePoliciesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Accounts_CheckNameAvailability.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /ComputePolicies_CreateOrUpdate.json
      */
     /**
-     * Sample code: Checks whether the specified account name is available or taken.
+     * Sample code: Creates or updates the specified compute policy.
      * 
      * @param manager Entry point to DataLakeAnalyticsManager.
      */
-    public static void checksWhetherTheSpecifiedAccountNameIsAvailableOrTaken(
+    public static void createsOrUpdatesTheSpecifiedComputePolicy(
         com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.accounts()
-            .checkNameAvailabilityWithResponse("EastUS2", new CheckNameAvailabilityParameters().withName("contosoadla"),
-                com.azure.core.util.Context.NONE);
+        manager.computePolicies()
+            .define("test_policy")
+            .withExistingAccount("contosorg", "contosoadla")
+            .withObjectId(UUID.fromString("776b9091-8916-4638-87f7-9c989a38da98"))
+            .withObjectType(AadObjectType.USER)
+            .withMaxDegreeOfParallelismPerJob(10)
+            .withMinPriorityPerJob(30)
+            .create();
     }
 }
 ```
@@ -102,8 +108,8 @@ import java.util.UUID;
 public final class AccountsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Accounts_Create.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Accounts_Create.json
      */
     /**
      * Sample code: Creates the specified Data Lake Analytics account. This supplies the user with computation services
@@ -162,22 +168,24 @@ public final class AccountsCreateSamples {
 
 ```java
 /**
- * Samples for Accounts Delete.
+ * Samples for DataLakeStoreAccounts ListByAccount.
  */
-public final class AccountsDeleteSamples {
+public final class DataLakeStoreAccountsListByAccountSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Accounts_Delete.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /DataLakeStoreAccounts_ListByAccount.json
      */
     /**
-     * Sample code: Begins the delete process for the Data Lake Analytics account object specified by the account name.
+     * Sample code: Gets the first page of Data Lake Store accounts linked to the specified Data Lake Analytics account.
      * 
      * @param manager Entry point to DataLakeAnalyticsManager.
      */
-    public static void beginsTheDeleteProcessForTheDataLakeAnalyticsAccountObjectSpecifiedByTheAccountName(
+    public static void getsTheFirstPageOfDataLakeStoreAccountsLinkedToTheSpecifiedDataLakeAnalyticsAccount(
         com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.accounts().delete("contosorg", "contosoadla", com.azure.core.util.Context.NONE);
+        manager.dataLakeStoreAccounts()
+            .listByAccount("contosorg", "contosoadla", "test_filter", 1, 1, "test_select", "test_orderby", false,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -186,22 +194,23 @@ public final class AccountsDeleteSamples {
 
 ```java
 /**
- * Samples for Accounts GetByResourceGroup.
+ * Samples for FirewallRules Get.
  */
-public final class AccountsGetByResourceGroupSamples {
+public final class FirewallRulesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Accounts_Get.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /FirewallRules_Get.json
      */
     /**
-     * Sample code: Gets details of the specified Data Lake Analytics account.
+     * Sample code: Gets the specified Data Lake Analytics firewall rule.
      * 
      * @param manager Entry point to DataLakeAnalyticsManager.
      */
-    public static void getsDetailsOfTheSpecifiedDataLakeAnalyticsAccount(
+    public static void getsTheSpecifiedDataLakeAnalyticsFirewallRule(
         com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.accounts().getByResourceGroupWithResponse("contosorg", "contosoadla", com.azure.core.util.Context.NONE);
+        manager.firewallRules()
+            .getWithResponse("contosorg", "contosoadla", "test_rule", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -210,58 +219,29 @@ public final class AccountsGetByResourceGroupSamples {
 
 ```java
 /**
- * Samples for Accounts List.
+ * Samples for StorageAccounts ListByAccount.
  */
-public final class AccountsListSamples {
+public final class StorageAccountsListByAccountSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Accounts_List.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /StorageAccounts_ListByAccount.json
      */
     /**
-     * Sample code: Gets the first page of Data Lake Analytics accounts, if any, within the current subscription. This
-     * includes a link to the next page, if any.
+     * Sample code: Gets the first page of Azure Storage accounts linked to the specified Data Lake Analytics account.
      * 
      * @param manager Entry point to DataLakeAnalyticsManager.
      */
-    public static void
-        getsTheFirstPageOfDataLakeAnalyticsAccountsIfAnyWithinTheCurrentSubscriptionThisIncludesALinkToTheNextPageIfAny(
-            com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.accounts()
-            .list("test_filter", 1, 1, "test_select", "test_orderby", false, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Accounts_ListByResourceGroup
-
-```java
-/**
- * Samples for Accounts ListByResourceGroup.
- */
-public final class AccountsListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Accounts_ListByResourceGroup.json
-     */
-    /**
-     * Sample code: Gets the first page of Data Lake Analytics accounts, if any, within a specific resource group. This
-     * includes a link to the next page, if any.
-     * 
-     * @param manager Entry point to DataLakeAnalyticsManager.
-     */
-    public static void
-        getsTheFirstPageOfDataLakeAnalyticsAccountsIfAnyWithinASpecificResourceGroupThisIncludesALinkToTheNextPageIfAny(
-            com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.accounts()
-            .listByResourceGroup("contosorg", "test_filter", 1, 1, "test_select", "test_orderby", false,
+    public static void getsTheFirstPageOfAzureStorageAccountsLinkedToTheSpecifiedDataLakeAnalyticsAccount(
+        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.storageAccounts()
+            .listByAccount("contosorg", "contosoadla", "test_filter", 1, 1, "test_select", "test_orderby", false,
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Accounts_Update
+### Accounts_ListByResourceGroup
 
 ```java
 import com.azure.resourcemanager.datalakeanalytics.models.AadObjectType;
@@ -282,8 +262,8 @@ import java.util.UUID;
 public final class AccountsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Accounts_Update.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Accounts_Update.json
      */
     /**
      * Sample code: Updates the Data Lake Analytics account object specified by the accountName with the contents of the
@@ -334,144 +314,32 @@ public final class AccountsUpdateSamples {
 }
 ```
 
+### Accounts_Update
+
+```java
+/**
+ * Samples for Locations GetCapability.
+ */
+public final class LocationsGetCapabilitySamples {
+    /*
+     * x-ms-original-file:
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Locations_GetCapability.json
+     */
+    /**
+     * Sample code: Gets subscription-level properties and limits for Data Lake Analytics specified by resource
+     * location.
+     * 
+     * @param manager Entry point to DataLakeAnalyticsManager.
+     */
+    public static void getsSubscriptionLevelPropertiesAndLimitsForDataLakeAnalyticsSpecifiedByResourceLocation(
+        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.locations().getCapabilityWithResponse("EastUS2", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### ComputePolicies_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.datalakeanalytics.models.AadObjectType;
-import java.util.UUID;
-
-/**
- * Samples for ComputePolicies CreateOrUpdate.
- */
-public final class ComputePoliciesCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * ComputePolicies_CreateOrUpdate.json
-     */
-    /**
-     * Sample code: Creates or updates the specified compute policy.
-     * 
-     * @param manager Entry point to DataLakeAnalyticsManager.
-     */
-    public static void createsOrUpdatesTheSpecifiedComputePolicy(
-        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.computePolicies()
-            .define("test_policy")
-            .withExistingAccount("contosorg", "contosoadla")
-            .withObjectId(UUID.fromString("776b9091-8916-4638-87f7-9c989a38da98"))
-            .withObjectType(AadObjectType.USER)
-            .withMaxDegreeOfParallelismPerJob(10)
-            .withMinPriorityPerJob(30)
-            .create();
-    }
-}
-```
-
-### ComputePolicies_Delete
-
-```java
-/**
- * Samples for ComputePolicies Delete.
- */
-public final class ComputePoliciesDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * ComputePolicies_Delete.json
-     */
-    /**
-     * Sample code: Deletes the specified compute policy from the adla account.
-     * 
-     * @param manager Entry point to DataLakeAnalyticsManager.
-     */
-    public static void deletesTheSpecifiedComputePolicyFromTheAdlaAccount(
-        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.computePolicies()
-            .deleteWithResponse("contosorg", "contosoadla", "test_policy", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ComputePolicies_Get
-
-```java
-/**
- * Samples for ComputePolicies Get.
- */
-public final class ComputePoliciesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * ComputePolicies_Get.json
-     */
-    /**
-     * Sample code: Gets the specified compute policy.
-     * 
-     * @param manager Entry point to DataLakeAnalyticsManager.
-     */
-    public static void
-        getsTheSpecifiedComputePolicy(com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.computePolicies()
-            .getWithResponse("contosorg", "contosoadla", "test_policy", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ComputePolicies_ListByAccount
-
-```java
-/**
- * Samples for ComputePolicies ListByAccount.
- */
-public final class ComputePoliciesListByAccountSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * ComputePolicies_ListByAccount.json
-     */
-    /**
-     * Sample code: Lists the compute policies within the adla account.
-     * 
-     * @param manager Entry point to DataLakeAnalyticsManager.
-     */
-    public static void listsTheComputePoliciesWithinTheAdlaAccount(
-        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.computePolicies().listByAccount("contosorg", "contosoadla", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ComputePolicies_Update
-
-```java
-import com.azure.resourcemanager.datalakeanalytics.models.ComputePolicy;
-
-/**
- * Samples for ComputePolicies Update.
- */
-public final class ComputePoliciesUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * ComputePolicies_Update.json
-     */
-    /**
-     * Sample code: Updates the specified compute policy.
-     * 
-     * @param manager Entry point to DataLakeAnalyticsManager.
-     */
-    public static void
-        updatesTheSpecifiedComputePolicy(com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        ComputePolicy resource = manager.computePolicies()
-            .getWithResponse("contosorg", "contosoadla", "test_policy", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withMaxDegreeOfParallelismPerJob(11).withMinPriorityPerJob(31).apply();
-    }
-}
-```
-
-### DataLakeStoreAccounts_Add
 
 ```java
 import com.azure.resourcemanager.datalakeanalytics.models.AddDataLakeStoreParameters;
@@ -482,8 +350,8 @@ import com.azure.resourcemanager.datalakeanalytics.models.AddDataLakeStoreParame
 public final class DataLakeStoreAccountsAddSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * DataLakeStoreAccounts_Add.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /DataLakeStoreAccounts_Add.json
      */
     /**
      * Sample code: Adds a Data Lake Store account.
@@ -499,7 +367,60 @@ public final class DataLakeStoreAccountsAddSamples {
 }
 ```
 
-### DataLakeStoreAccounts_Delete
+### ComputePolicies_Delete
+
+```java
+import com.azure.resourcemanager.datalakeanalytics.models.CheckNameAvailabilityParameters;
+
+/**
+ * Samples for Accounts CheckNameAvailability.
+ */
+public final class AccountsCheckNameAvailabilitySamples {
+    /*
+     * x-ms-original-file:
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Accounts_CheckNameAvailability.json
+     */
+    /**
+     * Sample code: Checks whether the specified account name is available or taken.
+     * 
+     * @param manager Entry point to DataLakeAnalyticsManager.
+     */
+    public static void checksWhetherTheSpecifiedAccountNameIsAvailableOrTaken(
+        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.accounts()
+            .checkNameAvailabilityWithResponse("EastUS2", new CheckNameAvailabilityParameters().withName("contosoadla"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ComputePolicies_Get
+
+```java
+/**
+ * Samples for ComputePolicies Delete.
+ */
+public final class ComputePoliciesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /ComputePolicies_Delete.json
+     */
+    /**
+     * Sample code: Deletes the specified compute policy from the adla account.
+     * 
+     * @param manager Entry point to DataLakeAnalyticsManager.
+     */
+    public static void deletesTheSpecifiedComputePolicyFromTheAdlaAccount(
+        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.computePolicies()
+            .deleteWithResponse("contosorg", "contosoadla", "test_policy", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ComputePolicies_ListByAccount
 
 ```java
 /**
@@ -508,8 +429,8 @@ public final class DataLakeStoreAccountsAddSamples {
 public final class DataLakeStoreAccountsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * DataLakeStoreAccounts_Delete.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /DataLakeStoreAccounts_Delete.json
      */
     /**
      * Sample code: Removes the specified Data Lake Store account.
@@ -524,27 +445,113 @@ public final class DataLakeStoreAccountsDeleteSamples {
 }
 ```
 
+### ComputePolicies_Update
+
+```java
+import com.azure.resourcemanager.datalakeanalytics.models.FirewallRule;
+
+/**
+ * Samples for FirewallRules Update.
+ */
+public final class FirewallRulesUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /FirewallRules_Update.json
+     */
+    /**
+     * Sample code: Updates the specified firewall rule.
+     * 
+     * @param manager Entry point to DataLakeAnalyticsManager.
+     */
+    public static void
+        updatesTheSpecifiedFirewallRule(com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        FirewallRule resource = manager.firewallRules()
+            .getWithResponse("contosorg", "contosoadla", "test_rule", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withStartIpAddress("1.1.1.1").withEndIpAddress("2.2.2.2").apply();
+    }
+}
+```
+
+### DataLakeStoreAccounts_Add
+
+```java
+import com.azure.resourcemanager.datalakeanalytics.models.UpdateStorageAccountParameters;
+
+/**
+ * Samples for StorageAccounts Update.
+ */
+public final class StorageAccountsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /StorageAccounts_Update.json
+     */
+    /**
+     * Sample code: Replaces Azure Storage blob account details.
+     * 
+     * @param manager Entry point to DataLakeAnalyticsManager.
+     */
+    public static void replacesAzureStorageBlobAccountDetails(
+        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.storageAccounts()
+            .updateWithResponse("contosorg", "contosoadla", "test_storage",
+                new UpdateStorageAccountParameters().withAccessKey("fakeTokenPlaceholder").withSuffix("test_suffix"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataLakeStoreAccounts_Delete
+
+```java
+/**
+ * Samples for Accounts ListByResourceGroup.
+ */
+public final class AccountsListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Accounts_ListByResourceGroup.json
+     */
+    /**
+     * Sample code: Gets the first page of Data Lake Analytics accounts, if any, within a specific resource group. This
+     * includes a link to the next page, if any.
+     * 
+     * @param manager Entry point to DataLakeAnalyticsManager.
+     */
+    public static void
+        getsTheFirstPageOfDataLakeAnalyticsAccountsIfAnyWithinASpecificResourceGroupThisIncludesALinkToTheNextPageIfAny(
+            com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.accounts()
+            .listByResourceGroup("contosorg", "test_filter", 1, 1, "test_select", "test_orderby", false,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### DataLakeStoreAccounts_Get
 
 ```java
 /**
- * Samples for DataLakeStoreAccounts Get.
+ * Samples for StorageAccounts ListSasTokens.
  */
-public final class DataLakeStoreAccountsGetSamples {
+public final class StorageAccountsListSasTokensSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * DataLakeStoreAccounts_Get.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /StorageAccounts_ListSasTokens.json
      */
     /**
-     * Sample code: Gets the specified Data Lake Store account details.
+     * Sample code: Gets the SAS token.
      * 
      * @param manager Entry point to DataLakeAnalyticsManager.
      */
-    public static void getsTheSpecifiedDataLakeStoreAccountDetails(
-        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.dataLakeStoreAccounts()
-            .getWithResponse("contosorg", "contosoadla", "test_adls_account", com.azure.core.util.Context.NONE);
+    public static void getsTheSASToken(com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.storageAccounts()
+            .listSasTokens("contosorg", "contosoadla", "test_storage", "test_container",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -552,24 +559,27 @@ public final class DataLakeStoreAccountsGetSamples {
 ### DataLakeStoreAccounts_ListByAccount
 
 ```java
+import com.azure.resourcemanager.datalakeanalytics.models.AddStorageAccountParameters;
+
 /**
- * Samples for DataLakeStoreAccounts ListByAccount.
+ * Samples for StorageAccounts Add.
  */
-public final class DataLakeStoreAccountsListByAccountSamples {
+public final class StorageAccountsAddSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * DataLakeStoreAccounts_ListByAccount.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /StorageAccounts_Add.json
      */
     /**
-     * Sample code: Gets the first page of Data Lake Store accounts linked to the specified Data Lake Analytics account.
+     * Sample code: Adds an Azure Storage account.
      * 
      * @param manager Entry point to DataLakeAnalyticsManager.
      */
-    public static void getsTheFirstPageOfDataLakeStoreAccountsLinkedToTheSpecifiedDataLakeAnalyticsAccount(
-        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.dataLakeStoreAccounts()
-            .listByAccount("contosorg", "contosoadla", "test_filter", 1, 1, "test_select", "test_orderby", false,
+    public static void
+        addsAnAzureStorageAccount(com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.storageAccounts()
+            .addWithResponse("contosorg", "contosoadla", "test_storage",
+                new AddStorageAccountParameters().withAccessKey("fakeTokenPlaceholder").withSuffix("test_suffix"),
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -579,13 +589,61 @@ public final class DataLakeStoreAccountsListByAccountSamples {
 
 ```java
 /**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Operations_List.json
+     */
+    /**
+     * Sample code: Lists all of the available Data Lake Analytics REST API operations.
+     * 
+     * @param manager Entry point to DataLakeAnalyticsManager.
+     */
+    public static void listsAllOfTheAvailableDataLakeAnalyticsRESTAPIOperations(
+        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.operations().listWithResponse(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FirewallRules_Delete
+
+```java
+/**
+ * Samples for FirewallRules ListByAccount.
+ */
+public final class FirewallRulesListByAccountSamples {
+    /*
+     * x-ms-original-file:
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /FirewallRules_ListByAccount.json
+     */
+    /**
+     * Sample code: Lists the Data Lake Analytics firewall rules.
+     * 
+     * @param manager Entry point to DataLakeAnalyticsManager.
+     */
+    public static void listsTheDataLakeAnalyticsFirewallRules(
+        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.firewallRules().listByAccount("contosorg", "contosoadla", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FirewallRules_Get
+
+```java
+/**
  * Samples for FirewallRules CreateOrUpdate.
  */
 public final class FirewallRulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * FirewallRules_CreateOrUpdate.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /FirewallRules_CreateOrUpdate.json
      */
     /**
      * Sample code: Creates or updates the specified firewall rule.
@@ -604,76 +662,26 @@ public final class FirewallRulesCreateOrUpdateSamples {
 }
 ```
 
-### FirewallRules_Delete
-
-```java
-/**
- * Samples for FirewallRules Delete.
- */
-public final class FirewallRulesDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * FirewallRules_Delete.json
-     */
-    /**
-     * Sample code: Deletes the specified firewall rule.
-     * 
-     * @param manager Entry point to DataLakeAnalyticsManager.
-     */
-    public static void
-        deletesTheSpecifiedFirewallRule(com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.firewallRules()
-            .deleteWithResponse("contosorg", "contosoadla", "test_rule", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FirewallRules_Get
-
-```java
-/**
- * Samples for FirewallRules Get.
- */
-public final class FirewallRulesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * FirewallRules_Get.json
-     */
-    /**
-     * Sample code: Gets the specified Data Lake Analytics firewall rule.
-     * 
-     * @param manager Entry point to DataLakeAnalyticsManager.
-     */
-    public static void getsTheSpecifiedDataLakeAnalyticsFirewallRule(
-        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.firewallRules()
-            .getWithResponse("contosorg", "contosoadla", "test_rule", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### FirewallRules_ListByAccount
 
 ```java
 /**
- * Samples for FirewallRules ListByAccount.
+ * Samples for Accounts GetByResourceGroup.
  */
-public final class FirewallRulesListByAccountSamples {
+public final class AccountsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * FirewallRules_ListByAccount.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Accounts_Get.json
      */
     /**
-     * Sample code: Lists the Data Lake Analytics firewall rules.
+     * Sample code: Gets details of the specified Data Lake Analytics account.
      * 
      * @param manager Entry point to DataLakeAnalyticsManager.
      */
-    public static void listsTheDataLakeAnalyticsFirewallRules(
+    public static void getsDetailsOfTheSpecifiedDataLakeAnalyticsAccount(
         com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.firewallRules().listByAccount("contosorg", "contosoadla", com.azure.core.util.Context.NONE);
+        manager.accounts().getByResourceGroupWithResponse("contosorg", "contosoadla", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -681,28 +689,23 @@ public final class FirewallRulesListByAccountSamples {
 ### FirewallRules_Update
 
 ```java
-import com.azure.resourcemanager.datalakeanalytics.models.FirewallRule;
-
 /**
- * Samples for FirewallRules Update.
+ * Samples for Accounts Delete.
  */
-public final class FirewallRulesUpdateSamples {
+public final class AccountsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * FirewallRules_Update.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Accounts_Delete.json
      */
     /**
-     * Sample code: Updates the specified firewall rule.
+     * Sample code: Begins the delete process for the Data Lake Analytics account object specified by the account name.
      * 
      * @param manager Entry point to DataLakeAnalyticsManager.
      */
-    public static void
-        updatesTheSpecifiedFirewallRule(com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        FirewallRule resource = manager.firewallRules()
-            .getWithResponse("contosorg", "contosoadla", "test_rule", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withStartIpAddress("1.1.1.1").withEndIpAddress("2.2.2.2").apply();
+    public static void beginsTheDeleteProcessForTheDataLakeAnalyticsAccountObjectSpecifiedByTheAccountName(
+        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.accounts().delete("contosorg", "contosoadla", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -711,141 +714,13 @@ public final class FirewallRulesUpdateSamples {
 
 ```java
 /**
- * Samples for Locations GetCapability.
- */
-public final class LocationsGetCapabilitySamples {
-    /*
-     * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Locations_GetCapability.json
-     */
-    /**
-     * Sample code: Gets subscription-level properties and limits for Data Lake Analytics specified by resource
-     * location.
-     * 
-     * @param manager Entry point to DataLakeAnalyticsManager.
-     */
-    public static void getsSubscriptionLevelPropertiesAndLimitsForDataLakeAnalyticsSpecifiedByResourceLocation(
-        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.locations().getCapabilityWithResponse("EastUS2", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Operations_List.json
-     */
-    /**
-     * Sample code: Lists all of the available Data Lake Analytics REST API operations.
-     * 
-     * @param manager Entry point to DataLakeAnalyticsManager.
-     */
-    public static void listsAllOfTheAvailableDataLakeAnalyticsRESTAPIOperations(
-        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.operations().listWithResponse(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### StorageAccounts_Add
-
-```java
-import com.azure.resourcemanager.datalakeanalytics.models.AddStorageAccountParameters;
-
-/**
- * Samples for StorageAccounts Add.
- */
-public final class StorageAccountsAddSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * StorageAccounts_Add.json
-     */
-    /**
-     * Sample code: Adds an Azure Storage account.
-     * 
-     * @param manager Entry point to DataLakeAnalyticsManager.
-     */
-    public static void
-        addsAnAzureStorageAccount(com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.storageAccounts()
-            .addWithResponse("contosorg", "contosoadla", "test_storage",
-                new AddStorageAccountParameters().withAccessKey("fakeTokenPlaceholder").withSuffix("test_suffix"),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### StorageAccounts_Delete
-
-```java
-/**
- * Samples for StorageAccounts Delete.
- */
-public final class StorageAccountsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * StorageAccounts_Delete.json
-     */
-    /**
-     * Sample code: Removes an Azure Storage account.
-     * 
-     * @param manager Entry point to DataLakeAnalyticsManager.
-     */
-    public static void
-        removesAnAzureStorageAccount(com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.storageAccounts()
-            .deleteWithResponse("contosorg", "contosoadla", "test_storage", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### StorageAccounts_Get
-
-```java
-/**
- * Samples for StorageAccounts Get.
- */
-public final class StorageAccountsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * StorageAccounts_Get.json
-     */
-    /**
-     * Sample code: Gets the specified Azure Storage account.
-     * 
-     * @param manager Entry point to DataLakeAnalyticsManager.
-     */
-    public static void getsTheSpecifiedAzureStorageAccount(
-        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.storageAccounts()
-            .getWithResponse("contosorg", "contosoadla", "test_storage", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### StorageAccounts_GetStorageContainer
-
-```java
-/**
  * Samples for StorageAccounts GetStorageContainer.
  */
 public final class StorageAccountsGetStorageContainerSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * StorageAccounts_GetStorageContainer.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /StorageAccounts_GetStorageContainer.json
      */
     /**
      * Sample code: Gets the specified Azure Storage container.
@@ -861,28 +736,155 @@ public final class StorageAccountsGetStorageContainerSamples {
 }
 ```
 
+### Operations_List
+
+```java
+/**
+ * Samples for StorageAccounts Get.
+ */
+public final class StorageAccountsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /StorageAccounts_Get.json
+     */
+    /**
+     * Sample code: Gets the specified Azure Storage account.
+     * 
+     * @param manager Entry point to DataLakeAnalyticsManager.
+     */
+    public static void getsTheSpecifiedAzureStorageAccount(
+        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.storageAccounts()
+            .getWithResponse("contosorg", "contosoadla", "test_storage", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### StorageAccounts_Add
+
+```java
+import com.azure.resourcemanager.datalakeanalytics.models.ComputePolicy;
+
+/**
+ * Samples for ComputePolicies Update.
+ */
+public final class ComputePoliciesUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /ComputePolicies_Update.json
+     */
+    /**
+     * Sample code: Updates the specified compute policy.
+     * 
+     * @param manager Entry point to DataLakeAnalyticsManager.
+     */
+    public static void
+        updatesTheSpecifiedComputePolicy(com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        ComputePolicy resource = manager.computePolicies()
+            .getWithResponse("contosorg", "contosoadla", "test_policy", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withMaxDegreeOfParallelismPerJob(11).withMinPriorityPerJob(31).apply();
+    }
+}
+```
+
+### StorageAccounts_Delete
+
+```java
+/**
+ * Samples for FirewallRules Delete.
+ */
+public final class FirewallRulesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /FirewallRules_Delete.json
+     */
+    /**
+     * Sample code: Deletes the specified firewall rule.
+     * 
+     * @param manager Entry point to DataLakeAnalyticsManager.
+     */
+    public static void
+        deletesTheSpecifiedFirewallRule(com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.firewallRules()
+            .deleteWithResponse("contosorg", "contosoadla", "test_rule", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### StorageAccounts_Get
+
+```java
+/**
+ * Samples for ComputePolicies Get.
+ */
+public final class ComputePoliciesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /ComputePolicies_Get.json
+     */
+    /**
+     * Sample code: Gets the specified compute policy.
+     * 
+     * @param manager Entry point to DataLakeAnalyticsManager.
+     */
+    public static void
+        getsTheSpecifiedComputePolicy(com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.computePolicies()
+            .getWithResponse("contosorg", "contosoadla", "test_policy", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### StorageAccounts_GetStorageContainer
+
+```java
+/**
+ * Samples for ComputePolicies ListByAccount.
+ */
+public final class ComputePoliciesListByAccountSamples {
+    /*
+     * x-ms-original-file:
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /ComputePolicies_ListByAccount.json
+     */
+    /**
+     * Sample code: Lists the compute policies within the adla account.
+     * 
+     * @param manager Entry point to DataLakeAnalyticsManager.
+     */
+    public static void listsTheComputePoliciesWithinTheAdlaAccount(
+        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.computePolicies().listByAccount("contosorg", "contosoadla", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### StorageAccounts_ListByAccount
 
 ```java
 /**
- * Samples for StorageAccounts ListByAccount.
+ * Samples for StorageAccounts Delete.
  */
-public final class StorageAccountsListByAccountSamples {
+public final class StorageAccountsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * StorageAccounts_ListByAccount.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /StorageAccounts_Delete.json
      */
     /**
-     * Sample code: Gets the first page of Azure Storage accounts linked to the specified Data Lake Analytics account.
+     * Sample code: Removes an Azure Storage account.
      * 
      * @param manager Entry point to DataLakeAnalyticsManager.
      */
-    public static void getsTheFirstPageOfAzureStorageAccountsLinkedToTheSpecifiedDataLakeAnalyticsAccount(
-        com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+    public static void
+        removesAnAzureStorageAccount(com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
         manager.storageAccounts()
-            .listByAccount("contosorg", "contosoadla", "test_filter", 1, 1, "test_select", "test_orderby", false,
-                com.azure.core.util.Context.NONE);
+            .deleteWithResponse("contosorg", "contosoadla", "test_storage", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -891,38 +893,13 @@ public final class StorageAccountsListByAccountSamples {
 
 ```java
 /**
- * Samples for StorageAccounts ListSasTokens.
- */
-public final class StorageAccountsListSasTokensSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * StorageAccounts_ListSasTokens.json
-     */
-    /**
-     * Sample code: Gets the SAS token.
-     * 
-     * @param manager Entry point to DataLakeAnalyticsManager.
-     */
-    public static void getsTheSASToken(com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.storageAccounts()
-            .listSasTokens("contosorg", "contosoadla", "test_storage", "test_container",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### StorageAccounts_ListStorageContainers
-
-```java
-/**
  * Samples for StorageAccounts ListStorageContainers.
  */
 public final class StorageAccountsListStorageContainersSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * StorageAccounts_ListStorageContainers.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /StorageAccounts_ListStorageContainers.json
      */
     /**
      * Sample code: Lists the Azure Storage containers.
@@ -937,31 +914,54 @@ public final class StorageAccountsListStorageContainersSamples {
 }
 ```
 
-### StorageAccounts_Update
+### StorageAccounts_ListStorageContainers
 
 ```java
-import com.azure.resourcemanager.datalakeanalytics.models.UpdateStorageAccountParameters;
-
 /**
- * Samples for StorageAccounts Update.
+ * Samples for Accounts List.
  */
-public final class StorageAccountsUpdateSamples {
+public final class AccountsListSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * StorageAccounts_Update.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Accounts_List.json
      */
     /**
-     * Sample code: Replaces Azure Storage blob account details.
+     * Sample code: Gets the first page of Data Lake Analytics accounts, if any, within the current subscription. This
+     * includes a link to the next page, if any.
      * 
      * @param manager Entry point to DataLakeAnalyticsManager.
      */
-    public static void replacesAzureStorageBlobAccountDetails(
+    public static void
+        getsTheFirstPageOfDataLakeAnalyticsAccountsIfAnyWithinTheCurrentSubscriptionThisIncludesALinkToTheNextPageIfAny(
+            com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
+        manager.accounts()
+            .list("test_filter", 1, 1, "test_select", "test_orderby", false, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### StorageAccounts_Update
+
+```java
+/**
+ * Samples for DataLakeStoreAccounts Get.
+ */
+public final class DataLakeStoreAccountsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /DataLakeStoreAccounts_Get.json
+     */
+    /**
+     * Sample code: Gets the specified Data Lake Store account details.
+     * 
+     * @param manager Entry point to DataLakeAnalyticsManager.
+     */
+    public static void getsTheSpecifiedDataLakeStoreAccountDetails(
         com.azure.resourcemanager.datalakeanalytics.DataLakeAnalyticsManager manager) {
-        manager.storageAccounts()
-            .updateWithResponse("contosorg", "contosoadla", "test_storage",
-                new UpdateStorageAccountParameters().withAccessKey("fakeTokenPlaceholder").withSuffix("test_suffix"),
-                com.azure.core.util.Context.NONE);
+        manager.dataLakeStoreAccounts()
+            .getWithResponse("contosorg", "contosoadla", "test_adls_account", com.azure.core.util.Context.NONE);
     }
 }
 ```
