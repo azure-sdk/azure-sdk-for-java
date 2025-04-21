@@ -4,11 +4,16 @@
 
 package com.azure.resourcemanager.hybridnetwork.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStoreInner;
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner;
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStorePrivateEndPointsFormatInner;
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactStore;
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactStoreNetworkFabricControllerEndPoints;
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactStorePrivateEndPointsFormat;
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactStorePropertiesFormat;
 import com.azure.resourcemanager.hybridnetwork.models.TagsObject;
 import java.util.Collections;
@@ -150,6 +155,71 @@ public final class ArtifactStoreImpl implements ArtifactStore, ArtifactStore.Def
             .getWithResponse(resourceGroupName, publisherName, artifactStoreName, context)
             .getValue();
         return this;
+    }
+
+    public void addNetworkFabricControllerEndPoints(ArtifactStoreNetworkFabricControllerEndPointsInner parameters) {
+        serviceManager.artifactStores()
+            .addNetworkFabricControllerEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters);
+    }
+
+    public void addNetworkFabricControllerEndPoints(ArtifactStoreNetworkFabricControllerEndPointsInner parameters,
+        Context context) {
+        serviceManager.artifactStores()
+            .addNetworkFabricControllerEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters,
+                context);
+    }
+
+    public void deleteNetworkFabricControllerEndPoints(ArtifactStoreNetworkFabricControllerEndPointsInner parameters) {
+        serviceManager.artifactStores()
+            .deleteNetworkFabricControllerEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters);
+    }
+
+    public void deleteNetworkFabricControllerEndPoints(ArtifactStoreNetworkFabricControllerEndPointsInner parameters,
+        Context context) {
+        serviceManager.artifactStores()
+            .deleteNetworkFabricControllerEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters,
+                context);
+    }
+
+    public PagedIterable<ArtifactStoreNetworkFabricControllerEndPoints> listNetworkFabricControllerPrivateEndPoints() {
+        return serviceManager.artifactStores()
+            .listNetworkFabricControllerPrivateEndPoints(resourceGroupName, publisherName, artifactStoreName);
+    }
+
+    public PagedIterable<ArtifactStoreNetworkFabricControllerEndPoints>
+        listNetworkFabricControllerPrivateEndPoints(Context context) {
+        return serviceManager.artifactStores()
+            .listNetworkFabricControllerPrivateEndPoints(resourceGroupName, publisherName, artifactStoreName, context);
+    }
+
+    public void approvePrivateEndPoints(ArtifactStorePrivateEndPointsFormatInner parameters) {
+        serviceManager.artifactStores()
+            .approvePrivateEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters);
+    }
+
+    public void approvePrivateEndPoints(ArtifactStorePrivateEndPointsFormatInner parameters, Context context) {
+        serviceManager.artifactStores()
+            .approvePrivateEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters, context);
+    }
+
+    public void removePrivateEndPoints(ArtifactStorePrivateEndPointsFormatInner parameters) {
+        serviceManager.artifactStores()
+            .removePrivateEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters);
+    }
+
+    public void removePrivateEndPoints(ArtifactStorePrivateEndPointsFormatInner parameters, Context context) {
+        serviceManager.artifactStores()
+            .removePrivateEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters, context);
+    }
+
+    public PagedIterable<ArtifactStorePrivateEndPointsFormat> listPrivateEndPoints() {
+        return serviceManager.artifactStores()
+            .listPrivateEndPoints(resourceGroupName, publisherName, artifactStoreName);
+    }
+
+    public PagedIterable<ArtifactStorePrivateEndPointsFormat> listPrivateEndPoints(Context context) {
+        return serviceManager.artifactStores()
+            .listPrivateEndPoints(resourceGroupName, publisherName, artifactStoreName, context);
     }
 
     public ArtifactStoreImpl withRegion(Region location) {

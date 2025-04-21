@@ -10,7 +10,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
 public final class NetworkFunctionDefinitionVersionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionVersionDelete.json
      */
     /**
@@ -27,7 +27,7 @@ public final class NetworkFunctionDefinitionVersionsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * AzureOperatorNexus/VirtualNetworkFunctionDefinitionVersionDelete.json
      */
     /**
@@ -44,7 +44,7 @@ public final class NetworkFunctionDefinitionVersionsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/AzureCore/
      * VirtualNetworkFunctionDefinitionVersionDelete.json
      */
     /**

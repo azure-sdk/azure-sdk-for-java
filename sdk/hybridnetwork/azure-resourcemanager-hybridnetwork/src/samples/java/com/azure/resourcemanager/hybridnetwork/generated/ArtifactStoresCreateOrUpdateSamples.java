@@ -8,6 +8,7 @@ import com.azure.resourcemanager.hybridnetwork.models.ArtifactReplicationStrateg
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactStorePropertiesFormat;
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactStorePropertiesFormatManagedResourceGroupConfiguration;
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactStoreType;
+import com.azure.resourcemanager.hybridnetwork.models.BackingResourcePublicNetworkAccess;
 
 /**
  * Samples for ArtifactStores CreateOrUpdate.
@@ -15,7 +16,33 @@ import com.azure.resourcemanager.hybridnetwork.models.ArtifactStoreType;
 public final class ArtifactStoresCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreCreateContainer.json
+     */
+    /**
+     * Sample code: Create or update an artifact store of publisher resource with container registry.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createOrUpdateAnArtifactStoreOfPublisherResourceWithContainerRegistry(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .define("TestArtifactStore")
+            .withRegion("eastus")
+            .withExistingPublisher("rg", "TestPublisher")
+            .withProperties(
+                new ArtifactStorePropertiesFormat().withStoreType(ArtifactStoreType.AZURE_CONTAINER_REGISTRY)
+                    .withBackingResourcePublicNetworkAccess(BackingResourcePublicNetworkAccess.DISABLED)
+                    .withReplicationStrategy(ArtifactReplicationStrategy.SINGLE_REPLICATION)
+                    .withManagedResourceGroupConfiguration(
+                        new ArtifactStorePropertiesFormatManagedResourceGroupConfiguration().withName("testRg")
+                            .withLocation("eastus")))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactStoreCreate.json
      */
     /**
@@ -35,6 +62,31 @@ public final class ArtifactStoresCreateOrUpdateSamples {
                     .withManagedResourceGroupConfiguration(
                         new ArtifactStorePropertiesFormatManagedResourceGroupConfiguration().withName("testRg")
                             .withLocation("eastus")))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreCreateStorage.json
+     */
+    /**
+     * Sample code: Create or update an artifact store of publisher resource with storage.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createOrUpdateAnArtifactStoreOfPublisherResourceWithStorage(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .define("TestArtifactStore")
+            .withRegion("eastus")
+            .withExistingPublisher("rg", "TestPublisher")
+            .withProperties(new ArtifactStorePropertiesFormat().withStoreType(ArtifactStoreType.AZURE_STORAGE_ACCOUNT)
+                .withBackingResourcePublicNetworkAccess(BackingResourcePublicNetworkAccess.ENABLED)
+                .withReplicationStrategy(ArtifactReplicationStrategy.SINGLE_REPLICATION)
+                .withManagedResourceGroupConfiguration(
+                    new ArtifactStorePropertiesFormatManagedResourceGroupConfiguration().withName("testRg")
+                        .withLocation("eastus")))
             .create();
     }
 }
