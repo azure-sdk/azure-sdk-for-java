@@ -5,11 +5,15 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.databoxedge.models.ArmBaseModel;
+import com.azure.resourcemanager.databoxedge.models.CloudEdgeManagementRole;
 import com.azure.resourcemanager.databoxedge.models.IoTRole;
+import com.azure.resourcemanager.databoxedge.models.KubernetesRole;
+import com.azure.resourcemanager.databoxedge.models.MecRole;
 import com.azure.resourcemanager.databoxedge.models.RoleTypes;
 import java.io.IOException;
 
@@ -22,6 +26,11 @@ public class RoleInner extends ArmBaseModel {
      * Role type.
      */
     private RoleTypes kind = RoleTypes.fromString("Role");
+
+    /*
+     * Metadata pertaining to creation and last modification of Role
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -51,6 +60,26 @@ public class RoleInner extends ArmBaseModel {
      */
     public RoleTypes kind() {
         return this.kind;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of Role.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Set the systemData property: Metadata pertaining to creation and last modification of Role.
+     * 
+     * @param systemData the systemData value to set.
+     * @return the RoleInner object itself.
+     */
+    RoleInner withSystemData(SystemData systemData) {
+        this.systemData = systemData;
+        return this;
     }
 
     /**
@@ -127,8 +156,14 @@ public class RoleInner extends ArmBaseModel {
                     }
                 }
                 // Use the discriminator value to determine which subtype should be deserialized.
-                if ("IOT".equals(discriminatorValue)) {
+                if ("CloudEdgeManagement".equals(discriminatorValue)) {
+                    return CloudEdgeManagementRole.fromJson(readerToUse.reset());
+                } else if ("IOT".equals(discriminatorValue)) {
                     return IoTRole.fromJson(readerToUse.reset());
+                } else if ("Kubernetes".equals(discriminatorValue)) {
+                    return KubernetesRole.fromJson(readerToUse.reset());
+                } else if ("MEC".equals(discriminatorValue)) {
+                    return MecRole.fromJson(readerToUse.reset());
                 } else {
                     return fromJsonKnownDiscriminator(readerToUse.reset());
                 }
@@ -151,6 +186,8 @@ public class RoleInner extends ArmBaseModel {
                     deserializedRoleInner.type = reader.getString();
                 } else if ("kind".equals(fieldName)) {
                     deserializedRoleInner.kind = RoleTypes.fromString(reader.getString());
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedRoleInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
