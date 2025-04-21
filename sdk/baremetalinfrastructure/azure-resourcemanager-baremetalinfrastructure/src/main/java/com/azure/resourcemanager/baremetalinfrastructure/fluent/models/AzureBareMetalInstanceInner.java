@@ -30,7 +30,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
     private AzureBareMetalInstanceProperties innerProperties;
 
     /*
-     * The system metadata relating to this resource.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
 
@@ -65,7 +65,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
     }
 
     /**
-     * Get the systemData property: The system metadata relating to this resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -122,7 +122,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
     }
 
     /**
-     * Get the hardwareProfile property: Specifies the hardware settings for the AzureBareMetal instance.
+     * Get the hardwareProfile property: Specifies the hardware settings for the Azure Bare Metal Instance.
      * 
      * @return the hardwareProfile value.
      */
@@ -131,7 +131,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
     }
 
     /**
-     * Set the hardwareProfile property: Specifies the hardware settings for the AzureBareMetal instance.
+     * Set the hardwareProfile property: Specifies the hardware settings for the Azure Bare Metal Instance.
      * 
      * @param hardwareProfile the hardwareProfile value to set.
      * @return the AzureBareMetalInstanceInner object itself.
@@ -145,7 +145,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
     }
 
     /**
-     * Get the storageProfile property: Specifies the storage settings for the AzureBareMetal instance disks.
+     * Get the storageProfile property: Specifies the storage settings for the Azure Bare Metal Instance disks.
      * 
      * @return the storageProfile value.
      */
@@ -154,7 +154,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
     }
 
     /**
-     * Set the storageProfile property: Specifies the storage settings for the AzureBareMetal instance disks.
+     * Set the storageProfile property: Specifies the storage settings for the Azure Bare Metal Instance disks.
      * 
      * @param storageProfile the storageProfile value to set.
      * @return the AzureBareMetalInstanceInner object itself.
@@ -168,7 +168,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
     }
 
     /**
-     * Get the osProfile property: Specifies the operating system settings for the AzureBareMetal instance.
+     * Get the osProfile property: Specifies the operating system settings for the Azure Bare Metal Instance.
      * 
      * @return the osProfile value.
      */
@@ -177,7 +177,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
     }
 
     /**
-     * Set the osProfile property: Specifies the operating system settings for the AzureBareMetal instance.
+     * Set the osProfile property: Specifies the operating system settings for the Azure Bare Metal Instance.
      * 
      * @param osProfile the osProfile value to set.
      * @return the AzureBareMetalInstanceInner object itself.
@@ -191,7 +191,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
     }
 
     /**
-     * Get the networkProfile property: Specifies the network settings for the AzureBareMetal instance.
+     * Get the networkProfile property: Specifies the network settings for the Azure Bare Metal Instance.
      * 
      * @return the networkProfile value.
      */
@@ -200,7 +200,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
     }
 
     /**
-     * Set the networkProfile property: Specifies the network settings for the AzureBareMetal instance.
+     * Set the networkProfile property: Specifies the network settings for the Azure Bare Metal Instance.
      * 
      * @param networkProfile the networkProfile value to set.
      * @return the AzureBareMetalInstanceInner object itself.
@@ -214,12 +214,26 @@ public final class AzureBareMetalInstanceInner extends Resource {
     }
 
     /**
-     * Get the azureBareMetalInstanceId property: Specifies the AzureBareMetal instance unique ID.
+     * Get the azureBareMetalInstanceId property: Specifies the Azure Bare Metal Instance unique ID.
      * 
      * @return the azureBareMetalInstanceId value.
      */
     public String azureBareMetalInstanceId() {
         return this.innerProperties() == null ? null : this.innerProperties().azureBareMetalInstanceId();
+    }
+
+    /**
+     * Set the azureBareMetalInstanceId property: Specifies the Azure Bare Metal Instance unique ID.
+     * 
+     * @param azureBareMetalInstanceId the azureBareMetalInstanceId value to set.
+     * @return the AzureBareMetalInstanceInner object itself.
+     */
+    public AzureBareMetalInstanceInner withAzureBareMetalInstanceId(String azureBareMetalInstanceId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AzureBareMetalInstanceProperties();
+        }
+        this.innerProperties().withAzureBareMetalInstanceId(azureBareMetalInstanceId);
+        return this;
     }
 
     /**
@@ -232,6 +246,20 @@ public final class AzureBareMetalInstanceInner extends Resource {
     }
 
     /**
+     * Set the powerState property: Resource power state.
+     * 
+     * @param powerState the powerState value to set.
+     * @return the AzureBareMetalInstanceInner object itself.
+     */
+    public AzureBareMetalInstanceInner withPowerState(AzureBareMetalInstancePowerStateEnum powerState) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AzureBareMetalInstanceProperties();
+        }
+        this.innerProperties().withPowerState(powerState);
+        return this;
+    }
+
+    /**
      * Get the proximityPlacementGroup property: Resource proximity placement group.
      * 
      * @return the proximityPlacementGroup value.
@@ -241,12 +269,40 @@ public final class AzureBareMetalInstanceInner extends Resource {
     }
 
     /**
-     * Get the hwRevision property: Hardware revision of an AzureBareMetal instance.
+     * Set the proximityPlacementGroup property: Resource proximity placement group.
+     * 
+     * @param proximityPlacementGroup the proximityPlacementGroup value to set.
+     * @return the AzureBareMetalInstanceInner object itself.
+     */
+    public AzureBareMetalInstanceInner withProximityPlacementGroup(String proximityPlacementGroup) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AzureBareMetalInstanceProperties();
+        }
+        this.innerProperties().withProximityPlacementGroup(proximityPlacementGroup);
+        return this;
+    }
+
+    /**
+     * Get the hwRevision property: Hardware revision of an Azure Bare Metal Instance.
      * 
      * @return the hwRevision value.
      */
     public String hwRevision() {
         return this.innerProperties() == null ? null : this.innerProperties().hwRevision();
+    }
+
+    /**
+     * Set the hwRevision property: Hardware revision of an Azure Bare Metal Instance.
+     * 
+     * @param hwRevision the hwRevision value to set.
+     * @return the AzureBareMetalInstanceInner object itself.
+     */
+    public AzureBareMetalInstanceInner withHwRevision(String hwRevision) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AzureBareMetalInstanceProperties();
+        }
+        this.innerProperties().withHwRevision(hwRevision);
+        return this;
     }
 
     /**

@@ -1,14 +1,139 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-21)
 
-### Features Added
+- Azure Resource Manager BareMetalInfrastructure client library for Java. This package contains Microsoft Azure SDK for BareMetalInfrastructure Management SDK. The Bare Metal Infrastructure Management client. Package tag package-preview-2024-08. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.OperationList` was removed
 
-### Other Changes
+#### `models.Display` was removed
+
+#### `models.IpAddress` was removed
+
+#### `models.Operation` was modified
+
+* `models.Display display()` -> `models.OperationDisplay display()`
+
+#### `models.AzureBareMetalInstances` was modified
+
+* `updateWithResponse(java.lang.String,java.lang.String,models.Tags,com.azure.core.util.Context)` was removed
+* `update(java.lang.String,java.lang.String,models.Tags)` was removed
+
+### Features Added
+
+* `models.AzureBareMetalInstanceForcePowerState` was added
+
+* `models.AzureBareMetalStorageInstance` was added
+
+* `models.AzureBareMetalInstance$UpdateStages` was added
+
+* `models.AzureBareMetalStorageInstance$UpdateStages` was added
+
+* `models.AsyncOperationStatus` was added
+
+* `models.AzureBareMetalStorageInstanceBody` was added
+
+* `models.AzureBareMetalInstance$Definition` was added
+
+* `models.OperationStatus` was added
+
+* `models.ProvisioningState` was added
+
+* `models.ForceState` was added
+
+* `models.AzureBareMetalStorageInstancesListResult` was added
+
+* `models.Origin` was added
+
+* `models.AzureBareMetalInstance$DefinitionStages` was added
+
+* `models.OperationDisplay` was added
+
+* `models.AzureBareMetalStorageInstance$Update` was added
+
+* `models.OperationStatusError` was added
+
+* `models.StorageProperties` was added
+
+* `models.AzureBareMetalStorageInstance$DefinitionStages` was added
+
+* `models.AzureBareMetalStorageInstances` was added
+
+* `models.AzureBareMetalInstance$Update` was added
+
+* `models.ResourceIdentityType` was added
+
+* `models.AzureBareMetalStorageInstance$Definition` was added
+
+* `models.AzureBareMetalStorageInstanceIdentity` was added
+
+* `models.OperationListResult` was added
+
+* `models.StorageBillingProperties` was added
+
+* `models.NetworkInterface` was added
+
+* `models.ActionType` was added
+
+#### `models.NetworkProfile` was modified
+
+* `withCircuitId(java.lang.String)` was added
+
+#### `models.Operation` was modified
+
+* `actionType()` was added
+* `origin()` was added
+
+#### `models.AzureBareMetalInstances` was modified
+
+* `start(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `deleteById(java.lang.String)` was added
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `restart(java.lang.String,java.lang.String)` was added
+* `restart(java.lang.String,java.lang.String,models.ForceState,com.azure.core.util.Context)` was added
+* `start(java.lang.String,java.lang.String)` was added
+* `shutdown(java.lang.String,java.lang.String)` was added
+* `deleteByResourceGroupWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `define(java.lang.String)` was added
+* `shutdown(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `deleteByResourceGroup(java.lang.String,java.lang.String)` was added
+* `getById(java.lang.String)` was added
+
+#### `BareMetalInfrastructureManager` was modified
+
+* `azureBareMetalStorageInstances()` was added
+
+#### `models.AzureBareMetalInstance` was modified
+
+* `refresh(com.azure.core.util.Context)` was added
+* `refresh()` was added
+* `restart()` was added
+* `start()` was added
+* `region()` was added
+* `regionName()` was added
+* `restart(models.ForceState,com.azure.core.util.Context)` was added
+* `shutdown()` was added
+* `start(com.azure.core.util.Context)` was added
+* `shutdown(com.azure.core.util.Context)` was added
+* `resourceGroupName()` was added
+* `update()` was added
+
+#### `models.StorageProfile` was modified
+
+* `withNfsIpAddress(java.lang.String)` was added
+
+#### `models.HardwareProfile` was modified
+
+* `withHardwareType(models.AzureBareMetalHardwareTypeNamesEnum)` was added
+* `withAzureBareMetalInstanceSize(models.AzureBareMetalInstanceSizeNamesEnum)` was added
+
+#### `models.OSProfile` was modified
+
+* `withVersion(java.lang.String)` was added
+* `withOsType(java.lang.String)` was added
 
 ## 1.0.0 (2025-01-02)
 

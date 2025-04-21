@@ -4,7 +4,9 @@
 
 package com.azure.resourcemanager.baremetalinfrastructure.models;
 
+import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
+import com.azure.core.util.Context;
 import com.azure.resourcemanager.baremetalinfrastructure.fluent.models.AzureBareMetalInstanceInner;
 import java.util.Map;
 
@@ -48,42 +50,42 @@ public interface AzureBareMetalInstance {
     Map<String, String> tags();
 
     /**
-     * Gets the systemData property: The system metadata relating to this resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
 
     /**
-     * Gets the hardwareProfile property: Specifies the hardware settings for the AzureBareMetal instance.
+     * Gets the hardwareProfile property: Specifies the hardware settings for the Azure Bare Metal Instance.
      * 
      * @return the hardwareProfile value.
      */
     HardwareProfile hardwareProfile();
 
     /**
-     * Gets the storageProfile property: Specifies the storage settings for the AzureBareMetal instance disks.
+     * Gets the storageProfile property: Specifies the storage settings for the Azure Bare Metal Instance disks.
      * 
      * @return the storageProfile value.
      */
     StorageProfile storageProfile();
 
     /**
-     * Gets the osProfile property: Specifies the operating system settings for the AzureBareMetal instance.
+     * Gets the osProfile property: Specifies the operating system settings for the Azure Bare Metal Instance.
      * 
      * @return the osProfile value.
      */
     OSProfile osProfile();
 
     /**
-     * Gets the networkProfile property: Specifies the network settings for the AzureBareMetal instance.
+     * Gets the networkProfile property: Specifies the network settings for the Azure Bare Metal Instance.
      * 
      * @return the networkProfile value.
      */
     NetworkProfile networkProfile();
 
     /**
-     * Gets the azureBareMetalInstanceId property: Specifies the AzureBareMetal instance unique ID.
+     * Gets the azureBareMetalInstanceId property: Specifies the Azure Bare Metal Instance unique ID.
      * 
      * @return the azureBareMetalInstanceId value.
      */
@@ -104,7 +106,7 @@ public interface AzureBareMetalInstance {
     String proximityPlacementGroup();
 
     /**
-     * Gets the hwRevision property: Hardware revision of an AzureBareMetal instance.
+     * Gets the hwRevision property: Hardware revision of an Azure Bare Metal Instance.
      * 
      * @return the hwRevision value.
      */
@@ -126,10 +128,377 @@ public interface AzureBareMetalInstance {
     AzureBareMetalProvisioningStatesEnum provisioningState();
 
     /**
+     * Gets the region of the resource.
+     * 
+     * @return the region of the resource.
+     */
+    Region region();
+
+    /**
+     * Gets the name of the resource region.
+     * 
+     * @return the name of the resource region.
+     */
+    String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     * 
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.baremetalinfrastructure.fluent.models.AzureBareMetalInstanceInner
      * object.
      * 
      * @return the inner object.
      */
     AzureBareMetalInstanceInner innerModel();
+
+    /**
+     * The entirety of the AzureBareMetalInstance definition.
+     */
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
+    }
+
+    /**
+     * The AzureBareMetalInstance definition stages.
+     */
+    interface DefinitionStages {
+        /**
+         * The first stage of the AzureBareMetalInstance definition.
+         */
+        interface Blank extends WithLocation {
+        }
+
+        /**
+         * The stage of the AzureBareMetalInstance definition allowing to specify location.
+         */
+        interface WithLocation {
+            /**
+             * Specifies the region for the resource.
+             * 
+             * @param location The geo-location where the resource lives.
+             * @return the next definition stage.
+             */
+            WithResourceGroup withRegion(Region location);
+
+            /**
+             * Specifies the region for the resource.
+             * 
+             * @param location The geo-location where the resource lives.
+             * @return the next definition stage.
+             */
+            WithResourceGroup withRegion(String location);
+        }
+
+        /**
+         * The stage of the AzureBareMetalInstance definition allowing to specify parent resource.
+         */
+        interface WithResourceGroup {
+            /**
+             * Specifies resourceGroupName.
+             * 
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
+             * @return the next definition stage.
+             */
+            WithCreate withExistingResourceGroup(String resourceGroupName);
+        }
+
+        /**
+         * The stage of the AzureBareMetalInstance definition which contains all the minimum required properties for the
+         * resource to be created, but also allows for any other optional properties to be specified.
+         */
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithHardwareProfile,
+            DefinitionStages.WithStorageProfile, DefinitionStages.WithOsProfile, DefinitionStages.WithNetworkProfile,
+            DefinitionStages.WithAzureBareMetalInstanceId, DefinitionStages.WithPowerState,
+            DefinitionStages.WithProximityPlacementGroup, DefinitionStages.WithHwRevision,
+            DefinitionStages.WithPartnerNodeId {
+            /**
+             * Executes the create request.
+             * 
+             * @return the created resource.
+             */
+            AzureBareMetalInstance create();
+
+            /**
+             * Executes the create request.
+             * 
+             * @param context The context to associate with this operation.
+             * @return the created resource.
+             */
+            AzureBareMetalInstance create(Context context);
+        }
+
+        /**
+         * The stage of the AzureBareMetalInstance definition allowing to specify tags.
+         */
+        interface WithTags {
+            /**
+             * Specifies the tags property: Resource tags..
+             * 
+             * @param tags Resource tags.
+             * @return the next definition stage.
+             */
+            WithCreate withTags(Map<String, String> tags);
+        }
+
+        /**
+         * The stage of the AzureBareMetalInstance definition allowing to specify hardwareProfile.
+         */
+        interface WithHardwareProfile {
+            /**
+             * Specifies the hardwareProfile property: Specifies the hardware settings for the Azure Bare Metal
+             * Instance..
+             * 
+             * @param hardwareProfile Specifies the hardware settings for the Azure Bare Metal Instance.
+             * @return the next definition stage.
+             */
+            WithCreate withHardwareProfile(HardwareProfile hardwareProfile);
+        }
+
+        /**
+         * The stage of the AzureBareMetalInstance definition allowing to specify storageProfile.
+         */
+        interface WithStorageProfile {
+            /**
+             * Specifies the storageProfile property: Specifies the storage settings for the Azure Bare Metal Instance
+             * disks..
+             * 
+             * @param storageProfile Specifies the storage settings for the Azure Bare Metal Instance disks.
+             * @return the next definition stage.
+             */
+            WithCreate withStorageProfile(StorageProfile storageProfile);
+        }
+
+        /**
+         * The stage of the AzureBareMetalInstance definition allowing to specify osProfile.
+         */
+        interface WithOsProfile {
+            /**
+             * Specifies the osProfile property: Specifies the operating system settings for the Azure Bare Metal
+             * Instance..
+             * 
+             * @param osProfile Specifies the operating system settings for the Azure Bare Metal Instance.
+             * @return the next definition stage.
+             */
+            WithCreate withOsProfile(OSProfile osProfile);
+        }
+
+        /**
+         * The stage of the AzureBareMetalInstance definition allowing to specify networkProfile.
+         */
+        interface WithNetworkProfile {
+            /**
+             * Specifies the networkProfile property: Specifies the network settings for the Azure Bare Metal Instance..
+             * 
+             * @param networkProfile Specifies the network settings for the Azure Bare Metal Instance.
+             * @return the next definition stage.
+             */
+            WithCreate withNetworkProfile(NetworkProfile networkProfile);
+        }
+
+        /**
+         * The stage of the AzureBareMetalInstance definition allowing to specify azureBareMetalInstanceId.
+         */
+        interface WithAzureBareMetalInstanceId {
+            /**
+             * Specifies the azureBareMetalInstanceId property: Specifies the Azure Bare Metal Instance unique ID..
+             * 
+             * @param azureBareMetalInstanceId Specifies the Azure Bare Metal Instance unique ID.
+             * @return the next definition stage.
+             */
+            WithCreate withAzureBareMetalInstanceId(String azureBareMetalInstanceId);
+        }
+
+        /**
+         * The stage of the AzureBareMetalInstance definition allowing to specify powerState.
+         */
+        interface WithPowerState {
+            /**
+             * Specifies the powerState property: Resource power state.
+             * 
+             * @param powerState Resource power state.
+             * @return the next definition stage.
+             */
+            WithCreate withPowerState(AzureBareMetalInstancePowerStateEnum powerState);
+        }
+
+        /**
+         * The stage of the AzureBareMetalInstance definition allowing to specify proximityPlacementGroup.
+         */
+        interface WithProximityPlacementGroup {
+            /**
+             * Specifies the proximityPlacementGroup property: Resource proximity placement group.
+             * 
+             * @param proximityPlacementGroup Resource proximity placement group.
+             * @return the next definition stage.
+             */
+            WithCreate withProximityPlacementGroup(String proximityPlacementGroup);
+        }
+
+        /**
+         * The stage of the AzureBareMetalInstance definition allowing to specify hwRevision.
+         */
+        interface WithHwRevision {
+            /**
+             * Specifies the hwRevision property: Hardware revision of an Azure Bare Metal Instance.
+             * 
+             * @param hwRevision Hardware revision of an Azure Bare Metal Instance.
+             * @return the next definition stage.
+             */
+            WithCreate withHwRevision(String hwRevision);
+        }
+
+        /**
+         * The stage of the AzureBareMetalInstance definition allowing to specify partnerNodeId.
+         */
+        interface WithPartnerNodeId {
+            /**
+             * Specifies the partnerNodeId property: ARM ID of another AzureBareMetalInstance that will share a network
+             * with this AzureBareMetalInstance.
+             * 
+             * @param partnerNodeId ARM ID of another AzureBareMetalInstance that will share a network with this
+             * AzureBareMetalInstance.
+             * @return the next definition stage.
+             */
+            WithCreate withPartnerNodeId(String partnerNodeId);
+        }
+    }
+
+    /**
+     * Begins update for the AzureBareMetalInstance resource.
+     * 
+     * @return the stage of resource update.
+     */
+    AzureBareMetalInstance.Update update();
+
+    /**
+     * The template for AzureBareMetalInstance update.
+     */
+    interface Update extends UpdateStages.WithTags {
+        /**
+         * Executes the update request.
+         * 
+         * @return the updated resource.
+         */
+        AzureBareMetalInstance apply();
+
+        /**
+         * Executes the update request.
+         * 
+         * @param context The context to associate with this operation.
+         * @return the updated resource.
+         */
+        AzureBareMetalInstance apply(Context context);
+    }
+
+    /**
+     * The AzureBareMetalInstance update stages.
+     */
+    interface UpdateStages {
+        /**
+         * The stage of the AzureBareMetalInstance update allowing to specify tags.
+         */
+        interface WithTags {
+            /**
+             * Specifies the tags property: Tags field of the AzureBareMetal/AzureBareMetaStorage instance..
+             * 
+             * @param tags Tags field of the AzureBareMetal/AzureBareMetaStorage instance.
+             * @return the next definition stage.
+             */
+            Update withTags(Map<String, String> tags);
+        }
+    }
+
+    /**
+     * Refreshes the resource to sync with Azure.
+     * 
+     * @return the refreshed resource.
+     */
+    AzureBareMetalInstance refresh();
+
+    /**
+     * Refreshes the resource to sync with Azure.
+     * 
+     * @param context The context to associate with this operation.
+     * @return the refreshed resource.
+     */
+    AzureBareMetalInstance refresh(Context context);
+
+    /**
+     * Start a Bare Metal Instance.
+     * 
+     * The operation to start an Azure Bare Metal instance.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the OperationStatus object returns the state of an asynchronous operation.
+     */
+    OperationStatus start();
+
+    /**
+     * Start a Bare Metal Instance.
+     * 
+     * The operation to start an Azure Bare Metal instance.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the OperationStatus object returns the state of an asynchronous operation.
+     */
+    OperationStatus start(Context context);
+
+    /**
+     * Restart a Bare Metal Instance.
+     * 
+     * The operation to restart an Azure Bare Metal Instance.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the OperationStatus object returns the state of an asynchronous operation.
+     */
+    OperationStatus restart();
+
+    /**
+     * Restart a Bare Metal Instance.
+     * 
+     * The operation to restart an Azure Bare Metal Instance.
+     * 
+     * @param forceParameter When set to 'active', this parameter empowers the server with the ability to forcefully
+     * terminate and halt any existing processes that may be running on the server.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the OperationStatus object returns the state of an asynchronous operation.
+     */
+    OperationStatus restart(ForceState forceParameter, Context context);
+
+    /**
+     * Shutdown a Bare Metal Instance.
+     * 
+     * The operation to shutdown an Azure Bare Metal Instance.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the OperationStatus object returns the state of an asynchronous operation.
+     */
+    OperationStatus shutdown();
+
+    /**
+     * Shutdown a Bare Metal Instance.
+     * 
+     * The operation to shutdown an Azure Bare Metal Instance.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the OperationStatus object returns the state of an asynchronous operation.
+     */
+    OperationStatus shutdown(Context context);
 }

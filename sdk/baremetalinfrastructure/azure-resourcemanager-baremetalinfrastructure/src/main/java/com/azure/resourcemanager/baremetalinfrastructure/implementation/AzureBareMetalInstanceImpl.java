@@ -4,28 +4,28 @@
 
 package com.azure.resourcemanager.baremetalinfrastructure.implementation;
 
+import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
+import com.azure.core.util.Context;
 import com.azure.resourcemanager.baremetalinfrastructure.fluent.models.AzureBareMetalInstanceInner;
 import com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalInstance;
 import com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalInstancePowerStateEnum;
 import com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalProvisioningStatesEnum;
+import com.azure.resourcemanager.baremetalinfrastructure.models.ForceState;
 import com.azure.resourcemanager.baremetalinfrastructure.models.HardwareProfile;
 import com.azure.resourcemanager.baremetalinfrastructure.models.NetworkProfile;
 import com.azure.resourcemanager.baremetalinfrastructure.models.OSProfile;
+import com.azure.resourcemanager.baremetalinfrastructure.models.OperationStatus;
 import com.azure.resourcemanager.baremetalinfrastructure.models.StorageProfile;
+import com.azure.resourcemanager.baremetalinfrastructure.models.Tags;
 import java.util.Collections;
 import java.util.Map;
 
-public final class AzureBareMetalInstanceImpl implements AzureBareMetalInstance {
+public final class AzureBareMetalInstanceImpl
+    implements AzureBareMetalInstance, AzureBareMetalInstance.Definition, AzureBareMetalInstance.Update {
     private AzureBareMetalInstanceInner innerObject;
 
     private final com.azure.resourcemanager.baremetalinfrastructure.BareMetalInfrastructureManager serviceManager;
-
-    AzureBareMetalInstanceImpl(AzureBareMetalInstanceInner innerObject,
-        com.azure.resourcemanager.baremetalinfrastructure.BareMetalInfrastructureManager serviceManager) {
-        this.innerObject = innerObject;
-        this.serviceManager = serviceManager;
-    }
 
     public String id() {
         return this.innerModel().id();
@@ -96,11 +96,198 @@ public final class AzureBareMetalInstanceImpl implements AzureBareMetalInstance 
         return this.innerModel().provisioningState();
     }
 
+    public Region region() {
+        return Region.fromName(this.regionName());
+    }
+
+    public String regionName() {
+        return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public AzureBareMetalInstanceInner innerModel() {
         return this.innerObject;
     }
 
     private com.azure.resourcemanager.baremetalinfrastructure.BareMetalInfrastructureManager manager() {
         return this.serviceManager;
+    }
+
+    private String resourceGroupName;
+
+    private String azureBareMetalInstanceName;
+
+    private Tags updateTagsParameter;
+
+    public AzureBareMetalInstanceImpl withExistingResourceGroup(String resourceGroupName) {
+        this.resourceGroupName = resourceGroupName;
+        return this;
+    }
+
+    public AzureBareMetalInstance create() {
+        this.innerObject = serviceManager.serviceClient()
+            .getAzureBareMetalInstances()
+            .createWithResponse(resourceGroupName, azureBareMetalInstanceName, this.innerModel(), Context.NONE)
+            .getValue();
+        return this;
+    }
+
+    public AzureBareMetalInstance create(Context context) {
+        this.innerObject = serviceManager.serviceClient()
+            .getAzureBareMetalInstances()
+            .createWithResponse(resourceGroupName, azureBareMetalInstanceName, this.innerModel(), context)
+            .getValue();
+        return this;
+    }
+
+    AzureBareMetalInstanceImpl(String name,
+        com.azure.resourcemanager.baremetalinfrastructure.BareMetalInfrastructureManager serviceManager) {
+        this.innerObject = new AzureBareMetalInstanceInner();
+        this.serviceManager = serviceManager;
+        this.azureBareMetalInstanceName = name;
+    }
+
+    public AzureBareMetalInstanceImpl update() {
+        this.updateTagsParameter = new Tags();
+        return this;
+    }
+
+    public AzureBareMetalInstance apply() {
+        this.innerObject = serviceManager.serviceClient()
+            .getAzureBareMetalInstances()
+            .updateWithResponse(resourceGroupName, azureBareMetalInstanceName, updateTagsParameter, Context.NONE)
+            .getValue();
+        return this;
+    }
+
+    public AzureBareMetalInstance apply(Context context) {
+        this.innerObject = serviceManager.serviceClient()
+            .getAzureBareMetalInstances()
+            .updateWithResponse(resourceGroupName, azureBareMetalInstanceName, updateTagsParameter, context)
+            .getValue();
+        return this;
+    }
+
+    AzureBareMetalInstanceImpl(AzureBareMetalInstanceInner innerObject,
+        com.azure.resourcemanager.baremetalinfrastructure.BareMetalInfrastructureManager serviceManager) {
+        this.innerObject = innerObject;
+        this.serviceManager = serviceManager;
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.azureBareMetalInstanceName
+            = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "bareMetalInstances");
+    }
+
+    public AzureBareMetalInstance refresh() {
+        this.innerObject = serviceManager.serviceClient()
+            .getAzureBareMetalInstances()
+            .getByResourceGroupWithResponse(resourceGroupName, azureBareMetalInstanceName, Context.NONE)
+            .getValue();
+        return this;
+    }
+
+    public AzureBareMetalInstance refresh(Context context) {
+        this.innerObject = serviceManager.serviceClient()
+            .getAzureBareMetalInstances()
+            .getByResourceGroupWithResponse(resourceGroupName, azureBareMetalInstanceName, context)
+            .getValue();
+        return this;
+    }
+
+    public OperationStatus start() {
+        return serviceManager.azureBareMetalInstances().start(resourceGroupName, azureBareMetalInstanceName);
+    }
+
+    public OperationStatus start(Context context) {
+        return serviceManager.azureBareMetalInstances().start(resourceGroupName, azureBareMetalInstanceName, context);
+    }
+
+    public OperationStatus restart() {
+        return serviceManager.azureBareMetalInstances().restart(resourceGroupName, azureBareMetalInstanceName);
+    }
+
+    public OperationStatus restart(ForceState forceParameter, Context context) {
+        return serviceManager.azureBareMetalInstances()
+            .restart(resourceGroupName, azureBareMetalInstanceName, forceParameter, context);
+    }
+
+    public OperationStatus shutdown() {
+        return serviceManager.azureBareMetalInstances().shutdown(resourceGroupName, azureBareMetalInstanceName);
+    }
+
+    public OperationStatus shutdown(Context context) {
+        return serviceManager.azureBareMetalInstances()
+            .shutdown(resourceGroupName, azureBareMetalInstanceName, context);
+    }
+
+    public AzureBareMetalInstanceImpl withRegion(Region location) {
+        this.innerModel().withLocation(location.toString());
+        return this;
+    }
+
+    public AzureBareMetalInstanceImpl withRegion(String location) {
+        this.innerModel().withLocation(location);
+        return this;
+    }
+
+    public AzureBareMetalInstanceImpl withTags(Map<String, String> tags) {
+        if (isInCreateMode()) {
+            this.innerModel().withTags(tags);
+            return this;
+        } else {
+            this.updateTagsParameter.withTags(tags);
+            return this;
+        }
+    }
+
+    public AzureBareMetalInstanceImpl withHardwareProfile(HardwareProfile hardwareProfile) {
+        this.innerModel().withHardwareProfile(hardwareProfile);
+        return this;
+    }
+
+    public AzureBareMetalInstanceImpl withStorageProfile(StorageProfile storageProfile) {
+        this.innerModel().withStorageProfile(storageProfile);
+        return this;
+    }
+
+    public AzureBareMetalInstanceImpl withOsProfile(OSProfile osProfile) {
+        this.innerModel().withOsProfile(osProfile);
+        return this;
+    }
+
+    public AzureBareMetalInstanceImpl withNetworkProfile(NetworkProfile networkProfile) {
+        this.innerModel().withNetworkProfile(networkProfile);
+        return this;
+    }
+
+    public AzureBareMetalInstanceImpl withAzureBareMetalInstanceId(String azureBareMetalInstanceId) {
+        this.innerModel().withAzureBareMetalInstanceId(azureBareMetalInstanceId);
+        return this;
+    }
+
+    public AzureBareMetalInstanceImpl withPowerState(AzureBareMetalInstancePowerStateEnum powerState) {
+        this.innerModel().withPowerState(powerState);
+        return this;
+    }
+
+    public AzureBareMetalInstanceImpl withProximityPlacementGroup(String proximityPlacementGroup) {
+        this.innerModel().withProximityPlacementGroup(proximityPlacementGroup);
+        return this;
+    }
+
+    public AzureBareMetalInstanceImpl withHwRevision(String hwRevision) {
+        this.innerModel().withHwRevision(hwRevision);
+        return this;
+    }
+
+    public AzureBareMetalInstanceImpl withPartnerNodeId(String partnerNodeId) {
+        this.innerModel().withPartnerNodeId(partnerNodeId);
+        return this;
+    }
+
+    private boolean isInCreateMode() {
+        return this.innerModel().id() == null;
     }
 }
