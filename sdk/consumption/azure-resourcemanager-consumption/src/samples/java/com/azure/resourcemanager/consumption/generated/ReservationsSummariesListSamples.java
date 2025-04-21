@@ -11,7 +11,7 @@ import com.azure.resourcemanager.consumption.models.Datagrain;
  */
 public final class ReservationsSummariesListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ReservationSummariesDailyWithBillingAccountId.json
      */
     /**
@@ -28,7 +28,7 @@ public final class ReservationsSummariesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ReservationSummariesDailyWithBillingProfileId.json
      */
     /**
@@ -44,7 +44,7 @@ public final class ReservationsSummariesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ReservationSummariesMonthlyWithBillingAccountId.json
      */
     /**
@@ -60,7 +60,7 @@ public final class ReservationsSummariesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ReservationSummariesMonthlyWithBillingProfileId.json
      */
     /**
@@ -76,7 +76,7 @@ public final class ReservationsSummariesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ReservationSummariesMonthlyWithBillingProfileIdReservationId.json
      */
     /**

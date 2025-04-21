@@ -9,7 +9,7 @@ package com.azure.resourcemanager.consumption.generated;
  */
 public final class ChargesListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ChargesListByModernBillingAccount.json
      */
     /**
@@ -25,7 +25,7 @@ public final class ChargesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ChargesForBillingPeriodByEnrollmentAccount.json
      */
     /**
@@ -41,7 +41,7 @@ public final class ChargesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ChargesListByModernBillingAccountGroupByCustomerId.json
      */
     /**
@@ -57,7 +57,7 @@ public final class ChargesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ChargesListByModernBillingProfile.json
      */
     /**
@@ -73,7 +73,7 @@ public final class ChargesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ChargesListByModernBillingProfileInvoiceSection.json
      */
     /**
@@ -90,7 +90,7 @@ public final class ChargesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ChargesListByModernCustomer.json
      */
     /**
@@ -105,7 +105,7 @@ public final class ChargesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ChargesListForDepartmentFilterByStartEndDate.json
      */
     /**
@@ -120,7 +120,7 @@ public final class ChargesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ChargesListForEnrollmentAccountFilterByStartEndDate.json
      */
     /**
@@ -136,7 +136,7 @@ public final class ChargesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ChargesListByModernBillingProfileGroupByInvoiceSectionId.json
      */
     /**
@@ -153,7 +153,7 @@ public final class ChargesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ChargesListByModernBillingAccountGroupByBillingProfileId.json
      */
     /**
@@ -169,7 +169,7 @@ public final class ChargesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ChargesListByModernBillingAccountGroupByInvoiceSectionId.json
      */
     /**
@@ -186,7 +186,7 @@ public final class ChargesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ChargesForBillingPeriodByDepartment.json
      */
     /**
@@ -202,7 +202,7 @@ public final class ChargesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ChargesListByModernInvoiceSectionId.json
      */
     /**

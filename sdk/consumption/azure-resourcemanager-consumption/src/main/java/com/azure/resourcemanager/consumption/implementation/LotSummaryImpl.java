@@ -9,6 +9,7 @@ import com.azure.resourcemanager.consumption.models.Amount;
 import com.azure.resourcemanager.consumption.models.AmountWithExchangeRate;
 import com.azure.resourcemanager.consumption.models.LotSource;
 import com.azure.resourcemanager.consumption.models.LotSummary;
+import com.azure.resourcemanager.consumption.models.OrganizationType;
 import com.azure.resourcemanager.consumption.models.Reseller;
 import com.azure.resourcemanager.consumption.models.Status;
 import java.time.OffsetDateTime;
@@ -92,8 +93,20 @@ public final class LotSummaryImpl implements LotSummary {
         return this.innerModel().reseller();
     }
 
+    public Boolean isEstimatedBalance() {
+        return this.innerModel().isEstimatedBalance();
+    }
+
     public String etagPropertiesEtag() {
         return this.innerModel().etagPropertiesEtag();
+    }
+
+    public OrganizationType organizationType() {
+        return this.innerModel().organizationType();
+    }
+
+    public Amount usedAmount() {
+        return this.innerModel().usedAmount();
     }
 
     public LotSummaryInner innerModel() {
