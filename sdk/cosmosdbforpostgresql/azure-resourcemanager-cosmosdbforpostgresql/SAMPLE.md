@@ -62,32 +62,249 @@
 ### Clusters_CheckNameAvailability
 
 ```java
-import com.azure.resourcemanager.cosmosdbforpostgresql.models.NameAvailabilityRequest;
-
 /**
- * Samples for Clusters CheckNameAvailability.
+ * Samples for Configurations ListByServer.
  */
-public final class ClustersCheckNameAvailabilitySamples {
+public final class ConfigurationsListByServerSamples {
     /*
      * x-ms-original-file:
      * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * CheckNameAvailability.json
+     * ConfigurationListByServer.json
      */
     /**
-     * Sample code: Check name availability.
+     * Sample code: List configurations of the server that in the cluster.
      * 
      * @param manager Entry point to CosmosDBForPostgreSqlManager.
      */
-    public static void
-        checkNameAvailability(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.clusters()
-            .checkNameAvailabilityWithResponse(new NameAvailabilityRequest().withName("name1"),
-                com.azure.core.util.Context.NONE);
+    public static void listConfigurationsOfTheServerThatInTheCluster(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.configurations()
+            .listByServer("TestResourceGroup", "testcluster", "testserver", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### Clusters_Create
+
+```java
+/**
+ * Samples for PrivateLinkResources Get.
+ */
+public final class PrivateLinkResourcesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * PrivateLinkResourcesGet.json
+     */
+    /**
+     * Sample code: Gets a private link resource for cluster.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void getsAPrivateLinkResourceForCluster(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.privateLinkResources()
+            .getWithResponse("TestGroup", "testcluster", "plr", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Clusters_Delete
+
+```java
+
+/**
+ * Samples for Clusters PromoteReadReplica.
+ */
+public final class ClustersPromoteReadReplicaSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * ClusterPromoteReadReplica.json
+     */
+    /**
+     * Sample code: Promote read replica cluster to an independent read-write cluster.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void promoteReadReplicaClusterToAnIndependentReadWriteCluster(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.clusters().promoteReadReplica("TestGroup", "testcluster1", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Clusters_GetByResourceGroup
+
+```java
+/**
+ * Samples for Clusters List.
+ */
+public final class ClustersListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * ClusterList.json
+     */
+    /**
+     * Sample code: List all the clusters.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void
+        listAllTheClusters(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.clusters().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Clusters_List
+
+```java
+/**
+ * Samples for Configurations GetNode.
+ */
+public final class ConfigurationsGetNodeSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * ConfigurationGetNode.json
+     */
+    /**
+     * Sample code: Get configuration details for node.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void getConfigurationDetailsForNode(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.configurations()
+            .getNodeWithResponse("TestResourceGroup", "testcluster", "array_nulls", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Clusters_ListByResourceGroup
+
+```java
+/**
+ * Samples for Roles Delete.
+ */
+public final class RolesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * RoleDelete.json
+     */
+    /**
+     * Sample code: RoleDelete.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void
+        roleDelete(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.roles().delete("TestGroup", "pgtestsvc4", "role1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Clusters_PromoteReadReplica
+
+```java
+/**
+ * Samples for Clusters Stop.
+ */
+public final class ClustersStopSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * ClusterStop.json
+     */
+    /**
+     * Sample code: Stop all servers in the cluster.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void stopAllServersInTheCluster(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.clusters().stop("TestGroup", "testcluster1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Clusters_Restart
+
+```java
+/**
+ * Samples for Configurations Get.
+ */
+public final class ConfigurationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * ConfigurationGet.json
+     */
+    /**
+     * Sample code: Get configuration details.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void
+        getConfigurationDetails(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.configurations()
+            .getWithResponse("TestResourceGroup", "testcluster", "client_encoding", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Clusters_Start
+
+```java
+/**
+ * Samples for Configurations ListByCluster.
+ */
+public final class ConfigurationsListByClusterSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * ConfigurationListByCluster.json
+     */
+    /**
+     * Sample code: List configurations of the cluster.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void listConfigurationsOfTheCluster(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.configurations().listByCluster("TestResourceGroup", "testcluster", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Clusters_Stop
+
+```java
+/**
+ * Samples for Roles Get.
+ */
+public final class RolesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * RoleGet.json
+     */
+    /**
+     * Sample code: Get the role of the cluster.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void
+        getTheRoleOfTheCluster(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.roles().getWithResponse("TestGroup", "pgtestsvc4", "role1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Clusters_Update
 
 ```java
 import com.azure.resourcemanager.cosmosdbforpostgresql.models.DataEncryption;
@@ -410,7 +627,162 @@ public final class ClustersCreateSamples {
 }
 ```
 
-### Clusters_Delete
+### Configurations_Get
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * OperationList.json
+     */
+    /**
+     * Sample code: List all available operations.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void listAllAvailableOperations(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Configurations_GetCoordinator
+
+```java
+/**
+ * Samples for Configurations GetCoordinator.
+ */
+public final class ConfigurationsGetCoordinatorSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * ConfigurationGetCoordinator.json
+     */
+    /**
+     * Sample code: Get configuration details for coordinator.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void getConfigurationDetailsForCoordinator(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.configurations()
+            .getCoordinatorWithResponse("TestResourceGroup", "testcluster", "array_nulls",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Configurations_GetNode
+
+```java
+/**
+ * Samples for FirewallRules Get.
+ */
+public final class FirewallRulesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * FirewallRuleGet.json
+     */
+    /**
+     * Sample code: Get the firewall rule of the cluster.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void getTheFirewallRuleOfTheCluster(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.firewallRules().getWithResponse("TestGroup", "pgtestsvc4", "rule1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Configurations_ListByCluster
+
+```java
+import com.azure.resourcemanager.cosmosdbforpostgresql.models.NameAvailabilityRequest;
+
+/**
+ * Samples for Clusters CheckNameAvailability.
+ */
+public final class ClustersCheckNameAvailabilitySamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * CheckNameAvailability.json
+     */
+    /**
+     * Sample code: Check name availability.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void
+        checkNameAvailability(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.clusters()
+            .checkNameAvailabilityWithResponse(new NameAvailabilityRequest().withName("name1"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Configurations_ListByServer
+
+```java
+import com.azure.resourcemanager.cosmosdbforpostgresql.fluent.models.ServerConfigurationInner;
+
+/**
+ * Samples for Configurations UpdateOnCoordinator.
+ */
+public final class ConfigurationsUpdateOnCoordinatorSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * ConfigurationUpdateCoordinator.json
+     */
+    /**
+     * Sample code: Update single configuration of coordinator.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void updateSingleConfigurationOfCoordinator(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.configurations()
+            .updateOnCoordinator("TestResourceGroup", "testcluster", "array_nulls",
+                new ServerConfigurationInner().withValue("on"), com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Configurations_UpdateOnCoordinator
+
+```java
+/**
+ * Samples for Servers Get.
+ */
+public final class ServersGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * ServerGet.json
+     */
+    /**
+     * Sample code: Get the server of cluster.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void
+        getTheServerOfCluster(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.servers()
+            .getWithResponse("TestGroup", "testcluster1", "testcluster1-c", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Configurations_UpdateOnNode
 
 ```java
 /**
@@ -434,7 +806,30 @@ public final class ClustersDeleteSamples {
 }
 ```
 
-### Clusters_GetByResourceGroup
+### FirewallRules_CreateOrUpdate
+
+```java
+/**
+ * Samples for Roles ListByCluster.
+ */
+public final class RolesListByClusterSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * RoleListByCluster.json
+     */
+    /**
+     * Sample code: RoleList.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void roleList(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.roles().listByCluster("TestGroup", "pgtestsvc4", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FirewallRules_Delete
 
 ```java
 /**
@@ -459,80 +854,7 @@ public final class ClustersGetByResourceGroupSamples {
 }
 ```
 
-### Clusters_List
-
-```java
-/**
- * Samples for Clusters List.
- */
-public final class ClustersListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ClusterList.json
-     */
-    /**
-     * Sample code: List all the clusters.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void
-        listAllTheClusters(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.clusters().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Clusters_ListByResourceGroup
-
-```java
-/**
- * Samples for Clusters ListByResourceGroup.
- */
-public final class ClustersListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ClusterListByResourceGroup.json
-     */
-    /**
-     * Sample code: List the clusters by resource group.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void listTheClustersByResourceGroup(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.clusters().listByResourceGroup("TestGroup", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Clusters_PromoteReadReplica
-
-```java
-
-/**
- * Samples for Clusters PromoteReadReplica.
- */
-public final class ClustersPromoteReadReplicaSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ClusterPromoteReadReplica.json
-     */
-    /**
-     * Sample code: Promote read replica cluster to an independent read-write cluster.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void promoteReadReplicaClusterToAnIndependentReadWriteCluster(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.clusters().promoteReadReplica("TestGroup", "testcluster1", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Clusters_Restart
+### FirewallRules_Get
 
 ```java
 /**
@@ -556,7 +878,105 @@ public final class ClustersRestartSamples {
 }
 ```
 
-### Clusters_Start
+### FirewallRules_ListByCluster
+
+```java
+/**
+ * Samples for PrivateLinkResources ListByCluster.
+ */
+public final class PrivateLinkResourcesListByClusterSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * PrivateLinkResourceListByCluster.json
+     */
+    /**
+     * Sample code: Gets the private link resources for cluster.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void getsThePrivateLinkResourcesForCluster(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.privateLinkResources()
+            .listByCluster("TestResourceGroup", "testcluster", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+/**
+ * Samples for FirewallRules Delete.
+ */
+public final class FirewallRulesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * FirewallRuleDelete.json
+     */
+    /**
+     * Sample code: Delete the firewall rule of the cluster.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void deleteTheFirewallRuleOfTheCluster(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.firewallRules().delete("TestGroup", "pgtestsvc4", "rule1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_CreateOrUpdate
+
+```java
+/**
+ * Samples for Servers ListByCluster.
+ */
+public final class ServersListByClusterSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * ServerListByCluster.json
+     */
+    /**
+     * Sample code: List servers of the cluster.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void
+        listServersOfTheCluster(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.servers().listByCluster("TestGroup", "testcluster1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_Delete
+
+```java
+/**
+ * Samples for PrivateEndpointConnections ListByCluster.
+ */
+public final class PrivateEndpointConnectionsListByClusterSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * PrivateEndpointConnectionsListByCluster.json
+     */
+    /**
+     * Sample code: Gets list of private endpoint connections on a cluster.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void getsListOfPrivateEndpointConnectionsOnACluster(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.privateEndpointConnections()
+            .listByCluster("TestResourceGroup", "testcluster", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_Get
 
 ```java
 /**
@@ -580,31 +1000,137 @@ public final class ClustersStartSamples {
 }
 ```
 
-### Clusters_Stop
+### PrivateEndpointConnections_ListByCluster
 
 ```java
 /**
- * Samples for Clusters Stop.
+ * Samples for Roles Create.
  */
-public final class ClustersStopSamples {
+public final class RolesCreateSamples {
     /*
      * x-ms-original-file:
      * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ClusterStop.json
+     * RoleCreate.json
      */
     /**
-     * Sample code: Stop all servers in the cluster.
+     * Sample code: RoleCreate.
      * 
      * @param manager Entry point to CosmosDBForPostgreSqlManager.
      */
-    public static void stopAllServersInTheCluster(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.clusters().stop("TestGroup", "testcluster1", com.azure.core.util.Context.NONE);
+    public static void
+        roleCreate(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.roles()
+            .define("role1")
+            .withExistingServerGroupsv2("TestGroup", "pgtestsvc4")
+            .withPassword("password")
+            .create();
     }
 }
 ```
 
-### Clusters_Update
+### PrivateLinkResources_Get
+
+```java
+/**
+ * Samples for Clusters ListByResourceGroup.
+ */
+public final class ClustersListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * ClusterListByResourceGroup.json
+     */
+    /**
+     * Sample code: List the clusters by resource group.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void listTheClustersByResourceGroup(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.clusters().listByResourceGroup("TestGroup", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateLinkResources_ListByCluster
+
+```java
+/**
+ * Samples for PrivateEndpointConnections Delete.
+ */
+public final class PrivateEndpointConnectionsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * PrivateEndpointConnectionsDelete.json
+     */
+    /**
+     * Sample code: Deletes a private endpoint connection with a given name.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void deletesAPrivateEndpointConnectionWithAGivenName(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.privateEndpointConnections()
+            .delete("TestGroup", "testcluster", "private-endpoint-connection-name", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Roles_Create
+
+```java
+/**
+ * Samples for FirewallRules ListByCluster.
+ */
+public final class FirewallRulesListByClusterSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * FirewallRuleListByCluster.json
+     */
+    /**
+     * Sample code: List firewall rules of the cluster.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void listFirewallRulesOfTheCluster(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.firewallRules().listByCluster("TestGroup", "pgtestsvc4", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Roles_Delete
+
+```java
+/**
+ * Samples for FirewallRules CreateOrUpdate.
+ */
+public final class FirewallRulesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
+     * FirewallRuleCreate.json
+     */
+    /**
+     * Sample code: Create a firewall rule of the cluster.
+     * 
+     * @param manager Entry point to CosmosDBForPostgreSqlManager.
+     */
+    public static void createAFirewallRuleOfTheCluster(
+        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
+        manager.firewallRules()
+            .define("rule1")
+            .withExistingServerGroupsv2("TestGroup", "pgtestsvc4")
+            .withStartIpAddress("0.0.0.0")
+            .withEndIpAddress("255.255.255.255")
+            .create();
+    }
+}
+```
+
+### Roles_Get
 
 ```java
 import com.azure.resourcemanager.cosmosdbforpostgresql.models.Cluster;
@@ -716,160 +1242,7 @@ public final class ClustersUpdateSamples {
 }
 ```
 
-### Configurations_Get
-
-```java
-/**
- * Samples for Configurations Get.
- */
-public final class ConfigurationsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ConfigurationGet.json
-     */
-    /**
-     * Sample code: Get configuration details.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void
-        getConfigurationDetails(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.configurations()
-            .getWithResponse("TestResourceGroup", "testcluster", "client_encoding", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Configurations_GetCoordinator
-
-```java
-/**
- * Samples for Configurations GetCoordinator.
- */
-public final class ConfigurationsGetCoordinatorSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ConfigurationGetCoordinator.json
-     */
-    /**
-     * Sample code: Get configuration details for coordinator.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void getConfigurationDetailsForCoordinator(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.configurations()
-            .getCoordinatorWithResponse("TestResourceGroup", "testcluster", "array_nulls",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Configurations_GetNode
-
-```java
-/**
- * Samples for Configurations GetNode.
- */
-public final class ConfigurationsGetNodeSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ConfigurationGetNode.json
-     */
-    /**
-     * Sample code: Get configuration details for node.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void getConfigurationDetailsForNode(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.configurations()
-            .getNodeWithResponse("TestResourceGroup", "testcluster", "array_nulls", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Configurations_ListByCluster
-
-```java
-/**
- * Samples for Configurations ListByCluster.
- */
-public final class ConfigurationsListByClusterSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ConfigurationListByCluster.json
-     */
-    /**
-     * Sample code: List configurations of the cluster.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void listConfigurationsOfTheCluster(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.configurations().listByCluster("TestResourceGroup", "testcluster", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Configurations_ListByServer
-
-```java
-/**
- * Samples for Configurations ListByServer.
- */
-public final class ConfigurationsListByServerSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ConfigurationListByServer.json
-     */
-    /**
-     * Sample code: List configurations of the server that in the cluster.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void listConfigurationsOfTheServerThatInTheCluster(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.configurations()
-            .listByServer("TestResourceGroup", "testcluster", "testserver", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Configurations_UpdateOnCoordinator
-
-```java
-import com.azure.resourcemanager.cosmosdbforpostgresql.fluent.models.ServerConfigurationInner;
-
-/**
- * Samples for Configurations UpdateOnCoordinator.
- */
-public final class ConfigurationsUpdateOnCoordinatorSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ConfigurationUpdateCoordinator.json
-     */
-    /**
-     * Sample code: Update single configuration of coordinator.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void updateSingleConfigurationOfCoordinator(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.configurations()
-            .updateOnCoordinator("TestResourceGroup", "testcluster", "array_nulls",
-                new ServerConfigurationInner().withValue("on"), com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Configurations_UpdateOnNode
+### Roles_ListByCluster
 
 ```java
 import com.azure.resourcemanager.cosmosdbforpostgresql.fluent.models.ServerConfigurationInner;
@@ -897,132 +1270,7 @@ public final class ConfigurationsUpdateOnNodeSamples {
 }
 ```
 
-### FirewallRules_CreateOrUpdate
-
-```java
-/**
- * Samples for FirewallRules CreateOrUpdate.
- */
-public final class FirewallRulesCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * FirewallRuleCreate.json
-     */
-    /**
-     * Sample code: Create a firewall rule of the cluster.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void createAFirewallRuleOfTheCluster(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.firewallRules()
-            .define("rule1")
-            .withExistingServerGroupsv2("TestGroup", "pgtestsvc4")
-            .withStartIpAddress("0.0.0.0")
-            .withEndIpAddress("255.255.255.255")
-            .create();
-    }
-}
-```
-
-### FirewallRules_Delete
-
-```java
-/**
- * Samples for FirewallRules Delete.
- */
-public final class FirewallRulesDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * FirewallRuleDelete.json
-     */
-    /**
-     * Sample code: Delete the firewall rule of the cluster.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void deleteTheFirewallRuleOfTheCluster(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.firewallRules().delete("TestGroup", "pgtestsvc4", "rule1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FirewallRules_Get
-
-```java
-/**
- * Samples for FirewallRules Get.
- */
-public final class FirewallRulesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * FirewallRuleGet.json
-     */
-    /**
-     * Sample code: Get the firewall rule of the cluster.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void getTheFirewallRuleOfTheCluster(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.firewallRules().getWithResponse("TestGroup", "pgtestsvc4", "rule1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FirewallRules_ListByCluster
-
-```java
-/**
- * Samples for FirewallRules ListByCluster.
- */
-public final class FirewallRulesListByClusterSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * FirewallRuleListByCluster.json
-     */
-    /**
-     * Sample code: List firewall rules of the cluster.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void listFirewallRulesOfTheCluster(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.firewallRules().listByCluster("TestGroup", "pgtestsvc4", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * OperationList.json
-     */
-    /**
-     * Sample code: List all available operations.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void listAllAvailableOperations(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_CreateOrUpdate
+### Servers_Get
 
 ```java
 import com.azure.resourcemanager.cosmosdbforpostgresql.models.PrivateEndpointServiceConnectionStatus;
@@ -1055,32 +1303,7 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
 }
 ```
 
-### PrivateEndpointConnections_Delete
-
-```java
-/**
- * Samples for PrivateEndpointConnections Delete.
- */
-public final class PrivateEndpointConnectionsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * PrivateEndpointConnectionsDelete.json
-     */
-    /**
-     * Sample code: Deletes a private endpoint connection with a given name.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void deletesAPrivateEndpointConnectionWithAGivenName(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.privateEndpointConnections()
-            .delete("TestGroup", "testcluster", "private-endpoint-connection-name", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_Get
+### Servers_ListByCluster
 
 ```java
 /**
@@ -1102,229 +1325,6 @@ public final class PrivateEndpointConnectionsGetSamples {
         manager.privateEndpointConnections()
             .getWithResponse("TestGroup", "testcluster", "private-endpoint-connection-name",
                 com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_ListByCluster
-
-```java
-/**
- * Samples for PrivateEndpointConnections ListByCluster.
- */
-public final class PrivateEndpointConnectionsListByClusterSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * PrivateEndpointConnectionsListByCluster.json
-     */
-    /**
-     * Sample code: Gets list of private endpoint connections on a cluster.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void getsListOfPrivateEndpointConnectionsOnACluster(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.privateEndpointConnections()
-            .listByCluster("TestResourceGroup", "testcluster", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateLinkResources_Get
-
-```java
-/**
- * Samples for PrivateLinkResources Get.
- */
-public final class PrivateLinkResourcesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * PrivateLinkResourcesGet.json
-     */
-    /**
-     * Sample code: Gets a private link resource for cluster.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void getsAPrivateLinkResourceForCluster(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.privateLinkResources()
-            .getWithResponse("TestGroup", "testcluster", "plr", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateLinkResources_ListByCluster
-
-```java
-/**
- * Samples for PrivateLinkResources ListByCluster.
- */
-public final class PrivateLinkResourcesListByClusterSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * PrivateLinkResourceListByCluster.json
-     */
-    /**
-     * Sample code: Gets the private link resources for cluster.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void getsThePrivateLinkResourcesForCluster(
-        com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.privateLinkResources()
-            .listByCluster("TestResourceGroup", "testcluster", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Roles_Create
-
-```java
-/**
- * Samples for Roles Create.
- */
-public final class RolesCreateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * RoleCreate.json
-     */
-    /**
-     * Sample code: RoleCreate.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void
-        roleCreate(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.roles()
-            .define("role1")
-            .withExistingServerGroupsv2("TestGroup", "pgtestsvc4")
-            .withPassword("password")
-            .create();
-    }
-}
-```
-
-### Roles_Delete
-
-```java
-/**
- * Samples for Roles Delete.
- */
-public final class RolesDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * RoleDelete.json
-     */
-    /**
-     * Sample code: RoleDelete.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void
-        roleDelete(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.roles().delete("TestGroup", "pgtestsvc4", "role1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Roles_Get
-
-```java
-/**
- * Samples for Roles Get.
- */
-public final class RolesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * RoleGet.json
-     */
-    /**
-     * Sample code: Get the role of the cluster.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void
-        getTheRoleOfTheCluster(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.roles().getWithResponse("TestGroup", "pgtestsvc4", "role1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Roles_ListByCluster
-
-```java
-/**
- * Samples for Roles ListByCluster.
- */
-public final class RolesListByClusterSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * RoleListByCluster.json
-     */
-    /**
-     * Sample code: RoleList.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void roleList(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.roles().listByCluster("TestGroup", "pgtestsvc4", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Servers_Get
-
-```java
-/**
- * Samples for Servers Get.
- */
-public final class ServersGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ServerGet.json
-     */
-    /**
-     * Sample code: Get the server of cluster.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void
-        getTheServerOfCluster(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.servers()
-            .getWithResponse("TestGroup", "testcluster1", "testcluster1-c", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Servers_ListByCluster
-
-```java
-/**
- * Samples for Servers ListByCluster.
- */
-public final class ServersListByClusterSamples {
-    /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ServerListByCluster.json
-     */
-    /**
-     * Sample code: List servers of the cluster.
-     * 
-     * @param manager Entry point to CosmosDBForPostgreSqlManager.
-     */
-    public static void
-        listServersOfTheCluster(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.servers().listByCluster("TestGroup", "testcluster1", com.azure.core.util.Context.NONE);
     }
 }
 ```

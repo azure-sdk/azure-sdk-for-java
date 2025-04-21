@@ -1,14 +1,196 @@
 # Release History
 
-## 1.1.0-beta.3 (Unreleased)
+## 1.0.0-beta.1 (2025-04-21)
 
-### Features Added
+- Azure Resource Manager CosmosDBForPostgreSql client library for Java. This package contains Microsoft Azure SDK for CosmosDBForPostgreSql Management SDK. Azure Cosmos DB for PostgreSQL database service resource provider REST APIs. Package tag package-preview-2023-03. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.NameAvailabilityRequest` was modified
 
-### Other Changes
+* `withType(java.lang.String)` was removed
+
+#### `models.Clusters` was modified
+
+* `promoteReadReplica(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.Cluster` was modified
+
+* `promoteReadReplica(com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.PrincipalType` was added
+
+* `models.UserAssignedIdentity` was added
+
+* `models.RoleType` was added
+
+* `models.AuthConfig` was added
+
+* `models.DataEncryption` was added
+
+* `models.IdentityType` was added
+
+* `models.PasswordEnabledEnum` was added
+
+* `models.IdentityProperties` was added
+
+* `models.PasswordAuth` was added
+
+* `models.PromoteRequest` was added
+
+* `models.DataEncryptionType` was added
+
+* `models.ActiveDirectoryAuth` was added
+
+* `models.AadEnabledEnum` was added
+
+#### `models.PrivateLinkServiceConnectionState` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ClusterListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SimplePrivateEndpointConnection` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `name()` was added
+* `type()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `id()` was added
+
+#### `models.ServerConfigurationListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Cluster$Update` was modified
+
+* `withIdentity(models.IdentityProperties)` was added
+
+#### `models.ClusterForUpdate` was modified
+
+* `identity()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withIdentity(models.IdentityProperties)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MaintenanceWindow` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ClusterServerListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NameAvailabilityRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateEndpointConnectionListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ServerProperties` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateEndpoint` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RoleListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ClusterConfigurationListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.PrivateEndpointProperty` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ServerNameItem` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Cluster$Definition` was modified
+
+* `withIdentity(models.IdentityProperties)` was added
+* `withDatabaseName(java.lang.String)` was added
+* `withAuthConfig(models.AuthConfig)` was added
+* `withEnableGeoBackup(java.lang.Boolean)` was added
+* `withDataEncryption(models.DataEncryption)` was added
+
+#### `models.FirewallRuleListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.PrivateLinkResourceListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Clusters` was modified
+
+* `promoteReadReplica(java.lang.String,java.lang.String,models.PromoteRequest,com.azure.core.util.Context)` was added
+
+#### `models.Cluster` was modified
+
+* `identity()` was added
+* `dataEncryption()` was added
+* `databaseName()` was added
+* `promoteReadReplica(models.PromoteRequest,com.azure.core.util.Context)` was added
+* `aadAuthEnabled()` was added
+* `enableGeoBackup()` was added
+* `authConfig()` was added
+* `passwordEnabled()` was added
+
+#### `models.Role$Definition` was modified
+
+* `withPrincipalType(models.PrincipalType)` was added
+* `withRoleType(models.RoleType)` was added
+* `withTenantId(java.lang.String)` was added
+* `withObjectId(java.lang.String)` was added
+
+#### `models.Role` was modified
+
+* `objectId()` was added
+* `tenantId()` was added
+* `principalType()` was added
+* `roleType()` was added
+
+#### `models.ServerRoleGroupConfiguration` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.1.0-beta.2 (2024-12-03)
 
