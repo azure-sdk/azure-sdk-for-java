@@ -82,11 +82,6 @@ public final class AzureDataExplorerConnectionProperties extends TimeSeriesDatab
      */
     private RecordPropertyAndItemRemovals recordPropertyAndItemRemovals;
 
-    /*
-     * The provisioning state.
-     */
-    private TimeSeriesDatabaseConnectionState provisioningState;
-
     /**
      * Creates an instance of AzureDataExplorerConnectionProperties class.
      */
@@ -345,16 +340,6 @@ public final class AzureDataExplorerConnectionProperties extends TimeSeriesDatab
     }
 
     /**
-     * Get the provisioningState property: The provisioning state.
-     * 
-     * @return the provisioningState value.
-     */
-    @Override
-    public TimeSeriesDatabaseConnectionState provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -450,8 +435,8 @@ public final class AzureDataExplorerConnectionProperties extends TimeSeriesDatab
                 reader.nextToken();
 
                 if ("provisioningState".equals(fieldName)) {
-                    deserializedAzureDataExplorerConnectionProperties.provisioningState
-                        = TimeSeriesDatabaseConnectionState.fromString(reader.getString());
+                    deserializedAzureDataExplorerConnectionProperties
+                        .withProvisioningState(TimeSeriesDatabaseConnectionState.fromString(reader.getString()));
                 } else if ("identity".equals(fieldName)) {
                     deserializedAzureDataExplorerConnectionProperties
                         .withIdentity(ManagedIdentityReference.fromJson(reader));

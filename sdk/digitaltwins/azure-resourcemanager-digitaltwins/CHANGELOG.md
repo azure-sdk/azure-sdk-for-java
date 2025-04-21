@@ -1,14 +1,29 @@
 # Release History
 
-## 1.4.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-21)
 
-### Features Added
+- Azure Resource Manager AzureDigitalTwins client library for Java. This package contains Microsoft Azure SDK for AzureDigitalTwins Management SDK. Azure Digital Twins Client for managing DigitalTwinsInstance. Package tag package-2023-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.EventGrid` was modified
 
-### Other Changes
+* `createdTime()` was removed
+* `provisioningState()` was removed
+
+#### `models.AzureDataExplorerConnectionProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.EventHub` was modified
+
+* `provisioningState()` was removed
+* `createdTime()` was removed
+
+#### `models.ServiceBus` was modified
+
+* `provisioningState()` was removed
+* `createdTime()` was removed
 
 ## 1.3.0 (2024-12-06)
 
