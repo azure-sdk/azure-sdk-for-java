@@ -61,6 +61,11 @@ public final class OsProfileForVMInstance implements JsonSerializable<OsProfileF
      */
     private String toolsVersion;
 
+    /*
+     * Windows Configuration.
+     */
+    private WindowsConfiguration windowsConfiguration;
+
     /**
      * Creates an instance of OsProfileForVMInstance class.
      */
@@ -206,11 +211,34 @@ public final class OsProfileForVMInstance implements JsonSerializable<OsProfileF
     }
 
     /**
+     * Get the windowsConfiguration property: Windows Configuration.
+     * 
+     * @return the windowsConfiguration value.
+     */
+    public WindowsConfiguration windowsConfiguration() {
+        return this.windowsConfiguration;
+    }
+
+    /**
+     * Set the windowsConfiguration property: Windows Configuration.
+     * 
+     * @param windowsConfiguration the windowsConfiguration value to set.
+     * @return the OsProfileForVMInstance object itself.
+     */
+    public OsProfileForVMInstance withWindowsConfiguration(WindowsConfiguration windowsConfiguration) {
+        this.windowsConfiguration = windowsConfiguration;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (windowsConfiguration() != null) {
+            windowsConfiguration().validate();
+        }
     }
 
     /**
@@ -224,6 +252,7 @@ public final class OsProfileForVMInstance implements JsonSerializable<OsProfileF
         jsonWriter.writeStringField("adminPassword", this.adminPassword);
         jsonWriter.writeStringField("guestId", this.guestId);
         jsonWriter.writeStringField("osType", this.osType == null ? null : this.osType.toString());
+        jsonWriter.writeJsonField("windowsConfiguration", this.windowsConfiguration);
         return jsonWriter.writeEndObject();
     }
 
@@ -260,6 +289,8 @@ public final class OsProfileForVMInstance implements JsonSerializable<OsProfileF
                     deserializedOsProfileForVMInstance.toolsVersionStatus = reader.getString();
                 } else if ("toolsVersion".equals(fieldName)) {
                     deserializedOsProfileForVMInstance.toolsVersion = reader.getString();
+                } else if ("windowsConfiguration".equals(fieldName)) {
+                    deserializedOsProfileForVMInstance.windowsConfiguration = WindowsConfiguration.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

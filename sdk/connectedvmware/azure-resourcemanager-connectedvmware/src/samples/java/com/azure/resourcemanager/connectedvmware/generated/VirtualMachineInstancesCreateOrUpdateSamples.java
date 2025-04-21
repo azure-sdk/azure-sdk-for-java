@@ -16,7 +16,7 @@ import com.azure.resourcemanager.connectedvmware.models.PlacementProfile;
 public final class VirtualMachineInstancesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/stable/2023-10-01/examples/
+     * specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/stable/2023-12-01/examples/
      * CreateVirtualMachineInstance.json
      */
     /**
