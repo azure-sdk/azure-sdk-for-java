@@ -1,14 +1,288 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-21)
+
+- Azure Resource Manager DevCenter client library for Java. This package contains Microsoft Azure SDK for DevCenter Management SDK. DevCenter Management API. Package tag package-preview-2025-04-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.StopOnNoConnectEnableStatus` was added
 
-### Bugs Fixed
+* `models.DevBoxAutoDeleteSettings` was added
 
-### Other Changes
+* `models.DevCenterCatalogImageDefinitionBuildOperations` was added
+
+* `models.PoolDevBoxDefinition` was added
+
+* `models.ProjectCatalogImageDefinitions` was added
+
+* `models.CustomizationTaskInstance` was added
+
+* `models.DevBoxTunnelEnableStatus` was added
+
+* `models.ImageDefinition` was added
+
+* `models.KeepAwakeEnableStatus` was added
+
+* `models.DevCenterNetworkSettings` was added
+
+* `models.PoolDevBoxDefinitionType` was added
+
+* `models.CustomizationTaskInputType` was added
+
+* `models.AutoImageBuildStatus` was added
+
+* `models.ProjectPolicyUpdate` was added
+
+* `models.ProjectPolicy$DefinitionStages` was added
+
+* `models.DevCenterCatalogImageDefinitionBuilds` was added
+
+* `models.ImageDefinitionBuildTask` was added
+
+* `models.UserCustomizationsEnableStatus` was added
+
+* `models.StopOnNoConnectConfiguration` was added
+
+* `models.CustomizationTaskListResult` was added
+
+* `models.DevCenterEncryptionSet$DefinitionStages` was added
+
+* `models.DevboxDisksEncryptionEnableStatus` was added
+
+* `models.ImageDefinitionReference` was added
+
+* `models.ImageDefinitionBuild` was added
+
+* `models.EncryptionSetListResult` was added
+
+* `models.DevBoxProvisioningSettings` was added
+
+* `models.ProjectPolicy$UpdateStages` was added
+
+* `models.DevCenterEncryptionSet$Definition` was added
+
+* `models.ProjectPolicy$Update` was added
+
+* `models.ActiveHoursConfiguration` was added
+
+* `models.ProjectNetworkSettings` was added
+
+* `models.ProjectCatalogImageDefinitionBuildOperations` was added
+
+* `models.ImageDefinitionBuildListResult` was added
+
+* `models.WorkspaceStorageSettings` was added
+
+* `models.InheritedSettingsForProject` was added
+
+* `models.ImageDefinitionBuildTaskParametersItem` was added
+
+* `models.DevCenterCatalogImageDefinitions` was added
+
+* `models.EncryptionSetUpdate` was added
+
+* `models.ServerlessGpuSessionsSettings` was added
+
+* `models.CustomizationTasks` was added
+
+* `models.ProjectPolicy` was added
+
+* `models.LatestImageBuild` was added
+
+* `models.AzureAiServicesSettings` was added
+
+* `models.ImageDefinitionListResult` was added
+
+* `models.DevCenterEncryptionSet$UpdateStages` was added
+
+* `models.MicrosoftHostedNetworkEnableStatus` was added
+
+* `models.PolicyAction` was added
+
+* `models.ImageDefinitionBuildStatus` was added
+
+* `models.DefinitionParametersItem` was added
+
+* `models.ImageDefinitionBuildTaskGroup` was added
+
+* `models.ServerlessGpuSessionsMode` was added
+
+* `models.DevCenterResourceType` was added
+
+* `models.ResourcePolicy` was added
+
+* `models.ProjectPolicy$Definition` was added
+
+* `models.DevBoxDeleteMode` was added
+
+* `models.WorkspaceStorageMode` was added
+
+* `models.ProjectCustomizationIdentityType` was added
+
+* `models.ProjectPolicyListResult` was added
+
+* `models.CustomizationTask` was added
+
+* `models.ProjectCustomizationManagedIdentity` was added
+
+* `models.ProjectCustomizationSettings` was added
+
+* `models.AzureAiServicesMode` was added
+
+* `models.EncryptionSets` was added
+
+* `models.ProjectCatalogImageDefinitionBuilds` was added
+
+* `models.AutoStartEnableStatus` was added
+
+* `models.DevCenterEncryptionSet` was added
+
+* `models.ImageCreationErrorDetails` was added
+
+* `models.CustomizationTaskInput` was added
+
+* `models.InstallAzureMonitorAgentEnableStatus` was added
+
+* `models.ProjectPolicies` was added
+
+* `models.DevCenterEncryptionSet$Update` was added
+
+* `models.ImageDefinitionBuildDetails` was added
+
+#### `models.DevCenter$Update` was modified
+
+* `withNetworkSettings(models.DevCenterNetworkSettings)` was added
+* `withDevBoxProvisioningSettings(models.DevBoxProvisioningSettings)` was added
+
+#### `models.DevCenter` was modified
+
+* `networkSettings()` was added
+* `devBoxProvisioningSettings()` was added
+
+#### `models.DevCenterUpdate` was modified
+
+* `devBoxProvisioningSettings()` was added
+* `networkSettings()` was added
+* `withNetworkSettings(models.DevCenterNetworkSettings)` was added
+* `withDevBoxProvisioningSettings(models.DevBoxProvisioningSettings)` was added
+
+#### `models.DevCenter$Definition` was modified
+
+* `withNetworkSettings(models.DevCenterNetworkSettings)` was added
+* `withDevBoxProvisioningSettings(models.DevBoxProvisioningSettings)` was added
+
+#### `models.Images` was modified
+
+* `getByProjectWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listByProject(java.lang.String,java.lang.String)` was added
+* `getByProject(java.lang.String,java.lang.String,java.lang.String)` was added
+* `listByProject(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.Project$Update` was modified
+
+* `withServerlessGpuSessionsSettings(models.ServerlessGpuSessionsSettings)` was added
+* `withWorkspaceStorageSettings(models.WorkspaceStorageSettings)` was added
+* `withDevBoxAutoDeleteSettings(models.DevBoxAutoDeleteSettings)` was added
+* `withCustomizationSettings(models.ProjectCustomizationSettings)` was added
+* `withAzureAiServicesSettings(models.AzureAiServicesSettings)` was added
+
+#### `models.Project` was modified
+
+* `workspaceStorageSettings()` was added
+* `azureAiServicesSettings()` was added
+* `serverlessGpuSessionsSettings()` was added
+* `getInheritedSettings()` was added
+* `devBoxAutoDeleteSettings()` was added
+* `customizationSettings()` was added
+* `getInheritedSettingsWithResponse(com.azure.core.util.Context)` was added
+
+#### `models.Projects` was modified
+
+* `getInheritedSettingsWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getInheritedSettings(java.lang.String,java.lang.String)` was added
+
+#### `models.Pool$Update` was modified
+
+* `withDevBoxDefinition(models.PoolDevBoxDefinition)` was added
+* `withDevBoxDefinitionType(models.PoolDevBoxDefinitionType)` was added
+* `withDevBoxTunnelEnableStatus(models.DevBoxTunnelEnableStatus)` was added
+* `withStopOnNoConnect(models.StopOnNoConnectConfiguration)` was added
+* `withActiveHoursConfiguration(models.ActiveHoursConfiguration)` was added
+
+#### `models.Pool` was modified
+
+* `activeHoursConfiguration()` was added
+* `devBoxDefinition()` was added
+* `devBoxDefinitionType()` was added
+* `stopOnNoConnect()` was added
+* `devBoxTunnelEnableStatus()` was added
+
+#### `DevCenterManager` was modified
+
+* `projectCatalogImageDefinitionBuildOperations()` was added
+* `devCenterCatalogImageDefinitionBuilds()` was added
+* `devCenterCatalogImageDefinitions()` was added
+* `customizationTasks()` was added
+* `projectCatalogImageDefinitions()` was added
+* `devCenterCatalogImageDefinitionBuildOperations()` was added
+* `projectCatalogImageDefinitionBuilds()` was added
+* `projectPolicies()` was added
+* `encryptionSets()` was added
+
+#### `models.PoolUpdate` was modified
+
+* `devBoxDefinitionType()` was added
+* `withDevBoxDefinitionType(models.PoolDevBoxDefinitionType)` was added
+* `withDevBoxDefinition(models.PoolDevBoxDefinition)` was added
+* `stopOnNoConnect()` was added
+* `withStopOnNoConnect(models.StopOnNoConnectConfiguration)` was added
+* `withDevBoxTunnelEnableStatus(models.DevBoxTunnelEnableStatus)` was added
+* `activeHoursConfiguration()` was added
+* `devBoxTunnelEnableStatus()` was added
+* `devBoxDefinition()` was added
+* `withActiveHoursConfiguration(models.ActiveHoursConfiguration)` was added
+
+#### `models.Pool$Definition` was modified
+
+* `withDevBoxTunnelEnableStatus(models.DevBoxTunnelEnableStatus)` was added
+* `withDevBoxDefinitionType(models.PoolDevBoxDefinitionType)` was added
+* `withStopOnNoConnect(models.StopOnNoConnectConfiguration)` was added
+* `withDevBoxDefinition(models.PoolDevBoxDefinition)` was added
+* `withActiveHoursConfiguration(models.ActiveHoursConfiguration)` was added
+
+#### `models.Project$Definition` was modified
+
+* `withCustomizationSettings(models.ProjectCustomizationSettings)` was added
+* `withWorkspaceStorageSettings(models.WorkspaceStorageSettings)` was added
+* `withServerlessGpuSessionsSettings(models.ServerlessGpuSessionsSettings)` was added
+* `withDevBoxAutoDeleteSettings(models.DevBoxAutoDeleteSettings)` was added
+* `withAzureAiServicesSettings(models.AzureAiServicesSettings)` was added
+
+#### `models.ProjectUpdate` was modified
+
+* `workspaceStorageSettings()` was added
+* `devBoxAutoDeleteSettings()` was added
+* `withWorkspaceStorageSettings(models.WorkspaceStorageSettings)` was added
+* `withAzureAiServicesSettings(models.AzureAiServicesSettings)` was added
+* `customizationSettings()` was added
+* `serverlessGpuSessionsSettings()` was added
+* `withDevBoxAutoDeleteSettings(models.DevBoxAutoDeleteSettings)` was added
+* `azureAiServicesSettings()` was added
+* `withCustomizationSettings(models.ProjectCustomizationSettings)` was added
+* `withServerlessGpuSessionsSettings(models.ServerlessGpuSessionsSettings)` was added
+
+#### `models.ImageVersions` was modified
+
+* `listByProject(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getByProject(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `getByProjectWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listByProject(java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.Skus` was modified
+
+* `listByProject(java.lang.String,java.lang.String)` was added
+* `listByProject(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
 
 ## 1.0.0 (2024-12-25)
 

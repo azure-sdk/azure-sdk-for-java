@@ -10,9 +10,14 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.devcenter.models.AzureAiServicesSettings;
+import com.azure.resourcemanager.devcenter.models.DevBoxAutoDeleteSettings;
 import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.devcenter.models.ProjectCatalogSettings;
+import com.azure.resourcemanager.devcenter.models.ProjectCustomizationSettings;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
+import com.azure.resourcemanager.devcenter.models.ServerlessGpuSessionsSettings;
+import com.azure.resourcemanager.devcenter.models.WorkspaceStorageSettings;
 import java.io.IOException;
 import java.util.Map;
 
@@ -275,6 +280,121 @@ public final class ProjectInner extends Resource {
             this.innerProperties = new ProjectProperties();
         }
         this.innerProperties().withCatalogSettings(catalogSettings);
+        return this;
+    }
+
+    /**
+     * Get the customizationSettings property: Settings to be used for customizations.
+     * 
+     * @return the customizationSettings value.
+     */
+    public ProjectCustomizationSettings customizationSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().customizationSettings();
+    }
+
+    /**
+     * Set the customizationSettings property: Settings to be used for customizations.
+     * 
+     * @param customizationSettings the customizationSettings value to set.
+     * @return the ProjectInner object itself.
+     */
+    public ProjectInner withCustomizationSettings(ProjectCustomizationSettings customizationSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ProjectProperties();
+        }
+        this.innerProperties().withCustomizationSettings(customizationSettings);
+        return this;
+    }
+
+    /**
+     * Get the devBoxAutoDeleteSettings property: Dev Box Auto Delete settings.
+     * 
+     * @return the devBoxAutoDeleteSettings value.
+     */
+    public DevBoxAutoDeleteSettings devBoxAutoDeleteSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().devBoxAutoDeleteSettings();
+    }
+
+    /**
+     * Set the devBoxAutoDeleteSettings property: Dev Box Auto Delete settings.
+     * 
+     * @param devBoxAutoDeleteSettings the devBoxAutoDeleteSettings value to set.
+     * @return the ProjectInner object itself.
+     */
+    public ProjectInner withDevBoxAutoDeleteSettings(DevBoxAutoDeleteSettings devBoxAutoDeleteSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ProjectProperties();
+        }
+        this.innerProperties().withDevBoxAutoDeleteSettings(devBoxAutoDeleteSettings);
+        return this;
+    }
+
+    /**
+     * Get the azureAiServicesSettings property: Indicates whether Azure AI services are enabled for a project.
+     * 
+     * @return the azureAiServicesSettings value.
+     */
+    public AzureAiServicesSettings azureAiServicesSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().azureAiServicesSettings();
+    }
+
+    /**
+     * Set the azureAiServicesSettings property: Indicates whether Azure AI services are enabled for a project.
+     * 
+     * @param azureAiServicesSettings the azureAiServicesSettings value to set.
+     * @return the ProjectInner object itself.
+     */
+    public ProjectInner withAzureAiServicesSettings(AzureAiServicesSettings azureAiServicesSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ProjectProperties();
+        }
+        this.innerProperties().withAzureAiServicesSettings(azureAiServicesSettings);
+        return this;
+    }
+
+    /**
+     * Get the serverlessGpuSessionsSettings property: Settings to be used for serverless GPU.
+     * 
+     * @return the serverlessGpuSessionsSettings value.
+     */
+    public ServerlessGpuSessionsSettings serverlessGpuSessionsSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().serverlessGpuSessionsSettings();
+    }
+
+    /**
+     * Set the serverlessGpuSessionsSettings property: Settings to be used for serverless GPU.
+     * 
+     * @param serverlessGpuSessionsSettings the serverlessGpuSessionsSettings value to set.
+     * @return the ProjectInner object itself.
+     */
+    public ProjectInner withServerlessGpuSessionsSettings(ServerlessGpuSessionsSettings serverlessGpuSessionsSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ProjectProperties();
+        }
+        this.innerProperties().withServerlessGpuSessionsSettings(serverlessGpuSessionsSettings);
+        return this;
+    }
+
+    /**
+     * Get the workspaceStorageSettings property: Settings to be used for workspace storage.
+     * 
+     * @return the workspaceStorageSettings value.
+     */
+    public WorkspaceStorageSettings workspaceStorageSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().workspaceStorageSettings();
+    }
+
+    /**
+     * Set the workspaceStorageSettings property: Settings to be used for workspace storage.
+     * 
+     * @param workspaceStorageSettings the workspaceStorageSettings value to set.
+     * @return the ProjectInner object itself.
+     */
+    public ProjectInner withWorkspaceStorageSettings(WorkspaceStorageSettings workspaceStorageSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ProjectProperties();
+        }
+        this.innerProperties().withWorkspaceStorageSettings(workspaceStorageSettings);
         return this;
     }
 
