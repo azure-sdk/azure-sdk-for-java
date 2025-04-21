@@ -85,6 +85,7 @@
     <module>sdk/devopsinfrastructure</module>
     <module>sdk/devspaces</module>
     <module>sdk/devtestlabs</module>
+    <module>sdk/dfp</module>
     <module>sdk/digitaltwins</module>
     <module>sdk/dnsresolver</module>
     <module>sdk/documentintelligence</module>
