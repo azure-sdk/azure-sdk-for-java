@@ -40,10 +40,14 @@ pr:
       - sdk/servicebus/azure-messaging-servicebus-track2-perf/pom.xml
 
 parameters:
-- name: release_dependsonlivetests
-  displayName: 'Release depends on live tests'
-  type: boolean
-  default: true
+  - name: release_dependsonlivetests
+    displayName: Release depends on live tests
+    type: boolean
+    default: true
+  - name: release_azureresourcemanagerservicebusgenerated
+    displayName: azure-resourcemanager-servicebus-generated
+    type: boolean
+    default: false
 
 extends:
   template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
@@ -53,9 +57,12 @@ extends:
       - name: azure-messaging-servicebus
         groupId: com.azure
         safeName: azuremessagingservicebus
+      - name: azure-resourcemanager-servicebus-generated
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerservicebusgenerated
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerservicebusgenerated }}
     AdditionalModules:
       - name: azure-messaging-servicebus-track2-perf
         groupId: com.azure
-        # required by the above perf libraries
       - name: perf-test-core
         groupId: com.azure
