@@ -5,28 +5,40 @@
 package com.azure.resourcemanager.notificationhubs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.notificationhubs.models.Sku;
+import com.azure.resourcemanager.notificationhubs.models.RegistrationResult;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Description of a NotificationHub Resource.
  */
 @Fluent
-public final class DebugSendResponseInner extends Resource {
+public final class DebugSendResponseInner extends ProxyResource {
     /*
-     * Properties of the NotificationHub.
+     * Result of DebugSend operations.
      */
     private DebugSendResult innerProperties;
 
     /*
-     * The sku of the created namespace
+     * Deprecated - only for compatibility.
      */
-    private Sku sku;
+    private String location;
+
+    /*
+     * Deprecated - only for compatibility.
+     */
+    private Map<String, String> tags;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -50,7 +62,7 @@ public final class DebugSendResponseInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: Properties of the NotificationHub.
+     * Get the innerProperties property: Result of DebugSend operations.
      * 
      * @return the innerProperties value.
      */
@@ -59,23 +71,52 @@ public final class DebugSendResponseInner extends Resource {
     }
 
     /**
-     * Get the sku property: The sku of the created namespace.
+     * Get the location property: Deprecated - only for compatibility.
      * 
-     * @return the sku value.
+     * @return the location value.
      */
-    public Sku sku() {
-        return this.sku;
+    public String location() {
+        return this.location;
     }
 
     /**
-     * Set the sku property: The sku of the created namespace.
+     * Set the location property: Deprecated - only for compatibility.
      * 
-     * @param sku the sku value to set.
+     * @param location the location value to set.
      * @return the DebugSendResponseInner object itself.
      */
-    public DebugSendResponseInner withSku(Sku sku) {
-        this.sku = sku;
+    public DebugSendResponseInner withLocation(String location) {
+        this.location = location;
         return this;
+    }
+
+    /**
+     * Get the tags property: Deprecated - only for compatibility.
+     * 
+     * @return the tags value.
+     */
+    public Map<String, String> tags() {
+        return this.tags;
+    }
+
+    /**
+     * Set the tags property: Deprecated - only for compatibility.
+     * 
+     * @param tags the tags value to set.
+     * @return the DebugSendResponseInner object itself.
+     */
+    public DebugSendResponseInner withTags(Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -109,90 +150,30 @@ public final class DebugSendResponseInner extends Resource {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public DebugSendResponseInner withLocation(String location) {
-        super.withLocation(location);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public DebugSendResponseInner withTags(Map<String, String> tags) {
-        super.withTags(tags);
-        return this;
-    }
-
-    /**
-     * Get the success property: successful send.
+     * Get the success property: Gets or sets successful send.
      * 
      * @return the success value.
      */
-    public Float success() {
+    public Long success() {
         return this.innerProperties() == null ? null : this.innerProperties().success();
     }
 
     /**
-     * Set the success property: successful send.
-     * 
-     * @param success the success value to set.
-     * @return the DebugSendResponseInner object itself.
-     */
-    public DebugSendResponseInner withSuccess(Float success) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DebugSendResult();
-        }
-        this.innerProperties().withSuccess(success);
-        return this;
-    }
-
-    /**
-     * Get the failure property: send failure.
+     * Get the failure property: Gets or sets send failure.
      * 
      * @return the failure value.
      */
-    public Float failure() {
+    public Long failure() {
         return this.innerProperties() == null ? null : this.innerProperties().failure();
     }
 
     /**
-     * Set the failure property: send failure.
-     * 
-     * @param failure the failure value to set.
-     * @return the DebugSendResponseInner object itself.
-     */
-    public DebugSendResponseInner withFailure(Float failure) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DebugSendResult();
-        }
-        this.innerProperties().withFailure(failure);
-        return this;
-    }
-
-    /**
-     * Get the results property: actual failure description.
+     * Get the results property: Gets or sets actual failure description.
      * 
      * @return the results value.
      */
-    public Object results() {
+    public List<RegistrationResult> results() {
         return this.innerProperties() == null ? null : this.innerProperties().results();
-    }
-
-    /**
-     * Set the results property: actual failure description.
-     * 
-     * @param results the results value to set.
-     * @return the DebugSendResponseInner object itself.
-     */
-    public DebugSendResponseInner withResults(Object results) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DebugSendResult();
-        }
-        this.innerProperties().withResults(results);
-        return this;
     }
 
     /**
@@ -204,9 +185,6 @@ public final class DebugSendResponseInner extends Resource {
         if (innerProperties() != null) {
             innerProperties().validate();
         }
-        if (sku() != null) {
-            sku().validate();
-        }
     }
 
     /**
@@ -215,10 +193,9 @@ public final class DebugSendResponseInner extends Resource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("location", location());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("properties", this.innerProperties);
-        jsonWriter.writeJsonField("sku", this.sku);
+        jsonWriter.writeStringField("location", this.location);
+        jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -244,15 +221,15 @@ public final class DebugSendResponseInner extends Resource {
                     deserializedDebugSendResponseInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedDebugSendResponseInner.type = reader.getString();
-                } else if ("location".equals(fieldName)) {
-                    deserializedDebugSendResponseInner.withLocation(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedDebugSendResponseInner.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     deserializedDebugSendResponseInner.innerProperties = DebugSendResult.fromJson(reader);
-                } else if ("sku".equals(fieldName)) {
-                    deserializedDebugSendResponseInner.sku = Sku.fromJson(reader);
+                } else if ("location".equals(fieldName)) {
+                    deserializedDebugSendResponseInner.location = reader.getString();
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedDebugSendResponseInner.tags = tags;
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedDebugSendResponseInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

@@ -17,19 +17,29 @@ import java.io.IOException;
 @Fluent
 public final class WnsCredentialProperties implements JsonSerializable<WnsCredentialProperties> {
     /*
-     * The package ID for this credential.
+     * Gets or sets the package ID for this credential.
      */
     private String packageSid;
 
     /*
-     * The secret key.
+     * Gets or sets the secret key.
      */
     private String secretKey;
 
     /*
-     * The Windows Live endpoint.
+     * Gets or sets the Windows Live endpoint.
      */
     private String windowsLiveEndpoint;
+
+    /*
+     * Ges or sets the WNS Certificate Key.
+     */
+    private String certificateKey;
+
+    /*
+     * Gets or sets the WNS Certificate.
+     */
+    private String wnsCertificate;
 
     /**
      * Creates an instance of WnsCredentialProperties class.
@@ -38,7 +48,7 @@ public final class WnsCredentialProperties implements JsonSerializable<WnsCreden
     }
 
     /**
-     * Get the packageSid property: The package ID for this credential.
+     * Get the packageSid property: Gets or sets the package ID for this credential.
      * 
      * @return the packageSid value.
      */
@@ -47,7 +57,7 @@ public final class WnsCredentialProperties implements JsonSerializable<WnsCreden
     }
 
     /**
-     * Set the packageSid property: The package ID for this credential.
+     * Set the packageSid property: Gets or sets the package ID for this credential.
      * 
      * @param packageSid the packageSid value to set.
      * @return the WnsCredentialProperties object itself.
@@ -58,7 +68,7 @@ public final class WnsCredentialProperties implements JsonSerializable<WnsCreden
     }
 
     /**
-     * Get the secretKey property: The secret key.
+     * Get the secretKey property: Gets or sets the secret key.
      * 
      * @return the secretKey value.
      */
@@ -67,7 +77,7 @@ public final class WnsCredentialProperties implements JsonSerializable<WnsCreden
     }
 
     /**
-     * Set the secretKey property: The secret key.
+     * Set the secretKey property: Gets or sets the secret key.
      * 
      * @param secretKey the secretKey value to set.
      * @return the WnsCredentialProperties object itself.
@@ -78,7 +88,7 @@ public final class WnsCredentialProperties implements JsonSerializable<WnsCreden
     }
 
     /**
-     * Get the windowsLiveEndpoint property: The Windows Live endpoint.
+     * Get the windowsLiveEndpoint property: Gets or sets the Windows Live endpoint.
      * 
      * @return the windowsLiveEndpoint value.
      */
@@ -87,13 +97,53 @@ public final class WnsCredentialProperties implements JsonSerializable<WnsCreden
     }
 
     /**
-     * Set the windowsLiveEndpoint property: The Windows Live endpoint.
+     * Set the windowsLiveEndpoint property: Gets or sets the Windows Live endpoint.
      * 
      * @param windowsLiveEndpoint the windowsLiveEndpoint value to set.
      * @return the WnsCredentialProperties object itself.
      */
     public WnsCredentialProperties withWindowsLiveEndpoint(String windowsLiveEndpoint) {
         this.windowsLiveEndpoint = windowsLiveEndpoint;
+        return this;
+    }
+
+    /**
+     * Get the certificateKey property: Ges or sets the WNS Certificate Key.
+     * 
+     * @return the certificateKey value.
+     */
+    public String certificateKey() {
+        return this.certificateKey;
+    }
+
+    /**
+     * Set the certificateKey property: Ges or sets the WNS Certificate Key.
+     * 
+     * @param certificateKey the certificateKey value to set.
+     * @return the WnsCredentialProperties object itself.
+     */
+    public WnsCredentialProperties withCertificateKey(String certificateKey) {
+        this.certificateKey = certificateKey;
+        return this;
+    }
+
+    /**
+     * Get the wnsCertificate property: Gets or sets the WNS Certificate.
+     * 
+     * @return the wnsCertificate value.
+     */
+    public String wnsCertificate() {
+        return this.wnsCertificate;
+    }
+
+    /**
+     * Set the wnsCertificate property: Gets or sets the WNS Certificate.
+     * 
+     * @param wnsCertificate the wnsCertificate value to set.
+     * @return the WnsCredentialProperties object itself.
+     */
+    public WnsCredentialProperties withWnsCertificate(String wnsCertificate) {
+        this.wnsCertificate = wnsCertificate;
         return this;
     }
 
@@ -114,6 +164,8 @@ public final class WnsCredentialProperties implements JsonSerializable<WnsCreden
         jsonWriter.writeStringField("packageSid", this.packageSid);
         jsonWriter.writeStringField("secretKey", this.secretKey);
         jsonWriter.writeStringField("windowsLiveEndpoint", this.windowsLiveEndpoint);
+        jsonWriter.writeStringField("certificateKey", this.certificateKey);
+        jsonWriter.writeStringField("wnsCertificate", this.wnsCertificate);
         return jsonWriter.writeEndObject();
     }
 
@@ -138,6 +190,10 @@ public final class WnsCredentialProperties implements JsonSerializable<WnsCreden
                     deserializedWnsCredentialProperties.secretKey = reader.getString();
                 } else if ("windowsLiveEndpoint".equals(fieldName)) {
                     deserializedWnsCredentialProperties.windowsLiveEndpoint = reader.getString();
+                } else if ("certificateKey".equals(fieldName)) {
+                    deserializedWnsCredentialProperties.certificateKey = reader.getString();
+                } else if ("wnsCertificate".equals(fieldName)) {
+                    deserializedWnsCredentialProperties.wnsCertificate = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

@@ -5,7 +5,8 @@
 package com.azure.resourcemanager.notificationhubs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -17,16 +18,32 @@ import java.util.Map;
  * Description of a CheckAvailability resource.
  */
 @Fluent
-public final class CheckAvailabilityResultInner extends Resource {
+public final class CheckAvailabilityResultInner extends ProxyResource {
     /*
-     * True if the name is available and can be used to create new Namespace/NotificationHub. Otherwise false.
+     * Gets or sets true if the name is available and can be used to
+     * create new Namespace/NotificationHub. Otherwise false.
      */
     private Boolean isAvailiable;
 
     /*
-     * The sku of the created namespace
+     * Deprecated - only for compatibility.
+     */
+    private String location;
+
+    /*
+     * Deprecated - only for compatibility.
+     */
+    private Map<String, String> tags;
+
+    /*
+     * The Sku description for a namespace
      */
     private Sku sku;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -50,8 +67,8 @@ public final class CheckAvailabilityResultInner extends Resource {
     }
 
     /**
-     * Get the isAvailiable property: True if the name is available and can be used to create new
-     * Namespace/NotificationHub. Otherwise false.
+     * Get the isAvailiable property: Gets or sets true if the name is available and can be used to
+     * create new Namespace/NotificationHub. Otherwise false.
      * 
      * @return the isAvailiable value.
      */
@@ -60,8 +77,8 @@ public final class CheckAvailabilityResultInner extends Resource {
     }
 
     /**
-     * Set the isAvailiable property: True if the name is available and can be used to create new
-     * Namespace/NotificationHub. Otherwise false.
+     * Set the isAvailiable property: Gets or sets true if the name is available and can be used to
+     * create new Namespace/NotificationHub. Otherwise false.
      * 
      * @param isAvailiable the isAvailiable value to set.
      * @return the CheckAvailabilityResultInner object itself.
@@ -72,7 +89,47 @@ public final class CheckAvailabilityResultInner extends Resource {
     }
 
     /**
-     * Get the sku property: The sku of the created namespace.
+     * Get the location property: Deprecated - only for compatibility.
+     * 
+     * @return the location value.
+     */
+    public String location() {
+        return this.location;
+    }
+
+    /**
+     * Set the location property: Deprecated - only for compatibility.
+     * 
+     * @param location the location value to set.
+     * @return the CheckAvailabilityResultInner object itself.
+     */
+    public CheckAvailabilityResultInner withLocation(String location) {
+        this.location = location;
+        return this;
+    }
+
+    /**
+     * Get the tags property: Deprecated - only for compatibility.
+     * 
+     * @return the tags value.
+     */
+    public Map<String, String> tags() {
+        return this.tags;
+    }
+
+    /**
+     * Set the tags property: Deprecated - only for compatibility.
+     * 
+     * @param tags the tags value to set.
+     * @return the CheckAvailabilityResultInner object itself.
+     */
+    public CheckAvailabilityResultInner withTags(Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * Get the sku property: The Sku description for a namespace.
      * 
      * @return the sku value.
      */
@@ -81,7 +138,7 @@ public final class CheckAvailabilityResultInner extends Resource {
     }
 
     /**
-     * Set the sku property: The sku of the created namespace.
+     * Set the sku property: The Sku description for a namespace.
      * 
      * @param sku the sku value to set.
      * @return the CheckAvailabilityResultInner object itself.
@@ -89,6 +146,15 @@ public final class CheckAvailabilityResultInner extends Resource {
     public CheckAvailabilityResultInner withSku(Sku sku) {
         this.sku = sku;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -122,24 +188,6 @@ public final class CheckAvailabilityResultInner extends Resource {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public CheckAvailabilityResultInner withLocation(String location) {
-        super.withLocation(location);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public CheckAvailabilityResultInner withTags(Map<String, String> tags) {
-        super.withTags(tags);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -156,9 +204,9 @@ public final class CheckAvailabilityResultInner extends Resource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("location", location());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("isAvailiable", this.isAvailiable);
+        jsonWriter.writeStringField("location", this.location);
+        jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("sku", this.sku);
         return jsonWriter.writeEndObject();
     }
@@ -185,15 +233,17 @@ public final class CheckAvailabilityResultInner extends Resource {
                     deserializedCheckAvailabilityResultInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedCheckAvailabilityResultInner.type = reader.getString();
-                } else if ("location".equals(fieldName)) {
-                    deserializedCheckAvailabilityResultInner.withLocation(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedCheckAvailabilityResultInner.withTags(tags);
                 } else if ("isAvailiable".equals(fieldName)) {
                     deserializedCheckAvailabilityResultInner.isAvailiable = reader.getNullable(JsonReader::getBoolean);
+                } else if ("location".equals(fieldName)) {
+                    deserializedCheckAvailabilityResultInner.location = reader.getString();
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedCheckAvailabilityResultInner.tags = tags;
                 } else if ("sku".equals(fieldName)) {
                     deserializedCheckAvailabilityResultInner.sku = Sku.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedCheckAvailabilityResultInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
