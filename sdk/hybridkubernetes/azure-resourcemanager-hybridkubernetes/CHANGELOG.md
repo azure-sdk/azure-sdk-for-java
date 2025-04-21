@@ -1,14 +1,96 @@
 # Release History
 
-## 1.1.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2025-04-21)
 
-### Features Added
+- Azure Resource Manager HybridKubernetes client library for Java. This package contains Microsoft Azure SDK for HybridKubernetes Management SDK. Hybrid Kubernetes Client. Package tag package-2024-12-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ConnectedClusterPatch` was modified
 
-### Other Changes
+* `withProperties(java.lang.Object)` was removed
+* `properties()` was removed
+
+#### `models.ConnectedCluster$Update` was modified
+
+* `withProperties(java.lang.Object)` was removed
+
+### Features Added
+
+* `models.ArcAgentryConfigurations` was added
+
+* `models.ArcAgentProfile` was added
+
+* `models.AzureHybridBenefit` was added
+
+* `models.SecurityProfile` was added
+
+* `models.AgentError` was added
+
+* `models.ConnectedClusterKind` was added
+
+* `models.SystemComponent` was added
+
+* `models.AutoUpgradeOptions` was added
+
+* `models.SecurityProfileWorkloadIdentity` was added
+
+* `models.OidcIssuerProfile` was added
+
+* `models.Gateway` was added
+
+* `models.PrivateLinkState` was added
+
+* `models.AadProfile` was added
+
+#### `models.ConnectedClusterPatch` was modified
+
+* `withDistribution(java.lang.String)` was added
+* `distribution()` was added
+* `distributionVersion()` was added
+* `withDistributionVersion(java.lang.String)` was added
+* `azureHybridBenefit()` was added
+* `withAzureHybridBenefit(models.AzureHybridBenefit)` was added
+
+#### `models.HybridConnectionConfig` was modified
+
+* `relayTid()` was added
+* `relayType()` was added
+
+#### `models.ConnectedCluster$Definition` was modified
+
+* `withPrivateLinkScopeResourceId(java.lang.String)` was added
+* `withAzureHybridBenefit(models.AzureHybridBenefit)` was added
+* `withKind(models.ConnectedClusterKind)` was added
+* `withAadProfile(models.AadProfile)` was added
+* `withDistributionVersion(java.lang.String)` was added
+* `withGateway(models.Gateway)` was added
+* `withSecurityProfile(models.SecurityProfile)` was added
+* `withArcAgentryConfigurations(java.util.List)` was added
+* `withOidcIssuerProfile(models.OidcIssuerProfile)` was added
+* `withPrivateLinkState(models.PrivateLinkState)` was added
+* `withArcAgentProfile(models.ArcAgentProfile)` was added
+
+#### `models.ConnectedCluster` was modified
+
+* `arcAgentryConfigurations()` was added
+* `gateway()` was added
+* `azureHybridBenefit()` was added
+* `oidcIssuerProfile()` was added
+* `privateLinkScopeResourceId()` was added
+* `aadProfile()` was added
+* `privateLinkState()` was added
+* `arcAgentProfile()` was added
+* `kind()` was added
+* `securityProfile()` was added
+* `distributionVersion()` was added
+* `miscellaneousProperties()` was added
+
+#### `models.ConnectedCluster$Update` was modified
+
+* `withDistributionVersion(java.lang.String)` was added
+* `withDistribution(java.lang.String)` was added
+* `withAzureHybridBenefit(models.AzureHybridBenefit)` was added
 
 ## 1.1.0-beta.1 (2025-03-25)
 
