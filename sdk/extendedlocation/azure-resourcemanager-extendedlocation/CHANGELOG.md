@@ -1,14 +1,48 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-21)
+
+- Azure Resource Manager CustomLocations client library for Java. This package contains Microsoft Azure SDK for CustomLocations Management SDK. The customLocations Rest API spec. Package tag package-2021-08-31-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.ResourceSyncRuleListResult` was added
 
-### Bugs Fixed
+* `models.ResourceSyncRule$DefinitionStages` was added
 
-### Other Changes
+* `models.ResourceSyncRule` was added
+
+* `models.ResourceSyncRulePropertiesSelector` was added
+
+* `models.ResourceSyncRules` was added
+
+* `models.ResourceSyncRule$Update` was added
+
+* `models.MatchExpressionsProperties` was added
+
+* `models.ResourceSyncRule$Definition` was added
+
+* `models.CustomLocationFindTargetResourceGroupResult` was added
+
+* `models.CustomLocationFindTargetResourceGroupProperties` was added
+
+* `models.PatchableResourceSyncRule` was added
+
+* `models.ResourceSyncRule$UpdateStages` was added
+
+#### `models.CustomLocations` was modified
+
+* `findTargetResourceGroupWithResponse(java.lang.String,java.lang.String,models.CustomLocationFindTargetResourceGroupProperties,com.azure.core.util.Context)` was added
+* `findTargetResourceGroup(java.lang.String,java.lang.String,models.CustomLocationFindTargetResourceGroupProperties)` was added
+
+#### `CustomLocationsManager` was modified
+
+* `resourceSyncRules()` was added
+
+#### `models.CustomLocation` was modified
+
+* `findTargetResourceGroupWithResponse(models.CustomLocationFindTargetResourceGroupProperties,com.azure.core.util.Context)` was added
+* `findTargetResourceGroup(models.CustomLocationFindTargetResourceGroupProperties)` was added
 
 ## 1.0.0 (2025-01-03)
 
