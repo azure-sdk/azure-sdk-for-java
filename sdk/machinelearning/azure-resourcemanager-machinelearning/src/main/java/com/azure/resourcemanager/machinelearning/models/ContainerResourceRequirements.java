@@ -17,40 +17,19 @@ import java.io.IOException;
 @Fluent
 public final class ContainerResourceRequirements implements JsonSerializable<ContainerResourceRequirements> {
     /*
-     * Container resource request info:
-     */
-    private ContainerResourceSettings containerResourceRequests;
-
-    /*
      * Container resource limit info:
      */
     private ContainerResourceSettings containerResourceLimits;
+
+    /*
+     * Container resource request info:
+     */
+    private ContainerResourceSettings containerResourceRequests;
 
     /**
      * Creates an instance of ContainerResourceRequirements class.
      */
     public ContainerResourceRequirements() {
-    }
-
-    /**
-     * Get the containerResourceRequests property: Container resource request info:.
-     * 
-     * @return the containerResourceRequests value.
-     */
-    public ContainerResourceSettings containerResourceRequests() {
-        return this.containerResourceRequests;
-    }
-
-    /**
-     * Set the containerResourceRequests property: Container resource request info:.
-     * 
-     * @param containerResourceRequests the containerResourceRequests value to set.
-     * @return the ContainerResourceRequirements object itself.
-     */
-    public ContainerResourceRequirements
-        withContainerResourceRequests(ContainerResourceSettings containerResourceRequests) {
-        this.containerResourceRequests = containerResourceRequests;
-        return this;
     }
 
     /**
@@ -75,16 +54,37 @@ public final class ContainerResourceRequirements implements JsonSerializable<Con
     }
 
     /**
+     * Get the containerResourceRequests property: Container resource request info:.
+     * 
+     * @return the containerResourceRequests value.
+     */
+    public ContainerResourceSettings containerResourceRequests() {
+        return this.containerResourceRequests;
+    }
+
+    /**
+     * Set the containerResourceRequests property: Container resource request info:.
+     * 
+     * @param containerResourceRequests the containerResourceRequests value to set.
+     * @return the ContainerResourceRequirements object itself.
+     */
+    public ContainerResourceRequirements
+        withContainerResourceRequests(ContainerResourceSettings containerResourceRequests) {
+        this.containerResourceRequests = containerResourceRequests;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (containerResourceRequests() != null) {
-            containerResourceRequests().validate();
-        }
         if (containerResourceLimits() != null) {
             containerResourceLimits().validate();
+        }
+        if (containerResourceRequests() != null) {
+            containerResourceRequests().validate();
         }
     }
 
@@ -94,8 +94,8 @@ public final class ContainerResourceRequirements implements JsonSerializable<Con
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("containerResourceRequests", this.containerResourceRequests);
         jsonWriter.writeJsonField("containerResourceLimits", this.containerResourceLimits);
+        jsonWriter.writeJsonField("containerResourceRequests", this.containerResourceRequests);
         return jsonWriter.writeEndObject();
     }
 
@@ -115,11 +115,11 @@ public final class ContainerResourceRequirements implements JsonSerializable<Con
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("containerResourceRequests".equals(fieldName)) {
-                    deserializedContainerResourceRequirements.containerResourceRequests
-                        = ContainerResourceSettings.fromJson(reader);
-                } else if ("containerResourceLimits".equals(fieldName)) {
+                if ("containerResourceLimits".equals(fieldName)) {
                     deserializedContainerResourceRequirements.containerResourceLimits
+                        = ContainerResourceSettings.fromJson(reader);
+                } else if ("containerResourceRequests".equals(fieldName)) {
+                    deserializedContainerResourceRequirements.containerResourceRequests
                         = ContainerResourceSettings.fromJson(reader);
                 } else {
                     reader.skipChildren();
