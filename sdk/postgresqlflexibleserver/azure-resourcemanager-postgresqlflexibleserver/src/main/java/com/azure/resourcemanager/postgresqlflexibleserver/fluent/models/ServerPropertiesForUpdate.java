@@ -11,6 +11,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.AuthConfig;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.Backup;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.Cluster;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.CreateModeForUpdate;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.DataEncryption;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.HighAvailability;
@@ -94,6 +95,11 @@ public final class ServerPropertiesForUpdate implements JsonSerializable<ServerP
      * server.
      */
     private Network network;
+
+    /*
+     * Cluster properties of a server.
+     */
+    private Cluster cluster;
 
     /**
      * Creates an instance of ServerPropertiesForUpdate class.
@@ -368,6 +374,26 @@ public final class ServerPropertiesForUpdate implements JsonSerializable<ServerP
     }
 
     /**
+     * Get the cluster property: Cluster properties of a server.
+     * 
+     * @return the cluster value.
+     */
+    public Cluster cluster() {
+        return this.cluster;
+    }
+
+    /**
+     * Set the cluster property: Cluster properties of a server.
+     * 
+     * @param cluster the cluster value to set.
+     * @return the ServerPropertiesForUpdate object itself.
+     */
+    public ServerPropertiesForUpdate withCluster(Cluster cluster) {
+        this.cluster = cluster;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -397,6 +423,9 @@ public final class ServerPropertiesForUpdate implements JsonSerializable<ServerP
         if (network() != null) {
             network().validate();
         }
+        if (cluster() != null) {
+            cluster().validate();
+        }
     }
 
     /**
@@ -419,6 +448,7 @@ public final class ServerPropertiesForUpdate implements JsonSerializable<ServerP
             this.replicationRole == null ? null : this.replicationRole.toString());
         jsonWriter.writeJsonField("replica", this.replica);
         jsonWriter.writeJsonField("network", this.network);
+        jsonWriter.writeJsonField("cluster", this.cluster);
         return jsonWriter.writeEndObject();
     }
 
@@ -465,6 +495,8 @@ public final class ServerPropertiesForUpdate implements JsonSerializable<ServerP
                     deserializedServerPropertiesForUpdate.replica = Replica.fromJson(reader);
                 } else if ("network".equals(fieldName)) {
                     deserializedServerPropertiesForUpdate.network = Network.fromJson(reader);
+                } else if ("cluster".equals(fieldName)) {
+                    deserializedServerPropertiesForUpdate.cluster = Cluster.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
