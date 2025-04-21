@@ -29,8 +29,8 @@ public interface EventsOperationsClient {
      * 
      * @param filter The filter to apply on the operation. For more information please see
      * https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
-     * @param queryStartTime Specifies from when to return events, based on the lastUpdateTime property. For example,
-     * queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
+     * @param queryStartTime Specifies from when to return events (default is 3 days), based on the lastUpdateTime
+     * property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -55,8 +55,8 @@ public interface EventsOperationsClient {
      * 
      * @param filter The filter to apply on the operation. For more information please see
      * https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
-     * @param queryStartTime Specifies from when to return events, based on the lastUpdateTime property. For example,
-     * queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
+     * @param queryStartTime Specifies from when to return events (default is 3 days), based on the lastUpdateTime
+     * property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

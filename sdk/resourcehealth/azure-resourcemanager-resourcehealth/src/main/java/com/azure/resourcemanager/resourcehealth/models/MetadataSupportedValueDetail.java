@@ -18,9 +18,19 @@ import java.util.List;
 @Fluent
 public final class MetadataSupportedValueDetail implements JsonSerializable<MetadataSupportedValueDetail> {
     /*
-     * The id.
+     * The id of the metadata value
      */
     private String id;
+
+    /*
+     * The previous value of the id field incase the data has changed.
+     */
+    private String previousId;
+
+    /*
+     * The permanent guid for the service. Used when the id is a service name.
+     */
+    private String serviceGuid;
 
     /*
      * The display name.
@@ -39,7 +49,7 @@ public final class MetadataSupportedValueDetail implements JsonSerializable<Meta
     }
 
     /**
-     * Get the id property: The id.
+     * Get the id property: The id of the metadata value.
      * 
      * @return the id value.
      */
@@ -48,13 +58,53 @@ public final class MetadataSupportedValueDetail implements JsonSerializable<Meta
     }
 
     /**
-     * Set the id property: The id.
+     * Set the id property: The id of the metadata value.
      * 
      * @param id the id value to set.
      * @return the MetadataSupportedValueDetail object itself.
      */
     public MetadataSupportedValueDetail withId(String id) {
         this.id = id;
+        return this;
+    }
+
+    /**
+     * Get the previousId property: The previous value of the id field incase the data has changed.
+     * 
+     * @return the previousId value.
+     */
+    public String previousId() {
+        return this.previousId;
+    }
+
+    /**
+     * Set the previousId property: The previous value of the id field incase the data has changed.
+     * 
+     * @param previousId the previousId value to set.
+     * @return the MetadataSupportedValueDetail object itself.
+     */
+    public MetadataSupportedValueDetail withPreviousId(String previousId) {
+        this.previousId = previousId;
+        return this;
+    }
+
+    /**
+     * Get the serviceGuid property: The permanent guid for the service. Used when the id is a service name.
+     * 
+     * @return the serviceGuid value.
+     */
+    public String serviceGuid() {
+        return this.serviceGuid;
+    }
+
+    /**
+     * Set the serviceGuid property: The permanent guid for the service. Used when the id is a service name.
+     * 
+     * @param serviceGuid the serviceGuid value to set.
+     * @return the MetadataSupportedValueDetail object itself.
+     */
+    public MetadataSupportedValueDetail withServiceGuid(String serviceGuid) {
+        this.serviceGuid = serviceGuid;
         return this;
     }
 
@@ -113,6 +163,8 @@ public final class MetadataSupportedValueDetail implements JsonSerializable<Meta
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("id", this.id);
+        jsonWriter.writeStringField("previousId", this.previousId);
+        jsonWriter.writeStringField("serviceGuid", this.serviceGuid);
         jsonWriter.writeStringField("displayName", this.displayName);
         jsonWriter.writeArrayField("resourceTypes", this.resourceTypes,
             (writer, element) -> writer.writeString(element));
@@ -136,6 +188,10 @@ public final class MetadataSupportedValueDetail implements JsonSerializable<Meta
 
                 if ("id".equals(fieldName)) {
                     deserializedMetadataSupportedValueDetail.id = reader.getString();
+                } else if ("previousId".equals(fieldName)) {
+                    deserializedMetadataSupportedValueDetail.previousId = reader.getString();
+                } else if ("serviceGuid".equals(fieldName)) {
+                    deserializedMetadataSupportedValueDetail.serviceGuid = reader.getString();
                 } else if ("displayName".equals(fieldName)) {
                     deserializedMetadataSupportedValueDetail.displayName = reader.getString();
                 } else if ("resourceTypes".equals(fieldName)) {

@@ -23,6 +23,11 @@ public final class Impact implements JsonSerializable<Impact> {
     private String impactedService;
 
     /*
+     * Impacted service guid. This is the permanent identifier for the impacted service.
+     */
+    private String impactedServiceGuid;
+
+    /*
      * List regions impacted by the service health event.
      */
     private List<ImpactedServiceRegion> impactedRegions;
@@ -50,6 +55,28 @@ public final class Impact implements JsonSerializable<Impact> {
      */
     public Impact withImpactedService(String impactedService) {
         this.impactedService = impactedService;
+        return this;
+    }
+
+    /**
+     * Get the impactedServiceGuid property: Impacted service guid. This is the permanent identifier for the impacted
+     * service.
+     * 
+     * @return the impactedServiceGuid value.
+     */
+    public String impactedServiceGuid() {
+        return this.impactedServiceGuid;
+    }
+
+    /**
+     * Set the impactedServiceGuid property: Impacted service guid. This is the permanent identifier for the impacted
+     * service.
+     * 
+     * @param impactedServiceGuid the impactedServiceGuid value to set.
+     * @return the Impact object itself.
+     */
+    public Impact withImpactedServiceGuid(String impactedServiceGuid) {
+        this.impactedServiceGuid = impactedServiceGuid;
         return this;
     }
 
@@ -91,6 +118,7 @@ public final class Impact implements JsonSerializable<Impact> {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("impactedService", this.impactedService);
+        jsonWriter.writeStringField("impactedServiceGuid", this.impactedServiceGuid);
         jsonWriter.writeArrayField("impactedRegions", this.impactedRegions,
             (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
@@ -113,6 +141,8 @@ public final class Impact implements JsonSerializable<Impact> {
 
                 if ("impactedService".equals(fieldName)) {
                     deserializedImpact.impactedService = reader.getString();
+                } else if ("impactedServiceGuid".equals(fieldName)) {
+                    deserializedImpact.impactedServiceGuid = reader.getString();
                 } else if ("impactedRegions".equals(fieldName)) {
                     List<ImpactedServiceRegion> impactedRegions
                         = reader.readArray(reader1 -> ImpactedServiceRegion.fromJson(reader1));

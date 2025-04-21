@@ -16,7 +16,6 @@ import com.azure.resourcemanager.resourcehealth.models.EventPropertiesArticle;
 import com.azure.resourcemanager.resourcehealth.models.EventPropertiesRecommendedActions;
 import com.azure.resourcemanager.resourcehealth.models.EventSourceValues;
 import com.azure.resourcemanager.resourcehealth.models.EventStatusValues;
-import com.azure.resourcemanager.resourcehealth.models.EventSubTypeValues;
 import com.azure.resourcemanager.resourcehealth.models.EventTypeValues;
 import com.azure.resourcemanager.resourcehealth.models.Faq;
 import com.azure.resourcemanager.resourcehealth.models.Impact;
@@ -134,31 +133,6 @@ public final class EventInner extends ProxyResource {
     }
 
     /**
-     * Get the eventSubType property: Sub type of the event. Currently used to determine retirement communications for
-     * health advisory events.
-     * 
-     * @return the eventSubType value.
-     */
-    public EventSubTypeValues eventSubType() {
-        return this.innerProperties() == null ? null : this.innerProperties().eventSubType();
-    }
-
-    /**
-     * Set the eventSubType property: Sub type of the event. Currently used to determine retirement communications for
-     * health advisory events.
-     * 
-     * @param eventSubType the eventSubType value to set.
-     * @return the EventInner object itself.
-     */
-    public EventInner withEventSubType(EventSubTypeValues eventSubType) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EventProperties();
-        }
-        this.innerProperties().withEventSubType(eventSubType);
-        return this;
-    }
-
-    /**
      * Get the eventSource property: Source of event.
      * 
      * @return the eventSource value.
@@ -228,7 +202,8 @@ public final class EventInner extends ProxyResource {
     }
 
     /**
-     * Get the summary property: Summary text of event.
+     * Get the summary property: Summary text of event. Use fetchEventDetails endpoint to get summary of sensitive
+     * events.
      * 
      * @return the summary value.
      */
@@ -237,7 +212,8 @@ public final class EventInner extends ProxyResource {
     }
 
     /**
-     * Set the summary property: Summary text of event.
+     * Set the summary property: Summary text of event. Use fetchEventDetails endpoint to get summary of sensitive
+     * events.
      * 
      * @param summary the summary value to set.
      * @return the EventInner object itself.
@@ -316,6 +292,33 @@ public final class EventInner extends ProxyResource {
             this.innerProperties = new EventProperties();
         }
         this.innerProperties().withEventLevel(eventLevel);
+        return this;
+    }
+
+    /**
+     * Get the isEventSensitive property: If true the event may contains sensitive data. Use the post
+     * events/{trackingId}/fetchEventDetails endpoint to fetch sensitive data see
+     * https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access.
+     * 
+     * @return the isEventSensitive value.
+     */
+    public Boolean isEventSensitive() {
+        return this.innerProperties() == null ? null : this.innerProperties().isEventSensitive();
+    }
+
+    /**
+     * Set the isEventSensitive property: If true the event may contains sensitive data. Use the post
+     * events/{trackingId}/fetchEventDetails endpoint to fetch sensitive data see
+     * https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access.
+     * 
+     * @param isEventSensitive the isEventSensitive value to set.
+     * @return the EventInner object itself.
+     */
+    public EventInner withIsEventSensitive(Boolean isEventSensitive) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EventProperties();
+        }
+        this.innerProperties().withIsEventSensitive(isEventSensitive);
         return this;
     }
 
@@ -574,7 +577,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the description property: Contains the communication message for the event, that could include summary, root
-     * cause and other details.
+     * cause and other details. Use fetchEventDetails endpoint to get description of sensitive events.
      * 
      * @return the description value.
      */
@@ -584,7 +587,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the description property: Contains the communication message for the event, that could include summary, root
-     * cause and other details.
+     * cause and other details. Use fetchEventDetails endpoint to get description of sensitive events.
      * 
      * @param description the description value to set.
      * @return the EventInner object itself.
@@ -784,77 +787,6 @@ public final class EventInner extends ProxyResource {
             this.innerProperties = new EventProperties();
         }
         this.innerProperties().withImpactType(impactType);
-        return this;
-    }
-
-    /**
-     * Get the maintenanceId property: Unique identifier for planned maintenance event.
-     * 
-     * @return the maintenanceId value.
-     */
-    public String maintenanceId() {
-        return this.innerProperties() == null ? null : this.innerProperties().maintenanceId();
-    }
-
-    /**
-     * Set the maintenanceId property: Unique identifier for planned maintenance event.
-     * 
-     * @param maintenanceId the maintenanceId value to set.
-     * @return the EventInner object itself.
-     */
-    public EventInner withMaintenanceId(String maintenanceId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EventProperties();
-        }
-        this.innerProperties().withMaintenanceId(maintenanceId);
-        return this;
-    }
-
-    /**
-     * Get the maintenanceType property: The type of planned maintenance event.
-     * 
-     * @return the maintenanceType value.
-     */
-    public String maintenanceType() {
-        return this.innerProperties() == null ? null : this.innerProperties().maintenanceType();
-    }
-
-    /**
-     * Set the maintenanceType property: The type of planned maintenance event.
-     * 
-     * @param maintenanceType the maintenanceType value to set.
-     * @return the EventInner object itself.
-     */
-    public EventInner withMaintenanceType(String maintenanceType) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EventProperties();
-        }
-        this.innerProperties().withMaintenanceType(maintenanceType);
-        return this;
-    }
-
-    /**
-     * Get the argQuery property: Azure Resource Graph query to fetch the affected resources from their existing Azure
-     * Resource Graph locations.
-     * 
-     * @return the argQuery value.
-     */
-    public String argQuery() {
-        return this.innerProperties() == null ? null : this.innerProperties().argQuery();
-    }
-
-    /**
-     * Set the argQuery property: Azure Resource Graph query to fetch the affected resources from their existing Azure
-     * Resource Graph locations.
-     * 
-     * @param argQuery the argQuery value to set.
-     * @return the EventInner object itself.
-     */
-    public EventInner withArgQuery(String argQuery) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EventProperties();
-        }
-        this.innerProperties().withArgQuery(argQuery);
         return this;
     }
 

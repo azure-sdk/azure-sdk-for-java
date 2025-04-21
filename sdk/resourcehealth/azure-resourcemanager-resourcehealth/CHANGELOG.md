@@ -1,14 +1,158 @@
 # Release History
 
-## 1.1.0-beta.4 (Unreleased)
+## 1.0.0-beta.1 (2025-04-21)
+
+- Azure Resource Manager ResourceHealth client library for Java. This package contains Microsoft Azure SDK for ResourceHealth Management SDK. The Resource Health Client. Package tag package-2025-04-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.EventsOperations` was added
 
-### Bugs Fixed
+* `models.EventLevelValues` was added
 
-### Other Changes
+* `models.IssueNameParameter` was added
+
+* `models.SecurityAdvisoryImpactedResources` was added
+
+* `models.KeyValueItem` was added
+
+* `models.Impact` was added
+
+* `models.ImpactedResources` was added
+
+* `models.EventTypeValues` was added
+
+* `models.MetadataEntity` was added
+
+* `models.StatusBanner` was added
+
+* `models.EventPropertiesRecommendedActionsItem` was added
+
+* `models.Events` was added
+
+* `models.ImpactedServiceRegion` was added
+
+* `models.EventStatusValues` was added
+
+* `models.EmergingIssueImpact` was added
+
+* `models.EventOperations` was added
+
+* `models.Event` was added
+
+* `models.ChildAvailabilityStatuses` was added
+
+* `models.EmergingIssues` was added
+
+* `models.EmergingIssuesGetResult` was added
+
+* `models.Metadatas` was added
+
+* `models.SeverityValues` was added
+
+* `models.StageValues` was added
+
+* `models.ChildResources` was added
+
+* `models.ImpactedRegion` was added
+
+* `models.EventPropertiesRecommendedActions` was added
+
+* `models.EventImpactedResourceListResult` was added
+
+* `models.StatusActiveEvent` was added
+
+* `models.MetadataEntityListResult` was added
+
+* `models.LinkTypeValues` was added
+
+* `models.EventImpactedResource` was added
+
+* `models.LevelValues` was added
+
+* `models.EmergingIssueListResult` was added
+
+* `models.Faq` was added
+
+* `models.EventSourceValues` was added
+
+* `models.Link` was added
+
+* `models.Scenario` was added
+
+* `models.LinkDisplayText` was added
+
+* `models.Update` was added
+
+* `models.EventPropertiesArticle` was added
+
+* `models.EventPropertiesAdditionalInformation` was added
+
+* `models.MetadataSupportedValueDetail` was added
+
+#### `models.ServiceImpactingEventStatus` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.RecommendedAction` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withActionUrlComment(java.lang.String)` was added
+* `actionUrlComment()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `ResourceHealthManager` was modified
+
+* `childResources()` was added
+* `childAvailabilityStatuses()` was added
+* `emergingIssues()` was added
+* `eventOperations()` was added
+* `metadatas()` was added
+* `securityAdvisoryImpactedResources()` was added
+* `eventsOperations()` was added
+* `impactedResources()` was added
+
+#### `models.AvailabilityStatusProperties` was modified
+
+* `withCategory(java.lang.String)` was added
+* `withContext(java.lang.String)` was added
+* `articleId()` was added
+* `category()` was added
+* `context()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withArticleId(java.lang.String)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.ServiceImpactingEvent` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ServiceImpactingEventIncidentProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Operation` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.AvailabilityStatusPropertiesRecentlyResolved` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.AvailabilityStatusListResult` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
 
 ## 1.1.0-beta.3 (2024-12-06)
 
