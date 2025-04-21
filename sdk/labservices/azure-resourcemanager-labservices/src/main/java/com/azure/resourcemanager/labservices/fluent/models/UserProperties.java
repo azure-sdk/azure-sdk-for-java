@@ -13,6 +13,7 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.labservices.models.InvitationState;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
 import com.azure.resourcemanager.labservices.models.RegistrationState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.OffsetDateTime;
@@ -26,6 +27,11 @@ public final class UserProperties extends UserUpdateProperties {
      * Current provisioning state of the user resource.
      */
     private ProvisioningState provisioningState;
+
+    /*
+     * Error details of last operation done on lab plan.
+     */
+    private ResourceOperationError resourceOperationError;
 
     /*
      * Display name of the user, for example user's full name.
@@ -70,6 +76,15 @@ public final class UserProperties extends UserUpdateProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Get the resourceOperationError property: Error details of last operation done on lab plan.
+     * 
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.resourceOperationError;
     }
 
     /**
@@ -153,6 +168,9 @@ public final class UserProperties extends UserUpdateProperties {
      */
     @Override
     public void validate() {
+        if (resourceOperationError() != null) {
+            resourceOperationError().validate();
+        }
         if (email() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property email in model UserProperties"));
@@ -195,6 +213,8 @@ public final class UserProperties extends UserUpdateProperties {
                     deserializedUserProperties.email = reader.getString();
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedUserProperties.provisioningState = ProvisioningState.fromString(reader.getString());
+                } else if ("resourceOperationError".equals(fieldName)) {
+                    deserializedUserProperties.resourceOperationError = ResourceOperationError.fromJson(reader);
                 } else if ("displayName".equals(fieldName)) {
                     deserializedUserProperties.displayName = reader.getString();
                 } else if ("registrationState".equals(fieldName)) {

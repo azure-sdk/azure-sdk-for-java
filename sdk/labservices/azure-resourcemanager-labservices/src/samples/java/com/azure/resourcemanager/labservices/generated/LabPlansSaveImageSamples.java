@@ -12,7 +12,7 @@ import com.azure.resourcemanager.labservices.models.SaveImageBody;
 public final class LabPlansSaveImageSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/
      * saveImageVirtualMachine.json
      */
     /**

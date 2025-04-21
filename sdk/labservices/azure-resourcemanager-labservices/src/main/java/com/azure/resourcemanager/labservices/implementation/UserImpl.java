@@ -11,6 +11,7 @@ import com.azure.resourcemanager.labservices.models.InvitationState;
 import com.azure.resourcemanager.labservices.models.InviteBody;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
 import com.azure.resourcemanager.labservices.models.RegistrationState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.azure.resourcemanager.labservices.models.User;
 import com.azure.resourcemanager.labservices.models.UserUpdate;
 import java.time.Duration;
@@ -39,6 +40,10 @@ public final class UserImpl implements User, User.Definition, User.Update {
 
     public ProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
+    }
+
+    public ResourceOperationError resourceOperationError() {
+        return this.innerModel().resourceOperationError();
     }
 
     public String displayName() {

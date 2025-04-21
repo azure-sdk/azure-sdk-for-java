@@ -12,6 +12,7 @@ import com.azure.resourcemanager.labservices.models.AutoShutdownProfile;
 import com.azure.resourcemanager.labservices.models.ConnectionProfile;
 import com.azure.resourcemanager.labservices.models.LabPlanNetworkProfile;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.azure.resourcemanager.labservices.models.SupportInfo;
 import java.io.IOException;
 import java.util.List;
@@ -26,6 +27,11 @@ public final class LabPlanProperties extends LabPlanUpdateProperties {
      */
     private ProvisioningState provisioningState;
 
+    /*
+     * Error details of last operation done on lab plan.
+     */
+    private ResourceOperationError resourceOperationError;
+
     /**
      * Creates an instance of LabPlanProperties class.
      */
@@ -39,6 +45,15 @@ public final class LabPlanProperties extends LabPlanUpdateProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Get the resourceOperationError property: Error details of last operation done on lab plan.
+     * 
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.resourceOperationError;
     }
 
     /**
@@ -111,6 +126,9 @@ public final class LabPlanProperties extends LabPlanUpdateProperties {
      */
     @Override
     public void validate() {
+        if (resourceOperationError() != null) {
+            resourceOperationError().validate();
+        }
         if (defaultConnectionProfile() != null) {
             defaultConnectionProfile().validate();
         }
@@ -174,6 +192,8 @@ public final class LabPlanProperties extends LabPlanUpdateProperties {
                     deserializedLabPlanProperties.withLinkedLmsInstance(reader.getString());
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedLabPlanProperties.provisioningState = ProvisioningState.fromString(reader.getString());
+                } else if ("resourceOperationError".equals(fieldName)) {
+                    deserializedLabPlanProperties.resourceOperationError = ResourceOperationError.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

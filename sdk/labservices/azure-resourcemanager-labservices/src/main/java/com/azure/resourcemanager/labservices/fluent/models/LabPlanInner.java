@@ -16,6 +16,7 @@ import com.azure.resourcemanager.labservices.models.ConnectionProfile;
 import com.azure.resourcemanager.labservices.models.Identity;
 import com.azure.resourcemanager.labservices.models.LabPlanNetworkProfile;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.azure.resourcemanager.labservices.models.SupportInfo;
 import java.io.IOException;
 import java.util.List;
@@ -156,6 +157,15 @@ public final class LabPlanInner extends Resource {
      */
     public ProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the resourceOperationError property: Error details of last operation done on lab plan.
+     * 
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.innerProperties() == null ? null : this.innerProperties().resourceOperationError();
     }
 
     /**

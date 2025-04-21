@@ -14,7 +14,7 @@ import java.time.OffsetDateTime;
 public final class SchedulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/putSchedule
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Schedules/putSchedule
      * .json
      */
     /**

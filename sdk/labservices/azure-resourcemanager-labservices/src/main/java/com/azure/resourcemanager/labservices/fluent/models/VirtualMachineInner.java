@@ -12,6 +12,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.azure.resourcemanager.labservices.models.VirtualMachineConnectionProfile;
 import com.azure.resourcemanager.labservices.models.VirtualMachineState;
 import com.azure.resourcemanager.labservices.models.VirtualMachineType;
@@ -117,6 +118,15 @@ public final class VirtualMachineInner extends ProxyResource {
      */
     public VirtualMachineState state() {
         return this.innerProperties() == null ? null : this.innerProperties().state();
+    }
+
+    /**
+     * Get the resourceOperationError property: Error details of last operation done on lab plan.
+     * 
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.innerProperties() == null ? null : this.innerProperties().resourceOperationError();
     }
 
     /**
