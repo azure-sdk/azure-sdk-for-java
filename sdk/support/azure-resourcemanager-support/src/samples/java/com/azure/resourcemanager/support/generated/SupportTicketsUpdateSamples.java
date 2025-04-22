@@ -17,64 +17,32 @@ import java.util.Arrays;
  */
 public final class SupportTicketsUpdateSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * UpdateAdvancedDiagnosticConsentOfSupportTicketForSubscription.json
      */
     /**
-     * Sample code: Update advanced diagnostic consent of a subscription support ticket.
+     * Sample code: Update advanced diagnostic consent of a support ticket.
      * 
      * @param manager Entry point to SupportManager.
      */
-    public static void updateAdvancedDiagnosticConsentOfASubscriptionSupportTicket(
-        com.azure.resourcemanager.support.SupportManager manager) {
+    public static void
+        updateAdvancedDiagnosticConsentOfASupportTicket(com.azure.resourcemanager.support.SupportManager manager) {
         SupportTicketDetails resource
             = manager.supportTickets().getWithResponse("testticket", com.azure.core.util.Context.NONE).getValue();
         resource.update().withAdvancedDiagnosticConsent(Consent.YES).apply();
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
-     * UpdateSeverityOfSupportTicketForSubscription.json
-     */
-    /**
-     * Sample code: Update severity of a subscription support ticket.
-     * 
-     * @param manager Entry point to SupportManager.
-     */
-    public static void
-        updateSeverityOfASubscriptionSupportTicket(com.azure.resourcemanager.support.SupportManager manager) {
-        SupportTicketDetails resource
-            = manager.supportTickets().getWithResponse("testticket", com.azure.core.util.Context.NONE).getValue();
-        resource.update().withSeverity(SeverityLevel.CRITICAL).apply();
-    }
-
-    /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
-     * UpdateStatusOfSupportTicketForSubscription.json
-     */
-    /**
-     * Sample code: Update status of a subscription support ticket.
-     * 
-     * @param manager Entry point to SupportManager.
-     */
-    public static void
-        updateStatusOfASubscriptionSupportTicket(com.azure.resourcemanager.support.SupportManager manager) {
-        SupportTicketDetails resource
-            = manager.supportTickets().getWithResponse("testticket", com.azure.core.util.Context.NONE).getValue();
-        resource.update().withStatus(Status.CLOSED).apply();
-    }
-
-    /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * UpdateContactDetailsOfSupportTicketForSubscription.json
      */
     /**
-     * Sample code: Update contact details of a subscription support ticket.
+     * Sample code: Update contact details of a subscription scoped support ticket.
      * 
      * @param manager Entry point to SupportManager.
      */
-    public static void
-        updateContactDetailsOfASubscriptionSupportTicket(com.azure.resourcemanager.support.SupportManager manager) {
+    public static void updateContactDetailsOfASubscriptionScopedSupportTicket(
+        com.azure.resourcemanager.support.SupportManager manager) {
         SupportTicketDetails resource
             = manager.supportTickets().getWithResponse("testticket", com.azure.core.util.Context.NONE).getValue();
         resource.update()
@@ -88,5 +56,37 @@ public final class SupportTicketsUpdateSamples {
                 .withCountry("USA")
                 .withPreferredSupportLanguage("en-US"))
             .apply();
+    }
+
+    /*
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * UpdateStatusOfSupportTicketForSubscription.json
+     */
+    /**
+     * Sample code: Update status of a subscription scoped support ticket.
+     * 
+     * @param manager Entry point to SupportManager.
+     */
+    public static void
+        updateStatusOfASubscriptionScopedSupportTicket(com.azure.resourcemanager.support.SupportManager manager) {
+        SupportTicketDetails resource
+            = manager.supportTickets().getWithResponse("testticket", com.azure.core.util.Context.NONE).getValue();
+        resource.update().withStatus(Status.CLOSED).apply();
+    }
+
+    /*
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * UpdateSeverityOfSupportTicketForSubscription.json
+     */
+    /**
+     * Sample code: Update severity of a subscription scoped support ticket.
+     * 
+     * @param manager Entry point to SupportManager.
+     */
+    public static void
+        updateSeverityOfASubscriptionScopedSupportTicket(com.azure.resourcemanager.support.SupportManager manager) {
+        SupportTicketDetails resource
+            = manager.supportTickets().getWithResponse("testticket", com.azure.core.util.Context.NONE).getValue();
+        resource.update().withSeverity(SeverityLevel.CRITICAL).apply();
     }
 }

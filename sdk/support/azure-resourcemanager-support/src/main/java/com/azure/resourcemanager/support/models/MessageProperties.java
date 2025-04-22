@@ -6,6 +6,7 @@ package com.azure.resourcemanager.support.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -122,7 +123,13 @@ public final class MessageProperties implements JsonSerializable<MessageProperti
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (body() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property body in model MessageProperties"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(MessageProperties.class);
 
     /**
      * {@inheritDoc}
@@ -130,8 +137,8 @@ public final class MessageProperties implements JsonSerializable<MessageProperti
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("sender", this.sender);
         jsonWriter.writeStringField("body", this.body);
+        jsonWriter.writeStringField("sender", this.sender);
         return jsonWriter.writeEndObject();
     }
 
@@ -141,6 +148,7 @@ public final class MessageProperties implements JsonSerializable<MessageProperti
      * @param jsonReader The JsonReader being read.
      * @return An instance of MessageProperties if the JsonReader was pointing to an instance of it, or null if it was
      * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the MessageProperties.
      */
     public static MessageProperties fromJson(JsonReader jsonReader) throws IOException {
@@ -150,15 +158,15 @@ public final class MessageProperties implements JsonSerializable<MessageProperti
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("contentType".equals(fieldName)) {
+                if ("body".equals(fieldName)) {
+                    deserializedMessageProperties.body = reader.getString();
+                } else if ("contentType".equals(fieldName)) {
                     deserializedMessageProperties.contentType = TranscriptContentType.fromString(reader.getString());
                 } else if ("communicationDirection".equals(fieldName)) {
                     deserializedMessageProperties.communicationDirection
                         = CommunicationDirection.fromString(reader.getString());
                 } else if ("sender".equals(fieldName)) {
                     deserializedMessageProperties.sender = reader.getString();
-                } else if ("body".equals(fieldName)) {
-                    deserializedMessageProperties.body = reader.getString();
                 } else if ("createdDate".equals(fieldName)) {
                     deserializedMessageProperties.createdDate = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));

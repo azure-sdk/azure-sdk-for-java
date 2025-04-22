@@ -239,10 +239,7 @@ public interface SupportTicketDetails {
     /**
      * The entirety of the SupportTicketDetails definition.
      */
-    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithDescription,
-        DefinitionStages.WithProblemClassificationId, DefinitionStages.WithSeverity,
-        DefinitionStages.WithAdvancedDiagnosticConsent, DefinitionStages.WithContactDetails, DefinitionStages.WithTitle,
-        DefinitionStages.WithServiceId, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithCreate {
     }
 
     /**
@@ -252,121 +249,20 @@ public interface SupportTicketDetails {
         /**
          * The first stage of the SupportTicketDetails definition.
          */
-        interface Blank extends WithDescription {
-        }
-
-        /**
-         * The stage of the SupportTicketDetails definition allowing to specify description.
-         */
-        interface WithDescription {
-            /**
-             * Specifies the description property: Detailed description of the question or issue..
-             * 
-             * @param description Detailed description of the question or issue.
-             * @return the next definition stage.
-             */
-            WithProblemClassificationId withDescription(String description);
-        }
-
-        /**
-         * The stage of the SupportTicketDetails definition allowing to specify problemClassificationId.
-         */
-        interface WithProblemClassificationId {
-            /**
-             * Specifies the problemClassificationId property: Each Azure service has its own set of issue categories,
-             * also known as problem classification. This parameter is the unique Id for the type of problem you are
-             * experiencing..
-             * 
-             * @param problemClassificationId Each Azure service has its own set of issue categories, also known as
-             * problem classification. This parameter is the unique Id for the type of problem you are experiencing.
-             * @return the next definition stage.
-             */
-            WithSeverity withProblemClassificationId(String problemClassificationId);
-        }
-
-        /**
-         * The stage of the SupportTicketDetails definition allowing to specify severity.
-         */
-        interface WithSeverity {
-            /**
-             * Specifies the severity property: A value that indicates the urgency of the case, which in turn determines
-             * the response time according to the service level agreement of the technical support plan you have with
-             * Azure. Note: 'Highest critical impact', also known as the 'Emergency - Severe impact' level in the Azure
-             * portal is reserved only for our Premium customers..
-             * 
-             * @param severity A value that indicates the urgency of the case, which in turn determines the response
-             * time according to the service level agreement of the technical support plan you have with Azure. Note:
-             * 'Highest critical impact', also known as the 'Emergency - Severe impact' level in the Azure portal is
-             * reserved only for our Premium customers.
-             * @return the next definition stage.
-             */
-            WithAdvancedDiagnosticConsent withSeverity(SeverityLevel severity);
-        }
-
-        /**
-         * The stage of the SupportTicketDetails definition allowing to specify advancedDiagnosticConsent.
-         */
-        interface WithAdvancedDiagnosticConsent {
-            /**
-             * Specifies the advancedDiagnosticConsent property: Advanced diagnostic consent to be updated on the
-             * support ticket..
-             * 
-             * @param advancedDiagnosticConsent Advanced diagnostic consent to be updated on the support ticket.
-             * @return the next definition stage.
-             */
-            WithContactDetails withAdvancedDiagnosticConsent(Consent advancedDiagnosticConsent);
-        }
-
-        /**
-         * The stage of the SupportTicketDetails definition allowing to specify contactDetails.
-         */
-        interface WithContactDetails {
-            /**
-             * Specifies the contactDetails property: Contact information of the user requesting to create a support
-             * ticket..
-             * 
-             * @param contactDetails Contact information of the user requesting to create a support ticket.
-             * @return the next definition stage.
-             */
-            WithTitle withContactDetails(ContactProfile contactDetails);
-        }
-
-        /**
-         * The stage of the SupportTicketDetails definition allowing to specify title.
-         */
-        interface WithTitle {
-            /**
-             * Specifies the title property: Title of the support ticket..
-             * 
-             * @param title Title of the support ticket.
-             * @return the next definition stage.
-             */
-            WithServiceId withTitle(String title);
-        }
-
-        /**
-         * The stage of the SupportTicketDetails definition allowing to specify serviceId.
-         */
-        interface WithServiceId {
-            /**
-             * Specifies the serviceId property: This is the resource Id of the Azure service resource associated with
-             * the support ticket..
-             * 
-             * @param serviceId This is the resource Id of the Azure service resource associated with the support
-             * ticket.
-             * @return the next definition stage.
-             */
-            WithCreate withServiceId(String serviceId);
+        interface Blank extends WithCreate {
         }
 
         /**
          * The stage of the SupportTicketDetails definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithSupportTicketId, DefinitionStages.WithEnrollmentId,
-            DefinitionStages.WithRequire24X7Response, DefinitionStages.WithProblemScopingQuestions,
-            DefinitionStages.WithSupportPlanId, DefinitionStages.WithServiceLevelAgreement,
-            DefinitionStages.WithSupportEngineer, DefinitionStages.WithProblemStartTime,
+        interface WithCreate extends DefinitionStages.WithSupportTicketId, DefinitionStages.WithDescription,
+            DefinitionStages.WithProblemClassificationId, DefinitionStages.WithSeverity,
+            DefinitionStages.WithEnrollmentId, DefinitionStages.WithRequire24X7Response,
+            DefinitionStages.WithAdvancedDiagnosticConsent, DefinitionStages.WithProblemScopingQuestions,
+            DefinitionStages.WithSupportPlanId, DefinitionStages.WithContactDetails,
+            DefinitionStages.WithServiceLevelAgreement, DefinitionStages.WithSupportEngineer,
+            DefinitionStages.WithTitle, DefinitionStages.WithProblemStartTime, DefinitionStages.WithServiceId,
             DefinitionStages.WithFileWorkspaceName, DefinitionStages.WithTechnicalTicketDetails,
             DefinitionStages.WithQuotaTicketDetails, DefinitionStages.WithSecondaryConsent {
             /**
@@ -399,6 +295,54 @@ public interface SupportTicketDetails {
         }
 
         /**
+         * The stage of the SupportTicketDetails definition allowing to specify description.
+         */
+        interface WithDescription {
+            /**
+             * Specifies the description property: Detailed description of the question or issue..
+             * 
+             * @param description Detailed description of the question or issue.
+             * @return the next definition stage.
+             */
+            WithCreate withDescription(String description);
+        }
+
+        /**
+         * The stage of the SupportTicketDetails definition allowing to specify problemClassificationId.
+         */
+        interface WithProblemClassificationId {
+            /**
+             * Specifies the problemClassificationId property: Each Azure service has its own set of issue categories,
+             * also known as problem classification. This parameter is the unique Id for the type of problem you are
+             * experiencing..
+             * 
+             * @param problemClassificationId Each Azure service has its own set of issue categories, also known as
+             * problem classification. This parameter is the unique Id for the type of problem you are experiencing.
+             * @return the next definition stage.
+             */
+            WithCreate withProblemClassificationId(String problemClassificationId);
+        }
+
+        /**
+         * The stage of the SupportTicketDetails definition allowing to specify severity.
+         */
+        interface WithSeverity {
+            /**
+             * Specifies the severity property: A value that indicates the urgency of the case, which in turn determines
+             * the response time according to the service level agreement of the technical support plan you have with
+             * Azure. Note: 'Highest critical impact', also known as the 'Emergency - Severe impact' level in the Azure
+             * portal is reserved only for our Premium customers..
+             * 
+             * @param severity A value that indicates the urgency of the case, which in turn determines the response
+             * time according to the service level agreement of the technical support plan you have with Azure. Note:
+             * 'Highest critical impact', also known as the 'Emergency - Severe impact' level in the Azure portal is
+             * reserved only for our Premium customers.
+             * @return the next definition stage.
+             */
+            WithCreate withSeverity(SeverityLevel severity);
+        }
+
+        /**
          * The stage of the SupportTicketDetails definition allowing to specify enrollmentId.
          */
         interface WithEnrollmentId {
@@ -422,6 +366,20 @@ public interface SupportTicketDetails {
              * @return the next definition stage.
              */
             WithCreate withRequire24X7Response(Boolean require24X7Response);
+        }
+
+        /**
+         * The stage of the SupportTicketDetails definition allowing to specify advancedDiagnosticConsent.
+         */
+        interface WithAdvancedDiagnosticConsent {
+            /**
+             * Specifies the advancedDiagnosticConsent property: Advanced diagnostic consent to be updated on the
+             * support ticket..
+             * 
+             * @param advancedDiagnosticConsent Advanced diagnostic consent to be updated on the support ticket.
+             * @return the next definition stage.
+             */
+            WithCreate withAdvancedDiagnosticConsent(Consent advancedDiagnosticConsent);
         }
 
         /**
@@ -449,6 +407,20 @@ public interface SupportTicketDetails {
              * @return the next definition stage.
              */
             WithCreate withSupportPlanId(String supportPlanId);
+        }
+
+        /**
+         * The stage of the SupportTicketDetails definition allowing to specify contactDetails.
+         */
+        interface WithContactDetails {
+            /**
+             * Specifies the contactDetails property: Contact information of the user requesting to create a support
+             * ticket..
+             * 
+             * @param contactDetails Contact information of the user requesting to create a support ticket.
+             * @return the next definition stage.
+             */
+            WithCreate withContactDetails(ContactProfile contactDetails);
         }
 
         /**
@@ -480,6 +452,19 @@ public interface SupportTicketDetails {
         }
 
         /**
+         * The stage of the SupportTicketDetails definition allowing to specify title.
+         */
+        interface WithTitle {
+            /**
+             * Specifies the title property: Title of the support ticket..
+             * 
+             * @param title Title of the support ticket.
+             * @return the next definition stage.
+             */
+            WithCreate withTitle(String title);
+        }
+
+        /**
          * The stage of the SupportTicketDetails definition allowing to specify problemStartTime.
          */
         interface WithProblemStartTime {
@@ -490,6 +475,21 @@ public interface SupportTicketDetails {
              * @return the next definition stage.
              */
             WithCreate withProblemStartTime(OffsetDateTime problemStartTime);
+        }
+
+        /**
+         * The stage of the SupportTicketDetails definition allowing to specify serviceId.
+         */
+        interface WithServiceId {
+            /**
+             * Specifies the serviceId property: This is the resource Id of the Azure service resource associated with
+             * the support ticket..
+             * 
+             * @param serviceId This is the resource Id of the Azure service resource associated with the support
+             * ticket.
+             * @return the next definition stage.
+             */
+            WithCreate withServiceId(String serviceId);
         }
 
         /**

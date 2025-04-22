@@ -111,6 +111,11 @@ public final class CommunicationDetailsImpl implements CommunicationDetails, Com
         return this;
     }
 
+    public CommunicationDetailsImpl withSender(String sender) {
+        this.innerModel().withSender(sender);
+        return this;
+    }
+
     public CommunicationDetailsImpl withSubject(String subject) {
         this.innerModel().withSubject(subject);
         return this;
@@ -118,11 +123,6 @@ public final class CommunicationDetailsImpl implements CommunicationDetails, Com
 
     public CommunicationDetailsImpl withBody(String body) {
         this.innerModel().withBody(body);
-        return this;
-    }
-
-    public CommunicationDetailsImpl withSender(String sender) {
-        this.innerModel().withSender(sender);
         return this;
     }
 }

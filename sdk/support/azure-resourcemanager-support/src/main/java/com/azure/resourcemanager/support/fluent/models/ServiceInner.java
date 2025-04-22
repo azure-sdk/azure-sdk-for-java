@@ -11,6 +11,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Object that represents a Service resource.
@@ -123,6 +124,15 @@ public final class ServiceInner implements JsonSerializable<ServiceInner> {
         }
         this.innerProperties().withResourceTypes(resourceTypes);
         return this;
+    }
+
+    /**
+     * Get the metadata property: Metadata about the service, only visible for 1P clients.
+     * 
+     * @return the metadata value.
+     */
+    public Map<String, String> metadata() {
+        return this.innerProperties() == null ? null : this.innerProperties().metadata();
     }
 
     /**

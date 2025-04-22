@@ -17,7 +17,7 @@ import java.util.Arrays;
  */
 public final class SupportTicketsNoSubscriptionUpdateSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * UpdateAdvancedDiagnosticConsentOfSupportTicket.json
      */
     /**
@@ -33,9 +33,8 @@ public final class SupportTicketsNoSubscriptionUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/UpdateSeverityOfSupportTicket
-     * .json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * UpdateSeverityOfSupportTicket.json
      */
     /**
      * Sample code: Update severity of a support ticket.
@@ -49,9 +48,8 @@ public final class SupportTicketsNoSubscriptionUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/UpdateStatusOfSupportTicket.
-     * json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * UpdateStatusOfSupportTicket.json
      */
     /**
      * Sample code: Update status of a support ticket.
@@ -65,7 +63,7 @@ public final class SupportTicketsNoSubscriptionUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * UpdateContactDetailsOfSupportTicket.json
      */
     /**

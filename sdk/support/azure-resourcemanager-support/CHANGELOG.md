@@ -1,14 +1,59 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-22)
+
+- Azure Resource Manager support client library for Java. This package contains Microsoft Azure SDK for support Management SDK. Microsoft Azure Support Resource Provider. Package tag package-preview-2023-06. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.ServiceClassifications` was added
 
-### Bugs Fixed
+* `models.LookUpResourceIdRequest` was added
 
-### Other Changes
+* `models.ProblemClassificationsNoSubscriptions` was added
+
+* `models.ServiceClassificationRequest` was added
+
+* `models.ProblemClassificationsClassificationOutput` was added
+
+* `models.LookUpResourceIds` was added
+
+* `models.ServiceClassificationOutput` was added
+
+* `models.ProblemClassificationsClassificationResult` was added
+
+* `models.LookUpResourceIdResponse` was added
+
+* `models.ServiceClassificationAnswer` was added
+
+* `models.ServiceClassificationsNoSubscriptions` was added
+
+* `models.ProblemClassificationProperties` was added
+
+* `models.ProblemClassificationsClassificationInput` was added
+
+* `models.ResourceType` was added
+
+#### `models.ProblemClassification` was modified
+
+* `parentProblemClassification()` was added
+* `metadata()` was added
+
+#### `models.ProblemClassifications` was modified
+
+* `classifyProblemsWithResponse(java.lang.String,models.ProblemClassificationsClassificationInput,com.azure.core.util.Context)` was added
+* `classifyProblems(java.lang.String,models.ProblemClassificationsClassificationInput)` was added
+
+#### `models.Service` was modified
+
+* `metadata()` was added
+
+#### `SupportManager` was modified
+
+* `problemClassificationsNoSubscriptions()` was added
+* `serviceClassifications()` was added
+* `lookUpResourceIds()` was added
+* `serviceClassificationsNoSubscriptions()` was added
 
 ## 1.1.0 (2024-12-19)
 

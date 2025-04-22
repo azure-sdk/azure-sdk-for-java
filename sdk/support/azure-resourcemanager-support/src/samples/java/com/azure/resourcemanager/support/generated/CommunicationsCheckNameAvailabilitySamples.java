@@ -12,15 +12,15 @@ import com.azure.resourcemanager.support.models.Type;
  */
 public final class CommunicationsCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * CheckNameAvailabilityForSupportTicketCommunication.json
      */
     /**
-     * Sample code: Checks whether name is available for Communication resource for a subscription support ticket.
+     * Sample code: Checks whether name is available for subscription scoped Communication resource.
      * 
      * @param manager Entry point to SupportManager.
      */
-    public static void checksWhetherNameIsAvailableForCommunicationResourceForASubscriptionSupportTicket(
+    public static void checksWhetherNameIsAvailableForSubscriptionScopedCommunicationResource(
         com.azure.resourcemanager.support.SupportManager manager) {
         manager.communications()
             .checkNameAvailabilityWithResponse("testticket",

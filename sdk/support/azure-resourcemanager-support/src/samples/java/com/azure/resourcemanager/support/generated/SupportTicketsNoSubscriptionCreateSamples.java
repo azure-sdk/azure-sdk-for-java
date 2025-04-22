@@ -18,9 +18,8 @@ import java.util.Arrays;
  */
 public final class SupportTicketsNoSubscriptionCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/CreateBillingSupportTicket.
-     * json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * CreateBillingSupportTicket.json
      */
     /**
      * Sample code: Create a ticket for Billing related issues.
@@ -33,7 +32,6 @@ public final class SupportTicketsNoSubscriptionCreateSamples {
                 .withProblemClassificationId(
                     "/providers/Microsoft.Support/services/billing_service_guid/problemClassifications/billing_problemClassification_guid")
                 .withSeverity(SeverityLevel.MODERATE)
-                .withAdvancedDiagnosticConsent(Consent.NO)
                 .withSupportPlanId(
                     "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
                 .withContactDetails(new ContactProfile().withFirstName("abc")
@@ -50,9 +48,8 @@ public final class SupportTicketsNoSubscriptionCreateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/CreateSubMgmtSupportTicket.
-     * json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * CreateSubMgmtSupportTicket.json
      */
     /**
      * Sample code: Create a ticket for Subscription Management related issues.
@@ -66,7 +63,6 @@ public final class SupportTicketsNoSubscriptionCreateSamples {
                 .withProblemClassificationId(
                     "/providers/Microsoft.Support/services/subscription_management_service_guid/problemClassifications/subscription_management_problemClassification_guid")
                 .withSeverity(SeverityLevel.MODERATE)
-                .withAdvancedDiagnosticConsent(Consent.YES)
                 .withSupportPlanId(
                     "U291cmNlOlNDTSxDbGFyaWZ5SW5zdGFsbGF0aW9uU2l0ZUlkOjcsTGluZUl0ZW1JZDo5ODY1NzIyOSxDb250cmFjdElkOjk4NjU5MTk0LFN1YnNjcmlwdGlvbklkOjc2Y2I3N2ZhLThiMTctNGVhYi05NDkzLWI2NWRhY2U5OTgxMyw=")
                 .withContactDetails(new ContactProfile().withFirstName("abc")
@@ -83,9 +79,8 @@ public final class SupportTicketsNoSubscriptionCreateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/CreateTechnicalSupportTicket.
-     * json
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
+     * CreateTechnicalSupportTicket.json
      */
     /**
      * Sample code: Create a ticket for Technical issue related to a specific resource.
