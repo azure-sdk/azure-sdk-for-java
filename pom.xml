@@ -132,6 +132,7 @@
     <module>sdk/labservices</module>
     <module>sdk/largeinstance</module>
     <module>sdk/loadtesting</module>
+    <module>sdk/loadtestservicemicrosoftloadtestserviceloadtesting</module>
     <module>sdk/loganalytics</module>
     <module>sdk/logic</module>
     <module>sdk/logz</module>

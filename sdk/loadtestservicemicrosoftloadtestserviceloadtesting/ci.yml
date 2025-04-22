@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/loadtestservicemicrosoftloadtestserviceloadtesting/ci.yml
+      - sdk/loadtestservicemicrosoftloadtestserviceloadtesting/azure-resourcemanager-loadtestservicemicrosoftloadtestserviceloadtesting/
+    exclude:
+      - sdk/loadtestservicemicrosoftloadtestserviceloadtesting/pom.xml
+      - sdk/loadtestservicemicrosoftloadtestserviceloadtesting/azure-resourcemanager-loadtestservicemicrosoftloadtestserviceloadtesting/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/loadtestservicemicrosoftloadtestserviceloadtesting/ci.yml
+      - sdk/loadtestservicemicrosoftloadtestserviceloadtesting/azure-resourcemanager-loadtestservicemicrosoftloadtestserviceloadtesting/
+    exclude:
+      - sdk/loadtestservicemicrosoftloadtestserviceloadtesting/pom.xml
+      - sdk/loadtestservicemicrosoftloadtestserviceloadtesting/azure-resourcemanager-loadtestservicemicrosoftloadtestserviceloadtesting/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerloadtestservicemicrosoftloadtestserviceloadtesting
+    displayName: azure-resourcemanager-loadtestservicemicrosoftloadtestserviceloadtesting
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: loadtestservicemicrosoftloadtestserviceloadtesting
+    Artifacts:
+      - name: azure-resourcemanager-loadtestservicemicrosoftloadtestserviceloadtesting
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerloadtestservicemicrosoftloadtestserviceloadtesting
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerloadtestservicemicrosoftloadtestserviceloadtesting }}
