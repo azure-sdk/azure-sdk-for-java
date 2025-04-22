@@ -13,8 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Updates severity, ticket status, contact details, advanced diagnostic consent and secondary consent in the support
- * ticket.
+ * Updates severity, ticket status, and contact details in the support ticket.
  */
 @Fluent
 public final class UpdateSupportTicket implements JsonSerializable<UpdateSupportTicket> {

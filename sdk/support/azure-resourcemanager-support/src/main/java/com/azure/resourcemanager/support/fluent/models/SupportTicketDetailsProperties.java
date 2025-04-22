@@ -659,11 +659,6 @@ public final class SupportTicketDetailsProperties implements JsonSerializable<Su
                 .log(new IllegalArgumentException(
                     "Missing required property severity in model SupportTicketDetailsProperties"));
         }
-        if (advancedDiagnosticConsent() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property advancedDiagnosticConsent in model SupportTicketDetailsProperties"));
-        }
         if (contactDetails() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
@@ -709,14 +704,14 @@ public final class SupportTicketDetailsProperties implements JsonSerializable<Su
         jsonWriter.writeStringField("description", this.description);
         jsonWriter.writeStringField("problemClassificationId", this.problemClassificationId);
         jsonWriter.writeStringField("severity", this.severity == null ? null : this.severity.toString());
-        jsonWriter.writeStringField("advancedDiagnosticConsent",
-            this.advancedDiagnosticConsent == null ? null : this.advancedDiagnosticConsent.toString());
         jsonWriter.writeJsonField("contactDetails", this.contactDetails);
         jsonWriter.writeStringField("title", this.title);
         jsonWriter.writeStringField("serviceId", this.serviceId);
         jsonWriter.writeStringField("supportTicketId", this.supportTicketId);
         jsonWriter.writeStringField("enrollmentId", this.enrollmentId);
         jsonWriter.writeBooleanField("require24X7Response", this.require24X7Response);
+        jsonWriter.writeStringField("advancedDiagnosticConsent",
+            this.advancedDiagnosticConsent == null ? null : this.advancedDiagnosticConsent.toString());
         jsonWriter.writeStringField("problemScopingQuestions", this.problemScopingQuestions);
         jsonWriter.writeStringField("supportPlanId", this.supportPlanId);
         jsonWriter.writeJsonField("serviceLevelAgreement", this.serviceLevelAgreement);
@@ -756,9 +751,6 @@ public final class SupportTicketDetailsProperties implements JsonSerializable<Su
                     deserializedSupportTicketDetailsProperties.problemClassificationId = reader.getString();
                 } else if ("severity".equals(fieldName)) {
                     deserializedSupportTicketDetailsProperties.severity = SeverityLevel.fromString(reader.getString());
-                } else if ("advancedDiagnosticConsent".equals(fieldName)) {
-                    deserializedSupportTicketDetailsProperties.advancedDiagnosticConsent
-                        = Consent.fromString(reader.getString());
                 } else if ("contactDetails".equals(fieldName)) {
                     deserializedSupportTicketDetailsProperties.contactDetails = ContactProfile.fromJson(reader);
                 } else if ("title".equals(fieldName)) {
@@ -774,6 +766,9 @@ public final class SupportTicketDetailsProperties implements JsonSerializable<Su
                 } else if ("require24X7Response".equals(fieldName)) {
                     deserializedSupportTicketDetailsProperties.require24X7Response
                         = reader.getNullable(JsonReader::getBoolean);
+                } else if ("advancedDiagnosticConsent".equals(fieldName)) {
+                    deserializedSupportTicketDetailsProperties.advancedDiagnosticConsent
+                        = Consent.fromString(reader.getString());
                 } else if ("problemScopingQuestions".equals(fieldName)) {
                     deserializedSupportTicketDetailsProperties.problemScopingQuestions = reader.getString();
                 } else if ("supportPlanId".equals(fieldName)) {

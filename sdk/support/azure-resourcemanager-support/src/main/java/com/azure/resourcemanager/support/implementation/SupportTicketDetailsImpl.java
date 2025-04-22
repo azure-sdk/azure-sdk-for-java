@@ -227,6 +227,11 @@ public final class SupportTicketDetailsImpl
         return this;
     }
 
+    public SupportTicketDetailsImpl withSupportTicketId(String supportTicketId) {
+        this.innerModel().withSupportTicketId(supportTicketId);
+        return this;
+    }
+
     public SupportTicketDetailsImpl withDescription(String description) {
         this.innerModel().withDescription(description);
         return this;
@@ -247,36 +252,6 @@ public final class SupportTicketDetailsImpl
         }
     }
 
-    public SupportTicketDetailsImpl withAdvancedDiagnosticConsent(Consent advancedDiagnosticConsent) {
-        if (isInCreateMode()) {
-            this.innerModel().withAdvancedDiagnosticConsent(advancedDiagnosticConsent);
-            return this;
-        } else {
-            this.updateUpdateSupportTicket.withAdvancedDiagnosticConsent(advancedDiagnosticConsent);
-            return this;
-        }
-    }
-
-    public SupportTicketDetailsImpl withContactDetails(ContactProfile contactDetails) {
-        this.innerModel().withContactDetails(contactDetails);
-        return this;
-    }
-
-    public SupportTicketDetailsImpl withTitle(String title) {
-        this.innerModel().withTitle(title);
-        return this;
-    }
-
-    public SupportTicketDetailsImpl withServiceId(String serviceId) {
-        this.innerModel().withServiceId(serviceId);
-        return this;
-    }
-
-    public SupportTicketDetailsImpl withSupportTicketId(String supportTicketId) {
-        this.innerModel().withSupportTicketId(supportTicketId);
-        return this;
-    }
-
     public SupportTicketDetailsImpl withEnrollmentId(String enrollmentId) {
         this.innerModel().withEnrollmentId(enrollmentId);
         return this;
@@ -287,6 +262,16 @@ public final class SupportTicketDetailsImpl
         return this;
     }
 
+    public SupportTicketDetailsImpl withAdvancedDiagnosticConsent(Consent advancedDiagnosticConsent) {
+        if (isInCreateMode()) {
+            this.innerModel().withAdvancedDiagnosticConsent(advancedDiagnosticConsent);
+            return this;
+        } else {
+            this.updateUpdateSupportTicket.withAdvancedDiagnosticConsent(advancedDiagnosticConsent);
+            return this;
+        }
+    }
+
     public SupportTicketDetailsImpl withProblemScopingQuestions(String problemScopingQuestions) {
         this.innerModel().withProblemScopingQuestions(problemScopingQuestions);
         return this;
@@ -294,6 +279,11 @@ public final class SupportTicketDetailsImpl
 
     public SupportTicketDetailsImpl withSupportPlanId(String supportPlanId) {
         this.innerModel().withSupportPlanId(supportPlanId);
+        return this;
+    }
+
+    public SupportTicketDetailsImpl withContactDetails(ContactProfile contactDetails) {
+        this.innerModel().withContactDetails(contactDetails);
         return this;
     }
 
@@ -307,8 +297,18 @@ public final class SupportTicketDetailsImpl
         return this;
     }
 
+    public SupportTicketDetailsImpl withTitle(String title) {
+        this.innerModel().withTitle(title);
+        return this;
+    }
+
     public SupportTicketDetailsImpl withProblemStartTime(OffsetDateTime problemStartTime) {
         this.innerModel().withProblemStartTime(problemStartTime);
+        return this;
+    }
+
+    public SupportTicketDetailsImpl withServiceId(String serviceId) {
+        this.innerModel().withServiceId(serviceId);
         return this;
     }
 
