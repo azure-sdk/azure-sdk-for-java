@@ -1,6 +1,6 @@
 # Release History
 
-## 1.0.0 (2025-04-21)
+## 1.0.0 (2025-04-22)
 
 - Azure Resource Manager Neon Postgres client library for Java. This package contains Microsoft Azure SDK for Neon Postgres Management SDK. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
@@ -126,12 +126,12 @@
 
 #### `NeonPostgresManager` was modified
 
-* `computes()` was added
-* `neonDatabases()` was added
 * `branches()` was added
-* `projects()` was added
-* `neonRoles()` was added
 * `endpoints()` was added
+* `neonDatabases()` was added
+* `neonRoles()` was added
+* `projects()` was added
+* `computes()` was added
 
 ## 1.0.0-beta.1 (2024-12-03)
 
