@@ -107,6 +107,8 @@ redis:
   suffix: generated
 resources:
   suffix: generated
+resources/Microsoft.Resources/bicep:
+  service: resourcesmicrosoftresourcesbicep
 riskiq:
   service: defendereasm
 service-map:
