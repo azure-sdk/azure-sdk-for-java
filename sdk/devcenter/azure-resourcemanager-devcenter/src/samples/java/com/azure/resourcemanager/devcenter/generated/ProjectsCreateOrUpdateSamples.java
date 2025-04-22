@@ -4,6 +4,13 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
+import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.devcenter.models.ProjectCustomizationIdentityType;
+import com.azure.resourcemanager.devcenter.models.ProjectCustomizationManagedIdentity;
+import com.azure.resourcemanager.devcenter.models.ProjectCustomizationSettings;
+import com.azure.resourcemanager.devcenter.models.UserAssignedIdentity;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +19,8 @@ import java.util.Map;
  */
 public final class ProjectsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
      * Projects_PutWithMaxDevBoxPerUser.json
      */
     /**
@@ -36,7 +44,67 @@ public final class ProjectsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Projects_Put.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Projects_PutWithCustomizationSettings.json
+     */
+    /**
+     * Sample code: Projects_CreateOrUpdateWithCustomizationSettings.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        projectsCreateOrUpdateWithCustomizationSettings(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projects()
+            .define("DevProject")
+            .withRegion("centralus")
+            .withExistingResourceGroup("rg1")
+            .withTags(mapOf("CostCenter", "R&D"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1",
+                    new UserAssignedIdentity())))
+            .withDevCenterId(
+                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/rg1/providers/Microsoft.DevCenter/devcenters/Contoso")
+            .withDescription("This is my first project.")
+            .withCustomizationSettings(new ProjectCustomizationSettings()
+                .withIdentities(Arrays.asList(new ProjectCustomizationManagedIdentity()
+                    .withIdentityType(ProjectCustomizationIdentityType.USER_ASSIGNED_IDENTITY)
+                    .withIdentityResourceId(
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1"))))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Projects_PutWithCustomizationSettings_SystemIdentity.json
+     */
+    /**
+     * Sample code: Projects_CreateOrUpdateWithCustomizationSettings_SystemIdentity.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectsCreateOrUpdateWithCustomizationSettingsSystemIdentity(
+        com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projects()
+            .define("DevProject")
+            .withRegion("centralus")
+            .withExistingResourceGroup("rg1")
+            .withTags(mapOf("CostCenter", "R&D"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
+            .withDevCenterId(
+                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/rg1/providers/Microsoft.DevCenter/devcenters/Contoso")
+            .withDescription("This is my first project.")
+            .withCustomizationSettings(new ProjectCustomizationSettings()
+                .withIdentities(Arrays.asList(new ProjectCustomizationManagedIdentity()
+                    .withIdentityType(ProjectCustomizationIdentityType.SYSTEM_ASSIGNED_IDENTITY))))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Projects_Put.
+     * json
      */
     /**
      * Sample code: Projects_CreateOrUpdate.
