@@ -107,6 +107,8 @@ redis:
   suffix: generated
 resources:
   suffix: generated
+resources/Microsoft.Resources/templateSpecs:
+  service: resourcesmicrosoftresourcestemplatespecs
 riskiq:
   service: defendereasm
 service-map:
