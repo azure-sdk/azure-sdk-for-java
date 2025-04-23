@@ -37,10 +37,6 @@ public final class CapabilityTypeImpl implements CapabilityType {
         return this.innerModel().systemData();
     }
 
-    public String location() {
-        return this.innerModel().location();
-    }
-
     public String publisher() {
         return this.innerModel().publisher();
     }
@@ -80,6 +76,15 @@ public final class CapabilityTypeImpl implements CapabilityType {
 
     public List<String> azureRbacDataActions() {
         List<String> inner = this.innerModel().azureRbacDataActions();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<String> requiredAzureRoleDefinitionIds() {
+        List<String> inner = this.innerModel().requiredAzureRoleDefinitionIds();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {

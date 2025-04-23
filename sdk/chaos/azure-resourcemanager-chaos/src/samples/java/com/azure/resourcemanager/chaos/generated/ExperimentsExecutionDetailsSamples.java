@@ -10,7 +10,7 @@ package com.azure.resourcemanager.chaos.generated;
 public final class ExperimentsExecutionDetailsSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/DetailsExperiment.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Experiments_ExecutionDetails.json
      */
     /**
      * Sample code: Get experiment execution details.

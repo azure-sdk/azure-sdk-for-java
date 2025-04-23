@@ -22,6 +22,7 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.chaos.fluent.ChaosManagementClient;
 import com.azure.resourcemanager.chaos.implementation.CapabilitiesImpl;
@@ -43,6 +44,7 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -51,19 +53,19 @@ import java.util.stream.Collectors;
  * Chaos Management Client.
  */
 public final class ChaosManager {
-    private Capabilities capabilities;
-
-    private CapabilityTypes capabilityTypes;
+    private Operations operations;
 
     private Experiments experiments;
 
     private OperationStatuses operationStatuses;
 
-    private Operations operations;
-
     private TargetTypes targetTypes;
 
+    private CapabilityTypes capabilityTypes;
+
     private Targets targets;
+
+    private Capabilities capabilities;
 
     private final ChaosManagementClient clientObject;
 
@@ -117,6 +119,9 @@ public final class ChaosManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-chaos.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -224,12 +229,14 @@ public final class ChaosManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.chaos")
                 .append("/")
-                .append("1.2.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -276,27 +283,15 @@ public final class ChaosManager {
     }
 
     /**
-     * Gets the resource collection API of Capabilities.
+     * Gets the resource collection API of Operations.
      * 
-     * @return Resource collection API of Capabilities.
+     * @return Resource collection API of Operations.
      */
-    public Capabilities capabilities() {
-        if (this.capabilities == null) {
-            this.capabilities = new CapabilitiesImpl(clientObject.getCapabilities(), this);
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
-        return capabilities;
-    }
-
-    /**
-     * Gets the resource collection API of CapabilityTypes.
-     * 
-     * @return Resource collection API of CapabilityTypes.
-     */
-    public CapabilityTypes capabilityTypes() {
-        if (this.capabilityTypes == null) {
-            this.capabilityTypes = new CapabilityTypesImpl(clientObject.getCapabilityTypes(), this);
-        }
-        return capabilityTypes;
+        return operations;
     }
 
     /**
@@ -324,18 +319,6 @@ public final class ChaosManager {
     }
 
     /**
-     * Gets the resource collection API of Operations.
-     * 
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
-    }
-
-    /**
      * Gets the resource collection API of TargetTypes.
      * 
      * @return Resource collection API of TargetTypes.
@@ -348,6 +331,18 @@ public final class ChaosManager {
     }
 
     /**
+     * Gets the resource collection API of CapabilityTypes.
+     * 
+     * @return Resource collection API of CapabilityTypes.
+     */
+    public CapabilityTypes capabilityTypes() {
+        if (this.capabilityTypes == null) {
+            this.capabilityTypes = new CapabilityTypesImpl(clientObject.getCapabilityTypes(), this);
+        }
+        return capabilityTypes;
+    }
+
+    /**
      * Gets the resource collection API of Targets.
      * 
      * @return Resource collection API of Targets.
@@ -357,6 +352,18 @@ public final class ChaosManager {
             this.targets = new TargetsImpl(clientObject.getTargets(), this);
         }
         return targets;
+    }
+
+    /**
+     * Gets the resource collection API of Capabilities.
+     * 
+     * @return Resource collection API of Capabilities.
+     */
+    public Capabilities capabilities() {
+        if (this.capabilities == null) {
+            this.capabilities = new CapabilitiesImpl(clientObject.getCapabilities(), this);
+        }
+        return capabilities;
     }
 
     /**
