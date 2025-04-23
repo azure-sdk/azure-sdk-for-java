@@ -1,14 +1,62 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-23)
 
-### Features Added
+- Azure Resource Manager Device Registry client library for Java. This package contains Microsoft Azure SDK for Device Registry Management SDK. Microsoft.DeviceRegistry Resource Provider management API. Package tag package-2024-11. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `implementation.models.AssetListResult` was removed
 
-### Other Changes
+#### `implementation.models.OperationListResult` was removed
+
+#### `implementation.models.BillingContainerListResult` was removed
+
+#### `implementation.models.AssetEndpointProfileListResult` was removed
+
+#### `models.OperationStatusResult` was modified
+
+* `java.lang.Double percentComplete()` -> `java.lang.Float percentComplete()`
+
+#### `models.AssetEndpointProfileUpdateProperties` was modified
+
+* `withAuthentication(models.Authentication)` was removed
+* `models.Authentication authentication()` -> `models.AuthenticationUpdate authentication()`
+
+#### `DeviceRegistryManager` was modified
+
+* `fluent.DeviceRegistryManagementClient serviceClient()` -> `fluent.DeviceRegistryMgmtClient serviceClient()`
+
+#### `models.AssetUpdateProperties` was modified
+
+* `models.Topic defaultTopic()` -> `models.TopicUpdate defaultTopic()`
+* `withDefaultTopic(models.Topic)` was removed
+
+### Features Added
+
+* `models.OperationListResult` was added
+
+* `models.AssetEndpointProfileListResult` was added
+
+* `models.TopicUpdate` was added
+
+* `models.UsernamePasswordCredentialsUpdate` was added
+
+* `models.BillingContainerListResult` was added
+
+* `models.AssetListResult` was added
+
+* `models.X509CredentialsUpdate` was added
+
+* `models.AuthenticationUpdate` was added
+
+#### `models.AssetEndpointProfileUpdateProperties` was modified
+
+* `withAuthentication(models.AuthenticationUpdate)` was added
+
+#### `models.AssetUpdateProperties` was modified
+
+* `withDefaultTopic(models.TopicUpdate)` was added
 
 ## 1.0.0 (2025-02-21)
 
