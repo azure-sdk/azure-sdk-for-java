@@ -1,14 +1,118 @@
 # Release History
 
-## 1.2.0-beta.2 (Unreleased)
+## 1.0.0-beta.1 (2025-04-23)
 
-### Features Added
+- Azure Resource Manager HybridConnectivity client library for Java. This package contains Microsoft Azure SDK for HybridConnectivity Management SDK. REST API for Hybrid Connectivity. Package tag package-2024-12. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.EndpointProperties` was removed
 
-### Other Changes
+#### `models.EndpointResource$Update` was modified
+
+* `withProperties(models.EndpointProperties)` was removed
+
+#### `models.EndpointResource` was modified
+
+* `properties()` was removed
+
+#### `models.EndpointResource$Definition` was modified
+
+* `withProperties(models.EndpointProperties)` was removed
+
+### Features Added
+
+* `models.SolutionConfiguration` was added
+
+* `models.GenerateAwsTemplateRequest` was added
+
+* `models.PublicCloudConnector` was added
+
+* `models.Inventories` was added
+
+* `models.SolutionConfiguration$Definition` was added
+
+* `models.SolutionConfigurationUpdate` was added
+
+* `models.OperationStatusResult` was added
+
+* `models.PublicCloudConnectorUpdate` was added
+
+* `models.SolutionTypeSettingsProperties` was added
+
+* `models.SolutionTypeResource` was added
+
+* `models.SolutionTypeResourceListResult` was added
+
+* `models.AwsCloudProfile` was added
+
+* `models.InventoryResource` was added
+
+* `models.SolutionTypeSettings` was added
+
+* `models.SolutionConfigurationStatus` was added
+
+* `models.SolutionConfigurations` was added
+
+* `models.ResourceProvisioningState` was added
+
+* `models.TrackedResourceUpdate` was added
+
+* `models.HostType` was added
+
+* `models.InventoryResourceListResult` was added
+
+* `models.PublicCloudConnectors` was added
+
+* `models.SolutionConfiguration$Update` was added
+
+* `models.AwsCloudProfileUpdate` was added
+
+* `models.PublicCloudConnector$Definition` was added
+
+* `models.SolutionTypes` was added
+
+* `models.PublicCloudConnector$DefinitionStages` was added
+
+* `models.PublicCloudConnector$Update` was added
+
+* `models.PublicCloudConnector$UpdateStages` was added
+
+* `models.SolutionConfiguration$DefinitionStages` was added
+
+* `models.PublicCloudConnectorListResult` was added
+
+* `models.SolutionConfigurationListResult` was added
+
+* `models.CloudNativeType` was added
+
+* `models.GenerateAwsTemplates` was added
+
+* `models.SolutionConfiguration$UpdateStages` was added
+
+#### `models.EndpointResource$Update` was modified
+
+* `withTypePropertiesType(models.Type)` was added
+* `withResourceId(java.lang.String)` was added
+
+#### `models.EndpointResource` was modified
+
+* `typePropertiesType()` was added
+* `provisioningState()` was added
+* `resourceId()` was added
+
+#### `HybridConnectivityManager` was modified
+
+* `publicCloudConnectors()` was added
+* `solutionConfigurations()` was added
+* `generateAwsTemplates()` was added
+* `solutionTypes()` was added
+* `inventories()` was added
+
+#### `models.EndpointResource$Definition` was modified
+
+* `withTypePropertiesType(models.Type)` was added
+* `withResourceId(java.lang.String)` was added
 
 ## 1.2.0-beta.1 (2025-02-26)
 
