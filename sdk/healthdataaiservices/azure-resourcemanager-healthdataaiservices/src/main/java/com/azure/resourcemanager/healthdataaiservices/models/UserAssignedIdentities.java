@@ -6,51 +6,30 @@ package com.azure.resourcemanager.healthdataaiservices.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.util.UUID;
 
 /**
- * User assigned identity properties.
+ * The UserAssignedIdentities model.
  */
 @Immutable
-public class UserAssignedIdentity implements JsonSerializable<UserAssignedIdentity> {
-    /*
-     * The principal ID of the assigned identity.
-     */
-    private UUID principalId;
-
+public final class UserAssignedIdentities extends UserAssignedIdentity {
     /*
      * The client ID of the assigned identity.
      */
     private UUID clientId;
 
-    /**
-     * Creates an instance of UserAssignedIdentity class.
+    /*
+     * The principal ID of the assigned identity.
      */
-    public UserAssignedIdentity() {
-    }
+    private UUID principalId;
 
     /**
-     * Get the principalId property: The principal ID of the assigned identity.
-     * 
-     * @return the principalId value.
+     * Creates an instance of UserAssignedIdentities class.
      */
-    public UUID principalId() {
-        return this.principalId;
-    }
-
-    /**
-     * Set the principalId property: The principal ID of the assigned identity.
-     * 
-     * @param principalId the principalId value to set.
-     * @return the UserAssignedIdentity object itself.
-     */
-    UserAssignedIdentity withPrincipalId(UUID principalId) {
-        this.principalId = principalId;
-        return this;
+    public UserAssignedIdentities() {
     }
 
     /**
@@ -58,19 +37,19 @@ public class UserAssignedIdentity implements JsonSerializable<UserAssignedIdenti
      * 
      * @return the clientId value.
      */
+    @Override
     public UUID clientId() {
         return this.clientId;
     }
 
     /**
-     * Set the clientId property: The client ID of the assigned identity.
+     * Get the principalId property: The principal ID of the assigned identity.
      * 
-     * @param clientId the clientId value to set.
-     * @return the UserAssignedIdentity object itself.
+     * @return the principalId value.
      */
-    UserAssignedIdentity withClientId(UUID clientId) {
-        this.clientId = clientId;
-        return this;
+    @Override
+    public UUID principalId() {
+        return this.principalId;
     }
 
     /**
@@ -78,6 +57,7 @@ public class UserAssignedIdentity implements JsonSerializable<UserAssignedIdenti
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
     }
 
@@ -91,32 +71,32 @@ public class UserAssignedIdentity implements JsonSerializable<UserAssignedIdenti
     }
 
     /**
-     * Reads an instance of UserAssignedIdentity from the JsonReader.
+     * Reads an instance of UserAssignedIdentities from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of UserAssignedIdentity if the JsonReader was pointing to an instance of it, or null if it
+     * @return An instance of UserAssignedIdentities if the JsonReader was pointing to an instance of it, or null if it
      * was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the UserAssignedIdentity.
+     * @throws IOException If an error occurs while reading the UserAssignedIdentities.
      */
-    public static UserAssignedIdentity fromJson(JsonReader jsonReader) throws IOException {
+    public static UserAssignedIdentities fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            UserAssignedIdentity deserializedUserAssignedIdentity = new UserAssignedIdentity();
+            UserAssignedIdentities deserializedUserAssignedIdentities = new UserAssignedIdentities();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("principalId".equals(fieldName)) {
-                    deserializedUserAssignedIdentity.principalId
+                    deserializedUserAssignedIdentities.principalId
                         = reader.getNullable(nonNullReader -> UUID.fromString(nonNullReader.getString()));
                 } else if ("clientId".equals(fieldName)) {
-                    deserializedUserAssignedIdentity.clientId
+                    deserializedUserAssignedIdentities.clientId
                         = reader.getNullable(nonNullReader -> UUID.fromString(nonNullReader.getString()));
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedUserAssignedIdentity;
+            return deserializedUserAssignedIdentities;
         });
     }
 }
