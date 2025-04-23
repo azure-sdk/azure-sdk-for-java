@@ -60,24 +60,23 @@
 ```java
 
 /**
- * Samples for Evidence CreateOrUpdate.
+ * Samples for Webhook CreateOrUpdate.
  */
-public final class EvidenceCreateOrUpdateSamples {
+public final class WebhookCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
      * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Evidence_CreateOrUpdate.json
+     * examples/Webhook_CreateOrUpdate.json
      */
     /**
-     * Sample code: Evidence_CreateOrUpdate.
+     * Sample code: Webhook_CreateOrUpdate.
      * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
-    public static void evidenceCreateOrUpdate(
+    public static void webhookCreateOrUpdate(
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.evidences()
-            .createOrUpdateWithResponse("testReportName", "evidence1", null, null, null,
-                com.azure.core.util.Context.NONE);
+        manager.webhooks()
+            .createOrUpdateWithResponse("testReportName", "testWebhookName", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -86,23 +85,22 @@ public final class EvidenceCreateOrUpdateSamples {
 
 ```java
 /**
- * Samples for Evidence Delete.
+ * Samples for Report Get.
  */
-public final class EvidenceDeleteSamples {
+public final class ReportGetSamples {
     /*
      * x-ms-original-file:
      * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Evidence_Delete.json
+     * examples/Report_Get.json
      */
     /**
-     * Sample code: Evidence_Delete.
+     * Sample code: Report_Get.
      * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
     public static void
-        evidenceDelete(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.evidences()
-            .deleteByResourceGroupWithResponse("testReportName", "evidence1", com.azure.core.util.Context.NONE);
+        reportGet(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.reports().getWithResponse("testReport", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -110,152 +108,29 @@ public final class EvidenceDeleteSamples {
 ### Evidence_Download
 
 ```java
-
 /**
- * Samples for Evidence Download.
+ * Samples for Webhook Delete.
  */
-public final class EvidenceDownloadSamples {
+public final class WebhookDeleteSamples {
     /*
      * x-ms-original-file:
      * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Evidence_Download.json
+     * examples/Webhook_Delete.json
      */
     /**
-     * Sample code: Evidence_Download.
+     * Sample code: Webhook_Delete.
      * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
     public static void
-        evidenceDownload(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.evidences().downloadWithResponse("testReportName", "evidence1", null, com.azure.core.util.Context.NONE);
+        webhookDelete(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.webhooks()
+            .deleteByResourceGroupWithResponse("testReportName", "testWebhookName", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### Evidence_Get
-
-```java
-/**
- * Samples for Evidence Get.
- */
-public final class EvidenceGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Evidence_Get.json
-     */
-    /**
-     * Sample code: Evidence_Get.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void
-        evidenceGet(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.evidences().getWithResponse("testReportName", "evidence1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Evidence_ListByReport
-
-```java
-/**
- * Samples for Evidence ListByReport.
- */
-public final class EvidenceListByReportSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Evidence_ListByReport.json
-     */
-    /**
-     * Sample code: Evidence_ListByReport.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void
-        evidenceListByReport(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.evidences()
-            .listByReport("reportName", null, null, null, null, null, null, null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Operations_List.json
-     */
-    /**
-     * Sample code: Operations_List.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void
-        operationsList(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProviderActions_CheckNameAvailability
-
-```java
-
-/**
- * Samples for ProviderActions CheckNameAvailability.
- */
-public final class ProviderActionsCheckNameAvailabilitySamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_CheckNameAvailability.json
-     */
-    /**
-     * Sample code: Report_CheckNameAvailability.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void reportCheckNameAvailability(
-        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.providerActions().checkNameAvailabilityWithResponse(null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProviderActions_GetCollectionCount
-
-```java
-
-/**
- * Samples for ProviderActions GetCollectionCount.
- */
-public final class ProviderActionsGetCollectionCountSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_GetCollectionCount.json
-     */
-    /**
-     * Sample code: Report_GetCollectionCount.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void reportGetCollectionCount(
-        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.providerActions().getCollectionCountWithResponse(null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProviderActions_GetOverviewStatus
 
 ```java
 
@@ -280,7 +155,57 @@ public final class ProviderActionsGetOverviewStatusSamples {
 }
 ```
 
-### ProviderActions_ListInUseStorageAccounts
+### Evidence_ListByReport
+
+```java
+
+/**
+ * Samples for ProviderActions Onboard.
+ */
+public final class ProviderActionsOnboardSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/Onboard.json
+     */
+    /**
+     * Sample code: Onboard.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void
+        onboard(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.providerActions().onboard(null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+
+/**
+ * Samples for Report SyncCertRecord.
+ */
+public final class ReportSyncCertRecordSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/Report_SyncCertRecord.json
+     */
+    /**
+     * Sample code: Report_SyncCertRecord.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void
+        reportSyncCertRecord(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.reports().syncCertRecord("testReportName", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProviderActions_CheckNameAvailability
 
 ```java
 
@@ -320,204 +245,7 @@ public final class ProviderActionsListInUseStorageAccountsSamples {
 }
 ```
 
-### ProviderActions_Onboard
-
-```java
-
-/**
- * Samples for ProviderActions Onboard.
- */
-public final class ProviderActionsOnboardSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Onboard.json
-     */
-    /**
-     * Sample code: Onboard.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void
-        onboard(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.providerActions().onboard(null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProviderActions_TriggerEvaluation
-
-```java
-
-/**
- * Samples for ProviderActions TriggerEvaluation.
- */
-public final class ProviderActionsTriggerEvaluationSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/TriggerEvaluation.json
-     */
-    /**
-     * Sample code: TriggerEvaluation.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void
-        triggerEvaluation(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.providerActions().triggerEvaluation(null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Report_CreateOrUpdate
-
-```java
-
-/**
- * Samples for Report CreateOrUpdate.
- */
-public final class ReportCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_CreateOrUpdate.json
-     */
-    /**
-     * Sample code: Report_CreateOrUpdate.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void
-        reportCreateOrUpdate(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.reports().createOrUpdate("testReportName", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Report_Delete
-
-```java
-/**
- * Samples for Report Delete.
- */
-public final class ReportDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_Delete.json
-     */
-    /**
-     * Sample code: Report_Delete.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void
-        reportDelete(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.reports().delete("testReportName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Report_Fix
-
-```java
-/**
- * Samples for Report Fix.
- */
-public final class ReportFixSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_Fix.json
-     */
-    /**
-     * Sample code: Report_Fix.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void
-        reportFix(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.reports().fix("testReport", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Report_Get
-
-```java
-/**
- * Samples for Report Get.
- */
-public final class ReportGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_Get.json
-     */
-    /**
-     * Sample code: Report_Get.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void
-        reportGet(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.reports().getWithResponse("testReport", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Report_GetScopingQuestions
-
-```java
-/**
- * Samples for Report GetScopingQuestions.
- */
-public final class ReportGetScopingQuestionsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_GetScopingQuestions.json
-     */
-    /**
-     * Sample code: Report_GetScopingQuestions.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void reportGetScopingQuestions(
-        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.reports().getScopingQuestionsWithResponse("testReportName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Report_List
-
-```java
-/**
- * Samples for Report List.
- */
-public final class ReportListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_List.json
-     */
-    /**
-     * Sample code: Report_List.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void
-        reportList(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.reports()
-            .list("1", 100, null, null, null, "00000000-0000-0000-0000-000000000000",
-                "00000000-0000-0000-0000-000000000000", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Report_NestedResourceCheckNameAvailability
+### ProviderActions_GetCollectionCount
 
 ```java
 
@@ -575,32 +303,84 @@ public final class ReportNestedResourceCheckNameAvailabilitySamples {
 }
 ```
 
-### Report_SyncCertRecord
+### ProviderActions_GetOverviewStatus
 
 ```java
-
 /**
- * Samples for Report SyncCertRecord.
+ * Samples for Report Verify.
  */
-public final class ReportSyncCertRecordSamples {
+public final class ReportVerifySamples {
     /*
      * x-ms-original-file:
      * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_SyncCertRecord.json
+     * examples/Report_Verify.json
      */
     /**
-     * Sample code: Report_SyncCertRecord.
+     * Sample code: Report_Verify.
      * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
     public static void
-        reportSyncCertRecord(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.reports().syncCertRecord("testReportName", null, com.azure.core.util.Context.NONE);
+        reportVerify(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.reports().verify("testReport", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Report_Update
+### ProviderActions_ListInUseStorageAccounts
+
+```java
+
+/**
+ * Samples for Evidence CreateOrUpdate.
+ */
+public final class EvidenceCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/Evidence_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: Evidence_CreateOrUpdate.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void evidenceCreateOrUpdate(
+        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.evidences()
+            .createOrUpdateWithResponse("testReportName", "evidence1", null, null, null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProviderActions_Onboard
+
+```java
+/**
+ * Samples for Snapshot List.
+ */
+public final class SnapshotListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/Snapshot_List.json
+     */
+    /**
+     * Sample code: Snapshot_List.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void
+        snapshotList(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.snapshots()
+            .list("testReportName", "1", 100, null, null, null, "00000000-0000-0000-0000-000000000001",
+                "00000000-0000-0000-0000-000000000000", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProviderActions_TriggerEvaluation
 
 ```java
 
@@ -625,31 +405,399 @@ public final class ReportUpdateSamples {
 }
 ```
 
-### Report_Verify
+### Report_CreateOrUpdate
 
 ```java
 /**
- * Samples for Report Verify.
+ * Samples for Webhook Get.
  */
-public final class ReportVerifySamples {
+public final class WebhookGetSamples {
     /*
      * x-ms-original-file:
      * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Report_Verify.json
+     * examples/Webhook_Get.json
      */
     /**
-     * Sample code: Report_Verify.
+     * Sample code: Webhook_Get.
      * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
     public static void
-        reportVerify(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.reports().verify("testReport", com.azure.core.util.Context.NONE);
+        webhookGet(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.webhooks().getWithResponse("testReportName", "testWebhookName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Report_Delete
+
+```java
+/**
+ * Samples for ScopingConfiguration Delete.
+ */
+public final class ScopingConfigurationDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/ScopingConfiguration_Delete.json
+     */
+    /**
+     * Sample code: ScopingConfiguration_Delete.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void scopingConfigurationDelete(
+        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.scopingConfigurations()
+            .deleteByResourceGroupWithResponse("testReportName", "default", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Report_Fix
+
+```java
+/**
+ * Samples for Evidence Delete.
+ */
+public final class EvidenceDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/Evidence_Delete.json
+     */
+    /**
+     * Sample code: Evidence_Delete.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void
+        evidenceDelete(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.evidences()
+            .deleteByResourceGroupWithResponse("testReportName", "evidence1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Report_Get
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/Operations_List.json
+     */
+    /**
+     * Sample code: Operations_List.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void
+        operationsList(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Report_GetScopingQuestions
+
+```java
+/**
+ * Samples for Evidence Get.
+ */
+public final class EvidenceGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/Evidence_Get.json
+     */
+    /**
+     * Sample code: Evidence_Get.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void
+        evidenceGet(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.evidences().getWithResponse("testReportName", "evidence1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Report_List
+
+```java
+
+/**
+ * Samples for Webhook Update.
+ */
+public final class WebhookUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/Webhook_Update.json
+     */
+    /**
+     * Sample code: Webhook_Update.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void
+        webhookUpdate(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.webhooks()
+            .updateWithResponse("testReportName", "testWebhookName", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Report_NestedResourceCheckNameAvailability
+
+```java
+
+/**
+ * Samples for Evidence Download.
+ */
+public final class EvidenceDownloadSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/Evidence_Download.json
+     */
+    /**
+     * Sample code: Evidence_Download.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void
+        evidenceDownload(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.evidences().downloadWithResponse("testReportName", "evidence1", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Report_SyncCertRecord
+
+```java
+/**
+ * Samples for ScopingConfiguration List.
+ */
+public final class ScopingConfigurationListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/ScopingConfiguration_List.json
+     */
+    /**
+     * Sample code: ScopingConfiguration_List.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void scopingConfigurationList(
+        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.scopingConfigurations().list("testReportName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Report_Update
+
+```java
+
+/**
+ * Samples for ProviderActions TriggerEvaluation.
+ */
+public final class ProviderActionsTriggerEvaluationSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/TriggerEvaluation.json
+     */
+    /**
+     * Sample code: TriggerEvaluation.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void
+        triggerEvaluation(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.providerActions().triggerEvaluation(null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Report_Verify
+
+```java
+/**
+ * Samples for Report Fix.
+ */
+public final class ReportFixSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/Report_Fix.json
+     */
+    /**
+     * Sample code: Report_Fix.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void
+        reportFix(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.reports().fix("testReport", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### ScopingConfiguration_CreateOrUpdate
+
+```java
+
+/**
+ * Samples for ProviderActions GetCollectionCount.
+ */
+public final class ProviderActionsGetCollectionCountSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/Report_GetCollectionCount.json
+     */
+    /**
+     * Sample code: Report_GetCollectionCount.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void reportGetCollectionCount(
+        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.providerActions().getCollectionCountWithResponse(null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ScopingConfiguration_Delete
+
+```java
+/**
+ * Samples for ScopingConfiguration Get.
+ */
+public final class ScopingConfigurationGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/ScopingConfiguration_Get.json
+     */
+    /**
+     * Sample code: ScopingConfiguration.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void
+        scopingConfiguration(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.scopingConfigurations().getWithResponse("testReportName", "default", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ScopingConfiguration_Get
+
+```java
+/**
+ * Samples for Report GetScopingQuestions.
+ */
+public final class ReportGetScopingQuestionsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/Report_GetScopingQuestions.json
+     */
+    /**
+     * Sample code: Report_GetScopingQuestions.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void reportGetScopingQuestions(
+        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.reports().getScopingQuestionsWithResponse("testReportName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ScopingConfiguration_List
+
+```java
+
+/**
+ * Samples for Report CreateOrUpdate.
+ */
+public final class ReportCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/Report_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: Report_CreateOrUpdate.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void
+        reportCreateOrUpdate(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.reports().createOrUpdate("testReportName", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Snapshot_Download
+
+```java
+/**
+ * Samples for Report Delete.
+ */
+public final class ReportDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/Report_Delete.json
+     */
+    /**
+     * Sample code: Report_Delete.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void
+        reportDelete(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.reports().delete("testReportName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Snapshot_Get
+
+```java
+/**
+ * Samples for Snapshot Get.
+ */
+public final class SnapshotGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
+     * examples/Snapshot_Get.json
+     */
+    /**
+     * Sample code: Snapshot_Get.
+     * 
+     * @param manager Entry point to AppComplianceAutomationManager.
+     */
+    public static void
+        snapshotGet(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.snapshots().getWithResponse("testReportName", "testSnapshot", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Snapshot_List
 
 ```java
 
@@ -675,80 +823,32 @@ public final class ScopingConfigurationCreateOrUpdateSamples {
 }
 ```
 
-### ScopingConfiguration_Delete
+### Webhook_CreateOrUpdate
 
 ```java
 /**
- * Samples for ScopingConfiguration Delete.
+ * Samples for Webhook List.
  */
-public final class ScopingConfigurationDeleteSamples {
+public final class WebhookListSamples {
     /*
      * x-ms-original-file:
      * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/ScopingConfiguration_Delete.json
+     * examples/Webhook_List.json
      */
     /**
-     * Sample code: ScopingConfiguration_Delete.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void scopingConfigurationDelete(
-        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.scopingConfigurations()
-            .deleteByResourceGroupWithResponse("testReportName", "default", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ScopingConfiguration_Get
-
-```java
-/**
- * Samples for ScopingConfiguration Get.
- */
-public final class ScopingConfigurationGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/ScopingConfiguration_Get.json
-     */
-    /**
-     * Sample code: ScopingConfiguration.
+     * Sample code: Webhook_List.
      * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
     public static void
-        scopingConfiguration(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.scopingConfigurations().getWithResponse("testReportName", "default", com.azure.core.util.Context.NONE);
+        webhookList(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.webhooks()
+            .list("testReportName", "1", 100, null, null, null, null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### ScopingConfiguration_List
-
-```java
-/**
- * Samples for ScopingConfiguration List.
- */
-public final class ScopingConfigurationListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/ScopingConfiguration_List.json
-     */
-    /**
-     * Sample code: ScopingConfiguration_List.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void scopingConfigurationList(
-        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.scopingConfigurations().list("testReportName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Snapshot_Download
+### Webhook_Delete
 
 ```java
 
@@ -818,127 +918,27 @@ public final class SnapshotDownloadSamples {
 }
 ```
 
-### Snapshot_Get
-
-```java
-/**
- * Samples for Snapshot Get.
- */
-public final class SnapshotGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Snapshot_Get.json
-     */
-    /**
-     * Sample code: Snapshot_Get.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void
-        snapshotGet(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.snapshots().getWithResponse("testReportName", "testSnapshot", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Snapshot_List
-
-```java
-/**
- * Samples for Snapshot List.
- */
-public final class SnapshotListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Snapshot_List.json
-     */
-    /**
-     * Sample code: Snapshot_List.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void
-        snapshotList(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.snapshots()
-            .list("testReportName", "1", 100, null, null, null, "00000000-0000-0000-0000-000000000001",
-                "00000000-0000-0000-0000-000000000000", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Webhook_CreateOrUpdate
-
-```java
-
-/**
- * Samples for Webhook CreateOrUpdate.
- */
-public final class WebhookCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Webhook_CreateOrUpdate.json
-     */
-    /**
-     * Sample code: Webhook_CreateOrUpdate.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void webhookCreateOrUpdate(
-        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.webhooks()
-            .createOrUpdateWithResponse("testReportName", "testWebhookName", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Webhook_Delete
-
-```java
-/**
- * Samples for Webhook Delete.
- */
-public final class WebhookDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Webhook_Delete.json
-     */
-    /**
-     * Sample code: Webhook_Delete.
-     * 
-     * @param manager Entry point to AppComplianceAutomationManager.
-     */
-    public static void
-        webhookDelete(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.webhooks()
-            .deleteByResourceGroupWithResponse("testReportName", "testWebhookName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Webhook_Get
 
 ```java
+
 /**
- * Samples for Webhook Get.
+ * Samples for ProviderActions CheckNameAvailability.
  */
-public final class WebhookGetSamples {
+public final class ProviderActionsCheckNameAvailabilitySamples {
     /*
      * x-ms-original-file:
      * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Webhook_Get.json
+     * examples/Report_CheckNameAvailability.json
      */
     /**
-     * Sample code: Webhook_Get.
+     * Sample code: Report_CheckNameAvailability.
      * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
-    public static void
-        webhookGet(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.webhooks().getWithResponse("testReportName", "testWebhookName", com.azure.core.util.Context.NONE);
+    public static void reportCheckNameAvailability(
+        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.providerActions().checkNameAvailabilityWithResponse(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -947,23 +947,23 @@ public final class WebhookGetSamples {
 
 ```java
 /**
- * Samples for Webhook List.
+ * Samples for Evidence ListByReport.
  */
-public final class WebhookListSamples {
+public final class EvidenceListByReportSamples {
     /*
      * x-ms-original-file:
      * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Webhook_List.json
+     * examples/Evidence_ListByReport.json
      */
     /**
-     * Sample code: Webhook_List.
+     * Sample code: Evidence_ListByReport.
      * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
     public static void
-        webhookList(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.webhooks()
-            .list("testReportName", "1", 100, null, null, null, null, null, com.azure.core.util.Context.NONE);
+        evidenceListByReport(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.evidences()
+            .listByReport("reportName", null, null, null, null, null, null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -971,25 +971,25 @@ public final class WebhookListSamples {
 ### Webhook_Update
 
 ```java
-
 /**
- * Samples for Webhook Update.
+ * Samples for Report List.
  */
-public final class WebhookUpdateSamples {
+public final class ReportListSamples {
     /*
      * x-ms-original-file:
      * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/stable/2024-06-27/
-     * examples/Webhook_Update.json
+     * examples/Report_List.json
      */
     /**
-     * Sample code: Webhook_Update.
+     * Sample code: Report_List.
      * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
     public static void
-        webhookUpdate(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.webhooks()
-            .updateWithResponse("testReportName", "testWebhookName", null, com.azure.core.util.Context.NONE);
+        reportList(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.reports()
+            .list("1", 100, null, null, null, "00000000-0000-0000-0000-000000000000",
+                "00000000-0000-0000-0000-000000000000", com.azure.core.util.Context.NONE);
     }
 }
 ```
