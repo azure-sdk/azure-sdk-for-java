@@ -1,14 +1,159 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-23)
 
-### Features Added
+- Azure Resource Manager Workloads Sap Virtual Instance client library for Java. This package contains Microsoft Azure SDK for Workloads Sap Virtual Instance Management SDK. Workloads client provides access to various workload operations. Package tag package-2024-09. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `implementation.models.SAPDatabaseInstanceListResult` was removed
 
-### Other Changes
+#### `implementation.models.SAPApplicationServerInstanceListResult` was removed
+
+#### `models.SAPVirtualInstanceIdentity` was removed
+
+#### `implementation.models.OperationListResult` was removed
+
+#### `models.SAPVirtualInstanceIdentityType` was removed
+
+#### `implementation.models.SAPCentralServerInstanceListResult` was removed
+
+#### `implementation.models.SAPVirtualInstanceListResult` was removed
+
+#### `models.SapVirtualInstance` was modified
+
+* `models.SAPVirtualInstanceIdentity identity()` -> `models.SapVirtualInstanceIdentity identity()`
+
+#### `models.OperationStatusResult` was modified
+
+* `java.lang.Double percentComplete()` -> `java.lang.Float percentComplete()`
+
+#### `models.SapVirtualInstance$Definition` was modified
+
+* `withIdentity(models.SAPVirtualInstanceIdentity)` was removed
+
+#### `models.SapVirtualInstances` was modified
+
+* `getSizingRecommendationsWithResponse(java.lang.String,models.SapSizingRecommendationRequest,com.azure.core.util.Context)` was removed
+* `getSizingRecommendations(java.lang.String,models.SapSizingRecommendationRequest)` was removed
+* `getDiskConfigurationsWithResponse(java.lang.String,models.SapDiskConfigurationsRequest,com.azure.core.util.Context)` was removed
+* `getSapSupportedSku(java.lang.String,models.SapSupportedSkusRequest)` was removed
+* `getAvailabilityZoneDetails(java.lang.String,models.SapAvailabilityZoneDetailsRequest)` was removed
+* `getSapSupportedSkuWithResponse(java.lang.String,models.SapSupportedSkusRequest,com.azure.core.util.Context)` was removed
+* `getAvailabilityZoneDetailsWithResponse(java.lang.String,models.SapAvailabilityZoneDetailsRequest,com.azure.core.util.Context)` was removed
+* `getDiskConfigurations(java.lang.String,models.SapDiskConfigurationsRequest)` was removed
+
+#### `models.SapVirtualInstance$Update` was modified
+
+* `withIdentity(models.SAPVirtualInstanceIdentity)` was removed
+
+#### `models.UserAssignedIdentity` was modified
+
+* `java.lang.String clientId()` -> `java.util.UUID clientId()`
+* `java.lang.String principalId()` -> `java.util.UUID principalId()`
+
+#### `models.UpdateSapVirtualInstanceRequest` was modified
+
+* `models.SAPVirtualInstanceIdentity identity()` -> `models.SapVirtualInstanceIdentity identity()`
+* `withIdentity(models.SAPVirtualInstanceIdentity)` was removed
+
+#### `models.VirtualMachineResourceNames` was modified
+
+* `hostName()` was removed
+* `withHostName(java.lang.String)` was removed
+
+#### `WorkloadsSapVirtualInstanceManager` was modified
+
+* `fluent.WorkloadsSapVirtualInstanceMgmtClient serviceClient()` -> `fluent.WorkloadsClient serviceClient()`
+
+### Features Added
+
+* `models.SapCentralServerInstanceListResult` was added
+
+* `models.SapApplicationServerInstanceListResult` was added
+
+* `models.OperationListResult` was added
+
+* `models.SapVirtualInstanceIdentityType` was added
+
+* `models.SapVirtualInstanceIdentity` was added
+
+* `models.SapDatabaseInstanceListResult` was added
+
+* `models.SapVirtualInstanceListResult` was added
+
+* `models.SapVirtualInstanceIdentityUserAssignedIdentities` was added
+
+#### `models.SingleServerRecommendationResult` was modified
+
+* `withVmSku(java.lang.String)` was added
+
+#### `models.DiskDetails` was modified
+
+* `withSizeGB(java.lang.Long)` was added
+* `withDiskTier(java.lang.String)` was added
+* `withIopsReadWrite(java.lang.Long)` was added
+* `withMaximumSupportedDiskCount(java.lang.Long)` was added
+* `withMbpsReadWrite(java.lang.Long)` was added
+* `withMinimumSupportedDiskCount(java.lang.Long)` was added
+* `withSku(models.DiskSku)` was added
+
+#### `models.SapSupportedSku` was modified
+
+* `withIsAppServerCertified(java.lang.Boolean)` was added
+* `withIsDatabaseCertified(java.lang.Boolean)` was added
+* `withVmSku(java.lang.String)` was added
+
+#### `models.SapVirtualInstance$Definition` was modified
+
+* `withIdentity(models.SapVirtualInstanceIdentity)` was added
+
+#### `models.SapVirtualInstances` was modified
+
+* `invokeAvailabilityZoneDetails(java.lang.String,models.SapAvailabilityZoneDetailsRequest)` was added
+* `invokeAvailabilityZoneDetailsWithResponse(java.lang.String,models.SapAvailabilityZoneDetailsRequest,com.azure.core.util.Context)` was added
+* `invokeSizingRecommendations(java.lang.String,models.SapSizingRecommendationRequest)` was added
+* `invokeDiskConfigurations(java.lang.String,models.SapDiskConfigurationsRequest)` was added
+* `invokeDiskConfigurationsWithResponse(java.lang.String,models.SapDiskConfigurationsRequest,com.azure.core.util.Context)` was added
+* `invokeSapSupportedSku(java.lang.String,models.SapSupportedSkusRequest)` was added
+* `invokeSizingRecommendationsWithResponse(java.lang.String,models.SapSizingRecommendationRequest,com.azure.core.util.Context)` was added
+* `invokeSapSupportedSkuWithResponse(java.lang.String,models.SapSupportedSkusRequest,com.azure.core.util.Context)` was added
+
+#### `models.SapVirtualInstanceError` was modified
+
+* `withProperties(models.ErrorDefinition)` was added
+
+#### `models.SapVirtualInstance$Update` was modified
+
+* `withIdentity(models.SapVirtualInstanceIdentity)` was added
+
+#### `models.UpdateSapVirtualInstanceRequest` was modified
+
+* `withIdentity(models.SapVirtualInstanceIdentity)` was added
+
+#### `models.ThreeTierRecommendationResult` was modified
+
+* `withApplicationServerInstanceCount(java.lang.Long)` was added
+* `withApplicationServerVmSku(java.lang.String)` was added
+* `withDatabaseInstanceCount(java.lang.Long)` was added
+* `withCentralServerVmSku(java.lang.String)` was added
+* `withDbVmSku(java.lang.String)` was added
+* `withCentralServerInstanceCount(java.lang.Long)` was added
+
+#### `models.VirtualMachineResourceNames` was modified
+
+* `hostname()` was added
+* `withHostname(java.lang.String)` was added
+
+#### `models.SapAvailabilityZonePair` was modified
+
+* `withZoneA(java.lang.Long)` was added
+* `withZoneB(java.lang.Long)` was added
+
+#### `models.SapDiskConfiguration` was modified
+
+* `withRecommendedConfiguration(models.DiskVolumeConfiguration)` was added
+* `withSupportedConfigurations(java.util.List)` was added
 
 ## 1.0.0 (2025-04-18)
 
