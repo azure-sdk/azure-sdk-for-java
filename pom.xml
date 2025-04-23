@@ -91,6 +91,7 @@
     <module>sdk/durabletask</module>
     <module>sdk/dynatrace</module>
     <module>sdk/easm</module>
+    <module>sdk/edgemicrosoftedgesites</module>
     <module>sdk/edgeorder</module>
     <module>sdk/edgezones</module>
     <module>sdk/education</module>
