@@ -1,8 +1,8 @@
-# Azure Resource Manager Database Watcher client library for Java
+# Azure Resource Manager databasewatcher client library for Java
 
-Azure Resource Manager Database Watcher client library for Java.
+Azure Resource Manager databasewatcher client library for Java.
 
-This package contains Microsoft Azure SDK for Database Watcher Management SDK. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for databasewatcher Management SDK.  Package tag package-2025-01-02. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
@@ -56,7 +56,7 @@ AzureProfile profile = new AzureProfile(AzureCloud.AZURE_PUBLIC_CLOUD);
 TokenCredential credential = new DefaultAzureCredentialBuilder()
     .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())
     .build();
-DatabaseWatcherManager manager = DatabaseWatcherManager
+DatabasewatcherManager manager = DatabasewatcherManager
     .authenticate(credential, profile);
 ```
 
