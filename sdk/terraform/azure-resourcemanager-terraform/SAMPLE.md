@@ -16,7 +16,9 @@
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: 2023-07-01-preview/ListOperations.json
+     * x-ms-original-file:
+     * specification/terraform/resource-manager/Microsoft.AzureTerraform/preview/2023-07-01-preview/examples/
+     * ListOperations.json
      */
     /**
      * Sample code: Get a list of operations for a resource provider.
@@ -40,7 +42,9 @@ import com.azure.resourcemanager.terraform.models.ExportResourceGroup;
  */
 public final class TerraformExportTerraformSamples {
     /*
-     * x-ms-original-file: 2023-07-01-preview/ExportTerraform.json
+     * x-ms-original-file:
+     * specification/terraform/resource-manager/Microsoft.AzureTerraform/preview/2023-07-01-preview/examples/
+     * ExportTerraform.json
      */
     /**
      * Sample code: ExportTerraform.
