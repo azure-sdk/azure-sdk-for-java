@@ -47,6 +47,16 @@ public final class VMwareToAzStackHciNicInput implements JsonSerializable<VMware
      */
     private VMNicSelection selectionTypeForFailover;
 
+    /*
+     * Gets or sets a value indicating whether static ip migration is enabled.
+     */
+    private Boolean isStaticIpMigrationEnabled;
+
+    /*
+     * Gets or sets a value indicating whether mac address migration is enabled.
+     */
+    private Boolean isMacMigrationEnabled;
+
     /**
      * Creates an instance of VMwareToAzStackHciNicInput class.
      */
@@ -163,6 +173,48 @@ public final class VMwareToAzStackHciNicInput implements JsonSerializable<VMware
     }
 
     /**
+     * Get the isStaticIpMigrationEnabled property: Gets or sets a value indicating whether static ip migration is
+     * enabled.
+     * 
+     * @return the isStaticIpMigrationEnabled value.
+     */
+    public Boolean isStaticIpMigrationEnabled() {
+        return this.isStaticIpMigrationEnabled;
+    }
+
+    /**
+     * Set the isStaticIpMigrationEnabled property: Gets or sets a value indicating whether static ip migration is
+     * enabled.
+     * 
+     * @param isStaticIpMigrationEnabled the isStaticIpMigrationEnabled value to set.
+     * @return the VMwareToAzStackHciNicInput object itself.
+     */
+    public VMwareToAzStackHciNicInput withIsStaticIpMigrationEnabled(Boolean isStaticIpMigrationEnabled) {
+        this.isStaticIpMigrationEnabled = isStaticIpMigrationEnabled;
+        return this;
+    }
+
+    /**
+     * Get the isMacMigrationEnabled property: Gets or sets a value indicating whether mac address migration is enabled.
+     * 
+     * @return the isMacMigrationEnabled value.
+     */
+    public Boolean isMacMigrationEnabled() {
+        return this.isMacMigrationEnabled;
+    }
+
+    /**
+     * Set the isMacMigrationEnabled property: Gets or sets a value indicating whether mac address migration is enabled.
+     * 
+     * @param isMacMigrationEnabled the isMacMigrationEnabled value to set.
+     * @return the VMwareToAzStackHciNicInput object itself.
+     */
+    public VMwareToAzStackHciNicInput withIsMacMigrationEnabled(Boolean isMacMigrationEnabled) {
+        this.isMacMigrationEnabled = isMacMigrationEnabled;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -177,16 +229,6 @@ public final class VMwareToAzStackHciNicInput implements JsonSerializable<VMware
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property label in model VMwareToAzStackHciNicInput"));
-        }
-        if (targetNetworkId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property targetNetworkId in model VMwareToAzStackHciNicInput"));
-        }
-        if (testNetworkId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property testNetworkId in model VMwareToAzStackHciNicInput"));
         }
         if (selectionTypeForFailover() == null) {
             throw LOGGER.atError()
@@ -205,10 +247,12 @@ public final class VMwareToAzStackHciNicInput implements JsonSerializable<VMware
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("nicId", this.nicId);
         jsonWriter.writeStringField("label", this.label);
-        jsonWriter.writeStringField("targetNetworkId", this.targetNetworkId);
-        jsonWriter.writeStringField("testNetworkId", this.testNetworkId);
         jsonWriter.writeStringField("selectionTypeForFailover",
             this.selectionTypeForFailover == null ? null : this.selectionTypeForFailover.toString());
+        jsonWriter.writeStringField("targetNetworkId", this.targetNetworkId);
+        jsonWriter.writeStringField("testNetworkId", this.testNetworkId);
+        jsonWriter.writeBooleanField("isStaticIpMigrationEnabled", this.isStaticIpMigrationEnabled);
+        jsonWriter.writeBooleanField("isMacMigrationEnabled", this.isMacMigrationEnabled);
         return jsonWriter.writeEndObject();
     }
 
@@ -232,15 +276,21 @@ public final class VMwareToAzStackHciNicInput implements JsonSerializable<VMware
                     deserializedVMwareToAzStackHciNicInput.nicId = reader.getString();
                 } else if ("label".equals(fieldName)) {
                     deserializedVMwareToAzStackHciNicInput.label = reader.getString();
-                } else if ("targetNetworkId".equals(fieldName)) {
-                    deserializedVMwareToAzStackHciNicInput.targetNetworkId = reader.getString();
-                } else if ("testNetworkId".equals(fieldName)) {
-                    deserializedVMwareToAzStackHciNicInput.testNetworkId = reader.getString();
                 } else if ("selectionTypeForFailover".equals(fieldName)) {
                     deserializedVMwareToAzStackHciNicInput.selectionTypeForFailover
                         = VMNicSelection.fromString(reader.getString());
                 } else if ("networkName".equals(fieldName)) {
                     deserializedVMwareToAzStackHciNicInput.networkName = reader.getString();
+                } else if ("targetNetworkId".equals(fieldName)) {
+                    deserializedVMwareToAzStackHciNicInput.targetNetworkId = reader.getString();
+                } else if ("testNetworkId".equals(fieldName)) {
+                    deserializedVMwareToAzStackHciNicInput.testNetworkId = reader.getString();
+                } else if ("isStaticIpMigrationEnabled".equals(fieldName)) {
+                    deserializedVMwareToAzStackHciNicInput.isStaticIpMigrationEnabled
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("isMacMigrationEnabled".equals(fieldName)) {
+                    deserializedVMwareToAzStackHciNicInput.isMacMigrationEnabled
+                        = reader.getNullable(JsonReader::getBoolean);
                 } else {
                     reader.skipChildren();
                 }

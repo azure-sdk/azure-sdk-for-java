@@ -28,8 +28,7 @@ public final class VMwareToAzStackHciDiskInput implements JsonSerializable<VMwar
     private String storageContainerId;
 
     /*
-     * Gets or sets a value indicating whether dynamic sizing is enabled on the virtual hard
-     * disk.
+     * Gets or sets a value indicating whether dynamic sizing is enabled on the virtual hard disk.
      */
     private Boolean isDynamic;
 
@@ -47,6 +46,31 @@ public final class VMwareToAzStackHciDiskInput implements JsonSerializable<VMwar
      * Gets or sets a value indicating whether disk is os disk.
      */
     private boolean isOsDisk;
+
+    /*
+     * Gets or sets a value of disk block size.
+     */
+    private Long diskBlockSize;
+
+    /*
+     * Gets or sets a value of disk logical sector size.
+     */
+    private Long diskLogicalSectorSize;
+
+    /*
+     * Gets or sets a value of disk physical sector size.
+     */
+    private Long diskPhysicalSectorSize;
+
+    /*
+     * Gets or sets a value of disk identifier.
+     */
+    private String diskIdentifier;
+
+    /*
+     * Disk controller.
+     */
+    private DiskControllerInputs diskController;
 
     /**
      * Creates an instance of VMwareToAzStackHciDiskInput class.
@@ -177,6 +201,106 @@ public final class VMwareToAzStackHciDiskInput implements JsonSerializable<VMwar
     }
 
     /**
+     * Get the diskBlockSize property: Gets or sets a value of disk block size.
+     * 
+     * @return the diskBlockSize value.
+     */
+    public Long diskBlockSize() {
+        return this.diskBlockSize;
+    }
+
+    /**
+     * Set the diskBlockSize property: Gets or sets a value of disk block size.
+     * 
+     * @param diskBlockSize the diskBlockSize value to set.
+     * @return the VMwareToAzStackHciDiskInput object itself.
+     */
+    public VMwareToAzStackHciDiskInput withDiskBlockSize(Long diskBlockSize) {
+        this.diskBlockSize = diskBlockSize;
+        return this;
+    }
+
+    /**
+     * Get the diskLogicalSectorSize property: Gets or sets a value of disk logical sector size.
+     * 
+     * @return the diskLogicalSectorSize value.
+     */
+    public Long diskLogicalSectorSize() {
+        return this.diskLogicalSectorSize;
+    }
+
+    /**
+     * Set the diskLogicalSectorSize property: Gets or sets a value of disk logical sector size.
+     * 
+     * @param diskLogicalSectorSize the diskLogicalSectorSize value to set.
+     * @return the VMwareToAzStackHciDiskInput object itself.
+     */
+    public VMwareToAzStackHciDiskInput withDiskLogicalSectorSize(Long diskLogicalSectorSize) {
+        this.diskLogicalSectorSize = diskLogicalSectorSize;
+        return this;
+    }
+
+    /**
+     * Get the diskPhysicalSectorSize property: Gets or sets a value of disk physical sector size.
+     * 
+     * @return the diskPhysicalSectorSize value.
+     */
+    public Long diskPhysicalSectorSize() {
+        return this.diskPhysicalSectorSize;
+    }
+
+    /**
+     * Set the diskPhysicalSectorSize property: Gets or sets a value of disk physical sector size.
+     * 
+     * @param diskPhysicalSectorSize the diskPhysicalSectorSize value to set.
+     * @return the VMwareToAzStackHciDiskInput object itself.
+     */
+    public VMwareToAzStackHciDiskInput withDiskPhysicalSectorSize(Long diskPhysicalSectorSize) {
+        this.diskPhysicalSectorSize = diskPhysicalSectorSize;
+        return this;
+    }
+
+    /**
+     * Get the diskIdentifier property: Gets or sets a value of disk identifier.
+     * 
+     * @return the diskIdentifier value.
+     */
+    public String diskIdentifier() {
+        return this.diskIdentifier;
+    }
+
+    /**
+     * Set the diskIdentifier property: Gets or sets a value of disk identifier.
+     * 
+     * @param diskIdentifier the diskIdentifier value to set.
+     * @return the VMwareToAzStackHciDiskInput object itself.
+     */
+    public VMwareToAzStackHciDiskInput withDiskIdentifier(String diskIdentifier) {
+        this.diskIdentifier = diskIdentifier;
+        return this;
+    }
+
+    /**
+     * Get the diskController property: Disk controller.
+     * 
+     * @return the diskController value.
+     */
+    public DiskControllerInputs diskController() {
+        return this.diskController;
+    }
+
+    /**
+     * Set the diskController property: Disk controller.
+     * 
+     * @param diskController the diskController value to set.
+     * @return the VMwareToAzStackHciDiskInput object itself.
+     */
+    public VMwareToAzStackHciDiskInput withDiskController(DiskControllerInputs diskController) {
+        this.diskController = diskController;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -191,6 +315,9 @@ public final class VMwareToAzStackHciDiskInput implements JsonSerializable<VMwar
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property diskFileFormat in model VMwareToAzStackHciDiskInput"));
+        }
+        if (diskController() != null) {
+            diskController().validate();
         }
     }
 
@@ -208,6 +335,11 @@ public final class VMwareToAzStackHciDiskInput implements JsonSerializable<VMwar
         jsonWriter.writeBooleanField("isOsDisk", this.isOsDisk);
         jsonWriter.writeStringField("storageContainerId", this.storageContainerId);
         jsonWriter.writeBooleanField("isDynamic", this.isDynamic);
+        jsonWriter.writeNumberField("diskBlockSize", this.diskBlockSize);
+        jsonWriter.writeNumberField("diskLogicalSectorSize", this.diskLogicalSectorSize);
+        jsonWriter.writeNumberField("diskPhysicalSectorSize", this.diskPhysicalSectorSize);
+        jsonWriter.writeStringField("diskIdentifier", this.diskIdentifier);
+        jsonWriter.writeJsonField("diskController", this.diskController);
         return jsonWriter.writeEndObject();
     }
 
@@ -239,6 +371,18 @@ public final class VMwareToAzStackHciDiskInput implements JsonSerializable<VMwar
                     deserializedVMwareToAzStackHciDiskInput.storageContainerId = reader.getString();
                 } else if ("isDynamic".equals(fieldName)) {
                     deserializedVMwareToAzStackHciDiskInput.isDynamic = reader.getNullable(JsonReader::getBoolean);
+                } else if ("diskBlockSize".equals(fieldName)) {
+                    deserializedVMwareToAzStackHciDiskInput.diskBlockSize = reader.getNullable(JsonReader::getLong);
+                } else if ("diskLogicalSectorSize".equals(fieldName)) {
+                    deserializedVMwareToAzStackHciDiskInput.diskLogicalSectorSize
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("diskPhysicalSectorSize".equals(fieldName)) {
+                    deserializedVMwareToAzStackHciDiskInput.diskPhysicalSectorSize
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("diskIdentifier".equals(fieldName)) {
+                    deserializedVMwareToAzStackHciDiskInput.diskIdentifier = reader.getString();
+                } else if ("diskController".equals(fieldName)) {
+                    deserializedVMwareToAzStackHciDiskInput.diskController = DiskControllerInputs.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

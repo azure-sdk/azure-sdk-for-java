@@ -27,6 +27,20 @@ public final class RecoveryPointsImpl implements RecoveryPoints {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<RecoveryPointModel> list(String resourceGroupName, String vaultName,
+        String protectedItemName) {
+        PagedIterable<RecoveryPointModelInner> inner
+            = this.serviceClient().list(resourceGroupName, vaultName, protectedItemName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new RecoveryPointModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<RecoveryPointModel> list(String resourceGroupName, String vaultName, String protectedItemName,
+        Context context) {
+        PagedIterable<RecoveryPointModelInner> inner
+            = this.serviceClient().list(resourceGroupName, vaultName, protectedItemName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new RecoveryPointModelImpl(inner1, this.manager()));
+    }
+
     public Response<RecoveryPointModel> getWithResponse(String resourceGroupName, String vaultName,
         String protectedItemName, String recoveryPointName, Context context) {
         Response<RecoveryPointModelInner> inner = this.serviceClient()
@@ -48,20 +62,6 @@ public final class RecoveryPointsImpl implements RecoveryPoints {
         } else {
             return null;
         }
-    }
-
-    public PagedIterable<RecoveryPointModel> list(String resourceGroupName, String vaultName,
-        String protectedItemName) {
-        PagedIterable<RecoveryPointModelInner> inner
-            = this.serviceClient().list(resourceGroupName, vaultName, protectedItemName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new RecoveryPointModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<RecoveryPointModel> list(String resourceGroupName, String vaultName, String protectedItemName,
-        Context context) {
-        PagedIterable<RecoveryPointModelInner> inner
-            = this.serviceClient().list(resourceGroupName, vaultName, protectedItemName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new RecoveryPointModelImpl(inner1, this.manager()));
     }
 
     private RecoveryPointsClient serviceClient() {

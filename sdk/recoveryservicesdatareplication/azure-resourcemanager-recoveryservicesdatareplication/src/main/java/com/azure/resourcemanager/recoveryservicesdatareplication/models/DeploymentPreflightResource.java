@@ -36,6 +36,11 @@ public final class DeploymentPreflightResource implements JsonSerializable<Deplo
      */
     private String apiVersion;
 
+    /*
+     * Gets or sets the properties of the resource.
+     */
+    private Object properties;
+
     /**
      * Creates an instance of DeploymentPreflightResource class.
      */
@@ -123,6 +128,26 @@ public final class DeploymentPreflightResource implements JsonSerializable<Deplo
     }
 
     /**
+     * Get the properties property: Gets or sets the properties of the resource.
+     * 
+     * @return the properties value.
+     */
+    public Object properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Gets or sets the properties of the resource.
+     * 
+     * @param properties the properties value to set.
+     * @return the DeploymentPreflightResource object itself.
+     */
+    public DeploymentPreflightResource withProperties(Object properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -140,6 +165,7 @@ public final class DeploymentPreflightResource implements JsonSerializable<Deplo
         jsonWriter.writeStringField("type", this.type);
         jsonWriter.writeStringField("location", this.location);
         jsonWriter.writeStringField("apiVersion", this.apiVersion);
+        jsonWriter.writeUntypedField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -166,6 +192,8 @@ public final class DeploymentPreflightResource implements JsonSerializable<Deplo
                     deserializedDeploymentPreflightResource.location = reader.getString();
                 } else if ("apiVersion".equals(fieldName)) {
                     deserializedDeploymentPreflightResource.apiVersion = reader.getString();
+                } else if ("properties".equals(fieldName)) {
+                    deserializedDeploymentPreflightResource.properties = reader.readUntyped();
                 } else {
                     reader.skipChildren();
                 }

@@ -13,14 +13,44 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.PlannedFailoverModelInner;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.ProtectedItemModelInner;
+import com.azure.resourcemanager.recoveryservicesdatareplication.models.ProtectedItemModelUpdate;
 
 /**
  * An instance of this class provides access to all the operations defined in ProtectedItemsClient.
  */
 public interface ProtectedItemsClient {
     /**
-     * Gets the protected item.
+     * Gets the list of protected items in the given vault.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of protected items in the given vault as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ProtectedItemModelInner> list(String resourceGroupName, String vaultName);
+
+    /**
+     * Gets the list of protected items in the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param odataOptions OData options.
+     * @param continuationToken Continuation token.
+     * @param pageSize Page size.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of protected items in the given vault as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ProtectedItemModelInner> list(String resourceGroupName, String vaultName, String odataOptions,
+        String continuationToken, Integer pageSize, Context context);
+
+    /**
      * Gets the details of the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -37,8 +67,6 @@ public interface ProtectedItemsClient {
         String protectedItemName, Context context);
 
     /**
-     * Gets the protected item.
-     * 
      * Gets the details of the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -53,13 +81,12 @@ public interface ProtectedItemsClient {
     ProtectedItemModelInner get(String resourceGroupName, String vaultName, String protectedItemName);
 
     /**
-     * Puts the protected item.
-     * 
      * Creates the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The vault name.
      * @param protectedItemName The protected item name.
+     * @param body Protected item model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -67,11 +94,9 @@ public interface ProtectedItemsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ProtectedItemModelInner>, ProtectedItemModelInner> beginCreate(String resourceGroupName,
-        String vaultName, String protectedItemName);
+        String vaultName, String protectedItemName, ProtectedItemModelInner body);
 
     /**
-     * Puts the protected item.
-     * 
      * Creates the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -89,24 +114,22 @@ public interface ProtectedItemsClient {
         String vaultName, String protectedItemName, ProtectedItemModelInner body, Context context);
 
     /**
-     * Puts the protected item.
-     * 
      * Creates the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The vault name.
      * @param protectedItemName The protected item name.
+     * @param body Protected item model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return protected item model.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ProtectedItemModelInner create(String resourceGroupName, String vaultName, String protectedItemName);
+    ProtectedItemModelInner create(String resourceGroupName, String vaultName, String protectedItemName,
+        ProtectedItemModelInner body);
 
     /**
-     * Puts the protected item.
-     * 
      * Creates the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -124,8 +147,72 @@ public interface ProtectedItemsClient {
         ProtectedItemModelInner body, Context context);
 
     /**
-     * Deletes the protected item.
+     * Performs update on the protected item.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param body Protected item model.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of protected item model.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ProtectedItemModelInner>, ProtectedItemModelInner> beginUpdate(String resourceGroupName,
+        String vaultName, String protectedItemName, ProtectedItemModelUpdate body);
+
+    /**
+     * Performs update on the protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param body Protected item model.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of protected item model.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ProtectedItemModelInner>, ProtectedItemModelInner> beginUpdate(String resourceGroupName,
+        String vaultName, String protectedItemName, ProtectedItemModelUpdate body, Context context);
+
+    /**
+     * Performs update on the protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param body Protected item model.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return protected item model.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ProtectedItemModelInner update(String resourceGroupName, String vaultName, String protectedItemName,
+        ProtectedItemModelUpdate body);
+
+    /**
+     * Performs update on the protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param body Protected item model.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return protected item model.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ProtectedItemModelInner update(String resourceGroupName, String vaultName, String protectedItemName,
+        ProtectedItemModelUpdate body, Context context);
+
+    /**
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -141,8 +228,6 @@ public interface ProtectedItemsClient {
         String protectedItemName);
 
     /**
-     * Deletes the protected item.
-     * 
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -160,8 +245,6 @@ public interface ProtectedItemsClient {
         Boolean forceDelete, Context context);
 
     /**
-     * Deletes the protected item.
-     * 
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -175,8 +258,6 @@ public interface ProtectedItemsClient {
     void delete(String resourceGroupName, String vaultName, String protectedItemName);
 
     /**
-     * Deletes the protected item.
-     * 
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -193,56 +274,22 @@ public interface ProtectedItemsClient {
         Context context);
 
     /**
-     * Lists the protected items.
-     * 
-     * Gets the list of protected items in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of protected items in the given vault as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ProtectedItemModelInner> list(String resourceGroupName, String vaultName);
-
-    /**
-     * Lists the protected items.
-     * 
-     * Gets the list of protected items in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of protected items in the given vault as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ProtectedItemModelInner> list(String resourceGroupName, String vaultName, Context context);
-
-    /**
-     * Performs planned failover.
-     * 
      * Performs the planned failover on the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The vault name.
      * @param protectedItemName The protected item name.
+     * @param body Planned failover model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of planned failover model.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<PlannedFailoverModelInner>, PlannedFailoverModelInner>
-        beginPlannedFailover(String resourceGroupName, String vaultName, String protectedItemName);
+    SyncPoller<PollResult<PlannedFailoverModelInner>, PlannedFailoverModelInner> beginPlannedFailover(
+        String resourceGroupName, String vaultName, String protectedItemName, PlannedFailoverModelInner body);
 
     /**
-     * Performs planned failover.
-     * 
      * Performs the planned failover on the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -261,24 +308,22 @@ public interface ProtectedItemsClient {
         Context context);
 
     /**
-     * Performs planned failover.
-     * 
      * Performs the planned failover on the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The vault name.
      * @param protectedItemName The protected item name.
+     * @param body Planned failover model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return planned failover model.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PlannedFailoverModelInner plannedFailover(String resourceGroupName, String vaultName, String protectedItemName);
+    PlannedFailoverModelInner plannedFailover(String resourceGroupName, String vaultName, String protectedItemName,
+        PlannedFailoverModelInner body);
 
     /**
-     * Performs planned failover.
-     * 
      * Performs the planned failover on the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.

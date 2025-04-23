@@ -70,6 +70,11 @@ public final class EventModelProperties implements JsonSerializable<EventModelPr
      */
     private EventModelCustomProperties customProperties;
 
+    /*
+     * Gets or sets the provisioning state of the event.
+     */
+    private ProvisioningState provisioningState;
+
     /**
      * Creates an instance of EventModelProperties class.
      */
@@ -178,6 +183,15 @@ public final class EventModelProperties implements JsonSerializable<EventModelPr
     }
 
     /**
+     * Get the provisioningState property: Gets or sets the provisioning state of the event.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -246,6 +260,9 @@ public final class EventModelProperties implements JsonSerializable<EventModelPr
                     List<HealthErrorModel> healthErrors
                         = reader.readArray(reader1 -> HealthErrorModel.fromJson(reader1));
                     deserializedEventModelProperties.healthErrors = healthErrors;
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedEventModelProperties.provisioningState
+                        = ProvisioningState.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

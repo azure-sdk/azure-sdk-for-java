@@ -10,17 +10,17 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class EmailConfigurationGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/EmailConfiguration_Get.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/EmailConfiguration_Get.json
      */
     /**
-     * Sample code: EmailConfiguration_Get.
+     * Sample code: Gets the email configuration setting.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void emailConfigurationGet(
+    public static void getsTheEmailConfigurationSetting(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.emailConfigurations()
-            .getWithResponse("rgrecoveryservicesdatareplication", "4", "0", com.azure.core.util.Context.NONE);
+            .getWithResponse("rgswagger_2024-09-01", "4", "0", com.azure.core.util.Context.NONE);
     }
 }

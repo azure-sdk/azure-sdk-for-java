@@ -4,11 +4,11 @@
 
 package com.azure.resourcemanager.recoveryservicesdatareplication.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.ReplicationExtensionModelInner;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.ReplicationExtensionModel;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.ReplicationExtensionModelProperties;
-import com.azure.resourcemanager.recoveryservicesdatareplication.models.ReplicationExtensionModelSystemData;
 
 public final class ReplicationExtensionModelImpl
     implements ReplicationExtensionModel, ReplicationExtensionModel.Definition {
@@ -38,7 +38,7 @@ public final class ReplicationExtensionModelImpl
         return this.innerModel().properties();
     }
 
-    public ReplicationExtensionModelSystemData systemData() {
+    public SystemData systemData() {
         return this.innerModel().systemData();
     }
 

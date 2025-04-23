@@ -12,6 +12,7 @@ import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
+import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
@@ -35,7 +36,8 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.ProtectedItemsClient;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.PlannedFailoverModelInner;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.ProtectedItemModelInner;
-import com.azure.resourcemanager.recoveryservicesdatareplication.models.ProtectedItemModelCollection;
+import com.azure.resourcemanager.recoveryservicesdatareplication.models.ProtectedItemModelListResult;
+import com.azure.resourcemanager.recoveryservicesdatareplication.models.ProtectedItemModelUpdate;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -73,24 +75,45 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     @ServiceInterface(name = "DataReplicationMgmtC")
     public interface ProtectedItemsService {
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ProtectedItemModelListResult>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("odataOptions") String odataOptions,
+            @QueryParam("continuationToken") String continuationToken, @QueryParam("pageSize") Integer pageSize,
+            @PathParam("vaultName") String vaultName, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ProtectedItemModelInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("vaultName") String vaultName,
-            @PathParam("protectedItemName") String protectedItemName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("protectedItemName") String protectedItemName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> create(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("vaultName") String vaultName,
-            @PathParam("protectedItemName") String protectedItemName, @QueryParam("api-version") String apiVersion,
+            @PathParam("protectedItemName") String protectedItemName,
             @BodyParam("application/json") ProtectedItemModelInner body, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("vaultName") String vaultName,
+            @PathParam("protectedItemName") String protectedItemName,
+            @BodyParam("application/json") ProtectedItemModelUpdate body, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -98,28 +121,19 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
         @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("vaultName") String vaultName,
-            @PathParam("protectedItemName") String protectedItemName, @QueryParam("forceDelete") Boolean forceDelete,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ProtectedItemModelCollection>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("vaultName") String vaultName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("forceDelete") Boolean forceDelete,
+            @PathParam("vaultName") String vaultName, @PathParam("protectedItemName") String protectedItemName,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}/plannedFailover")
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> plannedFailover(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("vaultName") String vaultName,
-            @PathParam("protectedItemName") String protectedItemName, @QueryParam("api-version") String apiVersion,
+            @PathParam("protectedItemName") String protectedItemName,
             @BodyParam("application/json") PlannedFailoverModelInner body, @HeaderParam("Accept") String accept,
             Context context);
 
@@ -127,14 +141,198 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ProtectedItemModelCollection>> listNext(
+        Mono<Response<ProtectedItemModelListResult>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Gets the protected item.
+     * Gets the list of protected items in the given vault.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param odataOptions OData options.
+     * @param continuationToken Continuation token.
+     * @param pageSize Page size.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of protected items in the given vault along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ProtectedItemModelInner>> listSinglePageAsync(String resourceGroupName, String vaultName,
+        String odataOptions, String continuationToken, Integer pageSize) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (vaultName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, odataOptions, continuationToken, pageSize,
+                vaultName, accept, context))
+            .<PagedResponse<ProtectedItemModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets the list of protected items in the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param odataOptions OData options.
+     * @param continuationToken Continuation token.
+     * @param pageSize Page size.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of protected items in the given vault along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ProtectedItemModelInner>> listSinglePageAsync(String resourceGroupName, String vaultName,
+        String odataOptions, String continuationToken, Integer pageSize, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (vaultName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, odataOptions, continuationToken, pageSize, vaultName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Gets the list of protected items in the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param odataOptions OData options.
+     * @param continuationToken Continuation token.
+     * @param pageSize Page size.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of protected items in the given vault as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ProtectedItemModelInner> listAsync(String resourceGroupName, String vaultName,
+        String odataOptions, String continuationToken, Integer pageSize) {
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(resourceGroupName, vaultName, odataOptions, continuationToken, pageSize),
+            nextLink -> listNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Gets the list of protected items in the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of protected items in the given vault as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ProtectedItemModelInner> listAsync(String resourceGroupName, String vaultName) {
+        final String odataOptions = null;
+        final String continuationToken = null;
+        final Integer pageSize = null;
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(resourceGroupName, vaultName, odataOptions, continuationToken, pageSize),
+            nextLink -> listNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Gets the list of protected items in the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param odataOptions OData options.
+     * @param continuationToken Continuation token.
+     * @param pageSize Page size.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of protected items in the given vault as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ProtectedItemModelInner> listAsync(String resourceGroupName, String vaultName,
+        String odataOptions, String continuationToken, Integer pageSize, Context context) {
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(resourceGroupName, vaultName, odataOptions, continuationToken, pageSize, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Gets the list of protected items in the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of protected items in the given vault as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ProtectedItemModelInner> list(String resourceGroupName, String vaultName) {
+        final String odataOptions = null;
+        final String continuationToken = null;
+        final Integer pageSize = null;
+        return new PagedIterable<>(listAsync(resourceGroupName, vaultName, odataOptions, continuationToken, pageSize));
+    }
+
+    /**
+     * Gets the list of protected items in the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param odataOptions OData options.
+     * @param continuationToken Continuation token.
+     * @param pageSize Page size.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of protected items in the given vault as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ProtectedItemModelInner> list(String resourceGroupName, String vaultName, String odataOptions,
+        String continuationToken, Integer pageSize, Context context) {
+        return new PagedIterable<>(
+            listAsync(resourceGroupName, vaultName, odataOptions, continuationToken, pageSize, context));
+    }
+
+    /**
      * Gets the details of the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -169,14 +367,12 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, vaultName, protectedItemName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, vaultName, protectedItemName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets the protected item.
-     * 
      * Gets the details of the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -212,13 +408,11 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, vaultName,
-            protectedItemName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, vaultName, protectedItemName, accept, context);
     }
 
     /**
-     * Gets the protected item.
-     * 
      * Gets the details of the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -237,8 +431,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Gets the protected item.
-     * 
      * Gets the details of the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -257,8 +449,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Gets the protected item.
-     * 
      * Gets the details of the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -275,8 +465,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Puts the protected item.
-     * 
      * Creates the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -310,19 +498,18 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter protectedItemName is required and cannot be null."));
         }
-        if (body != null) {
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
             body.validate();
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, vaultName, protectedItemName, this.client.getApiVersion(), body, accept, context))
+        return FluxUtil.withContext(context -> service.create(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, vaultName, protectedItemName, body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Puts the protected item.
-     * 
      * Creates the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -357,18 +544,18 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter protectedItemName is required and cannot be null."));
         }
-        if (body != null) {
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
             body.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, vaultName,
-            protectedItemName, this.client.getApiVersion(), body, accept, context);
+        return service.create(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, vaultName, protectedItemName, body, accept, context);
     }
 
     /**
-     * Puts the protected item.
-     * 
      * Creates the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -391,32 +578,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Puts the protected item.
-     * 
-     * Creates the protected item.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param protectedItemName The protected item name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of protected item model.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ProtectedItemModelInner>, ProtectedItemModelInner>
-        beginCreateAsync(String resourceGroupName, String vaultName, String protectedItemName) {
-        final ProtectedItemModelInner body = null;
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createWithResponseAsync(resourceGroupName, vaultName, protectedItemName, body);
-        return this.client.<ProtectedItemModelInner, ProtectedItemModelInner>getLroResult(mono,
-            this.client.getHttpPipeline(), ProtectedItemModelInner.class, ProtectedItemModelInner.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Puts the protected item.
-     * 
      * Creates the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -441,28 +602,24 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Puts the protected item.
-     * 
      * Creates the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The vault name.
      * @param protectedItemName The protected item name.
+     * @param body Protected item model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of protected item model.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ProtectedItemModelInner>, ProtectedItemModelInner>
-        beginCreate(String resourceGroupName, String vaultName, String protectedItemName) {
-        final ProtectedItemModelInner body = null;
+    public SyncPoller<PollResult<ProtectedItemModelInner>, ProtectedItemModelInner> beginCreate(
+        String resourceGroupName, String vaultName, String protectedItemName, ProtectedItemModelInner body) {
         return this.beginCreateAsync(resourceGroupName, vaultName, protectedItemName, body).getSyncPoller();
     }
 
     /**
-     * Puts the protected item.
-     * 
      * Creates the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -483,8 +640,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Puts the protected item.
-     * 
      * Creates the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -504,29 +659,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Puts the protected item.
-     * 
-     * Creates the protected item.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param protectedItemName The protected item name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return protected item model on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProtectedItemModelInner> createAsync(String resourceGroupName, String vaultName,
-        String protectedItemName) {
-        final ProtectedItemModelInner body = null;
-        return beginCreateAsync(resourceGroupName, vaultName, protectedItemName, body).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Puts the protected item.
-     * 
      * Creates the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -547,27 +679,24 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Puts the protected item.
-     * 
      * Creates the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The vault name.
      * @param protectedItemName The protected item name.
+     * @param body Protected item model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return protected item model.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ProtectedItemModelInner create(String resourceGroupName, String vaultName, String protectedItemName) {
-        final ProtectedItemModelInner body = null;
+    public ProtectedItemModelInner create(String resourceGroupName, String vaultName, String protectedItemName,
+        ProtectedItemModelInner body) {
         return createAsync(resourceGroupName, vaultName, protectedItemName, body).block();
     }
 
     /**
-     * Puts the protected item.
-     * 
      * Creates the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -587,8 +716,257 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Deletes the protected item.
+     * Performs update on the protected item.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param body Protected item model.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return protected item model along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String vaultName,
+        String protectedItemName, ProtectedItemModelUpdate body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (vaultName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
+        }
+        if (protectedItemName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter protectedItemName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, vaultName, protectedItemName, body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Performs update on the protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param body Protected item model.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return protected item model along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String vaultName,
+        String protectedItemName, ProtectedItemModelUpdate body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (vaultName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
+        }
+        if (protectedItemName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter protectedItemName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, vaultName, protectedItemName, body, accept, context);
+    }
+
+    /**
+     * Performs update on the protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param body Protected item model.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of protected item model.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ProtectedItemModelInner>, ProtectedItemModelInner> beginUpdateAsync(
+        String resourceGroupName, String vaultName, String protectedItemName, ProtectedItemModelUpdate body) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, vaultName, protectedItemName, body);
+        return this.client.<ProtectedItemModelInner, ProtectedItemModelInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ProtectedItemModelInner.class, ProtectedItemModelInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Performs update on the protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param body Protected item model.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of protected item model.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ProtectedItemModelInner>, ProtectedItemModelInner> beginUpdateAsync(
+        String resourceGroupName, String vaultName, String protectedItemName, ProtectedItemModelUpdate body,
+        Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, vaultName, protectedItemName, body, context);
+        return this.client.<ProtectedItemModelInner, ProtectedItemModelInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ProtectedItemModelInner.class, ProtectedItemModelInner.class, context);
+    }
+
+    /**
+     * Performs update on the protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param body Protected item model.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of protected item model.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ProtectedItemModelInner>, ProtectedItemModelInner> beginUpdate(
+        String resourceGroupName, String vaultName, String protectedItemName, ProtectedItemModelUpdate body) {
+        return this.beginUpdateAsync(resourceGroupName, vaultName, protectedItemName, body).getSyncPoller();
+    }
+
+    /**
+     * Performs update on the protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param body Protected item model.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of protected item model.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ProtectedItemModelInner>, ProtectedItemModelInner> beginUpdate(
+        String resourceGroupName, String vaultName, String protectedItemName, ProtectedItemModelUpdate body,
+        Context context) {
+        return this.beginUpdateAsync(resourceGroupName, vaultName, protectedItemName, body, context).getSyncPoller();
+    }
+
+    /**
+     * Performs update on the protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param body Protected item model.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return protected item model on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ProtectedItemModelInner> updateAsync(String resourceGroupName, String vaultName,
+        String protectedItemName, ProtectedItemModelUpdate body) {
+        return beginUpdateAsync(resourceGroupName, vaultName, protectedItemName, body).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Performs update on the protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param body Protected item model.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return protected item model on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ProtectedItemModelInner> updateAsync(String resourceGroupName, String vaultName,
+        String protectedItemName, ProtectedItemModelUpdate body, Context context) {
+        return beginUpdateAsync(resourceGroupName, vaultName, protectedItemName, body, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Performs update on the protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param body Protected item model.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return protected item model.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ProtectedItemModelInner update(String resourceGroupName, String vaultName, String protectedItemName,
+        ProtectedItemModelUpdate body) {
+        return updateAsync(resourceGroupName, vaultName, protectedItemName, body).block();
+    }
+
+    /**
+     * Performs update on the protected item.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param protectedItemName The protected item name.
+     * @param body Protected item model.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return protected item model.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ProtectedItemModelInner update(String resourceGroupName, String vaultName, String protectedItemName,
+        ProtectedItemModelUpdate body, Context context) {
+        return updateAsync(resourceGroupName, vaultName, protectedItemName, body, context).block();
+    }
+
+    /**
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -624,15 +1002,13 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    vaultName, protectedItemName, forceDelete, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, forceDelete, vaultName, protectedItemName, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Deletes the protected item.
-     * 
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -669,13 +1045,11 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, vaultName,
-            protectedItemName, forceDelete, this.client.getApiVersion(), accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, forceDelete, vaultName, protectedItemName, accept, context);
     }
 
     /**
-     * Deletes the protected item.
-     * 
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -697,8 +1071,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Deletes the protected item.
-     * 
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -720,8 +1092,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Deletes the protected item.
-     * 
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -745,8 +1115,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Deletes the protected item.
-     * 
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -765,8 +1133,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Deletes the protected item.
-     * 
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -787,8 +1153,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Deletes the protected item.
-     * 
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -808,8 +1172,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Deletes the protected item.
-     * 
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -828,8 +1190,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Deletes the protected item.
-     * 
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -850,8 +1210,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Deletes the protected item.
-     * 
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -868,8 +1226,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Deletes the protected item.
-     * 
      * Removes the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -888,161 +1244,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Lists the protected items.
-     * 
-     * Gets the list of protected items in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of protected items in the given vault along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProtectedItemModelInner>> listSinglePageAsync(String resourceGroupName,
-        String vaultName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (vaultName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, vaultName, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<ProtectedItemModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the protected items.
-     * 
-     * Gets the list of protected items in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of protected items in the given vault along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProtectedItemModelInner>> listSinglePageAsync(String resourceGroupName, String vaultName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (vaultName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, vaultName,
-                this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the protected items.
-     * 
-     * Gets the list of protected items in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of protected items in the given vault as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ProtectedItemModelInner> listAsync(String resourceGroupName, String vaultName) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, vaultName),
-            nextLink -> listNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists the protected items.
-     * 
-     * Gets the list of protected items in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of protected items in the given vault as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ProtectedItemModelInner> listAsync(String resourceGroupName, String vaultName, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, vaultName, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists the protected items.
-     * 
-     * Gets the list of protected items in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of protected items in the given vault as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ProtectedItemModelInner> list(String resourceGroupName, String vaultName) {
-        return new PagedIterable<>(listAsync(resourceGroupName, vaultName));
-    }
-
-    /**
-     * Lists the protected items.
-     * 
-     * Gets the list of protected items in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of protected items in the given vault as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ProtectedItemModelInner> list(String resourceGroupName, String vaultName, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, vaultName, context));
-    }
-
-    /**
-     * Performs planned failover.
-     * 
      * Performs the planned failover on the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1076,19 +1277,20 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter protectedItemName is required and cannot be null."));
         }
-        if (body != null) {
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
             body.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.plannedFailover(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, vaultName, protectedItemName, this.client.getApiVersion(), body, accept, context))
+            .withContext(context -> service.plannedFailover(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, vaultName, protectedItemName, body, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Performs planned failover.
-     * 
      * Performs the planned failover on the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1123,18 +1325,18 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter protectedItemName is required and cannot be null."));
         }
-        if (body != null) {
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
             body.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.plannedFailover(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            vaultName, protectedItemName, this.client.getApiVersion(), body, accept, context);
+        return service.plannedFailover(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, vaultName, protectedItemName, body, accept, context);
     }
 
     /**
-     * Performs planned failover.
-     * 
      * Performs the planned failover on the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1157,32 +1359,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Performs planned failover.
-     * 
-     * Performs the planned failover on the protected item.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param protectedItemName The protected item name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of planned failover model.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<PlannedFailoverModelInner>, PlannedFailoverModelInner>
-        beginPlannedFailoverAsync(String resourceGroupName, String vaultName, String protectedItemName) {
-        final PlannedFailoverModelInner body = null;
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = plannedFailoverWithResponseAsync(resourceGroupName, vaultName, protectedItemName, body);
-        return this.client.<PlannedFailoverModelInner, PlannedFailoverModelInner>getLroResult(mono,
-            this.client.getHttpPipeline(), PlannedFailoverModelInner.class, PlannedFailoverModelInner.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Performs planned failover.
-     * 
      * Performs the planned failover on the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1207,28 +1383,24 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Performs planned failover.
-     * 
      * Performs the planned failover on the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The vault name.
      * @param protectedItemName The protected item name.
+     * @param body Planned failover model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of planned failover model.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<PlannedFailoverModelInner>, PlannedFailoverModelInner>
-        beginPlannedFailover(String resourceGroupName, String vaultName, String protectedItemName) {
-        final PlannedFailoverModelInner body = null;
+    public SyncPoller<PollResult<PlannedFailoverModelInner>, PlannedFailoverModelInner> beginPlannedFailover(
+        String resourceGroupName, String vaultName, String protectedItemName, PlannedFailoverModelInner body) {
         return this.beginPlannedFailoverAsync(resourceGroupName, vaultName, protectedItemName, body).getSyncPoller();
     }
 
     /**
-     * Performs planned failover.
-     * 
      * Performs the planned failover on the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1250,8 +1422,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Performs planned failover.
-     * 
      * Performs the planned failover on the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1271,29 +1441,6 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Performs planned failover.
-     * 
-     * Performs the planned failover on the protected item.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param protectedItemName The protected item name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return planned failover model on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PlannedFailoverModelInner> plannedFailoverAsync(String resourceGroupName, String vaultName,
-        String protectedItemName) {
-        final PlannedFailoverModelInner body = null;
-        return beginPlannedFailoverAsync(resourceGroupName, vaultName, protectedItemName, body).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Performs planned failover.
-     * 
      * Performs the planned failover on the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1314,13 +1461,12 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
     }
 
     /**
-     * Performs planned failover.
-     * 
      * Performs the planned failover on the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The vault name.
      * @param protectedItemName The protected item name.
+     * @param body Planned failover model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1328,14 +1474,11 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PlannedFailoverModelInner plannedFailover(String resourceGroupName, String vaultName,
-        String protectedItemName) {
-        final PlannedFailoverModelInner body = null;
+        String protectedItemName, PlannedFailoverModelInner body) {
         return plannedFailoverAsync(resourceGroupName, vaultName, protectedItemName, body).block();
     }
 
     /**
-     * Performs planned failover.
-     * 
      * Performs the planned failover on the protected item.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1361,8 +1504,8 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return protected item model collection along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a ProtectedItemModel list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProtectedItemModelInner>> listNextSinglePageAsync(String nextLink) {
@@ -1388,8 +1531,8 @@ public final class ProtectedItemsClientImpl implements ProtectedItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return protected item model collection along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a ProtectedItemModel list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProtectedItemModelInner>> listNextSinglePageAsync(String nextLink, Context context) {

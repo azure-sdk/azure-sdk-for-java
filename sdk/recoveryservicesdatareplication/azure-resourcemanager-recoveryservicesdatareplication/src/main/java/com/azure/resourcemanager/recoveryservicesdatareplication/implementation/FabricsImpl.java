@@ -27,6 +27,28 @@ public final class FabricsImpl implements Fabrics {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<FabricModel> list() {
+        PagedIterable<FabricModelInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new FabricModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<FabricModel> list(Context context) {
+        PagedIterable<FabricModelInner> inner = this.serviceClient().list(context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new FabricModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<FabricModel> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<FabricModelInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new FabricModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<FabricModel> listByResourceGroup(String resourceGroupName, String continuationToken,
+        Context context) {
+        PagedIterable<FabricModelInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, continuationToken, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new FabricModelImpl(inner1, this.manager()));
+    }
+
     public Response<FabricModel> getByResourceGroupWithResponse(String resourceGroupName, String fabricName,
         Context context) {
         Response<FabricModelInner> inner
@@ -54,28 +76,6 @@ public final class FabricsImpl implements Fabrics {
 
     public void delete(String resourceGroupName, String fabricName, Context context) {
         this.serviceClient().delete(resourceGroupName, fabricName, context);
-    }
-
-    public PagedIterable<FabricModel> list() {
-        PagedIterable<FabricModelInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new FabricModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<FabricModel> list(String continuationToken, Context context) {
-        PagedIterable<FabricModelInner> inner = this.serviceClient().list(continuationToken, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new FabricModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<FabricModel> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<FabricModelInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new FabricModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<FabricModel> listByResourceGroup(String resourceGroupName, String continuationToken,
-        Context context) {
-        PagedIterable<FabricModelInner> inner
-            = this.serviceClient().listByResourceGroup(resourceGroupName, continuationToken, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new FabricModelImpl(inner1, this.manager()));
     }
 
     public FabricModel getById(String id) {

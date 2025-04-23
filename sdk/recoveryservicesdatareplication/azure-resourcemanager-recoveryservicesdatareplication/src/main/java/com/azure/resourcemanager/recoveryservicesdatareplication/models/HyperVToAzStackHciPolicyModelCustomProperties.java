@@ -16,13 +16,12 @@ import java.io.IOException;
 @Fluent
 public final class HyperVToAzStackHciPolicyModelCustomProperties extends PolicyModelCustomProperties {
     /*
-     * Gets or sets the instance type.
+     * Discriminator property for PolicyModelCustomProperties.
      */
     private String instanceType = "HyperVToAzStackHCI";
 
     /*
-     * Gets or sets the duration in minutes until which the recovery points need to be
-     * stored.
+     * Gets or sets the duration in minutes until which the recovery points need to be stored.
      */
     private int recoveryPointHistoryInMinutes;
 
@@ -43,7 +42,7 @@ public final class HyperVToAzStackHciPolicyModelCustomProperties extends PolicyM
     }
 
     /**
-     * Get the instanceType property: Gets or sets the instance type.
+     * Get the instanceType property: Discriminator property for PolicyModelCustomProperties.
      * 
      * @return the instanceType value.
      */
@@ -54,8 +53,7 @@ public final class HyperVToAzStackHciPolicyModelCustomProperties extends PolicyM
 
     /**
      * Get the recoveryPointHistoryInMinutes property: Gets or sets the duration in minutes until which the recovery
-     * points need to be
-     * stored.
+     * points need to be stored.
      * 
      * @return the recoveryPointHistoryInMinutes value.
      */
@@ -65,8 +63,7 @@ public final class HyperVToAzStackHciPolicyModelCustomProperties extends PolicyM
 
     /**
      * Set the recoveryPointHistoryInMinutes property: Gets or sets the duration in minutes until which the recovery
-     * points need to be
-     * stored.
+     * points need to be stored.
      * 
      * @param recoveryPointHistoryInMinutes the recoveryPointHistoryInMinutes value to set.
      * @return the HyperVToAzStackHciPolicyModelCustomProperties object itself.

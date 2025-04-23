@@ -47,18 +47,60 @@ public interface DataReplicationMgmtClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the DrasClient object to access its operations.
+     * Gets the OperationsClient object to access its operations.
      * 
-     * @return the DrasClient object.
+     * @return the OperationsClient object.
      */
-    DrasClient getDras();
+    OperationsClient getOperations();
 
     /**
-     * Gets the DraOperationStatusClient object to access its operations.
+     * Gets the CheckNameAvailabilitiesClient object to access its operations.
      * 
-     * @return the DraOperationStatusClient object.
+     * @return the CheckNameAvailabilitiesClient object.
      */
-    DraOperationStatusClient getDraOperationStatus();
+    CheckNameAvailabilitiesClient getCheckNameAvailabilities();
+
+    /**
+     * Gets the FabricsClient object to access its operations.
+     * 
+     * @return the FabricsClient object.
+     */
+    FabricsClient getFabrics();
+
+    /**
+     * Gets the VaultsClient object to access its operations.
+     * 
+     * @return the VaultsClient object.
+     */
+    VaultsClient getVaults();
+
+    /**
+     * Gets the DeploymentPreflightsClient object to access its operations.
+     * 
+     * @return the DeploymentPreflightsClient object.
+     */
+    DeploymentPreflightsClient getDeploymentPreflights();
+
+    /**
+     * Gets the LocationBasedOperationResultsClient object to access its operations.
+     * 
+     * @return the LocationBasedOperationResultsClient object.
+     */
+    LocationBasedOperationResultsClient getLocationBasedOperationResults();
+
+    /**
+     * Gets the OperationResultsClient object to access its operations.
+     * 
+     * @return the OperationResultsClient object.
+     */
+    OperationResultsClient getOperationResults();
+
+    /**
+     * Gets the FabricAgentsClient object to access its operations.
+     * 
+     * @return the FabricAgentsClient object.
+     */
+    FabricAgentsClient getFabricAgents();
 
     /**
      * Gets the EmailConfigurationsClient object to access its operations.
@@ -75,32 +117,32 @@ public interface DataReplicationMgmtClient {
     EventsClient getEvents();
 
     /**
-     * Gets the FabricsClient object to access its operations.
+     * Gets the JobsClient object to access its operations.
      * 
-     * @return the FabricsClient object.
+     * @return the JobsClient object.
      */
-    FabricsClient getFabrics();
+    JobsClient getJobs();
 
     /**
-     * Gets the FabricOperationsStatusClient object to access its operations.
+     * Gets the PrivateEndpointConnectionProxiesClient object to access its operations.
      * 
-     * @return the FabricOperationsStatusClient object.
+     * @return the PrivateEndpointConnectionProxiesClient object.
      */
-    FabricOperationsStatusClient getFabricOperationsStatus();
+    PrivateEndpointConnectionProxiesClient getPrivateEndpointConnectionProxies();
 
     /**
-     * Gets the PoliciesClient object to access its operations.
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
      * 
-     * @return the PoliciesClient object.
+     * @return the PrivateEndpointConnectionsClient object.
      */
-    PoliciesClient getPolicies();
+    PrivateEndpointConnectionsClient getPrivateEndpointConnections();
 
     /**
-     * Gets the PolicyOperationStatusClient object to access its operations.
+     * Gets the PrivateLinkResourcesClient object to access its operations.
      * 
-     * @return the PolicyOperationStatusClient object.
+     * @return the PrivateLinkResourcesClient object.
      */
-    PolicyOperationStatusClient getPolicyOperationStatus();
+    PrivateLinkResourcesClient getPrivateLinkResources();
 
     /**
      * Gets the ProtectedItemsClient object to access its operations.
@@ -108,13 +150,6 @@ public interface DataReplicationMgmtClient {
      * @return the ProtectedItemsClient object.
      */
     ProtectedItemsClient getProtectedItems();
-
-    /**
-     * Gets the ProtectedItemOperationStatusClient object to access its operations.
-     * 
-     * @return the ProtectedItemOperationStatusClient object.
-     */
-    ProtectedItemOperationStatusClient getProtectedItemOperationStatus();
 
     /**
      * Gets the RecoveryPointsClient object to access its operations.
@@ -131,44 +166,9 @@ public interface DataReplicationMgmtClient {
     ReplicationExtensionsClient getReplicationExtensions();
 
     /**
-     * Gets the ResourceProvidersClient object to access its operations.
+     * Gets the PoliciesClient object to access its operations.
      * 
-     * @return the ResourceProvidersClient object.
+     * @return the PoliciesClient object.
      */
-    ResourceProvidersClient getResourceProviders();
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
-
-    /**
-     * Gets the VaultsClient object to access its operations.
-     * 
-     * @return the VaultsClient object.
-     */
-    VaultsClient getVaults();
-
-    /**
-     * Gets the VaultOperationStatusClient object to access its operations.
-     * 
-     * @return the VaultOperationStatusClient object.
-     */
-    VaultOperationStatusClient getVaultOperationStatus();
-
-    /**
-     * Gets the WorkflowsClient object to access its operations.
-     * 
-     * @return the WorkflowsClient object.
-     */
-    WorkflowsClient getWorkflows();
-
-    /**
-     * Gets the WorkflowOperationStatusClient object to access its operations.
-     * 
-     * @return the WorkflowOperationStatusClient object.
-     */
-    WorkflowOperationStatusClient getWorkflowOperationStatus();
+    PoliciesClient getPolicies();
 }

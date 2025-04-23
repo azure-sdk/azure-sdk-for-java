@@ -10,7 +10,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.WorkflowModelInner;
+import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.JobModelInner;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -46,9 +46,9 @@ public final class TaskModel implements JsonSerializable<TaskModel> {
     private TaskModelCustomProperties customProperties;
 
     /*
-     * Gets or sets the list of children workflow models.
+     * Gets or sets the list of children job models.
      */
-    private List<WorkflowModelInner> childrenWorkflows;
+    private List<JobModelInner> childrenJobs;
 
     /**
      * Creates an instance of TaskModel class.
@@ -113,22 +113,22 @@ public final class TaskModel implements JsonSerializable<TaskModel> {
     }
 
     /**
-     * Get the childrenWorkflows property: Gets or sets the list of children workflow models.
+     * Get the childrenJobs property: Gets or sets the list of children job models.
      * 
-     * @return the childrenWorkflows value.
+     * @return the childrenJobs value.
      */
-    public List<WorkflowModelInner> childrenWorkflows() {
-        return this.childrenWorkflows;
+    public List<JobModelInner> childrenJobs() {
+        return this.childrenJobs;
     }
 
     /**
-     * Set the childrenWorkflows property: Gets or sets the list of children workflow models.
+     * Set the childrenJobs property: Gets or sets the list of children job models.
      * 
-     * @param childrenWorkflows the childrenWorkflows value to set.
+     * @param childrenJobs the childrenJobs value to set.
      * @return the TaskModel object itself.
      */
-    public TaskModel withChildrenWorkflows(List<WorkflowModelInner> childrenWorkflows) {
-        this.childrenWorkflows = childrenWorkflows;
+    public TaskModel withChildrenJobs(List<JobModelInner> childrenJobs) {
+        this.childrenJobs = childrenJobs;
         return this;
     }
 
@@ -141,8 +141,8 @@ public final class TaskModel implements JsonSerializable<TaskModel> {
         if (customProperties() != null) {
             customProperties().validate();
         }
-        if (childrenWorkflows() != null) {
-            childrenWorkflows().forEach(e -> e.validate());
+        if (childrenJobs() != null) {
+            childrenJobs().forEach(e -> e.validate());
         }
     }
 
@@ -153,8 +153,7 @@ public final class TaskModel implements JsonSerializable<TaskModel> {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("customProperties", this.customProperties);
-        jsonWriter.writeArrayField("childrenWorkflows", this.childrenWorkflows,
-            (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("childrenJobs", this.childrenJobs, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -185,10 +184,9 @@ public final class TaskModel implements JsonSerializable<TaskModel> {
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("customProperties".equals(fieldName)) {
                     deserializedTaskModel.customProperties = TaskModelCustomProperties.fromJson(reader);
-                } else if ("childrenWorkflows".equals(fieldName)) {
-                    List<WorkflowModelInner> childrenWorkflows
-                        = reader.readArray(reader1 -> WorkflowModelInner.fromJson(reader1));
-                    deserializedTaskModel.childrenWorkflows = childrenWorkflows;
+                } else if ("childrenJobs".equals(fieldName)) {
+                    List<JobModelInner> childrenJobs = reader.readArray(reader1 -> JobModelInner.fromJson(reader1));
+                    deserializedTaskModel.childrenJobs = childrenJobs;
                 } else {
                     reader.skipChildren();
                 }

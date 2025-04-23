@@ -10,15 +10,15 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/Operations_List.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/Operations_List.json
      */
     /**
-     * Sample code: Operations_List.
+     * Sample code: Get a list of REST API operations supported by Microsoft.DataReplication.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void operationsList(
+    public static void getAListOfRESTAPIOperationsSupportedByMicrosoftDataReplication(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }

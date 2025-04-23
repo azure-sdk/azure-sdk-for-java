@@ -17,7 +17,7 @@ import java.io.IOException;
 @Immutable
 public class PolicyModelCustomProperties implements JsonSerializable<PolicyModelCustomProperties> {
     /*
-     * Gets or sets the instance type.
+     * Discriminator property for PolicyModelCustomProperties.
      */
     private String instanceType = "PolicyModelCustomProperties";
 
@@ -28,7 +28,7 @@ public class PolicyModelCustomProperties implements JsonSerializable<PolicyModel
     }
 
     /**
-     * Get the instanceType property: Gets or sets the instance type.
+     * Get the instanceType property: Discriminator property for PolicyModelCustomProperties.
      * 
      * @return the instanceType value.
      */

@@ -10,16 +10,16 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class EmailConfigurationListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/EmailConfiguration_List.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/EmailConfiguration_List.json
      */
     /**
-     * Sample code: EmailConfiguration_List.
+     * Sample code: Lists the email configuration settings.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void emailConfigurationList(
+    public static void listsTheEmailConfigurationSettings(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
-        manager.emailConfigurations().list("rgrecoveryservicesdatareplication", "4", com.azure.core.util.Context.NONE);
+        manager.emailConfigurations().list("rgswagger_2024-09-01", "4", com.azure.core.util.Context.NONE);
     }
 }

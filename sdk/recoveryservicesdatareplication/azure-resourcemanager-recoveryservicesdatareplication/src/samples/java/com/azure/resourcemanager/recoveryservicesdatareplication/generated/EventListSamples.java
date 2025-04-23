@@ -10,18 +10,18 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class EventListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/Event_List.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/Event_List.json
      */
     /**
-     * Sample code: Event_List.
+     * Sample code: Lists the events.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void eventList(
+    public static void listsTheEvents(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.events()
-            .list("rgrecoveryservicesdatareplication", "4", "wbglupjzvkirtgnnyasxom", "cxtufi",
+            .list("rgswagger_2024-09-01", "4", null, "gabpzsxrifposvleqqcjnvofz", null,
                 com.azure.core.util.Context.NONE);
     }
 }

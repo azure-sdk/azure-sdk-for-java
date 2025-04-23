@@ -16,15 +16,15 @@ import java.util.Map;
 public final class VaultUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/Vault_Update.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/Vault_Update.json
      */
     /**
-     * Sample code: Vault_Update.
+     * Sample code: Updates the vault.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void vaultUpdate(
+    public static void updatesTheVault(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         VaultModel resource = manager.vaults()
             .getByResourceGroupWithResponse("rgrecoveryservicesdatareplication", "4", com.azure.core.util.Context.NONE)

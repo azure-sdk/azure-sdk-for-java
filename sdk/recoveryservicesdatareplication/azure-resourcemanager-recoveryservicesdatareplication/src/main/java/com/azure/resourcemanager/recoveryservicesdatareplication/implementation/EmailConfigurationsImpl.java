@@ -27,6 +27,17 @@ public final class EmailConfigurationsImpl implements EmailConfigurations {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<EmailConfigurationModel> list(String resourceGroupName, String vaultName) {
+        PagedIterable<EmailConfigurationModelInner> inner = this.serviceClient().list(resourceGroupName, vaultName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new EmailConfigurationModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<EmailConfigurationModel> list(String resourceGroupName, String vaultName, Context context) {
+        PagedIterable<EmailConfigurationModelInner> inner
+            = this.serviceClient().list(resourceGroupName, vaultName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new EmailConfigurationModelImpl(inner1, this.manager()));
+    }
+
     public Response<EmailConfigurationModel> getWithResponse(String resourceGroupName, String vaultName,
         String emailConfigurationName, Context context) {
         Response<EmailConfigurationModelInner> inner
@@ -47,17 +58,6 @@ public final class EmailConfigurationsImpl implements EmailConfigurations {
         } else {
             return null;
         }
-    }
-
-    public PagedIterable<EmailConfigurationModel> list(String resourceGroupName, String vaultName) {
-        PagedIterable<EmailConfigurationModelInner> inner = this.serviceClient().list(resourceGroupName, vaultName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new EmailConfigurationModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<EmailConfigurationModel> list(String resourceGroupName, String vaultName, Context context) {
-        PagedIterable<EmailConfigurationModelInner> inner
-            = this.serviceClient().list(resourceGroupName, vaultName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new EmailConfigurationModelImpl(inner1, this.manager()));
     }
 
     public EmailConfigurationModel getById(String id) {

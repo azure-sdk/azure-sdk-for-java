@@ -10,15 +10,15 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class VaultGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/Vault_Get.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/Vault_Get.json
      */
     /**
-     * Sample code: Vault_Get.
+     * Sample code: Gets the vault.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void vaultGet(
+    public static void getsTheVault(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.vaults()
             .getByResourceGroupWithResponse("rgrecoveryservicesdatareplication", "4", com.azure.core.util.Context.NONE);
