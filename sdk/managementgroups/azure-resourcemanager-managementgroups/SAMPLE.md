@@ -41,27 +41,99 @@
 ### Entities_List
 
 ```java
-
 /**
- * Samples for Entities List.
+ * Samples for HierarchySettingsOperation List.
  */
-public final class EntitiesListSamples {
+public final class HierarchySettingsOperationListSamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetEntities.json
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * ListHierarchySettings.json
      */
     /**
-     * Sample code: GetEntities.
+     * Sample code: ListGroupSettings.
      * 
      * @param manager Entry point to ManagementGroupsManager.
      */
-    public static void getEntities(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.entities().list(null, null, null, null, null, null, null, null, null, com.azure.core.util.Context.NONE);
+    public static void listGroupSettings(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.hierarchySettingsOperations().listWithResponse("root", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### HierarchySettingsOperation_CreateOrUpdate
+
+```java
+/**
+ * Samples for ManagementGroupSubscriptions GetSubscriptionsUnderManagementGroup.
+ */
+public final class ManagementGroupSubscriptionsGetSubscriptionsUnderManagementGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * GetAllSubscriptionsFromManagementGroup.json
+     */
+    /**
+     * Sample code: GetAllSubscriptionsFromManagementGroup.
+     * 
+     * @param manager Entry point to ManagementGroupsManager.
+     */
+    public static void getAllSubscriptionsFromManagementGroup(
+        com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.managementGroupSubscriptions()
+            .getSubscriptionsUnderManagementGroup("Group", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HierarchySettingsOperation_Delete
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/ListOperations.
+     * json
+     */
+    /**
+     * Sample code: List Operations.
+     * 
+     * @param manager Entry point to ManagementGroupsManager.
+     */
+    public static void listOperations(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HierarchySettingsOperation_Get
+
+```java
+/**
+ * Samples for ManagementGroups List.
+ */
+public final class ManagementGroupsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * ListManagementGroups.json
+     */
+    /**
+     * Sample code: ListManagementGroups.
+     * 
+     * @param manager Entry point to ManagementGroupsManager.
+     */
+    public static void
+        listManagementGroups(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.managementGroups().list("no-cache", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### HierarchySettingsOperation_List
 
 ```java
 import com.azure.resourcemanager.managementgroups.models.CreateOrUpdateSettingsRequest;
@@ -72,7 +144,7 @@ import com.azure.resourcemanager.managementgroups.models.CreateOrUpdateSettingsR
 public final class HierarchySettingsOperationCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
      * PutHierarchySettings.json
      */
     /**
@@ -90,100 +162,25 @@ public final class HierarchySettingsOperationCreateOrUpdateSamples {
 }
 ```
 
-### HierarchySettingsOperation_Delete
-
-```java
-/**
- * Samples for HierarchySettingsOperation Delete.
- */
-public final class HierarchySettingsOperationDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
-     * DeleteHierarchySettings.json
-     */
-    /**
-     * Sample code: GetGroupSettings.
-     * 
-     * @param manager Entry point to ManagementGroupsManager.
-     */
-    public static void getGroupSettings(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.hierarchySettingsOperations().deleteWithResponse("root", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### HierarchySettingsOperation_Get
-
-```java
-/**
- * Samples for HierarchySettingsOperation Get.
- */
-public final class HierarchySettingsOperationGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
-     * GetHierarchySettings.json
-     */
-    /**
-     * Sample code: GetGroupSettings.
-     * 
-     * @param manager Entry point to ManagementGroupsManager.
-     */
-    public static void getGroupSettings(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.hierarchySettingsOperations().getWithResponse("root", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### HierarchySettingsOperation_List
-
-```java
-/**
- * Samples for HierarchySettingsOperation List.
- */
-public final class HierarchySettingsOperationListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
-     * ListHierarchySettings.json
-     */
-    /**
-     * Sample code: ListGroupSettings.
-     * 
-     * @param manager Entry point to ManagementGroupsManager.
-     */
-    public static void listGroupSettings(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.hierarchySettingsOperations().listWithResponse("root", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### HierarchySettingsOperation_Update
 
 ```java
-import com.azure.resourcemanager.managementgroups.models.CreateOrUpdateSettingsRequest;
-
 /**
- * Samples for HierarchySettingsOperation Update.
+ * Samples for ResourceProvider StartTenantBackfill.
  */
-public final class HierarchySettingsOperationUpdateSamples {
+public final class ResourceProviderStartTenantBackfillSamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
-     * PatchHierarchySettings.json
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * StartTenantBackfillRequest.json
      */
     /**
-     * Sample code: GetGroupSettings.
+     * Sample code: StartTenantBackfill.
      * 
      * @param manager Entry point to ManagementGroupsManager.
      */
-    public static void getGroupSettings(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.hierarchySettingsOperations()
-            .updateWithResponse("root",
-                new CreateOrUpdateSettingsRequest().withRequireAuthorizationForGroupCreation(true)
-                    .withDefaultManagementGroup("/providers/Microsoft.Management/managementGroups/DefaultGroup"),
-                com.azure.core.util.Context.NONE);
+    public static void startTenantBackfill(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.resourceProviders().startTenantBackfillWithResponse(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -197,7 +194,7 @@ public final class HierarchySettingsOperationUpdateSamples {
 public final class ManagementGroupSubscriptionsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
      * AddManagementGroupSubscription.json
      */
     /**
@@ -217,25 +214,94 @@ public final class ManagementGroupSubscriptionsCreateSamples {
 ### ManagementGroupSubscriptions_Delete
 
 ```java
+import com.azure.resourcemanager.managementgroups.models.ManagementGroupExpandType;
+
 /**
- * Samples for ManagementGroupSubscriptions Delete.
+ * Samples for ManagementGroups Get.
  */
-public final class ManagementGroupSubscriptionsDeleteSamples {
+public final class ManagementGroupsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
-     * RemoveManagementGroupSubscription.json
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * GetManagementGroupWithPath.json
      */
     /**
-     * Sample code: DeleteSubscriptionFromManagementGroup.
+     * Sample code: GetManagementGroupWithPath.
      * 
      * @param manager Entry point to ManagementGroupsManager.
      */
-    public static void deleteSubscriptionFromManagementGroup(
-        com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.managementGroupSubscriptions()
-            .deleteWithResponse("Group", "728bcbe4-8d56-4510-86c2-4921b8beefbc", "no-cache",
+    public static void
+        getManagementGroupWithPath(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.managementGroups()
+            .getWithResponse("20000000-0001-0000-0000-000000000000", ManagementGroupExpandType.PATH, null, null,
+                "no-cache", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * GetManagementGroupWithAncestors.json
+     */
+    /**
+     * Sample code: GetManagementGroupWithAncestors.
+     * 
+     * @param manager Entry point to ManagementGroupsManager.
+     */
+    public static void
+        getManagementGroupWithAncestors(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.managementGroups()
+            .getWithResponse("20000000-0001-0000-0000-00000000000", ManagementGroupExpandType.ANCESTORS, null, null,
+                "no-cache", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * GetManagementGroupWithExpand.json
+     */
+    /**
+     * Sample code: GetManagementGroupWithExpand.
+     * 
+     * @param manager Entry point to ManagementGroupsManager.
+     */
+    public static void
+        getManagementGroupWithExpand(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.managementGroups()
+            .getWithResponse("20000000-0001-0000-0000-000000000000", ManagementGroupExpandType.CHILDREN, null, null,
+                "no-cache", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * GetManagementGroup.json
+     */
+    /**
+     * Sample code: GetManagementGroup.
+     * 
+     * @param manager Entry point to ManagementGroupsManager.
+     */
+    public static void getManagementGroup(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.managementGroups()
+            .getWithResponse("20000000-0001-0000-0000-000000000000", null, null, null, "no-cache",
                 com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * GetManagementGroupWithExpandAndRecurse.json
+     */
+    /**
+     * Sample code: GetManagementGroupsWithExpandAndRecurse.
+     * 
+     * @param manager Entry point to ManagementGroupsManager.
+     */
+    public static void getManagementGroupsWithExpandAndRecurse(
+        com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.managementGroups()
+            .getWithResponse("20000000-0001-0000-0000-000000000000", ManagementGroupExpandType.CHILDREN, true, null,
+                "no-cache", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -243,24 +309,27 @@ public final class ManagementGroupSubscriptionsDeleteSamples {
 ### ManagementGroupSubscriptions_GetSubscription
 
 ```java
+import com.azure.resourcemanager.managementgroups.models.CreateOrUpdateSettingsRequest;
+
 /**
- * Samples for ManagementGroupSubscriptions GetSubscription.
+ * Samples for HierarchySettingsOperation Update.
  */
-public final class ManagementGroupSubscriptionsGetSubscriptionSamples {
+public final class HierarchySettingsOperationUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
-     * GetSubscriptionFromManagementGroup.json
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * PatchHierarchySettings.json
      */
     /**
-     * Sample code: GetSubscriptionFromManagementGroup.
+     * Sample code: GetGroupSettings.
      * 
      * @param manager Entry point to ManagementGroupsManager.
      */
-    public static void
-        getSubscriptionFromManagementGroup(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.managementGroupSubscriptions()
-            .getSubscriptionWithResponse("Group", "728bcbe4-8d56-4510-86c2-4921b8beefbc", "no-cache",
+    public static void getGroupSettings(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.hierarchySettingsOperations()
+            .updateWithResponse("root",
+                new CreateOrUpdateSettingsRequest().withRequireAuthorizationForGroupCreation(true)
+                    .withDefaultManagementGroup("/providers/Microsoft.Management/managementGroups/DefaultGroup"),
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -269,29 +338,50 @@ public final class ManagementGroupSubscriptionsGetSubscriptionSamples {
 ### ManagementGroupSubscriptions_GetSubscriptionsUnderManagementGroup
 
 ```java
+
 /**
- * Samples for ManagementGroupSubscriptions GetSubscriptionsUnderManagementGroup.
+ * Samples for Entities List.
  */
-public final class ManagementGroupSubscriptionsGetSubscriptionsUnderManagementGroupSamples {
+public final class EntitiesListSamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
-     * GetAllSubscriptionsFromManagementGroup.json
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetEntities.json
      */
     /**
-     * Sample code: GetAllSubscriptionsFromManagementGroup.
+     * Sample code: GetEntities.
      * 
      * @param manager Entry point to ManagementGroupsManager.
      */
-    public static void getAllSubscriptionsFromManagementGroup(
-        com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.managementGroupSubscriptions()
-            .getSubscriptionsUnderManagementGroup("Group", null, com.azure.core.util.Context.NONE);
+    public static void getEntities(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.entities().list(null, null, null, null, null, null, null, null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### ManagementGroups_CreateOrUpdate
+
+```java
+/**
+ * Samples for HierarchySettingsOperation Delete.
+ */
+public final class HierarchySettingsOperationDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * DeleteHierarchySettings.json
+     */
+    /**
+     * Sample code: GetGroupSettings.
+     * 
+     * @param manager Entry point to ManagementGroupsManager.
+     */
+    public static void getGroupSettings(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.hierarchySettingsOperations().deleteWithResponse("root", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ManagementGroups_Delete
 
 ```java
 import com.azure.resourcemanager.managementgroups.models.CreateManagementGroupDetails;
@@ -304,7 +394,7 @@ import com.azure.resourcemanager.managementgroups.models.CreateParentGroupInfo;
 public final class ManagementGroupsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
      * PutManagementGroup.json
      */
     /**
@@ -322,126 +412,7 @@ public final class ManagementGroupsCreateOrUpdateSamples {
 }
 ```
 
-### ManagementGroups_Delete
-
-```java
-/**
- * Samples for ManagementGroups Delete.
- */
-public final class ManagementGroupsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
-     * DeleteManagementGroup.json
-     */
-    /**
-     * Sample code: DeleteManagementGroup.
-     * 
-     * @param manager Entry point to ManagementGroupsManager.
-     */
-    public static void
-        deleteManagementGroup(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.managementGroups().delete("GroupToDelete", "no-cache", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### ManagementGroups_Get
-
-```java
-import com.azure.resourcemanager.managementgroups.models.ManagementGroupExpandType;
-
-/**
- * Samples for ManagementGroups Get.
- */
-public final class ManagementGroupsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
-     * GetManagementGroupWithPath.json
-     */
-    /**
-     * Sample code: GetManagementGroupWithPath.
-     * 
-     * @param manager Entry point to ManagementGroupsManager.
-     */
-    public static void
-        getManagementGroupWithPath(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.managementGroups()
-            .getWithResponse("20000000-0001-0000-0000-000000000000", ManagementGroupExpandType.PATH, null, null,
-                "no-cache", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
-     * GetManagementGroupWithAncestors.json
-     */
-    /**
-     * Sample code: GetManagementGroupWithAncestors.
-     * 
-     * @param manager Entry point to ManagementGroupsManager.
-     */
-    public static void
-        getManagementGroupWithAncestors(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.managementGroups()
-            .getWithResponse("20000000-0001-0000-0000-00000000000", ManagementGroupExpandType.ANCESTORS, null, null,
-                "no-cache", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
-     * GetManagementGroupWithExpand.json
-     */
-    /**
-     * Sample code: GetManagementGroupWithExpand.
-     * 
-     * @param manager Entry point to ManagementGroupsManager.
-     */
-    public static void
-        getManagementGroupWithExpand(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.managementGroups()
-            .getWithResponse("20000000-0001-0000-0000-000000000000", ManagementGroupExpandType.CHILDREN, null, null,
-                "no-cache", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
-     * GetManagementGroup.json
-     */
-    /**
-     * Sample code: GetManagementGroup.
-     * 
-     * @param manager Entry point to ManagementGroupsManager.
-     */
-    public static void getManagementGroup(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.managementGroups()
-            .getWithResponse("20000000-0001-0000-0000-000000000000", null, null, null, "no-cache",
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
-     * GetManagementGroupWithExpandAndRecurse.json
-     */
-    /**
-     * Sample code: GetManagementGroupsWithExpandAndRecurse.
-     * 
-     * @param manager Entry point to ManagementGroupsManager.
-     */
-    public static void getManagementGroupsWithExpandAndRecurse(
-        com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.managementGroups()
-            .getWithResponse("20000000-0001-0000-0000-000000000000", ManagementGroupExpandType.CHILDREN, true, null,
-                "no-cache", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ManagementGroups_GetDescendants
 
 ```java
 /**
@@ -450,7 +421,7 @@ public final class ManagementGroupsGetSamples {
 public final class ManagementGroupsGetDescendantsSamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/GetDescendants.
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/GetDescendants.
      * json
      */
     /**
@@ -465,31 +436,7 @@ public final class ManagementGroupsGetDescendantsSamples {
 }
 ```
 
-### ManagementGroups_List
-
-```java
-/**
- * Samples for ManagementGroups List.
- */
-public final class ManagementGroupsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
-     * ListManagementGroups.json
-     */
-    /**
-     * Sample code: ListManagementGroups.
-     * 
-     * @param manager Entry point to ManagementGroupsManager.
-     */
-    public static void
-        listManagementGroups(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.managementGroups().list("no-cache", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ManagementGroups_Update
+### ManagementGroups_GetDescendants
 
 ```java
 import com.azure.resourcemanager.managementgroups.models.PatchManagementGroupRequest;
@@ -500,7 +447,7 @@ import com.azure.resourcemanager.managementgroups.models.PatchManagementGroupReq
 public final class ManagementGroupsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
      * PatchManagementGroup.json
      */
     /**
@@ -519,30 +466,7 @@ public final class ManagementGroupsUpdateSamples {
 }
 ```
 
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/ListOperations.
-     * json
-     */
-    /**
-     * Sample code: List Operations.
-     * 
-     * @param manager Entry point to ManagementGroupsManager.
-     */
-    public static void listOperations(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ResourceProvider_CheckNameAvailability
+### ManagementGroups_List
 
 ```java
 import com.azure.resourcemanager.managementgroups.models.CheckNameAvailabilityRequest;
@@ -554,7 +478,7 @@ import com.azure.resourcemanager.managementgroups.models.Type;
 public final class ResourceProviderCheckNameAvailabilitySamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
      * CheckManagementGroupNameAvailability.json
      */
     /**
@@ -571,30 +495,7 @@ public final class ResourceProviderCheckNameAvailabilitySamples {
 }
 ```
 
-### ResourceProvider_StartTenantBackfill
-
-```java
-/**
- * Samples for ResourceProvider StartTenantBackfill.
- */
-public final class ResourceProviderStartTenantBackfillSamples {
-    /*
-     * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
-     * StartTenantBackfillRequest.json
-     */
-    /**
-     * Sample code: StartTenantBackfill.
-     * 
-     * @param manager Entry point to ManagementGroupsManager.
-     */
-    public static void startTenantBackfill(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
-        manager.resourceProviders().startTenantBackfillWithResponse(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ResourceProvider_TenantBackfillStatus
+### ManagementGroups_Update
 
 ```java
 /**
@@ -603,7 +504,7 @@ public final class ResourceProviderStartTenantBackfillSamples {
 public final class ResourceProviderTenantBackfillStatusSamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
      * TenantBackfillStatusRequest.json
      */
     /**
@@ -614,6 +515,105 @@ public final class ResourceProviderTenantBackfillStatusSamples {
     public static void
         tenantBackfillStatus(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
         manager.resourceProviders().tenantBackfillStatusWithResponse(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+/**
+ * Samples for ManagementGroups Delete.
+ */
+public final class ManagementGroupsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * DeleteManagementGroup.json
+     */
+    /**
+     * Sample code: DeleteManagementGroup.
+     * 
+     * @param manager Entry point to ManagementGroupsManager.
+     */
+    public static void
+        deleteManagementGroup(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.managementGroups().delete("GroupToDelete", "no-cache", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ResourceProvider_CheckNameAvailability
+
+```java
+/**
+ * Samples for ManagementGroupSubscriptions GetSubscription.
+ */
+public final class ManagementGroupSubscriptionsGetSubscriptionSamples {
+    /*
+     * x-ms-original-file:
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * GetSubscriptionFromManagementGroup.json
+     */
+    /**
+     * Sample code: GetSubscriptionFromManagementGroup.
+     * 
+     * @param manager Entry point to ManagementGroupsManager.
+     */
+    public static void
+        getSubscriptionFromManagementGroup(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.managementGroupSubscriptions()
+            .getSubscriptionWithResponse("Group", "728bcbe4-8d56-4510-86c2-4921b8beefbc", "no-cache",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ResourceProvider_StartTenantBackfill
+
+```java
+/**
+ * Samples for HierarchySettingsOperation Get.
+ */
+public final class HierarchySettingsOperationGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * GetHierarchySettings.json
+     */
+    /**
+     * Sample code: GetGroupSettings.
+     * 
+     * @param manager Entry point to ManagementGroupsManager.
+     */
+    public static void getGroupSettings(com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.hierarchySettingsOperations().getWithResponse("root", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ResourceProvider_TenantBackfillStatus
+
+```java
+/**
+ * Samples for ManagementGroupSubscriptions Delete.
+ */
+public final class ManagementGroupSubscriptionsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
+     * RemoveManagementGroupSubscription.json
+     */
+    /**
+     * Sample code: DeleteSubscriptionFromManagementGroup.
+     * 
+     * @param manager Entry point to ManagementGroupsManager.
+     */
+    public static void deleteSubscriptionFromManagementGroup(
+        com.azure.resourcemanager.managementgroups.ManagementGroupsManager manager) {
+        manager.managementGroupSubscriptions()
+            .deleteWithResponse("Group", "728bcbe4-8d56-4510-86c2-4921b8beefbc", "no-cache",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
