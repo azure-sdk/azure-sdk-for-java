@@ -2,7 +2,7 @@
 
 Azure Resource Manager Playwright Testing client library for Java.
 
-This package contains Microsoft Azure SDK for Playwright Testing Management SDK. Microsoft.AzurePlaywrightService Resource Provider Management API. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for Playwright Testing Management SDK. Azure Playwright testing management service. Package tag package-2024-12-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
@@ -52,7 +52,7 @@ Azure subscription ID can be configured via `AZURE_SUBSCRIPTION_ID` environment 
 Assuming the use of the `DefaultAzureCredential` credential class, the client can be authenticated using the following code:
 
 ```java
-AzureProfile profile = new AzureProfile(AzureEnvironment.AZURE);
+AzureProfile profile = new AzureProfile(AzureCloud.AZURE_PUBLIC_CLOUD);
 TokenCredential credential = new DefaultAzureCredentialBuilder()
     .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())
     .build();
@@ -60,7 +60,7 @@ PlaywrightTestingManager manager = PlaywrightTestingManager
     .authenticate(credential, profile);
 ```
 
-The sample code assumes global Azure. Please change `AzureEnvironment.AZURE` variable if otherwise.
+The sample code assumes global Azure. Please change the `AzureCloud.AZURE_PUBLIC_CLOUD` variable if otherwise.
 
 See [Authentication][authenticate] for more options.
 
@@ -70,6 +70,14 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Examples
 
+```java
+account = playwrightTestingManager.accounts()
+    .define(accountName)
+    .withRegion(REGION)
+    .withExistingResourceGroup(resourceGroupName)
+    .withProperties(new AccountProperties().withRegionalAffinity(EnablementStatus.ENABLED))
+    .create();
+```
 [Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/playwrighttesting/azure-resourcemanager-playwrighttesting/SAMPLE.md)
 
 
@@ -100,5 +108,3 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [cg]: https://github.com/Azure/azure-sdk-for-java/blob/main/CONTRIBUTING.md
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
-
-
