@@ -233,6 +233,7 @@
     <module>sdk/tools</module>
     <module>sdk/translation</module>
     <module>sdk/trustedsigning</module>
+    <module>sdk/verifiedid</module>
     <module>sdk/vision</module>
     <module>sdk/vmwarecloudsimple</module>
     <module>sdk/voiceservices</module>
