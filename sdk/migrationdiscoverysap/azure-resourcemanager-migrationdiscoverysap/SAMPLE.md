@@ -34,6 +34,366 @@
 
 ```java
 /**
+ * Samples for ServerInstances Get.
+ */
+public final class ServerInstancesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
+     * examples/ServerInstances_Get.json
+     */
+    /**
+     * Sample code: GET a Server Instance resource.
+     * 
+     * @param manager Entry point to MigrationDiscoverySapManager.
+     */
+    public static void gETAServerInstanceResource(
+        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
+        manager.serverInstances()
+            .getWithResponse("test-rg", "SampleSite", "MPP_MPP", "APP_SapServer1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SapDiscoverySites_Create
+
+```java
+/**
+ * Samples for SapInstances Delete.
+ */
+public final class SapInstancesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
+     * examples/SAPInstances_Delete.json
+     */
+    /**
+     * Sample code: Deletes the SAP Instance resource.
+     * 
+     * @param manager Entry point to MigrationDiscoverySapManager.
+     */
+    public static void deletesTheSAPInstanceResource(
+        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
+        manager.sapInstances().delete("test-rg", "SampleSite", "MPP_MPP", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SapDiscoverySites_Delete
+
+```java
+/**
+ * Samples for SapDiscoverySites Delete.
+ */
+public final class SapDiscoverySitesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
+     * examples/SAPDiscoverySites_Delete.json
+     */
+    /**
+     * Sample code: Deletes a SAP Migration discovery site resource.
+     * 
+     * @param manager Entry point to MigrationDiscoverySapManager.
+     */
+    public static void deletesASAPMigrationDiscoverySiteResource(
+        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
+        manager.sapDiscoverySites().delete("test-rg", "SampleSite", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SapDiscoverySites_GetByResourceGroup
+
+```java
+/**
+ * Samples for SapInstances ListBySapDiscoverySite.
+ */
+public final class SapInstancesListBySapDiscoverySiteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
+     * examples/SAPInstances_List.json
+     */
+    /**
+     * Sample code: Lists the SAP Instance resources for the given SAP Migration discovery site resource.
+     * 
+     * @param manager Entry point to MigrationDiscoverySapManager.
+     */
+    public static void listsTheSAPInstanceResourcesForTheGivenSAPMigrationDiscoverySiteResource(
+        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
+        manager.sapInstances().listBySapDiscoverySite("test-rg", "SampleSite", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SapDiscoverySites_ImportEntities
+
+```java
+import com.azure.resourcemanager.migrationdiscoverysap.models.SapInstance;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for SapInstances Update.
+ */
+public final class SapInstancesUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
+     * examples/SAPInstances_Update.json
+     */
+    /**
+     * Sample code: Updates the SAP Instance resource.
+     * 
+     * @param manager Entry point to MigrationDiscoverySapManager.
+     */
+    public static void updatesTheSAPInstanceResource(
+        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
+        SapInstance resource = manager.sapInstances()
+            .getWithResponse("test-rg", "SampleSite", "MPP_MPP", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("tag1", "value1")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### SapDiscoverySites_List
+
+```java
+import com.azure.resourcemanager.migrationdiscoverysap.models.SapDiscoverySite;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for SapDiscoverySites Update.
+ */
+public final class SapDiscoverySitesUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
+     * examples/SAPDiscoverySites_Update.json
+     */
+    /**
+     * Sample code: Updates a SAP Migration discovery site resource.
+     * 
+     * @param manager Entry point to MigrationDiscoverySapManager.
+     */
+    public static void updatesASAPMigrationDiscoverySiteResource(
+        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
+        SapDiscoverySite resource = manager.sapDiscoverySites()
+            .getByResourceGroupWithResponse("test-rg", "SampleSite", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("tag1", "value1")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### SapDiscoverySites_ListByResourceGroup
+
+```java
+import com.azure.resourcemanager.migrationdiscoverysap.models.ServerInstance;
+import com.azure.resourcemanager.migrationdiscoverysap.models.ServerInstanceProperties;
+
+/**
+ * Samples for ServerInstances Update.
+ */
+public final class ServerInstancesUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
+     * examples/ServerInstances_Update.json
+     */
+    /**
+     * Sample code: Updates the Server Instance resource.
+     * 
+     * @param manager Entry point to MigrationDiscoverySapManager.
+     */
+    public static void updatesTheServerInstanceResource(
+        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
+        ServerInstance resource = manager.serverInstances()
+            .getWithResponse("test-rg", "SampleSite", "MPP_MPP", "APP_SapServer1", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withProperties(new ServerInstanceProperties()).apply();
+    }
+}
+```
+
+### SapDiscoverySites_Update
+
+```java
+/**
+ * Samples for SapDiscoverySites ImportEntities.
+ */
+public final class SapDiscoverySitesImportEntitiesSamples {
+    /*
+     * x-ms-original-file:
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
+     * examples/SAPDiscoverySites_ImportEntities.json
+     */
+    /**
+     * Sample code: Import a SAP Migration discovery site resource and it's child resources.
+     * 
+     * @param manager Entry point to MigrationDiscoverySapManager.
+     */
+    public static void importASAPMigrationDiscoverySiteResourceAndItSChildResources(
+        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
+        manager.sapDiscoverySites().importEntities("test-rg", "SampleSite", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SapInstances_Create
+
+```java
+/**
+ * Samples for ServerInstances Delete.
+ */
+public final class ServerInstancesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
+     * examples/ServerInstances_Delete.json
+     */
+    /**
+     * Sample code: Deletes the Server Instance resource.
+     * 
+     * @param manager Entry point to MigrationDiscoverySapManager.
+     */
+    public static void deletesTheServerInstanceResource(
+        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
+        manager.serverInstances()
+            .delete("test-rg", "SampleSite", "MPP_MPP", "APP_SapServer1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SapInstances_Delete
+
+```java
+/**
+ * Samples for SapDiscoverySites GetByResourceGroup.
+ */
+public final class SapDiscoverySitesGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
+     * examples/SAPDiscoverySites_Get.json
+     */
+    /**
+     * Sample code: GET a SAP Migration discovery site resource.
+     * 
+     * @param manager Entry point to MigrationDiscoverySapManager.
+     */
+    public static void gETASAPMigrationDiscoverySiteResource(
+        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
+        manager.sapDiscoverySites()
+            .getByResourceGroupWithResponse("test-rg", "SampleSite", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SapInstances_Get
+
+```java
+/**
+ * Samples for SapInstances Get.
+ */
+public final class SapInstancesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
+     * examples/SAPInstances_Get.json
+     */
+    /**
+     * Sample code: GET a SAP Instance resource.
+     * 
+     * @param manager Entry point to MigrationDiscoverySapManager.
+     */
+    public static void
+        gETASAPInstanceResource(com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
+        manager.sapInstances().getWithResponse("test-rg", "SampleSite", "MPP_MPP", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SapInstances_ListBySapDiscoverySite
+
+```java
+/**
+ * Samples for ServerInstances ListBySapInstance.
+ */
+public final class ServerInstancesListBySapInstanceSamples {
+    /*
+     * x-ms-original-file:
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
+     * examples/ServerInstances_List.json
+     */
+    /**
+     * Sample code: Lists the Server Instance resources for the given SAP Instance resource.
+     * 
+     * @param manager Entry point to MigrationDiscoverySapManager.
+     */
+    public static void listsTheServerInstanceResourcesForTheGivenSAPInstanceResource(
+        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
+        manager.serverInstances()
+            .listBySapInstance("test-rg", "SampleSite", "MPP_MPP", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SapInstances_Update
+
+```java
+/**
+ * Samples for SapDiscoverySites ListByResourceGroup.
+ */
+public final class SapDiscoverySitesListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
+     * examples/SAPDiscoverySites_ListByResourceGroup.json
+     */
+    /**
+     * Sample code: List SAP Migration discovery site resources by Resource group.
+     * 
+     * @param manager Entry point to MigrationDiscoverySapManager.
+     */
+    public static void listSAPMigrationDiscoverySiteResourcesByResourceGroup(
+        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
+        manager.sapDiscoverySites().listByResourceGroup("test-rg", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ServerInstances_Create
+
+```java
+/**
  * Samples for Operations List.
  */
 public final class OperationsListSamples {
@@ -54,7 +414,34 @@ public final class OperationsListSamples {
 }
 ```
 
-### SapDiscoverySites_Create
+### ServerInstances_Delete
+
+```java
+/**
+ * Samples for ServerInstances Create.
+ */
+public final class ServerInstancesCreateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
+     * examples/ServerInstances_Create.json
+     */
+    /**
+     * Sample code: Creates the Server Instance resource.
+     * 
+     * @param manager Entry point to MigrationDiscoverySapManager.
+     */
+    public static void createsTheServerInstanceResource(
+        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
+        manager.serverInstances()
+            .define("APP_SapServer1")
+            .withExistingSapInstance("test-rg", "SampleSite", "MPP_MPP")
+            .create();
+    }
+}
+```
+
+### ServerInstances_Get
 
 ```java
 import com.azure.resourcemanager.migrationdiscoverysap.models.SapDiscoverySiteProperties;
@@ -101,80 +488,7 @@ public final class SapDiscoverySitesCreateSamples {
 }
 ```
 
-### SapDiscoverySites_Delete
-
-```java
-/**
- * Samples for SapDiscoverySites Delete.
- */
-public final class SapDiscoverySitesDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/SAPDiscoverySites_Delete.json
-     */
-    /**
-     * Sample code: Deletes a SAP Migration discovery site resource.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void deletesASAPMigrationDiscoverySiteResource(
-        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.sapDiscoverySites().delete("test-rg", "SampleSite", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SapDiscoverySites_GetByResourceGroup
-
-```java
-/**
- * Samples for SapDiscoverySites GetByResourceGroup.
- */
-public final class SapDiscoverySitesGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/SAPDiscoverySites_Get.json
-     */
-    /**
-     * Sample code: GET a SAP Migration discovery site resource.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void gETASAPMigrationDiscoverySiteResource(
-        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.sapDiscoverySites()
-            .getByResourceGroupWithResponse("test-rg", "SampleSite", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SapDiscoverySites_ImportEntities
-
-```java
-/**
- * Samples for SapDiscoverySites ImportEntities.
- */
-public final class SapDiscoverySitesImportEntitiesSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/SAPDiscoverySites_ImportEntities.json
-     */
-    /**
-     * Sample code: Import a SAP Migration discovery site resource and it's child resources.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void importASAPMigrationDiscoverySiteResourceAndItSChildResources(
-        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.sapDiscoverySites().importEntities("test-rg", "SampleSite", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SapDiscoverySites_List
+### ServerInstances_ListBySapInstance
 
 ```java
 /**
@@ -198,74 +512,7 @@ public final class SapDiscoverySitesListSamples {
 }
 ```
 
-### SapDiscoverySites_ListByResourceGroup
-
-```java
-/**
- * Samples for SapDiscoverySites ListByResourceGroup.
- */
-public final class SapDiscoverySitesListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/SAPDiscoverySites_ListByResourceGroup.json
-     */
-    /**
-     * Sample code: List SAP Migration discovery site resources by Resource group.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void listSAPMigrationDiscoverySiteResourcesByResourceGroup(
-        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.sapDiscoverySites().listByResourceGroup("test-rg", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SapDiscoverySites_Update
-
-```java
-import com.azure.resourcemanager.migrationdiscoverysap.models.SapDiscoverySite;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for SapDiscoverySites Update.
- */
-public final class SapDiscoverySitesUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/SAPDiscoverySites_Update.json
-     */
-    /**
-     * Sample code: Updates a SAP Migration discovery site resource.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void updatesASAPMigrationDiscoverySiteResource(
-        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        SapDiscoverySite resource = manager.sapDiscoverySites()
-            .getByResourceGroupWithResponse("test-rg", "SampleSite", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("tag1", "value1")).apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### SapInstances_Create
+### ServerInstances_Update
 
 ```java
 import com.azure.resourcemanager.migrationdiscoverysap.models.SapInstanceProperties;
@@ -307,253 +554,6 @@ public final class SapInstancesCreateSamples {
             map.put(key, value);
         }
         return map;
-    }
-}
-```
-
-### SapInstances_Delete
-
-```java
-/**
- * Samples for SapInstances Delete.
- */
-public final class SapInstancesDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/SAPInstances_Delete.json
-     */
-    /**
-     * Sample code: Deletes the SAP Instance resource.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void deletesTheSAPInstanceResource(
-        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.sapInstances().delete("test-rg", "SampleSite", "MPP_MPP", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SapInstances_Get
-
-```java
-/**
- * Samples for SapInstances Get.
- */
-public final class SapInstancesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/SAPInstances_Get.json
-     */
-    /**
-     * Sample code: GET a SAP Instance resource.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void
-        gETASAPInstanceResource(com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.sapInstances().getWithResponse("test-rg", "SampleSite", "MPP_MPP", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SapInstances_ListBySapDiscoverySite
-
-```java
-/**
- * Samples for SapInstances ListBySapDiscoverySite.
- */
-public final class SapInstancesListBySapDiscoverySiteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/SAPInstances_List.json
-     */
-    /**
-     * Sample code: Lists the SAP Instance resources for the given SAP Migration discovery site resource.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void listsTheSAPInstanceResourcesForTheGivenSAPMigrationDiscoverySiteResource(
-        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.sapInstances().listBySapDiscoverySite("test-rg", "SampleSite", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SapInstances_Update
-
-```java
-import com.azure.resourcemanager.migrationdiscoverysap.models.SapInstance;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for SapInstances Update.
- */
-public final class SapInstancesUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/SAPInstances_Update.json
-     */
-    /**
-     * Sample code: Updates the SAP Instance resource.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void updatesTheSAPInstanceResource(
-        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        SapInstance resource = manager.sapInstances()
-            .getWithResponse("test-rg", "SampleSite", "MPP_MPP", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("tag1", "value1")).apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### ServerInstances_Create
-
-```java
-/**
- * Samples for ServerInstances Create.
- */
-public final class ServerInstancesCreateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/ServerInstances_Create.json
-     */
-    /**
-     * Sample code: Creates the Server Instance resource.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void createsTheServerInstanceResource(
-        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.serverInstances()
-            .define("APP_SapServer1")
-            .withExistingSapInstance("test-rg", "SampleSite", "MPP_MPP")
-            .create();
-    }
-}
-```
-
-### ServerInstances_Delete
-
-```java
-/**
- * Samples for ServerInstances Delete.
- */
-public final class ServerInstancesDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/ServerInstances_Delete.json
-     */
-    /**
-     * Sample code: Deletes the Server Instance resource.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void deletesTheServerInstanceResource(
-        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.serverInstances()
-            .delete("test-rg", "SampleSite", "MPP_MPP", "APP_SapServer1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ServerInstances_Get
-
-```java
-/**
- * Samples for ServerInstances Get.
- */
-public final class ServerInstancesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/ServerInstances_Get.json
-     */
-    /**
-     * Sample code: GET a Server Instance resource.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void gETAServerInstanceResource(
-        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.serverInstances()
-            .getWithResponse("test-rg", "SampleSite", "MPP_MPP", "APP_SapServer1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ServerInstances_ListBySapInstance
-
-```java
-/**
- * Samples for ServerInstances ListBySapInstance.
- */
-public final class ServerInstancesListBySapInstanceSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/ServerInstances_List.json
-     */
-    /**
-     * Sample code: Lists the Server Instance resources for the given SAP Instance resource.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void listsTheServerInstanceResourcesForTheGivenSAPInstanceResource(
-        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        manager.serverInstances()
-            .listBySapInstance("test-rg", "SampleSite", "MPP_MPP", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ServerInstances_Update
-
-```java
-import com.azure.resourcemanager.migrationdiscoverysap.models.ServerInstance;
-import com.azure.resourcemanager.migrationdiscoverysap.models.ServerInstanceProperties;
-
-/**
- * Samples for ServerInstances Update.
- */
-public final class ServerInstancesUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/workloads/resource-manager/Microsoft.Workloads/SAPDiscoverySites/preview/2023-10-01-preview/
-     * examples/ServerInstances_Update.json
-     */
-    /**
-     * Sample code: Updates the Server Instance resource.
-     * 
-     * @param manager Entry point to MigrationDiscoverySapManager.
-     */
-    public static void updatesTheServerInstanceResource(
-        com.azure.resourcemanager.migrationdiscoverysap.MigrationDiscoverySapManager manager) {
-        ServerInstance resource = manager.serverInstances()
-            .getWithResponse("test-rg", "SampleSite", "MPP_MPP", "APP_SapServer1", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withProperties(new ServerInstanceProperties()).apply();
     }
 }
 ```
