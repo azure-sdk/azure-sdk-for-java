@@ -1,14 +1,64 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-23)
 
-### Features Added
+- Azure Resource Manager Mongo Cluster client library for Java. This package contains Microsoft Azure SDK for Mongo Cluster Management SDK. The Microsoft Azure management API provides create, read, update, and delete functionality for Azure Cosmos DB for MongoDB vCore resources including clusters and firewall rules. Package tag package-2024-07-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `implementation.models.PrivateEndpointConnectionResourceListResult` was removed
 
-### Other Changes
+#### `implementation.models.MongoClusterListResult` was removed
+
+#### `implementation.models.FirewallRuleListResult` was removed
+
+#### `implementation.models.ReplicaListResult` was removed
+
+#### `implementation.models.PrivateLinkResourceListResult` was removed
+
+#### `implementation.models.OperationListResult` was removed
+
+#### `models.MongoClusterRestoreParameters` was modified
+
+* `withPointInTimeUTC(java.time.OffsetDateTime)` was removed
+* `pointInTimeUTC()` was removed
+
+#### `models.AdministratorProperties` was modified
+
+* `withUserName(java.lang.String)` was removed
+* `userName()` was removed
+
+### Features Added
+
+* `models.MongoClusterListResult` was added
+
+* `models.ReplicaListResult` was added
+
+* `models.FirewallRuleListResult` was added
+
+* `models.PrivateLinkResourceListResult` was added
+
+* `models.OperationListResult` was added
+
+* `models.PrivateEndpointConnectionResourceListResult` was added
+
+#### `models.MongoClusterRestoreParameters` was modified
+
+* `withPointInTimeUtc(java.time.OffsetDateTime)` was added
+* `pointInTimeUtc()` was added
+
+#### `models.PrivateEndpointConnection` was modified
+
+* `withProperties(models.PrivateEndpointConnectionProperties)` was added
+
+#### `models.AdministratorProperties` was modified
+
+* `username()` was added
+* `withUsername(java.lang.String)` was added
+
+#### `models.PrivateLinkResourceProperties` was modified
+
+* `withRequiredZoneNames(java.util.List)` was added
 
 ## 1.0.0 (2024-09-25)
 
