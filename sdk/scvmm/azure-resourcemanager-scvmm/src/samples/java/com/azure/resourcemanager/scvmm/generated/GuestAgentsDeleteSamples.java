@@ -10,7 +10,7 @@ package com.azure.resourcemanager.scvmm.generated;
 public final class GuestAgentsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/GuestAgents_Delete_MaximumSet_Gen
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/GuestAgents_Delete_MaximumSet_Gen
      * .json
      */
     /**
@@ -24,7 +24,7 @@ public final class GuestAgentsDeleteSamples {
 
     /*
      * x-ms-original-file:
-     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/GuestAgents_Delete_MinimumSet_Gen
+     * specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/GuestAgents_Delete_MinimumSet_Gen
      * .json
      */
     /**
