@@ -31,7 +31,11 @@ pr:
 
 parameters:
   - name: release_azureaiinference
-    displayName: 'azure-ai-inference'
+    displayName: azure-ai-inference
+    type: boolean
+    default: true
+  - name: release_azureaiagentspersistent
+    displayName: azure-ai-agents-persistent
     type: boolean
     default: true
 
@@ -44,3 +48,7 @@ extends:
         groupId: com.azure
         safeName: azureaiinference
         releaseInBatch: ${{ parameters.release_azureaiinference }}
+      - name: azure-ai-agents-persistent
+        groupId: com.azure
+        safeName: azureaiagentspersistent
+        releaseInBatch: ${{ parameters.release_azureaiagentspersistent }}
