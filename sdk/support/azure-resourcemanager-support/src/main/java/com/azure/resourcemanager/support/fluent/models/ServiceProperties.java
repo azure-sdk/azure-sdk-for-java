@@ -11,6 +11,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Details about an Azure service available for support ticket creation.
@@ -26,6 +27,11 @@ public final class ServiceProperties implements JsonSerializable<ServiceProperti
      * ARM Resource types.
      */
     private List<String> resourceTypes;
+
+    /*
+     * Metadata about the service, only visible for 1P clients
+     */
+    private Map<String, String> metadata;
 
     /**
      * Creates an instance of ServiceProperties class.
@@ -74,6 +80,15 @@ public final class ServiceProperties implements JsonSerializable<ServiceProperti
     }
 
     /**
+     * Get the metadata property: Metadata about the service, only visible for 1P clients.
+     * 
+     * @return the metadata value.
+     */
+    public Map<String, String> metadata() {
+        return this.metadata;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -113,6 +128,9 @@ public final class ServiceProperties implements JsonSerializable<ServiceProperti
                 } else if ("resourceTypes".equals(fieldName)) {
                     List<String> resourceTypes = reader.readArray(reader1 -> reader1.getString());
                     deserializedServiceProperties.resourceTypes = resourceTypes;
+                } else if ("metadata".equals(fieldName)) {
+                    Map<String, String> metadata = reader.readMap(reader1 -> reader1.getString());
+                    deserializedServiceProperties.metadata = metadata;
                 } else {
                     reader.skipChildren();
                 }

@@ -9,7 +9,7 @@ package com.azure.resourcemanager.support.generated;
  */
 public final class SupportTicketsListSamples {
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsServiceIdEqualsForSubscription.json
      */
     /**
@@ -23,7 +23,7 @@ public final class SupportTicketsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsCreatedOnOrAfterAndInOpenStateBySubscription.json
      */
     /**
@@ -38,7 +38,7 @@ public final class SupportTicketsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsInUpdatingStateBySubscription.json
      */
     /**
@@ -52,7 +52,7 @@ public final class SupportTicketsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsCreatedOnOrAfterAndInUpdatingStateBySubscription.json
      */
     /**
@@ -68,7 +68,7 @@ public final class SupportTicketsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsProblemClassificationIdEqualsForSubscription.json
      */
     /**
@@ -84,7 +84,7 @@ public final class SupportTicketsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsBySubscription.json
      */
     /**
@@ -97,7 +97,7 @@ public final class SupportTicketsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/stable/2024-04-01/examples/
+     * x-ms-original-file: specification/support/resource-manager/Microsoft.Support/preview/2023-06-01-preview/examples/
      * ListSupportTicketsInOpenStateBySubscription.json
      */
     /**
