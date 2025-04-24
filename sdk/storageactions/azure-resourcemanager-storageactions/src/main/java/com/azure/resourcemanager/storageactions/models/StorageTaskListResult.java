@@ -14,29 +14,28 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The response from the List Storage Task operation.
+ * The response of a StorageTask list operation.
  */
 @Immutable
-public final class StorageTasksListResult implements JsonSerializable<StorageTasksListResult> {
+public final class StorageTaskListResult implements JsonSerializable<StorageTaskListResult> {
     /*
-     * Gets the list of storage tasks and their properties.
+     * The StorageTask items on this page
      */
     private List<StorageTaskInner> value;
 
     /*
-     * Request URL that can be used to query next page of storage tasks. Returned when total number of requested storage
-     * tasks exceed maximum page size.
+     * The link to the next page of items
      */
     private String nextLink;
 
     /**
-     * Creates an instance of StorageTasksListResult class.
+     * Creates an instance of StorageTaskListResult class.
      */
-    public StorageTasksListResult() {
+    public StorageTaskListResult() {
     }
 
     /**
-     * Get the value property: Gets the list of storage tasks and their properties.
+     * Get the value property: The StorageTask items on this page.
      * 
      * @return the value value.
      */
@@ -45,8 +44,7 @@ public final class StorageTasksListResult implements JsonSerializable<StorageTas
     }
 
     /**
-     * Get the nextLink property: Request URL that can be used to query next page of storage tasks. Returned when total
-     * number of requested storage tasks exceed maximum page size.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -75,31 +73,32 @@ public final class StorageTasksListResult implements JsonSerializable<StorageTas
     }
 
     /**
-     * Reads an instance of StorageTasksListResult from the JsonReader.
+     * Reads an instance of StorageTaskListResult from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of StorageTasksListResult if the JsonReader was pointing to an instance of it, or null if it
+     * @return An instance of StorageTaskListResult if the JsonReader was pointing to an instance of it, or null if it
      * was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the StorageTasksListResult.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the StorageTaskListResult.
      */
-    public static StorageTasksListResult fromJson(JsonReader jsonReader) throws IOException {
+    public static StorageTaskListResult fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            StorageTasksListResult deserializedStorageTasksListResult = new StorageTasksListResult();
+            StorageTaskListResult deserializedStorageTaskListResult = new StorageTaskListResult();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("value".equals(fieldName)) {
                     List<StorageTaskInner> value = reader.readArray(reader1 -> StorageTaskInner.fromJson(reader1));
-                    deserializedStorageTasksListResult.value = value;
+                    deserializedStorageTaskListResult.value = value;
                 } else if ("nextLink".equals(fieldName)) {
-                    deserializedStorageTasksListResult.nextLink = reader.getString();
+                    deserializedStorageTaskListResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedStorageTasksListResult;
+            return deserializedStorageTaskListResult;
         });
     }
 }

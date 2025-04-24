@@ -37,7 +37,6 @@ public final class StorageTasksCreateSamples {
             .define("mytask1")
             .withRegion("westus")
             .withExistingResourceGroup("res4228")
-            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
             .withProperties(
                 new StorageTaskProperties().withEnabled(true)
                     .withDescription("My Storage task")
@@ -52,6 +51,7 @@ public final class StorageTasksCreateSamples {
                             Arrays.asList(new StorageTaskOperation().withName(StorageTaskOperationName.DELETE_BLOB)
                                 .withOnSuccess(OnSuccess.CONTINUE)
                                 .withOnFailure(OnFailure.BREAK))))))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
             .create();
     }
 

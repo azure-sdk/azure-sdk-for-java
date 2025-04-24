@@ -12,6 +12,7 @@ import com.azure.resourcemanager.storageactions.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.storageactions.models.StorageTask;
 import com.azure.resourcemanager.storageactions.models.StorageTaskProperties;
 import com.azure.resourcemanager.storageactions.models.StorageTaskUpdateParameters;
+import com.azure.resourcemanager.storageactions.models.StorageTaskUpdateProperties;
 import java.util.Collections;
 import java.util.Map;
 
@@ -45,12 +46,12 @@ public final class StorageTaskImpl implements StorageTask, StorageTask.Definitio
         }
     }
 
-    public ManagedServiceIdentity identity() {
-        return this.innerModel().identity();
-    }
-
     public StorageTaskProperties properties() {
         return this.innerModel().properties();
+    }
+
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
     }
 
     public SystemData systemData() {
@@ -161,22 +162,17 @@ public final class StorageTaskImpl implements StorageTask, StorageTask.Definitio
         return this;
     }
 
+    public StorageTaskImpl withProperties(StorageTaskProperties properties) {
+        this.innerModel().withProperties(properties);
+        return this;
+    }
+
     public StorageTaskImpl withIdentity(ManagedServiceIdentity identity) {
         if (isInCreateMode()) {
             this.innerModel().withIdentity(identity);
             return this;
         } else {
             this.updateParameters.withIdentity(identity);
-            return this;
-        }
-    }
-
-    public StorageTaskImpl withProperties(StorageTaskProperties properties) {
-        if (isInCreateMode()) {
-            this.innerModel().withProperties(properties);
-            return this;
-        } else {
-            this.updateParameters.withProperties(properties);
             return this;
         }
     }
@@ -189,6 +185,11 @@ public final class StorageTaskImpl implements StorageTask, StorageTask.Definitio
             this.updateParameters.withTags(tags);
             return this;
         }
+    }
+
+    public StorageTaskImpl withProperties(StorageTaskUpdateProperties properties) {
+        this.updateParameters.withProperties(properties);
+        return this;
     }
 
     private boolean isInCreateMode() {

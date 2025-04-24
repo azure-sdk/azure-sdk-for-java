@@ -61,16 +61,16 @@ public interface StorageActionsMgmtClient {
     StorageTasksClient getStorageTasks();
 
     /**
-     * Gets the StorageTaskAssignmentsClient object to access its operations.
-     * 
-     * @return the StorageTaskAssignmentsClient object.
-     */
-    StorageTaskAssignmentsClient getStorageTaskAssignments();
-
-    /**
      * Gets the StorageTasksReportsClient object to access its operations.
      * 
      * @return the StorageTasksReportsClient object.
      */
     StorageTasksReportsClient getStorageTasksReports();
+
+    /**
+     * Gets the StorageTaskAssignmentsClient object to access its operations.
+     * 
+     * @return the StorageTaskAssignmentsClient object.
+     */
+    StorageTaskAssignmentsClient getStorageTaskAssignments();
 }

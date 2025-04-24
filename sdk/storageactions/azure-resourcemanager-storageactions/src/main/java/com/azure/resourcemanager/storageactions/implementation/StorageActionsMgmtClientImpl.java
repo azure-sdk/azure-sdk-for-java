@@ -155,20 +155,6 @@ public final class StorageActionsMgmtClientImpl implements StorageActionsMgmtCli
     }
 
     /**
-     * The StorageTaskAssignmentsClient object to access its operations.
-     */
-    private final StorageTaskAssignmentsClient storageTaskAssignments;
-
-    /**
-     * Gets the StorageTaskAssignmentsClient object to access its operations.
-     * 
-     * @return the StorageTaskAssignmentsClient object.
-     */
-    public StorageTaskAssignmentsClient getStorageTaskAssignments() {
-        return this.storageTaskAssignments;
-    }
-
-    /**
      * The StorageTasksReportsClient object to access its operations.
      */
     private final StorageTasksReportsClient storageTasksReports;
@@ -180,6 +166,20 @@ public final class StorageActionsMgmtClientImpl implements StorageActionsMgmtCli
      */
     public StorageTasksReportsClient getStorageTasksReports() {
         return this.storageTasksReports;
+    }
+
+    /**
+     * The StorageTaskAssignmentsClient object to access its operations.
+     */
+    private final StorageTaskAssignmentsClient storageTaskAssignments;
+
+    /**
+     * Gets the StorageTaskAssignmentsClient object to access its operations.
+     * 
+     * @return the StorageTaskAssignmentsClient object.
+     */
+    public StorageTaskAssignmentsClient getStorageTaskAssignments() {
+        return this.storageTaskAssignments;
     }
 
     /**
@@ -202,8 +202,8 @@ public final class StorageActionsMgmtClientImpl implements StorageActionsMgmtCli
         this.apiVersion = "2023-01-01";
         this.operations = new OperationsClientImpl(this);
         this.storageTasks = new StorageTasksClientImpl(this);
-        this.storageTaskAssignments = new StorageTaskAssignmentsClientImpl(this);
         this.storageTasksReports = new StorageTasksReportsClientImpl(this);
+        this.storageTaskAssignments = new StorageTaskAssignmentsClientImpl(this);
     }
 
     /**

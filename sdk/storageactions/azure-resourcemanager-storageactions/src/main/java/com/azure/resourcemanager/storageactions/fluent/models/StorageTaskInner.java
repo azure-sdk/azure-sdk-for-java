@@ -22,14 +22,14 @@ import java.util.Map;
 @Fluent
 public final class StorageTaskInner extends Resource {
     /*
-     * The managed service identity of the resource.
-     */
-    private ManagedServiceIdentity identity;
-
-    /*
      * Properties of the storage task.
      */
     private StorageTaskProperties properties;
+
+    /*
+     * The managed service identity of the resource.
+     */
+    private ManagedServiceIdentity identity;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -58,26 +58,6 @@ public final class StorageTaskInner extends Resource {
     }
 
     /**
-     * Get the identity property: The managed service identity of the resource.
-     * 
-     * @return the identity value.
-     */
-    public ManagedServiceIdentity identity() {
-        return this.identity;
-    }
-
-    /**
-     * Set the identity property: The managed service identity of the resource.
-     * 
-     * @param identity the identity value to set.
-     * @return the StorageTaskInner object itself.
-     */
-    public StorageTaskInner withIdentity(ManagedServiceIdentity identity) {
-        this.identity = identity;
-        return this;
-    }
-
-    /**
      * Get the properties property: Properties of the storage task.
      * 
      * @return the properties value.
@@ -94,6 +74,26 @@ public final class StorageTaskInner extends Resource {
      */
     public StorageTaskInner withProperties(StorageTaskProperties properties) {
         this.properties = properties;
+        return this;
+    }
+
+    /**
+     * Get the identity property: The managed service identity of the resource.
+     * 
+     * @return the identity value.
+     */
+    public ManagedServiceIdentity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The managed service identity of the resource.
+     * 
+     * @param identity the identity value to set.
+     * @return the StorageTaskInner object itself.
+     */
+    public StorageTaskInner withIdentity(ManagedServiceIdentity identity) {
+        this.identity = identity;
         return this;
     }
 
@@ -160,17 +160,17 @@ public final class StorageTaskInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (identity() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property identity in model StorageTaskInner"));
-        } else {
-            identity().validate();
-        }
         if (properties() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property properties in model StorageTaskInner"));
         } else {
             properties().validate();
+        }
+        if (identity() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property identity in model StorageTaskInner"));
+        } else {
+            identity().validate();
         }
     }
 
@@ -184,8 +184,8 @@ public final class StorageTaskInner extends Resource {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("identity", this.identity);
         jsonWriter.writeJsonField("properties", this.properties);
+        jsonWriter.writeJsonField("identity", this.identity);
         return jsonWriter.writeEndObject();
     }
 
@@ -216,10 +216,10 @@ public final class StorageTaskInner extends Resource {
                 } else if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedStorageTaskInner.withTags(tags);
-                } else if ("identity".equals(fieldName)) {
-                    deserializedStorageTaskInner.identity = ManagedServiceIdentity.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
                     deserializedStorageTaskInner.properties = StorageTaskProperties.fromJson(reader);
+                } else if ("identity".equals(fieldName)) {
+                    deserializedStorageTaskInner.identity = ManagedServiceIdentity.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedStorageTaskInner.systemData = SystemData.fromJson(reader);
                 } else {

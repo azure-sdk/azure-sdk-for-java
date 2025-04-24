@@ -308,7 +308,6 @@ public final class StorageTasksCreateSamples {
             .define("mytask1")
             .withRegion("westus")
             .withExistingResourceGroup("res4228")
-            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
             .withProperties(
                 new StorageTaskProperties().withEnabled(true)
                     .withDescription("My Storage task")
@@ -323,6 +322,7 @@ public final class StorageTasksCreateSamples {
                             Arrays.asList(new StorageTaskOperation().withName(StorageTaskOperationName.DELETE_BLOB)
                                 .withOnSuccess(OnSuccess.CONTINUE)
                                 .withOnFailure(OnFailure.BREAK))))))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
             .create();
     }
 
@@ -353,7 +353,7 @@ import com.azure.resourcemanager.storageactions.models.StorageTask;
 import com.azure.resourcemanager.storageactions.models.StorageTaskAction;
 import com.azure.resourcemanager.storageactions.models.StorageTaskOperation;
 import com.azure.resourcemanager.storageactions.models.StorageTaskOperationName;
-import com.azure.resourcemanager.storageactions.models.StorageTaskProperties;
+import com.azure.resourcemanager.storageactions.models.StorageTaskUpdateProperties;
 import com.azure.resourcemanager.storageactions.models.UserAssignedIdentity;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -383,8 +383,7 @@ public final class StorageTasksUpdateSamples {
                     "/subscriptions/1f31ba14-ce16-4281-b9b4-3e78da6e1616/resourceGroups/res4228/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUserAssignedIdentity",
                     new UserAssignedIdentity())))
             .withProperties(
-                new StorageTaskProperties().withEnabled(true)
-                    .withDescription("My Storage task")
+                new StorageTaskUpdateProperties()
                     .withAction(new StorageTaskAction()
                         .withIfProperty(new IfCondition().withCondition("[[equals(AccessTier, 'Cool')]]")
                             .withOperations(Arrays

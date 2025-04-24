@@ -19,13 +19,12 @@ import java.util.List;
 @Immutable
 public final class StorageTaskReportSummary implements JsonSerializable<StorageTaskReportSummary> {
     /*
-     * Gets storage tasks run result summary.
+     * The StorageTaskReportInstance items on this page
      */
     private List<StorageTaskReportInstanceInner> value;
 
     /*
-     * Request URL that can be used to query next page of storage task run results summary. Returned when the number of
-     * run instances and summary reports exceed maximum page size.
+     * The link to the next page of items
      */
     private String nextLink;
 
@@ -36,7 +35,7 @@ public final class StorageTaskReportSummary implements JsonSerializable<StorageT
     }
 
     /**
-     * Get the value property: Gets storage tasks run result summary.
+     * Get the value property: The StorageTaskReportInstance items on this page.
      * 
      * @return the value value.
      */
@@ -45,8 +44,7 @@ public final class StorageTaskReportSummary implements JsonSerializable<StorageT
     }
 
     /**
-     * Get the nextLink property: Request URL that can be used to query next page of storage task run results summary.
-     * Returned when the number of run instances and summary reports exceed maximum page size.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -80,6 +78,7 @@ public final class StorageTaskReportSummary implements JsonSerializable<StorageT
      * @param jsonReader The JsonReader being read.
      * @return An instance of StorageTaskReportSummary if the JsonReader was pointing to an instance of it, or null if
      * it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the StorageTaskReportSummary.
      */
     public static StorageTaskReportSummary fromJson(JsonReader jsonReader) throws IOException {

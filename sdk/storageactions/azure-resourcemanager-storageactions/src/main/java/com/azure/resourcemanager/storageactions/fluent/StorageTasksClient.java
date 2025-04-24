@@ -20,6 +20,111 @@ import com.azure.resourcemanager.storageactions.models.StorageTaskUpdateParamete
  */
 public interface StorageTasksClient {
     /**
+     * Runs the input conditions against input object metadata properties and designates matched objects in response.
+     * 
+     * @param location The name of the Azure region.
+     * @param parameters The parameters to preview action condition.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return storage Task Preview Action along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<StorageTaskPreviewActionInner> previewActionsWithResponse(String location,
+        StorageTaskPreviewActionInner parameters, Context context);
+
+    /**
+     * Runs the input conditions against input object metadata properties and designates matched objects in response.
+     * 
+     * @param location The name of the Azure region.
+     * @param parameters The parameters to preview action condition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return storage Task Preview Action.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    StorageTaskPreviewActionInner previewActions(String location, StorageTaskPreviewActionInner parameters);
+
+    /**
+     * Lists all the storage tasks available under the subscription.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a StorageTask list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<StorageTaskInner> list();
+
+    /**
+     * Lists all the storage tasks available under the subscription.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a StorageTask list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<StorageTaskInner> list(Context context);
+
+    /**
+     * Lists all the storage tasks available under the given resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a StorageTask list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<StorageTaskInner> listByResourceGroup(String resourceGroupName);
+
+    /**
+     * Lists all the storage tasks available under the given resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a StorageTask list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<StorageTaskInner> listByResourceGroup(String resourceGroupName, Context context);
+
+    /**
+     * Get the storage task properties.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
+     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the storage task properties along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<StorageTaskInner> getByResourceGroupWithResponse(String resourceGroupName, String storageTaskName,
+        Context context);
+
+    /**
+     * Get the storage task properties.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
+     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the storage task properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    StorageTaskInner getByResourceGroup(String resourceGroupName, String storageTaskName);
+
+    /**
      * Asynchronously creates a new storage task resource with the specified parameters. If a storage task is already
      * created and a subsequent create request is issued with different properties, the storage task properties will be
      * updated. If a storage task is already created and a subsequent create or update request is issued with the exact
@@ -97,92 +202,6 @@ public interface StorageTasksClient {
         Context context);
 
     /**
-     * Delete the storage task resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
-     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String storageTaskName);
-
-    /**
-     * Delete the storage task resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
-     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String storageTaskName, Context context);
-
-    /**
-     * Delete the storage task resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
-     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String storageTaskName);
-
-    /**
-     * Delete the storage task resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
-     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String storageTaskName, Context context);
-
-    /**
-     * Get the storage task properties.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
-     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the storage task properties along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<StorageTaskInner> getByResourceGroupWithResponse(String resourceGroupName, String storageTaskName,
-        Context context);
-
-    /**
-     * Get the storage task properties.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
-     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the storage task properties.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    StorageTaskInner getByResourceGroup(String resourceGroupName, String storageTaskName);
-
-    /**
      * Update storage task properties.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -248,77 +267,58 @@ public interface StorageTasksClient {
         Context context);
 
     /**
-     * Lists all the storage tasks available under the subscription.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from the List Storage Task operation as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<StorageTaskInner> list();
-
-    /**
-     * Lists all the storage tasks available under the subscription.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from the List Storage Task operation as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<StorageTaskInner> list(Context context);
-
-    /**
-     * Lists all the storage tasks available under the given resource group.
+     * Delete the storage task resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
+     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from the List Storage Task operation as paginated response with {@link PagedIterable}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<StorageTaskInner> listByResourceGroup(String resourceGroupName);
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String storageTaskName);
 
     /**
-     * Lists all the storage tasks available under the given resource group.
+     * Delete the storage task resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
+     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from the List Storage Task operation as paginated response with {@link PagedIterable}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<StorageTaskInner> listByResourceGroup(String resourceGroupName, Context context);
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String storageTaskName, Context context);
 
     /**
-     * Runs the input conditions against input object metadata properties and designates matched objects in response.
+     * Delete the storage task resource.
      * 
-     * @param location The location to perform preview of the actions.
-     * @param parameters The parameters to preview action condition.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
+     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String storageTaskName);
+
+    /**
+     * Delete the storage task resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
+     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return storage Task Preview Action along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<StorageTaskPreviewActionInner> previewActionsWithResponse(String location,
-        StorageTaskPreviewActionInner parameters, Context context);
-
-    /**
-     * Runs the input conditions against input object metadata properties and designates matched objects in response.
-     * 
-     * @param location The location to perform preview of the actions.
-     * @param parameters The parameters to preview action condition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return storage Task Preview Action.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    StorageTaskPreviewActionInner previewActions(String location, StorageTaskPreviewActionInner parameters);
+    void delete(String resourceGroupName, String storageTaskName, Context context);
 }

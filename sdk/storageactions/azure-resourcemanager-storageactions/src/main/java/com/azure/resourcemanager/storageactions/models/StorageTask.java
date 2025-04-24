@@ -50,18 +50,18 @@ public interface StorageTask {
     Map<String, String> tags();
 
     /**
-     * Gets the identity property: The managed service identity of the resource.
-     * 
-     * @return the identity value.
-     */
-    ManagedServiceIdentity identity();
-
-    /**
      * Gets the properties property: Properties of the storage task.
      * 
      * @return the properties value.
      */
     StorageTaskProperties properties();
+
+    /**
+     * Gets the identity property: The managed service identity of the resource.
+     * 
+     * @return the identity value.
+     */
+    ManagedServiceIdentity identity();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -103,7 +103,7 @@ public interface StorageTask {
      */
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithLocation, DefinitionStages.WithResourceGroup,
-        DefinitionStages.WithIdentity, DefinitionStages.WithProperties, DefinitionStages.WithCreate {
+        DefinitionStages.WithProperties, DefinitionStages.WithIdentity, DefinitionStages.WithCreate {
     }
 
     /**
@@ -147,20 +147,7 @@ public interface StorageTask {
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
-            WithIdentity withExistingResourceGroup(String resourceGroupName);
-        }
-
-        /**
-         * The stage of the StorageTask definition allowing to specify identity.
-         */
-        interface WithIdentity {
-            /**
-             * Specifies the identity property: The managed service identity of the resource..
-             * 
-             * @param identity The managed service identity of the resource.
-             * @return the next definition stage.
-             */
-            WithProperties withIdentity(ManagedServiceIdentity identity);
+            WithProperties withExistingResourceGroup(String resourceGroupName);
         }
 
         /**
@@ -173,7 +160,20 @@ public interface StorageTask {
              * @param properties Properties of the storage task.
              * @return the next definition stage.
              */
-            WithCreate withProperties(StorageTaskProperties properties);
+            WithIdentity withProperties(StorageTaskProperties properties);
+        }
+
+        /**
+         * The stage of the StorageTask definition allowing to specify identity.
+         */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The managed service identity of the resource..
+             * 
+             * @param identity The managed service identity of the resource.
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(ManagedServiceIdentity identity);
         }
 
         /**
@@ -284,7 +284,7 @@ public interface StorageTask {
              * @param properties Properties of the storage task.
              * @return the next definition stage.
              */
-            Update withProperties(StorageTaskProperties properties);
+            Update withProperties(StorageTaskUpdateProperties properties);
         }
     }
 
