@@ -21,6 +21,11 @@ import java.time.OffsetDateTime;
 @Fluent
 public final class IncidentCommentProperties implements JsonSerializable<IncidentCommentProperties> {
     /*
+     * The comment message
+     */
+    private String message;
+
+    /*
      * The time the comment was created
      */
     private OffsetDateTime createdTimeUtc;
@@ -31,11 +36,6 @@ public final class IncidentCommentProperties implements JsonSerializable<Inciden
     private OffsetDateTime lastModifiedTimeUtc;
 
     /*
-     * The comment message
-     */
-    private String message;
-
-    /*
      * Describes the client that created the comment
      */
     private ClientInfo author;
@@ -44,24 +44,6 @@ public final class IncidentCommentProperties implements JsonSerializable<Inciden
      * Creates an instance of IncidentCommentProperties class.
      */
     public IncidentCommentProperties() {
-    }
-
-    /**
-     * Get the createdTimeUtc property: The time the comment was created.
-     * 
-     * @return the createdTimeUtc value.
-     */
-    public OffsetDateTime createdTimeUtc() {
-        return this.createdTimeUtc;
-    }
-
-    /**
-     * Get the lastModifiedTimeUtc property: The time the comment was updated.
-     * 
-     * @return the lastModifiedTimeUtc value.
-     */
-    public OffsetDateTime lastModifiedTimeUtc() {
-        return this.lastModifiedTimeUtc;
     }
 
     /**
@@ -82,6 +64,24 @@ public final class IncidentCommentProperties implements JsonSerializable<Inciden
     public IncidentCommentProperties withMessage(String message) {
         this.message = message;
         return this;
+    }
+
+    /**
+     * Get the createdTimeUtc property: The time the comment was created.
+     * 
+     * @return the createdTimeUtc value.
+     */
+    public OffsetDateTime createdTimeUtc() {
+        return this.createdTimeUtc;
+    }
+
+    /**
+     * Get the lastModifiedTimeUtc property: The time the comment was updated.
+     * 
+     * @return the lastModifiedTimeUtc value.
+     */
+    public OffsetDateTime lastModifiedTimeUtc() {
+        return this.lastModifiedTimeUtc;
     }
 
     /**
