@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.databasewatcher.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -16,7 +15,7 @@ import java.io.IOException;
  * The properties of a data store.
  */
 @Fluent
-public final class Datastore implements JsonSerializable<Datastore> {
+public final class DatastoreUpdate implements JsonSerializable<DatastoreUpdate> {
     /*
      * The Azure resource ID of an Azure Data Explorer cluster.
      */
@@ -53,9 +52,9 @@ public final class Datastore implements JsonSerializable<Datastore> {
     private KustoOfferingType kustoOfferingType;
 
     /**
-     * Creates an instance of Datastore class.
+     * Creates an instance of DatastoreUpdate class.
      */
-    public Datastore() {
+    public DatastoreUpdate() {
     }
 
     /**
@@ -71,9 +70,9 @@ public final class Datastore implements JsonSerializable<Datastore> {
      * Set the adxClusterResourceId property: The Azure resource ID of an Azure Data Explorer cluster.
      * 
      * @param adxClusterResourceId the adxClusterResourceId value to set.
-     * @return the Datastore object itself.
+     * @return the DatastoreUpdate object itself.
      */
-    public Datastore withAdxClusterResourceId(String adxClusterResourceId) {
+    public DatastoreUpdate withAdxClusterResourceId(String adxClusterResourceId) {
         this.adxClusterResourceId = adxClusterResourceId;
         return this;
     }
@@ -91,9 +90,9 @@ public final class Datastore implements JsonSerializable<Datastore> {
      * Set the kustoClusterDisplayName property: The Kusto cluster display name.
      * 
      * @param kustoClusterDisplayName the kustoClusterDisplayName value to set.
-     * @return the Datastore object itself.
+     * @return the DatastoreUpdate object itself.
      */
-    public Datastore withKustoClusterDisplayName(String kustoClusterDisplayName) {
+    public DatastoreUpdate withKustoClusterDisplayName(String kustoClusterDisplayName) {
         this.kustoClusterDisplayName = kustoClusterDisplayName;
         return this;
     }
@@ -111,9 +110,9 @@ public final class Datastore implements JsonSerializable<Datastore> {
      * Set the kustoClusterUri property: The Kusto cluster URI.
      * 
      * @param kustoClusterUri the kustoClusterUri value to set.
-     * @return the Datastore object itself.
+     * @return the DatastoreUpdate object itself.
      */
-    public Datastore withKustoClusterUri(String kustoClusterUri) {
+    public DatastoreUpdate withKustoClusterUri(String kustoClusterUri) {
         this.kustoClusterUri = kustoClusterUri;
         return this;
     }
@@ -131,9 +130,9 @@ public final class Datastore implements JsonSerializable<Datastore> {
      * Set the kustoDataIngestionUri property: The Kusto data ingestion URI.
      * 
      * @param kustoDataIngestionUri the kustoDataIngestionUri value to set.
-     * @return the Datastore object itself.
+     * @return the DatastoreUpdate object itself.
      */
-    public Datastore withKustoDataIngestionUri(String kustoDataIngestionUri) {
+    public DatastoreUpdate withKustoDataIngestionUri(String kustoDataIngestionUri) {
         this.kustoDataIngestionUri = kustoDataIngestionUri;
         return this;
     }
@@ -151,9 +150,9 @@ public final class Datastore implements JsonSerializable<Datastore> {
      * Set the kustoDatabaseName property: The name of a Kusto database.
      * 
      * @param kustoDatabaseName the kustoDatabaseName value to set.
-     * @return the Datastore object itself.
+     * @return the DatastoreUpdate object itself.
      */
-    public Datastore withKustoDatabaseName(String kustoDatabaseName) {
+    public DatastoreUpdate withKustoDatabaseName(String kustoDatabaseName) {
         this.kustoDatabaseName = kustoDatabaseName;
         return this;
     }
@@ -171,9 +170,9 @@ public final class Datastore implements JsonSerializable<Datastore> {
      * Set the kustoManagementUrl property: The Kusto management URL.
      * 
      * @param kustoManagementUrl the kustoManagementUrl value to set.
-     * @return the Datastore object itself.
+     * @return the DatastoreUpdate object itself.
      */
-    public Datastore withKustoManagementUrl(String kustoManagementUrl) {
+    public DatastoreUpdate withKustoManagementUrl(String kustoManagementUrl) {
         this.kustoManagementUrl = kustoManagementUrl;
         return this;
     }
@@ -191,9 +190,9 @@ public final class Datastore implements JsonSerializable<Datastore> {
      * Set the kustoOfferingType property: The type of a Kusto offering.
      * 
      * @param kustoOfferingType the kustoOfferingType value to set.
-     * @return the Datastore object itself.
+     * @return the DatastoreUpdate object itself.
      */
-    public Datastore withKustoOfferingType(KustoOfferingType kustoOfferingType) {
+    public DatastoreUpdate withKustoOfferingType(KustoOfferingType kustoOfferingType) {
         this.kustoOfferingType = kustoOfferingType;
         return this;
     }
@@ -204,30 +203,7 @@ public final class Datastore implements JsonSerializable<Datastore> {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (kustoClusterUri() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property kustoClusterUri in model Datastore"));
-        }
-        if (kustoDataIngestionUri() == null) {
-            throw LOGGER.atError()
-                .log(
-                    new IllegalArgumentException("Missing required property kustoDataIngestionUri in model Datastore"));
-        }
-        if (kustoDatabaseName() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property kustoDatabaseName in model Datastore"));
-        }
-        if (kustoManagementUrl() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property kustoManagementUrl in model Datastore"));
-        }
-        if (kustoOfferingType() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property kustoOfferingType in model Datastore"));
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(Datastore.class);
 
     /**
      * {@inheritDoc}
@@ -235,53 +211,52 @@ public final class Datastore implements JsonSerializable<Datastore> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("adxClusterResourceId", this.adxClusterResourceId);
+        jsonWriter.writeStringField("kustoClusterDisplayName", this.kustoClusterDisplayName);
         jsonWriter.writeStringField("kustoClusterUri", this.kustoClusterUri);
         jsonWriter.writeStringField("kustoDataIngestionUri", this.kustoDataIngestionUri);
         jsonWriter.writeStringField("kustoDatabaseName", this.kustoDatabaseName);
         jsonWriter.writeStringField("kustoManagementUrl", this.kustoManagementUrl);
         jsonWriter.writeStringField("kustoOfferingType",
             this.kustoOfferingType == null ? null : this.kustoOfferingType.toString());
-        jsonWriter.writeStringField("adxClusterResourceId", this.adxClusterResourceId);
-        jsonWriter.writeStringField("kustoClusterDisplayName", this.kustoClusterDisplayName);
         return jsonWriter.writeEndObject();
     }
 
     /**
-     * Reads an instance of Datastore from the JsonReader.
+     * Reads an instance of DatastoreUpdate from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of Datastore if the JsonReader was pointing to an instance of it, or null if it was pointing
-     * to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the Datastore.
+     * @return An instance of DatastoreUpdate if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the DatastoreUpdate.
      */
-    public static Datastore fromJson(JsonReader jsonReader) throws IOException {
+    public static DatastoreUpdate fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            Datastore deserializedDatastore = new Datastore();
+            DatastoreUpdate deserializedDatastoreUpdate = new DatastoreUpdate();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("kustoClusterUri".equals(fieldName)) {
-                    deserializedDatastore.kustoClusterUri = reader.getString();
-                } else if ("kustoDataIngestionUri".equals(fieldName)) {
-                    deserializedDatastore.kustoDataIngestionUri = reader.getString();
-                } else if ("kustoDatabaseName".equals(fieldName)) {
-                    deserializedDatastore.kustoDatabaseName = reader.getString();
-                } else if ("kustoManagementUrl".equals(fieldName)) {
-                    deserializedDatastore.kustoManagementUrl = reader.getString();
-                } else if ("kustoOfferingType".equals(fieldName)) {
-                    deserializedDatastore.kustoOfferingType = KustoOfferingType.fromString(reader.getString());
-                } else if ("adxClusterResourceId".equals(fieldName)) {
-                    deserializedDatastore.adxClusterResourceId = reader.getString();
+                if ("adxClusterResourceId".equals(fieldName)) {
+                    deserializedDatastoreUpdate.adxClusterResourceId = reader.getString();
                 } else if ("kustoClusterDisplayName".equals(fieldName)) {
-                    deserializedDatastore.kustoClusterDisplayName = reader.getString();
+                    deserializedDatastoreUpdate.kustoClusterDisplayName = reader.getString();
+                } else if ("kustoClusterUri".equals(fieldName)) {
+                    deserializedDatastoreUpdate.kustoClusterUri = reader.getString();
+                } else if ("kustoDataIngestionUri".equals(fieldName)) {
+                    deserializedDatastoreUpdate.kustoDataIngestionUri = reader.getString();
+                } else if ("kustoDatabaseName".equals(fieldName)) {
+                    deserializedDatastoreUpdate.kustoDatabaseName = reader.getString();
+                } else if ("kustoManagementUrl".equals(fieldName)) {
+                    deserializedDatastoreUpdate.kustoManagementUrl = reader.getString();
+                } else if ("kustoOfferingType".equals(fieldName)) {
+                    deserializedDatastoreUpdate.kustoOfferingType = KustoOfferingType.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedDatastore;
+            return deserializedDatastoreUpdate;
         });
     }
 }
