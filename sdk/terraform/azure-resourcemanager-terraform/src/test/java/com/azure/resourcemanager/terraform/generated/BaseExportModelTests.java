@@ -16,8 +16,8 @@ public final class BaseExportModelTests {
             "{\"type\":\"BaseExportModel\",\"targetProvider\":\"azapi\",\"fullProperties\":false,\"maskSensitive\":false}")
             .toObject(BaseExportModel.class);
         Assertions.assertEquals(TargetProvider.AZAPI, model.targetProvider());
-        Assertions.assertEquals(false, model.fullProperties());
-        Assertions.assertEquals(false, model.maskSensitive());
+        Assertions.assertFalse(model.fullProperties());
+        Assertions.assertFalse(model.maskSensitive());
     }
 
     @org.junit.jupiter.api.Test
@@ -27,7 +27,7 @@ public final class BaseExportModelTests {
             .withMaskSensitive(false);
         model = BinaryData.fromObject(model).toObject(BaseExportModel.class);
         Assertions.assertEquals(TargetProvider.AZAPI, model.targetProvider());
-        Assertions.assertEquals(false, model.fullProperties());
-        Assertions.assertEquals(false, model.maskSensitive());
+        Assertions.assertFalse(model.fullProperties());
+        Assertions.assertFalse(model.maskSensitive());
     }
 }
