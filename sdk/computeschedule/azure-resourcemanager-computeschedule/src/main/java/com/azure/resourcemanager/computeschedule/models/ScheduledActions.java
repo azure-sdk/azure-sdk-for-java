@@ -183,6 +183,118 @@ public interface ScheduledActions {
         ExecuteStartRequest requestBody);
 
     /**
+     * VirtualMachinesExecuteCreate: Execute create operation for a batch of virtual machines, this operation is
+     * triggered as soon as Computeschedule receives it.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a create request along with {@link Response}.
+     */
+    Response<CreateResourceOperationResponse> virtualMachinesExecuteCreateWithResponse(String locationparameter,
+        ExecuteCreateRequest requestBody, Context context);
+
+    /**
+     * VirtualMachinesExecuteCreate: Execute create operation for a batch of virtual machines, this operation is
+     * triggered as soon as Computeschedule receives it.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a create request.
+     */
+    CreateResourceOperationResponse virtualMachinesExecuteCreate(String locationparameter,
+        ExecuteCreateRequest requestBody);
+
+    /**
+     * VirtualMachinesExecuteDelete: Execute delete operation for a batch of virtual machines, this operation is
+     * triggered as soon as Computeschedule receives it.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a delete request along with {@link Response}.
+     */
+    Response<DeleteResourceOperationResponse> virtualMachinesExecuteDeleteWithResponse(String locationparameter,
+        ExecuteDeleteRequest requestBody, Context context);
+
+    /**
+     * VirtualMachinesExecuteDelete: Execute delete operation for a batch of virtual machines, this operation is
+     * triggered as soon as Computeschedule receives it.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a delete request.
+     */
+    DeleteResourceOperationResponse virtualMachinesExecuteDelete(String locationparameter,
+        ExecuteDeleteRequest requestBody);
+
+    /**
+     * VirtualMachinesSubmitCreate: submit create operation for a batch of virtual machines, at datetime in future.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a create request along with {@link Response}.
+     */
+    Response<CreateResourceOperationResponse> virtualMachinesSubmitCreateWithResponse(String locationparameter,
+        SubmitCreateRequest requestBody, Context context);
+
+    /**
+     * VirtualMachinesSubmitCreate: submit create operation for a batch of virtual machines, at datetime in future.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a create request.
+     */
+    CreateResourceOperationResponse virtualMachinesSubmitCreate(String locationparameter,
+        SubmitCreateRequest requestBody);
+
+    /**
+     * VirtualMachinesSubmitDelete: submit delete operation for a batch of virtual machines, at datetime in future.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a delete request along with {@link Response}.
+     */
+    Response<DeleteResourceOperationResponse> virtualMachinesSubmitDeleteWithResponse(String locationparameter,
+        SubmitDeleteRequest requestBody, Context context);
+
+    /**
+     * VirtualMachinesSubmitDelete: submit delete operation for a batch of virtual machines, at datetime in future.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a delete request.
+     */
+    DeleteResourceOperationResponse virtualMachinesSubmitDelete(String locationparameter,
+        SubmitDeleteRequest requestBody);
+
+    /**
      * VirtualMachinesGetOperationStatus: Polling endpoint to read status of operations performed on virtual machines.
      * 
      * @param locationparameter The location name.
