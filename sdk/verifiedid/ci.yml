@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/verifiedid/ci.yml
+      - sdk/verifiedid/azure-resourcemanager-verifiedid/
+    exclude:
+      - sdk/verifiedid/pom.xml
+      - sdk/verifiedid/azure-resourcemanager-verifiedid/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/verifiedid/ci.yml
+      - sdk/verifiedid/azure-resourcemanager-verifiedid/
+    exclude:
+      - sdk/verifiedid/pom.xml
+      - sdk/verifiedid/azure-resourcemanager-verifiedid/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerverifiedid
+    displayName: azure-resourcemanager-verifiedid
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: verifiedid
+    Artifacts:
+      - name: azure-resourcemanager-verifiedid
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerverifiedid
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerverifiedid }}
