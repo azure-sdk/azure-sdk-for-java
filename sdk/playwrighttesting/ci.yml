@@ -34,6 +34,10 @@ parameters:
     displayName: azure-resourcemanager-playwrighttesting
     type: boolean
     default: false
+  - name: release_azuredevelopermicrosoftplaywrighttesting
+    displayName: azure-developer-microsoftplaywrighttesting
+    type: boolean
+    default: true
 
 extends:
   template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
@@ -44,3 +48,7 @@ extends:
         groupId: com.azure.resourcemanager
         safeName: azureresourcemanagerplaywrighttesting
         releaseInBatch: ${{ parameters.release_azureresourcemanagerplaywrighttesting }}
+      - name: azure-developer-microsoftplaywrighttesting
+        groupId: com.azure
+        safeName: azuredevelopermicrosoftplaywrighttesting
+        releaseInBatch: ${{ parameters.release_azuredevelopermicrosoftplaywrighttesting }}
