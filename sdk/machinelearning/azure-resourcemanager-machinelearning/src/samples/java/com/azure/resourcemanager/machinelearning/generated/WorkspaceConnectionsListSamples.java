@@ -10,8 +10,8 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class WorkspaceConnectionsListSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/WorkspaceConnection/list.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/WorkspaceConnection/list.json
      */
     /**
      * Sample code: ListWorkspaceConnections.
@@ -21,7 +21,7 @@ public final class WorkspaceConnectionsListSamples {
     public static void
         listWorkspaceConnections(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.workspaceConnections()
-            .list("resourceGroup-1", "workspace-1", "www.facebook.com", "ContainerRegistry",
+            .list("resourceGroup-1", "workspace-1", "www.facebook.com", "ContainerRegistry", null,
                 com.azure.core.util.Context.NONE);
     }
 }

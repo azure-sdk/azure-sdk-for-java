@@ -78,11 +78,13 @@ public final class CategoricalDataDriftMetricThreshold extends DataDriftMetricTh
      */
     @Override
     public void validate() {
-        super.validate();
         if (metric() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property metric in model CategoricalDataDriftMetricThreshold"));
+        }
+        if (threshold() != null) {
+            threshold().validate();
         }
     }
 

@@ -29,14 +29,14 @@ public final class RecurrenceSchedule implements JsonSerializable<RecurrenceSche
     private List<Integer> minutes;
 
     /*
-     * List of days for the schedule.
-     */
-    private List<WeekDay> weekDays;
-
-    /*
      * List of month days for the schedule
      */
     private List<Integer> monthDays;
+
+    /*
+     * List of days for the schedule.
+     */
+    private List<WeekDay> weekDays;
 
     /**
      * Creates an instance of RecurrenceSchedule class.
@@ -85,26 +85,6 @@ public final class RecurrenceSchedule implements JsonSerializable<RecurrenceSche
     }
 
     /**
-     * Get the weekDays property: List of days for the schedule.
-     * 
-     * @return the weekDays value.
-     */
-    public List<WeekDay> weekDays() {
-        return this.weekDays;
-    }
-
-    /**
-     * Set the weekDays property: List of days for the schedule.
-     * 
-     * @param weekDays the weekDays value to set.
-     * @return the RecurrenceSchedule object itself.
-     */
-    public RecurrenceSchedule withWeekDays(List<WeekDay> weekDays) {
-        this.weekDays = weekDays;
-        return this;
-    }
-
-    /**
      * Get the monthDays property: List of month days for the schedule.
      * 
      * @return the monthDays value.
@@ -121,6 +101,26 @@ public final class RecurrenceSchedule implements JsonSerializable<RecurrenceSche
      */
     public RecurrenceSchedule withMonthDays(List<Integer> monthDays) {
         this.monthDays = monthDays;
+        return this;
+    }
+
+    /**
+     * Get the weekDays property: List of days for the schedule.
+     * 
+     * @return the weekDays value.
+     */
+    public List<WeekDay> weekDays() {
+        return this.weekDays;
+    }
+
+    /**
+     * Set the weekDays property: List of days for the schedule.
+     * 
+     * @param weekDays the weekDays value to set.
+     * @return the RecurrenceSchedule object itself.
+     */
+    public RecurrenceSchedule withWeekDays(List<WeekDay> weekDays) {
+        this.weekDays = weekDays;
         return this;
     }
 
@@ -150,9 +150,9 @@ public final class RecurrenceSchedule implements JsonSerializable<RecurrenceSche
         jsonWriter.writeStartObject();
         jsonWriter.writeArrayField("hours", this.hours, (writer, element) -> writer.writeInt(element));
         jsonWriter.writeArrayField("minutes", this.minutes, (writer, element) -> writer.writeInt(element));
+        jsonWriter.writeArrayField("monthDays", this.monthDays, (writer, element) -> writer.writeInt(element));
         jsonWriter.writeArrayField("weekDays", this.weekDays,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
-        jsonWriter.writeArrayField("monthDays", this.monthDays, (writer, element) -> writer.writeInt(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -178,12 +178,12 @@ public final class RecurrenceSchedule implements JsonSerializable<RecurrenceSche
                 } else if ("minutes".equals(fieldName)) {
                     List<Integer> minutes = reader.readArray(reader1 -> reader1.getInt());
                     deserializedRecurrenceSchedule.minutes = minutes;
-                } else if ("weekDays".equals(fieldName)) {
-                    List<WeekDay> weekDays = reader.readArray(reader1 -> WeekDay.fromString(reader1.getString()));
-                    deserializedRecurrenceSchedule.weekDays = weekDays;
                 } else if ("monthDays".equals(fieldName)) {
                     List<Integer> monthDays = reader.readArray(reader1 -> reader1.getInt());
                     deserializedRecurrenceSchedule.monthDays = monthDays;
+                } else if ("weekDays".equals(fieldName)) {
+                    List<WeekDay> weekDays = reader.readArray(reader1 -> WeekDay.fromString(reader1.getString()));
+                    deserializedRecurrenceSchedule.weekDays = weekDays;
                 } else {
                     reader.skipChildren();
                 }

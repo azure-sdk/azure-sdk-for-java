@@ -10,8 +10,8 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class WorkspacesListSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/listBySubscription.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/Workspace/listBySubscription.json
      */
     /**
      * Sample code: Get Workspaces by subscription.
@@ -20,6 +20,6 @@ public final class WorkspacesListSamples {
      */
     public static void
         getWorkspacesBySubscription(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager.workspaces().list(null, com.azure.core.util.Context.NONE);
+        manager.workspaces().list(null, null, null, com.azure.core.util.Context.NONE);
     }
 }
