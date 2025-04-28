@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/resourcesmicrosoftresourcesdeploymentscripts/ci.yml
+      - sdk/resourcesmicrosoftresourcesdeploymentscripts/azure-resourcemanager-resourcesmicrosoftresourcesdeploymentscripts/
+    exclude:
+      - sdk/resourcesmicrosoftresourcesdeploymentscripts/pom.xml
+      - sdk/resourcesmicrosoftresourcesdeploymentscripts/azure-resourcemanager-resourcesmicrosoftresourcesdeploymentscripts/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/resourcesmicrosoftresourcesdeploymentscripts/ci.yml
+      - sdk/resourcesmicrosoftresourcesdeploymentscripts/azure-resourcemanager-resourcesmicrosoftresourcesdeploymentscripts/
+    exclude:
+      - sdk/resourcesmicrosoftresourcesdeploymentscripts/pom.xml
+      - sdk/resourcesmicrosoftresourcesdeploymentscripts/azure-resourcemanager-resourcesmicrosoftresourcesdeploymentscripts/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerresourcesmicrosoftresourcesdeploymentscripts
+    displayName: azure-resourcemanager-resourcesmicrosoftresourcesdeploymentscripts
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: resourcesmicrosoftresourcesdeploymentscripts
+    Artifacts:
+      - name: azure-resourcemanager-resourcesmicrosoftresourcesdeploymentscripts
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerresourcesmicrosoftresourcesdeploymentscripts
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerresourcesmicrosoftresourcesdeploymentscripts }}
