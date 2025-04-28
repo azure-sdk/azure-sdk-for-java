@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.time.OffsetDateTime;
 
 /**
- * Represents a Watchlist Item in Azure Security Insights.
+ * Represents a Watchlist item in Azure Security Insights.
  */
 @Fluent
 public final class WatchlistItemInner extends ResourceWithEtag {
