@@ -1,14 +1,978 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.3.0-beta.1 (2025-04-29)
 
-### Features Added
+- Azure Resource Manager avs client library for Java. This package contains Microsoft Azure SDK for avs Management SDK. Azure VMware Solution API. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.DatastoreList` was removed
 
-### Other Changes
+#### `models.ClusterList` was removed
+
+#### `models.GlobalReachConnectionList` was removed
+
+#### `models.AddonList` was removed
+
+#### `models.VmPlacementPolicyProperties` was removed
+
+#### `models.VirtualMachinesList` was removed
+
+#### `models.WorkloadNetworkDhcpList` was removed
+
+#### `models.WorkloadNetworkPublicIp$Definition` was removed
+
+#### `models.ScriptCmdletsList` was removed
+
+#### `models.CloudLinkList` was removed
+
+#### `models.WorkloadNetworkVMGroupsList` was removed
+
+#### `models.WorkloadNetworkPublicIpProvisioningState` was removed
+
+#### `models.ScriptExecutionsList` was removed
+
+#### `models.HcxEnterpriseSiteList` was removed
+
+#### `models.WorkloadNetworkPortMirroringList` was removed
+
+#### `models.WorkloadNetworkPublicIp` was removed
+
+#### `models.WorkloadNetworkVirtualMachinesList` was removed
+
+#### `models.ResourceIdentityType` was removed
+
+#### `models.WorkloadNetworkPublicIp$DefinitionStages` was removed
+
+#### `models.WorkloadNetworkList` was removed
+
+#### `models.PlacementPoliciesList` was removed
+
+#### `models.PrivateCloudIdentity` was removed
+
+#### `models.WorkloadNetworkPublicIPsList` was removed
+
+#### `models.WorkloadNetworkSegmentsList` was removed
+
+#### `models.OperationListResult` was removed
+
+#### `models.WorkloadNetworkDnsServicesList` was removed
+
+#### `models.PrivateCloudList` was removed
+
+#### `models.ExpressRouteAuthorizationList` was removed
+
+#### `models.WorkloadNetworkDnsZonesList` was removed
+
+#### `models.WorkloadNetworkGatewayList` was removed
+
+#### `models.ScriptPackagesList` was removed
+
+#### `models.IscsiPathListResult` was removed
+
+#### `models.CloudLink$Definition` was modified
+
+* `withLinkedCloud(java.lang.String)` was removed
+
+#### `models.Cluster$Definition` was modified
+
+* `withClusterSize(java.lang.Integer)` was removed
+* `withVsanDatastoreName(java.lang.String)` was removed
+* `withHosts(java.util.List)` was removed
+
+#### `models.ScriptExecution$Update` was modified
+
+* `withFailureReason(java.lang.String)` was removed
+* `withOutput(java.util.List)` was removed
+* `withRetention(java.lang.String)` was removed
+* `withParameters(java.util.List)` was removed
+* `withNamedOutputs(java.util.Map)` was removed
+* `withTimeout(java.lang.String)` was removed
+* `withScriptCmdletId(java.lang.String)` was removed
+* `withHiddenParameters(java.util.List)` was removed
+
+#### `models.WorkloadNetworkSegmentPortVif` was modified
+
+* `withPortName(java.lang.String)` was removed
+
+#### `models.WorkloadNetworkDhcpRelay` was modified
+
+* `provisioningState()` was removed
+* `segments()` was removed
+
+#### `models.ScriptCmdlet` was modified
+
+* `parameters()` was removed
+* `audience()` was removed
+* `timeout()` was removed
+* `provisioningState()` was removed
+* `description()` was removed
+
+#### `models.Cluster` was modified
+
+* `clusterSize()` was removed
+* `vsanDatastoreName()` was removed
+* `hosts()` was removed
+* `clusterId()` was removed
+* `provisioningState()` was removed
+
+#### `models.GlobalReachConnection` was modified
+
+* `expressRouteId()` was removed
+* `peerExpressRouteCircuit()` was removed
+* `authorizationKey()` was removed
+* `addressPrefix()` was removed
+* `circuitConnectionStatus()` was removed
+* `provisioningState()` was removed
+
+#### `models.WorkloadNetworkDnsZone$Update` was modified
+
+* `withSourceIp(java.lang.String)` was removed
+* `withRevision(java.lang.Long)` was removed
+* `withDomain(java.util.List)` was removed
+* `withDnsServerIps(java.util.List)` was removed
+* `withDisplayName(java.lang.String)` was removed
+* `withDnsServices(java.lang.Long)` was removed
+
+#### `models.IscsiPath` was modified
+
+* `networkBlock()` was removed
+* `provisioningState()` was removed
+
+#### `models.WorkloadNetworks` was modified
+
+* `deleteDhcpById(java.lang.String)` was removed
+* `deletePublicIpById(java.lang.String)` was removed
+* `listGateways(java.lang.String,java.lang.String)` was removed
+* `defineDhcp(java.lang.String)` was removed
+* `deleteVMGroup(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listVirtualMachines(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listSegments(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `defineSegments(java.lang.String)` was removed
+* `getDnsZoneById(java.lang.String)` was removed
+* `deletePublicIp(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `definePublicIp(java.lang.String)` was removed
+* `deleteSegmentById(java.lang.String)` was removed
+* `deleteDhcp(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deletePublicIp(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listPublicIPs(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `definePortMirroring(java.lang.String)` was removed
+* `getPublicIpById(java.lang.String)` was removed
+* `deleteDnsZoneById(java.lang.String)` was removed
+* `deleteSegment(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listDnsZones(java.lang.String,java.lang.String)` was removed
+* `getPortMirroringById(java.lang.String)` was removed
+* `getPortMirroringByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteDnsServiceById(java.lang.String)` was removed
+* `getDnsZone(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getVirtualMachine(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `deleteDnsZoneByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `listDhcp(java.lang.String,java.lang.String)` was removed
+* `getPublicIpWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDhcpById(java.lang.String)` was removed
+* `getDnsServiceWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deletePortMirroringById(java.lang.String)` was removed
+* `getSegmentWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listDhcp(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDhcpWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDnsServiceByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `listPublicIPs(java.lang.String,java.lang.String)` was removed
+* `listVirtualMachines(java.lang.String,java.lang.String)` was removed
+* `getDnsZoneByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getDnsZoneWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteDhcpByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deletePublicIpByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteVMGroupById(java.lang.String)` was removed
+* `getVMGroupWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deletePortMirroringByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `listVMGroups(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getGatewayWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getVMGroupByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteVMGroup(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listDnsServices(java.lang.String,java.lang.String)` was removed
+* `deleteDnsServiceByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteVMGroupByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getPortMirroringWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getPublicIp(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listDnsServices(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `defineVMGroup(java.lang.String)` was removed
+* `deleteDnsService(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listSegments(java.lang.String,java.lang.String)` was removed
+* `deleteSegment(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listVMGroups(java.lang.String,java.lang.String)` was removed
+* `deleteDnsZone(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getDnsService(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `deleteDnsZone(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteSegmentByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getSegmentByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getDhcp(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listDnsZones(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `defineDnsService(java.lang.String)` was removed
+* `listPortMirroring(java.lang.String,java.lang.String)` was removed
+* `getVMGroupById(java.lang.String)` was removed
+* `getVirtualMachineWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listGateways(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getPortMirroring(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getSegment(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `defineDnsZone(java.lang.String)` was removed
+* `getDhcpByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deletePortMirroring(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSegmentById(java.lang.String)` was removed
+* `deletePortMirroring(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getDnsServiceById(java.lang.String)` was removed
+* `deleteDnsService(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteDhcp(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getGateway(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `listPortMirroring(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getPublicIpByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getVMGroup(java.lang.String,java.lang.String,java.lang.String)` was removed
+
+#### `models.AddonArcProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.ExpressRouteAuthorization` was modified
+
+* `provisioningState()` was removed
+* `expressRouteId()` was removed
+* `expressRouteAuthorizationId()` was removed
+* `expressRouteAuthorizationKey()` was removed
+
+#### `models.VirtualMachine` was modified
+
+* `displayName()` was removed
+* `folderPath()` was removed
+* `provisioningState()` was removed
+* `moRefId()` was removed
+* `restrictMovement()` was removed
+
+#### `models.WorkloadNetworkSegment$Definition` was modified
+
+* `withRevision(java.lang.Long)` was removed
+* `withDisplayName(java.lang.String)` was removed
+* `withSubnet(models.WorkloadNetworkSegmentSubnet)` was removed
+* `withConnectedGateway(java.lang.String)` was removed
+
+#### `models.WorkloadNetworkDnsZone` was modified
+
+* `displayName()` was removed
+* `dnsServerIps()` was removed
+* `revision()` was removed
+* `provisioningState()` was removed
+* `domain()` was removed
+* `dnsServices()` was removed
+* `sourceIp()` was removed
+
+#### `models.ScriptPackage` was modified
+
+* `company()` was removed
+* `description()` was removed
+* `provisioningState()` was removed
+* `uri()` was removed
+* `version()` was removed
+
+#### `models.WorkloadNetworkSegment$Update` was modified
+
+* `withSubnet(models.WorkloadNetworkSegmentSubnet)` was removed
+* `withConnectedGateway(java.lang.String)` was removed
+* `withDisplayName(java.lang.String)` was removed
+* `withRevision(java.lang.Long)` was removed
+
+#### `models.Datastore` was modified
+
+* `status()` was removed
+* `diskPoolVolume()` was removed
+* `provisioningState()` was removed
+* `elasticSanVolume()` was removed
+* `netAppVolume()` was removed
+
+#### `models.WorkloadNetworkSegment` was modified
+
+* `subnet()` was removed
+* `displayName()` was removed
+* `status()` was removed
+* `provisioningState()` was removed
+* `portVif()` was removed
+* `revision()` was removed
+* `connectedGateway()` was removed
+
+#### `models.Datastore$Definition` was modified
+
+* `withNetAppVolume(models.NetAppVolume)` was removed
+* `withDiskPoolVolume(models.DiskPoolVolume)` was removed
+* `withElasticSanVolume(models.ElasticSanVolume)` was removed
+
+#### `models.PrivateCloud$Update` was modified
+
+* `withIdentity(models.PrivateCloudIdentity)` was removed
+
+#### `models.WorkloadNetworkDnsService$Update` was modified
+
+* `withDisplayName(java.lang.String)` was removed
+* `withFqdnZones(java.util.List)` was removed
+* `withDnsServiceIp(java.lang.String)` was removed
+* `withDefaultDnsZone(java.lang.String)` was removed
+* `withRevision(java.lang.Long)` was removed
+* `withLogLevel(models.DnsServiceLogLevelEnum)` was removed
+
+#### `models.AddonVrProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.ScriptExecution$Definition` was modified
+
+* `withRetention(java.lang.String)` was removed
+* `withScriptCmdletId(java.lang.String)` was removed
+* `withNamedOutputs(java.util.Map)` was removed
+* `withOutput(java.util.List)` was removed
+* `withHiddenParameters(java.util.List)` was removed
+* `withTimeout(java.lang.String)` was removed
+* `withFailureReason(java.lang.String)` was removed
+* `withParameters(java.util.List)` was removed
+
+#### `models.WorkloadNetworkVMGroup$Update` was modified
+
+* `withDisplayName(java.lang.String)` was removed
+* `withMembers(java.util.List)` was removed
+* `withRevision(java.lang.Long)` was removed
+
+#### `models.ScriptParameter` was modified
+
+* `withName(java.lang.String)` was removed
+
+#### `models.WorkloadNetworkVMGroup$Definition` was modified
+
+* `withRevision(java.lang.Long)` was removed
+* `withDisplayName(java.lang.String)` was removed
+* `withMembers(java.util.List)` was removed
+
+#### `models.GlobalReachConnection$Definition` was modified
+
+* `withExpressRouteId(java.lang.String)` was removed
+* `withPeerExpressRouteCircuit(java.lang.String)` was removed
+* `withAuthorizationKey(java.lang.String)` was removed
+
+#### `models.WorkloadNetworkVirtualMachine` was modified
+
+* `displayName()` was removed
+* `provisioningState()` was removed
+* `vmType()` was removed
+
+#### `AvsManager` was modified
+
+* `fluent.AvsClient serviceClient()` -> `fluent.AVSClient serviceClient()`
+
+#### `models.WorkloadNetworkPortMirroring$Update` was modified
+
+* `withSource(java.lang.String)` was removed
+* `withRevision(java.lang.Long)` was removed
+* `withDestination(java.lang.String)` was removed
+* `withDirection(models.PortMirroringDirectionEnum)` was removed
+* `withDisplayName(java.lang.String)` was removed
+
+#### `models.CloudLink` was modified
+
+* `status()` was removed
+* `provisioningState()` was removed
+* `linkedCloud()` was removed
+
+#### `models.WorkloadNetwork` was modified
+
+* `provisioningState()` was removed
+
+#### `models.WorkloadNetworkDnsZone$Definition` was modified
+
+* `withDnsServerIps(java.util.List)` was removed
+* `withDisplayName(java.lang.String)` was removed
+* `withDomain(java.util.List)` was removed
+* `withDnsServices(java.lang.Long)` was removed
+* `withSourceIp(java.lang.String)` was removed
+* `withRevision(java.lang.Long)` was removed
+
+#### `models.VmHostPlacementPolicyProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.PrivateCloudUpdate` was modified
+
+* `withIdentity(models.PrivateCloudIdentity)` was removed
+* `models.PrivateCloudIdentity identity()` -> `models.SystemAssignedServiceIdentity identity()`
+
+#### `models.WorkloadNetworkPortMirroring` was modified
+
+* `destination()` was removed
+* `provisioningState()` was removed
+* `revision()` was removed
+* `direction()` was removed
+* `status()` was removed
+* `source()` was removed
+* `displayName()` was removed
+
+#### `models.ScriptExecution` was modified
+
+* `namedOutputs()` was removed
+* `information()` was removed
+* `timeout()` was removed
+* `parameters()` was removed
+* `warnings()` was removed
+* `retention()` was removed
+* `scriptCmdletId()` was removed
+* `startedAt()` was removed
+* `finishedAt()` was removed
+* `hiddenParameters()` was removed
+* `submittedAt()` was removed
+* `failureReason()` was removed
+* `provisioningState()` was removed
+* `output()` was removed
+* `errors()` was removed
+
+#### `models.WorkloadNetworkPortMirroring$Definition` was modified
+
+* `withSource(java.lang.String)` was removed
+* `withDisplayName(java.lang.String)` was removed
+* `withDestination(java.lang.String)` was removed
+* `withRevision(java.lang.Long)` was removed
+* `withDirection(models.PortMirroringDirectionEnum)` was removed
+
+#### `models.PrivateCloud$Definition` was modified
+
+* `withExtendedNetworkBlocks(java.util.List)` was removed
+* `withNetworkBlock(java.lang.String)` was removed
+* `withVirtualNetworkId(java.lang.String)` was removed
+* `withVcenterPassword(java.lang.String)` was removed
+* `withEncryption(models.Encryption)` was removed
+* `withNsxtPassword(java.lang.String)` was removed
+* `withIdentitySources(java.util.List)` was removed
+* `withDnsZoneType(models.DnsZoneType)` was removed
+* `withCircuit(models.Circuit)` was removed
+* `withInternet(models.InternetEnum)` was removed
+* `withSecondaryCircuit(models.Circuit)` was removed
+* `withAvailability(models.AvailabilityProperties)` was removed
+* `withManagementCluster(models.ManagementCluster)` was removed
+* `withIdentity(models.PrivateCloudIdentity)` was removed
+
+#### `models.CloudLink$Update` was modified
+
+* `withLinkedCloud(java.lang.String)` was removed
+
+#### `models.WorkloadNetworkVMGroup` was modified
+
+* `members()` was removed
+* `revision()` was removed
+* `status()` was removed
+* `provisioningState()` was removed
+* `displayName()` was removed
+
+#### `models.ExpressRouteAuthorization$Definition` was modified
+
+* `withExpressRouteId(java.lang.String)` was removed
+
+#### `models.ExpressRouteAuthorization$Update` was modified
+
+* `withExpressRouteId(java.lang.String)` was removed
+
+#### `models.AddonHcxProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.WorkloadNetworkDnsService$Definition` was modified
+
+* `withDefaultDnsZone(java.lang.String)` was removed
+* `withLogLevel(models.DnsServiceLogLevelEnum)` was removed
+* `withFqdnZones(java.util.List)` was removed
+* `withDisplayName(java.lang.String)` was removed
+* `withRevision(java.lang.Long)` was removed
+* `withDnsServiceIp(java.lang.String)` was removed
+
+#### `models.HcxEnterpriseSite` was modified
+
+* `status()` was removed
+* `provisioningState()` was removed
+* `activationKey()` was removed
+
+#### `models.Datastore$Update` was modified
+
+* `withDiskPoolVolume(models.DiskPoolVolume)` was removed
+* `withElasticSanVolume(models.ElasticSanVolume)` was removed
+* `withNetAppVolume(models.NetAppVolume)` was removed
+
+#### `models.GlobalReachConnection$Update` was modified
+
+* `withExpressRouteId(java.lang.String)` was removed
+* `withAuthorizationKey(java.lang.String)` was removed
+* `withPeerExpressRouteCircuit(java.lang.String)` was removed
+
+#### `models.WorkloadNetworkGateway` was modified
+
+* `displayName()` was removed
+* `provisioningState()` was removed
+* `path()` was removed
+
+#### `models.PrivateCloud` was modified
+
+* `encryption()` was removed
+* `vcenterCertificateThumbprint()` was removed
+* `managementCluster()` was removed
+* `nsxtPassword()` was removed
+* `managementNetwork()` was removed
+* `provisioningState()` was removed
+* `provisioningNetwork()` was removed
+* `endpoints()` was removed
+* `vmotionNetwork()` was removed
+* `extendedNetworkBlocks()` was removed
+* `availability()` was removed
+* `models.PrivateCloudIdentity identity()` -> `models.SystemAssignedServiceIdentity identity()`
+* `externalCloudLinks()` was removed
+* `internet()` was removed
+* `nsxPublicIpQuotaRaised()` was removed
+* `circuit()` was removed
+* `nsxtCertificateThumbprint()` was removed
+* `virtualNetworkId()` was removed
+* `identitySources()` was removed
+* `networkBlock()` was removed
+* `secondaryCircuit()` was removed
+* `vcenterPassword()` was removed
+* `dnsZoneType()` was removed
+
+#### `models.WorkloadNetworkDnsService` was modified
+
+* `status()` was removed
+* `dnsServiceIp()` was removed
+* `revision()` was removed
+* `provisioningState()` was removed
+* `displayName()` was removed
+* `defaultDnsZone()` was removed
+* `fqdnZones()` was removed
+* `logLevel()` was removed
+
+#### `models.AddonSrmProperties` was modified
+
+* `provisioningState()` was removed
+
+#### `models.Circuit` was modified
+
+* `expressRouteId()` was removed
+* `expressRoutePrivatePeeringId()` was removed
+
+#### `models.WorkloadNetworkDhcpServer` was modified
+
+* `segments()` was removed
+* `provisioningState()` was removed
+
+### Features Added
+
+* `models.HostKind` was added
+
+* `models.WorkloadNetworkDnsServiceProperties` was added
+
+* `models.ProvisionedNetwork` was added
+
+* `models.PureStoragePolicyProperties` was added
+
+* `models.ResourceSkuRestrictionInfo` was added
+
+* `models.PureStoragePolicies` was added
+
+* `implementation.models.DatastoreList` was added
+
+* `implementation.models.ScriptPackagesList` was added
+
+* `models.SpecializedHostProperties` was added
+
+* `models.VirtualMachineProperties` was added
+
+* `models.WorkloadNetworkPublicIP$Definition` was added
+
+* `models.ResourceSkuLocationInfo` was added
+
+* `models.VmVmPlacementPolicyProperties` was added
+
+* `models.WorkloadNetworkPortMirroringProfiles` was added
+
+* `models.PureStoragePolicy$UpdateStages` was added
+
+* `models.WorkloadNetworkGatewayProperties` was added
+
+* `models.HostProvisioningState` was added
+
+* `models.WorkloadNetworkPublicIP$DefinitionStages` was added
+
+* `models.GeneralHostProperties` was added
+
+* `models.WorkloadNetworkVirtualMachineProperties` was added
+
+* `models.WorkloadNetworkPublicIPProvisioningState` was added
+
+* `models.HostMaintenance` was added
+
+* `models.Skus` was added
+
+* `implementation.models.VirtualMachinesList` was added
+
+* `models.HostModel` was added
+
+* `models.WorkloadNetworkVMGroupProperties` was added
+
+* `implementation.models.ExpressRouteAuthorizationList` was added
+
+* `implementation.models.WorkloadNetworkList` was added
+
+* `models.WorkloadNetworkProperties` was added
+
+* `models.HostProperties` was added
+
+* `models.ProvisionedNetworks` was added
+
+* `models.SystemAssignedServiceIdentityType` was added
+
+* `models.ResourceSku` was added
+
+* `models.ResourceSkuRestrictionsReasonCode` was added
+
+* `models.WorkloadNetworkPublicIPProperties` was added
+
+* `models.WorkloadNetworkPublicIps` was added
+
+* `models.HcxEnterpriseSiteProperties` was added
+
+* `models.ResourceSkuZoneDetails` was added
+
+* `models.CloudLinkProperties` was added
+
+* `models.ResourceSkuRestrictionsType` was added
+
+* `implementation.models.PrivateCloudList` was added
+
+* `models.WorkloadNetworkGateways` was added
+
+* `models.PureStoragePolicy$DefinitionStages` was added
+
+* `implementation.models.ClusterList` was added
+
+* `models.DatastoreProperties` was added
+
+* `models.ResourceSkuResourceType` was added
+
+* `models.ResourceSkuRestrictions` was added
+
+* `implementation.models.CloudLinkList` was added
+
+* `models.WorkloadNetworkDnsZoneProperties` was added
+
+* `models.PureStoragePolicy` was added
+
+* `models.PureStoragePolicy$Definition` was added
+
+* `models.WorkloadNetworkPortMirroringProperties` was added
+
+* `implementation.models.AddonList` was added
+
+* `models.ScriptPackageProperties` was added
+
+* `models.WorkloadNetworkDnsServices` was added
+
+* `implementation.models.WorkloadNetworkDnsServicesList` was added
+
+* `implementation.models.PagedResourceSku` was added
+
+* `models.ProvisionedNetworkProvisioningState` was added
+
+* `models.WorkloadNetworkPublicIP` was added
+
+* `models.PrivateCloudProperties` was added
+
+* `implementation.models.WorkloadNetworkGatewayList` was added
+
+* `models.PureStorageVolume` was added
+
+* `implementation.models.PlacementPoliciesList` was added
+
+* `models.ResourceSkuCapabilities` was added
+
+* `models.Hosts` was added
+
+* `models.ScriptExecutionPropertiesNamedOutput` was added
+
+* `models.WorkloadNetworkSegments` was added
+
+* `models.WorkloadNetworkSegmentProperties` was added
+
+* `implementation.models.WorkloadNetworkVMGroupsList` was added
+
+* `models.PureStoragePolicy$Update` was added
+
+* `models.ExpressRouteAuthorizationProperties` was added
+
+* `implementation.models.WorkloadNetworkDhcpList` was added
+
+* `models.ProvisionedNetworkProperties` was added
+
+* `implementation.models.WorkloadNetworkVirtualMachinesList` was added
+
+* `models.WorkloadNetworkDhcpConfigurations` was added
+
+* `implementation.models.ScriptExecutionsList` was added
+
+* `implementation.models.PureStoragePolicyListResult` was added
+
+* `models.WorkloadNetworkVirtualMachines` was added
+
+* `implementation.models.HostListResult` was added
+
+* `implementation.models.WorkloadNetworkDnsZonesList` was added
+
+* `models.ScriptExecutionProperties` was added
+
+* `implementation.models.HcxEnterpriseSiteList` was added
+
+* `models.IscsiPathProperties` was added
+
+* `implementation.models.IscsiPathListResult` was added
+
+* `models.ScriptCmdletProperties` was added
+
+* `models.SystemAssignedServiceIdentity` was added
+
+* `implementation.models.WorkloadNetworkSegmentsList` was added
+
+* `models.WorkloadNetworkVmGroups` was added
+
+* `implementation.models.WorkloadNetworkPublicIPsList` was added
+
+* `models.ClusterProperties` was added
+
+* `implementation.models.ScriptCmdletsList` was added
+
+* `implementation.models.WorkloadNetworkPortMirroringList` was added
+
+* `models.GlobalReachConnectionProperties` was added
+
+* `implementation.models.ProvisionedNetworkListResult` was added
+
+* `implementation.models.OperationListResult` was added
+
+* `models.PureStoragePolicyProvisioningState` was added
+
+* `models.WorkloadNetworkDnsZones` was added
+
+* `implementation.models.GlobalReachConnectionList` was added
+
+* `models.ProvisionedNetworkTypes` was added
+
+#### `models.CloudLink$Definition` was modified
+
+* `withProperties(models.CloudLinkProperties)` was added
+
+#### `models.Cluster$Definition` was modified
+
+* `withProperties(models.ClusterProperties)` was added
+
+#### `models.ScriptExecution$Update` was modified
+
+* `withProperties(models.ScriptExecutionProperties)` was added
+
+#### `models.ScriptCmdlet` was modified
+
+* `properties()` was added
+
+#### `models.Cluster` was modified
+
+* `properties()` was added
+
+#### `models.GlobalReachConnection` was modified
+
+* `properties()` was added
+
+#### `models.WorkloadNetworkDnsZone$Update` was modified
+
+* `withProperties(models.WorkloadNetworkDnsZoneProperties)` was added
+
+#### `models.IscsiPath` was modified
+
+* `properties()` was added
+
+#### `models.ExpressRouteAuthorization` was modified
+
+* `properties()` was added
+
+#### `models.VirtualMachine` was modified
+
+* `properties()` was added
+
+#### `models.WorkloadNetworkSegment$Definition` was modified
+
+* `withProperties(models.WorkloadNetworkSegmentProperties)` was added
+
+#### `models.WorkloadNetworkDnsZone` was modified
+
+* `properties()` was added
+
+#### `models.ScriptPackage` was modified
+
+* `properties()` was added
+
+#### `models.WorkloadNetworkSegment$Update` was modified
+
+* `withProperties(models.WorkloadNetworkSegmentProperties)` was added
+
+#### `models.Datastore` was modified
+
+* `properties()` was added
+
+#### `models.WorkloadNetworkSegment` was modified
+
+* `properties()` was added
+
+#### `models.Datastore$Definition` was modified
+
+* `withProperties(models.DatastoreProperties)` was added
+
+#### `models.PrivateCloud$Update` was modified
+
+* `withIdentity(models.SystemAssignedServiceIdentity)` was added
+
+#### `models.WorkloadNetworkDnsService$Update` was modified
+
+* `withProperties(models.WorkloadNetworkDnsServiceProperties)` was added
+
+#### `models.ScriptExecution$Definition` was modified
+
+* `withProperties(models.ScriptExecutionProperties)` was added
+
+#### `models.WorkloadNetworkVMGroup$Update` was modified
+
+* `withProperties(models.WorkloadNetworkVMGroupProperties)` was added
+
+#### `models.HcxEnterpriseSite$Update` was modified
+
+* `withProperties(models.HcxEnterpriseSiteProperties)` was added
+
+#### `models.WorkloadNetworkVMGroup$Definition` was modified
+
+* `withProperties(models.WorkloadNetworkVMGroupProperties)` was added
+
+#### `models.GlobalReachConnection$Definition` was modified
+
+* `withProperties(models.GlobalReachConnectionProperties)` was added
+
+#### `models.WorkloadNetworkVirtualMachine` was modified
+
+* `properties()` was added
+
+#### `AvsManager` was modified
+
+* `workloadNetworkSegments()` was added
+* `workloadNetworkPortMirroringProfiles()` was added
+* `workloadNetworkGateways()` was added
+* `skus()` was added
+* `provisionedNetworks()` was added
+* `workloadNetworkDnsServices()` was added
+* `workloadNetworkDnsZones()` was added
+* `hosts()` was added
+* `workloadNetworkDhcpConfigurations()` was added
+* `workloadNetworkVmGroups()` was added
+* `workloadNetworkPublicIps()` was added
+* `pureStoragePolicies()` was added
+* `workloadNetworkVirtualMachines()` was added
+
+#### `models.WorkloadNetworkPortMirroring$Update` was modified
+
+* `withProperties(models.WorkloadNetworkPortMirroringProperties)` was added
+
+#### `models.CloudLink` was modified
+
+* `properties()` was added
+
+#### `models.WorkloadNetwork` was modified
+
+* `properties()` was added
+
+#### `models.WorkloadNetworkDnsZone$Definition` was modified
+
+* `withProperties(models.WorkloadNetworkDnsZoneProperties)` was added
+
+#### `models.HcxEnterpriseSite$Definition` was modified
+
+* `withProperties(models.HcxEnterpriseSiteProperties)` was added
+
+#### `models.PrivateCloudUpdate` was modified
+
+* `withIdentity(models.SystemAssignedServiceIdentity)` was added
+
+#### `models.WorkloadNetworkPortMirroring` was modified
+
+* `properties()` was added
+
+#### `models.ScriptExecution` was modified
+
+* `properties()` was added
+
+#### `models.WorkloadNetworkPortMirroring$Definition` was modified
+
+* `withProperties(models.WorkloadNetworkPortMirroringProperties)` was added
+
+#### `models.PrivateCloud$Definition` was modified
+
+* `withZones(java.util.List)` was added
+* `withIdentity(models.SystemAssignedServiceIdentity)` was added
+* `withProperties(models.PrivateCloudProperties)` was added
+
+#### `models.CloudLink$Update` was modified
+
+* `withProperties(models.CloudLinkProperties)` was added
+
+#### `models.WorkloadNetworkVMGroup` was modified
+
+* `properties()` was added
+
+#### `models.ExpressRouteAuthorization$Definition` was modified
+
+* `withProperties(models.ExpressRouteAuthorizationProperties)` was added
+
+#### `models.ExpressRouteAuthorization$Update` was modified
+
+* `withProperties(models.ExpressRouteAuthorizationProperties)` was added
+
+#### `models.AddonHcxProperties` was modified
+
+* `withManagementNetwork(java.lang.String)` was added
+* `uplinkNetwork()` was added
+* `withUplinkNetwork(java.lang.String)` was added
+* `managementNetwork()` was added
+
+#### `models.WorkloadNetworkDnsService$Definition` was modified
+
+* `withProperties(models.WorkloadNetworkDnsServiceProperties)` was added
+
+#### `models.HcxEnterpriseSite` was modified
+
+* `properties()` was added
+
+#### `models.Datastore$Update` was modified
+
+* `withProperties(models.DatastoreProperties)` was added
+
+#### `models.GlobalReachConnection$Update` was modified
+
+* `withProperties(models.GlobalReachConnectionProperties)` was added
+
+#### `models.WorkloadNetworkGateway` was modified
+
+* `properties()` was added
+
+#### `models.PrivateCloud` was modified
+
+* `zones()` was added
+* `properties()` was added
+
+#### `models.WorkloadNetworkDnsService` was modified
+
+* `properties()` was added
+
+#### `models.Circuit` was modified
+
+* `expressRouteID()` was added
+* `expressRoutePrivatePeeringID()` was added
 
 ## 1.2.0 (2024-09-11)
 
