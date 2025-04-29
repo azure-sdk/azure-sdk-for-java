@@ -7,8 +7,9 @@ package com.azure.resourcemanager.elastic.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.elastic.fluent.models.MonitoringTagRulesInner;
+import com.azure.resourcemanager.elastic.models.LogRules;
 import com.azure.resourcemanager.elastic.models.MonitoringTagRules;
-import com.azure.resourcemanager.elastic.models.MonitoringTagRulesProperties;
+import com.azure.resourcemanager.elastic.models.ProvisioningState;
 
 public final class MonitoringTagRulesImpl
     implements MonitoringTagRules, MonitoringTagRules.Definition, MonitoringTagRules.Update {
@@ -28,12 +29,16 @@ public final class MonitoringTagRulesImpl
         return this.innerModel().type();
     }
 
-    public MonitoringTagRulesProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public LogRules logRules() {
+        return this.innerModel().logRules();
     }
 
     public String resourceGroupName() {
@@ -127,8 +132,8 @@ public final class MonitoringTagRulesImpl
         return this;
     }
 
-    public MonitoringTagRulesImpl withProperties(MonitoringTagRulesProperties properties) {
-        this.innerModel().withProperties(properties);
+    public MonitoringTagRulesImpl withLogRules(LogRules logRules) {
+        this.innerModel().withLogRules(logRules);
         return this;
     }
 }

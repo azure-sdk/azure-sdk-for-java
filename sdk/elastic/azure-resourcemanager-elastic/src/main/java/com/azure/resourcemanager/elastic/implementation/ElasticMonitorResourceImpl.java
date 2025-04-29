@@ -8,11 +8,18 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.elastic.fluent.models.ElasticMonitorResourceInner;
+import com.azure.resourcemanager.elastic.models.AzureResourceManagerResourceSkuProperty;
 import com.azure.resourcemanager.elastic.models.ElasticMonitorResource;
 import com.azure.resourcemanager.elastic.models.ElasticMonitorResourceUpdateParameters;
+import com.azure.resourcemanager.elastic.models.ElasticProperties;
+import com.azure.resourcemanager.elastic.models.HostingType;
 import com.azure.resourcemanager.elastic.models.IdentityProperties;
-import com.azure.resourcemanager.elastic.models.MonitorProperties;
-import com.azure.resourcemanager.elastic.models.ResourceSku;
+import com.azure.resourcemanager.elastic.models.LiftrResourceCategories;
+import com.azure.resourcemanager.elastic.models.MonitoringStatus;
+import com.azure.resourcemanager.elastic.models.PlanDetails;
+import com.azure.resourcemanager.elastic.models.ProjectDetails;
+import com.azure.resourcemanager.elastic.models.ProvisioningState;
+import com.azure.resourcemanager.elastic.models.UserInfo;
 import java.util.Collections;
 import java.util.Map;
 
@@ -47,12 +54,12 @@ public final class ElasticMonitorResourceImpl
         }
     }
 
-    public ResourceSku sku() {
-        return this.innerModel().sku();
+    public String kind() {
+        return this.innerModel().kind();
     }
 
-    public MonitorProperties properties() {
-        return this.innerModel().properties();
+    public AzureResourceManagerResourceSkuProperty sku() {
+        return this.innerModel().sku();
     }
 
     public IdentityProperties identity() {
@@ -61,6 +68,66 @@ public final class ElasticMonitorResourceImpl
 
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public MonitoringStatus monitoringStatus() {
+        return this.innerModel().monitoringStatus();
+    }
+
+    public ElasticProperties elasticProperties() {
+        return this.innerModel().elasticProperties();
+    }
+
+    public UserInfo userInfo() {
+        return this.innerModel().userInfo();
+    }
+
+    public PlanDetails planDetails() {
+        return this.innerModel().planDetails();
+    }
+
+    public String version() {
+        return this.innerModel().version();
+    }
+
+    public String subscriptionState() {
+        return this.innerModel().subscriptionState();
+    }
+
+    public String saaSAzureSubscriptionStatus() {
+        return this.innerModel().saaSAzureSubscriptionStatus();
+    }
+
+    public String sourceCampaignName() {
+        return this.innerModel().sourceCampaignName();
+    }
+
+    public String sourceCampaignId() {
+        return this.innerModel().sourceCampaignId();
+    }
+
+    public LiftrResourceCategories liftrResourceCategory() {
+        return this.innerModel().liftrResourceCategory();
+    }
+
+    public Integer liftrResourcePreference() {
+        return this.innerModel().liftrResourcePreference();
+    }
+
+    public Boolean generateApiKey() {
+        return this.innerModel().generateApiKey();
+    }
+
+    public HostingType hostingType() {
+        return this.innerModel().hostingType();
+    }
+
+    public ProjectDetails projectDetails() {
+        return this.innerModel().projectDetails();
     }
 
     public Region region() {
@@ -122,16 +189,13 @@ public final class ElasticMonitorResourceImpl
     public ElasticMonitorResource apply() {
         this.innerObject = serviceManager.serviceClient()
             .getMonitors()
-            .updateWithResponse(resourceGroupName, monitorName, updateBody, Context.NONE)
-            .getValue();
+            .update(resourceGroupName, monitorName, updateBody, Context.NONE);
         return this;
     }
 
     public ElasticMonitorResource apply(Context context) {
-        this.innerObject = serviceManager.serviceClient()
-            .getMonitors()
-            .updateWithResponse(resourceGroupName, monitorName, updateBody, context)
-            .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getMonitors().update(resourceGroupName, monitorName, updateBody, context);
         return this;
     }
 
@@ -179,18 +243,78 @@ public final class ElasticMonitorResourceImpl
         }
     }
 
-    public ElasticMonitorResourceImpl withSku(ResourceSku sku) {
-        this.innerModel().withSku(sku);
+    public ElasticMonitorResourceImpl withKind(String kind) {
+        this.innerModel().withKind(kind);
         return this;
     }
 
-    public ElasticMonitorResourceImpl withProperties(MonitorProperties properties) {
-        this.innerModel().withProperties(properties);
+    public ElasticMonitorResourceImpl withSku(AzureResourceManagerResourceSkuProperty sku) {
+        this.innerModel().withSku(sku);
         return this;
     }
 
     public ElasticMonitorResourceImpl withIdentity(IdentityProperties identity) {
         this.innerModel().withIdentity(identity);
+        return this;
+    }
+
+    public ElasticMonitorResourceImpl withMonitoringStatus(MonitoringStatus monitoringStatus) {
+        this.innerModel().withMonitoringStatus(monitoringStatus);
+        return this;
+    }
+
+    public ElasticMonitorResourceImpl withElasticProperties(ElasticProperties elasticProperties) {
+        this.innerModel().withElasticProperties(elasticProperties);
+        return this;
+    }
+
+    public ElasticMonitorResourceImpl withUserInfo(UserInfo userInfo) {
+        this.innerModel().withUserInfo(userInfo);
+        return this;
+    }
+
+    public ElasticMonitorResourceImpl withPlanDetails(PlanDetails planDetails) {
+        this.innerModel().withPlanDetails(planDetails);
+        return this;
+    }
+
+    public ElasticMonitorResourceImpl withVersion(String version) {
+        this.innerModel().withVersion(version);
+        return this;
+    }
+
+    public ElasticMonitorResourceImpl withSubscriptionState(String subscriptionState) {
+        this.innerModel().withSubscriptionState(subscriptionState);
+        return this;
+    }
+
+    public ElasticMonitorResourceImpl withSaaSAzureSubscriptionStatus(String saaSAzureSubscriptionStatus) {
+        this.innerModel().withSaaSAzureSubscriptionStatus(saaSAzureSubscriptionStatus);
+        return this;
+    }
+
+    public ElasticMonitorResourceImpl withSourceCampaignName(String sourceCampaignName) {
+        this.innerModel().withSourceCampaignName(sourceCampaignName);
+        return this;
+    }
+
+    public ElasticMonitorResourceImpl withSourceCampaignId(String sourceCampaignId) {
+        this.innerModel().withSourceCampaignId(sourceCampaignId);
+        return this;
+    }
+
+    public ElasticMonitorResourceImpl withGenerateApiKey(Boolean generateApiKey) {
+        this.innerModel().withGenerateApiKey(generateApiKey);
+        return this;
+    }
+
+    public ElasticMonitorResourceImpl withHostingType(HostingType hostingType) {
+        this.innerModel().withHostingType(hostingType);
+        return this;
+    }
+
+    public ElasticMonitorResourceImpl withProjectDetails(ProjectDetails projectDetails) {
+        this.innerModel().withProjectDetails(projectDetails);
         return this;
     }
 

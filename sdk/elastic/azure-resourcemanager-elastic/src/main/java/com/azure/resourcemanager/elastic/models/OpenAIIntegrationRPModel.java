@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.elastic.models;
 
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.elastic.fluent.models.OpenAIIntegrationRPModelInner;
+import java.time.OffsetDateTime;
 
 /**
  * An immutable client-side representation of OpenAIIntegrationRPModel.
@@ -34,11 +36,46 @@ public interface OpenAIIntegrationRPModel {
     String type();
 
     /**
-     * Gets the properties property: Open AI Integration details.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the properties value.
+     * @return the systemData value.
      */
-    OpenAIIntegrationProperties properties();
+    SystemData systemData();
+
+    /**
+     * Gets the openAIResourceId property: The resource name of Open AI resource.
+     * 
+     * @return the openAIResourceId value.
+     */
+    String openAIResourceId();
+
+    /**
+     * Gets the openAIResourceEndpoint property: The API endpoint for Open AI resource.
+     * 
+     * @return the openAIResourceEndpoint value.
+     */
+    String openAIResourceEndpoint();
+
+    /**
+     * Gets the openAIConnectorId property: The connector id of Open AI resource.
+     * 
+     * @return the openAIConnectorId value.
+     */
+    String openAIConnectorId();
+
+    /**
+     * Gets the key property: Value of API key for Open AI resource.
+     * 
+     * @return the key value.
+     */
+    String key();
+
+    /**
+     * Gets the lastRefreshAt property: Last Update Timestamp for key updation.
+     * 
+     * @return the lastRefreshAt value.
+     */
+    OffsetDateTime lastRefreshAt();
 
     /**
      * Gets the name of the resource group.
@@ -89,7 +126,8 @@ public interface OpenAIIntegrationRPModel {
          * The stage of the OpenAIIntegrationRPModel definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithOpenAIResourceId, DefinitionStages.WithOpenAIResourceEndpoint,
+            DefinitionStages.WithOpenAIConnectorId, DefinitionStages.WithKey {
             /**
              * Executes the create request.
              * 
@@ -107,16 +145,55 @@ public interface OpenAIIntegrationRPModel {
         }
 
         /**
-         * The stage of the OpenAIIntegrationRPModel definition allowing to specify properties.
+         * The stage of the OpenAIIntegrationRPModel definition allowing to specify openAIResourceId.
          */
-        interface WithProperties {
+        interface WithOpenAIResourceId {
             /**
-             * Specifies the properties property: Open AI Integration details..
+             * Specifies the openAIResourceId property: The resource name of Open AI resource.
              * 
-             * @param properties Open AI Integration details.
+             * @param openAIResourceId The resource name of Open AI resource.
              * @return the next definition stage.
              */
-            WithCreate withProperties(OpenAIIntegrationProperties properties);
+            WithCreate withOpenAIResourceId(String openAIResourceId);
+        }
+
+        /**
+         * The stage of the OpenAIIntegrationRPModel definition allowing to specify openAIResourceEndpoint.
+         */
+        interface WithOpenAIResourceEndpoint {
+            /**
+             * Specifies the openAIResourceEndpoint property: The API endpoint for Open AI resource.
+             * 
+             * @param openAIResourceEndpoint The API endpoint for Open AI resource.
+             * @return the next definition stage.
+             */
+            WithCreate withOpenAIResourceEndpoint(String openAIResourceEndpoint);
+        }
+
+        /**
+         * The stage of the OpenAIIntegrationRPModel definition allowing to specify openAIConnectorId.
+         */
+        interface WithOpenAIConnectorId {
+            /**
+             * Specifies the openAIConnectorId property: The connector id of Open AI resource.
+             * 
+             * @param openAIConnectorId The connector id of Open AI resource.
+             * @return the next definition stage.
+             */
+            WithCreate withOpenAIConnectorId(String openAIConnectorId);
+        }
+
+        /**
+         * The stage of the OpenAIIntegrationRPModel definition allowing to specify key.
+         */
+        interface WithKey {
+            /**
+             * Specifies the key property: Value of API key for Open AI resource.
+             * 
+             * @param key Value of API key for Open AI resource.
+             * @return the next definition stage.
+             */
+            WithCreate withKey(String key);
         }
     }
 
@@ -130,7 +207,8 @@ public interface OpenAIIntegrationRPModel {
     /**
      * The template for OpenAIIntegrationRPModel update.
      */
-    interface Update extends UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithOpenAIResourceId, UpdateStages.WithOpenAIResourceEndpoint,
+        UpdateStages.WithOpenAIConnectorId, UpdateStages.WithKey {
         /**
          * Executes the update request.
          * 
@@ -152,16 +230,55 @@ public interface OpenAIIntegrationRPModel {
      */
     interface UpdateStages {
         /**
-         * The stage of the OpenAIIntegrationRPModel update allowing to specify properties.
+         * The stage of the OpenAIIntegrationRPModel update allowing to specify openAIResourceId.
          */
-        interface WithProperties {
+        interface WithOpenAIResourceId {
             /**
-             * Specifies the properties property: Open AI Integration details..
+             * Specifies the openAIResourceId property: The resource name of Open AI resource.
              * 
-             * @param properties Open AI Integration details.
+             * @param openAIResourceId The resource name of Open AI resource.
              * @return the next definition stage.
              */
-            Update withProperties(OpenAIIntegrationProperties properties);
+            Update withOpenAIResourceId(String openAIResourceId);
+        }
+
+        /**
+         * The stage of the OpenAIIntegrationRPModel update allowing to specify openAIResourceEndpoint.
+         */
+        interface WithOpenAIResourceEndpoint {
+            /**
+             * Specifies the openAIResourceEndpoint property: The API endpoint for Open AI resource.
+             * 
+             * @param openAIResourceEndpoint The API endpoint for Open AI resource.
+             * @return the next definition stage.
+             */
+            Update withOpenAIResourceEndpoint(String openAIResourceEndpoint);
+        }
+
+        /**
+         * The stage of the OpenAIIntegrationRPModel update allowing to specify openAIConnectorId.
+         */
+        interface WithOpenAIConnectorId {
+            /**
+             * Specifies the openAIConnectorId property: The connector id of Open AI resource.
+             * 
+             * @param openAIConnectorId The connector id of Open AI resource.
+             * @return the next definition stage.
+             */
+            Update withOpenAIConnectorId(String openAIConnectorId);
+        }
+
+        /**
+         * The stage of the OpenAIIntegrationRPModel update allowing to specify key.
+         */
+        interface WithKey {
+            /**
+             * Specifies the key property: Value of API key for Open AI resource.
+             * 
+             * @param key Value of API key for Open AI resource.
+             * @return the next definition stage.
+             */
+            Update withKey(String key);
         }
     }
 

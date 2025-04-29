@@ -9,8 +9,8 @@ package com.azure.resourcemanager.elastic.generated;
  */
 public final class OrganizationsGetApiKeySamples {
     /*
-     * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/Organizations_GetApiKey.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * Organizations_GetApiKey.json
      */
     /**
      * Sample code: Organizations_GetApiKey.

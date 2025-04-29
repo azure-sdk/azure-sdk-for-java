@@ -8,8 +8,6 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * SendingLogs
- * 
  * Flag indicating the status of the resource for sending logs operation to Elastic.
  */
 public final class SendingLogs extends ExpandableStringEnum<SendingLogs> {

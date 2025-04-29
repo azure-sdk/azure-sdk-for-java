@@ -45,37 +45,6 @@ public interface TagRulesClient {
     PagedIterable<MonitoringTagRulesInner> list(String resourceGroupName, String monitorName, Context context);
 
     /**
-     * Create or update a tag rule set for a given monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param ruleSetName Tag Rule Set resource name.
-     * @param body request body of MonitoringTagRules.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return capture logs and metrics of Azure resources based on ARM tags along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<MonitoringTagRulesInner> createOrUpdateWithResponse(String resourceGroupName, String monitorName,
-        String ruleSetName, MonitoringTagRulesInner body, Context context);
-
-    /**
-     * Create or update a tag rule set for a given monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param ruleSetName Tag Rule Set resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return capture logs and metrics of Azure resources based on ARM tags.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    MonitoringTagRulesInner createOrUpdate(String resourceGroupName, String monitorName, String ruleSetName);
-
-    /**
      * Get a tag rule set for a given monitor resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -104,6 +73,39 @@ public interface TagRulesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     MonitoringTagRulesInner get(String resourceGroupName, String monitorName, String ruleSetName);
+
+    /**
+     * Create or update a tag rule set for a given monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param ruleSetName Tag Rule Set resource name.
+     * @param body request body of MonitoringTagRules.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return capture logs and metrics of Azure resources based on ARM tags along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<MonitoringTagRulesInner> createOrUpdateWithResponse(String resourceGroupName, String monitorName,
+        String ruleSetName, MonitoringTagRulesInner body, Context context);
+
+    /**
+     * Create or update a tag rule set for a given monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param ruleSetName Tag Rule Set resource name.
+     * @param body request body of MonitoringTagRules.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return capture logs and metrics of Azure resources based on ARM tags.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    MonitoringTagRulesInner createOrUpdate(String resourceGroupName, String monitorName, String ruleSetName,
+        MonitoringTagRulesInner body);
 
     /**
      * Delete a tag rule set for a given monitor resource.

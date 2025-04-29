@@ -4,6 +4,6 @@
 
 /**
  * Package containing the data models for ElasticManagementClient.
- * null.
+ * // FIXME: (missing-service-description) Add service description.
  */
 package com.azure.resourcemanager.elastic.models;

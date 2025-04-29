@@ -435,7 +435,9 @@ public final class OpenAIsClientImpl implements OpenAIsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter integrationName is required and cannot be null."));
         }
-        if (body != null) {
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
             body.validate();
         }
         final String accept = "application/json";
@@ -482,7 +484,9 @@ public final class OpenAIsClientImpl implements OpenAIsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter integrationName is required and cannot be null."));
         }
-        if (body != null) {
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
             body.validate();
         }
         final String accept = "application/json";
@@ -497,6 +501,7 @@ public final class OpenAIsClientImpl implements OpenAIsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param integrationName OpenAI Integration name.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -504,8 +509,7 @@ public final class OpenAIsClientImpl implements OpenAIsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OpenAIIntegrationRPModelInner> createOrUpdateAsync(String resourceGroupName, String monitorName,
-        String integrationName) {
-        final OpenAIIntegrationRPModelInner body = null;
+        String integrationName, OpenAIIntegrationRPModelInner body) {
         return createOrUpdateWithResponseAsync(resourceGroupName, monitorName, integrationName, body)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -535,6 +539,7 @@ public final class OpenAIsClientImpl implements OpenAIsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param integrationName OpenAI Integration name.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -542,8 +547,7 @@ public final class OpenAIsClientImpl implements OpenAIsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OpenAIIntegrationRPModelInner createOrUpdate(String resourceGroupName, String monitorName,
-        String integrationName) {
-        final OpenAIIntegrationRPModelInner body = null;
+        String integrationName, OpenAIIntegrationRPModelInner body) {
         return createOrUpdateWithResponse(resourceGroupName, monitorName, integrationName, body, Context.NONE)
             .getValue();
     }

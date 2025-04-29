@@ -10,7 +10,8 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.elastic.models.MonitoringTagRulesProperties;
+import com.azure.resourcemanager.elastic.models.LogRules;
+import com.azure.resourcemanager.elastic.models.ProvisioningState;
 import java.io.IOException;
 
 /**
@@ -21,10 +22,10 @@ public final class MonitoringTagRulesInner extends ProxyResource {
     /*
      * Properties of the monitoring tag rules.
      */
-    private MonitoringTagRulesProperties properties;
+    private MonitoringTagRulesProperties innerProperties;
 
     /*
-     * The system metadata relating to this resource
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
 
@@ -50,27 +51,16 @@ public final class MonitoringTagRulesInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: Properties of the monitoring tag rules.
+     * Get the innerProperties property: Properties of the monitoring tag rules.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public MonitoringTagRulesProperties properties() {
-        return this.properties;
+    private MonitoringTagRulesProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the properties property: Properties of the monitoring tag rules.
-     * 
-     * @param properties the properties value to set.
-     * @return the MonitoringTagRulesInner object itself.
-     */
-    public MonitoringTagRulesInner withProperties(MonitoringTagRulesProperties properties) {
-        this.properties = properties;
-        return this;
-    }
-
-    /**
-     * Get the systemData property: The system metadata relating to this resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -109,13 +99,45 @@ public final class MonitoringTagRulesInner extends ProxyResource {
     }
 
     /**
+     * Get the provisioningState property: Provisioning state of the monitoring tag rules.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the logRules property: Rules for sending logs.
+     * 
+     * @return the logRules value.
+     */
+    public LogRules logRules() {
+        return this.innerProperties() == null ? null : this.innerProperties().logRules();
+    }
+
+    /**
+     * Set the logRules property: Rules for sending logs.
+     * 
+     * @param logRules the logRules value to set.
+     * @return the MonitoringTagRulesInner object itself.
+     */
+    public MonitoringTagRulesInner withLogRules(LogRules logRules) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitoringTagRulesProperties();
+        }
+        this.innerProperties().withLogRules(logRules);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 
@@ -125,7 +147,7 @@ public final class MonitoringTagRulesInner extends ProxyResource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("properties", this.properties);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
         return jsonWriter.writeEndObject();
     }
 
@@ -152,7 +174,7 @@ public final class MonitoringTagRulesInner extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedMonitoringTagRulesInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedMonitoringTagRulesInner.properties = MonitoringTagRulesProperties.fromJson(reader);
+                    deserializedMonitoringTagRulesInner.innerProperties = MonitoringTagRulesProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedMonitoringTagRulesInner.systemData = SystemData.fromJson(reader);
                 } else {

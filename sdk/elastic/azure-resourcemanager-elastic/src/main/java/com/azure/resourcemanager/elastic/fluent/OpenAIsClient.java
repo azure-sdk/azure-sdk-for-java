@@ -96,13 +96,15 @@ public interface OpenAIsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param integrationName OpenAI Integration name.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return capture properties of Open AI resource Integration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    OpenAIIntegrationRPModelInner createOrUpdate(String resourceGroupName, String monitorName, String integrationName);
+    OpenAIIntegrationRPModelInner createOrUpdate(String resourceGroupName, String monitorName, String integrationName,
+        OpenAIIntegrationRPModelInner body);
 
     /**
      * Delete OpenAI integration rule for a given monitor resource.

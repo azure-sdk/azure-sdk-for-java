@@ -34,18 +34,25 @@ public interface MonitoringTagRules {
     String type();
 
     /**
-     * Gets the properties property: Properties of the monitoring tag rules.
-     * 
-     * @return the properties value.
-     */
-    MonitoringTagRulesProperties properties();
-
-    /**
-     * Gets the systemData property: The system metadata relating to this resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the provisioningState property: Provisioning state of the monitoring tag rules.
+     * 
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
+     * Gets the logRules property: Rules for sending logs.
+     * 
+     * @return the logRules value.
+     */
+    LogRules logRules();
 
     /**
      * Gets the name of the resource group.
@@ -96,7 +103,7 @@ public interface MonitoringTagRules {
          * The stage of the MonitoringTagRules definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithLogRules {
             /**
              * Executes the create request.
              * 
@@ -114,16 +121,16 @@ public interface MonitoringTagRules {
         }
 
         /**
-         * The stage of the MonitoringTagRules definition allowing to specify properties.
+         * The stage of the MonitoringTagRules definition allowing to specify logRules.
          */
-        interface WithProperties {
+        interface WithLogRules {
             /**
-             * Specifies the properties property: Properties of the monitoring tag rules..
+             * Specifies the logRules property: Rules for sending logs..
              * 
-             * @param properties Properties of the monitoring tag rules.
+             * @param logRules Rules for sending logs.
              * @return the next definition stage.
              */
-            WithCreate withProperties(MonitoringTagRulesProperties properties);
+            WithCreate withLogRules(LogRules logRules);
         }
     }
 
@@ -137,7 +144,7 @@ public interface MonitoringTagRules {
     /**
      * The template for MonitoringTagRules update.
      */
-    interface Update extends UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithLogRules {
         /**
          * Executes the update request.
          * 
@@ -159,16 +166,16 @@ public interface MonitoringTagRules {
      */
     interface UpdateStages {
         /**
-         * The stage of the MonitoringTagRules update allowing to specify properties.
+         * The stage of the MonitoringTagRules update allowing to specify logRules.
          */
-        interface WithProperties {
+        interface WithLogRules {
             /**
-             * Specifies the properties property: Properties of the monitoring tag rules..
+             * Specifies the logRules property: Rules for sending logs..
              * 
-             * @param properties Properties of the monitoring tag rules.
+             * @param logRules Rules for sending logs.
              * @return the next definition stage.
              */
-            Update withProperties(MonitoringTagRulesProperties properties);
+            Update withLogRules(LogRules logRules);
         }
     }
 

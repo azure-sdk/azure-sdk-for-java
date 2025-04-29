@@ -5,11 +5,12 @@
 package com.azure.resourcemanager.elastic.implementation;
 
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.elastic.fluent.models.OpenAIIntegrationRPModelInner;
-import com.azure.resourcemanager.elastic.models.OpenAIIntegrationProperties;
 import com.azure.resourcemanager.elastic.models.OpenAIIntegrationRPModel;
 import com.azure.resourcemanager.elastic.models.OpenAIIntegrationStatusResponse;
+import java.time.OffsetDateTime;
 
 public final class OpenAIIntegrationRPModelImpl
     implements OpenAIIntegrationRPModel, OpenAIIntegrationRPModel.Definition, OpenAIIntegrationRPModel.Update {
@@ -29,8 +30,28 @@ public final class OpenAIIntegrationRPModelImpl
         return this.innerModel().type();
     }
 
-    public OpenAIIntegrationProperties properties() {
-        return this.innerModel().properties();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public String openAIResourceId() {
+        return this.innerModel().openAIResourceId();
+    }
+
+    public String openAIResourceEndpoint() {
+        return this.innerModel().openAIResourceEndpoint();
+    }
+
+    public String openAIConnectorId() {
+        return this.innerModel().openAIConnectorId();
+    }
+
+    public String key() {
+        return this.innerModel().key();
+    }
+
+    public OffsetDateTime lastRefreshAt() {
+        return this.innerModel().lastRefreshAt();
     }
 
     public String resourceGroupName() {
@@ -134,8 +155,23 @@ public final class OpenAIIntegrationRPModelImpl
         return serviceManager.openAIs().getStatus(resourceGroupName, monitorName, integrationName);
     }
 
-    public OpenAIIntegrationRPModelImpl withProperties(OpenAIIntegrationProperties properties) {
-        this.innerModel().withProperties(properties);
+    public OpenAIIntegrationRPModelImpl withOpenAIResourceId(String openAIResourceId) {
+        this.innerModel().withOpenAIResourceId(openAIResourceId);
+        return this;
+    }
+
+    public OpenAIIntegrationRPModelImpl withOpenAIResourceEndpoint(String openAIResourceEndpoint) {
+        this.innerModel().withOpenAIResourceEndpoint(openAIResourceEndpoint);
+        return this;
+    }
+
+    public OpenAIIntegrationRPModelImpl withOpenAIConnectorId(String openAIConnectorId) {
+        this.innerModel().withOpenAIConnectorId(openAIConnectorId);
+        return this;
+    }
+
+    public OpenAIIntegrationRPModelImpl withKey(String key) {
+        this.innerModel().withKey(key);
         return this;
     }
 }
