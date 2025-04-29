@@ -4,12 +4,14 @@
 
 package com.azure.resourcemanager.advisor.implementation;
 
+import com.azure.core.annotation.BodyParam;
 import com.azure.core.annotation.ExpectedResponses;
 import com.azure.core.annotation.Get;
 import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
+import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Post;
 import com.azure.core.annotation.QueryParam;
@@ -29,7 +31,9 @@ import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.advisor.fluent.RecommendationsClient;
 import com.azure.resourcemanager.advisor.fluent.models.ResourceRecommendationBaseInner;
 import com.azure.resourcemanager.advisor.models.RecommendationsGenerateResponse;
+import com.azure.resourcemanager.advisor.models.RecommendationsGetGenerateStatusResponse;
 import com.azure.resourcemanager.advisor.models.ResourceRecommendationBaseListResult;
+import com.azure.resourcemanager.advisor.models.TrackedRecommendationPropertiesPayload;
 import java.util.UUID;
 import reactor.core.publisher.Mono;
 
@@ -66,37 +70,50 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
     @ServiceInterface(name = "AdvisorManagementCli")
     public interface RecommendationsService {
         @Headers({ "Content-Type: application/json" })
+        @Get("/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ResourceRecommendationBaseInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
+            @PathParam("recommendationId") String recommendationId, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ResourceRecommendationBaseInner>> patch(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
+            @PathParam("recommendationId") String recommendationId,
+            @BodyParam("application/json") TrackedRecommendationPropertiesPayload trackedProperties,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/providers/Microsoft.Advisor/generateRecommendations")
         @ExpectedResponses({ 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<RecommendationsGenerateResponse> generate(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Advisor/generateRecommendations/{operationId}")
         @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> getGenerateStatus(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId, @PathParam("operationId") UUID operationId,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+        Mono<RecommendationsGetGenerateStatusResponse> getGenerateStatus(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("operationId") UUID operationId, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Advisor/recommendations")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ResourceRecommendationBaseListResult>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @QueryParam("$filter") String filter, @QueryParam("$top") Integer top,
             @QueryParam("$skipToken") String skipToken, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ResourceRecommendationBaseInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("resourceUri") String resourceUri, @PathParam("recommendationId") String recommendationId,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -105,6 +122,244 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
         Mono<Response<ResourceRecommendationBaseListResult>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
+    }
+
+    /**
+     * Obtains details of a cached recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param recommendationId The recommendation ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ResourceRecommendationBaseInner>> getWithResponseAsync(String resourceUri,
+        String recommendationId) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        if (recommendationId == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter recommendationId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+                recommendationId, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Obtains details of a cached recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param recommendationId The recommendation ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ResourceRecommendationBaseInner>> getWithResponseAsync(String resourceUri,
+        String recommendationId, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        if (recommendationId == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter recommendationId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, recommendationId,
+            accept, context);
+    }
+
+    /**
+     * Obtains details of a cached recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param recommendationId The recommendation ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ResourceRecommendationBaseInner> getAsync(String resourceUri, String recommendationId) {
+        return getWithResponseAsync(resourceUri, recommendationId).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Obtains details of a cached recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param recommendationId The recommendation ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ResourceRecommendationBaseInner> getWithResponse(String resourceUri, String recommendationId,
+        Context context) {
+        return getWithResponseAsync(resourceUri, recommendationId, context).block();
+    }
+
+    /**
+     * Obtains details of a cached recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param recommendationId The recommendation ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResourceRecommendationBaseInner get(String resourceUri, String recommendationId) {
+        return getWithResponse(resourceUri, recommendationId, Context.NONE).getValue();
+    }
+
+    /**
+     * Update the tracked properties of a Recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param recommendationId The recommendation ID.
+     * @param trackedProperties The properties to update on the recommendation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ResourceRecommendationBaseInner>> patchWithResponseAsync(String resourceUri,
+        String recommendationId, TrackedRecommendationPropertiesPayload trackedProperties) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        if (recommendationId == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter recommendationId is required and cannot be null."));
+        }
+        if (trackedProperties == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter trackedProperties is required and cannot be null."));
+        } else {
+            trackedProperties.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.patch(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+                recommendationId, trackedProperties, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Update the tracked properties of a Recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param recommendationId The recommendation ID.
+     * @param trackedProperties The properties to update on the recommendation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ResourceRecommendationBaseInner>> patchWithResponseAsync(String resourceUri,
+        String recommendationId, TrackedRecommendationPropertiesPayload trackedProperties, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        if (recommendationId == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter recommendationId is required and cannot be null."));
+        }
+        if (trackedProperties == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter trackedProperties is required and cannot be null."));
+        } else {
+            trackedProperties.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.patch(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, recommendationId,
+            trackedProperties, accept, context);
+    }
+
+    /**
+     * Update the tracked properties of a Recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param recommendationId The recommendation ID.
+     * @param trackedProperties The properties to update on the recommendation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ResourceRecommendationBaseInner> patchAsync(String resourceUri, String recommendationId,
+        TrackedRecommendationPropertiesPayload trackedProperties) {
+        return patchWithResponseAsync(resourceUri, recommendationId, trackedProperties)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Update the tracked properties of a Recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param recommendationId The recommendation ID.
+     * @param trackedProperties The properties to update on the recommendation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ResourceRecommendationBaseInner> patchWithResponse(String resourceUri, String recommendationId,
+        TrackedRecommendationPropertiesPayload trackedProperties, Context context) {
+        return patchWithResponseAsync(resourceUri, recommendationId, trackedProperties, context).block();
+    }
+
+    /**
+     * Update the tracked properties of a Recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param recommendationId The recommendation ID.
+     * @param trackedProperties The properties to update on the recommendation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResourceRecommendationBaseInner patch(String resourceUri, String recommendationId,
+        TrackedRecommendationPropertiesPayload trackedProperties) {
+        return patchWithResponse(resourceUri, recommendationId, trackedProperties, Context.NONE).getValue();
     }
 
     /**
@@ -127,8 +382,8 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.generate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.generate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -154,7 +409,7 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.generate(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(),
+        return service.generate(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
             accept, context);
     }
 
@@ -207,10 +462,10 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> getGenerateStatusWithResponseAsync(UUID operationId) {
+    private Mono<RecommendationsGetGenerateStatusResponse> getGenerateStatusWithResponseAsync(UUID operationId) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -224,8 +479,8 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getGenerateStatus(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), operationId, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.getGenerateStatus(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), operationId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -239,10 +494,11 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> getGenerateStatusWithResponseAsync(UUID operationId, Context context) {
+    private Mono<RecommendationsGetGenerateStatusResponse> getGenerateStatusWithResponseAsync(UUID operationId,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -256,8 +512,8 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getGenerateStatus(this.client.getEndpoint(), this.client.getSubscriptionId(), operationId,
-            this.client.getApiVersion(), accept, context);
+        return service.getGenerateStatus(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), operationId, accept, context);
     }
 
     /**
@@ -286,10 +542,10 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> getGenerateStatusWithResponse(UUID operationId, Context context) {
+    public RecommendationsGetGenerateStatusResponse getGenerateStatusWithResponse(UUID operationId, Context context) {
         return getGenerateStatusWithResponseAsync(operationId, context).block();
     }
 
@@ -320,8 +576,8 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor recommendations along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a ResourceRecommendationBase list operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceRecommendationBaseInner>> listSinglePageAsync(String filter, Integer top,
@@ -336,8 +592,8 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                this.client.getApiVersion(), filter, top, skipToken, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), filter, top, skipToken, accept, context))
             .<PagedResponse<ResourceRecommendationBaseInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -356,8 +612,8 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor recommendations along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a ResourceRecommendationBase list operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceRecommendationBaseInner>> listSinglePageAsync(String filter, Integer top,
@@ -373,7 +629,7 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), filter, top,
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), filter, top,
                 skipToken, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
@@ -391,7 +647,7 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor recommendations as paginated response with {@link PagedFlux}.
+     * @return the response of a ResourceRecommendationBase list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ResourceRecommendationBaseInner> listAsync(String filter, Integer top, String skipToken) {
@@ -405,7 +661,7 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor recommendations as paginated response with {@link PagedFlux}.
+     * @return the response of a ResourceRecommendationBase list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ResourceRecommendationBaseInner> listAsync() {
@@ -429,7 +685,7 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor recommendations as paginated response with {@link PagedFlux}.
+     * @return the response of a ResourceRecommendationBase list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ResourceRecommendationBaseInner> listAsync(String filter, Integer top, String skipToken,
@@ -444,7 +700,8 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor recommendations as paginated response with {@link PagedIterable}.
+     * @return the response of a ResourceRecommendationBase list operation as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ResourceRecommendationBaseInner> list() {
@@ -467,126 +724,13 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor recommendations as paginated response with {@link PagedIterable}.
+     * @return the response of a ResourceRecommendationBase list operation as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ResourceRecommendationBaseInner> list(String filter, Integer top, String skipToken,
         Context context) {
         return new PagedIterable<>(listAsync(filter, top, skipToken, context));
-    }
-
-    /**
-     * Obtains details of a cached recommendation.
-     * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
-     * @param recommendationId The recommendation ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return advisor Recommendation along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ResourceRecommendationBaseInner>> getWithResponseAsync(String resourceUri,
-        String recommendationId) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceUri == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
-        }
-        if (recommendationId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter recommendationId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), resourceUri, recommendationId,
-                this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Obtains details of a cached recommendation.
-     * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
-     * @param recommendationId The recommendation ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return advisor Recommendation along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ResourceRecommendationBaseInner>> getWithResponseAsync(String resourceUri,
-        String recommendationId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceUri == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
-        }
-        if (recommendationId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter recommendationId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), resourceUri, recommendationId, this.client.getApiVersion(),
-            accept, context);
-    }
-
-    /**
-     * Obtains details of a cached recommendation.
-     * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
-     * @param recommendationId The recommendation ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return advisor Recommendation on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ResourceRecommendationBaseInner> getAsync(String resourceUri, String recommendationId) {
-        return getWithResponseAsync(resourceUri, recommendationId).flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Obtains details of a cached recommendation.
-     * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
-     * @param recommendationId The recommendation ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return advisor Recommendation along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ResourceRecommendationBaseInner> getWithResponse(String resourceUri, String recommendationId,
-        Context context) {
-        return getWithResponseAsync(resourceUri, recommendationId, context).block();
-    }
-
-    /**
-     * Obtains details of a cached recommendation.
-     * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
-     * @param recommendationId The recommendation ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return advisor Recommendation.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ResourceRecommendationBaseInner get(String resourceUri, String recommendationId) {
-        return getWithResponse(resourceUri, recommendationId, Context.NONE).getValue();
     }
 
     /**
@@ -596,8 +740,8 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor recommendations along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a ResourceRecommendationBase list operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceRecommendationBaseInner>> listNextSinglePageAsync(String nextLink) {
@@ -623,8 +767,8 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor recommendations along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a ResourceRecommendationBase list operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceRecommendationBaseInner>> listNextSinglePageAsync(String nextLink,

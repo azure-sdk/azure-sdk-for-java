@@ -30,7 +30,7 @@ public final class ResourceMetadata implements JsonSerializable<ResourceMetadata
     /*
      * The action to view resource.
      */
-    private Map<String, Object> action;
+    private Map<String, Map<String, Object>> action;
 
     /*
      * The singular user friendly name of resource type. eg: virtual machine
@@ -93,7 +93,7 @@ public final class ResourceMetadata implements JsonSerializable<ResourceMetadata
      * 
      * @return the action value.
      */
-    public Map<String, Object> action() {
+    public Map<String, Map<String, Object>> action() {
         return this.action;
     }
 
@@ -103,7 +103,7 @@ public final class ResourceMetadata implements JsonSerializable<ResourceMetadata
      * @param action the action value to set.
      * @return the ResourceMetadata object itself.
      */
-    public ResourceMetadata withAction(Map<String, Object> action) {
+    public ResourceMetadata withAction(Map<String, Map<String, Object>> action) {
         this.action = action;
         return this;
     }
@@ -164,7 +164,8 @@ public final class ResourceMetadata implements JsonSerializable<ResourceMetadata
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("resourceId", this.resourceId);
         jsonWriter.writeStringField("source", this.source);
-        jsonWriter.writeMapField("action", this.action, (writer, element) -> writer.writeUntyped(element));
+        jsonWriter.writeMapField("action", this.action,
+            (writer, element) -> writer.writeMap(element, (writer1, element1) -> writer1.writeUntyped(element1)));
         jsonWriter.writeStringField("singular", this.singular);
         jsonWriter.writeStringField("plural", this.plural);
         return jsonWriter.writeEndObject();
@@ -190,7 +191,8 @@ public final class ResourceMetadata implements JsonSerializable<ResourceMetadata
                 } else if ("source".equals(fieldName)) {
                     deserializedResourceMetadata.source = reader.getString();
                 } else if ("action".equals(fieldName)) {
-                    Map<String, Object> action = reader.readMap(reader1 -> reader1.readUntyped());
+                    Map<String, Map<String, Object>> action
+                        = reader.readMap(reader1 -> reader1.readMap(reader2 -> reader2.readUntyped()));
                     deserializedResourceMetadata.action = action;
                 } else if ("singular".equals(fieldName)) {
                     deserializedResourceMetadata.singular = reader.getString();

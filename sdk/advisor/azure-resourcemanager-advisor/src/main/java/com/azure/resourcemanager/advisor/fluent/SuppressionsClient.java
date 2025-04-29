@@ -18,15 +18,12 @@ public interface SuppressionsClient {
     /**
      * Obtains the details of a suppression.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
-     * status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      * the rule along with {@link Response}.
@@ -38,14 +35,11 @@ public interface SuppressionsClient {
     /**
      * Obtains the details of a suppression.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
-     * status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      * the rule.
@@ -57,16 +51,13 @@ public interface SuppressionsClient {
      * Enables the snoozed or dismissed attribute of a recommendation. The snoozed or dismissed attribute is referred to
      * as a suppression. Use this API to create or update the snoozed or dismissed status of a recommendation.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @param suppressionContract The snoozed or dismissed attribute; for example, the snooze duration.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
-     * status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      * the rule along with {@link Response}.
@@ -79,15 +70,12 @@ public interface SuppressionsClient {
      * Enables the snoozed or dismissed attribute of a recommendation. The snoozed or dismissed attribute is referred to
      * as a suppression. Use this API to create or update the snoozed or dismissed status of a recommendation.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @param suppressionContract The snoozed or dismissed attribute; for example, the snooze duration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server on
-     * status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      * the rule.
@@ -100,8 +88,7 @@ public interface SuppressionsClient {
      * Enables the activation of a snoozed or dismissed recommendation. The snoozed or dismissed attribute of a
      * recommendation is referred to as a suppression.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @param context The context to associate with this operation.
@@ -117,8 +104,7 @@ public interface SuppressionsClient {
      * Enables the activation of a snoozed or dismissed recommendation. The snoozed or dismissed attribute of a
      * recommendation is referred to as a suppression.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -134,7 +120,7 @@ public interface SuppressionsClient {
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions as paginated response with {@link PagedIterable}.
+     * @return the response of a SuppressionContract list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SuppressionContractInner> list();
@@ -149,7 +135,7 @@ public interface SuppressionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions as paginated response with {@link PagedIterable}.
+     * @return the response of a SuppressionContract list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SuppressionContractInner> list(Integer top, String skipToken, Context context);

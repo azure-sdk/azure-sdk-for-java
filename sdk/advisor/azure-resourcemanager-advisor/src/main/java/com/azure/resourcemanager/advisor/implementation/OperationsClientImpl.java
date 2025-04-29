@@ -26,8 +26,8 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.advisor.fluent.OperationsClient;
-import com.azure.resourcemanager.advisor.fluent.models.OperationEntityInner;
-import com.azure.resourcemanager.advisor.models.OperationEntityListResult;
+import com.azure.resourcemanager.advisor.fluent.models.OperationInner;
+import com.azure.resourcemanager.advisor.models.OperationListResult;
 import reactor.core.publisher.Mono;
 
 /**
@@ -66,27 +66,27 @@ public final class OperationsClientImpl implements OperationsClient {
         @Get("/providers/Microsoft.Advisor/operations")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<OperationEntityListResult>> list(@HostParam("$host") String endpoint,
+        Mono<Response<OperationListResult>> list(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<OperationEntityListResult>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept, Context context);
+        Mono<Response<OperationListResult>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Lists all the available Advisor REST API operations.
+     * List the operations for the provider.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor operations along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of REST API operations supported by an Azure Resource Provider along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<OperationEntityInner>> listSinglePageAsync() {
+    private Mono<PagedResponse<OperationInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -95,22 +95,23 @@ public final class OperationsClientImpl implements OperationsClient {
         return FluxUtil
             .withContext(
                 context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context))
-            .<PagedResponse<OperationEntityInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .<PagedResponse<OperationInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Lists all the available Advisor REST API operations.
+     * List the operations for the provider.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor operations along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of REST API operations supported by an Azure Resource Provider along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<OperationEntityInner>> listSinglePageAsync(Context context) {
+    private Mono<PagedResponse<OperationInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -123,55 +124,59 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists all the available Advisor REST API operations.
+     * List the operations for the provider.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor operations as paginated response with {@link PagedFlux}.
+     * @return a list of REST API operations supported by an Azure Resource Provider as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<OperationEntityInner> listAsync() {
+    private PagedFlux<OperationInner> listAsync() {
         return new PagedFlux<>(() -> listSinglePageAsync(), nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Lists all the available Advisor REST API operations.
+     * List the operations for the provider.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor operations as paginated response with {@link PagedFlux}.
+     * @return a list of REST API operations supported by an Azure Resource Provider as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<OperationEntityInner> listAsync(Context context) {
+    private PagedFlux<OperationInner> listAsync(Context context) {
         return new PagedFlux<>(() -> listSinglePageAsync(context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * Lists all the available Advisor REST API operations.
+     * List the operations for the provider.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor operations as paginated response with {@link PagedIterable}.
+     * @return a list of REST API operations supported by an Azure Resource Provider as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<OperationEntityInner> list() {
+    public PagedIterable<OperationInner> list() {
         return new PagedIterable<>(listAsync());
     }
 
     /**
-     * Lists all the available Advisor REST API operations.
+     * List the operations for the provider.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor operations as paginated response with {@link PagedIterable}.
+     * @return a list of REST API operations supported by an Azure Resource Provider as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<OperationEntityInner> list(Context context) {
+    public PagedIterable<OperationInner> list(Context context) {
         return new PagedIterable<>(listAsync(context));
     }
 
@@ -182,10 +187,11 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor operations along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of REST API operations supported by an Azure Resource Provider along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<OperationEntityInner>> listNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<OperationInner>> listNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -195,8 +201,8 @@ public final class OperationsClientImpl implements OperationsClient {
         }
         final String accept = "application/json";
         return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<OperationEntityInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .<PagedResponse<OperationInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -208,10 +214,11 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor operations along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of REST API operations supported by an Azure Resource Provider along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<OperationEntityInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<OperationInner>> listNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
