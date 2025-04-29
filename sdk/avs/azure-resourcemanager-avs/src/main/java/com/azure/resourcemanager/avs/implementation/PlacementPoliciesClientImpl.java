@@ -737,7 +737,7 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster.
      * @param placementPolicyName Name of the placement policy.
-     * @param placementPolicyUpdate The placement policy properties to be updated.
+     * @param placementPolicyUpdate The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -791,7 +791,7 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster.
      * @param placementPolicyName Name of the placement policy.
-     * @param placementPolicyUpdate The placement policy properties to be updated.
+     * @param placementPolicyUpdate The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -845,7 +845,7 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster.
      * @param placementPolicyName Name of the placement policy.
-     * @param placementPolicyUpdate The placement policy properties to be updated.
+     * @param placementPolicyUpdate The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -868,7 +868,7 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster.
      * @param placementPolicyName Name of the placement policy.
-     * @param placementPolicyUpdate The placement policy properties to be updated.
+     * @param placementPolicyUpdate The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -893,7 +893,7 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster.
      * @param placementPolicyName Name of the placement policy.
-     * @param placementPolicyUpdate The placement policy properties to be updated.
+     * @param placementPolicyUpdate The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -916,7 +916,7 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster.
      * @param placementPolicyName Name of the placement policy.
-     * @param placementPolicyUpdate The placement policy properties to be updated.
+     * @param placementPolicyUpdate The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -940,7 +940,7 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster.
      * @param placementPolicyName Name of the placement policy.
-     * @param placementPolicyUpdate The placement policy properties to be updated.
+     * @param placementPolicyUpdate The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -960,7 +960,7 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster.
      * @param placementPolicyName Name of the placement policy.
-     * @param placementPolicyUpdate The placement policy properties to be updated.
+     * @param placementPolicyUpdate The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -981,7 +981,7 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster.
      * @param placementPolicyName Name of the placement policy.
-     * @param placementPolicyUpdate The placement policy properties to be updated.
+     * @param placementPolicyUpdate The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1001,7 +1001,7 @@ public final class PlacementPoliciesClientImpl implements PlacementPoliciesClien
      * @param privateCloudName Name of the private cloud.
      * @param clusterName Name of the cluster.
      * @param placementPolicyName Name of the placement policy.
-     * @param placementPolicyUpdate The placement policy properties to be updated.
+     * @param placementPolicyUpdate The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
