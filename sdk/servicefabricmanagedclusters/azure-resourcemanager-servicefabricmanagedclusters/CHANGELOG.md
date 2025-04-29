@@ -1,14 +1,305 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.1.0-beta.1 (2025-04-29)
 
-### Features Added
+- Azure Resource Manager servicefabricmanagedclusters client library for Java. This package contains Microsoft Azure SDK for servicefabricmanagedclusters Management SDK. Service Fabric Managed Clusters Management Client. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ManagedProxyResource` was removed
 
-### Other Changes
+#### `models.NodeTypeListSkuResult` was removed
+
+#### `ServiceFabricManagedClustersManager$Configurable` was removed
+
+#### `models.PublicIpAddressVersion` was removed
+
+#### `ServiceFabricManagedClustersManager` was removed
+
+#### `models.NodeTypeListResult` was removed
+
+#### `models.PrivateIpAddressVersion` was removed
+
+#### `models.ApplicationTypeResourceList` was removed
+
+#### `models.ServiceResourceList` was removed
+
+#### `models.ApplicationResourceList` was removed
+
+#### `models.OperationResultsGetResponse` was removed
+
+#### `models.ManagedVMSizesResult` was removed
+
+#### `models.ApplicationTypeVersionResourceList` was removed
+
+#### `models.OperationResultsGetHeaders` was removed
+
+#### `models.ManagedClusterListResult` was removed
+
+#### `models.OperationListResult` was removed
+
+#### `models.VmssExtension` was removed
+
+#### `models.IpConfigurationPublicIpAddressConfiguration` was removed
+
+#### `models.IpAddressType` was removed
+
+#### `models.ApplicationTypeResource$DefinitionStages` was modified
+
+* `withExistingManagedcluster(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.ApplicationResource$DefinitionStages` was modified
+
+* `withExistingManagedcluster(java.lang.String,java.lang.String)` was removed in stage 1
+
+#### `models.ManagedCluster$Definition` was modified
+
+* `withAdminUsername(java.lang.String)` was removed
+* `withEnableServicePublicIp(java.lang.Boolean)` was removed
+* `withPublicIpPrefixId(java.lang.String)` was removed
+
+#### `models.IpConfiguration` was modified
+
+* `withPublicIpAddressConfiguration(models.IpConfigurationPublicIpAddressConfiguration)` was removed
+* `privateIpAddressVersion()` was removed
+* `withPrivateIpAddressVersion(models.PrivateIpAddressVersion)` was removed
+* `publicIpAddressConfiguration()` was removed
+
+#### `models.NodeType$Definition` was modified
+
+* `withEnableNodePublicIp(java.lang.Boolean)` was removed
+
+#### `models.AvailableOperationDisplay` was modified
+
+* `withDescription(java.lang.String)` was removed
+* `withResource(java.lang.String)` was removed
+* `withOperation(java.lang.String)` was removed
+* `withProvider(java.lang.String)` was removed
+
+#### `models.OperationResults` was modified
+
+* `getWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.ManagedClusterCodeVersionResult` was modified
+
+* `java.lang.String supportExpiryUtc()` -> `java.time.OffsetDateTime supportExpiryUtc()`
+
+#### `models.NodeType` was modified
+
+* `enableNodePublicIp()` was removed
+
+#### `models.ManagedMaintenanceWindowStatus` was modified
+
+* `lastWindowEndTimeUtc()` was removed
+* `lastWindowStatusUpdateAtUtc()` was removed
+* `lastWindowStartTimeUtc()` was removed
+
+#### `models.ApplicationTypeResource$Definition` was modified
+
+* `withExistingManagedcluster(java.lang.String,java.lang.String)` was removed
+
+#### `models.FrontendConfiguration` was modified
+
+* `models.IpAddressType ipAddressType()` -> `models.IPAddressType ipAddressType()`
+* `withIpAddressType(models.IpAddressType)` was removed
+
+#### `models.ManagedCluster` was modified
+
+* `publicIpPrefixId()` was removed
+* `adminUsername()` was removed
+* `enableServicePublicIp()` was removed
+
+#### `models.LongRunningOperationResult` was modified
+
+* `com.azure.core.management.exception.ManagementError error()` -> `models.ErrorModelError error()`
+
+#### `models.ApplicationResource$Definition` was modified
+
+* `withExistingManagedcluster(java.lang.String,java.lang.String)` was removed
+
+### Features Added
+
+* `implementation.models.NodeTypeListSkuResult` was added
+
+* `implementation.models.ApplicationTypeVersionResourceList` was added
+
+* `models.SfmcOperationStatus` was added
+
+* `implementation.models.NodeTypeListResult` was added
+
+* `implementation.models.ApplicationResourceList` was added
+
+* `ServicefabricmanagedclustersManager` was added
+
+* `models.FaultSimulationStatus` was added
+
+* `models.ZoneFaultSimulationContent` was added
+
+* `implementation.models.FaultSimulationListResult` was added
+
+* `implementation.models.OperationListResult` was added
+
+* `models.FaultSimulationDetails` was added
+
+* `models.VmApplication` was added
+
+* `models.FaultSimulation` was added
+
+* `models.VMSSExtensionPropertiesSettings` was added
+
+* `models.PrivateIPAddressVersion` was added
+
+* `models.VMSSExtensionPropertiesProtectedSettings` was added
+
+* `implementation.models.ManagedVMSizesResult` was added
+
+* `models.PublicIPAddressVersion` was added
+
+* `models.NodeTypeFaultSimulation` was added
+
+* `models.AutoGeneratedDomainNameLabelScope` was added
+
+* `implementation.models.ApplicationTypeResourceList` was added
+
+* `ServicefabricmanagedclustersManager$Configurable` was added
+
+* `implementation.models.ServiceResourceList` was added
+
+* `models.ErrorModelError` was added
+
+* `models.FaultKind` was added
+
+* `models.FaultSimulationContent` was added
+
+* `models.FaultSimulationIdContent` was added
+
+* `implementation.models.ManagedClusterListResult` was added
+
+* `models.IPAddressType` was added
+
+* `models.FaultSimulationConstraints` was added
+
+* `models.VMSSExtension` was added
+
+* `models.IPConfigurationPublicIPAddressConfiguration` was added
+
+#### `models.ManagedCluster$Definition` was modified
+
+* `withVMImage(java.lang.String)` was added
+* `withAutoGeneratedDomainNameLabelScope(models.AutoGeneratedDomainNameLabelScope)` was added
+* `withAdminUserName(java.lang.String)` was added
+* `withEnableServicePublicIP(java.lang.Boolean)` was added
+* `withAllocatedOutboundPorts(java.lang.Integer)` was added
+* `withPublicIPPrefixId(java.lang.String)` was added
+
+#### `models.IpConfiguration` was modified
+
+* `publicIPAddressConfiguration()` was added
+* `privateIPAddressVersion()` was added
+* `withPrivateIPAddressVersion(models.PrivateIPAddressVersion)` was added
+* `withPublicIPAddressConfiguration(models.IPConfigurationPublicIPAddressConfiguration)` was added
+
+#### `models.NodeType$Definition` was modified
+
+* `withVmApplications(java.util.List)` was added
+* `withZoneBalance(java.lang.Boolean)` was added
+* `withEnableNodePublicIP(java.lang.Boolean)` was added
+
+#### `models.ApplicationResource` was modified
+
+* `startRollback(com.azure.core.util.Context)` was added
+* `resumeUpgrade(models.RuntimeResumeApplicationUpgradeParameters,com.azure.core.util.Context)` was added
+* `startRollback()` was added
+* `readUpgrade(com.azure.core.util.Context)` was added
+* `readUpgrade()` was added
+* `resumeUpgrade(models.RuntimeResumeApplicationUpgradeParameters)` was added
+
+#### `models.NodeTypes` was modified
+
+* `deallocate(java.lang.String,java.lang.String,java.lang.String,models.NodeTypeActionParameters,com.azure.core.util.Context)` was added
+* `getFaultSimulationWithResponse(java.lang.String,java.lang.String,java.lang.String,models.FaultSimulationIdContent,com.azure.core.util.Context)` was added
+* `deallocate(java.lang.String,java.lang.String,java.lang.String,models.NodeTypeActionParameters)` was added
+* `redeploy(java.lang.String,java.lang.String,java.lang.String,models.NodeTypeActionParameters,com.azure.core.util.Context)` was added
+* `getFaultSimulation(java.lang.String,java.lang.String,java.lang.String,models.FaultSimulationIdContent)` was added
+* `start(java.lang.String,java.lang.String,java.lang.String,models.NodeTypeActionParameters)` was added
+* `stopFaultSimulation(java.lang.String,java.lang.String,java.lang.String,models.FaultSimulationIdContent)` was added
+* `start(java.lang.String,java.lang.String,java.lang.String,models.NodeTypeActionParameters,com.azure.core.util.Context)` was added
+* `listFaultSimulation(java.lang.String,java.lang.String,java.lang.String)` was added
+* `stopFaultSimulation(java.lang.String,java.lang.String,java.lang.String,models.FaultSimulationIdContent,com.azure.core.util.Context)` was added
+* `startFaultSimulation(java.lang.String,java.lang.String,java.lang.String,models.FaultSimulationContent)` was added
+* `redeploy(java.lang.String,java.lang.String,java.lang.String,models.NodeTypeActionParameters)` was added
+* `listFaultSimulation(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `startFaultSimulation(java.lang.String,java.lang.String,java.lang.String,models.FaultSimulationContent,com.azure.core.util.Context)` was added
+
+#### `models.OperationResults` was modified
+
+* `get(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.ManagedClusters` was modified
+
+* `listFaultSimulation(java.lang.String,java.lang.String)` was added
+* `listFaultSimulation(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getFaultSimulation(java.lang.String,java.lang.String,models.FaultSimulationIdContent)` was added
+* `stopFaultSimulation(java.lang.String,java.lang.String,models.FaultSimulationIdContent)` was added
+* `startFaultSimulation(java.lang.String,java.lang.String,models.FaultSimulationContent,com.azure.core.util.Context)` was added
+* `getFaultSimulationWithResponse(java.lang.String,java.lang.String,models.FaultSimulationIdContent,com.azure.core.util.Context)` was added
+* `stopFaultSimulation(java.lang.String,java.lang.String,models.FaultSimulationIdContent,com.azure.core.util.Context)` was added
+* `startFaultSimulation(java.lang.String,java.lang.String,models.FaultSimulationContent)` was added
+
+#### `models.NodeType` was modified
+
+* `redeploy(models.NodeTypeActionParameters)` was added
+* `redeploy(models.NodeTypeActionParameters,com.azure.core.util.Context)` was added
+* `vmApplications()` was added
+* `startFaultSimulation(models.FaultSimulationContent,com.azure.core.util.Context)` was added
+* `getFaultSimulationWithResponse(models.FaultSimulationIdContent,com.azure.core.util.Context)` was added
+* `start(models.NodeTypeActionParameters)` was added
+* `listFaultSimulation()` was added
+* `deallocate(models.NodeTypeActionParameters,com.azure.core.util.Context)` was added
+* `listFaultSimulation(com.azure.core.util.Context)` was added
+* `enableNodePublicIP()` was added
+* `start(models.NodeTypeActionParameters,com.azure.core.util.Context)` was added
+* `deallocate(models.NodeTypeActionParameters)` was added
+* `stopFaultSimulation(models.FaultSimulationIdContent)` was added
+* `zoneBalance()` was added
+* `startFaultSimulation(models.FaultSimulationContent)` was added
+* `stopFaultSimulation(models.FaultSimulationIdContent,com.azure.core.util.Context)` was added
+* `getFaultSimulation(models.FaultSimulationIdContent)` was added
+
+#### `models.ManagedMaintenanceWindowStatus` was modified
+
+* `lastWindowStartTimeUTC()` was added
+* `lastWindowStatusUpdateAtUTC()` was added
+* `lastWindowEndTimeUTC()` was added
+
+#### `models.ApplicationTypeResource$Definition` was modified
+
+* `withExistingManagedCluster(java.lang.String,java.lang.String)` was added
+
+#### `models.FrontendConfiguration` was modified
+
+* `withIpAddressType(models.IPAddressType)` was added
+
+#### `models.ManagedCluster` was modified
+
+* `listFaultSimulation(com.azure.core.util.Context)` was added
+* `startFaultSimulation(models.FaultSimulationContent)` was added
+* `startFaultSimulation(models.FaultSimulationContent,com.azure.core.util.Context)` was added
+* `enableServicePublicIP()` was added
+* `autoGeneratedDomainNameLabelScope()` was added
+* `getFaultSimulationWithResponse(models.FaultSimulationIdContent,com.azure.core.util.Context)` was added
+* `listFaultSimulation()` was added
+* `stopFaultSimulation(models.FaultSimulationIdContent)` was added
+* `getFaultSimulation(models.FaultSimulationIdContent)` was added
+* `stopFaultSimulation(models.FaultSimulationIdContent,com.azure.core.util.Context)` was added
+* `allocatedOutboundPorts()` was added
+* `publicIPPrefixId()` was added
+* `adminUserName()` was added
+* `vMImage()` was added
+
+#### `models.ApplicationResource$Definition` was modified
+
+* `withExistingManagedCluster(java.lang.String,java.lang.String)` was added
 
 ## 1.0.0 (2024-12-25)
 
