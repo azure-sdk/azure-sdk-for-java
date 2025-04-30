@@ -11,7 +11,6 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 
 /**
  * Properties related to EventGrid.
@@ -37,16 +36,6 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
      * EventGrid secondary accesskey. Will be obfuscated during read.
      */
     private String accessKey2;
-
-    /*
-     * Time when the Endpoint was added to DigitalTwinsInstance.
-     */
-    private OffsetDateTime createdTime;
-
-    /*
-     * The provisioning state.
-     */
-    private EndpointProvisioningState provisioningState;
 
     /**
      * Creates an instance of EventGrid class.
@@ -122,26 +111,6 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
     public EventGrid withAccessKey2(String accessKey2) {
         this.accessKey2 = accessKey2;
         return this;
-    }
-
-    /**
-     * Get the createdTime property: Time when the Endpoint was added to DigitalTwinsInstance.
-     * 
-     * @return the createdTime value.
-     */
-    @Override
-    public OffsetDateTime createdTime() {
-        return this.createdTime;
-    }
-
-    /**
-     * Get the provisioningState property: The provisioning state.
-     * 
-     * @return the provisioningState value.
-     */
-    @Override
-    public EndpointProvisioningState provisioningState() {
-        return this.provisioningState;
     }
 
     /**
@@ -237,10 +206,11 @@ public final class EventGrid extends DigitalTwinsEndpointResourceProperties {
                 reader.nextToken();
 
                 if ("provisioningState".equals(fieldName)) {
-                    deserializedEventGrid.provisioningState = EndpointProvisioningState.fromString(reader.getString());
+                    deserializedEventGrid
+                        .withProvisioningState(EndpointProvisioningState.fromString(reader.getString()));
                 } else if ("createdTime".equals(fieldName)) {
-                    deserializedEventGrid.createdTime = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                    deserializedEventGrid.withCreatedTime(reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("authenticationType".equals(fieldName)) {
                     deserializedEventGrid.withAuthenticationType(AuthenticationType.fromString(reader.getString()));
                 } else if ("deadLetterSecret".equals(fieldName)) {
