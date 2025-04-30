@@ -4,12 +4,14 @@
 
 package com.azure.resourcemanager.advisor.implementation;
 
+import com.azure.core.annotation.BodyParam;
 import com.azure.core.annotation.ExpectedResponses;
 import com.azure.core.annotation.Get;
 import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
+import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Post;
 import com.azure.core.annotation.QueryParam;
@@ -30,6 +32,7 @@ import com.azure.resourcemanager.advisor.fluent.RecommendationsClient;
 import com.azure.resourcemanager.advisor.fluent.models.ResourceRecommendationBaseInner;
 import com.azure.resourcemanager.advisor.models.RecommendationsGenerateResponse;
 import com.azure.resourcemanager.advisor.models.ResourceRecommendationBaseListResult;
+import com.azure.resourcemanager.advisor.models.TrackedRecommendationPropertiesPayload;
 import java.util.UUID;
 import reactor.core.publisher.Mono;
 
@@ -97,6 +100,16 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
         Mono<Response<ResourceRecommendationBaseInner>> get(@HostParam("$host") String endpoint,
             @PathParam("resourceUri") String resourceUri, @PathParam("recommendationId") String recommendationId,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ResourceRecommendationBaseInner>> patch(@HostParam("$host") String endpoint,
+            @PathParam("resourceUri") String resourceUri, @PathParam("recommendationId") String recommendationId,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") TrackedRecommendationPropertiesPayload trackedProperties,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -587,6 +600,140 @@ public final class RecommendationsClientImpl implements RecommendationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ResourceRecommendationBaseInner get(String resourceUri, String recommendationId) {
         return getWithResponse(resourceUri, recommendationId, Context.NONE).getValue();
+    }
+
+    /**
+     * Update the tracked properties of a Recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the tracked
+     * recommendation applies.
+     * @param recommendationId The RecommendationId ID.
+     * @param trackedProperties The properties to update on the recommendation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ResourceRecommendationBaseInner>> patchWithResponseAsync(String resourceUri,
+        String recommendationId, TrackedRecommendationPropertiesPayload trackedProperties) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        if (recommendationId == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter recommendationId is required and cannot be null."));
+        }
+        if (trackedProperties == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter trackedProperties is required and cannot be null."));
+        } else {
+            trackedProperties.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.patch(this.client.getEndpoint(), resourceUri, recommendationId,
+                this.client.getApiVersion(), trackedProperties, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Update the tracked properties of a Recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the tracked
+     * recommendation applies.
+     * @param recommendationId The RecommendationId ID.
+     * @param trackedProperties The properties to update on the recommendation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ResourceRecommendationBaseInner>> patchWithResponseAsync(String resourceUri,
+        String recommendationId, TrackedRecommendationPropertiesPayload trackedProperties, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        if (recommendationId == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter recommendationId is required and cannot be null."));
+        }
+        if (trackedProperties == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter trackedProperties is required and cannot be null."));
+        } else {
+            trackedProperties.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.patch(this.client.getEndpoint(), resourceUri, recommendationId, this.client.getApiVersion(),
+            trackedProperties, accept, context);
+    }
+
+    /**
+     * Update the tracked properties of a Recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the tracked
+     * recommendation applies.
+     * @param recommendationId The RecommendationId ID.
+     * @param trackedProperties The properties to update on the recommendation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ResourceRecommendationBaseInner> patchAsync(String resourceUri, String recommendationId,
+        TrackedRecommendationPropertiesPayload trackedProperties) {
+        return patchWithResponseAsync(resourceUri, recommendationId, trackedProperties)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Update the tracked properties of a Recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the tracked
+     * recommendation applies.
+     * @param recommendationId The RecommendationId ID.
+     * @param trackedProperties The properties to update on the recommendation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ResourceRecommendationBaseInner> patchWithResponse(String resourceUri, String recommendationId,
+        TrackedRecommendationPropertiesPayload trackedProperties, Context context) {
+        return patchWithResponseAsync(resourceUri, recommendationId, trackedProperties, context).block();
+    }
+
+    /**
+     * Update the tracked properties of a Recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the tracked
+     * recommendation applies.
+     * @param recommendationId The RecommendationId ID.
+     * @param trackedProperties The properties to update on the recommendation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ResourceRecommendationBaseInner patch(String resourceUri, String recommendationId,
+        TrackedRecommendationPropertiesPayload trackedProperties) {
+        return patchWithResponse(resourceUri, recommendationId, trackedProperties, Context.NONE).getValue();
     }
 
     /**
