@@ -16,7 +16,7 @@ import java.util.Arrays;
 public final class ContentKeyPoliciesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/content-key-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/content-key-
      * policies-update.json
      */
     /**

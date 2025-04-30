@@ -10,7 +10,7 @@ package com.azure.resourcemanager.mediaservices.generated;
 public final class AssetsListSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assets-list-by-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-list-by-
      * date.json
      */
     /**
@@ -25,7 +25,7 @@ public final class AssetsListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assets-list-in-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-list-in-
      * date-range.json
      */
     /**
@@ -42,7 +42,7 @@ public final class AssetsListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assets-list-all.
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-list-all.
      * json
      */
     /**

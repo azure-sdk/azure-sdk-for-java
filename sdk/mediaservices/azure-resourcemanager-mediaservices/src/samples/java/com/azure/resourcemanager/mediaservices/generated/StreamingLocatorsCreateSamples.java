@@ -15,7 +15,7 @@ import java.util.UUID;
 public final class StreamingLocatorsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * locators-create-clear.json
      */
     /**
@@ -35,7 +35,7 @@ public final class StreamingLocatorsCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * locators-create-secure.json
      */
     /**
@@ -57,7 +57,7 @@ public final class StreamingLocatorsCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * locators-create-secure-userDefinedContentKeys.json
      */
     /**

@@ -14,7 +14,7 @@ import com.azure.resourcemanager.mediaservices.models.PresentationTimeRange;
 public final class AssetFiltersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assetFilters-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assetFilters-
      * update.json
      */
     /**

@@ -13,7 +13,7 @@ import com.azure.resourcemanager.mediaservices.models.Visibility;
 public final class TracksCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/asset-tracks-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/asset-tracks-
      * create.json
      */
     /**

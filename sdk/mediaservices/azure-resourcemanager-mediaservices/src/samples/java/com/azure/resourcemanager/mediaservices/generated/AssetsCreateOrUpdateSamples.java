@@ -10,7 +10,28 @@ package com.azure.resourcemanager.mediaservices.generated;
 public final class AssetsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assets-create.
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-create-
+     * with-encryption-scope.json
+     */
+    /**
+     * Sample code: Create an Asset with encryption scope.
+     * 
+     * @param manager Entry point to MediaServicesManager.
+     */
+    public static void
+        createAnAssetWithEncryptionScope(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
+        manager.assets()
+            .define("ClimbingMountLogan")
+            .withExistingMediaService("contosorg", "contosomedia")
+            .withDescription("A documentary showing the ascent of Mount Logan")
+            .withStorageAccountName("storage0")
+            .withEncryptionScope("encryptionScope1")
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-create.
      * json
      */
     /**

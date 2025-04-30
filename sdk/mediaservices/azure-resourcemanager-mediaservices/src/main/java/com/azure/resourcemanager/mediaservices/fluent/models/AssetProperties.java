@@ -60,6 +60,11 @@ public final class AssetProperties implements JsonSerializable<AssetProperties> 
      */
     private AssetStorageEncryptionFormat storageEncryptionFormat;
 
+    /*
+     * The Asset container encryption scope in the storage account.
+     */
+    private String encryptionScope;
+
     /**
      * Creates an instance of AssetProperties class.
      */
@@ -183,6 +188,26 @@ public final class AssetProperties implements JsonSerializable<AssetProperties> 
     }
 
     /**
+     * Get the encryptionScope property: The Asset container encryption scope in the storage account.
+     * 
+     * @return the encryptionScope value.
+     */
+    public String encryptionScope() {
+        return this.encryptionScope;
+    }
+
+    /**
+     * Set the encryptionScope property: The Asset container encryption scope in the storage account.
+     * 
+     * @param encryptionScope the encryptionScope value to set.
+     * @return the AssetProperties object itself.
+     */
+    public AssetProperties withEncryptionScope(String encryptionScope) {
+        this.encryptionScope = encryptionScope;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -200,6 +225,7 @@ public final class AssetProperties implements JsonSerializable<AssetProperties> 
         jsonWriter.writeStringField("description", this.description);
         jsonWriter.writeStringField("container", this.container);
         jsonWriter.writeStringField("storageAccountName", this.storageAccountName);
+        jsonWriter.writeStringField("encryptionScope", this.encryptionScope);
         return jsonWriter.writeEndObject();
     }
 
@@ -238,6 +264,8 @@ public final class AssetProperties implements JsonSerializable<AssetProperties> 
                 } else if ("storageEncryptionFormat".equals(fieldName)) {
                     deserializedAssetProperties.storageEncryptionFormat
                         = AssetStorageEncryptionFormat.fromString(reader.getString());
+                } else if ("encryptionScope".equals(fieldName)) {
+                    deserializedAssetProperties.encryptionScope = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
