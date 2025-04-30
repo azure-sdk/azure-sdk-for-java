@@ -43,31 +43,187 @@
 ### DigitalTwins_CheckNameAvailability
 
 ```java
-import com.azure.resourcemanager.digitaltwins.models.CheckNameRequest;
+import com.azure.resourcemanager.digitaltwins.models.AuthenticationType;
+import com.azure.resourcemanager.digitaltwins.models.IdentityType;
+import com.azure.resourcemanager.digitaltwins.models.ManagedIdentityReference;
+import com.azure.resourcemanager.digitaltwins.models.ServiceBus;
 
 /**
- * Samples for DigitalTwins CheckNameAvailability.
+ * Samples for DigitalTwinsEndpoint CreateOrUpdate.
  */
-public final class DigitalTwinsCheckNameAvailabilitySamples {
+public final class DigitalTwinsEndpointCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
      * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * DigitalTwinsCheckNameAvailability_example.json
+     * DigitalTwinsEndpointPut_example.json
      */
     /**
-     * Sample code: Check name Availability.
+     * Sample code: Put a DigitalTwinsEndpoint resource.
      * 
      * @param manager Entry point to AzureDigitalTwinsManager.
      */
-    public static void checkNameAvailability(com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwins()
-            .checkNameAvailabilityWithResponse("WestUS2", new CheckNameRequest().withName("myadtinstance"),
-                com.azure.core.util.Context.NONE);
+    public static void
+        putADigitalTwinsEndpointResource(com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.digitalTwinsEndpoints()
+            .define("myServiceBus")
+            .withExistingDigitalTwinsInstance("resRg", "myDigitalTwinsService")
+            .withProperties(new ServiceBus().withAuthenticationType(AuthenticationType.KEY_BASED)
+                .withPrimaryConnectionString(
+                    "Endpoint=sb://mysb.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=xyzxyzoX4=;EntityPath=abcabc")
+                .withSecondaryConnectionString(
+                    "Endpoint=sb://mysb.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=xyzxyzoX4=;EntityPath=abcabc"))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * DigitalTwinsEndpointPut_WithIdentity_example.json
+     */
+    /**
+     * Sample code: Put a DigitalTwinsEndpoint resource with identity.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void putADigitalTwinsEndpointResourceWithIdentity(
+        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.digitalTwinsEndpoints()
+            .define("myServiceBus")
+            .withExistingDigitalTwinsInstance("resRg", "myDigitalTwinsService")
+            .withProperties(new ServiceBus().withAuthenticationType(AuthenticationType.IDENTITY_BASED)
+                .withEndpointUri("sb://mysb.servicebus.windows.net/")
+                .withEntityPath("mysbtopic"))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * DigitalTwinsEndpointPut_WithUserIdentity_example.json
+     */
+    /**
+     * Sample code: Put a DigitalTwinsEndpoint resource with user assigned identity.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void putADigitalTwinsEndpointResourceWithUserAssignedIdentity(
+        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.digitalTwinsEndpoints()
+            .define("myServiceBus")
+            .withExistingDigitalTwinsInstance("resRg", "myDigitalTwinsService")
+            .withProperties(new ServiceBus().withAuthenticationType(AuthenticationType.IDENTITY_BASED)
+                .withIdentity(new ManagedIdentityReference().withType(IdentityType.USER_ASSIGNED)
+                    .withUserAssignedIdentity(
+                        "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/testrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity"))
+                .withEndpointUri("sb://mysb.servicebus.windows.net/")
+                .withEntityPath("mysbtopic"))
+            .create();
     }
 }
 ```
 
 ### DigitalTwins_CreateOrUpdate
+
+```java
+/**
+ * Samples for PrivateLinkResources List.
+ */
+public final class PrivateLinkResourcesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * PrivateLinkResourcesList_example.json
+     */
+    /**
+     * Sample code: List private link resources for given Digital Twin.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void listPrivateLinkResourcesForGivenDigitalTwin(
+        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.privateLinkResources()
+            .listWithResponse("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DigitalTwins_Delete
+
+```java
+import com.azure.resourcemanager.digitaltwins.models.AzureDataExplorerConnectionProperties;
+import com.azure.resourcemanager.digitaltwins.models.IdentityType;
+import com.azure.resourcemanager.digitaltwins.models.ManagedIdentityReference;
+import com.azure.resourcemanager.digitaltwins.models.RecordPropertyAndItemRemovals;
+
+/**
+ * Samples for TimeSeriesDatabaseConnections CreateOrUpdate.
+ */
+public final class TimeSeriesDatabaseConnectionsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * TimeSeriesDatabaseConnectionsPut_example.json
+     */
+    /**
+     * Sample code: Create or replace a time series database connection for a DigitalTwins instance.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void createOrReplaceATimeSeriesDatabaseConnectionForADigitalTwinsInstance(
+        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.timeSeriesDatabaseConnections()
+            .define("myConnection")
+            .withExistingDigitalTwinsInstance("resRg", "myDigitalTwinsService")
+            .withProperties(new AzureDataExplorerConnectionProperties().withAdxResourceId(
+                "/subscriptions/c493073e-2460-45ba-a403-f3e0df1e9feg/resourceGroups/testrg/providers/Microsoft.Kusto/clusters/mycluster")
+                .withAdxEndpointUri("https://mycluster.kusto.windows.net")
+                .withAdxDatabaseName("myDatabase")
+                .withAdxTableName("myPropertyUpdatesTable")
+                .withAdxTwinLifecycleEventsTableName("myTwinLifecycleEventsTable")
+                .withAdxRelationshipLifecycleEventsTableName("myRelationshipLifecycleEventsTable")
+                .withEventHubEndpointUri("sb://myeh.servicebus.windows.net/")
+                .withEventHubEntityPath("myeh")
+                .withEventHubNamespaceResourceId(
+                    "/subscriptions/c493073e-2460-45ba-a403-f3e0df1e9feg/resourceGroups/testrg/providers/Microsoft.EventHub/namespaces/myeh")
+                .withRecordPropertyAndItemRemovals(RecordPropertyAndItemRemovals.TRUE))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * TimeSeriesDatabaseConnectionsPut_WithUserIdentity_example.json
+     */
+    /**
+     * Sample code: Create or replace a time series database connection for a DigitalTwins instance with user assigned
+     * identity.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void createOrReplaceATimeSeriesDatabaseConnectionForADigitalTwinsInstanceWithUserAssignedIdentity(
+        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.timeSeriesDatabaseConnections()
+            .define("myConnection")
+            .withExistingDigitalTwinsInstance("resRg", "myDigitalTwinsService")
+            .withProperties(new AzureDataExplorerConnectionProperties().withIdentity(new ManagedIdentityReference()
+                .withType(IdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentity(
+                    "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/testrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity"))
+                .withAdxResourceId(
+                    "/subscriptions/c493073e-2460-45ba-a403-f3e0df1e9feg/resourceGroups/testrg/providers/Microsoft.Kusto/clusters/mycluster")
+                .withAdxEndpointUri("https://mycluster.kusto.windows.net")
+                .withAdxDatabaseName("myDatabase")
+                .withAdxTableName("myTable")
+                .withEventHubEndpointUri("sb://myeh.servicebus.windows.net/")
+                .withEventHubEntityPath("myeh")
+                .withEventHubNamespaceResourceId(
+                    "/subscriptions/c493073e-2460-45ba-a403-f3e0df1e9feg/resourceGroups/testrg/providers/Microsoft.EventHub/namespaces/myeh"))
+            .create();
+    }
+}
+```
+
+### DigitalTwins_GetByResourceGroup
 
 ```java
 import com.azure.resourcemanager.digitaltwins.models.DigitalTwinsIdentity;
@@ -157,46 +313,71 @@ public final class DigitalTwinsCreateOrUpdateSamples {
 }
 ```
 
-### DigitalTwins_Delete
+### DigitalTwins_List
 
 ```java
 /**
- * Samples for DigitalTwins Delete.
+ * Samples for PrivateEndpointConnections Delete.
  */
-public final class DigitalTwinsDeleteSamples {
+public final class PrivateEndpointConnectionsDeleteSamples {
     /*
      * x-ms-original-file:
      * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * DigitalTwinsDelete_example.json
+     * PrivateEndpointConnectionDelete_example.json
      */
     /**
-     * Sample code: Delete a DigitalTwinsInstance resource.
+     * Sample code: Delete private endpoint connection with the specified name.
      * 
      * @param manager Entry point to AzureDigitalTwinsManager.
      */
-    public static void
-        deleteADigitalTwinsInstanceResource(com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwins().delete("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * DigitalTwinsDelete_WithIdentity_example.json
-     */
-    /**
-     * Sample code: Delete a DigitalTwinsInstance resource with identity.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void deleteADigitalTwinsInstanceResourceWithIdentity(
+    public static void deletePrivateEndpointConnectionWithTheSpecifiedName(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwins().delete("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections()
+            .delete("resRg", "myDigitalTwinsService", "myPrivateConnection", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### DigitalTwins_GetByResourceGroup
+### DigitalTwins_ListByResourceGroup
+
+```java
+/**
+ * Samples for DigitalTwinsEndpoint List.
+ */
+public final class DigitalTwinsEndpointListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * DigitalTwinsEndpointsGet_example.json
+     */
+    /**
+     * Sample code: Get a DigitalTwinsInstance endpoints.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void
+        getADigitalTwinsInstanceEndpoints(com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.digitalTwinsEndpoints().list("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * DigitalTwinsEndpointsGet_WithIdentity_example.json
+     */
+    /**
+     * Sample code: Get a DigitalTwinsInstance endpoints with identity.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void getADigitalTwinsInstanceEndpointsWithIdentity(
+        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.digitalTwinsEndpoints().list("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DigitalTwins_Update
 
 ```java
 /**
@@ -253,31 +434,55 @@ public final class DigitalTwinsGetByResourceGroupSamples {
 }
 ```
 
-### DigitalTwins_List
+### DigitalTwinsEndpoint_CreateOrUpdate
 
 ```java
 /**
- * Samples for DigitalTwins List.
+ * Samples for Operations List.
  */
-public final class DigitalTwinsListSamples {
+public final class OperationsListSamples {
     /*
      * x-ms-original-file:
      * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * DigitalTwinsList_example.json
+     * DigitalTwinsOperationsList_example.json
      */
     /**
-     * Sample code: Get DigitalTwinsInstance resources by subscription.
+     * Sample code: Get available operations.
      * 
      * @param manager Entry point to AzureDigitalTwinsManager.
      */
-    public static void getDigitalTwinsInstanceResourcesBySubscription(
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwins().list(com.azure.core.util.Context.NONE);
+    public static void getAvailableOperations(com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### DigitalTwins_ListByResourceGroup
+### DigitalTwinsEndpoint_Delete
+
+```java
+/**
+ * Samples for PrivateLinkResources Get.
+ */
+public final class PrivateLinkResourcesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * PrivateLinkResourcesByGroupId_example.json
+     */
+    /**
+     * Sample code: Get the specified private link resource for the given Digital Twin.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void getTheSpecifiedPrivateLinkResourceForTheGivenDigitalTwin(
+        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.privateLinkResources()
+            .getWithResponse("resRg", "myDigitalTwinsService", "subResource", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DigitalTwinsEndpoint_Get
 
 ```java
 /**
@@ -301,7 +506,203 @@ public final class DigitalTwinsListByResourceGroupSamples {
 }
 ```
 
-### DigitalTwins_Update
+### DigitalTwinsEndpoint_List
+
+```java
+/**
+ * Samples for DigitalTwinsEndpoint Delete.
+ */
+public final class DigitalTwinsEndpointDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * DigitalTwinsEndpointDelete_example.json
+     */
+    /**
+     * Sample code: Delete a DigitalTwinsInstance endpoint.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void
+        deleteADigitalTwinsInstanceEndpoint(com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.digitalTwinsEndpoints()
+            .delete("resRg", "myDigitalTwinsService", "myendpoint", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * DigitalTwinsEndpointDelete_WithIdentity_example.json
+     */
+    /**
+     * Sample code: Delete a DigitalTwinsInstance endpoint with identity.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void deleteADigitalTwinsInstanceEndpointWithIdentity(
+        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.digitalTwinsEndpoints()
+            .delete("resRg", "myDigitalTwinsService", "myendpoint", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+
+/**
+ * Samples for TimeSeriesDatabaseConnections Delete.
+ */
+public final class TimeSeriesDatabaseConnectionsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * TimeSeriesDatabaseConnectionsDelete_example.json
+     */
+    /**
+     * Sample code: Delete a time series database connection for a DigitalTwins instance.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void deleteATimeSeriesDatabaseConnectionForADigitalTwinsInstance(
+        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.timeSeriesDatabaseConnections()
+            .delete("resRg", "myDigitalTwinsService", "myConnection", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_CreateOrUpdate
+
+```java
+/**
+ * Samples for DigitalTwins Delete.
+ */
+public final class DigitalTwinsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * DigitalTwinsDelete_example.json
+     */
+    /**
+     * Sample code: Delete a DigitalTwinsInstance resource.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void
+        deleteADigitalTwinsInstanceResource(com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.digitalTwins().delete("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * DigitalTwinsDelete_WithIdentity_example.json
+     */
+    /**
+     * Sample code: Delete a DigitalTwinsInstance resource with identity.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void deleteADigitalTwinsInstanceResourceWithIdentity(
+        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.digitalTwins().delete("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_Delete
+
+```java
+/**
+ * Samples for DigitalTwinsEndpoint Get.
+ */
+public final class DigitalTwinsEndpointGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * DigitalTwinsEndpointGet_example.json
+     */
+    /**
+     * Sample code: Get a DigitalTwinsInstance endpoint.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void
+        getADigitalTwinsInstanceEndpoint(com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.digitalTwinsEndpoints()
+            .getWithResponse("resRg", "myDigitalTwinsService", "myServiceBus", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * DigitalTwinsEndpointGet_WithIdentity_example.json
+     */
+    /**
+     * Sample code: Get a DigitalTwinsInstance endpoint with identity.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void getADigitalTwinsInstanceEndpointWithIdentity(
+        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.digitalTwinsEndpoints()
+            .getWithResponse("resRg", "myDigitalTwinsService", "myServiceBus", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_Get
+
+```java
+/**
+ * Samples for TimeSeriesDatabaseConnections Get.
+ */
+public final class TimeSeriesDatabaseConnectionsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * TimeSeriesDatabaseConnectionsGet_example.json
+     */
+    /**
+     * Sample code: Get time series database connection for a DigitalTwins instance.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void getTimeSeriesDatabaseConnectionForADigitalTwinsInstance(
+        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.timeSeriesDatabaseConnections()
+            .getWithResponse("resRg", "myDigitalTwinsService", "myConnection", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_List
+
+```java
+/**
+ * Samples for DigitalTwins List.
+ */
+public final class DigitalTwinsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * DigitalTwinsList_example.json
+     */
+    /**
+     * Sample code: Get DigitalTwinsInstance resources by subscription.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void getDigitalTwinsInstanceResourcesBySubscription(
+        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.digitalTwins().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateLinkResources_Get
 
 ```java
 import com.azure.resourcemanager.digitaltwins.models.DigitalTwinsDescription;
@@ -386,233 +787,7 @@ public final class DigitalTwinsUpdateSamples {
 }
 ```
 
-### DigitalTwinsEndpoint_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.digitaltwins.models.AuthenticationType;
-import com.azure.resourcemanager.digitaltwins.models.IdentityType;
-import com.azure.resourcemanager.digitaltwins.models.ManagedIdentityReference;
-import com.azure.resourcemanager.digitaltwins.models.ServiceBus;
-
-/**
- * Samples for DigitalTwinsEndpoint CreateOrUpdate.
- */
-public final class DigitalTwinsEndpointCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * DigitalTwinsEndpointPut_example.json
-     */
-    /**
-     * Sample code: Put a DigitalTwinsEndpoint resource.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void
-        putADigitalTwinsEndpointResource(com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints()
-            .define("myServiceBus")
-            .withExistingDigitalTwinsInstance("resRg", "myDigitalTwinsService")
-            .withProperties(new ServiceBus().withAuthenticationType(AuthenticationType.KEY_BASED)
-                .withPrimaryConnectionString(
-                    "Endpoint=sb://mysb.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=xyzxyzoX4=;EntityPath=abcabc")
-                .withSecondaryConnectionString(
-                    "Endpoint=sb://mysb.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=xyzxyzoX4=;EntityPath=abcabc"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * DigitalTwinsEndpointPut_WithIdentity_example.json
-     */
-    /**
-     * Sample code: Put a DigitalTwinsEndpoint resource with identity.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void putADigitalTwinsEndpointResourceWithIdentity(
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints()
-            .define("myServiceBus")
-            .withExistingDigitalTwinsInstance("resRg", "myDigitalTwinsService")
-            .withProperties(new ServiceBus().withAuthenticationType(AuthenticationType.IDENTITY_BASED)
-                .withEndpointUri("sb://mysb.servicebus.windows.net/")
-                .withEntityPath("mysbtopic"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * DigitalTwinsEndpointPut_WithUserIdentity_example.json
-     */
-    /**
-     * Sample code: Put a DigitalTwinsEndpoint resource with user assigned identity.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void putADigitalTwinsEndpointResourceWithUserAssignedIdentity(
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints()
-            .define("myServiceBus")
-            .withExistingDigitalTwinsInstance("resRg", "myDigitalTwinsService")
-            .withProperties(new ServiceBus().withAuthenticationType(AuthenticationType.IDENTITY_BASED)
-                .withIdentity(new ManagedIdentityReference().withType(IdentityType.USER_ASSIGNED)
-                    .withUserAssignedIdentity(
-                        "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/testrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity"))
-                .withEndpointUri("sb://mysb.servicebus.windows.net/")
-                .withEntityPath("mysbtopic"))
-            .create();
-    }
-}
-```
-
-### DigitalTwinsEndpoint_Delete
-
-```java
-/**
- * Samples for DigitalTwinsEndpoint Delete.
- */
-public final class DigitalTwinsEndpointDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * DigitalTwinsEndpointDelete_example.json
-     */
-    /**
-     * Sample code: Delete a DigitalTwinsInstance endpoint.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void
-        deleteADigitalTwinsInstanceEndpoint(com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints()
-            .delete("resRg", "myDigitalTwinsService", "myendpoint", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * DigitalTwinsEndpointDelete_WithIdentity_example.json
-     */
-    /**
-     * Sample code: Delete a DigitalTwinsInstance endpoint with identity.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void deleteADigitalTwinsInstanceEndpointWithIdentity(
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints()
-            .delete("resRg", "myDigitalTwinsService", "myendpoint", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DigitalTwinsEndpoint_Get
-
-```java
-/**
- * Samples for DigitalTwinsEndpoint Get.
- */
-public final class DigitalTwinsEndpointGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * DigitalTwinsEndpointGet_example.json
-     */
-    /**
-     * Sample code: Get a DigitalTwinsInstance endpoint.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void
-        getADigitalTwinsInstanceEndpoint(com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints()
-            .getWithResponse("resRg", "myDigitalTwinsService", "myServiceBus", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * DigitalTwinsEndpointGet_WithIdentity_example.json
-     */
-    /**
-     * Sample code: Get a DigitalTwinsInstance endpoint with identity.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void getADigitalTwinsInstanceEndpointWithIdentity(
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints()
-            .getWithResponse("resRg", "myDigitalTwinsService", "myServiceBus", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DigitalTwinsEndpoint_List
-
-```java
-/**
- * Samples for DigitalTwinsEndpoint List.
- */
-public final class DigitalTwinsEndpointListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * DigitalTwinsEndpointsGet_example.json
-     */
-    /**
-     * Sample code: Get a DigitalTwinsInstance endpoints.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void
-        getADigitalTwinsInstanceEndpoints(com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints().list("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * DigitalTwinsEndpointsGet_WithIdentity_example.json
-     */
-    /**
-     * Sample code: Get a DigitalTwinsInstance endpoints with identity.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void getADigitalTwinsInstanceEndpointsWithIdentity(
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.digitalTwinsEndpoints().list("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * DigitalTwinsOperationsList_example.json
-     */
-    /**
-     * Sample code: Get available operations.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void getAvailableOperations(com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_CreateOrUpdate
+### PrivateLinkResources_List
 
 ```java
 import com.azure.resourcemanager.digitaltwins.models.ConnectionProperties;
@@ -649,32 +824,32 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
 }
 ```
 
-### PrivateEndpointConnections_Delete
+### TimeSeriesDatabaseConnections_CreateOrUpdate
 
 ```java
 /**
- * Samples for PrivateEndpointConnections Delete.
+ * Samples for TimeSeriesDatabaseConnections List.
  */
-public final class PrivateEndpointConnectionsDeleteSamples {
+public final class TimeSeriesDatabaseConnectionsListSamples {
     /*
      * x-ms-original-file:
      * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * PrivateEndpointConnectionDelete_example.json
+     * TimeSeriesDatabaseConnectionsList_example.json
      */
     /**
-     * Sample code: Delete private endpoint connection with the specified name.
+     * Sample code: List time series database connections for a DigitalTwins instance.
      * 
      * @param manager Entry point to AzureDigitalTwinsManager.
      */
-    public static void deletePrivateEndpointConnectionWithTheSpecifiedName(
+    public static void listTimeSeriesDatabaseConnectionsForADigitalTwinsInstance(
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.privateEndpointConnections()
-            .delete("resRg", "myDigitalTwinsService", "myPrivateConnection", com.azure.core.util.Context.NONE);
+        manager.timeSeriesDatabaseConnections()
+            .list("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### PrivateEndpointConnections_Get
+### TimeSeriesDatabaseConnections_Delete
 
 ```java
 /**
@@ -699,7 +874,34 @@ public final class PrivateEndpointConnectionsGetSamples {
 }
 ```
 
-### PrivateEndpointConnections_List
+### TimeSeriesDatabaseConnections_Get
+
+```java
+import com.azure.resourcemanager.digitaltwins.models.CheckNameRequest;
+
+/**
+ * Samples for DigitalTwins CheckNameAvailability.
+ */
+public final class DigitalTwinsCheckNameAvailabilitySamples {
+    /*
+     * x-ms-original-file:
+     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
+     * DigitalTwinsCheckNameAvailability_example.json
+     */
+    /**
+     * Sample code: Check name Availability.
+     * 
+     * @param manager Entry point to AzureDigitalTwinsManager.
+     */
+    public static void checkNameAvailability(com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
+        manager.digitalTwins()
+            .checkNameAvailabilityWithResponse("WestUS2", new CheckNameRequest().withName("myadtinstance"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### TimeSeriesDatabaseConnections_List
 
 ```java
 /**
@@ -720,208 +922,6 @@ public final class PrivateEndpointConnectionsListSamples {
         com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
         manager.privateEndpointConnections()
             .listWithResponse("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateLinkResources_Get
-
-```java
-/**
- * Samples for PrivateLinkResources Get.
- */
-public final class PrivateLinkResourcesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * PrivateLinkResourcesByGroupId_example.json
-     */
-    /**
-     * Sample code: Get the specified private link resource for the given Digital Twin.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void getTheSpecifiedPrivateLinkResourceForTheGivenDigitalTwin(
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.privateLinkResources()
-            .getWithResponse("resRg", "myDigitalTwinsService", "subResource", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateLinkResources_List
-
-```java
-/**
- * Samples for PrivateLinkResources List.
- */
-public final class PrivateLinkResourcesListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * PrivateLinkResourcesList_example.json
-     */
-    /**
-     * Sample code: List private link resources for given Digital Twin.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void listPrivateLinkResourcesForGivenDigitalTwin(
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.privateLinkResources()
-            .listWithResponse("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### TimeSeriesDatabaseConnections_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.digitaltwins.models.AzureDataExplorerConnectionProperties;
-import com.azure.resourcemanager.digitaltwins.models.IdentityType;
-import com.azure.resourcemanager.digitaltwins.models.ManagedIdentityReference;
-import com.azure.resourcemanager.digitaltwins.models.RecordPropertyAndItemRemovals;
-
-/**
- * Samples for TimeSeriesDatabaseConnections CreateOrUpdate.
- */
-public final class TimeSeriesDatabaseConnectionsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * TimeSeriesDatabaseConnectionsPut_example.json
-     */
-    /**
-     * Sample code: Create or replace a time series database connection for a DigitalTwins instance.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void createOrReplaceATimeSeriesDatabaseConnectionForADigitalTwinsInstance(
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.timeSeriesDatabaseConnections()
-            .define("myConnection")
-            .withExistingDigitalTwinsInstance("resRg", "myDigitalTwinsService")
-            .withProperties(new AzureDataExplorerConnectionProperties().withAdxResourceId(
-                "/subscriptions/c493073e-2460-45ba-a403-f3e0df1e9feg/resourceGroups/testrg/providers/Microsoft.Kusto/clusters/mycluster")
-                .withAdxEndpointUri("https://mycluster.kusto.windows.net")
-                .withAdxDatabaseName("myDatabase")
-                .withAdxTableName("myPropertyUpdatesTable")
-                .withAdxTwinLifecycleEventsTableName("myTwinLifecycleEventsTable")
-                .withAdxRelationshipLifecycleEventsTableName("myRelationshipLifecycleEventsTable")
-                .withEventHubEndpointUri("sb://myeh.servicebus.windows.net/")
-                .withEventHubEntityPath("myeh")
-                .withEventHubNamespaceResourceId(
-                    "/subscriptions/c493073e-2460-45ba-a403-f3e0df1e9feg/resourceGroups/testrg/providers/Microsoft.EventHub/namespaces/myeh")
-                .withRecordPropertyAndItemRemovals(RecordPropertyAndItemRemovals.TRUE))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * TimeSeriesDatabaseConnectionsPut_WithUserIdentity_example.json
-     */
-    /**
-     * Sample code: Create or replace a time series database connection for a DigitalTwins instance with user assigned
-     * identity.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void createOrReplaceATimeSeriesDatabaseConnectionForADigitalTwinsInstanceWithUserAssignedIdentity(
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.timeSeriesDatabaseConnections()
-            .define("myConnection")
-            .withExistingDigitalTwinsInstance("resRg", "myDigitalTwinsService")
-            .withProperties(new AzureDataExplorerConnectionProperties().withIdentity(new ManagedIdentityReference()
-                .withType(IdentityType.USER_ASSIGNED)
-                .withUserAssignedIdentity(
-                    "/subscriptions/50016170-c839-41ba-a724-51e9df440b9e/resourceGroups/testrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity"))
-                .withAdxResourceId(
-                    "/subscriptions/c493073e-2460-45ba-a403-f3e0df1e9feg/resourceGroups/testrg/providers/Microsoft.Kusto/clusters/mycluster")
-                .withAdxEndpointUri("https://mycluster.kusto.windows.net")
-                .withAdxDatabaseName("myDatabase")
-                .withAdxTableName("myTable")
-                .withEventHubEndpointUri("sb://myeh.servicebus.windows.net/")
-                .withEventHubEntityPath("myeh")
-                .withEventHubNamespaceResourceId(
-                    "/subscriptions/c493073e-2460-45ba-a403-f3e0df1e9feg/resourceGroups/testrg/providers/Microsoft.EventHub/namespaces/myeh"))
-            .create();
-    }
-}
-```
-
-### TimeSeriesDatabaseConnections_Delete
-
-```java
-
-/**
- * Samples for TimeSeriesDatabaseConnections Delete.
- */
-public final class TimeSeriesDatabaseConnectionsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * TimeSeriesDatabaseConnectionsDelete_example.json
-     */
-    /**
-     * Sample code: Delete a time series database connection for a DigitalTwins instance.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void deleteATimeSeriesDatabaseConnectionForADigitalTwinsInstance(
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.timeSeriesDatabaseConnections()
-            .delete("resRg", "myDigitalTwinsService", "myConnection", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### TimeSeriesDatabaseConnections_Get
-
-```java
-/**
- * Samples for TimeSeriesDatabaseConnections Get.
- */
-public final class TimeSeriesDatabaseConnectionsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * TimeSeriesDatabaseConnectionsGet_example.json
-     */
-    /**
-     * Sample code: Get time series database connection for a DigitalTwins instance.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void getTimeSeriesDatabaseConnectionForADigitalTwinsInstance(
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.timeSeriesDatabaseConnections()
-            .getWithResponse("resRg", "myDigitalTwinsService", "myConnection", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### TimeSeriesDatabaseConnections_List
-
-```java
-/**
- * Samples for TimeSeriesDatabaseConnections List.
- */
-public final class TimeSeriesDatabaseConnectionsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/digitaltwins/resource-manager/Microsoft.DigitalTwins/stable/2023-01-31/examples/
-     * TimeSeriesDatabaseConnectionsList_example.json
-     */
-    /**
-     * Sample code: List time series database connections for a DigitalTwins instance.
-     * 
-     * @param manager Entry point to AzureDigitalTwinsManager.
-     */
-    public static void listTimeSeriesDatabaseConnectionsForADigitalTwinsInstance(
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager) {
-        manager.timeSeriesDatabaseConnections()
-            .list("resRg", "myDigitalTwinsService", com.azure.core.util.Context.NONE);
     }
 }
 ```
