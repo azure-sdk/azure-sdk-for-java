@@ -15,6 +15,7 @@ import com.azure.resourcemanager.labservices.models.LabNetworkProfile;
 import com.azure.resourcemanager.labservices.models.LabState;
 import com.azure.resourcemanager.labservices.models.LabUpdate;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.azure.resourcemanager.labservices.models.RosterProfile;
 import com.azure.resourcemanager.labservices.models.SecurityProfile;
 import com.azure.resourcemanager.labservices.models.VirtualMachineProfile;
@@ -66,6 +67,10 @@ public final class LabImpl implements Lab, Lab.Definition, Lab.Update {
 
     public LabState state() {
         return this.innerModel().state();
+    }
+
+    public ResourceOperationError resourceOperationError() {
+        return this.innerModel().resourceOperationError();
     }
 
     public AutoShutdownProfile autoShutdownProfile() {

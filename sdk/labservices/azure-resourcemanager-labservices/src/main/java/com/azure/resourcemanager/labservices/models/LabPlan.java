@@ -72,6 +72,13 @@ public interface LabPlan {
     ProvisioningState provisioningState();
 
     /**
+     * Gets the resourceOperationError property: Error details of last operation done on lab plan.
+     * 
+     * @return the resourceOperationError value.
+     */
+    ResourceOperationError resourceOperationError();
+
+    /**
      * Gets the defaultConnectionProfile property: The default lab connection profile. This can be changed on a lab
      * resource and only provides a default profile.
      * 

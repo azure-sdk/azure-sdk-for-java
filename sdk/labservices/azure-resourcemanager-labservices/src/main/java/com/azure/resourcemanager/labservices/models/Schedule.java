@@ -49,6 +49,13 @@ public interface Schedule {
     ProvisioningState provisioningState();
 
     /**
+     * Gets the resourceOperationError property: Error details of last operation done on schedule.
+     * 
+     * @return the resourceOperationError value.
+     */
+    ResourceOperationError resourceOperationError();
+
+    /**
      * Gets the startAt property: When lab user virtual machines will be started. Timestamp offsets will be ignored and
      * timeZoneId is used instead.
      * 

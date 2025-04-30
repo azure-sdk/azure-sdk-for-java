@@ -50,6 +50,13 @@ public interface User {
     ProvisioningState provisioningState();
 
     /**
+     * Gets the resourceOperationError property: Error details of last operation done on lab plan.
+     * 
+     * @return the resourceOperationError value.
+     */
+    ResourceOperationError resourceOperationError();
+
+    /**
      * Gets the displayName property: Display name of the user, for example user's full name.
      * 
      * @return the displayName value.

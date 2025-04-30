@@ -16,6 +16,7 @@ import com.azure.resourcemanager.labservices.models.ConnectionProfile;
 import com.azure.resourcemanager.labservices.models.LabNetworkProfile;
 import com.azure.resourcemanager.labservices.models.LabState;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.azure.resourcemanager.labservices.models.RosterProfile;
 import com.azure.resourcemanager.labservices.models.SecurityProfile;
 import com.azure.resourcemanager.labservices.models.VirtualMachineProfile;
@@ -165,6 +166,15 @@ public final class LabInner extends Resource {
      */
     public LabState state() {
         return this.innerProperties() == null ? null : this.innerProperties().state();
+    }
+
+    /**
+     * Get the resourceOperationError property: Error details of last operation done on lab.
+     * 
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.innerProperties() == null ? null : this.innerProperties().resourceOperationError();
     }
 
     /**

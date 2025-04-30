@@ -11,6 +11,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
 import com.azure.resourcemanager.labservices.models.RecurrencePattern;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,6 +26,11 @@ public final class ScheduleProperties extends ScheduleUpdateProperties {
      */
     private ProvisioningState provisioningState;
 
+    /*
+     * Error details of last operation done on schedule.
+     */
+    private ResourceOperationError resourceOperationError;
+
     /**
      * Creates an instance of ScheduleProperties class.
      */
@@ -38,6 +44,15 @@ public final class ScheduleProperties extends ScheduleUpdateProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Get the resourceOperationError property: Error details of last operation done on schedule.
+     * 
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.resourceOperationError;
     }
 
     /**
@@ -92,6 +107,9 @@ public final class ScheduleProperties extends ScheduleUpdateProperties {
      */
     @Override
     public void validate() {
+        if (resourceOperationError() != null) {
+            resourceOperationError().validate();
+        }
         if (recurrencePattern() != null) {
             recurrencePattern().validate();
         }
@@ -142,6 +160,8 @@ public final class ScheduleProperties extends ScheduleUpdateProperties {
                     deserializedScheduleProperties.withNotes(reader.getString());
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedScheduleProperties.provisioningState = ProvisioningState.fromString(reader.getString());
+                } else if ("resourceOperationError".equals(fieldName)) {
+                    deserializedScheduleProperties.resourceOperationError = ResourceOperationError.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

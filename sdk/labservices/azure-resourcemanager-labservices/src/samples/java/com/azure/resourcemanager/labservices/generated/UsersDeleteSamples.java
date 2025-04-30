@@ -10,7 +10,7 @@ package com.azure.resourcemanager.labservices.generated;
 public final class UsersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/deleteUser.json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/deleteUser.json
      */
     /**
      * Sample code: deleteUser.
