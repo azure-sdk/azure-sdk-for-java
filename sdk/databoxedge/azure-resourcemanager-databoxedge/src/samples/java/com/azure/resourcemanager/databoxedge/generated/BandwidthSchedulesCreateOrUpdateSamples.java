@@ -13,7 +13,7 @@ import java.util.Arrays;
 public final class BandwidthSchedulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/BandwidthSchedulePut.
+     * specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2023-12-01/examples/BandwidthSchedulePut.
      * json
      */
     /**

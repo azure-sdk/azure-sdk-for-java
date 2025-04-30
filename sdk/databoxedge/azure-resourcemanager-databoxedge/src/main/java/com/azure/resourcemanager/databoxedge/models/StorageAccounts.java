@@ -13,7 +13,7 @@ import com.azure.core.util.Context;
  */
 public interface StorageAccounts {
     /**
-     * Lists all the storage accounts in a Data Box Edge/Data Box Gateway device.
+     * Lists all the StorageAccounts in a Data Box Edge/Data Box Gateway device.
      * 
      * @param deviceName The device name.
      * @param resourceGroupName The resource group name.
@@ -26,7 +26,7 @@ public interface StorageAccounts {
     PagedIterable<StorageAccount> listByDataBoxEdgeDevice(String deviceName, String resourceGroupName);
 
     /**
-     * Lists all the storage accounts in a Data Box Edge/Data Box Gateway device.
+     * Lists all the StorageAccounts in a Data Box Edge/Data Box Gateway device.
      * 
      * @param deviceName The device name.
      * @param resourceGroupName The resource group name.

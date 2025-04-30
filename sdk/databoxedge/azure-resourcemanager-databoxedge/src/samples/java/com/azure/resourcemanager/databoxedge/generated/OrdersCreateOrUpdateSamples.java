@@ -15,7 +15,7 @@ import java.util.Arrays;
 public final class OrdersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/OrderPut.json
+     * specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2023-12-01/examples/OrderPut.json
      */
     /**
      * Sample code: OrderPut.

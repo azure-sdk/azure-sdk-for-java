@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
@@ -24,6 +25,11 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
      * The storage account credential properties.
      */
     private StorageAccountCredentialProperties innerProperties = new StorageAccountCredentialProperties();
+
+    /*
+     * Metadata pertaining to creation and last modification of StorageAccountCredential
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -53,6 +59,15 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
      */
     private StorageAccountCredentialProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of StorageAccountCredential.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -325,6 +340,8 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
                 } else if ("properties".equals(fieldName)) {
                     deserializedStorageAccountCredentialInner.innerProperties
                         = StorageAccountCredentialProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedStorageAccountCredentialInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

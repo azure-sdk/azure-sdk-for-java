@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
@@ -31,6 +32,11 @@ public final class ShareInner extends ArmBaseModel {
      * The share properties.
      */
     private ShareProperties innerProperties = new ShareProperties();
+
+    /*
+     * Metadata pertaining to creation and last modification of Share
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -60,6 +66,15 @@ public final class ShareInner extends ArmBaseModel {
      */
     private ShareProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of Share.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -363,6 +378,8 @@ public final class ShareInner extends ArmBaseModel {
                     deserializedShareInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedShareInner.innerProperties = ShareProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedShareInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

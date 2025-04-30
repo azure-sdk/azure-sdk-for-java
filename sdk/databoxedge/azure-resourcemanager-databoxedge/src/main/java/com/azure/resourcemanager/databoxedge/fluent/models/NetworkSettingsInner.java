@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -22,6 +23,11 @@ public final class NetworkSettingsInner extends ArmBaseModel {
      * The properties of network settings of a device.
      */
     private NetworkSettingsProperties innerProperties;
+
+    /*
+     * Metadata pertaining to creation and last modification of NetworkSettings
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -51,6 +57,15 @@ public final class NetworkSettingsInner extends ArmBaseModel {
      */
     private NetworkSettingsProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of NetworkSettings.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -137,6 +152,8 @@ public final class NetworkSettingsInner extends ArmBaseModel {
                     deserializedNetworkSettingsInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedNetworkSettingsInner.innerProperties = NetworkSettingsProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedNetworkSettingsInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

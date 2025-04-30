@@ -10,7 +10,10 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.databoxedge.models.ComputeResource;
+import com.azure.resourcemanager.databoxedge.models.HostPlatformType;
 import com.azure.resourcemanager.databoxedge.models.IoTDeviceInfo;
+import com.azure.resourcemanager.databoxedge.models.IoTEdgeAgentInfo;
 import com.azure.resourcemanager.databoxedge.models.MountPointMap;
 import com.azure.resourcemanager.databoxedge.models.PlatformType;
 import com.azure.resourcemanager.databoxedge.models.RoleStatus;
@@ -41,6 +44,21 @@ public final class IoTRoleProperties implements JsonSerializable<IoTRoleProperti
      * Mount points of shares in role(s).
      */
     private List<MountPointMap> shareMappings;
+
+    /*
+     * Iot edge agent details to download the agent and bootstrap iot runtime.
+     */
+    private IoTEdgeAgentInfo ioTEdgeAgentInfo;
+
+    /*
+     * Platform where the Iot runtime is hosted.
+     */
+    private HostPlatformType hostPlatformType;
+
+    /*
+     * Resource allocation
+     */
+    private ComputeResource computeResource;
 
     /*
      * Role status.
@@ -134,6 +152,55 @@ public final class IoTRoleProperties implements JsonSerializable<IoTRoleProperti
     }
 
     /**
+     * Get the ioTEdgeAgentInfo property: Iot edge agent details to download the agent and bootstrap iot runtime.
+     * 
+     * @return the ioTEdgeAgentInfo value.
+     */
+    public IoTEdgeAgentInfo ioTEdgeAgentInfo() {
+        return this.ioTEdgeAgentInfo;
+    }
+
+    /**
+     * Set the ioTEdgeAgentInfo property: Iot edge agent details to download the agent and bootstrap iot runtime.
+     * 
+     * @param ioTEdgeAgentInfo the ioTEdgeAgentInfo value to set.
+     * @return the IoTRoleProperties object itself.
+     */
+    public IoTRoleProperties withIoTEdgeAgentInfo(IoTEdgeAgentInfo ioTEdgeAgentInfo) {
+        this.ioTEdgeAgentInfo = ioTEdgeAgentInfo;
+        return this;
+    }
+
+    /**
+     * Get the hostPlatformType property: Platform where the Iot runtime is hosted.
+     * 
+     * @return the hostPlatformType value.
+     */
+    public HostPlatformType hostPlatformType() {
+        return this.hostPlatformType;
+    }
+
+    /**
+     * Get the computeResource property: Resource allocation.
+     * 
+     * @return the computeResource value.
+     */
+    public ComputeResource computeResource() {
+        return this.computeResource;
+    }
+
+    /**
+     * Set the computeResource property: Resource allocation.
+     * 
+     * @param computeResource the computeResource value to set.
+     * @return the IoTRoleProperties object itself.
+     */
+    public IoTRoleProperties withComputeResource(ComputeResource computeResource) {
+        this.computeResource = computeResource;
+        return this;
+    }
+
+    /**
      * Get the roleStatus property: Role status.
      * 
      * @return the roleStatus value.
@@ -180,6 +247,12 @@ public final class IoTRoleProperties implements JsonSerializable<IoTRoleProperti
         if (shareMappings() != null) {
             shareMappings().forEach(e -> e.validate());
         }
+        if (ioTEdgeAgentInfo() != null) {
+            ioTEdgeAgentInfo().validate();
+        }
+        if (computeResource() != null) {
+            computeResource().validate();
+        }
         if (roleStatus() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property roleStatus in model IoTRoleProperties"));
@@ -199,6 +272,8 @@ public final class IoTRoleProperties implements JsonSerializable<IoTRoleProperti
         jsonWriter.writeJsonField("ioTEdgeDeviceDetails", this.ioTEdgeDeviceDetails);
         jsonWriter.writeStringField("roleStatus", this.roleStatus == null ? null : this.roleStatus.toString());
         jsonWriter.writeArrayField("shareMappings", this.shareMappings, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeJsonField("ioTEdgeAgentInfo", this.ioTEdgeAgentInfo);
+        jsonWriter.writeJsonField("computeResource", this.computeResource);
         return jsonWriter.writeEndObject();
     }
 
@@ -229,6 +304,12 @@ public final class IoTRoleProperties implements JsonSerializable<IoTRoleProperti
                 } else if ("shareMappings".equals(fieldName)) {
                     List<MountPointMap> shareMappings = reader.readArray(reader1 -> MountPointMap.fromJson(reader1));
                     deserializedIoTRoleProperties.shareMappings = shareMappings;
+                } else if ("ioTEdgeAgentInfo".equals(fieldName)) {
+                    deserializedIoTRoleProperties.ioTEdgeAgentInfo = IoTEdgeAgentInfo.fromJson(reader);
+                } else if ("hostPlatformType".equals(fieldName)) {
+                    deserializedIoTRoleProperties.hostPlatformType = HostPlatformType.fromString(reader.getString());
+                } else if ("computeResource".equals(fieldName)) {
+                    deserializedIoTRoleProperties.computeResource = ComputeResource.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

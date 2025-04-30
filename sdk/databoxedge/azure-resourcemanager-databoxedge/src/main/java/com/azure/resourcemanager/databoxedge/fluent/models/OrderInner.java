@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -12,6 +13,7 @@ import com.azure.resourcemanager.databoxedge.models.Address;
 import com.azure.resourcemanager.databoxedge.models.ArmBaseModel;
 import com.azure.resourcemanager.databoxedge.models.ContactDetails;
 import com.azure.resourcemanager.databoxedge.models.OrderStatus;
+import com.azure.resourcemanager.databoxedge.models.ShipmentType;
 import com.azure.resourcemanager.databoxedge.models.TrackingInfo;
 import java.io.IOException;
 import java.util.List;
@@ -21,6 +23,16 @@ import java.util.List;
  */
 @Fluent
 public final class OrderInner extends ArmBaseModel {
+    /*
+     * It specify the order api version.
+     */
+    private String kind;
+
+    /*
+     * Metadata pertaining to creation and last modification of Order
+     */
+    private SystemData systemData;
+
     /*
      * The order properties.
      */
@@ -45,6 +57,24 @@ public final class OrderInner extends ArmBaseModel {
      * Creates an instance of OrderInner class.
      */
     public OrderInner() {
+    }
+
+    /**
+     * Get the kind property: It specify the order api version.
+     * 
+     * @return the kind value.
+     */
+    public String kind() {
+        return this.kind;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of Order.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -84,6 +114,15 @@ public final class OrderInner extends ArmBaseModel {
     @Override
     public String id() {
         return this.id;
+    }
+
+    /**
+     * Get the orderId property: It specify the order resource id.
+     * 
+     * @return the orderId value.
+     */
+    public String orderId() {
+        return this.innerProperties() == null ? null : this.innerProperties().orderId();
     }
 
     /**
@@ -142,20 +181,6 @@ public final class OrderInner extends ArmBaseModel {
     }
 
     /**
-     * Set the currentStatus property: Current status of the order.
-     * 
-     * @param currentStatus the currentStatus value to set.
-     * @return the OrderInner object itself.
-     */
-    public OrderInner withCurrentStatus(OrderStatus currentStatus) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OrderProperties();
-        }
-        this.innerProperties().withCurrentStatus(currentStatus);
-        return this;
-    }
-
-    /**
      * Get the orderHistory property: List of status changes in the order.
      * 
      * @return the orderHistory value.
@@ -191,6 +216,29 @@ public final class OrderInner extends ArmBaseModel {
      */
     public List<TrackingInfo> returnTrackingInfo() {
         return this.innerProperties() == null ? null : this.innerProperties().returnTrackingInfo();
+    }
+
+    /**
+     * Get the shipmentType property: ShipmentType of the order.
+     * 
+     * @return the shipmentType value.
+     */
+    public ShipmentType shipmentType() {
+        return this.innerProperties() == null ? null : this.innerProperties().shipmentType();
+    }
+
+    /**
+     * Set the shipmentType property: ShipmentType of the order.
+     * 
+     * @param shipmentType the shipmentType value to set.
+     * @return the OrderInner object itself.
+     */
+    public OrderInner withShipmentType(ShipmentType shipmentType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new OrderProperties();
+        }
+        this.innerProperties().withShipmentType(shipmentType);
+        return this;
     }
 
     /**
@@ -237,6 +285,10 @@ public final class OrderInner extends ArmBaseModel {
                     deserializedOrderInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedOrderInner.type = reader.getString();
+                } else if ("kind".equals(fieldName)) {
+                    deserializedOrderInner.kind = reader.getString();
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedOrderInner.systemData = SystemData.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
                     deserializedOrderInner.innerProperties = OrderProperties.fromJson(reader);
                 } else {

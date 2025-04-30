@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
@@ -23,6 +24,11 @@ public final class BandwidthScheduleInner extends ArmBaseModel {
      * The properties of the bandwidth schedule.
      */
     private BandwidthScheduleProperties innerProperties = new BandwidthScheduleProperties();
+
+    /*
+     * Metadata pertaining to creation and last modification of BandwidthSchedule
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -52,6 +58,15 @@ public final class BandwidthScheduleInner extends ArmBaseModel {
      */
     private BandwidthScheduleProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of BandwidthSchedule.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -228,6 +243,8 @@ public final class BandwidthScheduleInner extends ArmBaseModel {
                     deserializedBandwidthScheduleInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedBandwidthScheduleInner.innerProperties = BandwidthScheduleProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedBandwidthScheduleInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

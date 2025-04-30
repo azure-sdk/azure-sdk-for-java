@@ -6,6 +6,7 @@ package com.azure.resourcemanager.databoxedge.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.databoxedge.fluent.models.DataBoxEdgeDeviceInner;
 import java.util.List;
@@ -66,6 +67,34 @@ public interface DataBoxEdgeDevice {
      * @return the etag value.
      */
     String etag();
+
+    /**
+     * Gets the identity property: Msi identity of the resource.
+     * 
+     * @return the identity value.
+     */
+    ResourceIdentity identity();
+
+    /**
+     * Gets the kind property: The kind of the device.
+     * 
+     * @return the kind value.
+     */
+    DataBoxEdgeDeviceKind kind();
+
+    /**
+     * Gets the systemData property: DataBoxEdge Resource.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
+     * Gets the systemDataPropertiesSystemData property: DataBoxEdge Device Properties.
+     * 
+     * @return the systemDataPropertiesSystemData value.
+     */
+    SystemData systemDataPropertiesSystemData();
 
     /**
      * Gets the dataBoxEdgeDeviceStatus property: The status of the Data Box Edge/Gateway device.
@@ -166,6 +195,34 @@ public interface DataBoxEdgeDevice {
     Integer nodeCount();
 
     /**
+     * Gets the resourceMoveDetails property: The details of the move operation on this resource.
+     * 
+     * @return the resourceMoveDetails value.
+     */
+    ResourceMoveDetails resourceMoveDetails();
+
+    /**
+     * Gets the edgeProfile property: The details of Edge Profile for this resource.
+     * 
+     * @return the edgeProfile value.
+     */
+    EdgeProfile edgeProfile();
+
+    /**
+     * Gets the dataResidency property: The details of data-residency related properties for this resource.
+     * 
+     * @return the dataResidency value.
+     */
+    DataResidency dataResidency();
+
+    /**
+     * Gets the kubernetesWorkloadProfile property: Kubernetes Workload Profile.
+     * 
+     * @return the kubernetesWorkloadProfile value.
+     */
+    String kubernetesWorkloadProfile();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -255,8 +312,7 @@ public interface DataBoxEdgeDevice {
          * resource to be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithSku, DefinitionStages.WithEtag,
-            DefinitionStages.WithDataBoxEdgeDeviceStatus, DefinitionStages.WithDescription,
-            DefinitionStages.WithModelDescription, DefinitionStages.WithFriendlyName {
+            DefinitionStages.WithIdentity, DefinitionStages.WithDataResidency {
             /**
              * Executes the create request.
              * 
@@ -315,55 +371,29 @@ public interface DataBoxEdgeDevice {
         }
 
         /**
-         * The stage of the DataBoxEdgeDevice definition allowing to specify dataBoxEdgeDeviceStatus.
+         * The stage of the DataBoxEdgeDevice definition allowing to specify identity.
          */
-        interface WithDataBoxEdgeDeviceStatus {
+        interface WithIdentity {
             /**
-             * Specifies the dataBoxEdgeDeviceStatus property: The status of the Data Box Edge/Gateway device..
+             * Specifies the identity property: Msi identity of the resource.
              * 
-             * @param dataBoxEdgeDeviceStatus The status of the Data Box Edge/Gateway device.
+             * @param identity Msi identity of the resource.
              * @return the next definition stage.
              */
-            WithCreate withDataBoxEdgeDeviceStatus(DataBoxEdgeDeviceStatus dataBoxEdgeDeviceStatus);
+            WithCreate withIdentity(ResourceIdentity identity);
         }
 
         /**
-         * The stage of the DataBoxEdgeDevice definition allowing to specify description.
+         * The stage of the DataBoxEdgeDevice definition allowing to specify dataResidency.
          */
-        interface WithDescription {
+        interface WithDataResidency {
             /**
-             * Specifies the description property: The Description of the Data Box Edge/Gateway device..
+             * Specifies the dataResidency property: The details of data-residency related properties for this resource.
              * 
-             * @param description The Description of the Data Box Edge/Gateway device.
+             * @param dataResidency The details of data-residency related properties for this resource.
              * @return the next definition stage.
              */
-            WithCreate withDescription(String description);
-        }
-
-        /**
-         * The stage of the DataBoxEdgeDevice definition allowing to specify modelDescription.
-         */
-        interface WithModelDescription {
-            /**
-             * Specifies the modelDescription property: The description of the Data Box Edge/Gateway device model..
-             * 
-             * @param modelDescription The description of the Data Box Edge/Gateway device model.
-             * @return the next definition stage.
-             */
-            WithCreate withModelDescription(String modelDescription);
-        }
-
-        /**
-         * The stage of the DataBoxEdgeDevice definition allowing to specify friendlyName.
-         */
-        interface WithFriendlyName {
-            /**
-             * Specifies the friendlyName property: The Data Box Edge/Gateway device name..
-             * 
-             * @param friendlyName The Data Box Edge/Gateway device name.
-             * @return the next definition stage.
-             */
-            WithCreate withFriendlyName(String friendlyName);
+            WithCreate withDataResidency(DataResidency dataResidency);
         }
     }
 
@@ -377,7 +407,7 @@ public interface DataBoxEdgeDevice {
     /**
      * The template for DataBoxEdgeDevice update.
      */
-    interface Update extends UpdateStages.WithTags {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithEdgeProfile {
         /**
          * Executes the update request.
          * 
@@ -409,6 +439,32 @@ public interface DataBoxEdgeDevice {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+
+        /**
+         * The stage of the DataBoxEdgeDevice update allowing to specify identity.
+         */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: Msi identity of the resource.
+             * 
+             * @param identity Msi identity of the resource.
+             * @return the next definition stage.
+             */
+            Update withIdentity(ResourceIdentity identity);
+        }
+
+        /**
+         * The stage of the DataBoxEdgeDevice update allowing to specify edgeProfile.
+         */
+        interface WithEdgeProfile {
+            /**
+             * Specifies the edgeProfile property: Edge Profile property of the Data Box Edge/Gateway device.
+             * 
+             * @param edgeProfile Edge Profile property of the Data Box Edge/Gateway device.
+             * @return the next definition stage.
+             */
+            Update withEdgeProfile(EdgeProfilePatch edgeProfile);
         }
     }
 
@@ -446,23 +502,43 @@ public interface DataBoxEdgeDevice {
     void downloadUpdates(Context context);
 
     /**
-     * Gets additional information for the specified Data Box Edge/Data Box Gateway device.
+     * Generates certificate for activation key.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return additional information for the specified Data Box Edge/Data Box Gateway device along with
+     * @return used in activation key generation flow along with {@link Response}.
+     */
+    Response<GenerateCertResponse> generateCertificateWithResponse(Context context);
+
+    /**
+     * Generates certificate for activation key.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return used in activation key generation flow.
+     */
+    GenerateCertResponse generateCertificate();
+
+    /**
+     * Gets additional information for the specified Azure Stack Edge/Data Box Gateway device.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return additional information for the specified Azure Stack Edge/Data Box Gateway device along with
      * {@link Response}.
      */
     Response<DataBoxEdgeDeviceExtendedInfo> getExtendedInformationWithResponse(Context context);
 
     /**
-     * Gets additional information for the specified Data Box Edge/Data Box Gateway device.
+     * Gets additional information for the specified Azure Stack Edge/Data Box Gateway device.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return additional information for the specified Data Box Edge/Data Box Gateway device.
+     * @return additional information for the specified Azure Stack Edge/Data Box Gateway device.
      */
     DataBoxEdgeDeviceExtendedInfo getExtendedInformation();
 
@@ -501,6 +577,31 @@ public interface DataBoxEdgeDevice {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void scanForUpdates(Context context);
+
+    /**
+     * Gets additional information for the specified Data Box Edge/Data Box Gateway device.
+     * 
+     * @param parameters The patch object.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return additional information for the specified Data Box Edge/Data Box Gateway device along with
+     * {@link Response}.
+     */
+    Response<DataBoxEdgeDeviceExtendedInfo>
+        updateExtendedInformationWithResponse(DataBoxEdgeDeviceExtendedInfoPatch parameters, Context context);
+
+    /**
+     * Gets additional information for the specified Data Box Edge/Data Box Gateway device.
+     * 
+     * @param parameters The patch object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return additional information for the specified Data Box Edge/Data Box Gateway device.
+     */
+    DataBoxEdgeDeviceExtendedInfo updateExtendedInformation(DataBoxEdgeDeviceExtendedInfoPatch parameters);
 
     /**
      * Uploads registration certificate for the device.

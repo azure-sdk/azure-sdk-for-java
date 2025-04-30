@@ -204,21 +204,6 @@ public final class Address implements JsonSerializable<Address> {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (addressLine1() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property addressLine1 in model Address"));
-        }
-        if (postalCode() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property postalCode in model Address"));
-        }
-        if (city() == null) {
-            throw LOGGER.atError().log(new IllegalArgumentException("Missing required property city in model Address"));
-        }
-        if (state() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property state in model Address"));
-        }
         if (country() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property country in model Address"));
@@ -233,13 +218,13 @@ public final class Address implements JsonSerializable<Address> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("country", this.country);
         jsonWriter.writeStringField("addressLine1", this.addressLine1);
+        jsonWriter.writeStringField("addressLine2", this.addressLine2);
+        jsonWriter.writeStringField("addressLine3", this.addressLine3);
         jsonWriter.writeStringField("postalCode", this.postalCode);
         jsonWriter.writeStringField("city", this.city);
         jsonWriter.writeStringField("state", this.state);
-        jsonWriter.writeStringField("country", this.country);
-        jsonWriter.writeStringField("addressLine2", this.addressLine2);
-        jsonWriter.writeStringField("addressLine3", this.addressLine3);
         return jsonWriter.writeEndObject();
     }
 
@@ -259,20 +244,20 @@ public final class Address implements JsonSerializable<Address> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("addressLine1".equals(fieldName)) {
+                if ("country".equals(fieldName)) {
+                    deserializedAddress.country = reader.getString();
+                } else if ("addressLine1".equals(fieldName)) {
                     deserializedAddress.addressLine1 = reader.getString();
+                } else if ("addressLine2".equals(fieldName)) {
+                    deserializedAddress.addressLine2 = reader.getString();
+                } else if ("addressLine3".equals(fieldName)) {
+                    deserializedAddress.addressLine3 = reader.getString();
                 } else if ("postalCode".equals(fieldName)) {
                     deserializedAddress.postalCode = reader.getString();
                 } else if ("city".equals(fieldName)) {
                     deserializedAddress.city = reader.getString();
                 } else if ("state".equals(fieldName)) {
                     deserializedAddress.state = reader.getString();
-                } else if ("country".equals(fieldName)) {
-                    deserializedAddress.country = reader.getString();
-                } else if ("addressLine2".equals(fieldName)) {
-                    deserializedAddress.addressLine2 = reader.getString();
-                } else if ("addressLine3".equals(fieldName)) {
-                    deserializedAddress.addressLine3 = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

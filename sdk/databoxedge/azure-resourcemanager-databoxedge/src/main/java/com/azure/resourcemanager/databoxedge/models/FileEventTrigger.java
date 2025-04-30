@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
@@ -27,6 +28,11 @@ public final class FileEventTrigger extends TriggerInner {
      * File trigger properties.
      */
     private FileTriggerProperties innerProperties = new FileTriggerProperties();
+
+    /*
+     * Metadata pertaining to creation and last modification of Trigger
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -66,6 +72,16 @@ public final class FileEventTrigger extends TriggerInner {
      */
     private FileTriggerProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of Trigger.
+     * 
+     * @return the systemData value.
+     */
+    @Override
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -222,6 +238,8 @@ public final class FileEventTrigger extends TriggerInner {
                     deserializedFileEventTrigger.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedFileEventTrigger.type = reader.getString();
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedFileEventTrigger.systemData = SystemData.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
                     deserializedFileEventTrigger.innerProperties = FileTriggerProperties.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {

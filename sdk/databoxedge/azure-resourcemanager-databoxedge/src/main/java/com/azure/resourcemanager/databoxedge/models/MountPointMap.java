@@ -33,6 +33,11 @@ public final class MountPointMap implements JsonSerializable<MountPointMap> {
     private String mountPoint;
 
     /*
+     * Mounting type.
+     */
+    private MountType mountType;
+
+    /*
      * Role type.
      */
     private RoleTypes roleType;
@@ -79,6 +84,15 @@ public final class MountPointMap implements JsonSerializable<MountPointMap> {
      */
     public String mountPoint() {
         return this.mountPoint;
+    }
+
+    /**
+     * Get the mountType property: Mounting type.
+     * 
+     * @return the mountType value.
+     */
+    public MountType mountType() {
+        return this.mountType;
     }
 
     /**
@@ -136,6 +150,8 @@ public final class MountPointMap implements JsonSerializable<MountPointMap> {
                     deserializedMountPointMap.roleId = reader.getString();
                 } else if ("mountPoint".equals(fieldName)) {
                     deserializedMountPointMap.mountPoint = reader.getString();
+                } else if ("mountType".equals(fieldName)) {
+                    deserializedMountPointMap.mountType = MountType.fromString(reader.getString());
                 } else if ("roleType".equals(fieldName)) {
                     deserializedMountPointMap.roleType = RoleTypes.fromString(reader.getString());
                 } else {

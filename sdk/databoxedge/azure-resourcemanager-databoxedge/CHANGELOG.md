@@ -1,14 +1,385 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-30)
 
-### Features Added
+- Azure Resource Manager DataBoxEdge client library for Java. This package contains Microsoft Azure SDK for DataBoxEdge Management SDK.  Package tag package-2023-12-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.Skus` was removed
 
-### Other Changes
+#### `models.SkuRestrictionInfo` was removed
+
+#### `models.SkuInformationList` was removed
+
+#### `models.SkuRestriction` was removed
+
+#### `models.SkuRestrictionReasonCode` was removed
+
+#### `models.ResourceTypeSku` was removed
+
+#### `models.StorageAccount$DefinitionStages` was modified
+
+* Required stage 2 was added
+
+#### `models.User$Definition` was modified
+
+* `withShareAccessRights(java.util.List)` was removed
+
+#### `DataBoxEdgeManager` was modified
+
+* `skus()` was removed
+
+#### `models.DataBoxEdgeDevice$Definition` was modified
+
+* `withModelDescription(java.lang.String)` was removed
+* `withFriendlyName(java.lang.String)` was removed
+* `withDataBoxEdgeDeviceStatus(models.DataBoxEdgeDeviceStatus)` was removed
+* `withDescription(java.lang.String)` was removed
+
+#### `models.User$Update` was modified
+
+* `withShareAccessRights(java.util.List)` was removed
+
+### Features Added
+
+* `models.DiagnosticProactiveLogCollectionSettings` was added
+
+* `models.MetricCounterSet` was added
+
+* `models.DataResidency` was added
+
+* `models.RemoteApplicationType` was added
+
+* `models.ArcAddon` was added
+
+* `models.UpdateStatus` was added
+
+* `models.KubernetesIpConfiguration` was added
+
+* `models.VmPlacementRequestResult` was added
+
+* `models.SupportPackages` was added
+
+* `models.UpdateDetails` was added
+
+* `models.EdgeProfile` was added
+
+* `models.TriggerSupportPackageRequest` was added
+
+* `models.MetricDimension` was added
+
+* `models.ShipmentType` was added
+
+* `models.ClusterMemoryCapacity` was added
+
+* `models.PosixComplianceStatus` was added
+
+* `models.AvailableSkus` was added
+
+* `models.CniConfig` was added
+
+* `models.DeviceCapacityRequestInfo` was added
+
+* `models.VmMemory` was added
+
+* `models.SkuAvailability` was added
+
+* `models.AddonList` was added
+
+* `models.ResourceIdentity` was added
+
+* `models.SkuVersion` was added
+
+* `models.CloudEdgeManagementRole` was added
+
+* `models.ResourceMoveDetails` was added
+
+* `models.ClusterCapacityViewData` was added
+
+* `models.UpdateType` was added
+
+* `models.HostPlatformType` was added
+
+* `models.GenerateCertResponse` was added
+
+* `models.Secret` was added
+
+* `models.KeyVaultSyncStatus` was added
+
+* `models.RemoteSupportSettings` was added
+
+* `models.KubernetesRoleStorage` was added
+
+* `models.NumaNodeData` was added
+
+* `models.KubernetesRoleNetwork` was added
+
+* `models.EdgeProfileSubscription` was added
+
+* `models.MountType` was added
+
+* `models.MonitoringConfigs` was added
+
+* `models.IoTEdgeAgentInfo` was added
+
+* `models.DeviceCapacityInfo` was added
+
+* `models.MetricCounter` was added
+
+* `models.ProactiveDiagnosticsConsent` was added
+
+* `models.DiagnosticRemoteSupportSettings` was added
+
+* `models.AccessLevel` was added
+
+* `models.LoadBalancerConfig` was added
+
+* `models.ComputeResource` was added
+
+* `models.DCAccessCode` was added
+
+* `models.IoTAddon` was added
+
+* `models.ClusterWitnessType` was added
+
+* `models.ClusterGpuCapacity` was added
+
+* `models.EdgeProfileSubscriptionPatch` was added
+
+* `models.SubscriptionRegisteredFeatures` was added
+
+* `models.InstallationImpact` was added
+
+* `models.Addon` was added
+
+* `models.EdgeProfilePatch` was added
+
+* `models.MonitoringMetricConfiguration` was added
+
+* `models.MsiIdentityType` was added
+
+* `models.KubernetesState` was added
+
+* `models.ImageRepositoryCredential` was added
+
+* `models.MonitoringMetricConfigurationList` was added
+
+* `models.SubscriptionState` was added
+
+* `models.DiagnosticSettings` was added
+
+* `models.ResourceMoveStatus` was added
+
+* `models.KubernetesClusterInfo` was added
+
+* `models.KubernetesRoleResources` was added
+
+* `models.DataBoxEdgeSku` was added
+
+* `models.DataBoxEdgeSkuList` was added
+
+* `models.SkuSignupOption` was added
+
+* `models.Addons` was added
+
+* `models.KubernetesRoleCompute` was added
+
+* `models.DataResidencyType` was added
+
+* `models.MecRole` was added
+
+* `models.KubernetesNodeType` was added
+
+* `models.KubernetesRoleStorageClassInfo` was added
+
+* `models.AddonState` was added
+
+* `models.NodeInfo` was added
+
+* `models.ClusterStorageViewData` was added
+
+* `models.HostCapacity` was added
+
+* `models.DeviceCapacityInfoes` was added
+
+* `models.MetricConfiguration` was added
+
+* `models.EtcdInfo` was added
+
+* `models.DataBoxEdgeDeviceKind` was added
+
+* `models.SkuCapability` was added
+
+* `models.KubernetesRole` was added
+
+* `models.AddonType` was added
+
+* `models.DeviceCapacityChecks` was added
+
+* `models.DataBoxEdgeDeviceExtendedInfoPatch` was added
+
+#### `models.StorageAccountCredential` was modified
+
+* `systemData()` was added
+
+#### `models.Operation` was modified
+
+* `isDataAction()` was added
+
+#### `models.Alert` was modified
+
+* `systemData()` was added
+
+#### `models.DataBoxEdgeDeviceExtendedInfo` was modified
+
+* `channelIntegrityKeyName()` was added
+* `systemData()` was added
+* `fileShareWitnessUsername()` was added
+* `cloudWitnessContainerName()` was added
+* `fileShareWitnessLocation()` was added
+* `cloudWitnessStorageAccountName()` was added
+* `keyVaultSyncStatus()` was added
+* `channelIntegrityKeyVersion()` was added
+* `clientSecretStoreUrl()` was added
+* `cloudWitnessStorageEndpoint()` was added
+* `deviceSecrets()` was added
+* `clientSecretStoreId()` was added
+* `clusterWitnessType()` was added
+
+#### `models.Devices` was modified
+
+* `updateExtendedInformationWithResponse(java.lang.String,java.lang.String,models.DataBoxEdgeDeviceExtendedInfoPatch,com.azure.core.util.Context)` was added
+* `generateCertificate(java.lang.String,java.lang.String)` was added
+* `generateCertificateWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `updateExtendedInformation(java.lang.String,java.lang.String,models.DataBoxEdgeDeviceExtendedInfoPatch)` was added
+
+#### `models.Orders` was modified
+
+* `listDCAccessCode(java.lang.String,java.lang.String)` was added
+* `listDCAccessCodeWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.IoTRole` was modified
+
+* `hostPlatformType()` was added
+* `computeResource()` was added
+* `withIoTEdgeAgentInfo(models.IoTEdgeAgentInfo)` was added
+* `withComputeResource(models.ComputeResource)` was added
+* `ioTEdgeAgentInfo()` was added
+* `systemData()` was added
+
+#### `models.Trigger` was modified
+
+* `systemData()` was added
+
+#### `models.Order` was modified
+
+* `systemData()` was added
+* `kind()` was added
+* `orderId()` was added
+* `shipmentType()` was added
+
+#### `DataBoxEdgeManager` was modified
+
+* `supportPackages()` was added
+* `deviceCapacityInfoes()` was added
+* `diagnosticSettings()` was added
+* `addons()` was added
+* `availableSkus()` was added
+* `deviceCapacityChecks()` was added
+* `monitoringConfigs()` was added
+
+#### `models.UpdateSummary` was modified
+
+* `updates()` was added
+* `lastCompletedInstallJobId()` was added
+* `lastCompletedDownloadJobId()` was added
+* `lastSuccessfulScanJobTime()` was added
+* `systemData()` was added
+* `lastInstallJobStatus()` was added
+* `totalTimeInMinutes()` was added
+* `lastDownloadJobStatus()` was added
+* `lastSuccessfulInstallJobDateTime()` was added
+
+#### `models.FileEventTrigger` was modified
+
+* `systemData()` was added
+
+#### `models.DataBoxEdgeDevice` was modified
+
+* `systemData()` was added
+* `updateExtendedInformationWithResponse(models.DataBoxEdgeDeviceExtendedInfoPatch,com.azure.core.util.Context)` was added
+* `edgeProfile()` was added
+* `identity()` was added
+* `kind()` was added
+* `updateExtendedInformation(models.DataBoxEdgeDeviceExtendedInfoPatch)` was added
+* `resourceMoveDetails()` was added
+* `generateCertificateWithResponse(com.azure.core.util.Context)` was added
+* `systemDataPropertiesSystemData()` was added
+* `dataResidency()` was added
+* `kubernetesWorkloadProfile()` was added
+* `generateCertificate()` was added
+
+#### `models.Container` was modified
+
+* `systemData()` was added
+
+#### `models.MountPointMap` was modified
+
+* `mountType()` was added
+
+#### `models.User` was modified
+
+* `systemData()` was added
+
+#### `models.NodeList` was modified
+
+* `nextLink()` was added
+
+#### `models.StorageAccount` was modified
+
+* `systemData()` was added
+
+#### `models.PeriodicTimerEventTrigger` was modified
+
+* `systemData()` was added
+
+#### `models.OrderStatus` was modified
+
+* `trackingInformation()` was added
+
+#### `models.Role` was modified
+
+* `systemData()` was added
+
+#### `models.DataBoxEdgeDevicePatch` was modified
+
+* `edgeProfile()` was added
+* `withIdentity(models.ResourceIdentity)` was added
+* `identity()` was added
+* `withEdgeProfile(models.EdgeProfilePatch)` was added
+
+#### `models.DataBoxEdgeDevice$Definition` was modified
+
+* `withDataResidency(models.DataResidency)` was added
+* `withIdentity(models.ResourceIdentity)` was added
+
+#### `models.DataBoxEdgeDevice$Update` was modified
+
+* `withIdentity(models.ResourceIdentity)` was added
+* `withEdgeProfile(models.EdgeProfilePatch)` was added
+
+#### `models.NetworkSettings` was modified
+
+* `systemData()` was added
+
+#### `models.Share` was modified
+
+* `systemData()` was added
+
+#### `models.BandwidthSchedule` was modified
+
+* `systemData()` was added
 
 ## 1.0.0 (2024-12-23)
 

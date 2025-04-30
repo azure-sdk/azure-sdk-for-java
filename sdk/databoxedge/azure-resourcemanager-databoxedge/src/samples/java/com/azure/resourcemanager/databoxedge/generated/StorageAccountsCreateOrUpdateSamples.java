@@ -13,7 +13,7 @@ import com.azure.resourcemanager.databoxedge.models.StorageAccountStatus;
 public final class StorageAccountsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/StorageAccountPut.
+     * specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2023-12-01/examples/StorageAccountPut.
      * json
      */
     /**
@@ -25,9 +25,9 @@ public final class StorageAccountsCreateOrUpdateSamples {
         manager.storageAccounts()
             .define("blobstorageaccount1")
             .withExistingDataBoxEdgeDevice("testedgedevice", "GroupForEdgeAutomation")
+            .withDataPolicy(DataPolicy.CLOUD)
             .withDescription("It's an awesome storage account")
             .withStorageAccountStatus(StorageAccountStatus.OK)
-            .withDataPolicy(DataPolicy.CLOUD)
             .withStorageAccountCredentialId(
                 "/subscriptions/4385cf00-2d3a-425a-832f-f4285b1c9dce/resourceGroups/GroupForDataBoxEdgeAutomation/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/testedgedevice/storageAccountCredentials/cisbvt")
             .create();

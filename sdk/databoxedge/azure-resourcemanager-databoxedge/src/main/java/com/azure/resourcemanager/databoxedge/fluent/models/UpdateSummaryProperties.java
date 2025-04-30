@@ -11,6 +11,8 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.databoxedge.models.InstallRebootBehavior;
+import com.azure.resourcemanager.databoxedge.models.JobStatus;
+import com.azure.resourcemanager.databoxedge.models.UpdateDetails;
 import com.azure.resourcemanager.databoxedge.models.UpdateOperation;
 import java.io.IOException;
 import java.time.OffsetDateTime;
@@ -43,14 +45,44 @@ public final class UpdateSummaryProperties implements JsonSerializable<UpdateSum
     private OffsetDateTime lastCompletedScanJobDateTime;
 
     /*
+     * Time when the last scan job is successfully completed.
+     */
+    private OffsetDateTime lastSuccessfulScanJobTime;
+
+    /*
      * The time when the last Download job was completed (success/cancelled/failed) on the appliance.
      */
     private OffsetDateTime lastCompletedDownloadJobDateTime;
 
     /*
+     * JobId of the last ran download job.(Can be success/cancelled/failed)
+     */
+    private String lastCompletedDownloadJobId;
+
+    /*
+     * JobStatus of the last ran download job.
+     */
+    private JobStatus lastDownloadJobStatus;
+
+    /*
+     * The time when the Last Install job was completed successfully on the appliance
+     */
+    private OffsetDateTime lastSuccessfulInstallJobDateTime;
+
+    /*
      * The time when the last Install job was completed (success/cancelled/failed) on the appliance.
      */
     private OffsetDateTime lastCompletedInstallJobDateTime;
+
+    /*
+     * JobId of the last ran install job.(Can be success/cancelled/failed)
+     */
+    private String lastCompletedInstallJobId;
+
+    /*
+     * JobStatus of the last ran install job.
+     */
+    private JobStatus lastInstallJobStatus;
 
     /*
      * The number of updates available for the current device version as per the last device scan.
@@ -103,9 +135,19 @@ public final class UpdateSummaryProperties implements JsonSerializable<UpdateSum
     private List<String> updateTitles;
 
     /*
+     * The list of updates available for install.
+     */
+    private List<UpdateDetails> updates;
+
+    /*
      * The total size of updates available for download in bytes.
      */
     private Double totalUpdateSizeInBytes;
+
+    /*
+     * The total time in Minutes
+     */
+    private Integer totalTimeInMinutes;
 
     /**
      * Creates an instance of UpdateSummaryProperties class.
@@ -196,6 +238,26 @@ public final class UpdateSummaryProperties implements JsonSerializable<UpdateSum
     }
 
     /**
+     * Get the lastSuccessfulScanJobTime property: Time when the last scan job is successfully completed.
+     * 
+     * @return the lastSuccessfulScanJobTime value.
+     */
+    public OffsetDateTime lastSuccessfulScanJobTime() {
+        return this.lastSuccessfulScanJobTime;
+    }
+
+    /**
+     * Set the lastSuccessfulScanJobTime property: Time when the last scan job is successfully completed.
+     * 
+     * @param lastSuccessfulScanJobTime the lastSuccessfulScanJobTime value to set.
+     * @return the UpdateSummaryProperties object itself.
+     */
+    public UpdateSummaryProperties withLastSuccessfulScanJobTime(OffsetDateTime lastSuccessfulScanJobTime) {
+        this.lastSuccessfulScanJobTime = lastSuccessfulScanJobTime;
+        return this;
+    }
+
+    /**
      * Get the lastCompletedDownloadJobDateTime property: The time when the last Download job was completed
      * (success/cancelled/failed) on the appliance.
      * 
@@ -206,6 +268,48 @@ public final class UpdateSummaryProperties implements JsonSerializable<UpdateSum
     }
 
     /**
+     * Get the lastCompletedDownloadJobId property: JobId of the last ran download job.(Can be
+     * success/cancelled/failed).
+     * 
+     * @return the lastCompletedDownloadJobId value.
+     */
+    public String lastCompletedDownloadJobId() {
+        return this.lastCompletedDownloadJobId;
+    }
+
+    /**
+     * Get the lastDownloadJobStatus property: JobStatus of the last ran download job.
+     * 
+     * @return the lastDownloadJobStatus value.
+     */
+    public JobStatus lastDownloadJobStatus() {
+        return this.lastDownloadJobStatus;
+    }
+
+    /**
+     * Get the lastSuccessfulInstallJobDateTime property: The time when the Last Install job was completed successfully
+     * on the appliance.
+     * 
+     * @return the lastSuccessfulInstallJobDateTime value.
+     */
+    public OffsetDateTime lastSuccessfulInstallJobDateTime() {
+        return this.lastSuccessfulInstallJobDateTime;
+    }
+
+    /**
+     * Set the lastSuccessfulInstallJobDateTime property: The time when the Last Install job was completed successfully
+     * on the appliance.
+     * 
+     * @param lastSuccessfulInstallJobDateTime the lastSuccessfulInstallJobDateTime value to set.
+     * @return the UpdateSummaryProperties object itself.
+     */
+    public UpdateSummaryProperties
+        withLastSuccessfulInstallJobDateTime(OffsetDateTime lastSuccessfulInstallJobDateTime) {
+        this.lastSuccessfulInstallJobDateTime = lastSuccessfulInstallJobDateTime;
+        return this;
+    }
+
+    /**
      * Get the lastCompletedInstallJobDateTime property: The time when the last Install job was completed
      * (success/cancelled/failed) on the appliance.
      * 
@@ -213,6 +317,24 @@ public final class UpdateSummaryProperties implements JsonSerializable<UpdateSum
      */
     public OffsetDateTime lastCompletedInstallJobDateTime() {
         return this.lastCompletedInstallJobDateTime;
+    }
+
+    /**
+     * Get the lastCompletedInstallJobId property: JobId of the last ran install job.(Can be success/cancelled/failed).
+     * 
+     * @return the lastCompletedInstallJobId value.
+     */
+    public String lastCompletedInstallJobId() {
+        return this.lastCompletedInstallJobId;
+    }
+
+    /**
+     * Get the lastInstallJobStatus property: JobStatus of the last ran install job.
+     * 
+     * @return the lastInstallJobStatus value.
+     */
+    public JobStatus lastInstallJobStatus() {
+        return this.lastInstallJobStatus;
     }
 
     /**
@@ -310,6 +432,15 @@ public final class UpdateSummaryProperties implements JsonSerializable<UpdateSum
     }
 
     /**
+     * Get the updates property: The list of updates available for install.
+     * 
+     * @return the updates value.
+     */
+    public List<UpdateDetails> updates() {
+        return this.updates;
+    }
+
+    /**
      * Get the totalUpdateSizeInBytes property: The total size of updates available for download in bytes.
      * 
      * @return the totalUpdateSizeInBytes value.
@@ -319,11 +450,23 @@ public final class UpdateSummaryProperties implements JsonSerializable<UpdateSum
     }
 
     /**
+     * Get the totalTimeInMinutes property: The total time in Minutes.
+     * 
+     * @return the totalTimeInMinutes value.
+     */
+    public Integer totalTimeInMinutes() {
+        return this.totalTimeInMinutes;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (updates() != null) {
+            updates().forEach(e -> e.validate());
+        }
     }
 
     /**
@@ -342,6 +485,14 @@ public final class UpdateSummaryProperties implements JsonSerializable<UpdateSum
             this.lastCompletedScanJobDateTime == null
                 ? null
                 : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.lastCompletedScanJobDateTime));
+        jsonWriter.writeStringField("lastSuccessfulScanJobTime",
+            this.lastSuccessfulScanJobTime == null
+                ? null
+                : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.lastSuccessfulScanJobTime));
+        jsonWriter.writeStringField("lastSuccessfulInstallJobDateTime",
+            this.lastSuccessfulInstallJobDateTime == null
+                ? null
+                : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.lastSuccessfulInstallJobDateTime));
         return jsonWriter.writeEndObject();
     }
 
@@ -370,12 +521,27 @@ public final class UpdateSummaryProperties implements JsonSerializable<UpdateSum
                 } else if ("lastCompletedScanJobDateTime".equals(fieldName)) {
                     deserializedUpdateSummaryProperties.lastCompletedScanJobDateTime = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("lastSuccessfulScanJobTime".equals(fieldName)) {
+                    deserializedUpdateSummaryProperties.lastSuccessfulScanJobTime = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("lastCompletedDownloadJobDateTime".equals(fieldName)) {
                     deserializedUpdateSummaryProperties.lastCompletedDownloadJobDateTime = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("lastCompletedDownloadJobId".equals(fieldName)) {
+                    deserializedUpdateSummaryProperties.lastCompletedDownloadJobId = reader.getString();
+                } else if ("lastDownloadJobStatus".equals(fieldName)) {
+                    deserializedUpdateSummaryProperties.lastDownloadJobStatus
+                        = JobStatus.fromString(reader.getString());
+                } else if ("lastSuccessfulInstallJobDateTime".equals(fieldName)) {
+                    deserializedUpdateSummaryProperties.lastSuccessfulInstallJobDateTime = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("lastCompletedInstallJobDateTime".equals(fieldName)) {
                     deserializedUpdateSummaryProperties.lastCompletedInstallJobDateTime = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("lastCompletedInstallJobId".equals(fieldName)) {
+                    deserializedUpdateSummaryProperties.lastCompletedInstallJobId = reader.getString();
+                } else if ("lastInstallJobStatus".equals(fieldName)) {
+                    deserializedUpdateSummaryProperties.lastInstallJobStatus = JobStatus.fromString(reader.getString());
                 } else if ("totalNumberOfUpdatesAvailable".equals(fieldName)) {
                     deserializedUpdateSummaryProperties.totalNumberOfUpdatesAvailable
                         = reader.getNullable(JsonReader::getInt);
@@ -404,9 +570,14 @@ public final class UpdateSummaryProperties implements JsonSerializable<UpdateSum
                 } else if ("updateTitles".equals(fieldName)) {
                     List<String> updateTitles = reader.readArray(reader1 -> reader1.getString());
                     deserializedUpdateSummaryProperties.updateTitles = updateTitles;
+                } else if ("updates".equals(fieldName)) {
+                    List<UpdateDetails> updates = reader.readArray(reader1 -> UpdateDetails.fromJson(reader1));
+                    deserializedUpdateSummaryProperties.updates = updates;
                 } else if ("totalUpdateSizeInBytes".equals(fieldName)) {
                     deserializedUpdateSummaryProperties.totalUpdateSizeInBytes
                         = reader.getNullable(JsonReader::getDouble);
+                } else if ("totalTimeInMinutes".equals(fieldName)) {
+                    deserializedUpdateSummaryProperties.totalTimeInMinutes = reader.getNullable(JsonReader::getInt);
                 } else {
                     reader.skipChildren();
                 }

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.databoxedge.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.databoxedge.fluent.models.RoleInner;
 
 /**
@@ -37,6 +38,13 @@ public interface Role {
      * @return the kind value.
      */
     RoleTypes kind();
+
+    /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of Role.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.databoxedge.fluent.models.RoleInner object.

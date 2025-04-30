@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.databoxedge.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.databoxedge.fluent.models.TriggerInner;
 
 /**
@@ -37,6 +38,13 @@ public interface Trigger {
      * @return the kind value.
      */
     TriggerEventType kind();
+
+    /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of Trigger.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.databoxedge.fluent.models.TriggerInner object.

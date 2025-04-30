@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -24,6 +25,11 @@ public final class AlertInner extends ArmBaseModel {
      * Properties of alert.
      */
     private AlertProperties innerProperties;
+
+    /*
+     * Metadata pertaining to creation and last modification of Alert
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -53,6 +59,15 @@ public final class AlertInner extends ArmBaseModel {
      */
     private AlertProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of Alert.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -193,6 +208,8 @@ public final class AlertInner extends ArmBaseModel {
                     deserializedAlertInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedAlertInner.innerProperties = AlertProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedAlertInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
