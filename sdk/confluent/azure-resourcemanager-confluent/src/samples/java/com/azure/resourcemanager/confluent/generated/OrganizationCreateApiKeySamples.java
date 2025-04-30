@@ -11,15 +11,15 @@ import com.azure.resourcemanager.confluent.models.CreateApiKeyModel;
  */
 public final class OrganizationCreateApiKeySamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-07-01/examples/
      * Organization_CreateClusterAPIKey.json
      */
     /**
-     * Sample code: Organization_CreateAPIKey.
+     * Sample code: Organization_CreateClusterAPIKey.
      * 
      * @param manager Entry point to ConfluentManager.
      */
-    public static void organizationCreateAPIKey(com.azure.resourcemanager.confluent.ConfluentManager manager) {
+    public static void organizationCreateClusterAPIKey(com.azure.resourcemanager.confluent.ConfluentManager manager) {
         manager.organizations()
             .createApiKeyWithResponse("myResourceGroup", "myOrganization", "env-12132", "clusterId-123",
                 new CreateApiKeyModel().withName("CI kafka access key")

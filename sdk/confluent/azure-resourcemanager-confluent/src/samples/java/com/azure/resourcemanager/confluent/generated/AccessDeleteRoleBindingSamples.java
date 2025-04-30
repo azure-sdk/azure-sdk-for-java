@@ -10,7 +10,7 @@ package com.azure.resourcemanager.confluent.generated;
 public final class AccessDeleteRoleBindingSamples {
     /*
      * x-ms-original-file:
-     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/Access_DeleteRoleBinding.
+     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-07-01/examples/Access_DeleteRoleBinding.
      * json
      */
     /**
