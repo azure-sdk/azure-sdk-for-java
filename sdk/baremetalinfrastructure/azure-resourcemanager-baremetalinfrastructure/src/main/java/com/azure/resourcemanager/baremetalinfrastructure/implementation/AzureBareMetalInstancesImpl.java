@@ -11,9 +11,11 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.baremetalinfrastructure.fluent.AzureBareMetalInstancesClient;
 import com.azure.resourcemanager.baremetalinfrastructure.fluent.models.AzureBareMetalInstanceInner;
+import com.azure.resourcemanager.baremetalinfrastructure.fluent.models.OperationStatusInner;
 import com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalInstance;
 import com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalInstances;
-import com.azure.resourcemanager.baremetalinfrastructure.models.Tags;
+import com.azure.resourcemanager.baremetalinfrastructure.models.ForceState;
+import com.azure.resourcemanager.baremetalinfrastructure.models.OperationStatus;
 
 public final class AzureBareMetalInstancesImpl implements AzureBareMetalInstances {
     private static final ClientLogger LOGGER = new ClientLogger(AzureBareMetalInstancesImpl.class);
@@ -26,6 +28,63 @@ public final class AzureBareMetalInstancesImpl implements AzureBareMetalInstance
         com.azure.resourcemanager.baremetalinfrastructure.BareMetalInfrastructureManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
+    }
+
+    public OperationStatus start(String resourceGroupName, String azureBareMetalInstanceName) {
+        OperationStatusInner inner = this.serviceClient().start(resourceGroupName, azureBareMetalInstanceName);
+        if (inner != null) {
+            return new OperationStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public OperationStatus start(String resourceGroupName, String azureBareMetalInstanceName, Context context) {
+        OperationStatusInner inner = this.serviceClient().start(resourceGroupName, azureBareMetalInstanceName, context);
+        if (inner != null) {
+            return new OperationStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public OperationStatus restart(String resourceGroupName, String azureBareMetalInstanceName) {
+        OperationStatusInner inner = this.serviceClient().restart(resourceGroupName, azureBareMetalInstanceName);
+        if (inner != null) {
+            return new OperationStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public OperationStatus restart(String resourceGroupName, String azureBareMetalInstanceName,
+        ForceState forceParameter, Context context) {
+        OperationStatusInner inner
+            = this.serviceClient().restart(resourceGroupName, azureBareMetalInstanceName, forceParameter, context);
+        if (inner != null) {
+            return new OperationStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public OperationStatus shutdown(String resourceGroupName, String azureBareMetalInstanceName) {
+        OperationStatusInner inner = this.serviceClient().shutdown(resourceGroupName, azureBareMetalInstanceName);
+        if (inner != null) {
+            return new OperationStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public OperationStatus shutdown(String resourceGroupName, String azureBareMetalInstanceName, Context context) {
+        OperationStatusInner inner
+            = this.serviceClient().shutdown(resourceGroupName, azureBareMetalInstanceName, context);
+        if (inner != null) {
+            return new OperationStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public PagedIterable<AzureBareMetalInstance> list() {
@@ -71,27 +130,70 @@ public final class AzureBareMetalInstancesImpl implements AzureBareMetalInstance
         }
     }
 
-    public Response<AzureBareMetalInstance> updateWithResponse(String resourceGroupName,
-        String azureBareMetalInstanceName, Tags tagsParameter, Context context) {
-        Response<AzureBareMetalInstanceInner> inner = this.serviceClient()
-            .updateWithResponse(resourceGroupName, azureBareMetalInstanceName, tagsParameter, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new AzureBareMetalInstanceImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String azureBareMetalInstanceName,
+        Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, azureBareMetalInstanceName, context);
     }
 
-    public AzureBareMetalInstance update(String resourceGroupName, String azureBareMetalInstanceName,
-        Tags tagsParameter) {
-        AzureBareMetalInstanceInner inner
-            = this.serviceClient().update(resourceGroupName, azureBareMetalInstanceName, tagsParameter);
-        if (inner != null) {
-            return new AzureBareMetalInstanceImpl(inner, this.manager());
-        } else {
-            return null;
+    public void deleteByResourceGroup(String resourceGroupName, String azureBareMetalInstanceName) {
+        this.serviceClient().delete(resourceGroupName, azureBareMetalInstanceName);
+    }
+
+    public AzureBareMetalInstance getById(String id) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
+        String azureBareMetalInstanceName = ResourceManagerUtils.getValueFromIdByName(id, "bareMetalInstances");
+        if (azureBareMetalInstanceName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'bareMetalInstances'.", id)));
+        }
+        return this.getByResourceGroupWithResponse(resourceGroupName, azureBareMetalInstanceName, Context.NONE)
+            .getValue();
+    }
+
+    public Response<AzureBareMetalInstance> getByIdWithResponse(String id, Context context) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String azureBareMetalInstanceName = ResourceManagerUtils.getValueFromIdByName(id, "bareMetalInstances");
+        if (azureBareMetalInstanceName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'bareMetalInstances'.", id)));
+        }
+        return this.getByResourceGroupWithResponse(resourceGroupName, azureBareMetalInstanceName, context);
+    }
+
+    public void deleteById(String id) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String azureBareMetalInstanceName = ResourceManagerUtils.getValueFromIdByName(id, "bareMetalInstances");
+        if (azureBareMetalInstanceName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'bareMetalInstances'.", id)));
+        }
+        this.deleteByResourceGroupWithResponse(resourceGroupName, azureBareMetalInstanceName, Context.NONE);
+    }
+
+    public Response<Void> deleteByIdWithResponse(String id, Context context) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String azureBareMetalInstanceName = ResourceManagerUtils.getValueFromIdByName(id, "bareMetalInstances");
+        if (azureBareMetalInstanceName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'bareMetalInstances'.", id)));
+        }
+        return this.deleteByResourceGroupWithResponse(resourceGroupName, azureBareMetalInstanceName, context);
     }
 
     private AzureBareMetalInstancesClient serviceClient() {
@@ -100,5 +202,9 @@ public final class AzureBareMetalInstancesImpl implements AzureBareMetalInstance
 
     private com.azure.resourcemanager.baremetalinfrastructure.BareMetalInfrastructureManager manager() {
         return this.serviceManager;
+    }
+
+    public AzureBareMetalInstanceImpl define(String name) {
+        return new AzureBareMetalInstanceImpl(name, this.manager());
     }
 }
