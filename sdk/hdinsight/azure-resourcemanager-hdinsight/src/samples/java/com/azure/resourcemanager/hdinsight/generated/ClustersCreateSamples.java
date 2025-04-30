@@ -25,8 +25,8 @@ import com.azure.resourcemanager.hdinsight.models.IpTag;
 import com.azure.resourcemanager.hdinsight.models.KafkaRestProperties;
 import com.azure.resourcemanager.hdinsight.models.LinuxOperatingSystemProfile;
 import com.azure.resourcemanager.hdinsight.models.NetworkProperties;
-import com.azure.resourcemanager.hdinsight.models.OsProfile;
 import com.azure.resourcemanager.hdinsight.models.OSType;
+import com.azure.resourcemanager.hdinsight.models.OsProfile;
 import com.azure.resourcemanager.hdinsight.models.PrivateLink;
 import com.azure.resourcemanager.hdinsight.models.ResourceProviderConnection;
 import com.azure.resourcemanager.hdinsight.models.Role;
@@ -48,7 +48,7 @@ import java.util.Map;
 public final class ClustersCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2024-08-01-preview/examples/
+     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2025-01-15-preview/examples/
      * CreateLinuxHadoopSshPassword.json
      */
     /**
@@ -103,7 +103,7 @@ public final class ClustersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2024-08-01-preview/examples/
+     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2025-01-15-preview/examples/
      * CreateKafkaClusterWithKafkaRestProxy.json
      */
     /**
@@ -165,7 +165,7 @@ public final class ClustersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2024-08-01-preview/examples/
+     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2025-01-15-preview/examples/
      * CreateHDInsightClusterWithAutoscaleConfig.json
      */
     /**
@@ -233,7 +233,7 @@ public final class ClustersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2024-08-01-preview/examples/
+     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2025-01-15-preview/examples/
      * CreateLinuxHadoopSshPublicKey.json
      */
     /**
@@ -293,7 +293,7 @@ public final class ClustersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2024-08-01-preview/examples/
+     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2025-01-15-preview/examples/
      * CreateHDInsightClusterWithAvailabilityZones.json
      */
     /**
@@ -350,7 +350,7 @@ public final class ClustersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2024-08-01-preview/examples/
+     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2025-01-15-preview/examples/
      * CreateLinuxHadoopAdlsGen2.json
      */
     /**
@@ -405,7 +405,7 @@ public final class ClustersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2024-08-01-preview/examples/
+     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2025-01-15-preview/examples/
      * CreateLinuxHadoopSecureHadoop.json
      */
     /**
@@ -488,7 +488,7 @@ public final class ClustersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2024-08-01-preview/examples/
+     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2025-01-15-preview/examples/
      * CreateLinuxSparkSshPassword.json
      */
     /**
@@ -537,7 +537,7 @@ public final class ClustersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2024-08-01-preview/examples/
+     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2025-01-15-preview/examples/
      * CreateHDInsightClusterWithCustomNetworkProperties.json
      */
     /**
@@ -597,7 +597,7 @@ public final class ClustersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2024-08-01-preview/examples/
+     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2025-01-15-preview/examples/
      * CreateHDInsightClusterWithTLS12.json
      */
     /**
@@ -649,7 +649,7 @@ public final class ClustersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2024-08-01-preview/examples/
+     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2025-01-15-preview/examples/
      * CreateHDInsightClusterWithEncryptionAtHost.json
      */
     /**
@@ -701,7 +701,7 @@ public final class ClustersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2024-08-01-preview/examples/
+     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2025-01-15-preview/examples/
      * CreateHDInsightClusterWithEncryptionInTransit.json
      */
     /**
@@ -754,7 +754,7 @@ public final class ClustersCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2024-08-01-preview/examples/
+     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2025-01-15-preview/examples/
      * CreateHDInsightClusterWithComputeIsolationProperties.json
      */
     /**

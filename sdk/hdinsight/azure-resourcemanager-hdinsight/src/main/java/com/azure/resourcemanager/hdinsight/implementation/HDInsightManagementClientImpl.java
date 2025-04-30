@@ -13,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -307,7 +307,7 @@ public final class HDInsightManagementClientImpl implements HDInsightManagementC
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-08-01-preview";
+        this.apiVersion = "2025-01-15-preview";
         this.applications = new ApplicationsClientImpl(this);
         this.clusters = new ClustersClientImpl(this);
         this.configurations = new ConfigurationsClientImpl(this);

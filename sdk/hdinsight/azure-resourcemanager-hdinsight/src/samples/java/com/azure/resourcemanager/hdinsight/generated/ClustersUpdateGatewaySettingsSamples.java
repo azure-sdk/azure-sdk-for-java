@@ -12,7 +12,7 @@ import com.azure.resourcemanager.hdinsight.models.UpdateGatewaySettingsParameter
 public final class ClustersUpdateGatewaySettingsSamples {
     /*
      * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2024-08-01-preview/examples/
+     * specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2025-01-15-preview/examples/
      * HDI_Clusters_UpdateGatewaySettings_Enable.json
      */
     /**
