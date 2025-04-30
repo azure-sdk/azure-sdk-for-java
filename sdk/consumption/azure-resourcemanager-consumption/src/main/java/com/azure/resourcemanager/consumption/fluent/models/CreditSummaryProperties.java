@@ -55,6 +55,11 @@ public final class CreditSummaryProperties implements JsonSerializable<CreditSum
     private Reseller reseller;
 
     /*
+     * If true, the listed details are based on an estimation and it will be subjected to change.
+     */
+    private Boolean isEstimatedBalance;
+
+    /*
      * The eTag for the resource.
      */
     private String etag;
@@ -129,6 +134,16 @@ public final class CreditSummaryProperties implements JsonSerializable<CreditSum
     }
 
     /**
+     * Get the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     * 
+     * @return the isEstimatedBalance value.
+     */
+    public Boolean isEstimatedBalance() {
+        return this.isEstimatedBalance;
+    }
+
+    /**
      * Get the etag property: The eTag for the resource.
      * 
      * @return the etag value.
@@ -198,6 +213,8 @@ public final class CreditSummaryProperties implements JsonSerializable<CreditSum
                     deserializedCreditSummaryProperties.billingCurrency = reader.getString();
                 } else if ("reseller".equals(fieldName)) {
                     deserializedCreditSummaryProperties.reseller = Reseller.fromJson(reader);
+                } else if ("isEstimatedBalance".equals(fieldName)) {
+                    deserializedCreditSummaryProperties.isEstimatedBalance = reader.getNullable(JsonReader::getBoolean);
                 } else if ("eTag".equals(fieldName)) {
                     deserializedCreditSummaryProperties.etag = reader.getString();
                 } else {

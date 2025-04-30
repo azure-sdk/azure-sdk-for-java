@@ -9,7 +9,7 @@ package com.azure.resourcemanager.consumption.generated;
  */
 public final class PriceSheetGetByBillingPeriodSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * PriceSheetForBillingPeriod.json
      */
     /**
@@ -24,7 +24,7 @@ public final class PriceSheetGetByBillingPeriodSamples {
 
     /*
      * x-ms-original-file:
-     * specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/PriceSheetExpand.json
+     * specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/PriceSheetExpand.json
      */
     /**
      * Sample code: PriceSheetExpand.

@@ -140,6 +140,20 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
     }
 
     /**
+     * The PriceSheetsClient object to access its operations.
+     */
+    private final PriceSheetsClient priceSheets;
+
+    /**
+     * Gets the PriceSheetsClient object to access its operations.
+     * 
+     * @return the PriceSheetsClient object.
+     */
+    public PriceSheetsClient getPriceSheets() {
+        return this.priceSheets;
+    }
+
+    /**
      * The UsageDetailsClient object to access its operations.
      */
     private final UsageDetailsClient usageDetails;
@@ -294,20 +308,6 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
     }
 
     /**
-     * The PriceSheetsClient object to access its operations.
-     */
-    private final PriceSheetsClient priceSheets;
-
-    /**
-     * Gets the PriceSheetsClient object to access its operations.
-     * 
-     * @return the PriceSheetsClient object.
-     */
-    public PriceSheetsClient getPriceSheets() {
-        return this.priceSheets;
-    }
-
-    /**
      * The OperationsClient object to access its operations.
      */
     private final OperationsClient operations;
@@ -394,7 +394,8 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-10-01";
+        this.apiVersion = "2024-08-01";
+        this.priceSheets = new PriceSheetsClientImpl(this);
         this.usageDetails = new UsageDetailsClientImpl(this);
         this.marketplaces = new MarketplacesClientImpl(this);
         this.budgets = new BudgetsClientImpl(this);
@@ -406,7 +407,6 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
         this.reservationRecommendations = new ReservationRecommendationsClientImpl(this);
         this.reservationRecommendationDetails = new ReservationRecommendationDetailsClientImpl(this);
         this.reservationTransactions = new ReservationTransactionsClientImpl(this);
-        this.priceSheets = new PriceSheetsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.aggregatedCosts = new AggregatedCostsClientImpl(this);
         this.eventsOperations = new EventsOperationsClientImpl(this);

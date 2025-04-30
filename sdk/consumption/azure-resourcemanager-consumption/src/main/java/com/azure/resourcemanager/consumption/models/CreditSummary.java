@@ -89,6 +89,14 @@ public interface CreditSummary {
     Reseller reseller();
 
     /**
+     * Gets the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     * 
+     * @return the isEstimatedBalance value.
+     */
+    Boolean isEstimatedBalance();
+
+    /**
      * Gets the etagPropertiesEtag property: The eTag for the resource.
      * 
      * @return the etagPropertiesEtag value.

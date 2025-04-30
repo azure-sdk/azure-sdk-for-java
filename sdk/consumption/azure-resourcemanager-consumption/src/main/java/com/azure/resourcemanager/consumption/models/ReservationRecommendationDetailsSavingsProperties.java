@@ -34,7 +34,7 @@ public final class ReservationRecommendationDetailsSavingsProperties
     private Float recommendedQuantity;
 
     /*
-     * Term period of the reservation, ex: P1Y or P3Y.
+     * Term period of the reservation. ex: P1M, P1Y or P3Y.
      */
     private String reservationOrderTerm;
 
@@ -94,7 +94,7 @@ public final class ReservationRecommendationDetailsSavingsProperties
     }
 
     /**
-     * Get the reservationOrderTerm property: Term period of the reservation, ex: P1Y or P3Y.
+     * Get the reservationOrderTerm property: Term period of the reservation. ex: P1M, P1Y or P3Y.
      * 
      * @return the reservationOrderTerm value.
      */
