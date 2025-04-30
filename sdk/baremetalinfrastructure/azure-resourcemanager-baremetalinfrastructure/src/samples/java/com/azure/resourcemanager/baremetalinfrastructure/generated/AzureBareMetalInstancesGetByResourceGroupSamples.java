@@ -10,11 +10,11 @@ package com.azure.resourcemanager.baremetalinfrastructure.generated;
 public final class AzureBareMetalInstancesGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/baremetalinfrastructure/resource-manager/Microsoft.BareMetalInfrastructure/stable/2021-08-09/
-     * examples/AzureBareMetalInstances_Get.json
+     * specification/baremetalinfrastructure/resource-manager/Microsoft.BareMetalInfrastructure/preview/2024-08-01-
+     * preview/examples/AzureBareMetalInstances_Get.json
      */
     /**
-     * Sample code: Get an AzureBareMetal instance.
+     * Sample code: Get an Azure Bare Metal Instance.
      * 
      * @param manager Entry point to BareMetalInfrastructureManager.
      */

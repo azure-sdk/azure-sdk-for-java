@@ -9,29 +9,45 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.baremetalinfrastructure.models.Display;
+import com.azure.resourcemanager.baremetalinfrastructure.models.ActionType;
+import com.azure.resourcemanager.baremetalinfrastructure.models.OperationDisplay;
+import com.azure.resourcemanager.baremetalinfrastructure.models.Origin;
 import java.io.IOException;
 
 /**
- * AzureBareMetal operation information.
+ * REST API Operation
+ * 
+ * Details of a REST API operation, returned from the Resource Provider Operations API.
  */
 @Fluent
 public final class OperationInner implements JsonSerializable<OperationInner> {
     /*
-     * The name of the operation being performed on this particular object. This name should match the action name that
-     * appears in RBAC / the event service.
+     * The name of the operation, as per Resource-Based Access Control (RBAC). Examples:
+     * "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action"
      */
     private String name;
 
     /*
-     * Displayed AzureBareMetal operation information
-     */
-    private Display display;
-
-    /*
-     * indicates whether an operation is a data action or not.
+     * Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for
+     * ARM/control-plane operations.
      */
     private Boolean isDataAction;
+
+    /*
+     * Localized display information for this particular operation.
+     */
+    private OperationDisplay display;
+
+    /*
+     * The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default
+     * value is "user,system"
+     */
+    private Origin origin;
+
+    /*
+     * Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs.
+     */
+    private ActionType actionType;
 
     /**
      * Creates an instance of OperationInner class.
@@ -40,8 +56,8 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
     }
 
     /**
-     * Get the name property: The name of the operation being performed on this particular object. This name should
-     * match the action name that appears in RBAC / the event service.
+     * Get the name property: The name of the operation, as per Resource-Based Access Control (RBAC). Examples:
+     * "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action".
      * 
      * @return the name value.
      */
@@ -50,32 +66,53 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
     }
 
     /**
-     * Get the display property: Displayed AzureBareMetal operation information.
-     * 
-     * @return the display value.
-     */
-    public Display display() {
-        return this.display;
-    }
-
-    /**
-     * Set the display property: Displayed AzureBareMetal operation information.
-     * 
-     * @param display the display value to set.
-     * @return the OperationInner object itself.
-     */
-    public OperationInner withDisplay(Display display) {
-        this.display = display;
-        return this;
-    }
-
-    /**
-     * Get the isDataAction property: indicates whether an operation is a data action or not.
+     * Get the isDataAction property: Whether the operation applies to data-plane. This is "true" for data-plane
+     * operations and "false" for ARM/control-plane operations.
      * 
      * @return the isDataAction value.
      */
     public Boolean isDataAction() {
         return this.isDataAction;
+    }
+
+    /**
+     * Get the display property: Localized display information for this particular operation.
+     * 
+     * @return the display value.
+     */
+    public OperationDisplay display() {
+        return this.display;
+    }
+
+    /**
+     * Set the display property: Localized display information for this particular operation.
+     * 
+     * @param display the display value to set.
+     * @return the OperationInner object itself.
+     */
+    public OperationInner withDisplay(OperationDisplay display) {
+        this.display = display;
+        return this;
+    }
+
+    /**
+     * Get the origin property: The intended executor of the operation; as in Resource Based Access Control (RBAC) and
+     * audit logs UX. Default value is "user,system".
+     * 
+     * @return the origin value.
+     */
+    public Origin origin() {
+        return this.origin;
+    }
+
+    /**
+     * Get the actionType property: Enum. Indicates the action type. "Internal" refers to actions that are for internal
+     * only APIs.
+     * 
+     * @return the actionType value.
+     */
+    public ActionType actionType() {
+        return this.actionType;
     }
 
     /**
@@ -116,10 +153,14 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
 
                 if ("name".equals(fieldName)) {
                     deserializedOperationInner.name = reader.getString();
-                } else if ("display".equals(fieldName)) {
-                    deserializedOperationInner.display = Display.fromJson(reader);
                 } else if ("isDataAction".equals(fieldName)) {
                     deserializedOperationInner.isDataAction = reader.getNullable(JsonReader::getBoolean);
+                } else if ("display".equals(fieldName)) {
+                    deserializedOperationInner.display = OperationDisplay.fromJson(reader);
+                } else if ("origin".equals(fieldName)) {
+                    deserializedOperationInner.origin = Origin.fromString(reader.getString());
+                } else if ("actionType".equals(fieldName)) {
+                    deserializedOperationInner.actionType = ActionType.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
