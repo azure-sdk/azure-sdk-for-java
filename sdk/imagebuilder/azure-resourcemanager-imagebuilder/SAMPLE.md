@@ -28,6 +28,216 @@
 
 ```java
 /**
+ * Samples for VirtualMachineImageTemplates GetByResourceGroup.
+ */
+public final class VirtualMachineImageTemplatesGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
+     * GetImageTemplate.json
+     */
+    /**
+     * Sample code: Retrieve an Image Template.
+     * 
+     * @param manager Entry point to ImageBuilderManager.
+     */
+    public static void retrieveAnImageTemplate(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
+        manager.virtualMachineImageTemplates()
+            .getByResourceGroupWithResponse("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Triggers_CreateOrUpdate
+
+```java
+/**
+ * Samples for VirtualMachineImageTemplates List.
+ */
+public final class VirtualMachineImageTemplatesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
+     * ListImageTemplates.json
+     */
+    /**
+     * Sample code: List images by subscription.
+     * 
+     * @param manager Entry point to ImageBuilderManager.
+     */
+    public static void listImagesBySubscription(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
+        manager.virtualMachineImageTemplates().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Triggers_Delete
+
+```java
+/**
+ * Samples for Triggers ListByImageTemplate.
+ */
+public final class TriggersListByImageTemplateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
+     * ListTriggers.json
+     */
+    /**
+     * Sample code: List triggers by image template.
+     * 
+     * @param manager Entry point to ImageBuilderManager.
+     */
+    public static void listTriggersByImageTemplate(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
+        manager.triggers().listByImageTemplate("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Triggers_Get
+
+```java
+/**
+ * Samples for VirtualMachineImageTemplates GetRunOutput.
+ */
+public final class VirtualMachineImageTemplatesGetRunOutputSamples {
+    /*
+     * x-ms-original-file:
+     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
+     * GetRunOutput.json
+     */
+    /**
+     * Sample code: Retrieve single runOutput.
+     * 
+     * @param manager Entry point to ImageBuilderManager.
+     */
+    public static void retrieveSingleRunOutput(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
+        manager.virtualMachineImageTemplates()
+            .getRunOutputWithResponse("myResourceGroup", "myImageTemplate", "myManagedImageOutput",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Triggers_ListByImageTemplate
+
+```java
+/**
+ * Samples for Triggers Get.
+ */
+public final class TriggersGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/GetTrigger.
+     * json
+     */
+    /**
+     * Sample code: Get a trigger resource.
+     * 
+     * @param manager Entry point to ImageBuilderManager.
+     */
+    public static void getATriggerResource(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
+        manager.triggers()
+            .getWithResponse("myResourceGroup", "myImageTemplate", "source", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### VirtualMachineImageTemplates_Cancel
+
+```java
+import com.azure.resourcemanager.imagebuilder.models.ImageTemplate;
+import com.azure.resourcemanager.imagebuilder.models.ImageTemplateIdentity;
+import com.azure.resourcemanager.imagebuilder.models.ImageTemplateUpdateParametersProperties;
+import com.azure.resourcemanager.imagebuilder.models.ImageTemplateVmProfile;
+import com.azure.resourcemanager.imagebuilder.models.ResourceIdentityType;
+import com.azure.resourcemanager.imagebuilder.models.VirtualNetworkConfig;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for VirtualMachineImageTemplates Update.
+ */
+public final class VirtualMachineImageTemplatesUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
+     * UpdateImageTemplateToRemoveIdentities.json
+     */
+    /**
+     * Sample code: Remove identities for an Image Template.
+     * 
+     * @param manager Entry point to ImageBuilderManager.
+     */
+    public static void
+        removeIdentitiesForAnImageTemplate(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
+        ImageTemplate resource = manager.virtualMachineImageTemplates()
+            .getByResourceGroupWithResponse("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withIdentity(new ImageTemplateIdentity().withType(ResourceIdentityType.NONE)).apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
+     * UpdateImageTemplateVmProfile.json
+     */
+    /**
+     * Sample code: Update parameters for vm profile.
+     * 
+     * @param manager Entry point to ImageBuilderManager.
+     */
+    public static void
+        updateParametersForVmProfile(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
+        ImageTemplate resource = manager.virtualMachineImageTemplates()
+            .getByResourceGroupWithResponse("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withProperties(new ImageTemplateUpdateParametersProperties().withVmProfile(new ImageTemplateVmProfile()
+                .withVmSize("{updated_vmsize}")
+                .withOsDiskSizeGB(127)
+                .withVnetConfig(new VirtualNetworkConfig().withSubnetId("{updated_aci_subnet}")
+                    .withContainerInstanceSubnetId(
+                        "/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/vnetname/subnets/subnetname"))))
+            .apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
+     * UpdateImageTemplateTags.json
+     */
+    /**
+     * Sample code: Update the tags for an Image Template.
+     * 
+     * @param manager Entry point to ImageBuilderManager.
+     */
+    public static void
+        updateTheTagsForAnImageTemplate(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
+        ImageTemplate resource = manager.virtualMachineImageTemplates()
+            .getByResourceGroupWithResponse("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("new-tag", "new-value")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### VirtualMachineImageTemplates_CreateOrUpdate
+
+```java
+/**
  * Samples for Operations List.
  */
 public final class OperationsListSamples {
@@ -47,7 +257,32 @@ public final class OperationsListSamples {
 }
 ```
 
-### Triggers_CreateOrUpdate
+### VirtualMachineImageTemplates_Delete
+
+```java
+/**
+ * Samples for VirtualMachineImageTemplates Cancel.
+ */
+public final class VirtualMachineImageTemplatesCancelSamples {
+    /*
+     * x-ms-original-file:
+     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
+     * CancelImageBuild.json
+     */
+    /**
+     * Sample code: Cancel the image build based on the imageTemplate.
+     * 
+     * @param manager Entry point to ImageBuilderManager.
+     */
+    public static void
+        cancelTheImageBuildBasedOnTheImageTemplate(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
+        manager.virtualMachineImageTemplates()
+            .cancel("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### VirtualMachineImageTemplates_GetByResourceGroup
 
 ```java
 import com.azure.resourcemanager.imagebuilder.models.SourceImageTriggerProperties;
@@ -77,102 +312,31 @@ public final class TriggersCreateOrUpdateSamples {
 }
 ```
 
-### Triggers_Delete
+### VirtualMachineImageTemplates_GetRunOutput
 
 ```java
 /**
- * Samples for Triggers Delete.
+ * Samples for VirtualMachineImageTemplates Delete.
  */
-public final class TriggersDeleteSamples {
+public final class VirtualMachineImageTemplatesDeleteSamples {
     /*
      * x-ms-original-file:
      * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
-     * DeleteTrigger.json
+     * DeleteImageTemplate.json
      */
     /**
-     * Sample code: Delete a trigger resource.
+     * Sample code: Delete an Image Template.
      * 
      * @param manager Entry point to ImageBuilderManager.
      */
-    public static void deleteATriggerResource(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
-        manager.triggers().delete("myResourceGroup", "myImageTemplate", "trigger1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Triggers_Get
-
-```java
-/**
- * Samples for Triggers Get.
- */
-public final class TriggersGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/GetTrigger.
-     * json
-     */
-    /**
-     * Sample code: Get a trigger resource.
-     * 
-     * @param manager Entry point to ImageBuilderManager.
-     */
-    public static void getATriggerResource(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
-        manager.triggers()
-            .getWithResponse("myResourceGroup", "myImageTemplate", "source", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Triggers_ListByImageTemplate
-
-```java
-/**
- * Samples for Triggers ListByImageTemplate.
- */
-public final class TriggersListByImageTemplateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
-     * ListTriggers.json
-     */
-    /**
-     * Sample code: List triggers by image template.
-     * 
-     * @param manager Entry point to ImageBuilderManager.
-     */
-    public static void listTriggersByImageTemplate(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
-        manager.triggers().listByImageTemplate("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VirtualMachineImageTemplates_Cancel
-
-```java
-/**
- * Samples for VirtualMachineImageTemplates Cancel.
- */
-public final class VirtualMachineImageTemplatesCancelSamples {
-    /*
-     * x-ms-original-file:
-     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
-     * CancelImageBuild.json
-     */
-    /**
-     * Sample code: Cancel the image build based on the imageTemplate.
-     * 
-     * @param manager Entry point to ImageBuilderManager.
-     */
-    public static void
-        cancelTheImageBuildBasedOnTheImageTemplate(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
+    public static void deleteAnImageTemplate(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
         manager.virtualMachineImageTemplates()
-            .cancel("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE);
+            .delete("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### VirtualMachineImageTemplates_CreateOrUpdate
+### VirtualMachineImageTemplates_List
 
 ```java
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateIdentity;
@@ -313,102 +477,6 @@ public final class VirtualMachineImageTemplatesCreateOrUpdateSamples {
 }
 ```
 
-### VirtualMachineImageTemplates_Delete
-
-```java
-/**
- * Samples for VirtualMachineImageTemplates Delete.
- */
-public final class VirtualMachineImageTemplatesDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
-     * DeleteImageTemplate.json
-     */
-    /**
-     * Sample code: Delete an Image Template.
-     * 
-     * @param manager Entry point to ImageBuilderManager.
-     */
-    public static void deleteAnImageTemplate(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
-        manager.virtualMachineImageTemplates()
-            .delete("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VirtualMachineImageTemplates_GetByResourceGroup
-
-```java
-/**
- * Samples for VirtualMachineImageTemplates GetByResourceGroup.
- */
-public final class VirtualMachineImageTemplatesGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
-     * GetImageTemplate.json
-     */
-    /**
-     * Sample code: Retrieve an Image Template.
-     * 
-     * @param manager Entry point to ImageBuilderManager.
-     */
-    public static void retrieveAnImageTemplate(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
-        manager.virtualMachineImageTemplates()
-            .getByResourceGroupWithResponse("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VirtualMachineImageTemplates_GetRunOutput
-
-```java
-/**
- * Samples for VirtualMachineImageTemplates GetRunOutput.
- */
-public final class VirtualMachineImageTemplatesGetRunOutputSamples {
-    /*
-     * x-ms-original-file:
-     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
-     * GetRunOutput.json
-     */
-    /**
-     * Sample code: Retrieve single runOutput.
-     * 
-     * @param manager Entry point to ImageBuilderManager.
-     */
-    public static void retrieveSingleRunOutput(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
-        manager.virtualMachineImageTemplates()
-            .getRunOutputWithResponse("myResourceGroup", "myImageTemplate", "myManagedImageOutput",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VirtualMachineImageTemplates_List
-
-```java
-/**
- * Samples for VirtualMachineImageTemplates List.
- */
-public final class VirtualMachineImageTemplatesListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
-     * ListImageTemplates.json
-     */
-    /**
-     * Sample code: List images by subscription.
-     * 
-     * @param manager Entry point to ImageBuilderManager.
-     */
-    public static void listImagesBySubscription(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
-        manager.virtualMachineImageTemplates().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### VirtualMachineImageTemplates_ListByResourceGroup
 
 ```java
@@ -436,6 +504,29 @@ public final class VirtualMachineImageTemplatesListByResourceGroupSamples {
 
 ```java
 /**
+ * Samples for Triggers Delete.
+ */
+public final class TriggersDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
+     * DeleteTrigger.json
+     */
+    /**
+     * Sample code: Delete a trigger resource.
+     * 
+     * @param manager Entry point to ImageBuilderManager.
+     */
+    public static void deleteATriggerResource(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
+        manager.triggers().delete("myResourceGroup", "myImageTemplate", "trigger1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### VirtualMachineImageTemplates_Run
+
+```java
+/**
  * Samples for VirtualMachineImageTemplates ListRunOutputs.
  */
 public final class VirtualMachineImageTemplatesListRunOutputsSamples {
@@ -457,7 +548,7 @@ public final class VirtualMachineImageTemplatesListRunOutputsSamples {
 }
 ```
 
-### VirtualMachineImageTemplates_Run
+### VirtualMachineImageTemplates_Update
 
 ```java
 /**
@@ -478,97 +569,6 @@ public final class VirtualMachineImageTemplatesRunSamples {
         createImageSFromExistingImageTemplate(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
         manager.virtualMachineImageTemplates()
             .run("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VirtualMachineImageTemplates_Update
-
-```java
-import com.azure.resourcemanager.imagebuilder.models.ImageTemplate;
-import com.azure.resourcemanager.imagebuilder.models.ImageTemplateIdentity;
-import com.azure.resourcemanager.imagebuilder.models.ImageTemplateUpdateParametersProperties;
-import com.azure.resourcemanager.imagebuilder.models.ImageTemplateVmProfile;
-import com.azure.resourcemanager.imagebuilder.models.ResourceIdentityType;
-import com.azure.resourcemanager.imagebuilder.models.VirtualNetworkConfig;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for VirtualMachineImageTemplates Update.
- */
-public final class VirtualMachineImageTemplatesUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
-     * UpdateImageTemplateToRemoveIdentities.json
-     */
-    /**
-     * Sample code: Remove identities for an Image Template.
-     * 
-     * @param manager Entry point to ImageBuilderManager.
-     */
-    public static void
-        removeIdentitiesForAnImageTemplate(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
-        ImageTemplate resource = manager.virtualMachineImageTemplates()
-            .getByResourceGroupWithResponse("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withIdentity(new ImageTemplateIdentity().withType(ResourceIdentityType.NONE)).apply();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
-     * UpdateImageTemplateVmProfile.json
-     */
-    /**
-     * Sample code: Update parameters for vm profile.
-     * 
-     * @param manager Entry point to ImageBuilderManager.
-     */
-    public static void
-        updateParametersForVmProfile(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
-        ImageTemplate resource = manager.virtualMachineImageTemplates()
-            .getByResourceGroupWithResponse("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update()
-            .withProperties(new ImageTemplateUpdateParametersProperties().withVmProfile(new ImageTemplateVmProfile()
-                .withVmSize("{updated_vmsize}")
-                .withOsDiskSizeGB(127)
-                .withVnetConfig(new VirtualNetworkConfig().withSubnetId("{updated_aci_subnet}")
-                    .withContainerInstanceSubnetId(
-                        "/subscriptions/{subscription-id}/resourceGroups/myResourceGroup/providers/Microsoft.Network/virtualNetworks/vnetname/subnets/subnetname"))))
-            .apply();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2024-02-01/examples/
-     * UpdateImageTemplateTags.json
-     */
-    /**
-     * Sample code: Update the tags for an Image Template.
-     * 
-     * @param manager Entry point to ImageBuilderManager.
-     */
-    public static void
-        updateTheTagsForAnImageTemplate(com.azure.resourcemanager.imagebuilder.ImageBuilderManager manager) {
-        ImageTemplate resource = manager.virtualMachineImageTemplates()
-            .getByResourceGroupWithResponse("myResourceGroup", "myImageTemplate", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("new-tag", "new-value")).apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
     }
 }
 ```
