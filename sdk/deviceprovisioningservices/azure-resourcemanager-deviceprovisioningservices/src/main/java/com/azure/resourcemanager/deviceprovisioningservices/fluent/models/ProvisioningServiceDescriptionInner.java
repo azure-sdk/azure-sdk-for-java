@@ -13,6 +13,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsPropertiesDescription;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsSkuInfo;
+import com.azure.resourcemanager.deviceprovisioningservices.models.ManagedServiceIdentity;
 import java.io.IOException;
 import java.util.Map;
 
@@ -41,6 +42,21 @@ public final class ProvisioningServiceDescriptionInner extends Resource {
      * Metadata pertaining to creation and last modification of the resource.
      */
     private SystemData systemData;
+
+    /*
+     * The managed identities for a provisioning service.
+     */
+    private ManagedServiceIdentity identity;
+
+    /*
+     * The resource group of the resource.
+     */
+    private String resourcegroup;
+
+    /*
+     * The subscription id of the resource.
+     */
+    private String subscriptionid;
 
     /*
      * The type of the resource.
@@ -135,6 +151,44 @@ public final class ProvisioningServiceDescriptionInner extends Resource {
     }
 
     /**
+     * Get the identity property: The managed identities for a provisioning service.
+     * 
+     * @return the identity value.
+     */
+    public ManagedServiceIdentity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The managed identities for a provisioning service.
+     * 
+     * @param identity the identity value to set.
+     * @return the ProvisioningServiceDescriptionInner object itself.
+     */
+    public ProvisioningServiceDescriptionInner withIdentity(ManagedServiceIdentity identity) {
+        this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the resourcegroup property: The resource group of the resource.
+     * 
+     * @return the resourcegroup value.
+     */
+    public String resourcegroup() {
+        return this.resourcegroup;
+    }
+
+    /**
+     * Get the subscriptionid property: The subscription id of the resource.
+     * 
+     * @return the subscriptionid value.
+     */
+    public String subscriptionid() {
+        return this.subscriptionid;
+    }
+
+    /**
      * Get the type property: The type of the resource.
      * 
      * @return the type value.
@@ -202,6 +256,9 @@ public final class ProvisioningServiceDescriptionInner extends Resource {
         } else {
             sku().validate();
         }
+        if (identity() != null) {
+            identity().validate();
+        }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(ProvisioningServiceDescriptionInner.class);
@@ -217,6 +274,7 @@ public final class ProvisioningServiceDescriptionInner extends Resource {
         jsonWriter.writeJsonField("properties", this.properties);
         jsonWriter.writeJsonField("sku", this.sku);
         jsonWriter.writeStringField("etag", this.etag);
+        jsonWriter.writeJsonField("identity", this.identity);
         return jsonWriter.writeEndObject();
     }
 
@@ -257,6 +315,12 @@ public final class ProvisioningServiceDescriptionInner extends Resource {
                     deserializedProvisioningServiceDescriptionInner.etag = reader.getString();
                 } else if ("systemData".equals(fieldName)) {
                     deserializedProvisioningServiceDescriptionInner.systemData = SystemData.fromJson(reader);
+                } else if ("identity".equals(fieldName)) {
+                    deserializedProvisioningServiceDescriptionInner.identity = ManagedServiceIdentity.fromJson(reader);
+                } else if ("resourcegroup".equals(fieldName)) {
+                    deserializedProvisioningServiceDescriptionInner.resourcegroup = reader.getString();
+                } else if ("subscriptionid".equals(fieldName)) {
+                    deserializedProvisioningServiceDescriptionInner.subscriptionid = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

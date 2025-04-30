@@ -11,6 +11,7 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.ProvisioningServiceDescriptionInner;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsPropertiesDescription;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsSkuInfo;
+import com.azure.resourcemanager.deviceprovisioningservices.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.deviceprovisioningservices.models.ProvisioningServiceDescription;
 import com.azure.resourcemanager.deviceprovisioningservices.models.SharedAccessSignatureAuthorizationRule;
 import com.azure.resourcemanager.deviceprovisioningservices.models.TagsResource;
@@ -62,6 +63,18 @@ public final class ProvisioningServiceDescriptionImpl implements ProvisioningSer
 
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
+    }
+
+    public String resourcegroup() {
+        return this.innerModel().resourcegroup();
+    }
+
+    public String subscriptionid() {
+        return this.innerModel().subscriptionid();
     }
 
     public Region region() {
@@ -200,6 +213,11 @@ public final class ProvisioningServiceDescriptionImpl implements ProvisioningSer
 
     public ProvisioningServiceDescriptionImpl withEtag(String etag) {
         this.innerModel().withEtag(etag);
+        return this;
+    }
+
+    public ProvisioningServiceDescriptionImpl withIdentity(ManagedServiceIdentity identity) {
+        this.innerModel().withIdentity(identity);
         return this;
     }
 

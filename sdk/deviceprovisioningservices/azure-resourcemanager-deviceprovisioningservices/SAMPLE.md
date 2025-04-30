@@ -36,6 +36,56 @@
 ### DpsCertificate_CreateOrUpdate
 
 ```java
+/**
+ * Samples for IotDpsResource GetPrivateEndpointConnection.
+ */
+public final class IotDpsResourceGetPrivateEndpointConnectionSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSGetPrivateEndpointConnection.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnection_Get.
+     * 
+     * @param manager Entry point to IotDpsManager.
+     */
+    public static void
+        privateEndpointConnectionGet(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.iotDpsResources()
+            .getPrivateEndpointConnectionWithResponse("myResourceGroup", "myFirstProvisioningService",
+                "myPrivateEndpointConnection", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DpsCertificate_Delete
+
+```java
+/**
+ * Samples for IotDpsResource ListByResourceGroup.
+ */
+public final class IotDpsResourceListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSListByResourceGroup.json
+     */
+    /**
+     * Sample code: DPSListByResourceGroup.
+     * 
+     * @param manager Entry point to IotDpsManager.
+     */
+    public static void
+        dPSListByResourceGroup(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.iotDpsResources().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DpsCertificate_GenerateVerificationCode
+
+```java
 import com.azure.resourcemanager.deviceprovisioningservices.models.CertificateProperties;
 
 /**
@@ -44,7 +94,7 @@ import com.azure.resourcemanager.deviceprovisioningservices.models.CertificatePr
 public final class DpsCertificateCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
      * DPSCertificateCreateOrUpdate.json
      */
     /**
@@ -57,14 +107,65 @@ public final class DpsCertificateCreateOrUpdateSamples {
         manager.dpsCertificates()
             .define("cert")
             .withExistingProvisioningService("myResourceGroup", "myFirstProvisioningService")
-            .withProperties(
-                new CertificateProperties().withCertificate("############################################".getBytes()))
+            .withProperties(new CertificateProperties().withCertificate("MA==".getBytes()))
             .create();
     }
 }
 ```
 
-### DpsCertificate_Delete
+### DpsCertificate_Get
+
+```java
+/**
+ * Samples for IotDpsResource GetPrivateLinkResources.
+ */
+public final class IotDpsResourceGetPrivateLinkResourcesSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSGetPrivateLinkResources.json
+     */
+    /**
+     * Sample code: PrivateLinkResources_List.
+     * 
+     * @param manager Entry point to IotDpsManager.
+     */
+    public static void
+        privateLinkResourcesList(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.iotDpsResources()
+            .getPrivateLinkResourcesWithResponse("myResourceGroup", "myFirstProvisioningService", "iotDps",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DpsCertificate_List
+
+```java
+/**
+ * Samples for IotDpsResource ListPrivateLinkResources.
+ */
+public final class IotDpsResourceListPrivateLinkResourcesSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSListPrivateLinkResources.json
+     */
+    /**
+     * Sample code: PrivateLinkResources_List.
+     * 
+     * @param manager Entry point to IotDpsManager.
+     */
+    public static void
+        privateLinkResourcesList(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.iotDpsResources()
+            .listPrivateLinkResourcesWithResponse("myResourceGroup", "myFirstProvisioningService",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DpsCertificate_VerifyCertificate
 
 ```java
 
@@ -74,7 +175,7 @@ public final class DpsCertificateCreateOrUpdateSamples {
 public final class DpsCertificateDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
      * DPSDeleteCertificate.json
      */
     /**
@@ -91,7 +192,30 @@ public final class DpsCertificateDeleteSamples {
 }
 ```
 
-### DpsCertificate_GenerateVerificationCode
+### IotDpsResource_CheckProvisioningServiceNameAvailability
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSOperations.json
+     */
+    /**
+     * Sample code: DPSOperations.
+     * 
+     * @param manager Entry point to IotDpsManager.
+     */
+    public static void dPSOperations(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotDpsResource_CreateOrUpdate
 
 ```java
 
@@ -101,7 +225,7 @@ public final class DpsCertificateDeleteSamples {
 public final class DpsCertificateGenerateVerificationCodeSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
      * DPSGenerateVerificationCode.json
      */
     /**
@@ -119,56 +243,56 @@ public final class DpsCertificateGenerateVerificationCodeSamples {
 }
 ```
 
-### DpsCertificate_Get
+### IotDpsResource_CreateOrUpdatePrivateEndpointConnection
 
 ```java
 /**
- * Samples for DpsCertificate Get.
+ * Samples for IotDpsResource GetByResourceGroup.
  */
-public final class DpsCertificateGetSamples {
+public final class IotDpsResourceGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
-     * DPSGetCertificate.json
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSGet.json
      */
     /**
-     * Sample code: DPSGetCertificate.
+     * Sample code: DPSGet.
      * 
      * @param manager Entry point to IotDpsManager.
      */
-    public static void dPSGetCertificate(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
-        manager.dpsCertificates()
-            .getWithResponse("cert", "myResourceGroup", "myFirstProvisioningService", null,
+    public static void dPSGet(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.iotDpsResources()
+            .getByResourceGroupWithResponse("myResourceGroup", "myFirstProvisioningService",
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### DpsCertificate_List
+### IotDpsResource_Delete
 
 ```java
 /**
- * Samples for DpsCertificate List.
+ * Samples for IotDpsResource ListValidSkus.
  */
-public final class DpsCertificateListSamples {
+public final class IotDpsResourceListValidSkusSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
-     * DPSGetCertificates.json
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSGetValidSku.json
      */
     /**
-     * Sample code: DPSGetCertificates.
+     * Sample code: DPSGetValidSku.
      * 
      * @param manager Entry point to IotDpsManager.
      */
-    public static void dPSGetCertificates(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
-        manager.dpsCertificates()
-            .listWithResponse("myResourceGroup", "myFirstProvisioningService", com.azure.core.util.Context.NONE);
+    public static void dPSGetValidSku(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.iotDpsResources()
+            .listValidSkus("myFirstProvisioningService", "myResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### DpsCertificate_VerifyCertificate
+### IotDpsResource_DeletePrivateEndpointConnection
 
 ```java
 import com.azure.resourcemanager.deviceprovisioningservices.models.VerificationCodeRequest;
@@ -179,7 +303,7 @@ import com.azure.resourcemanager.deviceprovisioningservices.models.VerificationC
 public final class DpsCertificateVerifyCertificateSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
      * DPSVerifyCertificate.json
      */
     /**
@@ -197,39 +321,141 @@ public final class DpsCertificateVerifyCertificateSamples {
 }
 ```
 
-### IotDpsResource_CheckProvisioningServiceNameAvailability
+### IotDpsResource_GetByResourceGroup
 
 ```java
-import com.azure.resourcemanager.deviceprovisioningservices.models.OperationInputs;
-
 /**
- * Samples for IotDpsResource CheckProvisioningServiceNameAvailability.
+ * Samples for IotDpsResource ListKeys.
  */
-public final class IotDpsResourceCheckProvisioningServiceNameAvailabilit {
+public final class IotDpsResourceListKeysSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
-     * DPSCheckNameAvailability.json
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSListKeys.json
      */
     /**
-     * Sample code: DPSCheckName.
+     * Sample code: DPSListKeys.
      * 
      * @param manager Entry point to IotDpsManager.
      */
-    public static void dPSCheckName(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+    public static void dPSListKeys(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
         manager.iotDpsResources()
-            .checkProvisioningServiceNameAvailabilityWithResponse(new OperationInputs().withName("test213123"),
+            .listKeys("myFirstProvisioningService", "myResourceGroup", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotDpsResource_GetOperationResult
+
+```java
+/**
+ * Samples for IotDpsResource DeletePrivateEndpointConnection.
+ */
+public final class IotDpsResourceDeletePrivateEndpointConnectionSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSDeletePrivateEndpointConnection.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnection_Delete.
+     * 
+     * @param manager Entry point to IotDpsManager.
+     */
+    public static void
+        privateEndpointConnectionDelete(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.iotDpsResources()
+            .deletePrivateEndpointConnection("myResourceGroup", "myFirstProvisioningService",
+                "myPrivateEndpointConnection", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotDpsResource_GetPrivateEndpointConnection
+
+```java
+/**
+ * Samples for DpsCertificate Get.
+ */
+public final class DpsCertificateGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSGetCertificate.json
+     */
+    /**
+     * Sample code: DPSGetCertificate.
+     * 
+     * @param manager Entry point to IotDpsManager.
+     */
+    public static void dPSGetCertificate(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.dpsCertificates()
+            .getWithResponse("cert", "myResourceGroup", "myFirstProvisioningService", null,
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### IotDpsResource_CreateOrUpdate
+### IotDpsResource_GetPrivateLinkResources
+
+```java
+/**
+ * Samples for IotDpsResource GetOperationResult.
+ */
+public final class IotDpsResourceGetOperationResultSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSGetOperationResult.json
+     */
+    /**
+     * Sample code: DPSGetOperationResult.
+     * 
+     * @param manager Entry point to IotDpsManager.
+     */
+    public static void
+        dPSGetOperationResult(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.iotDpsResources()
+            .getOperationResultWithResponse("MTY5OTNmZDctODI5Yy00N2E2LTkxNDQtMDU1NGIyYzY1ZjRl", "myResourceGroup",
+                "myFirstProvisioningService", "1508265712453", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotDpsResource_List
+
+```java
+/**
+ * Samples for IotDpsResource ListKeysForKeyName.
+ */
+public final class IotDpsResourceListKeysForKeyNameSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSGetKey.json
+     */
+    /**
+     * Sample code: DPSGetKey.
+     * 
+     * @param manager Entry point to IotDpsManager.
+     */
+    public static void dPSGetKey(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.iotDpsResources()
+            .listKeysForKeyNameWithResponse("myFirstProvisioningService", "testKey", "myResourceGroup",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotDpsResource_ListByResourceGroup
 
 ```java
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsPropertiesDescription;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsSku;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsSkuInfo;
+import com.azure.resourcemanager.deviceprovisioningservices.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.deviceprovisioningservices.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.deviceprovisioningservices.models.UserAssignedIdentity;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -239,8 +465,34 @@ import java.util.Map;
 public final class IotDpsResourceCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/DPSCreate.
-     * json
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSUpdate.json
+     */
+    /**
+     * Sample code: DPSUpdate.
+     * 
+     * @param manager Entry point to IotDpsManager.
+     */
+    public static void dPSUpdate(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.iotDpsResources()
+            .define("myFirstProvisioningService")
+            .withRegion("East US")
+            .withExistingResourceGroup("myResourceGroup")
+            .withProperties(new IotDpsPropertiesDescription().withEnableDataResidency(false))
+            .withSku(new IotDpsSkuInfo().withName(IotDpsSku.S1).withCapacity(1L))
+            .withTags(mapOf())
+            .withIdentity(new ManagedServiceIdentity()
+                .withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/91d12660-3dec-467a-be2a-213b5544ddc0/resourcegroups/testrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity",
+                    new UserAssignedIdentity())))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSCreate.json
      */
     /**
      * Sample code: DPSCreate.
@@ -272,194 +524,34 @@ public final class IotDpsResourceCreateOrUpdateSamples {
 }
 ```
 
-### IotDpsResource_CreateOrUpdatePrivateEndpointConnection
+### IotDpsResource_ListKeys
 
 ```java
-import com.azure.resourcemanager.deviceprovisioningservices.models.PrivateEndpointConnectionProperties;
-import com.azure.resourcemanager.deviceprovisioningservices.models.PrivateLinkServiceConnectionState;
-import com.azure.resourcemanager.deviceprovisioningservices.models.PrivateLinkServiceConnectionStatus;
+import com.azure.resourcemanager.deviceprovisioningservices.models.OperationInputs;
 
 /**
- * Samples for IotDpsResource CreateOrUpdatePrivateEndpointConnection.
+ * Samples for IotDpsResource CheckProvisioningServiceNameAvailability.
  */
-public final class IotDpsResourceCreateOrUpdatePrivateEndpointConnection {
+public final class IotDpsResourceCheckProvisioningServiceNameAvailabilit {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
-     * DPSCreateOrUpdatePrivateEndpointConnection.json
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSCheckNameAvailability.json
      */
     /**
-     * Sample code: PrivateEndpointConnection_CreateOrUpdate.
+     * Sample code: DPSCheckName.
      * 
      * @param manager Entry point to IotDpsManager.
      */
-    public static void privateEndpointConnectionCreateOrUpdate(
-        com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+    public static void dPSCheckName(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
         manager.iotDpsResources()
-            .definePrivateEndpointConnection("myPrivateEndpointConnection")
-            .withExistingProvisioningService("myResourceGroup", "myFirstProvisioningService")
-            .withProperties(new PrivateEndpointConnectionProperties().withPrivateLinkServiceConnectionState(
-                new PrivateLinkServiceConnectionState().withStatus(PrivateLinkServiceConnectionStatus.APPROVED)
-                    .withDescription("Approved by johndoe@contoso.com")))
-            .create();
-    }
-}
-```
-
-### IotDpsResource_Delete
-
-```java
-/**
- * Samples for IotDpsResource Delete.
- */
-public final class IotDpsResourceDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/DPSDelete.
-     * json
-     */
-    /**
-     * Sample code: DPSDelete.
-     * 
-     * @param manager Entry point to IotDpsManager.
-     */
-    public static void dPSDelete(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
-        manager.iotDpsResources()
-            .delete("myResourceGroup", "myFirstProvisioningService", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotDpsResource_DeletePrivateEndpointConnection
-
-```java
-/**
- * Samples for IotDpsResource DeletePrivateEndpointConnection.
- */
-public final class IotDpsResourceDeletePrivateEndpointConnectionSamples {
-    /*
-     * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
-     * DPSDeletePrivateEndpointConnection.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnection_Delete.
-     * 
-     * @param manager Entry point to IotDpsManager.
-     */
-    public static void
-        privateEndpointConnectionDelete(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
-        manager.iotDpsResources()
-            .deletePrivateEndpointConnection("myResourceGroup", "myFirstProvisioningService",
-                "myPrivateEndpointConnection", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotDpsResource_GetByResourceGroup
-
-```java
-/**
- * Samples for IotDpsResource GetByResourceGroup.
- */
-public final class IotDpsResourceGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/DPSGet.
-     * json
-     */
-    /**
-     * Sample code: DPSGet.
-     * 
-     * @param manager Entry point to IotDpsManager.
-     */
-    public static void dPSGet(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
-        manager.iotDpsResources()
-            .getByResourceGroupWithResponse("myResourceGroup", "myFirstProvisioningService",
+            .checkProvisioningServiceNameAvailabilityWithResponse(new OperationInputs().withName("test213123"),
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### IotDpsResource_GetOperationResult
-
-```java
-/**
- * Samples for IotDpsResource GetOperationResult.
- */
-public final class IotDpsResourceGetOperationResultSamples {
-    /*
-     * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
-     * DPSGetOperationResult.json
-     */
-    /**
-     * Sample code: DPSGetOperationResult.
-     * 
-     * @param manager Entry point to IotDpsManager.
-     */
-    public static void
-        dPSGetOperationResult(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
-        manager.iotDpsResources()
-            .getOperationResultWithResponse("MTY5OTNmZDctODI5Yy00N2E2LTkxNDQtMDU1NGIyYzY1ZjRl", "myResourceGroup",
-                "myFirstProvisioningService", "1508265712453", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotDpsResource_GetPrivateEndpointConnection
-
-```java
-/**
- * Samples for IotDpsResource GetPrivateEndpointConnection.
- */
-public final class IotDpsResourceGetPrivateEndpointConnectionSamples {
-    /*
-     * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
-     * DPSGetPrivateEndpointConnection.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnection_Get.
-     * 
-     * @param manager Entry point to IotDpsManager.
-     */
-    public static void
-        privateEndpointConnectionGet(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
-        manager.iotDpsResources()
-            .getPrivateEndpointConnectionWithResponse("myResourceGroup", "myFirstProvisioningService",
-                "myPrivateEndpointConnection", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotDpsResource_GetPrivateLinkResources
-
-```java
-/**
- * Samples for IotDpsResource GetPrivateLinkResources.
- */
-public final class IotDpsResourceGetPrivateLinkResourcesSamples {
-    /*
-     * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
-     * DPSGetPrivateLinkResources.json
-     */
-    /**
-     * Sample code: PrivateLinkResources_List.
-     * 
-     * @param manager Entry point to IotDpsManager.
-     */
-    public static void
-        privateLinkResourcesList(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
-        manager.iotDpsResources()
-            .getPrivateLinkResourcesWithResponse("myResourceGroup", "myFirstProvisioningService", "iotDps",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotDpsResource_List
+### IotDpsResource_ListKeysForKeyName
 
 ```java
 /**
@@ -468,7 +560,7 @@ public final class IotDpsResourceGetPrivateLinkResourcesSamples {
 public final class IotDpsResourceListSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
      * DPSListBySubscription.json
      */
     /**
@@ -483,156 +575,7 @@ public final class IotDpsResourceListSamples {
 }
 ```
 
-### IotDpsResource_ListByResourceGroup
-
-```java
-/**
- * Samples for IotDpsResource ListByResourceGroup.
- */
-public final class IotDpsResourceListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
-     * DPSListByResourceGroup.json
-     */
-    /**
-     * Sample code: DPSListByResourceGroup.
-     * 
-     * @param manager Entry point to IotDpsManager.
-     */
-    public static void
-        dPSListByResourceGroup(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
-        manager.iotDpsResources().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotDpsResource_ListKeys
-
-```java
-/**
- * Samples for IotDpsResource ListKeys.
- */
-public final class IotDpsResourceListKeysSamples {
-    /*
-     * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
-     * DPSListKeys.json
-     */
-    /**
-     * Sample code: DPSListKeys.
-     * 
-     * @param manager Entry point to IotDpsManager.
-     */
-    public static void dPSListKeys(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
-        manager.iotDpsResources()
-            .listKeys("myFirstProvisioningService", "myResourceGroup", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotDpsResource_ListKeysForKeyName
-
-```java
-/**
- * Samples for IotDpsResource ListKeysForKeyName.
- */
-public final class IotDpsResourceListKeysForKeyNameSamples {
-    /*
-     * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/DPSGetKey.
-     * json
-     */
-    /**
-     * Sample code: DPSGetKey.
-     * 
-     * @param manager Entry point to IotDpsManager.
-     */
-    public static void dPSGetKey(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
-        manager.iotDpsResources()
-            .listKeysForKeyNameWithResponse("myFirstProvisioningService", "testKey", "myResourceGroup",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### IotDpsResource_ListPrivateEndpointConnections
-
-```java
-/**
- * Samples for IotDpsResource ListPrivateEndpointConnections.
- */
-public final class IotDpsResourceListPrivateEndpointConnectionsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
-     * DPSListPrivateEndpointConnections.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnections_List.
-     * 
-     * @param manager Entry point to IotDpsManager.
-     */
-    public static void
-        privateEndpointConnectionsList(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
-        manager.iotDpsResources()
-            .listPrivateEndpointConnectionsWithResponse("myResourceGroup", "myFirstProvisioningService",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotDpsResource_ListPrivateLinkResources
-
-```java
-/**
- * Samples for IotDpsResource ListPrivateLinkResources.
- */
-public final class IotDpsResourceListPrivateLinkResourcesSamples {
-    /*
-     * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
-     * DPSListPrivateLinkResources.json
-     */
-    /**
-     * Sample code: PrivateLinkResources_List.
-     * 
-     * @param manager Entry point to IotDpsManager.
-     */
-    public static void
-        privateLinkResourcesList(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
-        manager.iotDpsResources()
-            .listPrivateLinkResourcesWithResponse("myResourceGroup", "myFirstProvisioningService",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotDpsResource_ListValidSkus
-
-```java
-/**
- * Samples for IotDpsResource ListValidSkus.
- */
-public final class IotDpsResourceListValidSkusSamples {
-    /*
-     * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
-     * DPSGetValidSku.json
-     */
-    /**
-     * Sample code: DPSGetValidSku.
-     * 
-     * @param manager Entry point to IotDpsManager.
-     */
-    public static void dPSGetValidSku(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
-        manager.iotDpsResources()
-            .listValidSkus("myFirstProvisioningService", "myResourceGroup", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotDpsResource_Update
 
 ```java
 import com.azure.resourcemanager.deviceprovisioningservices.models.ProvisioningServiceDescription;
@@ -645,8 +588,8 @@ import java.util.Map;
 public final class IotDpsResourceUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/DPSPatch.
-     * json
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSPatch.json
      */
     /**
      * Sample code: DPSPatch.
@@ -675,25 +618,110 @@ public final class IotDpsResourceUpdateSamples {
 }
 ```
 
+### IotDpsResource_ListPrivateLinkResources
+
+```java
+import com.azure.resourcemanager.deviceprovisioningservices.models.PrivateEndpointConnectionProperties;
+import com.azure.resourcemanager.deviceprovisioningservices.models.PrivateLinkServiceConnectionState;
+import com.azure.resourcemanager.deviceprovisioningservices.models.PrivateLinkServiceConnectionStatus;
+
+/**
+ * Samples for IotDpsResource CreateOrUpdatePrivateEndpointConnection.
+ */
+public final class IotDpsResourceCreateOrUpdatePrivateEndpointConnection {
+    /*
+     * x-ms-original-file:
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSCreateOrUpdatePrivateEndpointConnection.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnection_CreateOrUpdate.
+     * 
+     * @param manager Entry point to IotDpsManager.
+     */
+    public static void privateEndpointConnectionCreateOrUpdate(
+        com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.iotDpsResources()
+            .definePrivateEndpointConnection("myPrivateEndpointConnection")
+            .withExistingProvisioningService("myResourceGroup", "myFirstProvisioningService")
+            .withProperties(new PrivateEndpointConnectionProperties().withPrivateLinkServiceConnectionState(
+                new PrivateLinkServiceConnectionState().withStatus(PrivateLinkServiceConnectionStatus.APPROVED)
+                    .withDescription("Approved by johndoe@contoso.com")))
+            .create();
+    }
+}
+```
+
+### IotDpsResource_ListValidSkus
+
+```java
+/**
+ * Samples for DpsCertificate List.
+ */
+public final class DpsCertificateListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSGetCertificates.json
+     */
+    /**
+     * Sample code: DPSGetCertificates.
+     * 
+     * @param manager Entry point to IotDpsManager.
+     */
+    public static void dPSGetCertificates(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.dpsCertificates()
+            .listWithResponse("myResourceGroup", "myFirstProvisioningService", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotDpsResource_Update
+
+```java
+/**
+ * Samples for IotDpsResource Delete.
+ */
+public final class IotDpsResourceDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSDelete.json
+     */
+    /**
+     * Sample code: DPSDelete.
+     * 
+     * @param manager Entry point to IotDpsManager.
+     */
+    public static void dPSDelete(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.iotDpsResources()
+            .delete("myResourceGroup", "myFirstProvisioningService", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Operations_List
 
 ```java
 /**
- * Samples for Operations List.
+ * Samples for IotDpsResource ListPrivateEndpointConnections.
  */
-public final class OperationsListSamples {
+public final class IotDpsResourceListPrivateEndpointConnectionsSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
-     * DPSOperations.json
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSListPrivateEndpointConnections.json
      */
     /**
-     * Sample code: DPSOperations.
+     * Sample code: PrivateEndpointConnections_List.
      * 
      * @param manager Entry point to IotDpsManager.
      */
-    public static void dPSOperations(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
+    public static void
+        privateEndpointConnectionsList(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
+        manager.iotDpsResources()
+            .listPrivateEndpointConnectionsWithResponse("myResourceGroup", "myFirstProvisioningService",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```

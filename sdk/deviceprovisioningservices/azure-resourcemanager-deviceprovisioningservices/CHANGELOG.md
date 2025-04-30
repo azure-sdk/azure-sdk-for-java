@@ -1,14 +1,40 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-30)
+
+- Azure Resource Manager IotDps client library for Java. This package contains Microsoft Azure SDK for IotDps Management SDK. API for using the Azure IoT Hub Device Provisioning Service features. Package tag package-preview-2025-02. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.UserAssignedIdentity` was added
 
-### Bugs Fixed
+* `models.ManagedServiceIdentity` was added
 
-### Other Changes
+* `models.ManagedServiceIdentityType` was added
+
+* `models.IotHubAuthenticationType` was added
+
+#### `models.IotHubDefinitionDescription` was modified
+
+* `authenticationType()` was added
+* `withAuthenticationType(models.IotHubAuthenticationType)` was added
+* `withSelectedUserAssignedIdentityResourceId(java.lang.String)` was added
+* `selectedUserAssignedIdentityResourceId()` was added
+
+#### `models.IotDpsPropertiesDescription` was modified
+
+* `portalOperationsHostname()` was added
+* `withPortalOperationsHostname(java.lang.String)` was added
+
+#### `models.ProvisioningServiceDescription` was modified
+
+* `resourcegroup()` was added
+* `identity()` was added
+* `subscriptionid()` was added
+
+#### `models.ProvisioningServiceDescription$Definition` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
 
 ## 1.1.0 (2025-01-03)
 
