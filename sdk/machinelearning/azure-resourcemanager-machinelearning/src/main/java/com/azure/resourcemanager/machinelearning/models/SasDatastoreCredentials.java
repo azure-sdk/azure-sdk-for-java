@@ -69,7 +69,6 @@ public final class SasDatastoreCredentials extends DatastoreCredentials {
      */
     @Override
     public void validate() {
-        super.validate();
         if (secrets() == null) {
             throw LOGGER.atError()
                 .log(

@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Describes the tmpfs options for the container.
+ * The TmpfsOptions model.
  */
 @Fluent
 public final class TmpfsOptions implements JsonSerializable<TmpfsOptions> {

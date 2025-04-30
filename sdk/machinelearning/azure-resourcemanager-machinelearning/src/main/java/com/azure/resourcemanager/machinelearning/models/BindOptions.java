@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Describes the bind options for the container.
+ * The BindOptions model.
  */
 @Fluent
 public final class BindOptions implements JsonSerializable<BindOptions> {

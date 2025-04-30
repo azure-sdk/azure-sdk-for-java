@@ -10,8 +10,8 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class JobsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Job/CommandJob/get.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Job/CommandJob/get.json
      */
     /**
      * Sample code: Get Command Job.
@@ -24,8 +24,22 @@ public final class JobsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Job/AutoMLJob/get.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Job/DistillationJob/get.json
+     */
+    /**
+     * Sample code: Get Distillation Job.
+     * 
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void getDistillationJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.jobs().getWithResponse("test-rg", "my-aml-workspace", "string", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Job/AutoMLJob/get.json
      */
     /**
      * Sample code: Get AutoML Job.
@@ -38,8 +52,8 @@ public final class JobsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Job/SweepJob/get.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Job/SweepJob/get.json
      */
     /**
      * Sample code: Get Sweep Job.
@@ -52,8 +66,8 @@ public final class JobsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Job/PipelineJob/get.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Job/PipelineJob/get.json
      */
     /**
      * Sample code: Get Pipeline Job.
@@ -61,6 +75,20 @@ public final class JobsGetSamples {
      * @param manager Entry point to MachineLearningManager.
      */
     public static void getPipelineJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.jobs().getWithResponse("test-rg", "my-aml-workspace", "string", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Job/FineTuningJob/get.json
+     */
+    /**
+     * Sample code: Get FineTuning Job.
+     * 
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void getFineTuningJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.jobs().getWithResponse("test-rg", "my-aml-workspace", "string", com.azure.core.util.Context.NONE);
     }
 }

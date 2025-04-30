@@ -10,8 +10,8 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class BatchEndpointsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/BatchEndpoint/delete.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Workspace/BatchEndpoint/delete.json
      */
     /**
      * Sample code: Delete Workspace Batch Endpoint.

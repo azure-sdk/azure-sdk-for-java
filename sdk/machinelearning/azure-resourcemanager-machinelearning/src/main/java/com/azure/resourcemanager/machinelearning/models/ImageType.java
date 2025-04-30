@@ -10,7 +10,8 @@ import java.util.Collection;
 /**
  * Type of the image
  * 
- * Type of the image. Possible values are: docker - For docker images. azureml - For AzureML images.
+ * Type of the image. Possible values are: docker - For docker images. azureml - For AzureML Environment images (custom
+ * and curated).
  */
 public final class ImageType extends ExpandableStringEnum<ImageType> {
     /**

@@ -121,7 +121,6 @@ public final class MonitorServerlessSparkCompute extends MonitorComputeConfigura
      */
     @Override
     public void validate() {
-        super.validate();
         if (computeIdentity() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
