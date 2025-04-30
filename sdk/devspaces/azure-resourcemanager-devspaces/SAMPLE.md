@@ -17,33 +17,49 @@
 ### ContainerHostMappings_GetContainerHostMapping
 
 ```java
-import com.azure.resourcemanager.devspaces.fluent.models.ContainerHostMappingInner;
-
 /**
- * Samples for ContainerHostMappings GetContainerHostMapping.
+ * Samples for Controllers ListByResourceGroup.
  */
-public final class ContainerHostMappingsGetContainerHostMappingSamples {
+public final class ControllersListByResourceGroupSamples {
     /*
      * x-ms-original-file: specification/devspaces/resource-manager/Microsoft.DevSpaces/stable/2019-04-01/examples/
-     * ContainerHostMappingsGetContainerHostMapping_example.json
+     * ControllersListByResourceGroup_example.json
      */
     /**
-     * Sample code: ContainerHostMappingsGetContainerHostMapping.
+     * Sample code: ControllersListByResourceGroup.
      * 
      * @param manager Entry point to DevSpacesManager.
      */
-    public static void
-        containerHostMappingsGetContainerHostMapping(com.azure.resourcemanager.devspaces.DevSpacesManager manager) {
-        manager.containerHostMappings()
-            .getContainerHostMappingWithResponse("myResourceGroup", "eastus",
-                new ContainerHostMappingInner().withContainerHostResourceId(
-                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.ContainerService/managedClusters/myCluster"),
-                com.azure.core.util.Context.NONE);
+    public static void controllersListByResourceGroup(com.azure.resourcemanager.devspaces.DevSpacesManager manager) {
+        manager.controllers().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### Controllers_Create
+
+```java
+/**
+ * Samples for Controllers List.
+ */
+public final class ControllersListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devspaces/resource-manager/Microsoft.DevSpaces/stable/2019-04-01/examples/ControllersList_example.
+     * json
+     */
+    /**
+     * Sample code: ControllersList.
+     * 
+     * @param manager Entry point to DevSpacesManager.
+     */
+    public static void controllersList(com.azure.resourcemanager.devspaces.DevSpacesManager manager) {
+        manager.controllers().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Controllers_Delete
 
 ```java
 import com.azure.resourcemanager.devspaces.models.Sku;
@@ -93,100 +109,7 @@ public final class ControllersCreateSamples {
 }
 ```
 
-### Controllers_Delete
-
-```java
-/**
- * Samples for Controllers Delete.
- */
-public final class ControllersDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devspaces/resource-manager/Microsoft.DevSpaces/stable/2019-04-01/examples/ControllersDelete_example
-     * .json
-     */
-    /**
-     * Sample code: ControllersDelete.
-     * 
-     * @param manager Entry point to DevSpacesManager.
-     */
-    public static void controllersDelete(com.azure.resourcemanager.devspaces.DevSpacesManager manager) {
-        manager.controllers().delete("myResourceGroup", "myControllerResource", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Controllers_GetByResourceGroup
-
-```java
-/**
- * Samples for Controllers GetByResourceGroup.
- */
-public final class ControllersGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devspaces/resource-manager/Microsoft.DevSpaces/stable/2019-04-01/examples/ControllersGet_example.
-     * json
-     */
-    /**
-     * Sample code: ControllersGet.
-     * 
-     * @param manager Entry point to DevSpacesManager.
-     */
-    public static void controllersGet(com.azure.resourcemanager.devspaces.DevSpacesManager manager) {
-        manager.controllers()
-            .getByResourceGroupWithResponse("myResourceGroup", "myControllerResource",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Controllers_List
-
-```java
-/**
- * Samples for Controllers List.
- */
-public final class ControllersListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devspaces/resource-manager/Microsoft.DevSpaces/stable/2019-04-01/examples/ControllersList_example.
-     * json
-     */
-    /**
-     * Sample code: ControllersList.
-     * 
-     * @param manager Entry point to DevSpacesManager.
-     */
-    public static void controllersList(com.azure.resourcemanager.devspaces.DevSpacesManager manager) {
-        manager.controllers().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Controllers_ListByResourceGroup
-
-```java
-/**
- * Samples for Controllers ListByResourceGroup.
- */
-public final class ControllersListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: specification/devspaces/resource-manager/Microsoft.DevSpaces/stable/2019-04-01/examples/
-     * ControllersListByResourceGroup_example.json
-     */
-    /**
-     * Sample code: ControllersListByResourceGroup.
-     * 
-     * @param manager Entry point to DevSpacesManager.
-     */
-    public static void controllersListByResourceGroup(com.azure.resourcemanager.devspaces.DevSpacesManager manager) {
-        manager.controllers().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Controllers_ListConnectionDetails
 
 ```java
 import com.azure.resourcemanager.devspaces.models.ListConnectionDetailsParameters;
@@ -214,7 +137,61 @@ public final class ControllersListConnectionDetailsSamples {
 }
 ```
 
-### Controllers_Update
+### Controllers_List
+
+```java
+import com.azure.resourcemanager.devspaces.fluent.models.ContainerHostMappingInner;
+
+/**
+ * Samples for ContainerHostMappings GetContainerHostMapping.
+ */
+public final class ContainerHostMappingsGetContainerHostMappingSamples {
+    /*
+     * x-ms-original-file: specification/devspaces/resource-manager/Microsoft.DevSpaces/stable/2019-04-01/examples/
+     * ContainerHostMappingsGetContainerHostMapping_example.json
+     */
+    /**
+     * Sample code: ContainerHostMappingsGetContainerHostMapping.
+     * 
+     * @param manager Entry point to DevSpacesManager.
+     */
+    public static void
+        containerHostMappingsGetContainerHostMapping(com.azure.resourcemanager.devspaces.DevSpacesManager manager) {
+        manager.containerHostMappings()
+            .getContainerHostMappingWithResponse("myResourceGroup", "eastus",
+                new ContainerHostMappingInner().withContainerHostResourceId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.ContainerService/managedClusters/myCluster"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Controllers_ListByResourceGroup
+
+```java
+/**
+ * Samples for Controllers GetByResourceGroup.
+ */
+public final class ControllersGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devspaces/resource-manager/Microsoft.DevSpaces/stable/2019-04-01/examples/ControllersGet_example.
+     * json
+     */
+    /**
+     * Sample code: ControllersGet.
+     * 
+     * @param manager Entry point to DevSpacesManager.
+     */
+    public static void controllersGet(com.azure.resourcemanager.devspaces.DevSpacesManager manager) {
+        manager.controllers()
+            .getByResourceGroupWithResponse("myResourceGroup", "myControllerResource",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Controllers_ListConnectionDetails
 
 ```java
 import com.azure.resourcemanager.devspaces.models.Controller;
@@ -255,6 +232,29 @@ public final class ControllersUpdateSamples {
             map.put(key, value);
         }
         return map;
+    }
+}
+```
+
+### Controllers_Update
+
+```java
+/**
+ * Samples for Controllers Delete.
+ */
+public final class ControllersDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devspaces/resource-manager/Microsoft.DevSpaces/stable/2019-04-01/examples/ControllersDelete_example
+     * .json
+     */
+    /**
+     * Sample code: ControllersDelete.
+     * 
+     * @param manager Entry point to DevSpacesManager.
+     */
+    public static void controllersDelete(com.azure.resourcemanager.devspaces.DevSpacesManager manager) {
+        manager.controllers().delete("myResourceGroup", "myControllerResource", com.azure.core.util.Context.NONE);
     }
 }
 ```
