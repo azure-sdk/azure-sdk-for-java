@@ -10,8 +10,8 @@ package com.azure.resourcemanager.healthcareapis.generated;
 public final class WorkspacePrivateEndpointConnectionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2024-03-31/examples/privatelink/
-     * WorkspaceDeletePrivateEndpointConnection.json
+     * specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/preview/2025-03-01-preview/examples/
+     * privatelink/WorkspaceDeletePrivateEndpointConnection.json
      */
     /**
      * Sample code: WorkspacePrivateEndpointConnections_Delete.

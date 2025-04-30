@@ -26,6 +26,11 @@ public final class StorageConfiguration implements JsonSerializable<StorageConfi
      */
     private String fileSystemName;
 
+    /*
+     * The configuration for monitoring changes in the specified storage account.
+     */
+    private StorageMonitorConfiguration storageMonitorConfiguration;
+
     /**
      * Creates an instance of StorageConfiguration class.
      */
@@ -73,11 +78,37 @@ public final class StorageConfiguration implements JsonSerializable<StorageConfi
     }
 
     /**
+     * Get the storageMonitorConfiguration property: The configuration for monitoring changes in the specified storage
+     * account.
+     * 
+     * @return the storageMonitorConfiguration value.
+     */
+    public StorageMonitorConfiguration storageMonitorConfiguration() {
+        return this.storageMonitorConfiguration;
+    }
+
+    /**
+     * Set the storageMonitorConfiguration property: The configuration for monitoring changes in the specified storage
+     * account.
+     * 
+     * @param storageMonitorConfiguration the storageMonitorConfiguration value to set.
+     * @return the StorageConfiguration object itself.
+     */
+    public StorageConfiguration
+        withStorageMonitorConfiguration(StorageMonitorConfiguration storageMonitorConfiguration) {
+        this.storageMonitorConfiguration = storageMonitorConfiguration;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (storageMonitorConfiguration() != null) {
+            storageMonitorConfiguration().validate();
+        }
     }
 
     /**
@@ -88,6 +119,7 @@ public final class StorageConfiguration implements JsonSerializable<StorageConfi
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("storageResourceId", this.storageResourceId);
         jsonWriter.writeStringField("fileSystemName", this.fileSystemName);
+        jsonWriter.writeJsonField("storageMonitorConfiguration", this.storageMonitorConfiguration);
         return jsonWriter.writeEndObject();
     }
 
@@ -110,6 +142,9 @@ public final class StorageConfiguration implements JsonSerializable<StorageConfi
                     deserializedStorageConfiguration.storageResourceId = reader.getString();
                 } else if ("fileSystemName".equals(fieldName)) {
                     deserializedStorageConfiguration.fileSystemName = reader.getString();
+                } else if ("storageMonitorConfiguration".equals(fieldName)) {
+                    deserializedStorageConfiguration.storageMonitorConfiguration
+                        = StorageMonitorConfiguration.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

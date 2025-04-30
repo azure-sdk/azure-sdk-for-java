@@ -12,8 +12,8 @@ import com.azure.resourcemanager.healthcareapis.models.WorkspaceProperties;
 public final class WorkspacesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2024-03-31/examples/workspaces/
-     * Workspaces_Create.json
+     * specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/preview/2025-03-01-preview/examples/
+     * workspaces/Workspaces_Create.json
      */
     /**
      * Sample code: Create or update a workspace.

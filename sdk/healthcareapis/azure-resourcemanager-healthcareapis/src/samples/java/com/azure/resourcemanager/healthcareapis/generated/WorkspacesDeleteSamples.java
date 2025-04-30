@@ -10,8 +10,8 @@ package com.azure.resourcemanager.healthcareapis.generated;
 public final class WorkspacesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2024-03-31/examples/workspaces/
-     * Workspaces_Delete.json
+     * specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/preview/2025-03-01-preview/examples/
+     * workspaces/Workspaces_Delete.json
      */
     /**
      * Sample code: Delete a workspace.
