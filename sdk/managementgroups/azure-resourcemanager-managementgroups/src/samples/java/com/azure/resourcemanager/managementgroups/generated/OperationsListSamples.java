@@ -10,7 +10,7 @@ package com.azure.resourcemanager.managementgroups.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/ListOperations.
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/ListOperations.
      * json
      */
     /**

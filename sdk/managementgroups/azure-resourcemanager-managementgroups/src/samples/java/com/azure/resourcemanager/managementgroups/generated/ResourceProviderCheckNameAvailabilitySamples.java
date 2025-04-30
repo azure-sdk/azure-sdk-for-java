@@ -13,7 +13,7 @@ import com.azure.resourcemanager.managementgroups.models.Type;
 public final class ResourceProviderCheckNameAvailabilitySamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
      * CheckManagementGroupNameAvailability.json
      */
     /**

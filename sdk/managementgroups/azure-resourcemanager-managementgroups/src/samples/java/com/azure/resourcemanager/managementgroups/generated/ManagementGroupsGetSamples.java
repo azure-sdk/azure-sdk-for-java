@@ -12,7 +12,7 @@ import com.azure.resourcemanager.managementgroups.models.ManagementGroupExpandTy
 public final class ManagementGroupsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
      * GetManagementGroupWithPath.json
      */
     /**
@@ -29,7 +29,7 @@ public final class ManagementGroupsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
      * GetManagementGroupWithAncestors.json
      */
     /**
@@ -46,7 +46,7 @@ public final class ManagementGroupsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
      * GetManagementGroupWithExpand.json
      */
     /**
@@ -63,7 +63,7 @@ public final class ManagementGroupsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
      * GetManagementGroup.json
      */
     /**
@@ -79,7 +79,7 @@ public final class ManagementGroupsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
      * GetManagementGroupWithExpandAndRecurse.json
      */
     /**
