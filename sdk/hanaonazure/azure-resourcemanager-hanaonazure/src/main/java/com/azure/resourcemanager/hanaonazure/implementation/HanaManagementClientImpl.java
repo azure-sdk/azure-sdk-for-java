@@ -23,9 +23,10 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.hanaonazure.fluent.HanaInstancesClient;
 import com.azure.resourcemanager.hanaonazure.fluent.HanaManagementClient;
 import com.azure.resourcemanager.hanaonazure.fluent.OperationsClient;
+import com.azure.resourcemanager.hanaonazure.fluent.ProviderInstancesClient;
+import com.azure.resourcemanager.hanaonazure.fluent.SapMonitorsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -141,17 +142,31 @@ public final class HanaManagementClientImpl implements HanaManagementClient {
     }
 
     /**
-     * The HanaInstancesClient object to access its operations.
+     * The SapMonitorsClient object to access its operations.
      */
-    private final HanaInstancesClient hanaInstances;
+    private final SapMonitorsClient sapMonitors;
 
     /**
-     * Gets the HanaInstancesClient object to access its operations.
+     * Gets the SapMonitorsClient object to access its operations.
      * 
-     * @return the HanaInstancesClient object.
+     * @return the SapMonitorsClient object.
      */
-    public HanaInstancesClient getHanaInstances() {
-        return this.hanaInstances;
+    public SapMonitorsClient getSapMonitors() {
+        return this.sapMonitors;
+    }
+
+    /**
+     * The ProviderInstancesClient object to access its operations.
+     */
+    private final ProviderInstancesClient providerInstances;
+
+    /**
+     * Gets the ProviderInstancesClient object to access its operations.
+     * 
+     * @return the ProviderInstancesClient object.
+     */
+    public ProviderInstancesClient getProviderInstances() {
+        return this.providerInstances;
     }
 
     /**
@@ -172,9 +187,10 @@ public final class HanaManagementClientImpl implements HanaManagementClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2017-11-03-preview";
+        this.apiVersion = "2020-02-07-preview";
         this.operations = new OperationsClientImpl(this);
-        this.hanaInstances = new HanaInstancesClientImpl(this);
+        this.sapMonitors = new SapMonitorsClientImpl(this);
+        this.providerInstances = new ProviderInstancesClientImpl(this);
     }
 
     /**

@@ -5,21 +5,20 @@
 package com.azure.resourcemanager.hanaonazure.generated;
 
 /**
- * Samples for Operations List.
+ * Samples for SapMonitors Delete.
  */
-public final class OperationsListSamples {
+public final class SapMonitorsDeleteSamples {
     /*
      * x-ms-original-file:
      * specification/hanaonazure/resource-manager/Microsoft.HanaOnAzure/preview/2020-02-07-preview/examples/
-     * HanaOperations_List.json
+     * SapMonitors_Delete.json
      */
     /**
-     * Sample code: List all HANA management operations supported by HANA RP.
+     * Sample code: Deletes a SAP monitor.
      * 
      * @param manager Entry point to HanaManager.
      */
-    public static void
-        listAllHANAManagementOperationsSupportedByHANARP(com.azure.resourcemanager.hanaonazure.HanaManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
+    public static void deletesASAPMonitor(com.azure.resourcemanager.hanaonazure.HanaManager manager) {
+        manager.sapMonitors().delete("myResourceGroup", "mySapMonitor", com.azure.core.util.Context.NONE);
     }
 }

@@ -28,11 +28,6 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
      */
     private Display display;
 
-    /*
-     * Indicates whether the operation applies to data-plane.
-     */
-    private Boolean isDataAction;
-
     /**
      * Creates an instance of OperationInner class.
      */
@@ -67,15 +62,6 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
     public OperationInner withDisplay(Display display) {
         this.display = display;
         return this;
-    }
-
-    /**
-     * Get the isDataAction property: Indicates whether the operation applies to data-plane.
-     * 
-     * @return the isDataAction value.
-     */
-    public Boolean isDataAction() {
-        return this.isDataAction;
     }
 
     /**
@@ -118,8 +104,6 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
                     deserializedOperationInner.name = reader.getString();
                 } else if ("display".equals(fieldName)) {
                     deserializedOperationInner.display = Display.fromJson(reader);
-                } else if ("isDataAction".equals(fieldName)) {
-                    deserializedOperationInner.isDataAction = reader.getNullable(JsonReader::getBoolean);
                 } else {
                     reader.skipChildren();
                 }
