@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.hdinsight.containers.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -46,8 +47,13 @@ public final class ConnectivityProfileWeb extends WebConnectivityEndpoint {
      */
     @Override
     public void validate() {
-        super.validate();
+        if (fqdn() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property fqdn in model ConnectivityProfileWeb"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ConnectivityProfileWeb.class);
 
     /**
      * {@inheritDoc}

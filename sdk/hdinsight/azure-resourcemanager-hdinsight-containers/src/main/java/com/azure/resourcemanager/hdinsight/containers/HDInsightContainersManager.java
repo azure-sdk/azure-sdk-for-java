@@ -11,17 +11,18 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLoggingPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
+import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hdinsight.containers.fluent.HDInsightContainersManagementClient;
 import com.azure.resourcemanager.hdinsight.containers.implementation.AvailableClusterPoolVersionsImpl;
@@ -30,10 +31,10 @@ import com.azure.resourcemanager.hdinsight.containers.implementation.ClusterAvai
 import com.azure.resourcemanager.hdinsight.containers.implementation.ClusterJobsImpl;
 import com.azure.resourcemanager.hdinsight.containers.implementation.ClusterLibrariesImpl;
 import com.azure.resourcemanager.hdinsight.containers.implementation.ClusterPoolAvailableUpgradesImpl;
-import com.azure.resourcemanager.hdinsight.containers.implementation.ClusterPoolsImpl;
 import com.azure.resourcemanager.hdinsight.containers.implementation.ClusterPoolUpgradeHistoriesImpl;
-import com.azure.resourcemanager.hdinsight.containers.implementation.ClustersImpl;
+import com.azure.resourcemanager.hdinsight.containers.implementation.ClusterPoolsImpl;
 import com.azure.resourcemanager.hdinsight.containers.implementation.ClusterUpgradeHistoriesImpl;
+import com.azure.resourcemanager.hdinsight.containers.implementation.ClustersImpl;
 import com.azure.resourcemanager.hdinsight.containers.implementation.HDInsightContainersManagementClientBuilder;
 import com.azure.resourcemanager.hdinsight.containers.implementation.LocationsImpl;
 import com.azure.resourcemanager.hdinsight.containers.implementation.OperationsImpl;
@@ -43,16 +44,17 @@ import com.azure.resourcemanager.hdinsight.containers.models.ClusterAvailableUpg
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterJobs;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterLibraries;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterPoolAvailableUpgrades;
-import com.azure.resourcemanager.hdinsight.containers.models.ClusterPools;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterPoolUpgradeHistories;
-import com.azure.resourcemanager.hdinsight.containers.models.Clusters;
+import com.azure.resourcemanager.hdinsight.containers.models.ClusterPools;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterUpgradeHistories;
+import com.azure.resourcemanager.hdinsight.containers.models.Clusters;
 import com.azure.resourcemanager.hdinsight.containers.models.Locations;
 import com.azure.resourcemanager.hdinsight.containers.models.Operations;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -137,6 +139,9 @@ public final class HDInsightContainersManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-hdinsight-containers.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -244,12 +249,14 @@ public final class HDInsightContainersManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.hdinsight.containers")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -282,7 +289,7 @@ public final class HDInsightContainersManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));

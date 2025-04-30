@@ -145,7 +145,6 @@ public final class ClusterAvailableUpgradeHotfixUpgradeProperties extends Cluste
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

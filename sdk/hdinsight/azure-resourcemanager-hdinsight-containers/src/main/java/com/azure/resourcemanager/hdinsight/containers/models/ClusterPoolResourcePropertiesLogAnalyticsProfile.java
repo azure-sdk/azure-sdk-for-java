@@ -46,7 +46,6 @@ public final class ClusterPoolResourcePropertiesLogAnalyticsProfile extends Clus
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

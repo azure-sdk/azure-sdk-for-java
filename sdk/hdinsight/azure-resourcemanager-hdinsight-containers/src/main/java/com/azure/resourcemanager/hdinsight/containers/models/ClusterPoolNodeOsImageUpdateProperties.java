@@ -43,7 +43,6 @@ public final class ClusterPoolNodeOsImageUpdateProperties extends ClusterPoolUpg
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

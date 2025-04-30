@@ -131,7 +131,6 @@ public final class ClusterPoolAksPatchVersionUpgradeProperties extends ClusterPo
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
