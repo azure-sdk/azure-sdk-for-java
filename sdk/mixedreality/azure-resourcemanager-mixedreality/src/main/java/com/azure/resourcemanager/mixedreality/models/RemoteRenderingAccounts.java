@@ -13,6 +13,12 @@ import com.azure.core.util.Context;
  */
 public interface RemoteRenderingAccounts {
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Remote Rendering Accounts by Subscription.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -22,6 +28,12 @@ public interface RemoteRenderingAccounts {
     PagedIterable<RemoteRenderingAccount> list();
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Remote Rendering Accounts by Subscription.
      * 
      * @param context The context to associate with this operation.
@@ -33,6 +45,12 @@ public interface RemoteRenderingAccounts {
     PagedIterable<RemoteRenderingAccount> list(Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Resources by Resource Group.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -44,6 +62,12 @@ public interface RemoteRenderingAccounts {
     PagedIterable<RemoteRenderingAccount> listByResourceGroup(String resourceGroupName);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Resources by Resource Group.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -56,6 +80,12 @@ public interface RemoteRenderingAccounts {
     PagedIterable<RemoteRenderingAccount> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Delete a Remote Rendering Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -69,6 +99,12 @@ public interface RemoteRenderingAccounts {
     Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String accountName, Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Delete a Remote Rendering Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -80,6 +116,12 @@ public interface RemoteRenderingAccounts {
     void deleteByResourceGroup(String resourceGroupName, String accountName);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Retrieve a Remote Rendering Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -94,6 +136,12 @@ public interface RemoteRenderingAccounts {
         Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Retrieve a Remote Rendering Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -106,6 +154,12 @@ public interface RemoteRenderingAccounts {
     RemoteRenderingAccount getByResourceGroup(String resourceGroupName, String accountName);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Both of the 2 Keys of a Remote Rendering Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -119,6 +173,12 @@ public interface RemoteRenderingAccounts {
     Response<AccountKeys> listKeysWithResponse(String resourceGroupName, String accountName, Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Both of the 2 Keys of a Remote Rendering Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -131,6 +191,12 @@ public interface RemoteRenderingAccounts {
     AccountKeys listKeys(String resourceGroupName, String accountName);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Regenerate specified Key of a Remote Rendering Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -146,6 +212,12 @@ public interface RemoteRenderingAccounts {
         AccountKeyRegenerateRequest regenerate, Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Regenerate specified Key of a Remote Rendering Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -159,6 +231,12 @@ public interface RemoteRenderingAccounts {
     AccountKeys regenerateKeys(String resourceGroupName, String accountName, AccountKeyRegenerateRequest regenerate);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Retrieve a Remote Rendering Account.
      * 
      * @param id the resource ID.
@@ -170,6 +248,12 @@ public interface RemoteRenderingAccounts {
     RemoteRenderingAccount getById(String id);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Retrieve a Remote Rendering Account.
      * 
      * @param id the resource ID.
@@ -182,6 +266,12 @@ public interface RemoteRenderingAccounts {
     Response<RemoteRenderingAccount> getByIdWithResponse(String id, Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Delete a Remote Rendering Account.
      * 
      * @param id the resource ID.
@@ -192,6 +282,12 @@ public interface RemoteRenderingAccounts {
     void deleteById(String id);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Delete a Remote Rendering Account.
      * 
      * @param id the resource ID.

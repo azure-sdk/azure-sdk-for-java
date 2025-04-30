@@ -5,21 +5,21 @@
 package com.azure.resourcemanager.mixedreality.generated;
 
 /**
- * Samples for SpatialAnchorsAccounts ListKeys.
+ * Samples for ObjectAnchorsAccounts ListKeys.
  */
-public final class SpatialAnchorsAccountsListKeysSamples {
+public final class ObjectAnchorsAccountsListKeysSamples {
     /*
      * x-ms-original-file:
-     * specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/spatial-
+     * specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/object-
      * anchors/ListKeys.json
      */
     /**
-     * Sample code: List spatial anchor account key.
+     * Sample code: List object anchors account key.
      * 
      * @param manager Entry point to MixedRealityManager.
      */
-    public static void listSpatialAnchorAccountKey(com.azure.resourcemanager.mixedreality.MixedRealityManager manager) {
-        manager.spatialAnchorsAccounts()
+    public static void listObjectAnchorsAccountKey(com.azure.resourcemanager.mixedreality.MixedRealityManager manager) {
+        manager.objectAnchorsAccounts()
             .listKeysWithResponse("MyResourceGroup", "MyAccount", com.azure.core.util.Context.NONE);
     }
 }

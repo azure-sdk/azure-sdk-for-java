@@ -18,6 +18,12 @@ import com.azure.resourcemanager.mixedreality.models.AccountKeyRegenerateRequest
  */
 public interface SpatialAnchorsAccountsClient {
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Spatial Anchors Accounts by Subscription.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -28,6 +34,12 @@ public interface SpatialAnchorsAccountsClient {
     PagedIterable<SpatialAnchorsAccountInner> list();
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Spatial Anchors Accounts by Subscription.
      * 
      * @param context The context to associate with this operation.
@@ -40,6 +52,12 @@ public interface SpatialAnchorsAccountsClient {
     PagedIterable<SpatialAnchorsAccountInner> list(Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Resources by Resource Group.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -52,6 +70,12 @@ public interface SpatialAnchorsAccountsClient {
     PagedIterable<SpatialAnchorsAccountInner> listByResourceGroup(String resourceGroupName);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Resources by Resource Group.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -65,6 +89,12 @@ public interface SpatialAnchorsAccountsClient {
     PagedIterable<SpatialAnchorsAccountInner> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Delete a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -79,6 +109,12 @@ public interface SpatialAnchorsAccountsClient {
     Response<Void> deleteWithResponse(String resourceGroupName, String accountName, Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Delete a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -91,6 +127,12 @@ public interface SpatialAnchorsAccountsClient {
     void delete(String resourceGroupName, String accountName);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Retrieve a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -106,6 +148,12 @@ public interface SpatialAnchorsAccountsClient {
         Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Retrieve a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -119,6 +167,12 @@ public interface SpatialAnchorsAccountsClient {
     SpatialAnchorsAccountInner getByResourceGroup(String resourceGroupName, String accountName);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Updating a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -135,6 +189,12 @@ public interface SpatialAnchorsAccountsClient {
         SpatialAnchorsAccountInner spatialAnchorsAccount, Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Updating a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -150,6 +210,12 @@ public interface SpatialAnchorsAccountsClient {
         SpatialAnchorsAccountInner spatialAnchorsAccount);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Creating or Updating a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -166,6 +232,12 @@ public interface SpatialAnchorsAccountsClient {
         SpatialAnchorsAccountInner spatialAnchorsAccount, Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Creating or Updating a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -181,6 +253,12 @@ public interface SpatialAnchorsAccountsClient {
         SpatialAnchorsAccountInner spatialAnchorsAccount);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Both of the 2 Keys of a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -195,6 +273,12 @@ public interface SpatialAnchorsAccountsClient {
     Response<AccountKeysInner> listKeysWithResponse(String resourceGroupName, String accountName, Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * List Both of the 2 Keys of a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -208,6 +292,12 @@ public interface SpatialAnchorsAccountsClient {
     AccountKeysInner listKeys(String resourceGroupName, String accountName);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Regenerate specified Key of a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
@@ -224,6 +314,12 @@ public interface SpatialAnchorsAccountsClient {
         AccountKeyRegenerateRequest regenerate, Context context);
 
     /**
+     * &gt; [!NOTE]
+     * &gt;
+     * &gt; **Mixed Reality retirement**
+     * &gt;
+     * &gt; The Mixed Reality service is now deprecated and will be retired.
+     * 
      * Regenerate specified Key of a Spatial Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.

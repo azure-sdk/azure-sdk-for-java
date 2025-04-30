@@ -5,21 +5,21 @@
 package com.azure.resourcemanager.mixedreality.generated;
 
 /**
- * Samples for SpatialAnchorsAccounts GetByResourceGroup.
+ * Samples for ObjectAnchorsAccounts GetByResourceGroup.
  */
-public final class SpatialAnchorsAccountsGetByResourceGroupSamples {
+public final class ObjectAnchorsAccountsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/spatial-
+     * specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/object-
      * anchors/Get.json
      */
     /**
-     * Sample code: Get spatial anchors account.
+     * Sample code: Get object anchors account.
      * 
      * @param manager Entry point to MixedRealityManager.
      */
-    public static void getSpatialAnchorsAccount(com.azure.resourcemanager.mixedreality.MixedRealityManager manager) {
-        manager.spatialAnchorsAccounts()
+    public static void getObjectAnchorsAccount(com.azure.resourcemanager.mixedreality.MixedRealityManager manager) {
+        manager.objectAnchorsAccounts()
             .getByResourceGroupWithResponse("MyResourceGroup", "MyAccount", com.azure.core.util.Context.NONE);
     }
 }

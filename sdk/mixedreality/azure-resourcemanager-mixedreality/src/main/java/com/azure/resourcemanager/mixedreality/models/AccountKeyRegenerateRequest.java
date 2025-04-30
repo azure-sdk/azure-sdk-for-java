@@ -17,7 +17,7 @@ import java.io.IOException;
 @Fluent
 public final class AccountKeyRegenerateRequest implements JsonSerializable<AccountKeyRegenerateRequest> {
     /*
-     * serial of key to be regenerated
+     * Serial of key to be regenerated
      */
     private Serial serial;
 
@@ -28,7 +28,7 @@ public final class AccountKeyRegenerateRequest implements JsonSerializable<Accou
     }
 
     /**
-     * Get the serial property: serial of key to be regenerated.
+     * Get the serial property: Serial of key to be regenerated.
      * 
      * @return the serial value.
      */
@@ -37,7 +37,7 @@ public final class AccountKeyRegenerateRequest implements JsonSerializable<Accou
     }
 
     /**
-     * Set the serial property: serial of key to be regenerated.
+     * Set the serial property: Serial of key to be regenerated.
      * 
      * @param serial the serial value to set.
      * @return the AccountKeyRegenerateRequest object itself.

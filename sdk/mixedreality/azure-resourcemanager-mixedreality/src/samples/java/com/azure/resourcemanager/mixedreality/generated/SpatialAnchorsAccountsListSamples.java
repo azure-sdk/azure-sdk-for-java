@@ -10,8 +10,8 @@ package com.azure.resourcemanager.mixedreality.generated;
 public final class SpatialAnchorsAccountsListSamples {
     /*
      * x-ms-original-file:
-     * specification/mixedreality/resource-manager/Microsoft.MixedReality/stable/2021-01-01/examples/spatial-anchors/
-     * GetBySubscription.json
+     * specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/spatial-
+     * anchors/GetBySubscription.json
      */
     /**
      * Sample code: List spatial anchors accounts by subscription.

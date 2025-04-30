@@ -16,8 +16,8 @@ import java.util.Map;
 public final class RemoteRenderingAccountsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mixedreality/resource-manager/Microsoft.MixedReality/stable/2021-01-01/examples/remote-rendering/
-     * Patch.json
+     * specification/mixedreality/resource-manager/Microsoft.MixedReality/preview/2021-03-01-preview/examples/remote-
+     * rendering/Patch.json
      */
     /**
      * Sample code: Update remote rendering account.
