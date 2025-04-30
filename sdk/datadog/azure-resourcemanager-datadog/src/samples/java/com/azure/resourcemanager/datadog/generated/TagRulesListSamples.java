@@ -10,7 +10,7 @@ package com.azure.resourcemanager.datadog.generated;
 public final class TagRulesListSamples {
     /*
      * x-ms-original-file:
-     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-01-01/examples/TagRules_List.json
+     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-10-20/examples/TagRules_List.json
      */
     /**
      * Sample code: TagRules_List.

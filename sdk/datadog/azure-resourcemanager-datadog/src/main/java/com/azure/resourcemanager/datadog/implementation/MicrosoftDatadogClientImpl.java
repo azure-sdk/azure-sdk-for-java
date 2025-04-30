@@ -23,6 +23,7 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.datadog.fluent.BillingInfoesClient;
 import com.azure.resourcemanager.datadog.fluent.CreationSupportedsClient;
 import com.azure.resourcemanager.datadog.fluent.MarketplaceAgreementsClient;
 import com.azure.resourcemanager.datadog.fluent.MicrosoftDatadogClient;
@@ -186,6 +187,20 @@ public final class MicrosoftDatadogClientImpl implements MicrosoftDatadogClient 
     }
 
     /**
+     * The BillingInfoesClient object to access its operations.
+     */
+    private final BillingInfoesClient billingInfoes;
+
+    /**
+     * Gets the BillingInfoesClient object to access its operations.
+     * 
+     * @return the BillingInfoesClient object.
+     */
+    public BillingInfoesClient getBillingInfoes() {
+        return this.billingInfoes;
+    }
+
+    /**
      * The TagRulesClient object to access its operations.
      */
     private final TagRulesClient tagRules;
@@ -244,11 +259,12 @@ public final class MicrosoftDatadogClientImpl implements MicrosoftDatadogClient 
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-01-01";
+        this.apiVersion = "2023-10-20";
         this.marketplaceAgreements = new MarketplaceAgreementsClientImpl(this);
         this.creationSupporteds = new CreationSupportedsClientImpl(this);
         this.monitors = new MonitorsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.billingInfoes = new BillingInfoesClientImpl(this);
         this.tagRules = new TagRulesClientImpl(this);
         this.singleSignOnConfigurations = new SingleSignOnConfigurationsClientImpl(this);
         this.monitoredSubscriptions = new MonitoredSubscriptionsClientImpl(this);

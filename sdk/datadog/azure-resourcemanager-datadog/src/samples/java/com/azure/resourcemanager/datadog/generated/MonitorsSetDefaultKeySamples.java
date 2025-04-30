@@ -12,7 +12,7 @@ import com.azure.resourcemanager.datadog.fluent.models.DatadogApiKeyInner;
 public final class MonitorsSetDefaultKeySamples {
     /*
      * x-ms-original-file:
-     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-01-01/examples/ApiKeys_SetDefaultKey.json
+     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-10-20/examples/ApiKeys_SetDefaultKey.json
      */
     /**
      * Sample code: Monitors_SetDefaultKey.

@@ -75,6 +75,13 @@ public interface MicrosoftDatadogClient {
     OperationsClient getOperations();
 
     /**
+     * Gets the BillingInfoesClient object to access its operations.
+     * 
+     * @return the BillingInfoesClient object.
+     */
+    BillingInfoesClient getBillingInfoes();
+
+    /**
      * Gets the TagRulesClient object to access its operations.
      * 
      * @return the TagRulesClient object.

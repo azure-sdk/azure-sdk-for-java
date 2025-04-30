@@ -13,7 +13,7 @@ import com.azure.resourcemanager.datadog.models.DatadogAgreementProperties;
 public final class MarketplaceAgreementsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-01-01/examples/MarketplaceAgreements_Create.
+     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-10-20/examples/MarketplaceAgreements_Create.
      * json
      */
     /**

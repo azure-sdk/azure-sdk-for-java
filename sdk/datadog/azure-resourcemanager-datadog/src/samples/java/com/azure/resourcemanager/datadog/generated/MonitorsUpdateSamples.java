@@ -16,7 +16,7 @@ import java.util.Map;
 public final class MonitorsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-01-01/examples/Monitors_Update.json
+     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-10-20/examples/Monitors_Update.json
      */
     /**
      * Sample code: Monitors_Update.

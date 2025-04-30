@@ -79,6 +79,14 @@ public final class CreationSupportedsClientImpl implements CreationSupportedsCli
             @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
             @QueryParam("datadogOrganizationId") String datadogOrganizationId, @HeaderParam("Accept") String accept,
             Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<CreateResourceSupportedResponseList>> listNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
@@ -110,7 +118,7 @@ public final class CreationSupportedsClientImpl implements CreationSupportedsCli
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
                 this.client.getApiVersion(), datadogOrganizationId, accept, context))
             .<PagedResponse<CreateResourceSupportedResponseInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null))
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -145,7 +153,7 @@ public final class CreationSupportedsClientImpl implements CreationSupportedsCli
             .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(),
                 datadogOrganizationId, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), null, null));
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -159,7 +167,8 @@ public final class CreationSupportedsClientImpl implements CreationSupportedsCli
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CreateResourceSupportedResponseInner> listAsync(String datadogOrganizationId) {
-        return new PagedFlux<>(() -> listSinglePageAsync(datadogOrganizationId));
+        return new PagedFlux<>(() -> listSinglePageAsync(datadogOrganizationId),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -174,7 +183,8 @@ public final class CreationSupportedsClientImpl implements CreationSupportedsCli
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CreateResourceSupportedResponseInner> listAsync(String datadogOrganizationId, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(datadogOrganizationId, context));
+        return new PagedFlux<>(() -> listSinglePageAsync(datadogOrganizationId, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -311,5 +321,57 @@ public final class CreationSupportedsClientImpl implements CreationSupportedsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CreateResourceSupportedResponseInner get(String datadogOrganizationId) {
         return getWithResponse(datadogOrganizationId, Context.NONE).getValue();
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<CreateResourceSupportedResponseInner>> listNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<CreateResourceSupportedResponseInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<CreateResourceSupportedResponseInner>> listNextSinglePageAsync(String nextLink,
+        Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }
