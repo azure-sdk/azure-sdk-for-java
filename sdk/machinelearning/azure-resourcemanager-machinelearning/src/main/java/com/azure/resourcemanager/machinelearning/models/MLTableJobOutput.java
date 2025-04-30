@@ -21,14 +21,19 @@ public final class MLTableJobOutput extends JobOutput {
     private JobOutputType jobOutputType = JobOutputType.MLTABLE;
 
     /*
-     * Output Asset URI.
+     * Output Asset Name.
      */
-    private String uri;
+    private String assetName;
 
     /*
      * Output Asset Delivery Mode.
      */
     private OutputDeliveryMode mode;
+
+    /*
+     * Output Asset URI.
+     */
+    private String uri;
 
     /**
      * Creates an instance of MLTableJobOutput class.
@@ -47,22 +52,22 @@ public final class MLTableJobOutput extends JobOutput {
     }
 
     /**
-     * Get the uri property: Output Asset URI.
+     * Get the assetName property: Output Asset Name.
      * 
-     * @return the uri value.
+     * @return the assetName value.
      */
-    public String uri() {
-        return this.uri;
+    public String assetName() {
+        return this.assetName;
     }
 
     /**
-     * Set the uri property: Output Asset URI.
+     * Set the assetName property: Output Asset Name.
      * 
-     * @param uri the uri value to set.
+     * @param assetName the assetName value to set.
      * @return the MLTableJobOutput object itself.
      */
-    public MLTableJobOutput withUri(String uri) {
-        this.uri = uri;
+    public MLTableJobOutput withAssetName(String assetName) {
+        this.assetName = assetName;
         return this;
     }
 
@@ -87,6 +92,26 @@ public final class MLTableJobOutput extends JobOutput {
     }
 
     /**
+     * Get the uri property: Output Asset URI.
+     * 
+     * @return the uri value.
+     */
+    public String uri() {
+        return this.uri;
+    }
+
+    /**
+     * Set the uri property: Output Asset URI.
+     * 
+     * @param uri the uri value to set.
+     * @return the MLTableJobOutput object itself.
+     */
+    public MLTableJobOutput withUri(String uri) {
+        this.uri = uri;
+        return this;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -102,7 +127,6 @@ public final class MLTableJobOutput extends JobOutput {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -113,8 +137,9 @@ public final class MLTableJobOutput extends JobOutput {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("description", description());
         jsonWriter.writeStringField("jobOutputType", this.jobOutputType == null ? null : this.jobOutputType.toString());
-        jsonWriter.writeStringField("uri", this.uri);
+        jsonWriter.writeStringField("assetName", this.assetName);
         jsonWriter.writeStringField("mode", this.mode == null ? null : this.mode.toString());
+        jsonWriter.writeStringField("uri", this.uri);
         return jsonWriter.writeEndObject();
     }
 
@@ -137,10 +162,12 @@ public final class MLTableJobOutput extends JobOutput {
                     deserializedMLTableJobOutput.withDescription(reader.getString());
                 } else if ("jobOutputType".equals(fieldName)) {
                     deserializedMLTableJobOutput.jobOutputType = JobOutputType.fromString(reader.getString());
-                } else if ("uri".equals(fieldName)) {
-                    deserializedMLTableJobOutput.uri = reader.getString();
+                } else if ("assetName".equals(fieldName)) {
+                    deserializedMLTableJobOutput.assetName = reader.getString();
                 } else if ("mode".equals(fieldName)) {
                     deserializedMLTableJobOutput.mode = OutputDeliveryMode.fromString(reader.getString());
+                } else if ("uri".equals(fieldName)) {
+                    deserializedMLTableJobOutput.uri = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

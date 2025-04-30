@@ -17,7 +17,7 @@ import java.io.IOException;
 @Fluent
 public final class CosmosDbSettings implements JsonSerializable<CosmosDbSettings> {
     /*
-     * The throughput of the collections in cosmosdb database
+     * The collectionsThroughput property.
      */
     private Integer collectionsThroughput;
 
@@ -28,7 +28,7 @@ public final class CosmosDbSettings implements JsonSerializable<CosmosDbSettings
     }
 
     /**
-     * Get the collectionsThroughput property: The throughput of the collections in cosmosdb database.
+     * Get the collectionsThroughput property: The collectionsThroughput property.
      * 
      * @return the collectionsThroughput value.
      */
@@ -37,7 +37,7 @@ public final class CosmosDbSettings implements JsonSerializable<CosmosDbSettings
     }
 
     /**
-     * Set the collectionsThroughput property: The throughput of the collections in cosmosdb database.
+     * Set the collectionsThroughput property: The collectionsThroughput property.
      * 
      * @param collectionsThroughput the collectionsThroughput value to set.
      * @return the CosmosDbSettings object itself.

@@ -10,8 +10,8 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class FeaturesetContainersGetEntitySamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/FeaturesetContainer/getEntity.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Workspace/FeaturesetContainer/getEntity.json
      */
     /**
      * Sample code: GetEntity Workspace Featureset Container.

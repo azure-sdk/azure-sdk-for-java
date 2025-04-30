@@ -10,8 +10,8 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class RegistryComponentVersionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registry/ComponentVersion/get.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Registry/ComponentVersion/get.json
      */
     /**
      * Sample code: Get Registry Component Version.

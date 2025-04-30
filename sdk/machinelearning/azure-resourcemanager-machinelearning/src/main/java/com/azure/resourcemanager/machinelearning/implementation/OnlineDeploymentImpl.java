@@ -51,16 +51,16 @@ public final class OnlineDeploymentImpl
         }
     }
 
-    public OnlineDeploymentProperties properties() {
-        return this.innerModel().properties();
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
     }
 
     public String kind() {
         return this.innerModel().kind();
     }
 
-    public ManagedServiceIdentity identity() {
-        return this.innerModel().identity();
+    public OnlineDeploymentProperties properties() {
+        return this.innerModel().properties();
     }
 
     public Sku sku() {
@@ -210,13 +210,13 @@ public final class OnlineDeploymentImpl
         }
     }
 
-    public OnlineDeploymentImpl withKind(String kind) {
-        this.innerModel().withKind(kind);
+    public OnlineDeploymentImpl withIdentity(ManagedServiceIdentity identity) {
+        this.innerModel().withIdentity(identity);
         return this;
     }
 
-    public OnlineDeploymentImpl withIdentity(ManagedServiceIdentity identity) {
-        this.innerModel().withIdentity(identity);
+    public OnlineDeploymentImpl withKind(String kind) {
+        this.innerModel().withKind(kind);
         return this;
     }
 

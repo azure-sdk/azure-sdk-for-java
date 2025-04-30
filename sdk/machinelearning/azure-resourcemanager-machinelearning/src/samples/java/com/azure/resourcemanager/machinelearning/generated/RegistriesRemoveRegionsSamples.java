@@ -20,8 +20,6 @@ import com.azure.resourcemanager.machinelearning.models.StorageAccountDetails;
 import com.azure.resourcemanager.machinelearning.models.SystemCreatedAcrAccount;
 import com.azure.resourcemanager.machinelearning.models.SystemCreatedStorageAccount;
 import com.azure.resourcemanager.machinelearning.models.UserAssignedIdentity;
-import com.azure.resourcemanager.machinelearning.models.UserCreatedAcrAccount;
-import com.azure.resourcemanager.machinelearning.models.UserCreatedStorageAccount;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,8 +30,8 @@ import java.util.Map;
 public final class RegistriesRemoveRegionsSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registries/removeRegions.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Registries/removeRegions.json
      */
     /**
      * Sample code: Remove regions from registry.
@@ -73,19 +71,15 @@ public final class RegistriesRemoveRegionsSamples {
                         .withAcrDetails(Arrays.asList(new AcrDetails()
                             .withSystemCreatedAcrAccount(new SystemCreatedAcrAccount().withAcrAccountName("string")
                                 .withAcrAccountSku("string")
-                                .withArmResourceId(new ArmResourceId().withResourceId("string")))
-                            .withUserCreatedAcrAccount(new UserCreatedAcrAccount()
                                 .withArmResourceId(new ArmResourceId().withResourceId("string")))))
                         .withLocation("string")
-                        .withStorageAccountDetails(Arrays.asList(new StorageAccountDetails()
-                            .withSystemCreatedStorageAccount(
+                        .withStorageAccountDetails(
+                            Arrays.asList(new StorageAccountDetails().withSystemCreatedStorageAccount(
                                 new SystemCreatedStorageAccount().withAllowBlobPublicAccess(false)
                                     .withArmResourceId(new ArmResourceId().withResourceId("string"))
                                     .withStorageAccountHnsEnabled(false)
                                     .withStorageAccountName("string")
-                                    .withStorageAccountType("string"))
-                            .withUserCreatedStorageAccount(new UserCreatedStorageAccount()
-                                .withArmResourceId(new ArmResourceId().withResourceId("string"))))))),
+                                    .withStorageAccountType("string")))))),
                 com.azure.core.util.Context.NONE);
     }
 

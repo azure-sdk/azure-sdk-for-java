@@ -21,8 +21,8 @@ import java.util.Map;
 public final class BatchEndpointsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/BatchEndpoint/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Workspace/BatchEndpoint/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Workspace Batch Endpoint.
@@ -35,14 +35,14 @@ public final class BatchEndpointsCreateOrUpdateSamples {
             .define("testEndpointName")
             .withRegion("string")
             .withExistingWorkspace("test-rg", "my-aml-workspace")
-            .withProperties(new BatchEndpointProperties().withDescription("string")
+            .withProperties(new BatchEndpointProperties().withAuthMode(EndpointAuthMode.AMLTOKEN)
+                .withDescription("string")
                 .withProperties(mapOf("string", "string"))
-                .withAuthMode(EndpointAuthMode.AMLTOKEN)
                 .withDefaults(new BatchEndpointDefaults().withDeploymentName("string")))
             .withTags(mapOf())
-            .withKind("string")
             .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED)
                 .withUserAssignedIdentities(mapOf("string", new UserAssignedIdentity())))
+            .withKind("string")
             .withSku(new Sku().withName("string")
                 .withTier(SkuTier.FREE)
                 .withSize("string")

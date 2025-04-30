@@ -69,7 +69,6 @@ public final class SparkJobScalaEntry extends SparkJobEntry {
      */
     @Override
     public void validate() {
-        super.validate();
         if (className() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property className in model SparkJobScalaEntry"));

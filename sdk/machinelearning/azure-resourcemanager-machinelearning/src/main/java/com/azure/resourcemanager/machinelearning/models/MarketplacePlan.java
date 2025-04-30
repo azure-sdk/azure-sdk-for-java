@@ -17,11 +17,6 @@ import java.io.IOException;
 @Immutable
 public final class MarketplacePlan implements JsonSerializable<MarketplacePlan> {
     /*
-     * The identifying name of the Publisher of the Marketplace Plan.
-     */
-    private String publisherId;
-
-    /*
      * The identifying name of the Offer of the Marketplace Plan.
      */
     private String offerId;
@@ -31,19 +26,15 @@ public final class MarketplacePlan implements JsonSerializable<MarketplacePlan> 
      */
     private String planId;
 
+    /*
+     * The identifying name of the Publisher of the Marketplace Plan.
+     */
+    private String publisherId;
+
     /**
      * Creates an instance of MarketplacePlan class.
      */
     public MarketplacePlan() {
-    }
-
-    /**
-     * Get the publisherId property: The identifying name of the Publisher of the Marketplace Plan.
-     * 
-     * @return the publisherId value.
-     */
-    public String publisherId() {
-        return this.publisherId;
     }
 
     /**
@@ -62,6 +53,15 @@ public final class MarketplacePlan implements JsonSerializable<MarketplacePlan> 
      */
     public String planId() {
         return this.planId;
+    }
+
+    /**
+     * Get the publisherId property: The identifying name of the Publisher of the Marketplace Plan.
+     * 
+     * @return the publisherId value.
+     */
+    public String publisherId() {
+        return this.publisherId;
     }
 
     /**
@@ -96,12 +96,12 @@ public final class MarketplacePlan implements JsonSerializable<MarketplacePlan> 
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("publisherId".equals(fieldName)) {
-                    deserializedMarketplacePlan.publisherId = reader.getString();
-                } else if ("offerId".equals(fieldName)) {
+                if ("offerId".equals(fieldName)) {
                     deserializedMarketplacePlan.offerId = reader.getString();
                 } else if ("planId".equals(fieldName)) {
                     deserializedMarketplacePlan.planId = reader.getString();
+                } else if ("publisherId".equals(fieldName)) {
+                    deserializedMarketplacePlan.publisherId = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

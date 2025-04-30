@@ -13,8 +13,9 @@ import com.azure.resourcemanager.machinelearning.fluent.DatastoresClient;
 import com.azure.resourcemanager.machinelearning.fluent.models.DatastoreInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.DatastoreSecretsInner;
 import com.azure.resourcemanager.machinelearning.models.Datastore;
-import com.azure.resourcemanager.machinelearning.models.Datastores;
 import com.azure.resourcemanager.machinelearning.models.DatastoreSecrets;
+import com.azure.resourcemanager.machinelearning.models.Datastores;
+import com.azure.resourcemanager.machinelearning.models.SecretExpiry;
 import java.util.List;
 
 public final class DatastoresImpl implements Datastores {
@@ -74,9 +75,9 @@ public final class DatastoresImpl implements Datastores {
     }
 
     public Response<DatastoreSecrets> listSecretsWithResponse(String resourceGroupName, String workspaceName,
-        String name, Context context) {
+        String name, SecretExpiry body, Context context) {
         Response<DatastoreSecretsInner> inner
-            = this.serviceClient().listSecretsWithResponse(resourceGroupName, workspaceName, name, context);
+            = this.serviceClient().listSecretsWithResponse(resourceGroupName, workspaceName, name, body, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new DatastoreSecretsImpl(inner.getValue(), this.manager()));

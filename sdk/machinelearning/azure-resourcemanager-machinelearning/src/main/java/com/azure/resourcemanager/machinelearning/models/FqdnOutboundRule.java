@@ -9,6 +9,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * FQDN Outbound Rule for the managed network of a machine learning workspace.
@@ -86,7 +87,6 @@ public final class FqdnOutboundRule extends OutboundRule {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -119,6 +119,9 @@ public final class FqdnOutboundRule extends OutboundRule {
 
                 if ("category".equals(fieldName)) {
                     deserializedFqdnOutboundRule.withCategory(RuleCategory.fromString(reader.getString()));
+                } else if ("parentRuleNames".equals(fieldName)) {
+                    List<String> parentRuleNames = reader.readArray(reader1 -> reader1.getString());
+                    deserializedFqdnOutboundRule.withParentRuleNames(parentRuleNames);
                 } else if ("status".equals(fieldName)) {
                     deserializedFqdnOutboundRule.withStatus(RuleStatus.fromString(reader.getString()));
                 } else if ("type".equals(fieldName)) {

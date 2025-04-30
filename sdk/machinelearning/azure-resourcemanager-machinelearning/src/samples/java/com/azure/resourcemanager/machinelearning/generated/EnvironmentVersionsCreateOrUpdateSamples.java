@@ -17,8 +17,8 @@ import java.util.Map;
 public final class EnvironmentVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/EnvironmentVersion/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Workspace/EnvironmentVersion/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Workspace Environment Version.
@@ -31,14 +31,14 @@ public final class EnvironmentVersionsCreateOrUpdateSamples {
             .define("string")
             .withExistingEnvironment("test-rg", "my-aml-workspace", "string")
             .withProperties(new EnvironmentVersionProperties().withDescription("string")
-                .withTags(mapOf("string", "string"))
                 .withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string"))
                 .withIsAnonymous(false)
-                .withImage("docker.io/tensorflow/serving:latest")
-                .withCondaFile("string")
                 .withBuild(new BuildContext().withContextUri(
                     "https://storage-account.blob.core.windows.net/azureml/DockerBuildContext/95ddede6b9b8c4e90472db3acd0a8d28/")
                     .withDockerfilePath("prod/Dockerfile"))
+                .withCondaFile("string")
+                .withImage("docker.io/tensorflow/serving:latest")
                 .withInferenceConfig(
                     new InferenceContainerProperties().withLivenessRoute(new Route().withPath("string").withPort(1))
                         .withReadinessRoute(new Route().withPath("string").withPort(1))

@@ -20,8 +20,8 @@ import java.util.Map;
 public final class OnlineEndpointsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/OnlineEndpoint/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Workspace/OnlineEndpoint/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Workspace Online Endpoint.
@@ -34,15 +34,15 @@ public final class OnlineEndpointsCreateOrUpdateSamples {
             .define("testEndpointName")
             .withRegion("string")
             .withExistingWorkspace("test-rg", "my-aml-workspace")
-            .withProperties(new OnlineEndpointProperties().withDescription("string")
+            .withProperties(new OnlineEndpointProperties().withAuthMode(EndpointAuthMode.AMLTOKEN)
+                .withDescription("string")
                 .withProperties(mapOf("string", "string"))
-                .withAuthMode(EndpointAuthMode.AMLTOKEN)
                 .withCompute("string")
                 .withTraffic(mapOf("string", 1)))
             .withTags(mapOf())
-            .withKind("string")
             .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED)
                 .withUserAssignedIdentities(mapOf("string", new UserAssignedIdentity())))
+            .withKind("string")
             .withSku(new Sku().withName("string")
                 .withTier(SkuTier.FREE)
                 .withSize("string")

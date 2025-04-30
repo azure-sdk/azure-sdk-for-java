@@ -14,8 +14,8 @@ import java.util.Map;
 public final class DataVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/DataVersionBase/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-01-01-
+     * preview/examples/Workspace/DataVersionBase/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Workspace Data Version Base.
@@ -28,8 +28,8 @@ public final class DataVersionsCreateOrUpdateSamples {
             .define("string")
             .withExistingData("test-rg", "my-aml-workspace", "string")
             .withProperties(new UriFileDataVersion().withDescription("string")
-                .withTags(mapOf("string", "string"))
                 .withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string"))
                 .withIsAnonymous(false)
                 .withDataUri("string"))
             .create();
