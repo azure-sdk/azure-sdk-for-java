@@ -12,7 +12,7 @@ import com.azure.resourcemanager.mediaservices.models.Asset;
 public final class AssetsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/assets-update.
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/assets-update.
      * json
      */
     /**

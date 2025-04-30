@@ -29,7 +29,7 @@ import java.util.Arrays;
 public final class StreamingPoliciesCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-create-secure-streaming.json
      */
     /**
@@ -79,7 +79,7 @@ public final class StreamingPoliciesCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-create-commonEncryptionCenc-clearKeyEncryption.json
      */
     /**
@@ -109,7 +109,7 @@ public final class StreamingPoliciesCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-create-commonEncryptionCenc-only.json
      */
     /**
@@ -144,7 +144,7 @@ public final class StreamingPoliciesCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-create-commonEncryptionCbcs-only.json
      */
     /**
@@ -172,7 +172,7 @@ public final class StreamingPoliciesCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-create-commonEncryptionCbcs-clearKeyEncryption.json
      */
     /**
@@ -198,7 +198,7 @@ public final class StreamingPoliciesCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-create-clear.json
      */
     /**
@@ -218,7 +218,7 @@ public final class StreamingPoliciesCreateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2022-08-01/examples/streaming-
+     * specification/mediaservices/resource-manager/Microsoft.Media/Metadata/stable/2023-01-01/examples/streaming-
      * policies-create-envelopeEncryption-only.json
      */
     /**

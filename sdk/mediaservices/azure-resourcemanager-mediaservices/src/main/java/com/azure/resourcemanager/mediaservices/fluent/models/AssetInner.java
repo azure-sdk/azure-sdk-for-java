@@ -228,6 +228,29 @@ public final class AssetInner extends ProxyResource {
     }
 
     /**
+     * Get the encryptionScope property: The Asset container encryption scope in the storage account.
+     * 
+     * @return the encryptionScope value.
+     */
+    public String encryptionScope() {
+        return this.innerProperties() == null ? null : this.innerProperties().encryptionScope();
+    }
+
+    /**
+     * Set the encryptionScope property: The Asset container encryption scope in the storage account.
+     * 
+     * @param encryptionScope the encryptionScope value to set.
+     * @return the AssetInner object itself.
+     */
+    public AssetInner withEncryptionScope(String encryptionScope) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AssetProperties();
+        }
+        this.innerProperties().withEncryptionScope(encryptionScope);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.

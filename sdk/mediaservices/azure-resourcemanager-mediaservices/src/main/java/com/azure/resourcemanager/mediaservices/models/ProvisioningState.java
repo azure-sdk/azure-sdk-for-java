@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Provisioning state of the asset track.
+ * Provisioning state of the Media Services account.
  */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {
     /**
