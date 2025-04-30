@@ -62,27 +62,21 @@
 ### Certificates_CreateOrUpdate
 
 ```java
-import com.azure.resourcemanager.iothub.models.CertificateProperties;
-
 /**
- * Samples for Certificates CreateOrUpdate.
+ * Samples for IotHubResource GetStats.
  */
-public final class CertificatesCreateOrUpdateSamples {
+public final class IotHubResourceGetStatsSamples {
     /*
-     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/
-     * iothub_certificatescreateorupdate.json
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_stats.json
      */
     /**
-     * Sample code: Certificates_CreateOrUpdate.
+     * Sample code: IotHubResource_GetStats.
      * 
      * @param manager Entry point to IotHubManager.
      */
-    public static void certificatesCreateOrUpdate(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.certificates()
-            .define("cert")
-            .withExistingIotHub("myResourceGroup", "iothub")
-            .withProperties(new CertificateProperties().withCertificate("############################################"))
-            .create();
+    public static void iotHubResourceGetStats(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources().getStatsWithResponse("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -91,21 +85,20 @@ public final class CertificatesCreateOrUpdateSamples {
 
 ```java
 /**
- * Samples for Certificates Delete.
+ * Samples for IotHubResource ListKeys.
  */
-public final class CertificatesDeleteSamples {
+public final class IotHubResourceListKeysSamples {
     /*
      * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_certificatesdelete.json
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_listkeys.json
      */
     /**
-     * Sample code: Certificates_Delete.
+     * Sample code: IotHubResource_ListKeys.
      * 
      * @param manager Entry point to IotHubManager.
      */
-    public static void certificatesDelete(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.certificates()
-            .deleteWithResponse("myResourceGroup", "myhub", "cert", "AAAAAAAADGk=", com.azure.core.util.Context.NONE);
+    public static void iotHubResourceListKeys(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources().listKeys("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -113,23 +106,45 @@ public final class CertificatesDeleteSamples {
 ### Certificates_GenerateVerificationCode
 
 ```java
+import com.azure.resourcemanager.iothub.models.RoutingMessage;
+import com.azure.resourcemanager.iothub.models.RoutingSource;
+import com.azure.resourcemanager.iothub.models.TestAllRoutesInput;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * Samples for Certificates GenerateVerificationCode.
+ * Samples for IotHubResource TestAllRoutes.
  */
-public final class CertificatesGenerateVerificationCodeSamples {
+public final class IotHubResourceTestAllRoutesSamples {
     /*
-     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/
-     * iothub_generateverificationcode.json
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_testallroutes.json
      */
     /**
-     * Sample code: Certificates_GenerateVerificationCode.
+     * Sample code: IotHubResource_TestAllRoutes.
      * 
      * @param manager Entry point to IotHubManager.
      */
-    public static void certificatesGenerateVerificationCode(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.certificates()
-            .generateVerificationCodeWithResponse("myResourceGroup", "testHub", "cert", "AAAAAAAADGk=",
+    public static void iotHubResourceTestAllRoutes(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources()
+            .testAllRoutesWithResponse("testHub", "myResourceGroup",
+                new TestAllRoutesInput().withRoutingSource(RoutingSource.DEVICE_MESSAGES)
+                    .withMessage(new RoutingMessage().withBody("Body of message")
+                        .withAppProperties(mapOf("key1", "fakeTokenPlaceholder"))
+                        .withSystemProperties(mapOf("key1", "fakeTokenPlaceholder"))),
                 com.azure.core.util.Context.NONE);
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
@@ -138,20 +153,20 @@ public final class CertificatesGenerateVerificationCodeSamples {
 
 ```java
 /**
- * Samples for Certificates Get.
+ * Samples for Operations List.
  */
-public final class CertificatesGetSamples {
+public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_getcertificate.json
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_operations.json
      */
     /**
-     * Sample code: Certificates_Get.
+     * Sample code: Operations_List.
      * 
      * @param manager Entry point to IotHubManager.
      */
-    public static void certificatesGet(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.certificates().getWithResponse("myResourceGroup", "testhub", "cert", com.azure.core.util.Context.NONE);
+    public static void operationsList(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -181,26 +196,22 @@ public final class CertificatesListByIotHubSamples {
 ### Certificates_Verify
 
 ```java
-import com.azure.resourcemanager.iothub.models.CertificateVerificationDescription;
-
 /**
- * Samples for Certificates Verify.
+ * Samples for IotHubResource GetJob.
  */
-public final class CertificatesVerifySamples {
+public final class IotHubResourceGetJobSamples {
     /*
      * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_certverify.json
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_getjob.json
      */
     /**
-     * Sample code: Certificates_Verify.
+     * Sample code: IotHubResource_GetJob.
      * 
      * @param manager Entry point to IotHubManager.
      */
-    public static void certificatesVerify(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.certificates()
-            .verifyWithResponse("myResourceGroup", "myFirstProvisioningService", "cert", "AAAAAAAADGk=",
-                new CertificateVerificationDescription().withCertificate("#####################################"),
-                com.azure.core.util.Context.NONE);
+    public static void iotHubResourceGetJob(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources()
+            .getJobWithResponse("myResourceGroup", "testHub", "test", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -208,25 +219,40 @@ public final class CertificatesVerifySamples {
 ### IotHub_ManualFailover
 
 ```java
-import com.azure.resourcemanager.iothub.models.FailoverInput;
+import com.azure.resourcemanager.iothub.models.IotHubDescription;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Samples for IotHub ManualFailover.
+ * Samples for IotHubResource Update.
  */
-public final class IotHubManualFailoverSamples {
+public final class IotHubResourceUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/IotHub_ManualFailover.json
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_patch.json
      */
     /**
-     * Sample code: IotHub_ManualFailover.
+     * Sample code: IotHubResource_Update.
      * 
      * @param manager Entry point to IotHubManager.
      */
-    public static void iotHubManualFailover(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubs()
-            .manualFailover("testHub", "myResourceGroup", new FailoverInput().withFailoverRegion("testHub"),
-                com.azure.core.util.Context.NONE);
+    public static void iotHubResourceUpdate(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        IotHubDescription resource = manager.iotHubResources()
+            .getByResourceGroupWithResponse("myResourceGroup", "myHub", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("foo", "bar")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
@@ -260,6 +286,439 @@ public final class IotHubResourceCheckNameAvailabilitySamples {
 ### IotHubResource_CreateEventHubConsumerGroup
 
 ```java
+import com.azure.resourcemanager.iothub.models.RouteProperties;
+import com.azure.resourcemanager.iothub.models.RoutingMessage;
+import com.azure.resourcemanager.iothub.models.RoutingSource;
+import com.azure.resourcemanager.iothub.models.TestRouteInput;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for IotHubResource TestRoute.
+ */
+public final class IotHubResourceTestRouteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_testnewroute.json
+     */
+    /**
+     * Sample code: IotHubResource_TestRoute.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void iotHubResourceTestRoute(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources()
+            .testRouteWithResponse("testHub", "myResourceGroup",
+                new TestRouteInput()
+                    .withMessage(new RoutingMessage().withBody("Body of message")
+                        .withAppProperties(mapOf("key1", "fakeTokenPlaceholder"))
+                        .withSystemProperties(mapOf("key1", "fakeTokenPlaceholder")))
+                    .withRoute(new RouteProperties().withName("Routeid")
+                        .withSource(RoutingSource.DEVICE_MESSAGES)
+                        .withEndpointNames(Arrays.asList("id1"))
+                        .withIsEnabled(true)),
+                com.azure.core.util.Context.NONE);
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### IotHubResource_CreateOrUpdate
+
+```java
+/**
+ * Samples for IotHubResource GetQuotaMetrics.
+ */
+public final class IotHubResourceGetQuotaMetricsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_quotametrics.json
+     */
+    /**
+     * Sample code: IotHubResource_GetQuotaMetrics.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void iotHubResourceGetQuotaMetrics(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources().getQuotaMetrics("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_Delete
+
+```java
+/**
+ * Samples for IotHubResource ListJobs.
+ */
+public final class IotHubResourceListJobsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_listjobs.json
+     */
+    /**
+     * Sample code: IotHubResource_ListJobs.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void iotHubResourceListJobs(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources().listJobs("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_DeleteEventHubConsumerGroup
+
+```java
+/**
+ * Samples for IotHubResource GetEndpointHealth.
+ */
+public final class IotHubResourceGetEndpointHealthSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_routingendpointhealth.
+     * json
+     */
+    /**
+     * Sample code: IotHubResource_GetEndpointHealth.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void iotHubResourceGetEndpointHealth(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources().getEndpointHealth("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_ExportDevices
+
+```java
+import com.azure.resourcemanager.iothub.models.CertificateProperties;
+
+/**
+ * Samples for Certificates CreateOrUpdate.
+ */
+public final class CertificatesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/
+     * iothub_certificatescreateorupdate.json
+     */
+    /**
+     * Sample code: Certificates_CreateOrUpdate.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void certificatesCreateOrUpdate(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.certificates()
+            .define("cert")
+            .withExistingIotHub("myResourceGroup", "iothub")
+            .withProperties(new CertificateProperties().withCertificate("############################################"))
+            .create();
+    }
+}
+```
+
+### IotHubResource_GetByResourceGroup
+
+```java
+/**
+ * Samples for ResourceProviderCommon GetSubscriptionQuota.
+ */
+public final class ResourceProviderCommonGetSubscriptionQuotaSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_usages.json
+     */
+    /**
+     * Sample code: ResourceProviderCommon_GetSubscriptionQuota.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void
+        resourceProviderCommonGetSubscriptionQuota(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.resourceProviderCommons().getSubscriptionQuotaWithResponse(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_GetEndpointHealth
+
+```java
+/**
+ * Samples for IotHubResource GetValidSkus.
+ */
+public final class IotHubResourceGetValidSkusSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_getskus.json
+     */
+    /**
+     * Sample code: IotHubResource_GetValidSkus.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void iotHubResourceGetValidSkus(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources().getValidSkus("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_GetEventHubConsumerGroup
+
+```java
+import com.azure.resourcemanager.iothub.models.ImportDevicesRequest;
+
+/**
+ * Samples for IotHubResource ImportDevices.
+ */
+public final class IotHubResourceImportDevicesSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_importdevices.json
+     */
+    /**
+     * Sample code: IotHubResource_ImportDevices.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void iotHubResourceImportDevices(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources()
+            .importDevicesWithResponse("myResourceGroup", "testHub",
+                new ImportDevicesRequest().withInputBlobContainerUri("testBlob").withOutputBlobContainerUri("testBlob"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_GetJob
+
+```java
+/**
+ * Samples for IotHubResource ListEventHubConsumerGroups.
+ */
+public final class IotHubResourceListEventHubConsumerGroupsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_listehgroups.json
+     */
+    /**
+     * Sample code: IotHubResource_ListEventHubConsumerGroups.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void
+        iotHubResourceListEventHubConsumerGroups(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources()
+            .listEventHubConsumerGroups("myResourceGroup", "testHub", "events", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_GetKeysForKeyName
+
+```java
+/**
+ * Samples for IotHubResource ListByResourceGroup.
+ */
+public final class IotHubResourceListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_listbyrg.json
+     */
+    /**
+     * Sample code: IotHubResource_ListByResourceGroup.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void iotHubResourceListByResourceGroup(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_GetQuotaMetrics
+
+```java
+/**
+ * Samples for PrivateEndpointConnections List.
+ */
+public final class PrivateEndpointConnectionsListSamples {
+    /*
+     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/
+     * iothub_listprivateendpointconnections.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnections_List.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void privateEndpointConnectionsList(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.privateEndpointConnections()
+            .listWithResponse("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_GetStats
+
+```java
+/**
+ * Samples for Certificates Delete.
+ */
+public final class CertificatesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_certificatesdelete.json
+     */
+    /**
+     * Sample code: Certificates_Delete.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void certificatesDelete(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.certificates()
+            .deleteWithResponse("myResourceGroup", "myhub", "cert", "AAAAAAAADGk=", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_GetValidSkus
+
+```java
+import com.azure.resourcemanager.iothub.models.CertificateVerificationDescription;
+
+/**
+ * Samples for Certificates Verify.
+ */
+public final class CertificatesVerifySamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_certverify.json
+     */
+    /**
+     * Sample code: Certificates_Verify.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void certificatesVerify(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.certificates()
+            .verifyWithResponse("myResourceGroup", "myFirstProvisioningService", "cert", "AAAAAAAADGk=",
+                new CertificateVerificationDescription().withCertificate("#####################################"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_ImportDevices
+
+```java
+/**
+ * Samples for IotHubResource DeleteEventHubConsumerGroup.
+ */
+public final class IotHubResourceDeleteEventHubConsumerGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_deleteconsumergroup.
+     * json
+     */
+    /**
+     * Sample code: IotHubResource_DeleteEventHubConsumerGroup.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void
+        iotHubResourceDeleteEventHubConsumerGroup(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources()
+            .deleteEventHubConsumerGroupWithResponse("myResourceGroup", "testHub", "events", "test",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_List
+
+```java
+/**
+ * Samples for IotHubResource List.
+ */
+public final class IotHubResourceListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_listbysubscription.json
+     */
+    /**
+     * Sample code: IotHubResource_ListBySubscription.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void iotHubResourceListBySubscription(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_ListByResourceGroup
+
+```java
+/**
+ * Samples for PrivateEndpointConnections Delete.
+ */
+public final class PrivateEndpointConnectionsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/
+     * iothub_deleteprivateendpointconnection.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnection_Delete.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void privateEndpointConnectionDelete(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.privateEndpointConnections()
+            .delete("myResourceGroup", "testHub", "myPrivateEndpointConnection", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_ListEventHubConsumerGroups
+
+```java
+/**
+ * Samples for Certificates GenerateVerificationCode.
+ */
+public final class CertificatesGenerateVerificationCodeSamples {
+    /*
+     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/
+     * iothub_generateverificationcode.json
+     */
+    /**
+     * Sample code: Certificates_GenerateVerificationCode.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void certificatesGenerateVerificationCode(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.certificates()
+            .generateVerificationCodeWithResponse("myResourceGroup", "testHub", "cert", "AAAAAAAADGk=",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_ListJobs
+
+```java
 import com.azure.resourcemanager.iothub.models.EventHubConsumerGroupName;
 
 /**
@@ -287,7 +746,149 @@ public final class IotHubResourceCreateEventHubConsumerGroupSamples {
 }
 ```
 
-### IotHubResource_CreateOrUpdate
+### IotHubResource_ListKeys
+
+```java
+/**
+ * Samples for IotHubResource Delete.
+ */
+public final class IotHubResourceDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_delete.json
+     */
+    /**
+     * Sample code: IotHubResource_Delete.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void iotHubResourceDelete(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources().delete("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_TestAllRoutes
+
+```java
+/**
+ * Samples for IotHubResource GetByResourceGroup.
+ */
+public final class IotHubResourceGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_get.json
+     */
+    /**
+     * Sample code: IotHubResource_Get.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void iotHubResourceGet(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources()
+            .getByResourceGroupWithResponse("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_TestRoute
+
+```java
+/**
+ * Samples for PrivateEndpointConnections Get.
+ */
+public final class PrivateEndpointConnectionsGetSamples {
+    /*
+     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/
+     * iothub_getprivateendpointconnection.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnection_Get.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void privateEndpointConnectionGet(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.privateEndpointConnections()
+            .getWithResponse("myResourceGroup", "testHub", "myPrivateEndpointConnection",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IotHubResource_Update
+
+```java
+/**
+ * Samples for Certificates Get.
+ */
+public final class CertificatesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_getcertificate.json
+     */
+    /**
+     * Sample code: Certificates_Get.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void certificatesGet(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.certificates().getWithResponse("myResourceGroup", "testhub", "cert", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+/**
+ * Samples for IotHubResource GetEventHubConsumerGroup.
+ */
+public final class IotHubResourceGetEventHubConsumerGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_getconsumergroup.json
+     */
+    /**
+     * Sample code: IotHubResource_ListEventHubConsumerGroups.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void
+        iotHubResourceListEventHubConsumerGroups(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubResources()
+            .getEventHubConsumerGroupWithResponse("myResourceGroup", "testHub", "events", "test",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_Delete
+
+```java
+import com.azure.resourcemanager.iothub.models.FailoverInput;
+
+/**
+ * Samples for IotHub ManualFailover.
+ */
+public final class IotHubManualFailoverSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/IotHub_ManualFailover.json
+     */
+    /**
+     * Sample code: IotHub_ManualFailover.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void iotHubManualFailover(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.iotHubs()
+            .manualFailover("testHub", "myResourceGroup", new FailoverInput().withFailoverRegion("testHub"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_Get
 
 ```java
 import com.azure.resourcemanager.iothub.models.AuthenticationType;
@@ -464,55 +1065,55 @@ public final class IotHubResourceCreateOrUpdateSamples {
 }
 ```
 
-### IotHubResource_Delete
+### PrivateEndpointConnections_List
 
 ```java
 /**
- * Samples for IotHubResource Delete.
+ * Samples for IotHubResource GetKeysForKeyName.
  */
-public final class IotHubResourceDeleteSamples {
+public final class IotHubResourceGetKeysForKeyNameSamples {
     /*
      * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_delete.json
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_getkey.json
      */
     /**
-     * Sample code: IotHubResource_Delete.
+     * Sample code: IotHubResource_GetKeysForKeyName.
      * 
      * @param manager Entry point to IotHubManager.
      */
-    public static void iotHubResourceDelete(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources().delete("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotHubResource_DeleteEventHubConsumerGroup
-
-```java
-/**
- * Samples for IotHubResource DeleteEventHubConsumerGroup.
- */
-public final class IotHubResourceDeleteEventHubConsumerGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_deleteconsumergroup.
-     * json
-     */
-    /**
-     * Sample code: IotHubResource_DeleteEventHubConsumerGroup.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void
-        iotHubResourceDeleteEventHubConsumerGroup(com.azure.resourcemanager.iothub.IotHubManager manager) {
+    public static void iotHubResourceGetKeysForKeyName(com.azure.resourcemanager.iothub.IotHubManager manager) {
         manager.iotHubResources()
-            .deleteEventHubConsumerGroupWithResponse("myResourceGroup", "testHub", "events", "test",
+            .getKeysForKeyNameWithResponse("myResourceGroup", "testHub", "iothubowner",
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### IotHubResource_ExportDevices
+### PrivateEndpointConnections_Update
+
+```java
+/**
+ * Samples for PrivateLinkResourcesOperation Get.
+ */
+public final class PrivateLinkResourcesOperationGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_getprivatelinkresources
+     * .json
+     */
+    /**
+     * Sample code: PrivateLinkResources_List.
+     * 
+     * @param manager Entry point to IotHubManager.
+     */
+    public static void privateLinkResourcesList(com.azure.resourcemanager.iothub.IotHubManager manager) {
+        manager.privateLinkResourcesOperations()
+            .getWithResponse("myResourceGroup", "testHub", "iotHub", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateLinkResourcesOperation_Get
 
 ```java
 import com.azure.resourcemanager.iothub.models.ExportDevicesRequest;
@@ -539,561 +1140,7 @@ public final class IotHubResourceExportDevicesSamples {
 }
 ```
 
-### IotHubResource_GetByResourceGroup
-
-```java
-/**
- * Samples for IotHubResource GetByResourceGroup.
- */
-public final class IotHubResourceGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_get.json
-     */
-    /**
-     * Sample code: IotHubResource_Get.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void iotHubResourceGet(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources()
-            .getByResourceGroupWithResponse("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotHubResource_GetEndpointHealth
-
-```java
-/**
- * Samples for IotHubResource GetEndpointHealth.
- */
-public final class IotHubResourceGetEndpointHealthSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_routingendpointhealth.
-     * json
-     */
-    /**
-     * Sample code: IotHubResource_GetEndpointHealth.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void iotHubResourceGetEndpointHealth(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources().getEndpointHealth("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotHubResource_GetEventHubConsumerGroup
-
-```java
-/**
- * Samples for IotHubResource GetEventHubConsumerGroup.
- */
-public final class IotHubResourceGetEventHubConsumerGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_getconsumergroup.json
-     */
-    /**
-     * Sample code: IotHubResource_ListEventHubConsumerGroups.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void
-        iotHubResourceListEventHubConsumerGroups(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources()
-            .getEventHubConsumerGroupWithResponse("myResourceGroup", "testHub", "events", "test",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotHubResource_GetJob
-
-```java
-/**
- * Samples for IotHubResource GetJob.
- */
-public final class IotHubResourceGetJobSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_getjob.json
-     */
-    /**
-     * Sample code: IotHubResource_GetJob.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void iotHubResourceGetJob(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources()
-            .getJobWithResponse("myResourceGroup", "testHub", "test", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotHubResource_GetKeysForKeyName
-
-```java
-/**
- * Samples for IotHubResource GetKeysForKeyName.
- */
-public final class IotHubResourceGetKeysForKeyNameSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_getkey.json
-     */
-    /**
-     * Sample code: IotHubResource_GetKeysForKeyName.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void iotHubResourceGetKeysForKeyName(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources()
-            .getKeysForKeyNameWithResponse("myResourceGroup", "testHub", "iothubowner",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotHubResource_GetQuotaMetrics
-
-```java
-/**
- * Samples for IotHubResource GetQuotaMetrics.
- */
-public final class IotHubResourceGetQuotaMetricsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_quotametrics.json
-     */
-    /**
-     * Sample code: IotHubResource_GetQuotaMetrics.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void iotHubResourceGetQuotaMetrics(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources().getQuotaMetrics("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotHubResource_GetStats
-
-```java
-/**
- * Samples for IotHubResource GetStats.
- */
-public final class IotHubResourceGetStatsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_stats.json
-     */
-    /**
-     * Sample code: IotHubResource_GetStats.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void iotHubResourceGetStats(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources().getStatsWithResponse("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotHubResource_GetValidSkus
-
-```java
-/**
- * Samples for IotHubResource GetValidSkus.
- */
-public final class IotHubResourceGetValidSkusSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_getskus.json
-     */
-    /**
-     * Sample code: IotHubResource_GetValidSkus.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void iotHubResourceGetValidSkus(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources().getValidSkus("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotHubResource_ImportDevices
-
-```java
-import com.azure.resourcemanager.iothub.models.ImportDevicesRequest;
-
-/**
- * Samples for IotHubResource ImportDevices.
- */
-public final class IotHubResourceImportDevicesSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_importdevices.json
-     */
-    /**
-     * Sample code: IotHubResource_ImportDevices.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void iotHubResourceImportDevices(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources()
-            .importDevicesWithResponse("myResourceGroup", "testHub",
-                new ImportDevicesRequest().withInputBlobContainerUri("testBlob").withOutputBlobContainerUri("testBlob"),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotHubResource_List
-
-```java
-/**
- * Samples for IotHubResource List.
- */
-public final class IotHubResourceListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_listbysubscription.json
-     */
-    /**
-     * Sample code: IotHubResource_ListBySubscription.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void iotHubResourceListBySubscription(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotHubResource_ListByResourceGroup
-
-```java
-/**
- * Samples for IotHubResource ListByResourceGroup.
- */
-public final class IotHubResourceListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_listbyrg.json
-     */
-    /**
-     * Sample code: IotHubResource_ListByResourceGroup.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void iotHubResourceListByResourceGroup(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotHubResource_ListEventHubConsumerGroups
-
-```java
-/**
- * Samples for IotHubResource ListEventHubConsumerGroups.
- */
-public final class IotHubResourceListEventHubConsumerGroupsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_listehgroups.json
-     */
-    /**
-     * Sample code: IotHubResource_ListEventHubConsumerGroups.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void
-        iotHubResourceListEventHubConsumerGroups(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources()
-            .listEventHubConsumerGroups("myResourceGroup", "testHub", "events", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotHubResource_ListJobs
-
-```java
-/**
- * Samples for IotHubResource ListJobs.
- */
-public final class IotHubResourceListJobsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_listjobs.json
-     */
-    /**
-     * Sample code: IotHubResource_ListJobs.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void iotHubResourceListJobs(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources().listJobs("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotHubResource_ListKeys
-
-```java
-/**
- * Samples for IotHubResource ListKeys.
- */
-public final class IotHubResourceListKeysSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_listkeys.json
-     */
-    /**
-     * Sample code: IotHubResource_ListKeys.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void iotHubResourceListKeys(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources().listKeys("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### IotHubResource_TestAllRoutes
-
-```java
-import com.azure.resourcemanager.iothub.models.RoutingMessage;
-import com.azure.resourcemanager.iothub.models.RoutingSource;
-import com.azure.resourcemanager.iothub.models.TestAllRoutesInput;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for IotHubResource TestAllRoutes.
- */
-public final class IotHubResourceTestAllRoutesSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_testallroutes.json
-     */
-    /**
-     * Sample code: IotHubResource_TestAllRoutes.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void iotHubResourceTestAllRoutes(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources()
-            .testAllRoutesWithResponse("testHub", "myResourceGroup",
-                new TestAllRoutesInput().withRoutingSource(RoutingSource.DEVICE_MESSAGES)
-                    .withMessage(new RoutingMessage().withBody("Body of message")
-                        .withAppProperties(mapOf("key1", "fakeTokenPlaceholder"))
-                        .withSystemProperties(mapOf("key1", "fakeTokenPlaceholder"))),
-                com.azure.core.util.Context.NONE);
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### IotHubResource_TestRoute
-
-```java
-import com.azure.resourcemanager.iothub.models.RouteProperties;
-import com.azure.resourcemanager.iothub.models.RoutingMessage;
-import com.azure.resourcemanager.iothub.models.RoutingSource;
-import com.azure.resourcemanager.iothub.models.TestRouteInput;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for IotHubResource TestRoute.
- */
-public final class IotHubResourceTestRouteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_testnewroute.json
-     */
-    /**
-     * Sample code: IotHubResource_TestRoute.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void iotHubResourceTestRoute(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.iotHubResources()
-            .testRouteWithResponse("testHub", "myResourceGroup",
-                new TestRouteInput()
-                    .withMessage(new RoutingMessage().withBody("Body of message")
-                        .withAppProperties(mapOf("key1", "fakeTokenPlaceholder"))
-                        .withSystemProperties(mapOf("key1", "fakeTokenPlaceholder")))
-                    .withRoute(new RouteProperties().withName("Routeid")
-                        .withSource(RoutingSource.DEVICE_MESSAGES)
-                        .withEndpointNames(Arrays.asList("id1"))
-                        .withIsEnabled(true)),
-                com.azure.core.util.Context.NONE);
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### IotHubResource_Update
-
-```java
-import com.azure.resourcemanager.iothub.models.IotHubDescription;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for IotHubResource Update.
- */
-public final class IotHubResourceUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_patch.json
-     */
-    /**
-     * Sample code: IotHubResource_Update.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void iotHubResourceUpdate(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        IotHubDescription resource = manager.iotHubResources()
-            .getByResourceGroupWithResponse("myResourceGroup", "myHub", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("foo", "bar")).apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_operations.json
-     */
-    /**
-     * Sample code: Operations_List.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void operationsList(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_Delete
-
-```java
-/**
- * Samples for PrivateEndpointConnections Delete.
- */
-public final class PrivateEndpointConnectionsDeleteSamples {
-    /*
-     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/
-     * iothub_deleteprivateendpointconnection.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnection_Delete.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void privateEndpointConnectionDelete(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.privateEndpointConnections()
-            .delete("myResourceGroup", "testHub", "myPrivateEndpointConnection", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_Get
-
-```java
-/**
- * Samples for PrivateEndpointConnections Get.
- */
-public final class PrivateEndpointConnectionsGetSamples {
-    /*
-     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/
-     * iothub_getprivateendpointconnection.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnection_Get.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void privateEndpointConnectionGet(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.privateEndpointConnections()
-            .getWithResponse("myResourceGroup", "testHub", "myPrivateEndpointConnection",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_List
-
-```java
-/**
- * Samples for PrivateEndpointConnections List.
- */
-public final class PrivateEndpointConnectionsListSamples {
-    /*
-     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/
-     * iothub_listprivateendpointconnections.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnections_List.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void privateEndpointConnectionsList(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.privateEndpointConnections()
-            .listWithResponse("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_Update
+### PrivateLinkResourcesOperation_List
 
 ```java
 import com.azure.resourcemanager.iothub.fluent.models.PrivateEndpointConnectionInner;
@@ -1126,31 +1173,7 @@ public final class PrivateEndpointConnectionsUpdateSamples {
 }
 ```
 
-### PrivateLinkResourcesOperation_Get
-
-```java
-/**
- * Samples for PrivateLinkResourcesOperation Get.
- */
-public final class PrivateLinkResourcesOperationGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_getprivatelinkresources
-     * .json
-     */
-    /**
-     * Sample code: PrivateLinkResources_List.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void privateLinkResourcesList(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.privateLinkResourcesOperations()
-            .getWithResponse("myResourceGroup", "testHub", "iotHub", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateLinkResourcesOperation_List
+### ResourceProviderCommon_GetSubscriptionQuota
 
 ```java
 /**
@@ -1169,29 +1192,6 @@ public final class PrivateLinkResourcesOperationListSamples {
     public static void privateLinkResourcesList(com.azure.resourcemanager.iothub.IotHubManager manager) {
         manager.privateLinkResourcesOperations()
             .listWithResponse("myResourceGroup", "testHub", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ResourceProviderCommon_GetSubscriptionQuota
-
-```java
-/**
- * Samples for ResourceProviderCommon GetSubscriptionQuota.
- */
-public final class ResourceProviderCommonGetSubscriptionQuotaSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iothub/resource-manager/Microsoft.Devices/stable/2023-06-30/examples/iothub_usages.json
-     */
-    /**
-     * Sample code: ResourceProviderCommon_GetSubscriptionQuota.
-     * 
-     * @param manager Entry point to IotHubManager.
-     */
-    public static void
-        resourceProviderCommonGetSubscriptionQuota(com.azure.resourcemanager.iothub.IotHubManager manager) {
-        manager.resourceProviderCommons().getSubscriptionQuotaWithResponse(com.azure.core.util.Context.NONE);
     }
 }
 ```
