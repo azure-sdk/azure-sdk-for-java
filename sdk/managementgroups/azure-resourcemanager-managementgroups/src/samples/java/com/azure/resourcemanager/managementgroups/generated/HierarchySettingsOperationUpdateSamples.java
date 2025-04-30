@@ -12,7 +12,7 @@ import com.azure.resourcemanager.managementgroups.models.CreateOrUpdateSettingsR
 public final class HierarchySettingsOperationUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2021-04-01/examples/
+     * specification/managementgroups/resource-manager/Microsoft.Management/stable/2023-04-01/examples/
      * PatchHierarchySettings.json
      */
     /**
