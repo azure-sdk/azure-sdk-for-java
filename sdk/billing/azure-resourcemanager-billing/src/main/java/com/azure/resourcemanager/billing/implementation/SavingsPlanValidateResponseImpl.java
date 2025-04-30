@@ -5,8 +5,8 @@
 package com.azure.resourcemanager.billing.implementation;
 
 import com.azure.resourcemanager.billing.fluent.models.SavingsPlanValidateResponseInner;
-import com.azure.resourcemanager.billing.models.SavingsPlanValidateResponse;
 import com.azure.resourcemanager.billing.models.SavingsPlanValidResponseProperty;
+import com.azure.resourcemanager.billing.models.SavingsPlanValidateResponse;
 import java.util.Collections;
 import java.util.List;
 
