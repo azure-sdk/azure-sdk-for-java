@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.hdinsight.containers.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -46,8 +47,17 @@ public final class ClusterPoolResourcePropertiesClusterPoolProfile extends Clust
      */
     @Override
     public void validate() {
-        super.validate();
+        if (clusterPoolVersion() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property clusterPoolVersion in model ClusterPoolResourcePropertiesClusterPoolProfile"));
+        }
+        if (publicIpTag() != null) {
+            publicIpTag().validate();
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ClusterPoolResourcePropertiesClusterPoolProfile.class);
 
     /**
      * {@inheritDoc}

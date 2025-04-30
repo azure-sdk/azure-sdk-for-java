@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.hdinsight.containers.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -55,8 +56,25 @@ public final class AksClusterProfileAksClusterAgentPoolIdentityProfile extends I
      */
     @Override
     public void validate() {
-        super.validate();
+        if (msiResourceId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property msiResourceId in model AksClusterProfileAksClusterAgentPoolIdentityProfile"));
+        }
+        if (msiClientId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property msiClientId in model AksClusterProfileAksClusterAgentPoolIdentityProfile"));
+        }
+        if (msiObjectId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property msiObjectId in model AksClusterProfileAksClusterAgentPoolIdentityProfile"));
+        }
     }
+
+    private static final ClientLogger LOGGER
+        = new ClientLogger(AksClusterProfileAksClusterAgentPoolIdentityProfile.class);
 
     /**
      * {@inheritDoc}

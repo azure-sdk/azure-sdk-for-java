@@ -11,7 +11,6 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 
 /**
  * Properties of a Maven library in the cluster.
@@ -37,21 +36,6 @@ public final class MavenLibraryProperties extends ClusterLibraryProperties {
      * Version of the Maven package.
      */
     private String version;
-
-    /*
-     * Timestamp of the latest library management operation.
-     */
-    private OffsetDateTime timestamp;
-
-    /*
-     * Status of the library.
-     */
-    private Status status;
-
-    /*
-     * Error message of the library operation when a failure occurs.
-     */
-    private String message;
 
     /**
      * Creates an instance of MavenLibraryProperties class.
@@ -130,36 +114,6 @@ public final class MavenLibraryProperties extends ClusterLibraryProperties {
     }
 
     /**
-     * Get the timestamp property: Timestamp of the latest library management operation.
-     * 
-     * @return the timestamp value.
-     */
-    @Override
-    public OffsetDateTime timestamp() {
-        return this.timestamp;
-    }
-
-    /**
-     * Get the status property: Status of the library.
-     * 
-     * @return the status value.
-     */
-    @Override
-    public Status status() {
-        return this.status;
-    }
-
-    /**
-     * Get the message property: Error message of the library operation when a failure occurs.
-     * 
-     * @return the message value.
-     */
-    @Override
-    public String message() {
-        return this.message;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -175,7 +129,6 @@ public final class MavenLibraryProperties extends ClusterLibraryProperties {
      */
     @Override
     public void validate() {
-        super.validate();
         if (groupId() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property groupId in model MavenLibraryProperties"));
@@ -221,12 +174,12 @@ public final class MavenLibraryProperties extends ClusterLibraryProperties {
                 if ("remarks".equals(fieldName)) {
                     deserializedMavenLibraryProperties.withRemarks(reader.getString());
                 } else if ("timestamp".equals(fieldName)) {
-                    deserializedMavenLibraryProperties.timestamp = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                    deserializedMavenLibraryProperties.withTimestamp(reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("status".equals(fieldName)) {
-                    deserializedMavenLibraryProperties.status = Status.fromString(reader.getString());
+                    deserializedMavenLibraryProperties.withStatus(Status.fromString(reader.getString()));
                 } else if ("message".equals(fieldName)) {
-                    deserializedMavenLibraryProperties.message = reader.getString();
+                    deserializedMavenLibraryProperties.withMessage(reader.getString());
                 } else if ("groupId".equals(fieldName)) {
                     deserializedMavenLibraryProperties.groupId = reader.getString();
                 } else if ("name".equals(fieldName)) {

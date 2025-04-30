@@ -79,7 +79,6 @@ public final class ClusterPatchVersionUpgradeProperties extends ClusterInPlaceUp
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

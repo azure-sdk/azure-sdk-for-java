@@ -146,7 +146,6 @@ public final class ClusterAvailableUpgradePatchVersionUpgradeProperties
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

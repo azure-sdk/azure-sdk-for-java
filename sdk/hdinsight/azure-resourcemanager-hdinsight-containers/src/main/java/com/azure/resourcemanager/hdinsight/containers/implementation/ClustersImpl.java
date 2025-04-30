@@ -16,9 +16,9 @@ import com.azure.resourcemanager.hdinsight.containers.fluent.models.ServiceConfi
 import com.azure.resourcemanager.hdinsight.containers.models.Cluster;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterInstanceViewResult;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterResizeData;
-import com.azure.resourcemanager.hdinsight.containers.models.Clusters;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterUpgrade;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterUpgradeRollback;
+import com.azure.resourcemanager.hdinsight.containers.models.Clusters;
 import com.azure.resourcemanager.hdinsight.containers.models.ServiceConfigResult;
 
 public final class ClustersImpl implements Clusters {

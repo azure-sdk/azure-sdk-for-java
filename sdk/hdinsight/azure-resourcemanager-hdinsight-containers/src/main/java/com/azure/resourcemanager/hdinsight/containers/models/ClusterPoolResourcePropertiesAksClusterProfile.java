@@ -62,7 +62,9 @@ public final class ClusterPoolResourcePropertiesAksClusterProfile extends AksClu
      */
     @Override
     public void validate() {
-        super.validate();
+        if (aksClusterAgentPoolIdentityProfile() != null) {
+            aksClusterAgentPoolIdentityProfile().validate();
+        }
     }
 
     /**

@@ -68,7 +68,6 @@ public final class ClusterPoolAvailableUpgradeNodeOsUpgradeProperties extends Cl
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

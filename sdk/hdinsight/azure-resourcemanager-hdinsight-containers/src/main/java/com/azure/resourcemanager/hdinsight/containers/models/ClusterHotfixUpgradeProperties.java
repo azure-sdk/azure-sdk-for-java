@@ -79,7 +79,6 @@ public final class ClusterHotfixUpgradeProperties extends ClusterInPlaceUpgradeP
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

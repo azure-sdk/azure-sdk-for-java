@@ -119,7 +119,6 @@ public final class ClusterPoolAvailableUpgradeAksPatchUpgradeProperties extends 
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

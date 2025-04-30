@@ -322,7 +322,6 @@ public class ClusterAvailableInPlaceUpgradeProperties extends ClusterAvailableUp
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

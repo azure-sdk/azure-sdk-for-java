@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.hdinsight.containers.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -101,8 +102,31 @@ public final class ServiceConfigResultProperties extends ServiceConfigListResult
      */
     @Override
     public void validate() {
-        super.validate();
+        if (serviceName() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property serviceName in model ServiceConfigResultProperties"));
+        }
+        if (fileName() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property fileName in model ServiceConfigResultProperties"));
+        }
+        if (componentName() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property componentName in model ServiceConfigResultProperties"));
+        }
+        if (defaultKeys() != null) {
+            defaultKeys().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ServiceConfigResultProperties.class);
 
     /**
      * {@inheritDoc}

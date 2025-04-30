@@ -143,7 +143,6 @@ public class ClusterInPlaceUpgradeProperties extends ClusterUpgradeProperties {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

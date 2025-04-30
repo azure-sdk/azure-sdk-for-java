@@ -352,7 +352,6 @@ public final class FlinkJobProperties extends ClusterJobProperties {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
