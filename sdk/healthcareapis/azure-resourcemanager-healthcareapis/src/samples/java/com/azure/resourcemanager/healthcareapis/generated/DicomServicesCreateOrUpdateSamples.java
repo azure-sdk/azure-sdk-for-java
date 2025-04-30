@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.healthcareapis.generated;
 
 import com.azure.resourcemanager.healthcareapis.models.StorageConfiguration;
+import com.azure.resourcemanager.healthcareapis.models.StorageMonitorConfiguration;
 
 /**
  * Samples for DicomServices CreateOrUpdate.
@@ -12,8 +13,8 @@ import com.azure.resourcemanager.healthcareapis.models.StorageConfiguration;
 public final class DicomServicesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2024-03-31/examples/dicomservices/
-     * DicomServices_Create.json
+     * specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/preview/2025-03-01-preview/examples/
+     * dicomservices/DicomServices_Create.json
      */
     /**
      * Sample code: Create or update a Dicom Service.
@@ -28,7 +29,11 @@ public final class DicomServicesCreateOrUpdateSamples {
             .withRegion("westus")
             .withStorageConfiguration(new StorageConfiguration().withStorageResourceId(
                 "/subscriptions/ab309d4e-4c2e-4241-be2e-08e1c8dd4246/resourceGroups/rgname/providers/Microsoft.Storage/storageAccounts/accountname")
-                .withFileSystemName("fileSystemName"))
+                .withFileSystemName("fileSystemName")
+                .withStorageMonitorConfiguration(new StorageMonitorConfiguration().withNamespaceResourceId(
+                    "/subscriptions/ab309d4e-4c2e-4241-be2e-08e1c8dd4246/resourceGroups/rgname/providers/Microsoft.EventGrid/namespaces/namespacename")
+                    .withTopicName("topicName")
+                    .withEventSubscriptionName("eventSubscriptionName")))
             .withEnableDataPartitions(false)
             .create();
     }
