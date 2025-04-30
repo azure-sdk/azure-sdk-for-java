@@ -4,15 +4,22 @@
 
 package com.azure.resourcemanager.devcenter.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devcenter.fluent.models.ProjectInner;
+import com.azure.resourcemanager.devcenter.models.AzureAiServicesSettings;
+import com.azure.resourcemanager.devcenter.models.DevBoxAutoDeleteSettings;
+import com.azure.resourcemanager.devcenter.models.InheritedSettingsForProject;
 import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.devcenter.models.Project;
 import com.azure.resourcemanager.devcenter.models.ProjectCatalogSettings;
+import com.azure.resourcemanager.devcenter.models.ProjectCustomizationSettings;
 import com.azure.resourcemanager.devcenter.models.ProjectUpdate;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
+import com.azure.resourcemanager.devcenter.models.ServerlessGpuSessionsSettings;
+import com.azure.resourcemanager.devcenter.models.WorkspaceStorageSettings;
 import java.util.Collections;
 import java.util.Map;
 
@@ -80,6 +87,26 @@ public final class ProjectImpl implements Project, Project.Definition, Project.U
 
     public ProjectCatalogSettings catalogSettings() {
         return this.innerModel().catalogSettings();
+    }
+
+    public ProjectCustomizationSettings customizationSettings() {
+        return this.innerModel().customizationSettings();
+    }
+
+    public DevBoxAutoDeleteSettings devBoxAutoDeleteSettings() {
+        return this.innerModel().devBoxAutoDeleteSettings();
+    }
+
+    public AzureAiServicesSettings azureAiServicesSettings() {
+        return this.innerModel().azureAiServicesSettings();
+    }
+
+    public ServerlessGpuSessionsSettings serverlessGpuSessionsSettings() {
+        return this.innerModel().serverlessGpuSessionsSettings();
+    }
+
+    public WorkspaceStorageSettings workspaceStorageSettings() {
+        return this.innerModel().workspaceStorageSettings();
     }
 
     public Region region() {
@@ -174,6 +201,14 @@ public final class ProjectImpl implements Project, Project.Definition, Project.U
         return this;
     }
 
+    public Response<InheritedSettingsForProject> getInheritedSettingsWithResponse(Context context) {
+        return serviceManager.projects().getInheritedSettingsWithResponse(resourceGroupName, projectName, context);
+    }
+
+    public InheritedSettingsForProject getInheritedSettings() {
+        return serviceManager.projects().getInheritedSettings(resourceGroupName, projectName);
+    }
+
     public ProjectImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -250,6 +285,56 @@ public final class ProjectImpl implements Project, Project.Definition, Project.U
             return this;
         } else {
             this.updateBody.withCatalogSettings(catalogSettings);
+            return this;
+        }
+    }
+
+    public ProjectImpl withCustomizationSettings(ProjectCustomizationSettings customizationSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withCustomizationSettings(customizationSettings);
+            return this;
+        } else {
+            this.updateBody.withCustomizationSettings(customizationSettings);
+            return this;
+        }
+    }
+
+    public ProjectImpl withDevBoxAutoDeleteSettings(DevBoxAutoDeleteSettings devBoxAutoDeleteSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withDevBoxAutoDeleteSettings(devBoxAutoDeleteSettings);
+            return this;
+        } else {
+            this.updateBody.withDevBoxAutoDeleteSettings(devBoxAutoDeleteSettings);
+            return this;
+        }
+    }
+
+    public ProjectImpl withAzureAiServicesSettings(AzureAiServicesSettings azureAiServicesSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withAzureAiServicesSettings(azureAiServicesSettings);
+            return this;
+        } else {
+            this.updateBody.withAzureAiServicesSettings(azureAiServicesSettings);
+            return this;
+        }
+    }
+
+    public ProjectImpl withServerlessGpuSessionsSettings(ServerlessGpuSessionsSettings serverlessGpuSessionsSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withServerlessGpuSessionsSettings(serverlessGpuSessionsSettings);
+            return this;
+        } else {
+            this.updateBody.withServerlessGpuSessionsSettings(serverlessGpuSessionsSettings);
+            return this;
+        }
+    }
+
+    public ProjectImpl withWorkspaceStorageSettings(WorkspaceStorageSettings workspaceStorageSettings) {
+        if (isInCreateMode()) {
+            this.innerModel().withWorkspaceStorageSettings(workspaceStorageSettings);
+            return this;
+        } else {
+            this.updateBody.withWorkspaceStorageSettings(workspaceStorageSettings);
             return this;
         }
     }

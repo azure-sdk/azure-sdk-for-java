@@ -17,6 +17,11 @@ public final class CatalogItemType extends ExpandableStringEnum<CatalogItemType>
     public static final CatalogItemType ENVIRONMENT_DEFINITION = fromString("EnvironmentDefinition");
 
     /**
+     * Static value ImageDefinition for CatalogItemType.
+     */
+    public static final CatalogItemType IMAGE_DEFINITION = fromString("ImageDefinition");
+
+    /**
      * Creates a new instance of CatalogItemType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

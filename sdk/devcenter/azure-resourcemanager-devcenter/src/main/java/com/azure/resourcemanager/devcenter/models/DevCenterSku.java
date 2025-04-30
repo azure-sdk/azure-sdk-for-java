@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface DevCenterSku {
     /**
-     * Gets the name property: The name of the SKU. Ex - P3. It is typically a letter+number code.
+     * Gets the name property: The name of the SKU. E.g. P3. It is typically a letter+number code.
      * 
      * @return the name value.
      */

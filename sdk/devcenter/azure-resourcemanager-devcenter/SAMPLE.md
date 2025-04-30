@@ -29,6 +29,12 @@
 
 - [Execute](#checkscopednameavailability_execute)
 
+## CustomizationTasks
+
+- [Get](#customizationtasks_get)
+- [GetErrorDetails](#customizationtasks_geterrordetails)
+- [ListByCatalog](#customizationtasks_listbycatalog)
+
 ## DevBoxDefinitions
 
 - [CreateOrUpdate](#devboxdefinitions_createorupdate)
@@ -39,6 +45,23 @@
 - [ListByProject](#devboxdefinitions_listbyproject)
 - [Update](#devboxdefinitions_update)
 
+## DevCenterCatalogImageDefinitionBuildOperation
+
+- [Cancel](#devcentercatalogimagedefinitionbuildoperation_cancel)
+- [Get](#devcentercatalogimagedefinitionbuildoperation_get)
+- [GetBuildDetails](#devcentercatalogimagedefinitionbuildoperation_getbuilddetails)
+
+## DevCenterCatalogImageDefinitionBuilds
+
+- [ListByImageDefinition](#devcentercatalogimagedefinitionbuilds_listbyimagedefinition)
+
+## DevCenterCatalogImageDefinitions
+
+- [BuildImage](#devcentercatalogimagedefinitions_buildimage)
+- [GetByDevCenterCatalog](#devcentercatalogimagedefinitions_getbydevcentercatalog)
+- [GetErrorDetails](#devcentercatalogimagedefinitions_geterrordetails)
+- [ListByDevCenterCatalog](#devcentercatalogimagedefinitions_listbydevcentercatalog)
+
 ## DevCenters
 
 - [CreateOrUpdate](#devcenters_createorupdate)
@@ -47,6 +70,14 @@
 - [List](#devcenters_list)
 - [ListByResourceGroup](#devcenters_listbyresourcegroup)
 - [Update](#devcenters_update)
+
+## EncryptionSets
+
+- [CreateOrUpdate](#encryptionsets_createorupdate)
+- [Delete](#encryptionsets_delete)
+- [Get](#encryptionsets_get)
+- [List](#encryptionsets_list)
+- [Update](#encryptionsets_update)
 
 ## EnvironmentDefinitions
 
@@ -74,13 +105,17 @@
 ## ImageVersions
 
 - [Get](#imageversions_get)
+- [GetByProject](#imageversions_getbyproject)
 - [ListByImage](#imageversions_listbyimage)
+- [ListByProject](#imageversions_listbyproject)
 
 ## Images
 
 - [Get](#images_get)
+- [GetByProject](#images_getbyproject)
 - [ListByDevCenter](#images_listbydevcenter)
 - [ListByGallery](#images_listbygallery)
+- [ListByProject](#images_listbyproject)
 
 ## NetworkConnections
 
@@ -121,6 +156,23 @@
 
 - [GetErrorDetails](#projectcatalogenvironmentdefinitions_geterrordetails)
 
+## ProjectCatalogImageDefinitionBuildOperation
+
+- [Cancel](#projectcatalogimagedefinitionbuildoperation_cancel)
+- [Get](#projectcatalogimagedefinitionbuildoperation_get)
+- [GetBuildDetails](#projectcatalogimagedefinitionbuildoperation_getbuilddetails)
+
+## ProjectCatalogImageDefinitionBuilds
+
+- [ListByImageDefinition](#projectcatalogimagedefinitionbuilds_listbyimagedefinition)
+
+## ProjectCatalogImageDefinitions
+
+- [BuildImage](#projectcatalogimagedefinitions_buildimage)
+- [GetByProjectCatalog](#projectcatalogimagedefinitions_getbyprojectcatalog)
+- [GetErrorDetails](#projectcatalogimagedefinitions_geterrordetails)
+- [ListByProjectCatalog](#projectcatalogimagedefinitions_listbyprojectcatalog)
+
 ## ProjectCatalogs
 
 - [Connect](#projectcatalogs_connect)
@@ -140,11 +192,20 @@
 - [List](#projectenvironmenttypes_list)
 - [Update](#projectenvironmenttypes_update)
 
+## ProjectPolicies
+
+- [CreateOrUpdate](#projectpolicies_createorupdate)
+- [Delete](#projectpolicies_delete)
+- [Get](#projectpolicies_get)
+- [ListByDevCenter](#projectpolicies_listbydevcenter)
+- [Update](#projectpolicies_update)
+
 ## Projects
 
 - [CreateOrUpdate](#projects_createorupdate)
 - [Delete](#projects_delete)
 - [GetByResourceGroup](#projects_getbyresourcegroup)
+- [GetInheritedSettings](#projects_getinheritedsettings)
 - [List](#projects_list)
 - [ListByResourceGroup](#projects_listbyresourcegroup)
 - [Update](#projects_update)
@@ -160,6 +221,7 @@
 ## Skus
 
 - [List](#skus_list)
+- [ListByProject](#skus_listbyproject)
 
 ## Usages
 
@@ -168,13 +230,37 @@
 
 ```java
 /**
+ * Samples for NetworkConnections List.
+ */
+public final class NetworkConnectionsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * NetworkConnections_ListBySubscription.json
+     */
+    /**
+     * Sample code: NetworkConnections_ListBySubscription.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        networkConnectionsListBySubscription(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.networkConnections().list(null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AttachedNetworks_Delete
+
+```java
+/**
  * Samples for AttachedNetworks CreateOrUpdate.
  */
 public final class AttachedNetworksCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/AttachedNetworks_Create.
-     * json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * AttachedNetworks_Create.json
      */
     /**
      * Sample code: AttachedNetworks_Create.
@@ -192,48 +278,25 @@ public final class AttachedNetworksCreateOrUpdateSamples {
 }
 ```
 
-### AttachedNetworks_Delete
-
-```java
-/**
- * Samples for AttachedNetworks Delete.
- */
-public final class AttachedNetworksDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/AttachedNetworks_Delete.
-     * json
-     */
-    /**
-     * Sample code: AttachedNetworks_Delete.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void attachedNetworksDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.attachedNetworks().delete("rg1", "Contoso", "network-uswest3", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### AttachedNetworks_GetByDevCenter
 
 ```java
 /**
- * Samples for AttachedNetworks GetByDevCenter.
+ * Samples for DevBoxDefinitions ListByProject.
  */
-public final class AttachedNetworksGetByDevCenterSamples {
+public final class DevBoxDefinitionsListByProjectSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * AttachedNetworks_GetByDevCenter.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevBoxDefinitions_ListByProject.json
      */
     /**
-     * Sample code: AttachedNetworks_GetByDevCenter.
+     * Sample code: DevBoxDefinitions_ListByProject.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void attachedNetworksGetByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.attachedNetworks()
-            .getByDevCenterWithResponse("rg1", "Contoso", "network-uswest3", com.azure.core.util.Context.NONE);
+    public static void devBoxDefinitionsListByProject(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devBoxDefinitions().listByProject("rg1", "ContosoProject", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -242,11 +305,206 @@ public final class AttachedNetworksGetByDevCenterSamples {
 
 ```java
 /**
+ * Samples for DevCenterCatalogImageDefinitionBuildOperation GetBuildDetails.
+ */
+public final class DevCenterCatalogImageDefinitionBuildOperationGetBuildDetailsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenterImageDefinitions_GetImageBuildDetails.json
+     */
+    /**
+     * Sample code: DevCenterCatalogImageDefinitionBuild_GetErrorDetails.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void devCenterCatalogImageDefinitionBuildGetErrorDetails(
+        com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devCenterCatalogImageDefinitionBuildOperations()
+            .getBuildDetailsWithResponse("rg1", "DevDevCenter", "CentralCatalog", "DefaultDevImage",
+                "0a28fc61-6f87-4611-8fe2-32df44ab93b7", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AttachedNetworks_ListByDevCenter
+
+```java
+/**
+ * Samples for Images ListByProject.
+ */
+public final class ImagesListByProjectSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Images_ListByProject.json
+     */
+    /**
+     * Sample code: Images_ListByProject.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void imagesListByProject(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.images().listByProject("rg1", "myProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AttachedNetworks_ListByProject
+
+```java
+/**
+ * Samples for ProjectCatalogImageDefinitions GetErrorDetails.
+ */
+public final class ProjectCatalogImageDefinitionsGetErrorDetailsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectCatalogImageDefinitions_GetErrorDetails.json
+     */
+    /**
+     * Sample code: ProjectCatalogImageDefinitions_GetErrorDetails.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        projectCatalogImageDefinitionsGetErrorDetails(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectCatalogImageDefinitions()
+            .getErrorDetailsWithResponse("rg1", "DevProject", "TeamCatalog", "WebDevBox",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Catalogs_Connect
+
+```java
+/**
+ * Samples for ProjectCatalogs GetSyncErrorDetails.
+ */
+public final class ProjectCatalogsGetSyncErrorDetailsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectCatalogs_GetSyncErrorDetails.json
+     */
+    /**
+     * Sample code: ProjectCatalogs_GetSyncErrorDetails.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        projectCatalogsGetSyncErrorDetails(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectCatalogs()
+            .getSyncErrorDetailsWithResponse("rg1", "DevProject", "CentralCatalog", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Catalogs_CreateOrUpdate
+
+```java
+/**
+ * Samples for Galleries ListByDevCenter.
+ */
+public final class GalleriesListByDevCenterSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Galleries_List.
+     * json
+     */
+    /**
+     * Sample code: Galleries_ListByDevCenter.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void galleriesListByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.galleries().listByDevCenter("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Catalogs_Delete
+
+```java
+/**
+ * Samples for ImageVersions ListByProject.
+ */
+public final class ImageVersionsListByProjectSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ImageVersions_ListByProject.json
+     */
+    /**
+     * Sample code: ImageVersions_ListByProject.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void imageVersionsListByProject(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.imageVersions()
+            .listByProject("rg1", "myProject", "~gallery~DefaultDevGallery~ContosoImageDefinition",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Catalogs_Get
+
+```java
+/**
+ * Samples for DevBoxDefinitions Get.
+ */
+public final class DevBoxDefinitionsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevBoxDefinitions_Get.json
+     */
+    /**
+     * Sample code: DevBoxDefinitions_Get.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void devBoxDefinitionsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devBoxDefinitions().getWithResponse("rg1", "Contoso", "WebDevBox", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Catalogs_GetSyncErrorDetails
+
+```java
+/**
+ * Samples for Pools Delete.
+ */
+public final class PoolsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Pools_Delete.
+     * json
+     */
+    /**
+     * Sample code: Pools_Delete.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void poolsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.pools().delete("rg1", "DevProject", "poolName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Catalogs_ListByDevCenter
+
+```java
+/**
  * Samples for AttachedNetworks GetByProject.
  */
 public final class AttachedNetworksGetByProjectSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
      * AttachedNetworks_GetByProject.json
      */
     /**
@@ -261,234 +519,25 @@ public final class AttachedNetworksGetByProjectSamples {
 }
 ```
 
-### AttachedNetworks_ListByDevCenter
-
-```java
-/**
- * Samples for AttachedNetworks ListByDevCenter.
- */
-public final class AttachedNetworksListByDevCenterSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * AttachedNetworks_ListByDevCenter.json
-     */
-    /**
-     * Sample code: AttachedNetworks_ListByDevCenter.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void attachedNetworksListByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.attachedNetworks().listByDevCenter("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AttachedNetworks_ListByProject
-
-```java
-/**
- * Samples for AttachedNetworks ListByProject.
- */
-public final class AttachedNetworksListByProjectSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * AttachedNetworks_ListByProject.json
-     */
-    /**
-     * Sample code: AttachedNetworks_ListByProject.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void attachedNetworksListByProject(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.attachedNetworks().listByProject("rg1", "DevProject", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Catalogs_Connect
-
-```java
-/**
- * Samples for Catalogs Connect.
- */
-public final class CatalogsConnectSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Catalogs_Connect.json
-     */
-    /**
-     * Sample code: Catalogs_Connect.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void catalogsConnect(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.catalogs().connect("rg1", "Contoso", "CentralCatalog", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Catalogs_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.devcenter.fluent.models.CatalogInner;
-import com.azure.resourcemanager.devcenter.models.CatalogSyncType;
-import com.azure.resourcemanager.devcenter.models.GitCatalog;
-
-/**
- * Samples for Catalogs CreateOrUpdate.
- */
-public final class CatalogsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Catalogs_CreateAdo.json
-     */
-    /**
-     * Sample code: Catalogs_CreateOrUpdateAdo.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void catalogsCreateOrUpdateAdo(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.catalogs()
-            .createOrUpdate("rg1", "Contoso", "CentralCatalog",
-                new CatalogInner().withAdoGit(new GitCatalog()
-                    .withUri("https://contoso@dev.azure.com/contoso/contosoOrg/_git/centralrepo-fakecontoso")
-                    .withBranch("main")
-                    .withSecretIdentifier("fakeTokenPlaceholder")
-                    .withPath("/templates")).withSyncType(CatalogSyncType.SCHEDULED),
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Catalogs_CreateGitHub.
-     * json
-     */
-    /**
-     * Sample code: Catalogs_CreateOrUpdateGitHub.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void catalogsCreateOrUpdateGitHub(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.catalogs()
-            .createOrUpdate("rg1", "Contoso", "CentralCatalog",
-                new CatalogInner()
-                    .withGitHub(new GitCatalog().withUri("https://github.com/Contoso/centralrepo-fake.git")
-                        .withBranch("main")
-                        .withSecretIdentifier("fakeTokenPlaceholder")
-                        .withPath("/templates"))
-                    .withSyncType(CatalogSyncType.MANUAL),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Catalogs_Delete
-
-```java
-/**
- * Samples for Catalogs Delete.
- */
-public final class CatalogsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Catalogs_Delete.json
-     */
-    /**
-     * Sample code: Catalogs_Delete.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void catalogsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.catalogs().delete("rg1", "Contoso", "CentralCatalog", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Catalogs_Get
-
-```java
-/**
- * Samples for Catalogs Get.
- */
-public final class CatalogsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Catalogs_Get.json
-     */
-    /**
-     * Sample code: Catalogs_Get.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void catalogsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.catalogs().getWithResponse("rg1", "Contoso", "CentralCatalog", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Catalogs_GetSyncErrorDetails
-
-```java
-/**
- * Samples for Catalogs GetSyncErrorDetails.
- */
-public final class CatalogsGetSyncErrorDetailsSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * Catalogs_GetSyncErrorDetails.json
-     */
-    /**
-     * Sample code: Catalogs_GetSyncErrorDetails.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void catalogsGetSyncErrorDetails(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.catalogs()
-            .getSyncErrorDetailsWithResponse("rg1", "Contoso", "CentralCatalog", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Catalogs_ListByDevCenter
-
-```java
-/**
- * Samples for Catalogs ListByDevCenter.
- */
-public final class CatalogsListByDevCenterSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Catalogs_List.json
-     */
-    /**
-     * Sample code: Catalogs_ListByDevCenter.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void catalogsListByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.catalogs().listByDevCenter("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Catalogs_Sync
 
 ```java
 /**
- * Samples for Catalogs Sync.
+ * Samples for ProjectCatalogs Delete.
  */
-public final class CatalogsSyncSamples {
+public final class ProjectCatalogsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Catalogs_Sync.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectCatalogs_Delete.json
      */
     /**
-     * Sample code: Catalogs_Sync.
+     * Sample code: ProjectCatalogs_Delete.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void catalogsSync(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.catalogs().sync("rg1", "Contoso", "CentralCatalog", com.azure.core.util.Context.NONE);
+    public static void projectCatalogsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectCatalogs().delete("rg1", "DevProject", "CentralCatalog", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -496,28 +545,24 @@ public final class CatalogsSyncSamples {
 ### Catalogs_Update
 
 ```java
-import com.azure.resourcemanager.devcenter.models.CatalogSyncType;
-import com.azure.resourcemanager.devcenter.models.CatalogUpdate;
-import com.azure.resourcemanager.devcenter.models.GitCatalog;
-
 /**
- * Samples for Catalogs Update.
+ * Samples for DevCenterCatalogImageDefinitions GetErrorDetails.
  */
-public final class CatalogsUpdateSamples {
+public final class DevCenterCatalogImageDefinitionsGetErrorDetailsSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Catalogs_Patch.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenterImageDefinitions_GetErrorDetails.json
      */
     /**
-     * Sample code: Catalogs_Update.
+     * Sample code: DevCenterImageDefinitions_GetErrorDetails.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void catalogsUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.catalogs()
-            .update("rg1", "Contoso", "CentralCatalog",
-                new CatalogUpdate().withGitHub(new GitCatalog().withPath("/environments"))
-                    .withSyncType(CatalogSyncType.SCHEDULED),
+    public static void
+        devCenterImageDefinitionsGetErrorDetails(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devCenterCatalogImageDefinitions()
+            .getErrorDetailsWithResponse("rg1", "DevDevCenter", "TeamCatalog", "WebDevBox",
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -526,27 +571,23 @@ public final class CatalogsUpdateSamples {
 ### CheckNameAvailability_Execute
 
 ```java
-import com.azure.resourcemanager.devcenter.models.CheckNameAvailabilityRequest;
-
 /**
- * Samples for CheckNameAvailability Execute.
+ * Samples for NetworkConnections ListHealthDetails.
  */
-public final class CheckNameAvailabilityExecuteSamples {
+public final class NetworkConnectionsListHealthDetailsSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/CheckNameAvailability.
-     * json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * NetworkConnections_ListHealthDetails.json
      */
     /**
-     * Sample code: NameAvailability.
+     * Sample code: NetworkConnections_ListHealthDetails.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void nameAvailability(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.checkNameAvailabilities()
-            .executeWithResponse(
-                new CheckNameAvailabilityRequest().withName("name1").withType("Microsoft.DevCenter/devcenters"),
-                com.azure.core.util.Context.NONE);
+    public static void
+        networkConnectionsListHealthDetails(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.networkConnections().listHealthDetails("rg1", "uswest3network", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -554,239 +595,18 @@ public final class CheckNameAvailabilityExecuteSamples {
 ### CheckScopedNameAvailability_Execute
 
 ```java
-import com.azure.resourcemanager.devcenter.models.CheckScopedNameAvailabilityRequest;
-
-/**
- * Samples for CheckScopedNameAvailability Execute.
- */
-public final class CheckScopedNameAvailabilityExecuteSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * CheckScopedNameAvailability_ProjectCatalog.json
-     */
-    /**
-     * Sample code: ProjectCatalogNameAvailability.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void projectCatalogNameAvailability(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.checkScopedNameAvailabilities()
-            .executeWithResponse(new CheckScopedNameAvailabilityRequest().withName("name1")
-                .withType("Microsoft.DevCenter/projects/catalogs")
-                .withScope(
-                    "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/rg1/providers/Microsoft.DevCenter/projects/DevProject"),
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * CheckScopedNameAvailability_DevCenterCatalog.json
-     */
-    /**
-     * Sample code: DevcenterCatalogNameAvailability.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void devcenterCatalogNameAvailability(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.checkScopedNameAvailabilities()
-            .executeWithResponse(new CheckScopedNameAvailabilityRequest().withName("name1")
-                .withType("Microsoft.DevCenter/devcenters/catalogs")
-                .withScope(
-                    "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/rg1/providers/Microsoft.DevCenter/devcenters/Contoso"),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DevBoxDefinitions_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.devcenter.models.HibernateSupport;
-import com.azure.resourcemanager.devcenter.models.ImageReference;
-import com.azure.resourcemanager.devcenter.models.Sku;
-
-/**
- * Samples for DevBoxDefinitions CreateOrUpdate.
- */
-public final class DevBoxDefinitionsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/DevBoxDefinitions_Create.
-     * json
-     */
-    /**
-     * Sample code: DevBoxDefinitions_Create.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void devBoxDefinitionsCreate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.devBoxDefinitions()
-            .define("WebDevBox")
-            .withRegion("centralus")
-            .withExistingDevcenter("rg1", "Contoso")
-            .withImageReference(new ImageReference().withId(
-                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/Example/providers/Microsoft.DevCenter/devcenters/Contoso/galleries/contosogallery/images/exampleImage/version/1.0.0"))
-            .withSku(new Sku().withName("Preview"))
-            .withHibernateSupport(HibernateSupport.ENABLED)
-            .create();
-    }
-}
-```
-
-### DevBoxDefinitions_Delete
-
-```java
-/**
- * Samples for DevBoxDefinitions Delete.
- */
-public final class DevBoxDefinitionsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/DevBoxDefinitions_Delete.
-     * json
-     */
-    /**
-     * Sample code: DevBoxDefinitions_Delete.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void devBoxDefinitionsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.devBoxDefinitions().delete("rg1", "Contoso", "WebDevBox", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DevBoxDefinitions_Get
-
-```java
-/**
- * Samples for DevBoxDefinitions Get.
- */
-public final class DevBoxDefinitionsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/DevBoxDefinitions_Get.
-     * json
-     */
-    /**
-     * Sample code: DevBoxDefinitions_Get.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void devBoxDefinitionsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.devBoxDefinitions().getWithResponse("rg1", "Contoso", "WebDevBox", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DevBoxDefinitions_GetByProject
-
-```java
-/**
- * Samples for DevBoxDefinitions GetByProject.
- */
-public final class DevBoxDefinitionsGetByProjectSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * DevBoxDefinitions_GetByProject.json
-     */
-    /**
-     * Sample code: DevBoxDefinitions_GetByProject.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void devBoxDefinitionsGetByProject(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.devBoxDefinitions()
-            .getByProjectWithResponse("rg1", "ContosoProject", "WebDevBox", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DevBoxDefinitions_ListByDevCenter
-
-```java
-/**
- * Samples for DevBoxDefinitions ListByDevCenter.
- */
-public final class DevBoxDefinitionsListByDevCenterSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * DevBoxDefinitions_ListByDevCenter.json
-     */
-    /**
-     * Sample code: DevBoxDefinitions_ListByDevCenter.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void devBoxDefinitionsListByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.devBoxDefinitions().listByDevCenter("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DevBoxDefinitions_ListByProject
-
-```java
-/**
- * Samples for DevBoxDefinitions ListByProject.
- */
-public final class DevBoxDefinitionsListByProjectSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * DevBoxDefinitions_ListByProject.json
-     */
-    /**
-     * Sample code: DevBoxDefinitions_ListByProject.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void devBoxDefinitionsListByProject(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.devBoxDefinitions().listByProject("rg1", "ContosoProject", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DevBoxDefinitions_Update
-
-```java
-import com.azure.resourcemanager.devcenter.models.DevBoxDefinition;
-import com.azure.resourcemanager.devcenter.models.ImageReference;
-
-/**
- * Samples for DevBoxDefinitions Update.
- */
-public final class DevBoxDefinitionsUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/DevBoxDefinitions_Patch.
-     * json
-     */
-    /**
-     * Sample code: DevBoxDefinitions_Patch.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void devBoxDefinitionsPatch(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        DevBoxDefinition resource = manager.devBoxDefinitions()
-            .getWithResponse("rg1", "Contoso", "WebDevBox", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update()
-            .withImageReference(new ImageReference().withId(
-                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/Example/providers/Microsoft.DevCenter/devcenters/Contoso/galleries/contosogallery/images/exampleImage/version/2.0.0"))
-            .apply();
-    }
-}
-```
-
-### DevCenters_CreateOrUpdate
-
-```java
+import com.azure.resourcemanager.devcenter.models.CatalogItemSyncEnableStatus;
 import com.azure.resourcemanager.devcenter.models.CustomerManagedKeyEncryption;
 import com.azure.resourcemanager.devcenter.models.CustomerManagedKeyEncryptionKeyIdentity;
+import com.azure.resourcemanager.devcenter.models.DevBoxProvisioningSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterNetworkSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterProjectCatalogSettings;
 import com.azure.resourcemanager.devcenter.models.Encryption;
 import com.azure.resourcemanager.devcenter.models.IdentityType;
+import com.azure.resourcemanager.devcenter.models.InstallAzureMonitorAgentEnableStatus;
 import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.devcenter.models.MicrosoftHostedNetworkEnableStatus;
 import com.azure.resourcemanager.devcenter.models.UserAssignedIdentity;
 import java.util.HashMap;
 import java.util.Map;
@@ -797,7 +617,8 @@ import java.util.Map;
 public final class DevCentersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/DevCenters_Create.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenters_Create.json
      */
     /**
      * Sample code: DevCenters_Create.
@@ -811,11 +632,43 @@ public final class DevCentersCreateOrUpdateSamples {
             .withExistingResourceGroup("rg1")
             .withTags(mapOf("CostCode", "fakeTokenPlaceholder"))
             .withDisplayName("ContosoDevCenter")
+            .withProjectCatalogSettings(new DevCenterProjectCatalogSettings()
+                .withCatalogItemSyncEnableStatus(CatalogItemSyncEnableStatus.ENABLED))
+            .withDevBoxProvisioningSettings(new DevBoxProvisioningSettings()
+                .withInstallAzureMonitorAgentEnableStatus(InstallAzureMonitorAgentEnableStatus.ENABLED))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenters_CreateWithDisabledManagedNetworks.json
+     */
+    /**
+     * Sample code: DevCenters_CreateWithDisabledManagedNetworks.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        devCentersCreateWithDisabledManagedNetworks(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devCenters()
+            .define("Contoso")
+            .withRegion("centralus")
+            .withExistingResourceGroup("rg1")
+            .withTags(mapOf("CostCode", "fakeTokenPlaceholder"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1",
+                    new UserAssignedIdentity())))
+            .withDisplayName("ContosoDevCenter")
+            .withNetworkSettings(new DevCenterNetworkSettings()
+                .withMicrosoftHostedNetworkEnableStatus(MicrosoftHostedNetworkEnableStatus.DISABLED))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
      * DevCenters_CreateWithUserIdentity.json
      */
     /**
@@ -838,7 +691,8 @@ public final class DevCentersCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
      * DevCenters_CreateWithEncryption.json
      */
     /**
@@ -880,29 +734,7 @@ public final class DevCentersCreateOrUpdateSamples {
 }
 ```
 
-### DevCenters_Delete
-
-```java
-/**
- * Samples for DevCenters Delete.
- */
-public final class DevCentersDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/DevCenters_Delete.json
-     */
-    /**
-     * Sample code: DevCenters_Delete.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void devCentersDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.devCenters().delete("rg1", "Contoso", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DevCenters_GetByResourceGroup
+### CustomizationTasks_Get
 
 ```java
 /**
@@ -911,7 +743,8 @@ public final class DevCentersDeleteSamples {
 public final class DevCentersGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/DevCenters_Get.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/DevCenters_Get.
+     * json
      */
     /**
      * Sample code: DevCenters_Get.
@@ -924,24 +757,626 @@ public final class DevCentersGetByResourceGroupSamples {
 }
 ```
 
+### CustomizationTasks_GetErrorDetails
+
+```java
+/**
+ * Samples for NetworkConnections ListByResourceGroup.
+ */
+public final class NetworkConnectionsListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * NetworkConnections_ListByResourceGroup.json
+     */
+    /**
+     * Sample code: NetworkConnections_ListByResourceGroup.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        networkConnectionsListByResourceGroup(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.networkConnections().listByResourceGroup("rg1", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CustomizationTasks_ListByCatalog
+
+```java
+/**
+ * Samples for AttachedNetworks ListByDevCenter.
+ */
+public final class AttachedNetworksListByDevCenterSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * AttachedNetworks_ListByDevCenter.json
+     */
+    /**
+     * Sample code: AttachedNetworks_ListByDevCenter.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void attachedNetworksListByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.attachedNetworks().listByDevCenter("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevBoxDefinitions_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.devcenter.models.ResourcePolicy;
+import java.util.Arrays;
+
+/**
+ * Samples for ProjectPolicies CreateOrUpdate.
+ */
+public final class ProjectPoliciesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectPolicies_Put.json
+     */
+    /**
+     * Sample code: ProjectPolicies_CreateOrUpdate.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectPoliciesCreateOrUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectPolicies()
+            .define("DevOnlyResources")
+            .withExistingDevcenter("rg1", "Contoso")
+            .withResourcePolicies(Arrays.asList(new ResourcePolicy().withResources(
+                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff1/resourceGroups/rg1/providers/Microsoft.DevCenter/devcenters/Contoso/attachednetworks/network-westus3")))
+            .withScopes(Arrays.asList(
+                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff1/resourceGroups/rg1/providers/Microsoft.DevCenter/projects/DevProject"))
+            .create();
+    }
+}
+```
+
+### DevBoxDefinitions_Delete
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Operations_Get.
+     * json
+     */
+    /**
+     * Sample code: Operations_Get.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void operationsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevBoxDefinitions_Get
+
+```java
+/**
+ * Samples for ProjectCatalogs List.
+ */
+public final class ProjectCatalogsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectCatalogs_List.json
+     */
+    /**
+     * Sample code: ProjectCatalogs_List.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectCatalogsList(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectCatalogs().list("rg1", "DevProject", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevBoxDefinitions_GetByProject
+
+```java
+/**
+ * Samples for DevCenterCatalogImageDefinitions BuildImage.
+ */
+public final class DevCenterCatalogImageDefinitionsBuildImageSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenterImageDefinitions_BuildImage.json
+     */
+    /**
+     * Sample code: DevCenterCatalogImageDefinitions_BuildImage.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        devCenterCatalogImageDefinitionsBuildImage(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devCenterCatalogImageDefinitions()
+            .buildImage("rg1", "DevDevCenter", "CentralCatalog", "DefaultDevImage", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevBoxDefinitions_ListByDevCenter
+
+```java
+import com.azure.resourcemanager.devcenter.models.ActiveHoursConfiguration;
+import com.azure.resourcemanager.devcenter.models.AutoStartEnableStatus;
+import com.azure.resourcemanager.devcenter.models.ImageReference;
+import com.azure.resourcemanager.devcenter.models.KeepAwakeEnableStatus;
+import com.azure.resourcemanager.devcenter.models.LicenseType;
+import com.azure.resourcemanager.devcenter.models.LocalAdminStatus;
+import com.azure.resourcemanager.devcenter.models.PoolDevBoxDefinition;
+import com.azure.resourcemanager.devcenter.models.PoolDevBoxDefinitionType;
+import com.azure.resourcemanager.devcenter.models.SingleSignOnStatus;
+import com.azure.resourcemanager.devcenter.models.Sku;
+import com.azure.resourcemanager.devcenter.models.StopOnDisconnectConfiguration;
+import com.azure.resourcemanager.devcenter.models.StopOnDisconnectEnableStatus;
+import com.azure.resourcemanager.devcenter.models.StopOnNoConnectConfiguration;
+import com.azure.resourcemanager.devcenter.models.StopOnNoConnectEnableStatus;
+import com.azure.resourcemanager.devcenter.models.VirtualNetworkType;
+import java.util.Arrays;
+
+/**
+ * Samples for Pools CreateOrUpdate.
+ */
+public final class PoolsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Pools_PutWithValueDevBoxDefinition.json
+     */
+    /**
+     * Sample code: Pools_CreateOrUpdateWithValueDevBoxDefinition.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        poolsCreateOrUpdateWithValueDevBoxDefinition(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.pools()
+            .define("DevPool")
+            .withRegion("centralus")
+            .withExistingProject("rg1", "DevProject")
+            .withDevBoxDefinitionType(PoolDevBoxDefinitionType.VALUE)
+            .withDevBoxDefinitionName("")
+            .withDevBoxDefinition(new PoolDevBoxDefinition().withImageReference(new ImageReference().withId(
+                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/Example/providers/Microsoft.DevCenter/projects/DevProject/images/exampleImage/version/1.0.0"))
+                .withSku(new Sku().withName("Preview")))
+            .withNetworkConnectionName("Network1-westus2")
+            .withLicenseType(LicenseType.WINDOWS_CLIENT)
+            .withLocalAdministrator(LocalAdminStatus.ENABLED)
+            .withStopOnDisconnect(new StopOnDisconnectConfiguration().withStatus(StopOnDisconnectEnableStatus.ENABLED)
+                .withGracePeriodMinutes(60))
+            .withStopOnNoConnect(new StopOnNoConnectConfiguration().withStatus(StopOnNoConnectEnableStatus.ENABLED)
+                .withGracePeriodMinutes(120))
+            .withSingleSignOnStatus(SingleSignOnStatus.DISABLED)
+            .withDisplayName("Developer Pool")
+            .withVirtualNetworkType(VirtualNetworkType.UNMANAGED)
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Pools_Put.json
+     */
+    /**
+     * Sample code: Pools_CreateOrUpdate.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void poolsCreateOrUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.pools()
+            .define("DevPool")
+            .withRegion("centralus")
+            .withExistingProject("rg1", "DevProject")
+            .withDevBoxDefinitionName("WebDevBox")
+            .withNetworkConnectionName("Network1-westus2")
+            .withLicenseType(LicenseType.WINDOWS_CLIENT)
+            .withLocalAdministrator(LocalAdminStatus.ENABLED)
+            .withStopOnDisconnect(new StopOnDisconnectConfiguration().withStatus(StopOnDisconnectEnableStatus.ENABLED)
+                .withGracePeriodMinutes(60))
+            .withStopOnNoConnect(new StopOnNoConnectConfiguration().withStatus(StopOnNoConnectEnableStatus.ENABLED)
+                .withGracePeriodMinutes(120))
+            .withSingleSignOnStatus(SingleSignOnStatus.DISABLED)
+            .withDisplayName("Developer Pool")
+            .withVirtualNetworkType(VirtualNetworkType.UNMANAGED)
+            .withActiveHoursConfiguration(
+                new ActiveHoursConfiguration().withKeepAwakeEnableStatus(KeepAwakeEnableStatus.ENABLED)
+                    .withAutoStartEnableStatus(AutoStartEnableStatus.ENABLED)
+                    .withDefaultTimeZone("America/Los_Angeles")
+                    .withDefaultStartTimeHour(9)
+                    .withDefaultEndTimeHour(17))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Pools_PutWithManagedNetwork.json
+     */
+    /**
+     * Sample code: Pools_CreateOrUpdateWithManagedNetwork.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        poolsCreateOrUpdateWithManagedNetwork(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.pools()
+            .define("DevPool")
+            .withRegion("centralus")
+            .withExistingProject("rg1", "DevProject")
+            .withDevBoxDefinitionName("WebDevBox")
+            .withNetworkConnectionName("managedNetwork")
+            .withLicenseType(LicenseType.WINDOWS_CLIENT)
+            .withLocalAdministrator(LocalAdminStatus.ENABLED)
+            .withStopOnDisconnect(new StopOnDisconnectConfiguration().withStatus(StopOnDisconnectEnableStatus.ENABLED)
+                .withGracePeriodMinutes(60))
+            .withStopOnNoConnect(new StopOnNoConnectConfiguration().withStatus(StopOnNoConnectEnableStatus.ENABLED)
+                .withGracePeriodMinutes(120))
+            .withSingleSignOnStatus(SingleSignOnStatus.DISABLED)
+            .withDisplayName("Developer Pool")
+            .withVirtualNetworkType(VirtualNetworkType.MANAGED)
+            .withManagedVirtualNetworkRegions(Arrays.asList("centralus"))
+            .create();
+    }
+}
+```
+
+### DevBoxDefinitions_ListByProject
+
+```java
+/**
+ * Samples for Usages ListByLocation.
+ */
+public final class UsagesListByLocationSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Usages_ListByLocation.json
+     */
+    /**
+     * Sample code: listUsages.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void listUsages(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.usages().listByLocation("westus", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevBoxDefinitions_Update
+
+```java
+import com.azure.resourcemanager.devcenter.models.Pool;
+
+/**
+ * Samples for Pools Update.
+ */
+public final class PoolsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Pools_Patch.json
+     */
+    /**
+     * Sample code: Pools_Update.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void poolsUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        Pool resource = manager.pools()
+            .getWithResponse("rg1", "DevProject", "DevPool", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withDevBoxDefinitionName("WebDevBox2").apply();
+    }
+}
+```
+
+### DevCenterCatalogImageDefinitionBuildOperation_Cancel
+
+```java
+/**
+ * Samples for Images Get.
+ */
+public final class ImagesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Images_Get.json
+     */
+    /**
+     * Sample code: Images_Get.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void imagesGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.images()
+            .getWithResponse("rg1", "Contoso", "DefaultDevGallery", "ContosoBaseImage",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevCenterCatalogImageDefinitionBuildOperation_Get
+
+```java
+import com.azure.resourcemanager.devcenter.models.ProjectPolicy;
+import com.azure.resourcemanager.devcenter.models.ResourcePolicy;
+import java.util.Arrays;
+
+/**
+ * Samples for ProjectPolicies Update.
+ */
+public final class ProjectPoliciesUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectPolicies_Patch.json
+     */
+    /**
+     * Sample code: ProjectPolicies_Update.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectPoliciesUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        ProjectPolicy resource = manager.projectPolicies()
+            .getWithResponse("rg1", "Contoso", "DevOnlyResources", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withResourcePolicies(Arrays.asList(new ResourcePolicy().withResources(
+                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff1/resourceGroups/rg1/providers/Microsoft.DevCenter/devcenters/Contoso/attachednetworks/network-westus3")))
+            .apply();
+    }
+}
+```
+
+### DevCenterCatalogImageDefinitionBuildOperation_GetBuildDetails
+
+```java
+/**
+ * Samples for ProjectCatalogs Get.
+ */
+public final class ProjectCatalogsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectCatalogs_Get.json
+     */
+    /**
+     * Sample code: ProjectCatalogs_Get.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectCatalogsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectCatalogs()
+            .getWithResponse("rg1", "DevProject", "CentralCatalog", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevCenterCatalogImageDefinitionBuilds_ListByImageDefinition
+
+```java
+/**
+ * Samples for ProjectCatalogs Sync.
+ */
+public final class ProjectCatalogsSyncSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectCatalogs_Sync.json
+     */
+    /**
+     * Sample code: ProjectCatalogs_Sync.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectCatalogsSync(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectCatalogs().sync("rg1", "DevProject", "CentralCatalog", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevCenterCatalogImageDefinitions_BuildImage
+
+```java
+/**
+ * Samples for ImageVersions GetByProject.
+ */
+public final class ImageVersionsGetByProjectSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ImageVersions_GetByProject.json
+     */
+    /**
+     * Sample code: ImageVersions_GetByProject.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void imageVersionsGetByProject(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.imageVersions()
+            .getByProjectWithResponse("rg1", "myProject", "~gallery~DefaultDevGallery~ContosoImageDefinition", "1.0.0",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevCenterCatalogImageDefinitions_GetByDevCenterCatalog
+
+```java
+/**
+ * Samples for Projects Delete.
+ */
+public final class ProjectsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Projects_Delete.
+     * json
+     */
+    /**
+     * Sample code: Projects_Delete.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projects().delete("rg1", "DevProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevCenterCatalogImageDefinitions_GetErrorDetails
+
+```java
+/**
+ * Samples for Catalogs ListByDevCenter.
+ */
+public final class CatalogsListByDevCenterSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Catalogs_List.
+     * json
+     */
+    /**
+     * Sample code: Catalogs_ListByDevCenter.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void catalogsListByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.catalogs().listByDevCenter("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevCenterCatalogImageDefinitions_ListByDevCenterCatalog
+
+```java
+/**
+ * Samples for AttachedNetworks GetByDevCenter.
+ */
+public final class AttachedNetworksGetByDevCenterSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * AttachedNetworks_GetByDevCenter.json
+     */
+    /**
+     * Sample code: AttachedNetworks_GetByDevCenter.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void attachedNetworksGetByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.attachedNetworks()
+            .getByDevCenterWithResponse("rg1", "Contoso", "network-uswest3", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevCenters_CreateOrUpdate
+
+```java
+/**
+ * Samples for DevBoxDefinitions GetByProject.
+ */
+public final class DevBoxDefinitionsGetByProjectSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevBoxDefinitions_GetByProject.json
+     */
+    /**
+     * Sample code: DevBoxDefinitions_GetByProject.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void devBoxDefinitionsGetByProject(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devBoxDefinitions()
+            .getByProjectWithResponse("rg1", "ContosoProject", "WebDevBox", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevCenters_Delete
+
+```java
+/**
+ * Samples for EnvironmentTypes ListByDevCenter.
+ */
+public final class EnvironmentTypesListByDevCenterSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * EnvironmentTypes_List.json
+     */
+    /**
+     * Sample code: EnvironmentTypes_ListByDevCenter.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void environmentTypesListByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.environmentTypes().listByDevCenter("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DevCenters_GetByResourceGroup
+
+```java
+import com.azure.resourcemanager.devcenter.models.Catalog;
+import com.azure.resourcemanager.devcenter.models.GitCatalog;
+
+/**
+ * Samples for ProjectCatalogs Patch.
+ */
+public final class ProjectCatalogsPatchSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectCatalogs_Patch.json
+     */
+    /**
+     * Sample code: ProjectCatalogs_Patch.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectCatalogsPatch(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        Catalog resource = manager.projectCatalogs()
+            .getWithResponse("rg1", "DevProject", "CentralCatalog", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withGitHub(new GitCatalog().withPath("/environments")).apply();
+    }
+}
+```
+
 ### DevCenters_List
 
 ```java
 /**
- * Samples for DevCenters List.
+ * Samples for Catalogs Get.
  */
-public final class DevCentersListSamples {
+public final class CatalogsGetSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * DevCenters_ListBySubscription.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Catalogs_Get.
+     * json
      */
     /**
-     * Sample code: DevCenters_ListBySubscription.
+     * Sample code: Catalogs_Get.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void devCentersListBySubscription(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.devCenters().list(null, com.azure.core.util.Context.NONE);
+    public static void catalogsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.catalogs().getWithResponse("rg1", "Contoso", "CentralCatalog", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -950,20 +1385,21 @@ public final class DevCentersListSamples {
 
 ```java
 /**
- * Samples for DevCenters ListByResourceGroup.
+ * Samples for DevBoxDefinitions ListByDevCenter.
  */
-public final class DevCentersListByResourceGroupSamples {
+public final class DevBoxDefinitionsListByDevCenterSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * DevCenters_ListByResourceGroup.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevBoxDefinitions_ListByDevCenter.json
      */
     /**
-     * Sample code: DevCenters_ListByResourceGroup.
+     * Sample code: DevBoxDefinitions_ListByDevCenter.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void devCentersListByResourceGroup(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.devCenters().listByResourceGroup("rg1", null, com.azure.core.util.Context.NONE);
+    public static void devBoxDefinitionsListByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devBoxDefinitions().listByDevCenter("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -971,28 +1407,455 @@ public final class DevCentersListByResourceGroupSamples {
 ### DevCenters_Update
 
 ```java
-import com.azure.resourcemanager.devcenter.models.DevCenter;
+/**
+ * Samples for ProjectCatalogImageDefinitions GetByProjectCatalog.
+ */
+public final class ProjectCatalogImageDefinitionsGetByProjectCatalogSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ImageDefinitions_GetByProjectCatalog.json
+     */
+    /**
+     * Sample code: ImageDefinitions_GetByProjectCatalog.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        imageDefinitionsGetByProjectCatalog(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectCatalogImageDefinitions()
+            .getByProjectCatalogWithResponse("rg1", "ContosoProject", "TeamCatalog", "WebDevBox",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EncryptionSets_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.devcenter.models.CheckScopedNameAvailabilityRequest;
+
+/**
+ * Samples for CheckScopedNameAvailability Execute.
+ */
+public final class CheckScopedNameAvailabilityExecuteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * CheckScopedNameAvailability_ProjectCatalog.json
+     */
+    /**
+     * Sample code: ProjectCatalogNameAvailability.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectCatalogNameAvailability(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.checkScopedNameAvailabilities()
+            .executeWithResponse(new CheckScopedNameAvailabilityRequest().withName("name1")
+                .withType("Microsoft.DevCenter/projects/catalogs")
+                .withScope(
+                    "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/rg1/providers/Microsoft.DevCenter/projects/DevProject"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * CheckScopedNameAvailability_DevCenterCatalog.json
+     */
+    /**
+     * Sample code: DevcenterCatalogNameAvailability.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void devcenterCatalogNameAvailability(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.checkScopedNameAvailabilities()
+            .executeWithResponse(new CheckScopedNameAvailabilityRequest().withName("name1")
+                .withType("Microsoft.DevCenter/devcenters/catalogs")
+                .withScope(
+                    "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/rg1/providers/Microsoft.DevCenter/devcenters/Contoso"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EncryptionSets_Delete
+
+```java
+/**
+ * Samples for ProjectCatalogEnvironmentDefinitions GetErrorDetails.
+ */
+public final class ProjectCatalogEnvironmentDefinitionsGetErrorDetailsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectCatalogEnvironmentDefinitions_GetErrorDetails.json
+     */
+    /**
+     * Sample code: ProjectCatalogEnvironmentDefinitions_GetErrorDetails.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectCatalogEnvironmentDefinitionsGetErrorDetails(
+        com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectCatalogEnvironmentDefinitions()
+            .getErrorDetailsWithResponse("rg1", "DevProject", "myCatalog", "myEnvironmentDefinition",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EncryptionSets_Get
+
+```java
+/**
+ * Samples for DevCenterCatalogImageDefinitionBuilds ListByImageDefinition.
+ */
+public final class DevCenterCatalogImageDefinitionBuildsListByImageDefinitionSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenterImageDefinitions_ListImageBuildsByImageDefinition.json
+     */
+    /**
+     * Sample code: DevCenterImageDefinitionBuilds_ListByImageDefinition.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void devCenterImageDefinitionBuildsListByImageDefinition(
+        com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devCenterCatalogImageDefinitionBuilds()
+            .listByImageDefinition("rg1", "DevDevCenter", "CentralCatalog", "DefaultDevImage",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EncryptionSets_List
+
+```java
+import com.azure.resourcemanager.devcenter.fluent.models.CatalogInner;
+import com.azure.resourcemanager.devcenter.models.CatalogSyncType;
+import com.azure.resourcemanager.devcenter.models.GitCatalog;
+
+/**
+ * Samples for Catalogs CreateOrUpdate.
+ */
+public final class CatalogsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Catalogs_CreateAdo.json
+     */
+    /**
+     * Sample code: Catalogs_CreateOrUpdateAdo.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void catalogsCreateOrUpdateAdo(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.catalogs()
+            .createOrUpdate("rg1", "Contoso", "CentralCatalog",
+                new CatalogInner().withAdoGit(new GitCatalog()
+                    .withUri("https://contoso@dev.azure.com/contoso/contosoOrg/_git/centralrepo-fakecontoso")
+                    .withBranch("main")
+                    .withSecretIdentifier("fakeTokenPlaceholder")
+                    .withPath("/templates")).withSyncType(CatalogSyncType.SCHEDULED),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Catalogs_CreateGitHub.json
+     */
+    /**
+     * Sample code: Catalogs_CreateOrUpdateGitHub.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void catalogsCreateOrUpdateGitHub(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.catalogs()
+            .createOrUpdate("rg1", "Contoso", "CentralCatalog",
+                new CatalogInner()
+                    .withGitHub(new GitCatalog().withUri("https://github.com/Contoso/centralrepo-fake.git")
+                        .withBranch("main")
+                        .withSecretIdentifier("fakeTokenPlaceholder")
+                        .withPath("/templates"))
+                    .withSyncType(CatalogSyncType.MANUAL),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EncryptionSets_Update
+
+```java
+/**
+ * Samples for AttachedNetworks Delete.
+ */
+public final class AttachedNetworksDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * AttachedNetworks_Delete.json
+     */
+    /**
+     * Sample code: AttachedNetworks_Delete.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void attachedNetworksDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.attachedNetworks().delete("rg1", "Contoso", "network-uswest3", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EnvironmentDefinitions_Get
+
+```java
+/**
+ * Samples for DevCenters Delete.
+ */
+public final class DevCentersDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenters_Delete.json
+     */
+    /**
+     * Sample code: DevCenters_Delete.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void devCentersDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devCenters().delete("rg1", "Contoso", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EnvironmentDefinitions_GetByProjectCatalog
+
+```java
+/**
+ * Samples for ProjectPolicies Get.
+ */
+public final class ProjectPoliciesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectPolicies_Get.json
+     */
+    /**
+     * Sample code: ProjectPolicies_Get.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectPoliciesGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectPolicies()
+            .getWithResponse("rg1", "Contoso", "DevOnlyResources", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EnvironmentDefinitions_GetErrorDetails
+
+```java
+/**
+ * Samples for Schedules ListByPool.
+ */
+public final class SchedulesListByPoolSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Schedules_ListByPool.json
+     */
+    /**
+     * Sample code: Schedules_ListByPool.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void schedulesListByPool(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.schedules().listByPool("rg1", "TestProject", "DevPool", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EnvironmentDefinitions_ListByCatalog
+
+```java
+/**
+ * Samples for DevBoxDefinitions Delete.
+ */
+public final class DevBoxDefinitionsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevBoxDefinitions_Delete.json
+     */
+    /**
+     * Sample code: DevBoxDefinitions_Delete.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void devBoxDefinitionsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devBoxDefinitions().delete("rg1", "Contoso", "WebDevBox", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EnvironmentDefinitions_ListByProjectCatalog
+
+```java
+/**
+ * Samples for DevCenterCatalogImageDefinitionBuildOperation Cancel.
+ */
+public final class DevCenterCatalogImageDefinitionBuildOperationCancelSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenterImageDefinitions_CancelImageBuild.json
+     */
+    /**
+     * Sample code: DevCenterImageDefinitionBuilds_CancelByImageDefinition.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void devCenterImageDefinitionBuildsCancelByImageDefinition(
+        com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devCenterCatalogImageDefinitionBuildOperations()
+            .cancel("rg1", "DevDevCenter", "CentralCatalog", "DefaultDevImage", "0a28fc61-6f87-4611-8fe2-32df44ab93b7",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EnvironmentTypes_CreateOrUpdate
+
+```java
+/**
+ * Samples for Projects GetInheritedSettings.
+ */
+public final class ProjectsGetInheritedSettingsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Projects_GetInheritedSettings.json
+     */
+    /**
+     * Sample code: Projects_GetInheritedSettings.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectsGetInheritedSettings(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projects().getInheritedSettingsWithResponse("rg1", "Contoso", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EnvironmentTypes_Delete
+
+```java
+/**
+ * Samples for NetworkConnections RunHealthChecks.
+ */
+public final class NetworkConnectionsRunHealthChecksSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * NetworkConnections_RunHealthChecks.json
+     */
+    /**
+     * Sample code: NetworkConnections_RunHealthChecks.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void networkConnectionsRunHealthChecks(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.networkConnections().runHealthChecks("rg1", "uswest3network", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EnvironmentTypes_Get
+
+```java
+/**
+ * Samples for EncryptionSets List.
+ */
+public final class EncryptionSetsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenterEncryptionSets_List.json
+     */
+    /**
+     * Sample code: EncryptionSets_List.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void encryptionSetsList(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.encryptionSets().list("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EnvironmentTypes_ListByDevCenter
+
+```java
+/**
+ * Samples for Catalogs Connect.
+ */
+public final class CatalogsConnectSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Catalogs_Connect
+     * .json
+     */
+    /**
+     * Sample code: Catalogs_Connect.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void catalogsConnect(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.catalogs().connect("rg1", "Contoso", "CentralCatalog", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### EnvironmentTypes_Update
+
+```java
+import com.azure.resourcemanager.devcenter.models.CatalogItemType;
+import com.azure.resourcemanager.devcenter.models.Project;
+import com.azure.resourcemanager.devcenter.models.ProjectCatalogSettings;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Samples for DevCenters Update.
+ * Samples for Projects Update.
  */
-public final class DevCentersUpdateSamples {
+public final class ProjectsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/DevCenters_Patch.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Projects_Patch.
+     * json
      */
     /**
-     * Sample code: DevCenters_Update.
+     * Sample code: Projects_Update.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void devCentersUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        DevCenter resource = manager.devCenters()
-            .getByResourceGroupWithResponse("rg1", "Contoso", com.azure.core.util.Context.NONE)
+    public static void projectsUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        Project resource = manager.projects()
+            .getByResourceGroupWithResponse("rg1", "DevProject", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withTags(mapOf("CostCode", "fakeTokenPlaceholder")).apply();
+        resource.update()
+            .withTags(mapOf("CostCenter", "R&D"))
+            .withDescription("This is my first project.")
+            .withDisplayName("Dev")
+            .withCatalogSettings(new ProjectCatalogSettings()
+                .withCatalogItemSyncTypes(Arrays.asList(CatalogItemType.ENVIRONMENT_DEFINITION)))
+            .apply();
     }
 
     // Use "Map.of" if available
@@ -1009,129 +1872,261 @@ public final class DevCentersUpdateSamples {
 }
 ```
 
-### EnvironmentDefinitions_Get
+### Galleries_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.devcenter.models.DomainJoinType;
+
 /**
- * Samples for EnvironmentDefinitions Get.
+ * Samples for NetworkConnections CreateOrUpdate.
  */
-public final class EnvironmentDefinitionsGetSamples {
+public final class NetworkConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * EnvironmentDefinitions_Get.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * NetworkConnections_Put.json
      */
     /**
-     * Sample code: EnvironmentDefinitions_Get.
+     * Sample code: NetworkConnections_CreateOrUpdate.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void environmentDefinitionsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.environmentDefinitions()
-            .getWithResponse("rg1", "Contoso", "myCatalog", "myEnvironmentDefinition",
+    public static void networkConnectionsCreateOrUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.networkConnections()
+            .define("uswest3network")
+            .withRegion("centralus")
+            .withExistingResourceGroup("rg1")
+            .withNetworkingResourceGroupName("NetworkInterfaces")
+            .withDomainJoinType(DomainJoinType.HYBRID_AZURE_ADJOIN)
+            .withSubnetId(
+                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ExampleRG/providers/Microsoft.Network/virtualNetworks/ExampleVNet/subnets/default")
+            .withDomainName("mydomaincontroller.local")
+            .withDomainUsername("testuser@mydomaincontroller.local")
+            .withDomainPassword("Password value for user")
+            .create();
+    }
+}
+```
+
+### Galleries_Delete
+
+```java
+/**
+ * Samples for ProjectCatalogs Connect.
+ */
+public final class ProjectCatalogsConnectSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectCatalogs_Connect.json
+     */
+    /**
+     * Sample code: ProjectCatalogs_Connect.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectCatalogsConnect(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectCatalogs().connect("rg1", "DevProject", "CentralCatalog", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Galleries_Get
+
+```java
+/**
+ * Samples for Images ListByGallery.
+ */
+public final class ImagesListByGallerySamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Images_ListByGallery.json
+     */
+    /**
+     * Sample code: Images_ListByGallery.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void imagesListByGallery(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.images().listByGallery("rg1", "Contoso", "DevGallery", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Galleries_ListByDevCenter
+
+```java
+/**
+ * Samples for AttachedNetworks ListByProject.
+ */
+public final class AttachedNetworksListByProjectSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * AttachedNetworks_ListByProject.json
+     */
+    /**
+     * Sample code: AttachedNetworks_ListByProject.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void attachedNetworksListByProject(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.attachedNetworks().listByProject("rg1", "DevProject", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ImageVersions_Get
+
+```java
+/**
+ * Samples for EnvironmentTypes Get.
+ */
+public final class EnvironmentTypesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * EnvironmentTypes_Get.json
+     */
+    /**
+     * Sample code: EnvironmentTypes_Get.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void environmentTypesGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.environmentTypes().getWithResponse("rg1", "Contoso", "DevTest", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ImageVersions_GetByProject
+
+```java
+/**
+ * Samples for ProjectEnvironmentTypes Get.
+ */
+public final class ProjectEnvironmentTypesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectEnvironmentTypes_Get.json
+     */
+    /**
+     * Sample code: ProjectEnvironmentTypes_Get.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectEnvironmentTypesGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectEnvironmentTypes()
+            .getWithResponse("rg1", "ContosoProj", "DevTest", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ImageVersions_ListByImage
+
+```java
+import com.azure.resourcemanager.devcenter.models.CheckNameAvailabilityRequest;
+
+/**
+ * Samples for CheckNameAvailability Execute.
+ */
+public final class CheckNameAvailabilityExecuteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * CheckNameAvailability.json
+     */
+    /**
+     * Sample code: NameAvailability.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void nameAvailability(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.checkNameAvailabilities()
+            .executeWithResponse(
+                new CheckNameAvailabilityRequest().withName("name1").withType("Microsoft.DevCenter/devcenters"),
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### EnvironmentDefinitions_GetByProjectCatalog
+### ImageVersions_ListByProject
 
 ```java
 /**
- * Samples for EnvironmentDefinitions GetByProjectCatalog.
+ * Samples for Schedules Get.
  */
-public final class EnvironmentDefinitionsGetByProjectCatalogSamples {
+public final class SchedulesGetSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * EnvironmentDefinitions_GetByProjectCatalog.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Schedules_Get.
+     * json
      */
     /**
-     * Sample code: EnvironmentDefinitions_GetByProjectCatalog.
+     * Sample code: Schedules_GetByPool.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void schedulesGetByPool(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.schedules()
+            .getWithResponse("rg1", "TestProject", "DevPool", "autoShutdown", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Images_Get
+
+```java
+/**
+ * Samples for ProjectAllowedEnvironmentTypes Get.
+ */
+public final class ProjectAllowedEnvironmentTypesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectAllowedEnvironmentTypes_Get.json
+     */
+    /**
+     * Sample code: ProjectAllowedEnvironmentTypes_Get.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectAllowedEnvironmentTypesGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectAllowedEnvironmentTypes()
+            .getWithResponse("rg1", "Contoso", "DevTest", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Images_GetByProject
+
+```java
+/**
+ * Samples for ProjectCatalogImageDefinitionBuildOperation Cancel.
+ */
+public final class ProjectCatalogImageDefinitionBuildOperationCancelSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ImageDefinitions_CancelImageBuild.json
+     */
+    /**
+     * Sample code: ImageDefinitionBuilds_CancelByImageDefinition.
      * 
      * @param manager Entry point to DevCenterManager.
      */
     public static void
-        environmentDefinitionsGetByProjectCatalog(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.environmentDefinitions()
-            .getByProjectCatalogWithResponse("rg1", "DevProject", "myCatalog", "myEnvironmentDefinition",
+        imageDefinitionBuildsCancelByImageDefinition(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectCatalogImageDefinitionBuildOperations()
+            .cancel("rg1", "DevProject", "CentralCatalog", "DefaultDevImage", "0a28fc61-6f87-4611-8fe2-32df44ab93b7",
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### EnvironmentDefinitions_GetErrorDetails
-
-```java
-/**
- * Samples for EnvironmentDefinitions GetErrorDetails.
- */
-public final class EnvironmentDefinitionsGetErrorDetailsSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * EnvironmentDefinitions_GetErrorDetails.json
-     */
-    /**
-     * Sample code: EnvironmentDefinitions_GetErrorDetails.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void
-        environmentDefinitionsGetErrorDetails(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.environmentDefinitions()
-            .getErrorDetailsWithResponse("rg1", "Contoso", "myCatalog", "myEnvironmentDefinition",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### EnvironmentDefinitions_ListByCatalog
-
-```java
-/**
- * Samples for EnvironmentDefinitions ListByCatalog.
- */
-public final class EnvironmentDefinitionsListByCatalogSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * EnvironmentDefinitions_ListByCatalog.json
-     */
-    /**
-     * Sample code: EnvironmentDefinitions_ListByCatalog.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void
-        environmentDefinitionsListByCatalog(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.environmentDefinitions()
-            .listByCatalog("rg1", "Contoso", "myCatalog", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### EnvironmentDefinitions_ListByProjectCatalog
-
-```java
-/**
- * Samples for EnvironmentDefinitions ListByProjectCatalog.
- */
-public final class EnvironmentDefinitionsListByProjectCatalogSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * EnvironmentDefinitions_ListByProjectCatalog.json
-     */
-    /**
-     * Sample code: EnvironmentDefinitions_ListByProjectCatalog.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void
-        environmentDefinitionsListByProjectCatalog(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.environmentDefinitions()
-            .listByProjectCatalog("rg1", "DevProject", "myCatalog", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### EnvironmentTypes_CreateOrUpdate
+### Images_ListByDevCenter
 
 ```java
 import java.util.HashMap;
@@ -1143,7 +2138,8 @@ import java.util.Map;
 public final class EnvironmentTypesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/EnvironmentTypes_Put.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * EnvironmentTypes_Put.json
      */
     /**
      * Sample code: EnvironmentTypes_CreateOrUpdate.
@@ -1173,100 +2169,412 @@ public final class EnvironmentTypesCreateOrUpdateSamples {
 }
 ```
 
-### EnvironmentTypes_Delete
+### Images_ListByGallery
 
 ```java
 /**
- * Samples for EnvironmentTypes Delete.
+ * Samples for EncryptionSets Get.
  */
-public final class EnvironmentTypesDeleteSamples {
+public final class EncryptionSetsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/EnvironmentTypes_Delete.
-     * json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenterEncryptionSets_Get.json
      */
     /**
-     * Sample code: EnvironmentTypes_Delete.
+     * Sample code: EncryptionSets_Get.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void environmentTypesDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.environmentTypes().deleteWithResponse("rg1", "Contoso", "DevTest", com.azure.core.util.Context.NONE);
+    public static void encryptionSetsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.encryptionSets()
+            .getWithResponse("rg1", "Contoso", "EncryptionWestUs", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### EnvironmentTypes_Get
+### Images_ListByProject
 
 ```java
+import com.azure.resourcemanager.devcenter.models.DevBoxDefinition;
+import com.azure.resourcemanager.devcenter.models.ImageReference;
+
 /**
- * Samples for EnvironmentTypes Get.
+ * Samples for DevBoxDefinitions Update.
  */
-public final class EnvironmentTypesGetSamples {
+public final class DevBoxDefinitionsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/EnvironmentTypes_Get.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevBoxDefinitions_Patch.json
      */
     /**
-     * Sample code: EnvironmentTypes_Get.
+     * Sample code: DevBoxDefinitions_Patch.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void environmentTypesGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.environmentTypes().getWithResponse("rg1", "Contoso", "DevTest", com.azure.core.util.Context.NONE);
+    public static void devBoxDefinitionsPatch(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        DevBoxDefinition resource = manager.devBoxDefinitions()
+            .getWithResponse("rg1", "Contoso", "WebDevBox", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withImageReference(new ImageReference().withId(
+                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/Example/providers/Microsoft.DevCenter/devcenters/Contoso/galleries/contosogallery/images/exampleImage/version/2.0.0"))
+            .apply();
     }
 }
 ```
 
-### EnvironmentTypes_ListByDevCenter
+### NetworkConnections_CreateOrUpdate
 
 ```java
 /**
- * Samples for EnvironmentTypes ListByDevCenter.
+ * Samples for NetworkConnections GetByResourceGroup.
  */
-public final class EnvironmentTypesListByDevCenterSamples {
+public final class NetworkConnectionsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/EnvironmentTypes_List.
-     * json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * NetworkConnections_Get.json
      */
     /**
-     * Sample code: EnvironmentTypes_ListByDevCenter.
+     * Sample code: NetworkConnections_Get.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void environmentTypesListByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.environmentTypes().listByDevCenter("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
+    public static void networkConnectionsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.networkConnections()
+            .getByResourceGroupWithResponse("rg1", "uswest3network", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### EnvironmentTypes_Update
+### NetworkConnections_Delete
 
 ```java
-import com.azure.resourcemanager.devcenter.models.EnvironmentType;
+/**
+ * Samples for Skus List.
+ */
+public final class SkusListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Skus_ListBySubscription.json
+     */
+    /**
+     * Sample code: Skus_ListBySubscription.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void skusListBySubscription(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.skus().list(null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkConnections_GetByResourceGroup
+
+```java
+/**
+ * Samples for ProjectCatalogImageDefinitionBuildOperation Get.
+ */
+public final class ProjectCatalogImageDefinitionBuildOperationGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ImageDefinitions_GetImageBuild.json
+     */
+    /**
+     * Sample code: ImageDefinitionBuilds_GetByImageDefinition.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        imageDefinitionBuildsGetByImageDefinition(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectCatalogImageDefinitionBuildOperations()
+            .getWithResponse("rg1", "DevProject", "CentralCatalog", "DefaultDevImage",
+                "0a28fc61-6f87-4611-8fe2-32df44ab93b7", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkConnections_GetHealthDetails
+
+```java
+/**
+ * Samples for ImageVersions Get.
+ */
+public final class ImageVersionsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ImageVersions_Get.json
+     */
+    /**
+     * Sample code: Versions_Get.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void versionsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.imageVersions()
+            .getWithResponse("rg1", "Contoso", "DefaultDevGallery", "Win11", "1.0.0", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkConnections_List
+
+```java
+/**
+ * Samples for CustomizationTasks Get.
+ */
+public final class CustomizationTasksGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * CustomizationTasks_Get.json
+     */
+    /**
+     * Sample code: CustomizationTasks_Get.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void customizationTasksGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.customizationTasks()
+            .getWithResponse("rg1", "Contoso", "CentralCatalog", "SampleTask", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkConnections_ListByResourceGroup
+
+```java
+/**
+ * Samples for Skus ListByProject.
+ */
+public final class SkusListByProjectSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Skus_ListByProject.json
+     */
+    /**
+     * Sample code: Skus_ListByProject.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void skusListByProject(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.skus().listByProject("rg1", "myProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkConnections_ListHealthDetails
+
+```java
+/**
+ * Samples for DevCenters List.
+ */
+public final class DevCentersListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenters_ListBySubscription.json
+     */
+    /**
+     * Sample code: DevCenters_ListBySubscription.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void devCentersListBySubscription(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devCenters().list(null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkConnections_ListOutboundNetworkDependenciesEndpoints
+
+```java
+/**
+ * Samples for EnvironmentDefinitions ListByCatalog.
+ */
+public final class EnvironmentDefinitionsListByCatalogSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * EnvironmentDefinitions_ListByCatalog.json
+     */
+    /**
+     * Sample code: EnvironmentDefinitions_ListByCatalog.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        environmentDefinitionsListByCatalog(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.environmentDefinitions()
+            .listByCatalog("rg1", "Contoso", "myCatalog", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkConnections_RunHealthChecks
+
+```java
+/**
+ * Samples for Catalogs GetSyncErrorDetails.
+ */
+public final class CatalogsGetSyncErrorDetailsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Catalogs_GetSyncErrorDetails.json
+     */
+    /**
+     * Sample code: Catalogs_GetSyncErrorDetails.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void catalogsGetSyncErrorDetails(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.catalogs()
+            .getSyncErrorDetailsWithResponse("rg1", "Contoso", "CentralCatalog", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkConnections_Update
+
+```java
+/**
+ * Samples for DevCenterCatalogImageDefinitionBuildOperation Get.
+ */
+public final class DevCenterCatalogImageDefinitionBuildOperationGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenterImageDefinitions_GetImageBuild.json
+     */
+    /**
+     * Sample code: DevCenterImageDefinitionBuilds_GetByImageDefinition.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void devCenterImageDefinitionBuildsGetByImageDefinition(
+        com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devCenterCatalogImageDefinitionBuildOperations()
+            .getWithResponse("rg1", "DevDevCenter", "CentralCatalog", "DefaultDevImage",
+                "0a28fc61-6f87-4611-8fe2-32df44ab93b7", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### OperationStatuses_Get
+
+```java
+/**
+ * Samples for ProjectCatalogImageDefinitionBuilds ListByImageDefinition.
+ */
+public final class ProjectCatalogImageDefinitionBuildsListByImageDefinitionSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ImageDefinitions_ListImageBuildsByImageDefinition.json
+     */
+    /**
+     * Sample code: ImageDefinitionBuilds_ListByImageDefinition.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        imageDefinitionBuildsListByImageDefinition(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectCatalogImageDefinitionBuilds()
+            .listByImageDefinition("rg1", "DevProject", "CentralCatalog", "DefaultDevImage",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+/**
+ * Samples for ProjectPolicies ListByDevCenter.
+ */
+public final class ProjectPoliciesListByDevCenterSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectPolicies_ListByDevCenter.json
+     */
+    /**
+     * Sample code: ProjectPolicies_ListByDevCenter.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectPoliciesListByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectPolicies().listByDevCenter("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Pools_CreateOrUpdate
+
+```java
+/**
+ * Samples for DevCenters ListByResourceGroup.
+ */
+public final class DevCentersListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenters_ListByResourceGroup.json
+     */
+    /**
+     * Sample code: DevCenters_ListByResourceGroup.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void devCentersListByResourceGroup(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devCenters().listByResourceGroup("rg1", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Pools_Delete
+
+```java
+import com.azure.resourcemanager.devcenter.models.DevboxDisksEncryptionEnableStatus;
+import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.devcenter.models.UserAssignedIdentity;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Samples for EnvironmentTypes Update.
+ * Samples for EncryptionSets CreateOrUpdate.
  */
-public final class EnvironmentTypesUpdateSamples {
+public final class EncryptionSetsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/EnvironmentTypes_Patch.
-     * json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenterEncryptionSets_Create.json
      */
     /**
-     * Sample code: EnvironmentTypes_Update.
+     * Sample code: EncryptionSets_Create.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void environmentTypesUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        EnvironmentType resource = manager.environmentTypes()
-            .getWithResponse("rg1", "Contoso", "DevTest", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("Owner", "superuser")).withDisplayName("Dev").apply();
+    public static void encryptionSetsCreate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.encryptionSets()
+            .define("EncryptionWestUs")
+            .withRegion("westus")
+            .withExistingDevcenter("rg1", "Contoso")
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1",
+                    new UserAssignedIdentity())))
+            .withDevboxDisksEncryptionEnableStatus(DevboxDisksEncryptionEnableStatus.ENABLED)
+            .withKeyEncryptionKeyUrl("https://contosovaultwestus.vault.azure.net/keys/contosokek")
+            .create();
     }
 
     // Use "Map.of" if available
@@ -1283,436 +2591,91 @@ public final class EnvironmentTypesUpdateSamples {
 }
 ```
 
-### Galleries_CreateOrUpdate
+### Pools_Get
 
 ```java
 /**
- * Samples for Galleries CreateOrUpdate.
+ * Samples for ProjectCatalogImageDefinitions BuildImage.
  */
-public final class GalleriesCreateOrUpdateSamples {
+public final class ProjectCatalogImageDefinitionsBuildImageSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Galleries_Create.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ImageDefinitions_BuildImage.json
      */
     /**
-     * Sample code: Galleries_CreateOrUpdate.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void galleriesCreateOrUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.galleries()
-            .define("StandardGallery")
-            .withExistingDevcenter("rg1", "Contoso")
-            .withGalleryResourceId(
-                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/rg1/providers/Microsoft.Compute/galleries/StandardGallery")
-            .create();
-    }
-}
-```
-
-### Galleries_Delete
-
-```java
-/**
- * Samples for Galleries Delete.
- */
-public final class GalleriesDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Galleries_Delete.json
-     */
-    /**
-     * Sample code: Galleries_Delete.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void galleriesDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.galleries().delete("rg1", "Contoso", "StandardGallery", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Galleries_Get
-
-```java
-/**
- * Samples for Galleries Get.
- */
-public final class GalleriesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Galleries_Get.json
-     */
-    /**
-     * Sample code: Galleries_Get.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void galleriesGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.galleries().getWithResponse("rg1", "Contoso", "StandardGallery", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Galleries_ListByDevCenter
-
-```java
-/**
- * Samples for Galleries ListByDevCenter.
- */
-public final class GalleriesListByDevCenterSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Galleries_List.json
-     */
-    /**
-     * Sample code: Galleries_ListByDevCenter.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void galleriesListByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.galleries().listByDevCenter("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ImageVersions_Get
-
-```java
-/**
- * Samples for ImageVersions Get.
- */
-public final class ImageVersionsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/ImageVersions_Get.json
-     */
-    /**
-     * Sample code: Versions_Get.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void versionsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.imageVersions()
-            .getWithResponse("rg1", "Contoso", "DefaultDevGallery", "Win11", "1.0.0", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ImageVersions_ListByImage
-
-```java
-/**
- * Samples for ImageVersions ListByImage.
- */
-public final class ImageVersionsListByImageSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/ImageVersions_List.json
-     */
-    /**
-     * Sample code: ImageVersions_ListByImage.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void imageVersionsListByImage(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.imageVersions()
-            .listByImage("rg1", "Contoso", "DefaultDevGallery", "Win11", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Images_Get
-
-```java
-/**
- * Samples for Images Get.
- */
-public final class ImagesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Images_Get.json
-     */
-    /**
-     * Sample code: Images_Get.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void imagesGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.images()
-            .getWithResponse("rg1", "Contoso", "DefaultDevGallery", "ContosoBaseImage",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Images_ListByDevCenter
-
-```java
-/**
- * Samples for Images ListByDevCenter.
- */
-public final class ImagesListByDevCenterSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Images_ListByDevCenter.
-     * json
-     */
-    /**
-     * Sample code: Images_ListByDevCenter.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void imagesListByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.images().listByDevCenter("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Images_ListByGallery
-
-```java
-/**
- * Samples for Images ListByGallery.
- */
-public final class ImagesListByGallerySamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Images_ListByGallery.json
-     */
-    /**
-     * Sample code: Images_ListByGallery.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void imagesListByGallery(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.images().listByGallery("rg1", "Contoso", "DevGallery", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkConnections_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.devcenter.models.DomainJoinType;
-
-/**
- * Samples for NetworkConnections CreateOrUpdate.
- */
-public final class NetworkConnectionsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/NetworkConnections_Put.
-     * json
-     */
-    /**
-     * Sample code: NetworkConnections_CreateOrUpdate.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void networkConnectionsCreateOrUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.networkConnections()
-            .define("uswest3network")
-            .withRegion("centralus")
-            .withExistingResourceGroup("rg1")
-            .withNetworkingResourceGroupName("NetworkInterfaces")
-            .withDomainJoinType(DomainJoinType.HYBRID_AZURE_ADJOIN)
-            .withSubnetId(
-                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/ExampleRG/providers/Microsoft.Network/virtualNetworks/ExampleVNet/subnets/default")
-            .withDomainName("mydomaincontroller.local")
-            .withDomainUsername("testuser@mydomaincontroller.local")
-            .withDomainPassword("Password value for user")
-            .create();
-    }
-}
-```
-
-### NetworkConnections_Delete
-
-```java
-/**
- * Samples for NetworkConnections Delete.
- */
-public final class NetworkConnectionsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/NetworkConnections_Delete
-     * .json
-     */
-    /**
-     * Sample code: NetworkConnections_Delete.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void networkConnectionsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.networkConnections().delete("rg1", "eastusnetwork", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkConnections_GetByResourceGroup
-
-```java
-/**
- * Samples for NetworkConnections GetByResourceGroup.
- */
-public final class NetworkConnectionsGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/NetworkConnections_Get.
-     * json
-     */
-    /**
-     * Sample code: NetworkConnections_Get.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void networkConnectionsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.networkConnections()
-            .getByResourceGroupWithResponse("rg1", "uswest3network", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkConnections_GetHealthDetails
-
-```java
-/**
- * Samples for NetworkConnections GetHealthDetails.
- */
-public final class NetworkConnectionsGetHealthDetailsSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * NetworkConnections_GetHealthDetails.json
-     */
-    /**
-     * Sample code: NetworkConnections_GetHealthDetails.
+     * Sample code: ProjectCatalogImageDefinitions_BuildImage.
      * 
      * @param manager Entry point to DevCenterManager.
      */
     public static void
-        networkConnectionsGetHealthDetails(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.networkConnections()
-            .getHealthDetailsWithResponse("rg1", "eastusnetwork", com.azure.core.util.Context.NONE);
+        projectCatalogImageDefinitionsBuildImage(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectCatalogImageDefinitions()
+            .buildImage("rg1", "DevProject", "CentralCatalog", "DefaultDevImage", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### NetworkConnections_List
+### Pools_ListByProject
 
 ```java
+import com.azure.resourcemanager.devcenter.models.EnvironmentRole;
+import com.azure.resourcemanager.devcenter.models.EnvironmentTypeEnableStatus;
+import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.devcenter.models.ProjectEnvironmentType;
+import com.azure.resourcemanager.devcenter.models.UserAssignedIdentity;
+import com.azure.resourcemanager.devcenter.models.UserRoleAssignmentValue;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * Samples for NetworkConnections List.
+ * Samples for ProjectEnvironmentTypes Update.
  */
-public final class NetworkConnectionsListSamples {
+public final class ProjectEnvironmentTypesUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * NetworkConnections_ListBySubscription.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectEnvironmentTypes_Patch.json
      */
     /**
-     * Sample code: NetworkConnections_ListBySubscription.
+     * Sample code: ProjectEnvironmentTypes_Update.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void
-        networkConnectionsListBySubscription(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.networkConnections().list(null, com.azure.core.util.Context.NONE);
+    public static void projectEnvironmentTypesUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        ProjectEnvironmentType resource = manager.projectEnvironmentTypes()
+            .getWithResponse("rg1", "ContosoProj", "DevTest", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("CostCenter", "RnD"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1",
+                    new UserAssignedIdentity())))
+            .withDeploymentTargetId("/subscriptions/00000000-0000-0000-0000-000000000000")
+            .withStatus(EnvironmentTypeEnableStatus.ENABLED)
+            .withUserRoleAssignments(mapOf("e45e3m7c-176e-416a-b466-0c5ec8298f8a",
+                new UserRoleAssignmentValue()
+                    .withRoles(mapOf("4cbf0b6c-e750-441c-98a7-10da8387e4d6", new EnvironmentRole()))))
+            .apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
 
-### NetworkConnections_ListByResourceGroup
-
-```java
-/**
- * Samples for NetworkConnections ListByResourceGroup.
- */
-public final class NetworkConnectionsListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * NetworkConnections_ListByResourceGroup.json
-     */
-    /**
-     * Sample code: NetworkConnections_ListByResourceGroup.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void
-        networkConnectionsListByResourceGroup(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.networkConnections().listByResourceGroup("rg1", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkConnections_ListHealthDetails
-
-```java
-/**
- * Samples for NetworkConnections ListHealthDetails.
- */
-public final class NetworkConnectionsListHealthDetailsSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * NetworkConnections_ListHealthDetails.json
-     */
-    /**
-     * Sample code: NetworkConnections_ListHealthDetails.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void
-        networkConnectionsListHealthDetails(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.networkConnections().listHealthDetails("rg1", "uswest3network", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkConnections_ListOutboundNetworkDependenciesEndpoints
-
-```java
-/**
- * Samples for NetworkConnections ListOutboundNetworkDependenciesEndpoints.
- */
-public final class NetworkConnectionsListOutboundNetworkDependenciesEndpointsSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * NetworkConnections_ListOutboundNetworkDependenciesEndpoints.json
-     */
-    /**
-     * Sample code: ListOutboundNetworkDependencies.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void listOutboundNetworkDependencies(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.networkConnections()
-            .listOutboundNetworkDependenciesEndpoints("rg1", "uswest3network", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkConnections_RunHealthChecks
-
-```java
-/**
- * Samples for NetworkConnections RunHealthChecks.
- */
-public final class NetworkConnectionsRunHealthChecksSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * NetworkConnections_RunHealthChecks.json
-     */
-    /**
-     * Sample code: NetworkConnections_RunHealthChecks.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void networkConnectionsRunHealthChecks(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.networkConnections().runHealthChecks("rg1", "uswest3network", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkConnections_Update
+### Pools_RunHealthChecks
 
 ```java
 import com.azure.resourcemanager.devcenter.models.NetworkConnection;
@@ -1723,8 +2686,8 @@ import com.azure.resourcemanager.devcenter.models.NetworkConnection;
 public final class NetworkConnectionsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/NetworkConnections_Patch.
-     * json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * NetworkConnections_Patch.json
      */
     /**
      * Sample code: NetworkConnections_Update.
@@ -1740,347 +2703,7 @@ public final class NetworkConnectionsUpdateSamples {
 }
 ```
 
-### OperationStatuses_Get
-
-```java
-/**
- * Samples for OperationStatuses Get.
- */
-public final class OperationStatusesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/OperationStatus_Get.json
-     */
-    /**
-     * Sample code: Get OperationStatus.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void getOperationStatus(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.operationStatuses()
-            .getWithResponse("westus3", "3fa1a29d-e807-488d-81d1-f1c5456a08cd", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Operations_Get.json
-     */
-    /**
-     * Sample code: Operations_Get.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void operationsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Pools_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.devcenter.models.LicenseType;
-import com.azure.resourcemanager.devcenter.models.LocalAdminStatus;
-import com.azure.resourcemanager.devcenter.models.SingleSignOnStatus;
-import com.azure.resourcemanager.devcenter.models.StopOnDisconnectConfiguration;
-import com.azure.resourcemanager.devcenter.models.StopOnDisconnectEnableStatus;
-import com.azure.resourcemanager.devcenter.models.VirtualNetworkType;
-import java.util.Arrays;
-
-/**
- * Samples for Pools CreateOrUpdate.
- */
-public final class PoolsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Pools_Put.json
-     */
-    /**
-     * Sample code: Pools_CreateOrUpdate.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void poolsCreateOrUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.pools()
-            .define("DevPool")
-            .withRegion("centralus")
-            .withExistingProject("rg1", "DevProject")
-            .withDevBoxDefinitionName("WebDevBox")
-            .withNetworkConnectionName("Network1-westus2")
-            .withLicenseType(LicenseType.WINDOWS_CLIENT)
-            .withLocalAdministrator(LocalAdminStatus.ENABLED)
-            .withStopOnDisconnect(new StopOnDisconnectConfiguration().withStatus(StopOnDisconnectEnableStatus.ENABLED)
-                .withGracePeriodMinutes(60))
-            .withSingleSignOnStatus(SingleSignOnStatus.DISABLED)
-            .withDisplayName("Developer Pool")
-            .withVirtualNetworkType(VirtualNetworkType.UNMANAGED)
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * Pools_PutWithManagedNetwork.json
-     */
-    /**
-     * Sample code: Pools_CreateOrUpdateWithManagedNetwork.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void
-        poolsCreateOrUpdateWithManagedNetwork(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.pools()
-            .define("DevPool")
-            .withRegion("centralus")
-            .withExistingProject("rg1", "DevProject")
-            .withDevBoxDefinitionName("WebDevBox")
-            .withNetworkConnectionName("managedNetwork")
-            .withLicenseType(LicenseType.WINDOWS_CLIENT)
-            .withLocalAdministrator(LocalAdminStatus.ENABLED)
-            .withStopOnDisconnect(new StopOnDisconnectConfiguration().withStatus(StopOnDisconnectEnableStatus.ENABLED)
-                .withGracePeriodMinutes(60))
-            .withSingleSignOnStatus(SingleSignOnStatus.DISABLED)
-            .withDisplayName("Developer Pool")
-            .withVirtualNetworkType(VirtualNetworkType.MANAGED)
-            .withManagedVirtualNetworkRegions(Arrays.asList("centralus"))
-            .create();
-    }
-}
-```
-
-### Pools_Delete
-
-```java
-/**
- * Samples for Pools Delete.
- */
-public final class PoolsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Pools_Delete.json
-     */
-    /**
-     * Sample code: Pools_Delete.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void poolsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.pools().delete("rg1", "DevProject", "poolName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Pools_Get
-
-```java
-/**
- * Samples for Pools Get.
- */
-public final class PoolsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Pools_GetUnhealthyStatus.
-     * json
-     */
-    /**
-     * Sample code: Pools_GetUnhealthyStatus.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void poolsGetUnhealthyStatus(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.pools().getWithResponse("rg1", "DevProject", "DevPool", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Pools_Get.json
-     */
-    /**
-     * Sample code: Pools_Get.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void poolsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.pools().getWithResponse("rg1", "DevProject", "DevPool", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Pools_ListByProject
-
-```java
-/**
- * Samples for Pools ListByProject.
- */
-public final class PoolsListByProjectSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Pools_List.json
-     */
-    /**
-     * Sample code: Pools_ListByProject.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void poolsListByProject(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.pools().listByProject("rg1", "DevProject", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Pools_RunHealthChecks
-
-```java
-/**
- * Samples for Pools RunHealthChecks.
- */
-public final class PoolsRunHealthChecksSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Pools_RunHealthChecks.
-     * json
-     */
-    /**
-     * Sample code: Pools_RefreshStatus.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void poolsRefreshStatus(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.pools().runHealthChecks("rg1", "DevProject", "DevPool", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Pools_Update
-
-```java
-import com.azure.resourcemanager.devcenter.models.Pool;
-
-/**
- * Samples for Pools Update.
- */
-public final class PoolsUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Pools_Patch.json
-     */
-    /**
-     * Sample code: Pools_Update.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void poolsUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        Pool resource = manager.pools()
-            .getWithResponse("rg1", "DevProject", "DevPool", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withDevBoxDefinitionName("WebDevBox2").apply();
-    }
-}
-```
-
-### ProjectAllowedEnvironmentTypes_Get
-
-```java
-/**
- * Samples for ProjectAllowedEnvironmentTypes Get.
- */
-public final class ProjectAllowedEnvironmentTypesGetSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * ProjectAllowedEnvironmentTypes_Get.json
-     */
-    /**
-     * Sample code: ProjectAllowedEnvironmentTypes_Get.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void projectAllowedEnvironmentTypesGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projectAllowedEnvironmentTypes()
-            .getWithResponse("rg1", "Contoso", "DevTest", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProjectAllowedEnvironmentTypes_List
-
-```java
-/**
- * Samples for ProjectAllowedEnvironmentTypes List.
- */
-public final class ProjectAllowedEnvironmentTypesListSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * ProjectAllowedEnvironmentTypes_List.json
-     */
-    /**
-     * Sample code: ProjectAllowedEnvironmentTypes_List.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void
-        projectAllowedEnvironmentTypesList(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projectAllowedEnvironmentTypes().list("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProjectCatalogEnvironmentDefinitions_GetErrorDetails
-
-```java
-/**
- * Samples for ProjectCatalogEnvironmentDefinitions GetErrorDetails.
- */
-public final class ProjectCatalogEnvironmentDefinitionsGetErrorDetailsSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * ProjectCatalogEnvironmentDefinitions_GetErrorDetails.json
-     */
-    /**
-     * Sample code: ProjectCatalogEnvironmentDefinitions_GetErrorDetails.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void projectCatalogEnvironmentDefinitionsGetErrorDetails(
-        com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projectCatalogEnvironmentDefinitions()
-            .getErrorDetailsWithResponse("rg1", "DevProject", "myCatalog", "myEnvironmentDefinition",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProjectCatalogs_Connect
-
-```java
-/**
- * Samples for ProjectCatalogs Connect.
- */
-public final class ProjectCatalogsConnectSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/ProjectCatalogs_Connect.
-     * json
-     */
-    /**
-     * Sample code: ProjectCatalogs_Connect.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void projectCatalogsConnect(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projectCatalogs().connect("rg1", "DevProject", "CentralCatalog", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProjectCatalogs_CreateOrUpdate
 
 ```java
 import com.azure.resourcemanager.devcenter.models.GitCatalog;
@@ -2091,8 +2714,8 @@ import com.azure.resourcemanager.devcenter.models.GitCatalog;
 public final class ProjectCatalogsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/ProjectCatalogs_CreateAdo
-     * .json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectCatalogs_CreateAdo.json
      */
     /**
      * Sample code: ProjectCatalogs_CreateOrUpdateAdo.
@@ -2112,7 +2735,8 @@ public final class ProjectCatalogsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
      * ProjectCatalogs_CreateGitHub.json
      */
     /**
@@ -2134,150 +2758,56 @@ public final class ProjectCatalogsCreateOrUpdateSamples {
 }
 ```
 
-### ProjectCatalogs_Delete
+### ProjectAllowedEnvironmentTypes_Get
 
 ```java
 /**
- * Samples for ProjectCatalogs Delete.
+ * Samples for CustomizationTasks ListByCatalog.
  */
-public final class ProjectCatalogsDeleteSamples {
+public final class CustomizationTasksListByCatalogSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/ProjectCatalogs_Delete.
-     * json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * CustomizationTasks_ListByCatalog.json
      */
     /**
-     * Sample code: ProjectCatalogs_Delete.
+     * Sample code: CustomizationTasks_ListByCatalog.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void projectCatalogsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projectCatalogs().delete("rg1", "DevProject", "CentralCatalog", com.azure.core.util.Context.NONE);
+    public static void customizationTasksListByCatalog(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.customizationTasks()
+            .listByCatalog("rg1", "Contoso", "CentralCatalog", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### ProjectCatalogs_Get
+### ProjectAllowedEnvironmentTypes_List
 
 ```java
 /**
- * Samples for ProjectCatalogs Get.
+ * Samples for Images GetByProject.
  */
-public final class ProjectCatalogsGetSamples {
+public final class ImagesGetByProjectSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/ProjectCatalogs_Get.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Images_GetByProject.json
      */
     /**
-     * Sample code: ProjectCatalogs_Get.
+     * Sample code: Images_GetByProject.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void projectCatalogsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projectCatalogs()
-            .getWithResponse("rg1", "DevProject", "CentralCatalog", com.azure.core.util.Context.NONE);
+    public static void imagesGetByProject(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.images()
+            .getByProjectWithResponse("rg1", "myProject", "~gallery~DefaultDevGallery~ContosoBaseImage",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### ProjectCatalogs_GetSyncErrorDetails
-
-```java
-/**
- * Samples for ProjectCatalogs GetSyncErrorDetails.
- */
-public final class ProjectCatalogsGetSyncErrorDetailsSamples {
-    /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * ProjectCatalogs_GetSyncErrorDetails.json
-     */
-    /**
-     * Sample code: ProjectCatalogs_GetSyncErrorDetails.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void
-        projectCatalogsGetSyncErrorDetails(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projectCatalogs()
-            .getSyncErrorDetailsWithResponse("rg1", "DevProject", "CentralCatalog", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProjectCatalogs_List
-
-```java
-/**
- * Samples for ProjectCatalogs List.
- */
-public final class ProjectCatalogsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/ProjectCatalogs_List.json
-     */
-    /**
-     * Sample code: ProjectCatalogs_List.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void projectCatalogsList(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projectCatalogs().list("rg1", "DevProject", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProjectCatalogs_Patch
-
-```java
-import com.azure.resourcemanager.devcenter.models.Catalog;
-import com.azure.resourcemanager.devcenter.models.GitCatalog;
-
-/**
- * Samples for ProjectCatalogs Patch.
- */
-public final class ProjectCatalogsPatchSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/ProjectCatalogs_Patch.
-     * json
-     */
-    /**
-     * Sample code: ProjectCatalogs_Patch.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void projectCatalogsPatch(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        Catalog resource = manager.projectCatalogs()
-            .getWithResponse("rg1", "DevProject", "CentralCatalog", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withGitHub(new GitCatalog().withPath("/environments")).apply();
-    }
-}
-```
-
-### ProjectCatalogs_Sync
-
-```java
-/**
- * Samples for ProjectCatalogs Sync.
- */
-public final class ProjectCatalogsSyncSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/ProjectCatalogs_Sync.json
-     */
-    /**
-     * Sample code: ProjectCatalogs_Sync.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void projectCatalogsSync(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projectCatalogs().sync("rg1", "DevProject", "CentralCatalog", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProjectEnvironmentTypes_CreateOrUpdate
+### ProjectCatalogEnvironmentDefinitions_GetErrorDetails
 
 ```java
 import com.azure.resourcemanager.devcenter.models.EnvironmentRole;
@@ -2295,7 +2825,8 @@ import java.util.Map;
  */
 public final class ProjectEnvironmentTypesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
      * ProjectEnvironmentTypes_Put.json
      */
     /**
@@ -2337,7 +2868,56 @@ public final class ProjectEnvironmentTypesCreateOrUpdateSamples {
 }
 ```
 
-### ProjectEnvironmentTypes_Delete
+### ProjectCatalogImageDefinitionBuildOperation_Cancel
+
+```java
+/**
+ * Samples for Catalogs Sync.
+ */
+public final class CatalogsSyncSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Catalogs_Sync.
+     * json
+     */
+    /**
+     * Sample code: Catalogs_Sync.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void catalogsSync(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.catalogs().sync("rg1", "Contoso", "CentralCatalog", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProjectCatalogImageDefinitionBuildOperation_Get
+
+```java
+/**
+ * Samples for DevCenterCatalogImageDefinitions GetByDevCenterCatalog.
+ */
+public final class DevCenterCatalogImageDefinitionsGetByDevCenterCatalogSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ImageDefinitions_GetByDevCenterCatalog.json
+     */
+    /**
+     * Sample code: ImageDefinitions_GetByDevCenterCatalog.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        imageDefinitionsGetByDevCenterCatalog(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devCenterCatalogImageDefinitions()
+            .getByDevCenterCatalogWithResponse("rg1", "ContosoDevCenter", "TeamCatalog", "WebDevBox",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProjectCatalogImageDefinitionBuildOperation_GetBuildDetails
 
 ```java
 /**
@@ -2345,7 +2925,8 @@ public final class ProjectEnvironmentTypesCreateOrUpdateSamples {
  */
 public final class ProjectEnvironmentTypesDeleteSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
      * ProjectEnvironmentTypes_Delete.json
      */
     /**
@@ -2360,93 +2941,106 @@ public final class ProjectEnvironmentTypesDeleteSamples {
 }
 ```
 
-### ProjectEnvironmentTypes_Get
+### ProjectCatalogImageDefinitionBuilds_ListByImageDefinition
 
 ```java
+import com.azure.resourcemanager.devcenter.models.Schedule;
+
 /**
- * Samples for ProjectEnvironmentTypes Get.
+ * Samples for Schedules Update.
  */
-public final class ProjectEnvironmentTypesGetSamples {
+public final class SchedulesUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * ProjectEnvironmentTypes_Get.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Schedules_Patch.
+     * json
      */
     /**
-     * Sample code: ProjectEnvironmentTypes_Get.
+     * Sample code: Schedules_Update.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void projectEnvironmentTypesGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projectEnvironmentTypes()
-            .getWithResponse("rg1", "ContosoProj", "DevTest", com.azure.core.util.Context.NONE);
+    public static void schedulesUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        Schedule resource = manager.schedules()
+            .getWithResponse("rg1", "TestProject", "DevPool", "autoShutdown", null, com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTime("18:00").apply();
     }
 }
 ```
 
-### ProjectEnvironmentTypes_List
+### ProjectCatalogImageDefinitions_BuildImage
 
 ```java
 /**
- * Samples for ProjectEnvironmentTypes List.
+ * Samples for EnvironmentTypes Delete.
  */
-public final class ProjectEnvironmentTypesListSamples {
+public final class EnvironmentTypesDeleteSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * ProjectEnvironmentTypes_List.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * EnvironmentTypes_Delete.json
      */
     /**
-     * Sample code: ProjectEnvironmentTypes_List.
+     * Sample code: EnvironmentTypes_Delete.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void projectEnvironmentTypesList(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projectEnvironmentTypes().list("rg1", "ContosoProj", null, com.azure.core.util.Context.NONE);
+    public static void environmentTypesDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.environmentTypes().deleteWithResponse("rg1", "Contoso", "DevTest", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### ProjectEnvironmentTypes_Update
+### ProjectCatalogImageDefinitions_GetByProjectCatalog
 
 ```java
-import com.azure.resourcemanager.devcenter.models.EnvironmentRole;
-import com.azure.resourcemanager.devcenter.models.EnvironmentTypeEnableStatus;
-import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentity;
-import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentityType;
-import com.azure.resourcemanager.devcenter.models.ProjectEnvironmentType;
-import com.azure.resourcemanager.devcenter.models.UserAssignedIdentity;
-import com.azure.resourcemanager.devcenter.models.UserRoleAssignmentValue;
+/**
+ * Samples for Projects List.
+ */
+public final class ProjectsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Projects_ListBySubscription.json
+     */
+    /**
+     * Sample code: Projects_ListBySubscription.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectsListBySubscription(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projects().list(null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProjectCatalogImageDefinitions_GetErrorDetails
+
+```java
+import com.azure.resourcemanager.devcenter.models.DevCenter;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Samples for ProjectEnvironmentTypes Update.
+ * Samples for DevCenters Update.
  */
-public final class ProjectEnvironmentTypesUpdateSamples {
+public final class DevCentersUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * ProjectEnvironmentTypes_Patch.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/DevCenters_Patch
+     * .json
      */
     /**
-     * Sample code: ProjectEnvironmentTypes_Update.
+     * Sample code: DevCenters_Update.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void projectEnvironmentTypesUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        ProjectEnvironmentType resource = manager.projectEnvironmentTypes()
-            .getWithResponse("rg1", "ContosoProj", "DevTest", com.azure.core.util.Context.NONE)
+    public static void devCentersUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        DevCenter resource = manager.devCenters()
+            .getByResourceGroupWithResponse("rg1", "Contoso", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update()
-            .withTags(mapOf("CostCenter", "RnD"))
-            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
-                .withUserAssignedIdentities(mapOf(
-                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1",
-                    new UserAssignedIdentity())))
-            .withDeploymentTargetId("/subscriptions/00000000-0000-0000-0000-000000000000")
-            .withStatus(EnvironmentTypeEnableStatus.ENABLED)
-            .withUserRoleAssignments(mapOf("e45e3m7c-176e-416a-b466-0c5ec8298f8a",
-                new UserRoleAssignmentValue()
-                    .withRoles(mapOf("4cbf0b6c-e750-441c-98a7-10da8387e4d6", new EnvironmentRole()))))
-            .apply();
+        resource.update().withTags(mapOf("CostCode", "fakeTokenPlaceholder")).apply();
     }
 
     // Use "Map.of" if available
@@ -2463,9 +3057,62 @@ public final class ProjectEnvironmentTypesUpdateSamples {
 }
 ```
 
-### Projects_CreateOrUpdate
+### ProjectCatalogImageDefinitions_ListByProjectCatalog
 
 ```java
+/**
+ * Samples for NetworkConnections Delete.
+ */
+public final class NetworkConnectionsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * NetworkConnections_Delete.json
+     */
+    /**
+     * Sample code: NetworkConnections_Delete.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void networkConnectionsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.networkConnections().delete("rg1", "eastusnetwork", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProjectCatalogs_Connect
+
+```java
+/**
+ * Samples for ProjectEnvironmentTypes List.
+ */
+public final class ProjectEnvironmentTypesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectEnvironmentTypes_List.json
+     */
+    /**
+     * Sample code: ProjectEnvironmentTypes_List.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectEnvironmentTypesList(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectEnvironmentTypes().list("rg1", "ContosoProj", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProjectCatalogs_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.devcenter.models.ProjectCustomizationIdentityType;
+import com.azure.resourcemanager.devcenter.models.ProjectCustomizationManagedIdentity;
+import com.azure.resourcemanager.devcenter.models.ProjectCustomizationSettings;
+import com.azure.resourcemanager.devcenter.models.UserAssignedIdentity;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -2474,7 +3121,8 @@ import java.util.Map;
  */
 public final class ProjectsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
      * Projects_PutWithMaxDevBoxPerUser.json
      */
     /**
@@ -2498,7 +3146,67 @@ public final class ProjectsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Projects_Put.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Projects_PutWithCustomizationSettings.json
+     */
+    /**
+     * Sample code: Projects_CreateOrUpdateWithCustomizationSettings.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        projectsCreateOrUpdateWithCustomizationSettings(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projects()
+            .define("DevProject")
+            .withRegion("centralus")
+            .withExistingResourceGroup("rg1")
+            .withTags(mapOf("CostCenter", "R&D"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1",
+                    new UserAssignedIdentity())))
+            .withDevCenterId(
+                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/rg1/providers/Microsoft.DevCenter/devcenters/Contoso")
+            .withDescription("This is my first project.")
+            .withCustomizationSettings(new ProjectCustomizationSettings()
+                .withIdentities(Arrays.asList(new ProjectCustomizationManagedIdentity()
+                    .withIdentityType(ProjectCustomizationIdentityType.USER_ASSIGNED_IDENTITY)
+                    .withIdentityResourceId(
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1"))))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Projects_PutWithCustomizationSettings_SystemIdentity.json
+     */
+    /**
+     * Sample code: Projects_CreateOrUpdateWithCustomizationSettings_SystemIdentity.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectsCreateOrUpdateWithCustomizationSettingsSystemIdentity(
+        com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projects()
+            .define("DevProject")
+            .withRegion("centralus")
+            .withExistingResourceGroup("rg1")
+            .withTags(mapOf("CostCenter", "R&D"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
+            .withDevCenterId(
+                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/rg1/providers/Microsoft.DevCenter/devcenters/Contoso")
+            .withDescription("This is my first project.")
+            .withCustomizationSettings(new ProjectCustomizationSettings()
+                .withIdentities(Arrays.asList(new ProjectCustomizationManagedIdentity()
+                    .withIdentityType(ProjectCustomizationIdentityType.SYSTEM_ASSIGNED_IDENTITY))))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Projects_Put.
+     * json
      */
     /**
      * Sample code: Projects_CreateOrUpdate.
@@ -2532,73 +3240,109 @@ public final class ProjectsCreateOrUpdateSamples {
 }
 ```
 
-### Projects_Delete
+### ProjectCatalogs_Delete
 
 ```java
 /**
- * Samples for Projects Delete.
+ * Samples for DevCenterCatalogImageDefinitions ListByDevCenterCatalog.
  */
-public final class ProjectsDeleteSamples {
+public final class DevCenterCatalogImageDefinitionsListByDevCenterCatalogSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Projects_Delete.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ImageDefinitions_ListByDevCenterCatalog.json
      */
     /**
-     * Sample code: Projects_Delete.
+     * Sample code: ImageDefinitions_ListByDevCenterCatalog.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void projectsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projects().delete("rg1", "DevProject", com.azure.core.util.Context.NONE);
+    public static void
+        imageDefinitionsListByDevCenterCatalog(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devCenterCatalogImageDefinitions()
+            .listByDevCenterCatalog("rg1", "ContosoDevCenter", "TeamCatalog", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Projects_GetByResourceGroup
+### ProjectCatalogs_Get
 
 ```java
 /**
- * Samples for Projects GetByResourceGroup.
+ * Samples for ProjectCatalogImageDefinitions ListByProjectCatalog.
  */
-public final class ProjectsGetByResourceGroupSamples {
+public final class ProjectCatalogImageDefinitionsListByProjectCatalogSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Projects_Get.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ImageDefinitions_ListByProjectCatalog.json
      */
     /**
-     * Sample code: Projects_Get.
+     * Sample code: ImageDefinitions_ListByProjectCatalog.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void projectsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projects().getByResourceGroupWithResponse("rg1", "DevProject", com.azure.core.util.Context.NONE);
+    public static void
+        imageDefinitionsListByProjectCatalog(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectCatalogImageDefinitions()
+            .listByProjectCatalog("rg1", "ContosoProject", "TeamCatalog", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Projects_List
+### ProjectCatalogs_GetSyncErrorDetails
 
 ```java
 /**
- * Samples for Projects List.
+ * Samples for EnvironmentDefinitions GetErrorDetails.
  */
-public final class ProjectsListSamples {
+public final class EnvironmentDefinitionsGetErrorDetailsSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
-     * Projects_ListBySubscription.json
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * EnvironmentDefinitions_GetErrorDetails.json
      */
     /**
-     * Sample code: Projects_ListBySubscription.
+     * Sample code: EnvironmentDefinitions_GetErrorDetails.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void projectsListBySubscription(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.projects().list(null, com.azure.core.util.Context.NONE);
+    public static void
+        environmentDefinitionsGetErrorDetails(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.environmentDefinitions()
+            .getErrorDetailsWithResponse("rg1", "Contoso", "myCatalog", "myEnvironmentDefinition",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Projects_ListByResourceGroup
+### ProjectCatalogs_List
+
+```java
+/**
+ * Samples for ProjectCatalogImageDefinitionBuildOperation GetBuildDetails.
+ */
+public final class ProjectCatalogImageDefinitionBuildOperationGetBuildDetailsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ImageDefinitions_GetImageBuildDetails.json
+     */
+    /**
+     * Sample code: ProjectCatalogImageDefinitionBuild_GetErrorDetails.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectCatalogImageDefinitionBuildGetErrorDetails(
+        com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectCatalogImageDefinitionBuildOperations()
+            .getBuildDetailsWithResponse("rg1", "DevProject", "CentralCatalog", "DefaultDevImage",
+                "0a28fc61-6f87-4611-8fe2-32df44ab93b7", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProjectCatalogs_Patch
 
 ```java
 /**
@@ -2606,7 +3350,8 @@ public final class ProjectsListSamples {
  */
 public final class ProjectsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
      * Projects_ListByResourceGroup.json
      */
     /**
@@ -2620,40 +3365,67 @@ public final class ProjectsListByResourceGroupSamples {
 }
 ```
 
-### Projects_Update
+### ProjectCatalogs_Sync
 
 ```java
-import com.azure.resourcemanager.devcenter.models.CatalogItemType;
-import com.azure.resourcemanager.devcenter.models.Project;
-import com.azure.resourcemanager.devcenter.models.ProjectCatalogSettings;
-import java.util.Arrays;
+import com.azure.resourcemanager.devcenter.models.HibernateSupport;
+import com.azure.resourcemanager.devcenter.models.ImageReference;
+import com.azure.resourcemanager.devcenter.models.Sku;
+
+/**
+ * Samples for DevBoxDefinitions CreateOrUpdate.
+ */
+public final class DevBoxDefinitionsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevBoxDefinitions_Create.json
+     */
+    /**
+     * Sample code: DevBoxDefinitions_Create.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void devBoxDefinitionsCreate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devBoxDefinitions()
+            .define("WebDevBox")
+            .withRegion("centralus")
+            .withExistingDevcenter("rg1", "Contoso")
+            .withImageReference(new ImageReference().withId(
+                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/Example/providers/Microsoft.DevCenter/devcenters/Contoso/galleries/contosogallery/images/exampleImage/versions/1.0.0"))
+            .withSku(new Sku().withName("Preview"))
+            .withHibernateSupport(HibernateSupport.ENABLED)
+            .create();
+    }
+}
+```
+
+### ProjectEnvironmentTypes_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.devcenter.models.EnvironmentType;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Samples for Projects Update.
+ * Samples for EnvironmentTypes Update.
  */
-public final class ProjectsUpdateSamples {
+public final class EnvironmentTypesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Projects_Patch.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * EnvironmentTypes_Patch.json
      */
     /**
-     * Sample code: Projects_Update.
+     * Sample code: EnvironmentTypes_Update.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void projectsUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        Project resource = manager.projects()
-            .getByResourceGroupWithResponse("rg1", "DevProject", com.azure.core.util.Context.NONE)
+    public static void environmentTypesUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        EnvironmentType resource = manager.environmentTypes()
+            .getWithResponse("rg1", "Contoso", "DevTest", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update()
-            .withTags(mapOf("CostCenter", "R&D"))
-            .withDescription("This is my first project.")
-            .withDisplayName("Dev")
-            .withCatalogSettings(new ProjectCatalogSettings()
-                .withCatalogItemSyncTypes(Arrays.asList(CatalogItemType.ENVIRONMENT_DEFINITION)))
-            .apply();
+        resource.update().withTags(mapOf("Owner", "superuser")).withDisplayName("Dev").apply();
     }
 
     // Use "Map.of" if available
@@ -2670,7 +3442,436 @@ public final class ProjectsUpdateSamples {
 }
 ```
 
+### ProjectEnvironmentTypes_Delete
+
+```java
+/**
+ * Samples for Schedules Delete.
+ */
+public final class SchedulesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Schedules_Delete
+     * .json
+     */
+    /**
+     * Sample code: Schedules_Delete.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void schedulesDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.schedules()
+            .delete("rg1", "TestProject", "DevPool", "autoShutdown", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProjectEnvironmentTypes_Get
+
+```java
+/**
+ * Samples for Pools RunHealthChecks.
+ */
+public final class PoolsRunHealthChecksSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Pools_RunHealthChecks.json
+     */
+    /**
+     * Sample code: Pools_RefreshStatus.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void poolsRefreshStatus(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.pools().runHealthChecks("rg1", "DevProject", "DevPool", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProjectEnvironmentTypes_List
+
+```java
+import com.azure.resourcemanager.devcenter.models.DevCenterEncryptionSet;
+import com.azure.resourcemanager.devcenter.models.DevboxDisksEncryptionEnableStatus;
+
+/**
+ * Samples for EncryptionSets Update.
+ */
+public final class EncryptionSetsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenterEncryptionSets_Patch.json
+     */
+    /**
+     * Sample code: EncryptionSets_Update.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void encryptionSetsUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        DevCenterEncryptionSet resource = manager.encryptionSets()
+            .getWithResponse("rg1", "Contoso", "EncryptionWestUs", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withDevboxDisksEncryptionEnableStatus(DevboxDisksEncryptionEnableStatus.ENABLED).apply();
+    }
+}
+```
+
+### ProjectEnvironmentTypes_Update
+
+```java
+/**
+ * Samples for ImageVersions ListByImage.
+ */
+public final class ImageVersionsListByImageSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ImageVersions_List.json
+     */
+    /**
+     * Sample code: ImageVersions_ListByImage.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void imageVersionsListByImage(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.imageVersions()
+            .listByImage("rg1", "Contoso", "DefaultDevGallery", "Win11", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProjectPolicies_CreateOrUpdate
+
+```java
+/**
+ * Samples for ProjectPolicies Delete.
+ */
+public final class ProjectPoliciesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectPolicies_Delete.json
+     */
+    /**
+     * Sample code: ProjectPolicies_Delete.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectPoliciesDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectPolicies().delete("rg1", "Contoso", "DevOnlyResources", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProjectPolicies_Delete
+
+```java
+import com.azure.resourcemanager.devcenter.models.CatalogSyncType;
+import com.azure.resourcemanager.devcenter.models.CatalogUpdate;
+import com.azure.resourcemanager.devcenter.models.GitCatalog;
+
+/**
+ * Samples for Catalogs Update.
+ */
+public final class CatalogsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Catalogs_Patch.
+     * json
+     */
+    /**
+     * Sample code: Catalogs_Update.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void catalogsUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.catalogs()
+            .update("rg1", "Contoso", "CentralCatalog",
+                new CatalogUpdate().withGitHub(new GitCatalog().withPath("/environments"))
+                    .withSyncType(CatalogSyncType.SCHEDULED),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProjectPolicies_Get
+
+```java
+/**
+ * Samples for Projects GetByResourceGroup.
+ */
+public final class ProjectsGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Projects_Get.
+     * json
+     */
+    /**
+     * Sample code: Projects_Get.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void projectsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projects().getByResourceGroupWithResponse("rg1", "DevProject", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProjectPolicies_ListByDevCenter
+
+```java
+/**
+ * Samples for OperationStatuses Get.
+ */
+public final class OperationStatusesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * OperationStatus_Get.json
+     */
+    /**
+     * Sample code: Get OperationStatus.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void getOperationStatus(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.operationStatuses()
+            .getWithResponse("westus3", "3fa1a29d-e807-488d-81d1-f1c5456a08cd", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ProjectPolicies_Update
+
+```java
+/**
+ * Samples for Images ListByDevCenter.
+ */
+public final class ImagesListByDevCenterSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Images_ListByDevCenter.json
+     */
+    /**
+     * Sample code: Images_ListByDevCenter.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void imagesListByDevCenter(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.images().listByDevCenter("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Projects_CreateOrUpdate
+
+```java
+/**
+ * Samples for NetworkConnections ListOutboundNetworkDependenciesEndpoints.
+ */
+public final class NetworkConnectionsListOutboundNetworkDependenciesEndpointsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * NetworkConnections_ListOutboundNetworkDependenciesEndpoints.json
+     */
+    /**
+     * Sample code: ListOutboundNetworkDependencies.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void listOutboundNetworkDependencies(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.networkConnections()
+            .listOutboundNetworkDependenciesEndpoints("rg1", "uswest3network", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Projects_Delete
+
+```java
+/**
+ * Samples for Pools Get.
+ */
+public final class PoolsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * Pools_GetUnhealthyStatus.json
+     */
+    /**
+     * Sample code: Pools_GetUnhealthyStatus.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void poolsGetUnhealthyStatus(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.pools().getWithResponse("rg1", "DevProject", "DevPool", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Pools_Get.json
+     */
+    /**
+     * Sample code: Pools_Get.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void poolsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.pools().getWithResponse("rg1", "DevProject", "DevPool", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Projects_GetByResourceGroup
+
+```java
+/**
+ * Samples for ProjectAllowedEnvironmentTypes List.
+ */
+public final class ProjectAllowedEnvironmentTypesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * ProjectAllowedEnvironmentTypes_List.json
+     */
+    /**
+     * Sample code: ProjectAllowedEnvironmentTypes_List.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        projectAllowedEnvironmentTypesList(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.projectAllowedEnvironmentTypes().list("rg1", "Contoso", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Projects_GetInheritedSettings
+
+```java
+/**
+ * Samples for Pools ListByProject.
+ */
+public final class PoolsListByProjectSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Pools_List.json
+     */
+    /**
+     * Sample code: Pools_ListByProject.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void poolsListByProject(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.pools().listByProject("rg1", "DevProject", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Projects_List
+
+```java
+/**
+ * Samples for NetworkConnections GetHealthDetails.
+ */
+public final class NetworkConnectionsGetHealthDetailsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * NetworkConnections_GetHealthDetails.json
+     */
+    /**
+     * Sample code: NetworkConnections_GetHealthDetails.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        networkConnectionsGetHealthDetails(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.networkConnections()
+            .getHealthDetailsWithResponse("rg1", "eastusnetwork", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Projects_ListByResourceGroup
+
+```java
+/**
+ * Samples for EnvironmentDefinitions ListByProjectCatalog.
+ */
+public final class EnvironmentDefinitionsListByProjectCatalogSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * EnvironmentDefinitions_ListByProjectCatalog.json
+     */
+    /**
+     * Sample code: EnvironmentDefinitions_ListByProjectCatalog.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        environmentDefinitionsListByProjectCatalog(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.environmentDefinitions()
+            .listByProjectCatalog("rg1", "DevProject", "myCatalog", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Projects_Update
+
+```java
+/**
+ * Samples for EncryptionSets Delete.
+ */
+public final class EncryptionSetsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * DevCenterEncryptionSets_Delete.json
+     */
+    /**
+     * Sample code: EncryptionSets_Delete.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void encryptionSetsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.encryptionSets().delete("rg1", "Contoso", "EncryptionWestUs", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Schedules_CreateOrUpdate
+
+```java
+/**
+ * Samples for EnvironmentDefinitions GetByProjectCatalog.
+ */
+public final class EnvironmentDefinitionsGetByProjectCatalogSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * EnvironmentDefinitions_GetByProjectCatalog.json
+     */
+    /**
+     * Sample code: EnvironmentDefinitions_GetByProjectCatalog.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        environmentDefinitionsGetByProjectCatalog(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.environmentDefinitions()
+            .getByProjectCatalogWithResponse("rg1", "DevProject", "myCatalog", "myEnvironmentDefinition",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Schedules_Delete
 
 ```java
 import com.azure.resourcemanager.devcenter.models.ScheduleEnableStatus;
@@ -2682,7 +3883,8 @@ import com.azure.resourcemanager.devcenter.models.ScheduledType;
  */
 public final class SchedulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
      * Schedules_CreateDailyShutdownPoolSchedule.json
      */
     /**
@@ -2705,48 +3907,27 @@ public final class SchedulesCreateOrUpdateSamples {
 }
 ```
 
-### Schedules_Delete
-
-```java
-/**
- * Samples for Schedules Delete.
- */
-public final class SchedulesDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Schedules_Delete.json
-     */
-    /**
-     * Sample code: Schedules_Delete.
-     * 
-     * @param manager Entry point to DevCenterManager.
-     */
-    public static void schedulesDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.schedules()
-            .delete("rg1", "TestProject", "DevPool", "autoShutdown", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Schedules_Get
 
 ```java
 /**
- * Samples for Schedules Get.
+ * Samples for CustomizationTasks GetErrorDetails.
  */
-public final class SchedulesGetSamples {
+public final class CustomizationTasksGetErrorDetailsSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Schedules_Get.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * CustomizationTasks_GetErrorDetails.json
      */
     /**
-     * Sample code: Schedules_GetByPool.
+     * Sample code: CustomizationTasks_GetErrorDetails.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void schedulesGetByPool(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.schedules()
-            .getWithResponse("rg1", "TestProject", "DevPool", "autoShutdown", null, com.azure.core.util.Context.NONE);
+    public static void customizationTasksGetErrorDetails(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.customizationTasks()
+            .getErrorDetailsWithResponse("rg1", "Contoso", "CentralCatalog", "SampleTask",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2755,20 +3936,26 @@ public final class SchedulesGetSamples {
 
 ```java
 /**
- * Samples for Schedules ListByPool.
+ * Samples for Galleries CreateOrUpdate.
  */
-public final class SchedulesListByPoolSamples {
+public final class GalleriesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Schedules_ListByPool.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Galleries_Create
+     * .json
      */
     /**
-     * Sample code: Schedules_ListByPool.
+     * Sample code: Galleries_CreateOrUpdate.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void schedulesListByPool(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.schedules().listByPool("rg1", "TestProject", "DevPool", null, com.azure.core.util.Context.NONE);
+    public static void galleriesCreateOrUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.galleries()
+            .define("StandardGallery")
+            .withExistingDevcenter("rg1", "Contoso")
+            .withGalleryResourceId(
+                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/rg1/providers/Microsoft.Compute/galleries/StandardGallery")
+            .create();
     }
 }
 ```
@@ -2776,26 +3963,24 @@ public final class SchedulesListByPoolSamples {
 ### Schedules_Update
 
 ```java
-import com.azure.resourcemanager.devcenter.models.Schedule;
-
 /**
- * Samples for Schedules Update.
+ * Samples for EnvironmentDefinitions Get.
  */
-public final class SchedulesUpdateSamples {
+public final class EnvironmentDefinitionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Schedules_Patch.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * EnvironmentDefinitions_Get.json
      */
     /**
-     * Sample code: Schedules_Update.
+     * Sample code: EnvironmentDefinitions_Get.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void schedulesUpdate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        Schedule resource = manager.schedules()
-            .getWithResponse("rg1", "TestProject", "DevPool", "autoShutdown", null, com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTime("18:00").apply();
+    public static void environmentDefinitionsGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.environmentDefinitions()
+            .getWithResponse("rg1", "Contoso", "myCatalog", "myEnvironmentDefinition",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2804,21 +3989,44 @@ public final class SchedulesUpdateSamples {
 
 ```java
 /**
- * Samples for Skus List.
+ * Samples for Galleries Delete.
  */
-public final class SkusListSamples {
+public final class GalleriesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Skus_ListBySubscription.
-     * json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Galleries_Delete
+     * .json
      */
     /**
-     * Sample code: Skus_ListBySubscription.
+     * Sample code: Galleries_Delete.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void skusListBySubscription(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.skus().list(null, com.azure.core.util.Context.NONE);
+    public static void galleriesDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.galleries().delete("rg1", "Contoso", "StandardGallery", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Skus_ListByProject
+
+```java
+/**
+ * Samples for Catalogs Delete.
+ */
+public final class CatalogsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Catalogs_Delete.
+     * json
+     */
+    /**
+     * Sample code: Catalogs_Delete.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void catalogsDelete(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.catalogs().delete("rg1", "Contoso", "CentralCatalog", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2827,21 +4035,21 @@ public final class SkusListSamples {
 
 ```java
 /**
- * Samples for Usages ListByLocation.
+ * Samples for Galleries Get.
  */
-public final class UsagesListByLocationSamples {
+public final class GalleriesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Usages_ListByLocation.
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Galleries_Get.
      * json
      */
     /**
-     * Sample code: listUsages.
+     * Sample code: Galleries_Get.
      * 
      * @param manager Entry point to DevCenterManager.
      */
-    public static void listUsages(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager.usages().listByLocation("westus", com.azure.core.util.Context.NONE);
+    public static void galleriesGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.galleries().getWithResponse("rg1", "Contoso", "StandardGallery", com.azure.core.util.Context.NONE);
     }
 }
 ```

@@ -42,6 +42,11 @@ public final class HealthCheckStatus extends ExpandableStringEnum<HealthCheckSta
     public static final HealthCheckStatus FAILED = fromString("Failed");
 
     /**
+     * Static value Informational for HealthCheckStatus.
+     */
+    public static final HealthCheckStatus INFORMATIONAL = fromString("Informational");
+
+    /**
      * Creates a new instance of HealthCheckStatus value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

@@ -10,7 +10,8 @@ package com.azure.resourcemanager.devcenter.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Operations_Get.json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/Operations_Get.
+     * json
      */
     /**
      * Sample code: Operations_Get.

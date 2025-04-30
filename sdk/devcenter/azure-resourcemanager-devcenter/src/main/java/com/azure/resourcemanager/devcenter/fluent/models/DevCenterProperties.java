@@ -8,6 +8,8 @@ import com.azure.core.annotation.Fluent;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.devcenter.models.DevBoxProvisioningSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterNetworkSettings;
 import com.azure.resourcemanager.devcenter.models.DevCenterProjectCatalogSettings;
 import com.azure.resourcemanager.devcenter.models.Encryption;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
@@ -80,6 +82,24 @@ public final class DevCenterProperties extends DevCenterUpdateProperties {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public DevCenterProperties withNetworkSettings(DevCenterNetworkSettings networkSettings) {
+        super.withNetworkSettings(networkSettings);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public DevCenterProperties withDevBoxProvisioningSettings(DevBoxProvisioningSettings devBoxProvisioningSettings) {
+        super.withDevBoxProvisioningSettings(devBoxProvisioningSettings);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -92,6 +112,12 @@ public final class DevCenterProperties extends DevCenterUpdateProperties {
         if (projectCatalogSettings() != null) {
             projectCatalogSettings().validate();
         }
+        if (networkSettings() != null) {
+            networkSettings().validate();
+        }
+        if (devBoxProvisioningSettings() != null) {
+            devBoxProvisioningSettings().validate();
+        }
     }
 
     /**
@@ -103,6 +129,8 @@ public final class DevCenterProperties extends DevCenterUpdateProperties {
         jsonWriter.writeJsonField("encryption", encryption());
         jsonWriter.writeStringField("displayName", displayName());
         jsonWriter.writeJsonField("projectCatalogSettings", projectCatalogSettings());
+        jsonWriter.writeJsonField("networkSettings", networkSettings());
+        jsonWriter.writeJsonField("devBoxProvisioningSettings", devBoxProvisioningSettings());
         return jsonWriter.writeEndObject();
     }
 
@@ -128,6 +156,11 @@ public final class DevCenterProperties extends DevCenterUpdateProperties {
                 } else if ("projectCatalogSettings".equals(fieldName)) {
                     deserializedDevCenterProperties
                         .withProjectCatalogSettings(DevCenterProjectCatalogSettings.fromJson(reader));
+                } else if ("networkSettings".equals(fieldName)) {
+                    deserializedDevCenterProperties.withNetworkSettings(DevCenterNetworkSettings.fromJson(reader));
+                } else if ("devBoxProvisioningSettings".equals(fieldName)) {
+                    deserializedDevCenterProperties
+                        .withDevBoxProvisioningSettings(DevBoxProvisioningSettings.fromJson(reader));
                 } else if ("provisioningState".equals(fieldName)) {
                     deserializedDevCenterProperties.provisioningState
                         = ProvisioningState.fromString(reader.getString());

@@ -10,8 +10,8 @@ package com.azure.resourcemanager.devcenter.generated;
 public final class NetworkConnectionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/NetworkConnections_Delete
-     * .json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * NetworkConnections_Delete.json
      */
     /**
      * Sample code: NetworkConnections_Delete.

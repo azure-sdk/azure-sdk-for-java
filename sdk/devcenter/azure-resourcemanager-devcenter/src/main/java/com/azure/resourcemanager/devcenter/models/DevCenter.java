@@ -101,6 +101,22 @@ public interface DevCenter {
     DevCenterProjectCatalogSettings projectCatalogSettings();
 
     /**
+     * Gets the networkSettings property: Network settings that will be enforced on network resources associated with
+     * the Dev Center.
+     * 
+     * @return the networkSettings value.
+     */
+    DevCenterNetworkSettings networkSettings();
+
+    /**
+     * Gets the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev Boxes that
+     * belong to this dev center.
+     * 
+     * @return the devBoxProvisioningSettings value.
+     */
+    DevBoxProvisioningSettings devBoxProvisioningSettings();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -185,7 +201,8 @@ public interface DevCenter {
          */
         interface WithCreate
             extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithEncryption,
-            DefinitionStages.WithDisplayName, DefinitionStages.WithProjectCatalogSettings {
+            DefinitionStages.WithDisplayName, DefinitionStages.WithProjectCatalogSettings,
+            DefinitionStages.WithNetworkSettings, DefinitionStages.WithDevBoxProvisioningSettings {
             /**
              * Executes the create request.
              * 
@@ -269,6 +286,36 @@ public interface DevCenter {
              */
             WithCreate withProjectCatalogSettings(DevCenterProjectCatalogSettings projectCatalogSettings);
         }
+
+        /**
+         * The stage of the DevCenter definition allowing to specify networkSettings.
+         */
+        interface WithNetworkSettings {
+            /**
+             * Specifies the networkSettings property: Network settings that will be enforced on network resources
+             * associated with the Dev Center..
+             * 
+             * @param networkSettings Network settings that will be enforced on network resources associated with the
+             * Dev Center.
+             * @return the next definition stage.
+             */
+            WithCreate withNetworkSettings(DevCenterNetworkSettings networkSettings);
+        }
+
+        /**
+         * The stage of the DevCenter definition allowing to specify devBoxProvisioningSettings.
+         */
+        interface WithDevBoxProvisioningSettings {
+            /**
+             * Specifies the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev
+             * Boxes that belong to this dev center..
+             * 
+             * @param devBoxProvisioningSettings Settings to be used in the provisioning of all Dev Boxes that belong to
+             * this dev center.
+             * @return the next definition stage.
+             */
+            WithCreate withDevBoxProvisioningSettings(DevBoxProvisioningSettings devBoxProvisioningSettings);
+        }
     }
 
     /**
@@ -282,7 +329,8 @@ public interface DevCenter {
      * The template for DevCenter update.
      */
     interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithEncryption,
-        UpdateStages.WithDisplayName, UpdateStages.WithProjectCatalogSettings {
+        UpdateStages.WithDisplayName, UpdateStages.WithProjectCatalogSettings, UpdateStages.WithNetworkSettings,
+        UpdateStages.WithDevBoxProvisioningSettings {
         /**
          * Executes the update request.
          * 
@@ -369,6 +417,36 @@ public interface DevCenter {
              * @return the next definition stage.
              */
             Update withProjectCatalogSettings(DevCenterProjectCatalogSettings projectCatalogSettings);
+        }
+
+        /**
+         * The stage of the DevCenter update allowing to specify networkSettings.
+         */
+        interface WithNetworkSettings {
+            /**
+             * Specifies the networkSettings property: Network settings that will be enforced on network resources
+             * associated with the Dev Center..
+             * 
+             * @param networkSettings Network settings that will be enforced on network resources associated with the
+             * Dev Center.
+             * @return the next definition stage.
+             */
+            Update withNetworkSettings(DevCenterNetworkSettings networkSettings);
+        }
+
+        /**
+         * The stage of the DevCenter update allowing to specify devBoxProvisioningSettings.
+         */
+        interface WithDevBoxProvisioningSettings {
+            /**
+             * Specifies the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev
+             * Boxes that belong to this dev center..
+             * 
+             * @param devBoxProvisioningSettings Settings to be used in the provisioning of all Dev Boxes that belong to
+             * this dev center.
+             * @return the next definition stage.
+             */
+            Update withDevBoxProvisioningSettings(DevBoxProvisioningSettings devBoxProvisioningSettings);
         }
     }
 

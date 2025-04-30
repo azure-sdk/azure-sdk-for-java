@@ -9,7 +9,12 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.devcenter.models.AzureAiServicesSettings;
+import com.azure.resourcemanager.devcenter.models.DevBoxAutoDeleteSettings;
 import com.azure.resourcemanager.devcenter.models.ProjectCatalogSettings;
+import com.azure.resourcemanager.devcenter.models.ProjectCustomizationSettings;
+import com.azure.resourcemanager.devcenter.models.ServerlessGpuSessionsSettings;
+import com.azure.resourcemanager.devcenter.models.WorkspaceStorageSettings;
 import java.io.IOException;
 
 /**
@@ -42,6 +47,31 @@ public class ProjectUpdateProperties implements JsonSerializable<ProjectUpdatePr
      * Settings to be used when associating a project with a catalog.
      */
     private ProjectCatalogSettings catalogSettings;
+
+    /*
+     * Settings to be used for customizations.
+     */
+    private ProjectCustomizationSettings customizationSettings;
+
+    /*
+     * Dev Box Auto Delete settings.
+     */
+    private DevBoxAutoDeleteSettings devBoxAutoDeleteSettings;
+
+    /*
+     * Indicates whether Azure AI services are enabled for a project.
+     */
+    private AzureAiServicesSettings azureAiServicesSettings;
+
+    /*
+     * Settings to be used for serverless GPU.
+     */
+    private ServerlessGpuSessionsSettings serverlessGpuSessionsSettings;
+
+    /*
+     * Settings to be used for workspace storage.
+     */
+    private WorkspaceStorageSettings workspaceStorageSettings;
 
     /**
      * Creates an instance of ProjectUpdateProperties class.
@@ -152,6 +182,107 @@ public class ProjectUpdateProperties implements JsonSerializable<ProjectUpdatePr
     }
 
     /**
+     * Get the customizationSettings property: Settings to be used for customizations.
+     * 
+     * @return the customizationSettings value.
+     */
+    public ProjectCustomizationSettings customizationSettings() {
+        return this.customizationSettings;
+    }
+
+    /**
+     * Set the customizationSettings property: Settings to be used for customizations.
+     * 
+     * @param customizationSettings the customizationSettings value to set.
+     * @return the ProjectUpdateProperties object itself.
+     */
+    public ProjectUpdateProperties withCustomizationSettings(ProjectCustomizationSettings customizationSettings) {
+        this.customizationSettings = customizationSettings;
+        return this;
+    }
+
+    /**
+     * Get the devBoxAutoDeleteSettings property: Dev Box Auto Delete settings.
+     * 
+     * @return the devBoxAutoDeleteSettings value.
+     */
+    public DevBoxAutoDeleteSettings devBoxAutoDeleteSettings() {
+        return this.devBoxAutoDeleteSettings;
+    }
+
+    /**
+     * Set the devBoxAutoDeleteSettings property: Dev Box Auto Delete settings.
+     * 
+     * @param devBoxAutoDeleteSettings the devBoxAutoDeleteSettings value to set.
+     * @return the ProjectUpdateProperties object itself.
+     */
+    public ProjectUpdateProperties withDevBoxAutoDeleteSettings(DevBoxAutoDeleteSettings devBoxAutoDeleteSettings) {
+        this.devBoxAutoDeleteSettings = devBoxAutoDeleteSettings;
+        return this;
+    }
+
+    /**
+     * Get the azureAiServicesSettings property: Indicates whether Azure AI services are enabled for a project.
+     * 
+     * @return the azureAiServicesSettings value.
+     */
+    public AzureAiServicesSettings azureAiServicesSettings() {
+        return this.azureAiServicesSettings;
+    }
+
+    /**
+     * Set the azureAiServicesSettings property: Indicates whether Azure AI services are enabled for a project.
+     * 
+     * @param azureAiServicesSettings the azureAiServicesSettings value to set.
+     * @return the ProjectUpdateProperties object itself.
+     */
+    public ProjectUpdateProperties withAzureAiServicesSettings(AzureAiServicesSettings azureAiServicesSettings) {
+        this.azureAiServicesSettings = azureAiServicesSettings;
+        return this;
+    }
+
+    /**
+     * Get the serverlessGpuSessionsSettings property: Settings to be used for serverless GPU.
+     * 
+     * @return the serverlessGpuSessionsSettings value.
+     */
+    public ServerlessGpuSessionsSettings serverlessGpuSessionsSettings() {
+        return this.serverlessGpuSessionsSettings;
+    }
+
+    /**
+     * Set the serverlessGpuSessionsSettings property: Settings to be used for serverless GPU.
+     * 
+     * @param serverlessGpuSessionsSettings the serverlessGpuSessionsSettings value to set.
+     * @return the ProjectUpdateProperties object itself.
+     */
+    public ProjectUpdateProperties
+        withServerlessGpuSessionsSettings(ServerlessGpuSessionsSettings serverlessGpuSessionsSettings) {
+        this.serverlessGpuSessionsSettings = serverlessGpuSessionsSettings;
+        return this;
+    }
+
+    /**
+     * Get the workspaceStorageSettings property: Settings to be used for workspace storage.
+     * 
+     * @return the workspaceStorageSettings value.
+     */
+    public WorkspaceStorageSettings workspaceStorageSettings() {
+        return this.workspaceStorageSettings;
+    }
+
+    /**
+     * Set the workspaceStorageSettings property: Settings to be used for workspace storage.
+     * 
+     * @param workspaceStorageSettings the workspaceStorageSettings value to set.
+     * @return the ProjectUpdateProperties object itself.
+     */
+    public ProjectUpdateProperties withWorkspaceStorageSettings(WorkspaceStorageSettings workspaceStorageSettings) {
+        this.workspaceStorageSettings = workspaceStorageSettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -159,6 +290,21 @@ public class ProjectUpdateProperties implements JsonSerializable<ProjectUpdatePr
     public void validate() {
         if (catalogSettings() != null) {
             catalogSettings().validate();
+        }
+        if (customizationSettings() != null) {
+            customizationSettings().validate();
+        }
+        if (devBoxAutoDeleteSettings() != null) {
+            devBoxAutoDeleteSettings().validate();
+        }
+        if (azureAiServicesSettings() != null) {
+            azureAiServicesSettings().validate();
+        }
+        if (serverlessGpuSessionsSettings() != null) {
+            serverlessGpuSessionsSettings().validate();
+        }
+        if (workspaceStorageSettings() != null) {
+            workspaceStorageSettings().validate();
         }
     }
 
@@ -173,6 +319,11 @@ public class ProjectUpdateProperties implements JsonSerializable<ProjectUpdatePr
         jsonWriter.writeNumberField("maxDevBoxesPerUser", this.maxDevBoxesPerUser);
         jsonWriter.writeStringField("displayName", this.displayName);
         jsonWriter.writeJsonField("catalogSettings", this.catalogSettings);
+        jsonWriter.writeJsonField("customizationSettings", this.customizationSettings);
+        jsonWriter.writeJsonField("devBoxAutoDeleteSettings", this.devBoxAutoDeleteSettings);
+        jsonWriter.writeJsonField("azureAiServicesSettings", this.azureAiServicesSettings);
+        jsonWriter.writeJsonField("serverlessGpuSessionsSettings", this.serverlessGpuSessionsSettings);
+        jsonWriter.writeJsonField("workspaceStorageSettings", this.workspaceStorageSettings);
         return jsonWriter.writeEndObject();
     }
 
@@ -201,6 +352,21 @@ public class ProjectUpdateProperties implements JsonSerializable<ProjectUpdatePr
                     deserializedProjectUpdateProperties.displayName = reader.getString();
                 } else if ("catalogSettings".equals(fieldName)) {
                     deserializedProjectUpdateProperties.catalogSettings = ProjectCatalogSettings.fromJson(reader);
+                } else if ("customizationSettings".equals(fieldName)) {
+                    deserializedProjectUpdateProperties.customizationSettings
+                        = ProjectCustomizationSettings.fromJson(reader);
+                } else if ("devBoxAutoDeleteSettings".equals(fieldName)) {
+                    deserializedProjectUpdateProperties.devBoxAutoDeleteSettings
+                        = DevBoxAutoDeleteSettings.fromJson(reader);
+                } else if ("azureAiServicesSettings".equals(fieldName)) {
+                    deserializedProjectUpdateProperties.azureAiServicesSettings
+                        = AzureAiServicesSettings.fromJson(reader);
+                } else if ("serverlessGpuSessionsSettings".equals(fieldName)) {
+                    deserializedProjectUpdateProperties.serverlessGpuSessionsSettings
+                        = ServerlessGpuSessionsSettings.fromJson(reader);
+                } else if ("workspaceStorageSettings".equals(fieldName)) {
+                    deserializedProjectUpdateProperties.workspaceStorageSettings
+                        = WorkspaceStorageSettings.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

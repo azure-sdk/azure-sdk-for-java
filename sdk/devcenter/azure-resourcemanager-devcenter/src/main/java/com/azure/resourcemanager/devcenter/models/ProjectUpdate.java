@@ -198,6 +198,122 @@ public final class ProjectUpdate extends TrackedResourceUpdate {
     }
 
     /**
+     * Get the customizationSettings property: Settings to be used for customizations.
+     * 
+     * @return the customizationSettings value.
+     */
+    public ProjectCustomizationSettings customizationSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().customizationSettings();
+    }
+
+    /**
+     * Set the customizationSettings property: Settings to be used for customizations.
+     * 
+     * @param customizationSettings the customizationSettings value to set.
+     * @return the ProjectUpdate object itself.
+     */
+    public ProjectUpdate withCustomizationSettings(ProjectCustomizationSettings customizationSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ProjectUpdateProperties();
+        }
+        this.innerProperties().withCustomizationSettings(customizationSettings);
+        return this;
+    }
+
+    /**
+     * Get the devBoxAutoDeleteSettings property: Dev Box Auto Delete settings.
+     * 
+     * @return the devBoxAutoDeleteSettings value.
+     */
+    public DevBoxAutoDeleteSettings devBoxAutoDeleteSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().devBoxAutoDeleteSettings();
+    }
+
+    /**
+     * Set the devBoxAutoDeleteSettings property: Dev Box Auto Delete settings.
+     * 
+     * @param devBoxAutoDeleteSettings the devBoxAutoDeleteSettings value to set.
+     * @return the ProjectUpdate object itself.
+     */
+    public ProjectUpdate withDevBoxAutoDeleteSettings(DevBoxAutoDeleteSettings devBoxAutoDeleteSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ProjectUpdateProperties();
+        }
+        this.innerProperties().withDevBoxAutoDeleteSettings(devBoxAutoDeleteSettings);
+        return this;
+    }
+
+    /**
+     * Get the azureAiServicesSettings property: Indicates whether Azure AI services are enabled for a project.
+     * 
+     * @return the azureAiServicesSettings value.
+     */
+    public AzureAiServicesSettings azureAiServicesSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().azureAiServicesSettings();
+    }
+
+    /**
+     * Set the azureAiServicesSettings property: Indicates whether Azure AI services are enabled for a project.
+     * 
+     * @param azureAiServicesSettings the azureAiServicesSettings value to set.
+     * @return the ProjectUpdate object itself.
+     */
+    public ProjectUpdate withAzureAiServicesSettings(AzureAiServicesSettings azureAiServicesSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ProjectUpdateProperties();
+        }
+        this.innerProperties().withAzureAiServicesSettings(azureAiServicesSettings);
+        return this;
+    }
+
+    /**
+     * Get the serverlessGpuSessionsSettings property: Settings to be used for serverless GPU.
+     * 
+     * @return the serverlessGpuSessionsSettings value.
+     */
+    public ServerlessGpuSessionsSettings serverlessGpuSessionsSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().serverlessGpuSessionsSettings();
+    }
+
+    /**
+     * Set the serverlessGpuSessionsSettings property: Settings to be used for serverless GPU.
+     * 
+     * @param serverlessGpuSessionsSettings the serverlessGpuSessionsSettings value to set.
+     * @return the ProjectUpdate object itself.
+     */
+    public ProjectUpdate
+        withServerlessGpuSessionsSettings(ServerlessGpuSessionsSettings serverlessGpuSessionsSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ProjectUpdateProperties();
+        }
+        this.innerProperties().withServerlessGpuSessionsSettings(serverlessGpuSessionsSettings);
+        return this;
+    }
+
+    /**
+     * Get the workspaceStorageSettings property: Settings to be used for workspace storage.
+     * 
+     * @return the workspaceStorageSettings value.
+     */
+    public WorkspaceStorageSettings workspaceStorageSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().workspaceStorageSettings();
+    }
+
+    /**
+     * Set the workspaceStorageSettings property: Settings to be used for workspace storage.
+     * 
+     * @param workspaceStorageSettings the workspaceStorageSettings value to set.
+     * @return the ProjectUpdate object itself.
+     */
+    public ProjectUpdate withWorkspaceStorageSettings(WorkspaceStorageSettings workspaceStorageSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ProjectUpdateProperties();
+        }
+        this.innerProperties().withWorkspaceStorageSettings(workspaceStorageSettings);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.

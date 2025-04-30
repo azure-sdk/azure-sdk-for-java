@@ -22,15 +22,21 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.devcenter.fluent.DevCenterManagementClient;
 import com.azure.resourcemanager.devcenter.implementation.AttachedNetworksImpl;
 import com.azure.resourcemanager.devcenter.implementation.CatalogsImpl;
 import com.azure.resourcemanager.devcenter.implementation.CheckNameAvailabilitiesImpl;
 import com.azure.resourcemanager.devcenter.implementation.CheckScopedNameAvailabilitiesImpl;
+import com.azure.resourcemanager.devcenter.implementation.CustomizationTasksImpl;
 import com.azure.resourcemanager.devcenter.implementation.DevBoxDefinitionsImpl;
+import com.azure.resourcemanager.devcenter.implementation.DevCenterCatalogImageDefinitionBuildOperationsImpl;
+import com.azure.resourcemanager.devcenter.implementation.DevCenterCatalogImageDefinitionBuildsImpl;
+import com.azure.resourcemanager.devcenter.implementation.DevCenterCatalogImageDefinitionsImpl;
 import com.azure.resourcemanager.devcenter.implementation.DevCenterManagementClientBuilder;
 import com.azure.resourcemanager.devcenter.implementation.DevCentersImpl;
+import com.azure.resourcemanager.devcenter.implementation.EncryptionSetsImpl;
 import com.azure.resourcemanager.devcenter.implementation.EnvironmentDefinitionsImpl;
 import com.azure.resourcemanager.devcenter.implementation.EnvironmentTypesImpl;
 import com.azure.resourcemanager.devcenter.implementation.GalleriesImpl;
@@ -42,8 +48,12 @@ import com.azure.resourcemanager.devcenter.implementation.OperationsImpl;
 import com.azure.resourcemanager.devcenter.implementation.PoolsImpl;
 import com.azure.resourcemanager.devcenter.implementation.ProjectAllowedEnvironmentTypesImpl;
 import com.azure.resourcemanager.devcenter.implementation.ProjectCatalogEnvironmentDefinitionsImpl;
+import com.azure.resourcemanager.devcenter.implementation.ProjectCatalogImageDefinitionBuildOperationsImpl;
+import com.azure.resourcemanager.devcenter.implementation.ProjectCatalogImageDefinitionBuildsImpl;
+import com.azure.resourcemanager.devcenter.implementation.ProjectCatalogImageDefinitionsImpl;
 import com.azure.resourcemanager.devcenter.implementation.ProjectCatalogsImpl;
 import com.azure.resourcemanager.devcenter.implementation.ProjectEnvironmentTypesImpl;
+import com.azure.resourcemanager.devcenter.implementation.ProjectPoliciesImpl;
 import com.azure.resourcemanager.devcenter.implementation.ProjectsImpl;
 import com.azure.resourcemanager.devcenter.implementation.SchedulesImpl;
 import com.azure.resourcemanager.devcenter.implementation.SkusImpl;
@@ -52,8 +62,13 @@ import com.azure.resourcemanager.devcenter.models.AttachedNetworks;
 import com.azure.resourcemanager.devcenter.models.Catalogs;
 import com.azure.resourcemanager.devcenter.models.CheckNameAvailabilities;
 import com.azure.resourcemanager.devcenter.models.CheckScopedNameAvailabilities;
+import com.azure.resourcemanager.devcenter.models.CustomizationTasks;
 import com.azure.resourcemanager.devcenter.models.DevBoxDefinitions;
+import com.azure.resourcemanager.devcenter.models.DevCenterCatalogImageDefinitionBuildOperations;
+import com.azure.resourcemanager.devcenter.models.DevCenterCatalogImageDefinitionBuilds;
+import com.azure.resourcemanager.devcenter.models.DevCenterCatalogImageDefinitions;
 import com.azure.resourcemanager.devcenter.models.DevCenters;
+import com.azure.resourcemanager.devcenter.models.EncryptionSets;
 import com.azure.resourcemanager.devcenter.models.EnvironmentDefinitions;
 import com.azure.resourcemanager.devcenter.models.EnvironmentTypes;
 import com.azure.resourcemanager.devcenter.models.Galleries;
@@ -65,8 +80,12 @@ import com.azure.resourcemanager.devcenter.models.Operations;
 import com.azure.resourcemanager.devcenter.models.Pools;
 import com.azure.resourcemanager.devcenter.models.ProjectAllowedEnvironmentTypes;
 import com.azure.resourcemanager.devcenter.models.ProjectCatalogEnvironmentDefinitions;
+import com.azure.resourcemanager.devcenter.models.ProjectCatalogImageDefinitionBuildOperations;
+import com.azure.resourcemanager.devcenter.models.ProjectCatalogImageDefinitionBuilds;
+import com.azure.resourcemanager.devcenter.models.ProjectCatalogImageDefinitions;
 import com.azure.resourcemanager.devcenter.models.ProjectCatalogs;
 import com.azure.resourcemanager.devcenter.models.ProjectEnvironmentTypes;
+import com.azure.resourcemanager.devcenter.models.ProjectPolicies;
 import com.azure.resourcemanager.devcenter.models.Projects;
 import com.azure.resourcemanager.devcenter.models.Schedules;
 import com.azure.resourcemanager.devcenter.models.Skus;
@@ -75,6 +94,7 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -84,6 +104,10 @@ import java.util.stream.Collectors;
  */
 public final class DevCenterManager {
     private DevCenters devCenters;
+
+    private EncryptionSets encryptionSets;
+
+    private ProjectPolicies projectPolicies;
 
     private Projects projects;
 
@@ -100,6 +124,8 @@ public final class DevCenterManager {
     private Images images;
 
     private ImageVersions imageVersions;
+
+    private Skus skus;
 
     private Catalogs catalogs;
 
@@ -121,7 +147,19 @@ public final class DevCenterManager {
 
     private CheckScopedNameAvailabilities checkScopedNameAvailabilities;
 
-    private Skus skus;
+    private CustomizationTasks customizationTasks;
+
+    private DevCenterCatalogImageDefinitions devCenterCatalogImageDefinitions;
+
+    private DevCenterCatalogImageDefinitionBuilds devCenterCatalogImageDefinitionBuilds;
+
+    private DevCenterCatalogImageDefinitionBuildOperations devCenterCatalogImageDefinitionBuildOperations;
+
+    private ProjectCatalogImageDefinitions projectCatalogImageDefinitions;
+
+    private ProjectCatalogImageDefinitionBuilds projectCatalogImageDefinitionBuilds;
+
+    private ProjectCatalogImageDefinitionBuildOperations projectCatalogImageDefinitionBuildOperations;
 
     private Pools pools;
 
@@ -181,6 +219,9 @@ public final class DevCenterManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-devcenter.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -288,12 +329,14 @@ public final class DevCenterManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.devcenter")
                 .append("/")
-                .append("1.0.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -349,6 +392,30 @@ public final class DevCenterManager {
             this.devCenters = new DevCentersImpl(clientObject.getDevCenters(), this);
         }
         return devCenters;
+    }
+
+    /**
+     * Gets the resource collection API of EncryptionSets. It manages DevCenterEncryptionSet.
+     * 
+     * @return Resource collection API of EncryptionSets.
+     */
+    public EncryptionSets encryptionSets() {
+        if (this.encryptionSets == null) {
+            this.encryptionSets = new EncryptionSetsImpl(clientObject.getEncryptionSets(), this);
+        }
+        return encryptionSets;
+    }
+
+    /**
+     * Gets the resource collection API of ProjectPolicies. It manages ProjectPolicy.
+     * 
+     * @return Resource collection API of ProjectPolicies.
+     */
+    public ProjectPolicies projectPolicies() {
+        if (this.projectPolicies == null) {
+            this.projectPolicies = new ProjectPoliciesImpl(clientObject.getProjectPolicies(), this);
+        }
+        return projectPolicies;
     }
 
     /**
@@ -447,6 +514,18 @@ public final class DevCenterManager {
             this.imageVersions = new ImageVersionsImpl(clientObject.getImageVersions(), this);
         }
         return imageVersions;
+    }
+
+    /**
+     * Gets the resource collection API of Skus.
+     * 
+     * @return Resource collection API of Skus.
+     */
+    public Skus skus() {
+        if (this.skus == null) {
+            this.skus = new SkusImpl(clientObject.getSkus(), this);
+        }
+        return skus;
     }
 
     /**
@@ -574,15 +653,94 @@ public final class DevCenterManager {
     }
 
     /**
-     * Gets the resource collection API of Skus.
+     * Gets the resource collection API of CustomizationTasks.
      * 
-     * @return Resource collection API of Skus.
+     * @return Resource collection API of CustomizationTasks.
      */
-    public Skus skus() {
-        if (this.skus == null) {
-            this.skus = new SkusImpl(clientObject.getSkus(), this);
+    public CustomizationTasks customizationTasks() {
+        if (this.customizationTasks == null) {
+            this.customizationTasks = new CustomizationTasksImpl(clientObject.getCustomizationTasks(), this);
         }
-        return skus;
+        return customizationTasks;
+    }
+
+    /**
+     * Gets the resource collection API of DevCenterCatalogImageDefinitions.
+     * 
+     * @return Resource collection API of DevCenterCatalogImageDefinitions.
+     */
+    public DevCenterCatalogImageDefinitions devCenterCatalogImageDefinitions() {
+        if (this.devCenterCatalogImageDefinitions == null) {
+            this.devCenterCatalogImageDefinitions
+                = new DevCenterCatalogImageDefinitionsImpl(clientObject.getDevCenterCatalogImageDefinitions(), this);
+        }
+        return devCenterCatalogImageDefinitions;
+    }
+
+    /**
+     * Gets the resource collection API of DevCenterCatalogImageDefinitionBuilds.
+     * 
+     * @return Resource collection API of DevCenterCatalogImageDefinitionBuilds.
+     */
+    public DevCenterCatalogImageDefinitionBuilds devCenterCatalogImageDefinitionBuilds() {
+        if (this.devCenterCatalogImageDefinitionBuilds == null) {
+            this.devCenterCatalogImageDefinitionBuilds = new DevCenterCatalogImageDefinitionBuildsImpl(
+                clientObject.getDevCenterCatalogImageDefinitionBuilds(), this);
+        }
+        return devCenterCatalogImageDefinitionBuilds;
+    }
+
+    /**
+     * Gets the resource collection API of DevCenterCatalogImageDefinitionBuildOperations.
+     * 
+     * @return Resource collection API of DevCenterCatalogImageDefinitionBuildOperations.
+     */
+    public DevCenterCatalogImageDefinitionBuildOperations devCenterCatalogImageDefinitionBuildOperations() {
+        if (this.devCenterCatalogImageDefinitionBuildOperations == null) {
+            this.devCenterCatalogImageDefinitionBuildOperations
+                = new DevCenterCatalogImageDefinitionBuildOperationsImpl(
+                    clientObject.getDevCenterCatalogImageDefinitionBuildOperations(), this);
+        }
+        return devCenterCatalogImageDefinitionBuildOperations;
+    }
+
+    /**
+     * Gets the resource collection API of ProjectCatalogImageDefinitions.
+     * 
+     * @return Resource collection API of ProjectCatalogImageDefinitions.
+     */
+    public ProjectCatalogImageDefinitions projectCatalogImageDefinitions() {
+        if (this.projectCatalogImageDefinitions == null) {
+            this.projectCatalogImageDefinitions
+                = new ProjectCatalogImageDefinitionsImpl(clientObject.getProjectCatalogImageDefinitions(), this);
+        }
+        return projectCatalogImageDefinitions;
+    }
+
+    /**
+     * Gets the resource collection API of ProjectCatalogImageDefinitionBuilds.
+     * 
+     * @return Resource collection API of ProjectCatalogImageDefinitionBuilds.
+     */
+    public ProjectCatalogImageDefinitionBuilds projectCatalogImageDefinitionBuilds() {
+        if (this.projectCatalogImageDefinitionBuilds == null) {
+            this.projectCatalogImageDefinitionBuilds = new ProjectCatalogImageDefinitionBuildsImpl(
+                clientObject.getProjectCatalogImageDefinitionBuilds(), this);
+        }
+        return projectCatalogImageDefinitionBuilds;
+    }
+
+    /**
+     * Gets the resource collection API of ProjectCatalogImageDefinitionBuildOperations.
+     * 
+     * @return Resource collection API of ProjectCatalogImageDefinitionBuildOperations.
+     */
+    public ProjectCatalogImageDefinitionBuildOperations projectCatalogImageDefinitionBuildOperations() {
+        if (this.projectCatalogImageDefinitionBuildOperations == null) {
+            this.projectCatalogImageDefinitionBuildOperations = new ProjectCatalogImageDefinitionBuildOperationsImpl(
+                clientObject.getProjectCatalogImageDefinitionBuildOperations(), this);
+        }
+        return projectCatalogImageDefinitionBuildOperations;
     }
 
     /**

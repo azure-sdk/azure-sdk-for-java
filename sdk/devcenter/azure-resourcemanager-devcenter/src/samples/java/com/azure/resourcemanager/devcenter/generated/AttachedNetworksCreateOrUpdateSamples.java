@@ -10,8 +10,8 @@ package com.azure.resourcemanager.devcenter.generated;
 public final class AttachedNetworksCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/AttachedNetworks_Create.
-     * json
+     * specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2025-04-01-preview/examples/
+     * AttachedNetworks_Create.json
      */
     /**
      * Sample code: AttachedNetworks_Create.
