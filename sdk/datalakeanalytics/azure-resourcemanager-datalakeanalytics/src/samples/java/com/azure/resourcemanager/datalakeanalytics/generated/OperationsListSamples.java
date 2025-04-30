@@ -10,8 +10,8 @@ package com.azure.resourcemanager.datalakeanalytics.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Operations_List.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Operations_List.json
      */
     /**
      * Sample code: Lists all of the available Data Lake Analytics REST API operations.

@@ -29,6 +29,11 @@ import java.util.UUID;
 @Fluent
 public final class DataLakeAnalyticsAccountProperties extends DataLakeAnalyticsAccountPropertiesBasic {
     /*
+     * The type of the default Data Lake Store account associated with this account.
+     */
+    private String defaultDataLakeStoreAccountType;
+
+    /*
      * The default Data Lake Store account associated with this account.
      */
     private String defaultDataLakeStoreAccount;
@@ -180,6 +185,16 @@ public final class DataLakeAnalyticsAccountProperties extends DataLakeAnalyticsA
      * Creates an instance of DataLakeAnalyticsAccountProperties class.
      */
     public DataLakeAnalyticsAccountProperties() {
+    }
+
+    /**
+     * Get the defaultDataLakeStoreAccountType property: The type of the default Data Lake Store account associated with
+     * this account.
+     * 
+     * @return the defaultDataLakeStoreAccountType value.
+     */
+    public String defaultDataLakeStoreAccountType() {
+        return this.defaultDataLakeStoreAccountType;
     }
 
     /**
@@ -627,6 +642,8 @@ public final class DataLakeAnalyticsAccountProperties extends DataLakeAnalyticsA
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("endpoint".equals(fieldName)) {
                     deserializedDataLakeAnalyticsAccountProperties.endpoint = reader.getString();
+                } else if ("defaultDataLakeStoreAccountType".equals(fieldName)) {
+                    deserializedDataLakeAnalyticsAccountProperties.defaultDataLakeStoreAccountType = reader.getString();
                 } else if ("defaultDataLakeStoreAccount".equals(fieldName)) {
                     deserializedDataLakeAnalyticsAccountProperties.defaultDataLakeStoreAccount = reader.getString();
                 } else if ("dataLakeStoreAccounts".equals(fieldName)) {

@@ -22,8 +22,8 @@ import java.util.UUID;
 public final class AccountsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Accounts_Update.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Accounts_Update.json
      */
     /**
      * Sample code: Updates the Data Lake Analytics account object specified by the accountName with the contents of the

@@ -247,7 +247,7 @@ public final class DataLakeAnalyticsAccountManagementClientImpl implements DataL
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2016-11-01";
+        this.apiVersion = "2019-11-01-preview";
         this.accounts = new AccountsClientImpl(this);
         this.dataLakeStoreAccounts = new DataLakeStoreAccountsClientImpl(this);
         this.storageAccounts = new StorageAccountsClientImpl(this);

@@ -12,8 +12,8 @@ import com.azure.resourcemanager.datalakeanalytics.models.ComputePolicy;
 public final class ComputePoliciesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * ComputePolicies_Update.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /ComputePolicies_Update.json
      */
     /**
      * Sample code: Updates the specified compute policy.
