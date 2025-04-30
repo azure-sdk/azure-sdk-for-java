@@ -10,7 +10,7 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
 public final class BackupsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/mysql/resource-manager/Microsoft.DBforMySQL/legacy/stable/2021-05-01/examples/BackupGet.json
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Backups/stable/2023-12-30/examples/BackupGet.json
      */
     /**
      * Sample code: Get a backup for a server.

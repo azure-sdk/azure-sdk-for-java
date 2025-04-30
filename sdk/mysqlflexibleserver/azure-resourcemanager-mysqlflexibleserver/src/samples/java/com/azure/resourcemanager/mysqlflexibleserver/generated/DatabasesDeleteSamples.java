@@ -10,7 +10,8 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
 public final class DatabasesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/mysql/resource-manager/Microsoft.DBforMySQL/legacy/stable/2021-05-01/examples/DatabaseDelete.json
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Databases/stable/2023-12-30/examples/DatabaseDelete.
+     * json
      */
     /**
      * Sample code: Delete a database.

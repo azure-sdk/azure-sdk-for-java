@@ -10,7 +10,8 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
 public final class ConfigurationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/mysql/resource-manager/Microsoft.DBforMySQL/legacy/stable/2021-05-01/examples/ConfigurationGet.json
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Configurations/stable/2023-12-30/examples/
+     * ConfigurationGet.json
      */
     /**
      * Sample code: Get a configuration.

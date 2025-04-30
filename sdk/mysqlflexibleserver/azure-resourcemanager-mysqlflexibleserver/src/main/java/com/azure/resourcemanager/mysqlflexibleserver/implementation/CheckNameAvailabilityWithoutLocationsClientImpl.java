@@ -98,9 +98,10 @@ public final class CheckNameAvailabilityWithoutLocationsClientImpl
         } else {
             nameAvailabilityRequest.validate();
         }
+        final String apiVersion = "2024-10-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.execute(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.execute(this.client.getEndpoint(), apiVersion,
                 this.client.getSubscriptionId(), nameAvailabilityRequest, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -133,9 +134,10 @@ public final class CheckNameAvailabilityWithoutLocationsClientImpl
         } else {
             nameAvailabilityRequest.validate();
         }
+        final String apiVersion = "2024-10-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.execute(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+        return service.execute(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
             nameAvailabilityRequest, accept, context);
     }
 

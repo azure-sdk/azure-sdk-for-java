@@ -22,8 +22,12 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.MySqlManagementClient;
+import com.azure.resourcemanager.mysqlflexibleserver.implementation.AdvancedThreatProtectionSettingsImpl;
+import com.azure.resourcemanager.mysqlflexibleserver.implementation.AzureADAdministratorsImpl;
+import com.azure.resourcemanager.mysqlflexibleserver.implementation.BackupAndExportsImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.BackupsImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.CheckNameAvailabilitiesImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.CheckNameAvailabilityWithoutLocationsImpl;
@@ -33,10 +37,21 @@ import com.azure.resourcemanager.mysqlflexibleserver.implementation.DatabasesImp
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.FirewallRulesImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.GetPrivateDnsZoneSuffixesImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.LocationBasedCapabilitiesImpl;
+import com.azure.resourcemanager.mysqlflexibleserver.implementation.LocationBasedCapabilitySetsImpl;
+import com.azure.resourcemanager.mysqlflexibleserver.implementation.LogFilesImpl;
+import com.azure.resourcemanager.mysqlflexibleserver.implementation.LongRunningBackupsImpl;
+import com.azure.resourcemanager.mysqlflexibleserver.implementation.LongRunningBackupsOperationsImpl;
+import com.azure.resourcemanager.mysqlflexibleserver.implementation.MaintenancesImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.MySqlManagementClientBuilder;
+import com.azure.resourcemanager.mysqlflexibleserver.implementation.OperationProgressImpl;
+import com.azure.resourcemanager.mysqlflexibleserver.implementation.OperationResultsImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.OperationsImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.ReplicasImpl;
 import com.azure.resourcemanager.mysqlflexibleserver.implementation.ServersImpl;
+import com.azure.resourcemanager.mysqlflexibleserver.implementation.ServersMigrationsImpl;
+import com.azure.resourcemanager.mysqlflexibleserver.models.AdvancedThreatProtectionSettings;
+import com.azure.resourcemanager.mysqlflexibleserver.models.AzureADAdministrators;
+import com.azure.resourcemanager.mysqlflexibleserver.models.BackupAndExports;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Backups;
 import com.azure.resourcemanager.mysqlflexibleserver.models.CheckNameAvailabilities;
 import com.azure.resourcemanager.mysqlflexibleserver.models.CheckNameAvailabilityWithoutLocations;
@@ -46,13 +61,22 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.Databases;
 import com.azure.resourcemanager.mysqlflexibleserver.models.FirewallRules;
 import com.azure.resourcemanager.mysqlflexibleserver.models.GetPrivateDnsZoneSuffixes;
 import com.azure.resourcemanager.mysqlflexibleserver.models.LocationBasedCapabilities;
+import com.azure.resourcemanager.mysqlflexibleserver.models.LocationBasedCapabilitySets;
+import com.azure.resourcemanager.mysqlflexibleserver.models.LogFiles;
+import com.azure.resourcemanager.mysqlflexibleserver.models.LongRunningBackups;
+import com.azure.resourcemanager.mysqlflexibleserver.models.LongRunningBackupsOperations;
+import com.azure.resourcemanager.mysqlflexibleserver.models.Maintenances;
+import com.azure.resourcemanager.mysqlflexibleserver.models.OperationProgress;
+import com.azure.resourcemanager.mysqlflexibleserver.models.OperationResults;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Operations;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Replicas;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Servers;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ServersMigrations;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -62,19 +86,35 @@ import java.util.stream.Collectors;
  * including servers, databases, firewall rules, VNET rules, log files and configurations with new business model.
  */
 public final class MySqlManager {
+    private AzureADAdministrators azureADAdministrators;
+
+    private Backups backups;
+
+    private BackupAndExports backupAndExports;
+
+    private LongRunningBackups longRunningBackups;
+
+    private LongRunningBackupsOperations longRunningBackupsOperations;
+
+    private Configurations configurations;
+
+    private Databases databases;
+
+    private FirewallRules firewallRules;
+
     private Servers servers;
 
     private Replicas replicas;
 
-    private Backups backups;
+    private ServersMigrations serversMigrations;
 
-    private FirewallRules firewallRules;
+    private AdvancedThreatProtectionSettings advancedThreatProtectionSettings;
 
-    private Databases databases;
-
-    private Configurations configurations;
+    private LogFiles logFiles;
 
     private LocationBasedCapabilities locationBasedCapabilities;
+
+    private LocationBasedCapabilitySets locationBasedCapabilitySets;
 
     private CheckVirtualNetworkSubnetUsages checkVirtualNetworkSubnetUsages;
 
@@ -82,9 +122,15 @@ public final class MySqlManager {
 
     private CheckNameAvailabilityWithoutLocations checkNameAvailabilityWithoutLocations;
 
+    private OperationResults operationResults;
+
+    private OperationProgress operationProgress;
+
     private GetPrivateDnsZoneSuffixes getPrivateDnsZoneSuffixes;
 
     private Operations operations;
+
+    private Maintenances maintenances;
 
     private final MySqlManagementClient clientObject;
 
@@ -138,6 +184,9 @@ public final class MySqlManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-mysqlflexibleserver.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -245,12 +294,14 @@ public final class MySqlManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.mysqlflexibleserver")
                 .append("/")
-                .append("1.0.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -297,6 +348,103 @@ public final class MySqlManager {
     }
 
     /**
+     * Gets the resource collection API of AzureADAdministrators. It manages AzureADAdministrator.
+     * 
+     * @return Resource collection API of AzureADAdministrators.
+     */
+    public AzureADAdministrators azureADAdministrators() {
+        if (this.azureADAdministrators == null) {
+            this.azureADAdministrators = new AzureADAdministratorsImpl(clientObject.getAzureADAdministrators(), this);
+        }
+        return azureADAdministrators;
+    }
+
+    /**
+     * Gets the resource collection API of Backups.
+     * 
+     * @return Resource collection API of Backups.
+     */
+    public Backups backups() {
+        if (this.backups == null) {
+            this.backups = new BackupsImpl(clientObject.getBackups(), this);
+        }
+        return backups;
+    }
+
+    /**
+     * Gets the resource collection API of BackupAndExports.
+     * 
+     * @return Resource collection API of BackupAndExports.
+     */
+    public BackupAndExports backupAndExports() {
+        if (this.backupAndExports == null) {
+            this.backupAndExports = new BackupAndExportsImpl(clientObject.getBackupAndExports(), this);
+        }
+        return backupAndExports;
+    }
+
+    /**
+     * Gets the resource collection API of LongRunningBackups. It manages ServerBackupV2.
+     * 
+     * @return Resource collection API of LongRunningBackups.
+     */
+    public LongRunningBackups longRunningBackups() {
+        if (this.longRunningBackups == null) {
+            this.longRunningBackups = new LongRunningBackupsImpl(clientObject.getLongRunningBackups(), this);
+        }
+        return longRunningBackups;
+    }
+
+    /**
+     * Gets the resource collection API of LongRunningBackupsOperations.
+     * 
+     * @return Resource collection API of LongRunningBackupsOperations.
+     */
+    public LongRunningBackupsOperations longRunningBackupsOperations() {
+        if (this.longRunningBackupsOperations == null) {
+            this.longRunningBackupsOperations
+                = new LongRunningBackupsOperationsImpl(clientObject.getLongRunningBackupsOperations(), this);
+        }
+        return longRunningBackupsOperations;
+    }
+
+    /**
+     * Gets the resource collection API of Configurations. It manages Configuration.
+     * 
+     * @return Resource collection API of Configurations.
+     */
+    public Configurations configurations() {
+        if (this.configurations == null) {
+            this.configurations = new ConfigurationsImpl(clientObject.getConfigurations(), this);
+        }
+        return configurations;
+    }
+
+    /**
+     * Gets the resource collection API of Databases. It manages Database.
+     * 
+     * @return Resource collection API of Databases.
+     */
+    public Databases databases() {
+        if (this.databases == null) {
+            this.databases = new DatabasesImpl(clientObject.getDatabases(), this);
+        }
+        return databases;
+    }
+
+    /**
+     * Gets the resource collection API of FirewallRules. It manages FirewallRule.
+     * 
+     * @return Resource collection API of FirewallRules.
+     */
+    public FirewallRules firewallRules() {
+        if (this.firewallRules == null) {
+            this.firewallRules = new FirewallRulesImpl(clientObject.getFirewallRules(), this);
+        }
+        return firewallRules;
+    }
+
+    /**
      * Gets the resource collection API of Servers. It manages Server.
      * 
      * @return Resource collection API of Servers.
@@ -321,51 +469,40 @@ public final class MySqlManager {
     }
 
     /**
-     * Gets the resource collection API of Backups.
+     * Gets the resource collection API of ServersMigrations.
      * 
-     * @return Resource collection API of Backups.
+     * @return Resource collection API of ServersMigrations.
      */
-    public Backups backups() {
-        if (this.backups == null) {
-            this.backups = new BackupsImpl(clientObject.getBackups(), this);
+    public ServersMigrations serversMigrations() {
+        if (this.serversMigrations == null) {
+            this.serversMigrations = new ServersMigrationsImpl(clientObject.getServersMigrations(), this);
         }
-        return backups;
+        return serversMigrations;
     }
 
     /**
-     * Gets the resource collection API of FirewallRules. It manages FirewallRule.
+     * Gets the resource collection API of AdvancedThreatProtectionSettings.
      * 
-     * @return Resource collection API of FirewallRules.
+     * @return Resource collection API of AdvancedThreatProtectionSettings.
      */
-    public FirewallRules firewallRules() {
-        if (this.firewallRules == null) {
-            this.firewallRules = new FirewallRulesImpl(clientObject.getFirewallRules(), this);
+    public AdvancedThreatProtectionSettings advancedThreatProtectionSettings() {
+        if (this.advancedThreatProtectionSettings == null) {
+            this.advancedThreatProtectionSettings
+                = new AdvancedThreatProtectionSettingsImpl(clientObject.getAdvancedThreatProtectionSettings(), this);
         }
-        return firewallRules;
+        return advancedThreatProtectionSettings;
     }
 
     /**
-     * Gets the resource collection API of Databases. It manages Database.
+     * Gets the resource collection API of LogFiles.
      * 
-     * @return Resource collection API of Databases.
+     * @return Resource collection API of LogFiles.
      */
-    public Databases databases() {
-        if (this.databases == null) {
-            this.databases = new DatabasesImpl(clientObject.getDatabases(), this);
+    public LogFiles logFiles() {
+        if (this.logFiles == null) {
+            this.logFiles = new LogFilesImpl(clientObject.getLogFiles(), this);
         }
-        return databases;
-    }
-
-    /**
-     * Gets the resource collection API of Configurations.
-     * 
-     * @return Resource collection API of Configurations.
-     */
-    public Configurations configurations() {
-        if (this.configurations == null) {
-            this.configurations = new ConfigurationsImpl(clientObject.getConfigurations(), this);
-        }
-        return configurations;
+        return logFiles;
     }
 
     /**
@@ -379,6 +516,19 @@ public final class MySqlManager {
                 = new LocationBasedCapabilitiesImpl(clientObject.getLocationBasedCapabilities(), this);
         }
         return locationBasedCapabilities;
+    }
+
+    /**
+     * Gets the resource collection API of LocationBasedCapabilitySets.
+     * 
+     * @return Resource collection API of LocationBasedCapabilitySets.
+     */
+    public LocationBasedCapabilitySets locationBasedCapabilitySets() {
+        if (this.locationBasedCapabilitySets == null) {
+            this.locationBasedCapabilitySets
+                = new LocationBasedCapabilitySetsImpl(clientObject.getLocationBasedCapabilitySets(), this);
+        }
+        return locationBasedCapabilitySets;
     }
 
     /**
@@ -421,6 +571,30 @@ public final class MySqlManager {
     }
 
     /**
+     * Gets the resource collection API of OperationResults.
+     * 
+     * @return Resource collection API of OperationResults.
+     */
+    public OperationResults operationResults() {
+        if (this.operationResults == null) {
+            this.operationResults = new OperationResultsImpl(clientObject.getOperationResults(), this);
+        }
+        return operationResults;
+    }
+
+    /**
+     * Gets the resource collection API of OperationProgress.
+     * 
+     * @return Resource collection API of OperationProgress.
+     */
+    public OperationProgress operationProgress() {
+        if (this.operationProgress == null) {
+            this.operationProgress = new OperationProgressImpl(clientObject.getOperationProgress(), this);
+        }
+        return operationProgress;
+    }
+
+    /**
      * Gets the resource collection API of GetPrivateDnsZoneSuffixes.
      * 
      * @return Resource collection API of GetPrivateDnsZoneSuffixes.
@@ -443,6 +617,18 @@ public final class MySqlManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of Maintenances.
+     * 
+     * @return Resource collection API of Maintenances.
+     */
+    public Maintenances maintenances() {
+        if (this.maintenances == null) {
+            this.maintenances = new MaintenancesImpl(clientObject.getMaintenances(), this);
+        }
+        return maintenances;
     }
 
     /**

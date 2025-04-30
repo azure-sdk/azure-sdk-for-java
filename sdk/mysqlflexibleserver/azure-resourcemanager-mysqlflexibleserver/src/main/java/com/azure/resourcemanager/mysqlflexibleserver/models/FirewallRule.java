@@ -34,7 +34,7 @@ public interface FirewallRule {
     String type();
 
     /**
-     * Gets the systemData property: The system metadata relating to this resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
