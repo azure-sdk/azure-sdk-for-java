@@ -135,6 +135,11 @@ public final class AzureDatabricksLinkedServiceTypeProperties
      */
     private CredentialReference credential;
 
+    /*
+     * The data security mode for the Databricks Cluster. Type: string (or Expression with resultType string).
+     */
+    private Object dataSecurityMode;
+
     /**
      * Creates an instance of AzureDatabricksLinkedServiceTypeProperties class.
      */
@@ -573,6 +578,28 @@ public final class AzureDatabricksLinkedServiceTypeProperties
     }
 
     /**
+     * Get the dataSecurityMode property: The data security mode for the Databricks Cluster. Type: string (or Expression
+     * with resultType string).
+     * 
+     * @return the dataSecurityMode value.
+     */
+    public Object dataSecurityMode() {
+        return this.dataSecurityMode;
+    }
+
+    /**
+     * Set the dataSecurityMode property: The data security mode for the Databricks Cluster. Type: string (or Expression
+     * with resultType string).
+     * 
+     * @param dataSecurityMode the dataSecurityMode value to set.
+     * @return the AzureDatabricksLinkedServiceTypeProperties object itself.
+     */
+    public AzureDatabricksLinkedServiceTypeProperties withDataSecurityMode(Object dataSecurityMode) {
+        this.dataSecurityMode = dataSecurityMode;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -621,6 +648,7 @@ public final class AzureDatabricksLinkedServiceTypeProperties
         jsonWriter.writeStringField("encryptedCredential", this.encryptedCredential);
         jsonWriter.writeUntypedField("policyId", this.policyId);
         jsonWriter.writeJsonField("credential", this.credential);
+        jsonWriter.writeUntypedField("dataSecurityMode", this.dataSecurityMode);
         return jsonWriter.writeEndObject();
     }
 
@@ -687,6 +715,8 @@ public final class AzureDatabricksLinkedServiceTypeProperties
                 } else if ("credential".equals(fieldName)) {
                     deserializedAzureDatabricksLinkedServiceTypeProperties.credential
                         = CredentialReference.fromJson(reader);
+                } else if ("dataSecurityMode".equals(fieldName)) {
+                    deserializedAzureDatabricksLinkedServiceTypeProperties.dataSecurityMode = reader.readUntyped();
                 } else {
                     reader.skipChildren();
                 }

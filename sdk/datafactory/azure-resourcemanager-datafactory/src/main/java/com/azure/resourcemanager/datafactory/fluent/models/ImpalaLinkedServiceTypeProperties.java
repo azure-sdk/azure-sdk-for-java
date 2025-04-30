@@ -11,6 +11,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.datafactory.models.ImpalaAuthenticationType;
+import com.azure.resourcemanager.datafactory.models.ImpalaThriftTransportProtocol;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
 import java.io.IOException;
 
@@ -45,9 +46,20 @@ public final class ImpalaLinkedServiceTypeProperties implements JsonSerializable
     private SecretBase password;
 
     /*
+     * The transport protocol to use in the Thrift layer (for V2 only). Default value is Binary.
+     */
+    private ImpalaThriftTransportProtocol thriftTransportProtocol;
+
+    /*
      * Specifies whether the connections to the server are encrypted using SSL. The default value is false.
      */
     private Object enableSsl;
+
+    /*
+     * Specify whether to enable server SSL certificate validation when you connect.Always use System Trust Store (for
+     * V2 only). The default value is true.
+     */
+    private Object enableServerCertificateValidation;
 
     /*
      * The full path of the .pem file containing trusted CA certificates for verifying the server when connecting over
@@ -190,6 +202,29 @@ public final class ImpalaLinkedServiceTypeProperties implements JsonSerializable
     }
 
     /**
+     * Get the thriftTransportProtocol property: The transport protocol to use in the Thrift layer (for V2 only).
+     * Default value is Binary.
+     * 
+     * @return the thriftTransportProtocol value.
+     */
+    public ImpalaThriftTransportProtocol thriftTransportProtocol() {
+        return this.thriftTransportProtocol;
+    }
+
+    /**
+     * Set the thriftTransportProtocol property: The transport protocol to use in the Thrift layer (for V2 only).
+     * Default value is Binary.
+     * 
+     * @param thriftTransportProtocol the thriftTransportProtocol value to set.
+     * @return the ImpalaLinkedServiceTypeProperties object itself.
+     */
+    public ImpalaLinkedServiceTypeProperties
+        withThriftTransportProtocol(ImpalaThriftTransportProtocol thriftTransportProtocol) {
+        this.thriftTransportProtocol = thriftTransportProtocol;
+        return this;
+    }
+
+    /**
      * Get the enableSsl property: Specifies whether the connections to the server are encrypted using SSL. The default
      * value is false.
      * 
@@ -208,6 +243,29 @@ public final class ImpalaLinkedServiceTypeProperties implements JsonSerializable
      */
     public ImpalaLinkedServiceTypeProperties withEnableSsl(Object enableSsl) {
         this.enableSsl = enableSsl;
+        return this;
+    }
+
+    /**
+     * Get the enableServerCertificateValidation property: Specify whether to enable server SSL certificate validation
+     * when you connect.Always use System Trust Store (for V2 only). The default value is true.
+     * 
+     * @return the enableServerCertificateValidation value.
+     */
+    public Object enableServerCertificateValidation() {
+        return this.enableServerCertificateValidation;
+    }
+
+    /**
+     * Set the enableServerCertificateValidation property: Specify whether to enable server SSL certificate validation
+     * when you connect.Always use System Trust Store (for V2 only). The default value is true.
+     * 
+     * @param enableServerCertificateValidation the enableServerCertificateValidation value to set.
+     * @return the ImpalaLinkedServiceTypeProperties object itself.
+     */
+    public ImpalaLinkedServiceTypeProperties
+        withEnableServerCertificateValidation(Object enableServerCertificateValidation) {
+        this.enableServerCertificateValidation = enableServerCertificateValidation;
         return this;
     }
 
@@ -358,7 +416,10 @@ public final class ImpalaLinkedServiceTypeProperties implements JsonSerializable
         jsonWriter.writeUntypedField("port", this.port);
         jsonWriter.writeUntypedField("username", this.username);
         jsonWriter.writeJsonField("password", this.password);
+        jsonWriter.writeStringField("thriftTransportProtocol",
+            this.thriftTransportProtocol == null ? null : this.thriftTransportProtocol.toString());
         jsonWriter.writeUntypedField("enableSsl", this.enableSsl);
+        jsonWriter.writeUntypedField("enableServerCertificateValidation", this.enableServerCertificateValidation);
         jsonWriter.writeUntypedField("trustedCertPath", this.trustedCertPath);
         jsonWriter.writeUntypedField("useSystemTrustStore", this.useSystemTrustStore);
         jsonWriter.writeUntypedField("allowHostNameCNMismatch", this.allowHostnameCNMismatch);
@@ -395,8 +456,14 @@ public final class ImpalaLinkedServiceTypeProperties implements JsonSerializable
                     deserializedImpalaLinkedServiceTypeProperties.username = reader.readUntyped();
                 } else if ("password".equals(fieldName)) {
                     deserializedImpalaLinkedServiceTypeProperties.password = SecretBase.fromJson(reader);
+                } else if ("thriftTransportProtocol".equals(fieldName)) {
+                    deserializedImpalaLinkedServiceTypeProperties.thriftTransportProtocol
+                        = ImpalaThriftTransportProtocol.fromString(reader.getString());
                 } else if ("enableSsl".equals(fieldName)) {
                     deserializedImpalaLinkedServiceTypeProperties.enableSsl = reader.readUntyped();
+                } else if ("enableServerCertificateValidation".equals(fieldName)) {
+                    deserializedImpalaLinkedServiceTypeProperties.enableServerCertificateValidation
+                        = reader.readUntyped();
                 } else if ("trustedCertPath".equals(fieldName)) {
                     deserializedImpalaLinkedServiceTypeProperties.trustedCertPath = reader.readUntyped();
                 } else if ("useSystemTrustStore".equals(fieldName)) {
