@@ -10,8 +10,8 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class PrivateLinkResourcesListByWorkspaceSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * PrivateLinkResources_ListByWorkspace.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-11-01-preview/
+     * examples/PrivateLinkResources_ListByWorkspace.json
      */
     /**
      * Sample code: PrivateLinkResources_ListByWorkspace.

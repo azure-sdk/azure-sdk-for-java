@@ -81,25 +81,25 @@ public interface HostPool {
     String etag();
 
     /**
-     * Gets the identity property: The identity property.
+     * Gets the identity property: Managed service identity (system assigned and/or user assigned identities).
      * 
      * @return the identity value.
      */
-    ResourceModelWithAllowedPropertySetIdentity identity();
+    ManagedServiceIdentity identity();
 
     /**
-     * Gets the sku property: The sku property.
+     * Gets the sku property: The resource model definition representing SKU.
      * 
      * @return the sku value.
      */
-    ResourceModelWithAllowedPropertySetSku sku();
+    Sku sku();
 
     /**
-     * Gets the plan property: The plan property.
+     * Gets the plan property: Plan for the resource.
      * 
      * @return the plan value.
      */
-    ResourceModelWithAllowedPropertySetPlan plan();
+    Plan plan();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -179,7 +179,8 @@ public interface HostPool {
     Boolean validationEnvironment();
 
     /**
-     * Gets the registrationInfo property: The registration info of HostPool.
+     * Gets the registrationInfo property: The registration info of HostPool. This is not returned on GET. In order to
+     * get the registration token use the retrieveRegistrationToken or listRegistrationTokens POST calls.
      * 
      * @return the registrationInfo value.
      */
@@ -191,6 +192,14 @@ public interface HostPool {
      * @return the vmTemplate value.
      */
     String vmTemplate();
+
+    /**
+     * Gets the managementType property: The type of management for this hostpool, Automated or Standard. The default
+     * value is Automated.
+     * 
+     * @return the managementType value.
+     */
+    ManagementType managementType();
 
     /**
      * Gets the applicationGroupReferences property: List of applicationGroup links.
@@ -280,6 +289,46 @@ public interface HostPool {
      * @return the privateEndpointConnections value.
      */
     List<PrivateEndpointConnection> privateEndpointConnections();
+
+    /**
+     * Gets the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @return the managedPrivateUdp value.
+     */
+    ManagedPrivateUdp managedPrivateUdp();
+
+    /**
+     * Gets the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the directUdp value.
+     */
+    DirectUdp directUdp();
+
+    /**
+     * Gets the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the publicUdp value.
+     */
+    PublicUdp publicUdp();
+
+    /**
+     * Gets the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the relayUdp value.
+     */
+    RelayUdp relayUdp();
 
     /**
      * Gets the region of the resource.
@@ -411,11 +460,12 @@ public interface HostPool {
             DefinitionStages.WithPlan, DefinitionStages.WithFriendlyName, DefinitionStages.WithDescription,
             DefinitionStages.WithPersonalDesktopAssignmentType, DefinitionStages.WithCustomRdpProperty,
             DefinitionStages.WithMaxSessionLimit, DefinitionStages.WithRing, DefinitionStages.WithValidationEnvironment,
-            DefinitionStages.WithRegistrationInfo, DefinitionStages.WithVmTemplate,
+            DefinitionStages.WithRegistrationInfo, DefinitionStages.WithVmTemplate, DefinitionStages.WithManagementType,
             DefinitionStages.WithSsoadfsAuthority, DefinitionStages.WithSsoClientId,
             DefinitionStages.WithSsoClientSecretKeyVaultPath, DefinitionStages.WithSsoSecretType,
             DefinitionStages.WithStartVMOnConnect, DefinitionStages.WithPublicNetworkAccess,
-            DefinitionStages.WithAgentUpdate {
+            DefinitionStages.WithAgentUpdate, DefinitionStages.WithManagedPrivateUdp, DefinitionStages.WithDirectUdp,
+            DefinitionStages.WithPublicUdp, DefinitionStages.WithRelayUdp {
             /**
              * Executes the create request.
              * 
@@ -485,12 +535,13 @@ public interface HostPool {
          */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity property..
+             * Specifies the identity property: Managed service identity (system assigned and/or user assigned
+             * identities).
              * 
-             * @param identity The identity property.
+             * @param identity Managed service identity (system assigned and/or user assigned identities).
              * @return the next definition stage.
              */
-            WithCreate withIdentity(ResourceModelWithAllowedPropertySetIdentity identity);
+            WithCreate withIdentity(ManagedServiceIdentity identity);
         }
 
         /**
@@ -498,12 +549,12 @@ public interface HostPool {
          */
         interface WithSku {
             /**
-             * Specifies the sku property: The sku property..
+             * Specifies the sku property: The resource model definition representing SKU.
              * 
-             * @param sku The sku property.
+             * @param sku The resource model definition representing SKU.
              * @return the next definition stage.
              */
-            WithCreate withSku(ResourceModelWithAllowedPropertySetSku sku);
+            WithCreate withSku(Sku sku);
         }
 
         /**
@@ -511,12 +562,12 @@ public interface HostPool {
          */
         interface WithPlan {
             /**
-             * Specifies the plan property: The plan property..
+             * Specifies the plan property: Plan for the resource..
              * 
-             * @param plan The plan property.
+             * @param plan Plan for the resource.
              * @return the next definition stage.
              */
-            WithCreate withPlan(ResourceModelWithAllowedPropertySetPlan plan);
+            WithCreate withPlan(Plan plan);
         }
 
         /**
@@ -615,9 +666,12 @@ public interface HostPool {
          */
         interface WithRegistrationInfo {
             /**
-             * Specifies the registrationInfo property: The registration info of HostPool..
+             * Specifies the registrationInfo property: The registration info of HostPool. This is not returned on GET.
+             * In order to get the registration token use the retrieveRegistrationToken or listRegistrationTokens POST
+             * calls..
              * 
-             * @param registrationInfo The registration info of HostPool.
+             * @param registrationInfo The registration info of HostPool. This is not returned on GET. In order to get
+             * the registration token use the retrieveRegistrationToken or listRegistrationTokens POST calls.
              * @return the next definition stage.
              */
             WithCreate withRegistrationInfo(RegistrationInfoInner registrationInfo);
@@ -634,6 +688,21 @@ public interface HostPool {
              * @return the next definition stage.
              */
             WithCreate withVmTemplate(String vmTemplate);
+        }
+
+        /**
+         * The stage of the HostPool definition allowing to specify managementType.
+         */
+        interface WithManagementType {
+            /**
+             * Specifies the managementType property: The type of management for this hostpool, Automated or Standard.
+             * The default value is Automated..
+             * 
+             * @param managementType The type of management for this hostpool, Automated or Standard. The default value
+             * is Automated.
+             * @return the next definition stage.
+             */
+            WithCreate withManagementType(ManagementType managementType);
         }
 
         /**
@@ -733,6 +802,82 @@ public interface HostPool {
              */
             WithCreate withAgentUpdate(AgentUpdateProperties agentUpdate);
         }
+
+        /**
+         * The stage of the HostPool definition allowing to specify managedPrivateUdp.
+         */
+        interface WithManagedPrivateUdp {
+            /**
+             * Specifies the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection
+             * availability, Enabled: UDP will attempt this connection type when making connections. This means that
+             * this connection is possible, but is not guaranteed, as there are other factors that may prevent this
+             * connection type, Disabled: UDP will not attempt this connection type when making connections.
+             * 
+             * @param managedPrivateUdp Default: AVD-wide settings are used to determine connection availability,
+             * Enabled: UDP will attempt this connection type when making connections. This means that this connection
+             * is possible, but is not guaranteed, as there are other factors that may prevent this connection type,
+             * Disabled: UDP will not attempt this connection type when making connections.
+             * @return the next definition stage.
+             */
+            WithCreate withManagedPrivateUdp(ManagedPrivateUdp managedPrivateUdp);
+        }
+
+        /**
+         * The stage of the HostPool definition allowing to specify directUdp.
+         */
+        interface WithDirectUdp {
+            /**
+             * Specifies the directUdp property: Default: AVD-wide settings are used to determine connection
+             * availability, Enabled: UDP will attempt this connection type when making connections. This means that
+             * this connection is possible, but is not guaranteed, as there are other factors that may prevent this
+             * connection type, Disabled: UDP will not attempt this connection type when making connections.
+             * 
+             * @param directUdp Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+             * will attempt this connection type when making connections. This means that this connection is possible,
+             * but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+             * will not attempt this connection type when making connections.
+             * @return the next definition stage.
+             */
+            WithCreate withDirectUdp(DirectUdp directUdp);
+        }
+
+        /**
+         * The stage of the HostPool definition allowing to specify publicUdp.
+         */
+        interface WithPublicUdp {
+            /**
+             * Specifies the publicUdp property: Default: AVD-wide settings are used to determine connection
+             * availability, Enabled: UDP will attempt this connection type when making connections. This means that
+             * this connection is possible, but is not guaranteed, as there are other factors that may prevent this
+             * connection type, Disabled: UDP will not attempt this connection type when making connections.
+             * 
+             * @param publicUdp Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+             * will attempt this connection type when making connections. This means that this connection is possible,
+             * but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+             * will not attempt this connection type when making connections.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicUdp(PublicUdp publicUdp);
+        }
+
+        /**
+         * The stage of the HostPool definition allowing to specify relayUdp.
+         */
+        interface WithRelayUdp {
+            /**
+             * Specifies the relayUdp property: Default: AVD-wide settings are used to determine connection
+             * availability, Enabled: UDP will attempt this connection type when making connections. This means that
+             * this connection is possible, but is not guaranteed, as there are other factors that may prevent this
+             * connection type, Disabled: UDP will not attempt this connection type when making connections.
+             * 
+             * @param relayUdp Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+             * will attempt this connection type when making connections. This means that this connection is possible,
+             * but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+             * will not attempt this connection type when making connections.
+             * @return the next definition stage.
+             */
+            WithCreate withRelayUdp(RelayUdp relayUdp);
+        }
     }
 
     /**
@@ -751,7 +896,8 @@ public interface HostPool {
         UpdateStages.WithValidationEnvironment, UpdateStages.WithRegistrationInfo, UpdateStages.WithVmTemplate,
         UpdateStages.WithSsoadfsAuthority, UpdateStages.WithSsoClientId, UpdateStages.WithSsoClientSecretKeyVaultPath,
         UpdateStages.WithSsoSecretType, UpdateStages.WithPreferredAppGroupType, UpdateStages.WithStartVMOnConnect,
-        UpdateStages.WithPublicNetworkAccess, UpdateStages.WithAgentUpdate {
+        UpdateStages.WithPublicNetworkAccess, UpdateStages.WithAgentUpdate, UpdateStages.WithManagedPrivateUdp,
+        UpdateStages.WithDirectUdp, UpdateStages.WithPublicUdp, UpdateStages.WithRelayUdp {
         /**
          * Executes the update request.
          * 
@@ -894,9 +1040,12 @@ public interface HostPool {
          */
         interface WithRegistrationInfo {
             /**
-             * Specifies the registrationInfo property: The registration info of HostPool..
+             * Specifies the registrationInfo property: The registration info of HostPool. This is not returned on GET.
+             * In order to get the registration token use the retrieveRegistrationToken or listRegistrationTokens POST
+             * calls..
              * 
-             * @param registrationInfo The registration info of HostPool.
+             * @param registrationInfo The registration info of HostPool. This is not returned on GET. In order to get
+             * the registration token use the retrieveRegistrationToken or listRegistrationTokens POST calls.
              * @return the next definition stage.
              */
             Update withRegistrationInfo(RegistrationInfoPatch registrationInfo);
@@ -1025,6 +1174,82 @@ public interface HostPool {
              * @return the next definition stage.
              */
             Update withAgentUpdate(AgentUpdatePatchProperties agentUpdate);
+        }
+
+        /**
+         * The stage of the HostPool update allowing to specify managedPrivateUdp.
+         */
+        interface WithManagedPrivateUdp {
+            /**
+             * Specifies the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection
+             * availability, Enabled: UDP will attempt this connection type when making connections. This means that
+             * this connection is possible, but is not guaranteed, as there are other factors that may prevent this
+             * connection type, Disabled: UDP will not attempt this connection type when making connections.
+             * 
+             * @param managedPrivateUdp Default: AVD-wide settings are used to determine connection availability,
+             * Enabled: UDP will attempt this connection type when making connections. This means that this connection
+             * is possible, but is not guaranteed, as there are other factors that may prevent this connection type,
+             * Disabled: UDP will not attempt this connection type when making connections.
+             * @return the next definition stage.
+             */
+            Update withManagedPrivateUdp(ManagedPrivateUdp managedPrivateUdp);
+        }
+
+        /**
+         * The stage of the HostPool update allowing to specify directUdp.
+         */
+        interface WithDirectUdp {
+            /**
+             * Specifies the directUdp property: Default: AVD-wide settings are used to determine connection
+             * availability, Enabled: UDP will attempt this connection type when making connections. This means that
+             * this connection is possible, but is not guaranteed, as there are other factors that may prevent this
+             * connection type, Disabled: UDP will not attempt this connection type when making connections.
+             * 
+             * @param directUdp Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+             * will attempt this connection type when making connections. This means that this connection is possible,
+             * but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+             * will not attempt this connection type when making connections.
+             * @return the next definition stage.
+             */
+            Update withDirectUdp(DirectUdp directUdp);
+        }
+
+        /**
+         * The stage of the HostPool update allowing to specify publicUdp.
+         */
+        interface WithPublicUdp {
+            /**
+             * Specifies the publicUdp property: Default: AVD-wide settings are used to determine connection
+             * availability, Enabled: UDP will attempt this connection type when making connections. This means that
+             * this connection is possible, but is not guaranteed, as there are other factors that may prevent this
+             * connection type, Disabled: UDP will not attempt this connection type when making connections.
+             * 
+             * @param publicUdp Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+             * will attempt this connection type when making connections. This means that this connection is possible,
+             * but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+             * will not attempt this connection type when making connections.
+             * @return the next definition stage.
+             */
+            Update withPublicUdp(PublicUdp publicUdp);
+        }
+
+        /**
+         * The stage of the HostPool update allowing to specify relayUdp.
+         */
+        interface WithRelayUdp {
+            /**
+             * Specifies the relayUdp property: Default: AVD-wide settings are used to determine connection
+             * availability, Enabled: UDP will attempt this connection type when making connections. This means that
+             * this connection is possible, but is not guaranteed, as there are other factors that may prevent this
+             * connection type, Disabled: UDP will not attempt this connection type when making connections.
+             * 
+             * @param relayUdp Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+             * will attempt this connection type when making connections. This means that this connection is possible,
+             * but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+             * will not attempt this connection type when making connections.
+             * @return the next definition stage.
+             */
+            Update withRelayUdp(RelayUdp relayUdp);
         }
     }
 

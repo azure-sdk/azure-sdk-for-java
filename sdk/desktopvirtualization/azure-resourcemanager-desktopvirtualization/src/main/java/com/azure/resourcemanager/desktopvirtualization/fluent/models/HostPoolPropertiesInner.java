@@ -11,12 +11,17 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdateProperties;
-import com.azure.resourcemanager.desktopvirtualization.models.HostpoolPublicNetworkAccess;
+import com.azure.resourcemanager.desktopvirtualization.models.DirectUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
+import com.azure.resourcemanager.desktopvirtualization.models.HostpoolPublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedPrivateUdp;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagementType;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
+import com.azure.resourcemanager.desktopvirtualization.models.PublicUdp;
+import com.azure.resourcemanager.desktopvirtualization.models.RelayUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import java.io.IOException;
 import java.util.List;
@@ -77,7 +82,8 @@ public final class HostPoolPropertiesInner implements JsonSerializable<HostPoolP
     private Boolean validationEnvironment;
 
     /*
-     * The registration info of HostPool.
+     * The registration info of HostPool. This is not returned on GET. In order to get the registration token use the
+     * retrieveRegistrationToken or listRegistrationTokens POST calls.
      */
     private RegistrationInfoInner registrationInfo;
 
@@ -85,6 +91,11 @@ public final class HostPoolPropertiesInner implements JsonSerializable<HostPoolP
      * VM template for sessionhosts configuration within hostpool.
      */
     private String vmTemplate;
+
+    /*
+     * The type of management for this hostpool, Automated or Standard. The default value is Automated.
+     */
+    private ManagementType managementType;
 
     /*
      * List of applicationGroup links.
@@ -146,6 +157,38 @@ public final class HostPoolPropertiesInner implements JsonSerializable<HostPoolP
      * List of private endpoint connection associated with the specified resource
      */
     private List<PrivateEndpointConnection> privateEndpointConnections;
+
+    /*
+     * Default: AVD-wide settings are used to determine connection availability, Enabled: UDP will attempt this
+     * connection type when making connections. This means that this connection is possible, but is not guaranteed, as
+     * there are other factors that may prevent this connection type, Disabled: UDP will not attempt this connection
+     * type when making connections
+     */
+    private ManagedPrivateUdp managedPrivateUdp;
+
+    /*
+     * Default: AVD-wide settings are used to determine connection availability, Enabled: UDP will attempt this
+     * connection type when making connections. This means that this connection is possible, but is not guaranteed, as
+     * there are other factors that may prevent this connection type, Disabled: UDP will not attempt this connection
+     * type when making connections
+     */
+    private DirectUdp directUdp;
+
+    /*
+     * Default: AVD-wide settings are used to determine connection availability, Enabled: UDP will attempt this
+     * connection type when making connections. This means that this connection is possible, but is not guaranteed, as
+     * there are other factors that may prevent this connection type, Disabled: UDP will not attempt this connection
+     * type when making connections
+     */
+    private PublicUdp publicUdp;
+
+    /*
+     * Default: AVD-wide settings are used to determine connection availability, Enabled: UDP will attempt this
+     * connection type when making connections. This means that this connection is possible, but is not guaranteed, as
+     * there are other factors that may prevent this connection type, Disabled: UDP will not attempt this connection
+     * type when making connections
+     */
+    private RelayUdp relayUdp;
 
     /**
      * Creates an instance of HostPoolPropertiesInner class.
@@ -344,7 +387,8 @@ public final class HostPoolPropertiesInner implements JsonSerializable<HostPoolP
     }
 
     /**
-     * Get the registrationInfo property: The registration info of HostPool.
+     * Get the registrationInfo property: The registration info of HostPool. This is not returned on GET. In order to
+     * get the registration token use the retrieveRegistrationToken or listRegistrationTokens POST calls.
      * 
      * @return the registrationInfo value.
      */
@@ -353,7 +397,8 @@ public final class HostPoolPropertiesInner implements JsonSerializable<HostPoolP
     }
 
     /**
-     * Set the registrationInfo property: The registration info of HostPool.
+     * Set the registrationInfo property: The registration info of HostPool. This is not returned on GET. In order to
+     * get the registration token use the retrieveRegistrationToken or listRegistrationTokens POST calls.
      * 
      * @param registrationInfo the registrationInfo value to set.
      * @return the HostPoolPropertiesInner object itself.
@@ -380,6 +425,28 @@ public final class HostPoolPropertiesInner implements JsonSerializable<HostPoolP
      */
     public HostPoolPropertiesInner withVmTemplate(String vmTemplate) {
         this.vmTemplate = vmTemplate;
+        return this;
+    }
+
+    /**
+     * Get the managementType property: The type of management for this hostpool, Automated or Standard. The default
+     * value is Automated.
+     * 
+     * @return the managementType value.
+     */
+    public ManagementType managementType() {
+        return this.managementType;
+    }
+
+    /**
+     * Set the managementType property: The type of management for this hostpool, Automated or Standard. The default
+     * value is Automated.
+     * 
+     * @param managementType the managementType value to set.
+     * @return the HostPoolPropertiesInner object itself.
+     */
+    public HostPoolPropertiesInner withManagementType(ManagementType managementType) {
+        this.managementType = managementType;
         return this;
     }
 
@@ -589,6 +656,110 @@ public final class HostPoolPropertiesInner implements JsonSerializable<HostPoolP
     }
 
     /**
+     * Get the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @return the managedPrivateUdp value.
+     */
+    public ManagedPrivateUdp managedPrivateUdp() {
+        return this.managedPrivateUdp;
+    }
+
+    /**
+     * Set the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @param managedPrivateUdp the managedPrivateUdp value to set.
+     * @return the HostPoolPropertiesInner object itself.
+     */
+    public HostPoolPropertiesInner withManagedPrivateUdp(ManagedPrivateUdp managedPrivateUdp) {
+        this.managedPrivateUdp = managedPrivateUdp;
+        return this;
+    }
+
+    /**
+     * Get the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the directUdp value.
+     */
+    public DirectUdp directUdp() {
+        return this.directUdp;
+    }
+
+    /**
+     * Set the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @param directUdp the directUdp value to set.
+     * @return the HostPoolPropertiesInner object itself.
+     */
+    public HostPoolPropertiesInner withDirectUdp(DirectUdp directUdp) {
+        this.directUdp = directUdp;
+        return this;
+    }
+
+    /**
+     * Get the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the publicUdp value.
+     */
+    public PublicUdp publicUdp() {
+        return this.publicUdp;
+    }
+
+    /**
+     * Set the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @param publicUdp the publicUdp value to set.
+     * @return the HostPoolPropertiesInner object itself.
+     */
+    public HostPoolPropertiesInner withPublicUdp(PublicUdp publicUdp) {
+        this.publicUdp = publicUdp;
+        return this;
+    }
+
+    /**
+     * Get the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+     * will attempt this connection type when making connections. This means that this connection is possible, but is
+     * not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not attempt
+     * this connection type when making connections.
+     * 
+     * @return the relayUdp value.
+     */
+    public RelayUdp relayUdp() {
+        return this.relayUdp;
+    }
+
+    /**
+     * Set the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+     * will attempt this connection type when making connections. This means that this connection is possible, but is
+     * not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not attempt
+     * this connection type when making connections.
+     * 
+     * @param relayUdp the relayUdp value to set.
+     * @return the HostPoolPropertiesInner object itself.
+     */
+    public HostPoolPropertiesInner withRelayUdp(RelayUdp relayUdp) {
+        this.relayUdp = relayUdp;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -643,6 +814,8 @@ public final class HostPoolPropertiesInner implements JsonSerializable<HostPoolP
         jsonWriter.writeBooleanField("validationEnvironment", this.validationEnvironment);
         jsonWriter.writeJsonField("registrationInfo", this.registrationInfo);
         jsonWriter.writeStringField("vmTemplate", this.vmTemplate);
+        jsonWriter.writeStringField("managementType",
+            this.managementType == null ? null : this.managementType.toString());
         jsonWriter.writeStringField("ssoadfsAuthority", this.ssoadfsAuthority);
         jsonWriter.writeStringField("ssoClientId", this.ssoClientId);
         jsonWriter.writeStringField("ssoClientSecretKeyVaultPath", this.ssoClientSecretKeyVaultPath);
@@ -651,6 +824,11 @@ public final class HostPoolPropertiesInner implements JsonSerializable<HostPoolP
         jsonWriter.writeStringField("publicNetworkAccess",
             this.publicNetworkAccess == null ? null : this.publicNetworkAccess.toString());
         jsonWriter.writeJsonField("agentUpdate", this.agentUpdate);
+        jsonWriter.writeStringField("managedPrivateUDP",
+            this.managedPrivateUdp == null ? null : this.managedPrivateUdp.toString());
+        jsonWriter.writeStringField("directUDP", this.directUdp == null ? null : this.directUdp.toString());
+        jsonWriter.writeStringField("publicUDP", this.publicUdp == null ? null : this.publicUdp.toString());
+        jsonWriter.writeStringField("relayUDP", this.relayUdp == null ? null : this.relayUdp.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -700,6 +878,8 @@ public final class HostPoolPropertiesInner implements JsonSerializable<HostPoolP
                     deserializedHostPoolPropertiesInner.registrationInfo = RegistrationInfoInner.fromJson(reader);
                 } else if ("vmTemplate".equals(fieldName)) {
                     deserializedHostPoolPropertiesInner.vmTemplate = reader.getString();
+                } else if ("managementType".equals(fieldName)) {
+                    deserializedHostPoolPropertiesInner.managementType = ManagementType.fromString(reader.getString());
                 } else if ("applicationGroupReferences".equals(fieldName)) {
                     List<String> applicationGroupReferences = reader.readArray(reader1 -> reader1.getString());
                     deserializedHostPoolPropertiesInner.applicationGroupReferences = applicationGroupReferences;
@@ -727,6 +907,15 @@ public final class HostPoolPropertiesInner implements JsonSerializable<HostPoolP
                     List<PrivateEndpointConnection> privateEndpointConnections
                         = reader.readArray(reader1 -> PrivateEndpointConnection.fromJson(reader1));
                     deserializedHostPoolPropertiesInner.privateEndpointConnections = privateEndpointConnections;
+                } else if ("managedPrivateUDP".equals(fieldName)) {
+                    deserializedHostPoolPropertiesInner.managedPrivateUdp
+                        = ManagedPrivateUdp.fromString(reader.getString());
+                } else if ("directUDP".equals(fieldName)) {
+                    deserializedHostPoolPropertiesInner.directUdp = DirectUdp.fromString(reader.getString());
+                } else if ("publicUDP".equals(fieldName)) {
+                    deserializedHostPoolPropertiesInner.publicUdp = PublicUdp.fromString(reader.getString());
+                } else if ("relayUDP".equals(fieldName)) {
+                    deserializedHostPoolPropertiesInner.relayUdp = RelayUdp.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

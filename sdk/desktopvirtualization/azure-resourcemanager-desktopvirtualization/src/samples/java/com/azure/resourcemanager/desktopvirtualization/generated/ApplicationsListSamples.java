@@ -10,8 +10,8 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class ApplicationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * Application_List.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-11-01-preview/
+     * examples/Application_List.json
      */
     /**
      * Sample code: Applications_List.

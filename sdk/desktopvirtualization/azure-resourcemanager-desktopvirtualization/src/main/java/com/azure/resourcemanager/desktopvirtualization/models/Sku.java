@@ -16,7 +16,7 @@ import java.io.IOException;
  * The resource model definition representing SKU.
  */
 @Fluent
-public class Sku implements JsonSerializable<Sku> {
+public final class Sku implements JsonSerializable<Sku> {
     /*
      * The name of the SKU. E.g. P3. It is typically a letter+number code
      */

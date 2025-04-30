@@ -105,7 +105,8 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("hostPoolName") String hostPoolName,
             @QueryParam("pageSize") Integer pageSize, @QueryParam("isDescending") Boolean isDescending,
-            @QueryParam("initialSkip") Integer initialSkip, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("initialSkip") Integer initialSkip, @QueryParam("vmPath") String vmPath,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -538,6 +539,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
+     * @param vmPath The path to the VM.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -545,7 +547,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SessionHostInner>> listSinglePageAsync(String resourceGroupName, String hostPoolName,
-        Integer pageSize, Boolean isDescending, Integer initialSkip) {
+        Integer pageSize, Boolean isDescending, Integer initialSkip, String vmPath) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -565,7 +567,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip,
-                accept, context))
+                vmPath, accept, context))
             .<PagedResponse<SessionHostInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -579,6 +581,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
+     * @param vmPath The path to the VM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -587,7 +590,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SessionHostInner>> listSinglePageAsync(String resourceGroupName, String hostPoolName,
-        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
+        Integer pageSize, Boolean isDescending, Integer initialSkip, String vmPath, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -607,7 +610,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
         context = this.client.mergeContext(context);
         return service
             .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, accept, context)
+                resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, vmPath, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -620,6 +623,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
+     * @param vmPath The path to the VM.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -627,9 +631,9 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<SessionHostInner> listAsync(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip) {
+        Boolean isDescending, Integer initialSkip, String vmPath) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip),
+            () -> listSinglePageAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, vmPath),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -648,8 +652,9 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
         final Integer pageSize = null;
         final Boolean isDescending = null;
         final Integer initialSkip = null;
+        final String vmPath = null;
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip),
+            () -> listSinglePageAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, vmPath),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -661,6 +666,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
+     * @param vmPath The path to the VM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -669,10 +675,9 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SessionHostInner> listAsync(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+        Boolean isDescending, Integer initialSkip, String vmPath, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, hostPoolName, pageSize, isDescending,
+            initialSkip, vmPath, context), nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -690,7 +695,9 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
         final Integer pageSize = null;
         final Boolean isDescending = null;
         final Integer initialSkip = null;
-        return new PagedIterable<>(listAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip));
+        final String vmPath = null;
+        return new PagedIterable<>(
+            listAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, vmPath));
     }
 
     /**
@@ -701,6 +708,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
+     * @param vmPath The path to the VM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -709,9 +717,9 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SessionHostInner> list(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context) {
+        Boolean isDescending, Integer initialSkip, String vmPath, Context context) {
         return new PagedIterable<>(
-            listAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, context));
+            listAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, vmPath, context));
     }
 
     /**

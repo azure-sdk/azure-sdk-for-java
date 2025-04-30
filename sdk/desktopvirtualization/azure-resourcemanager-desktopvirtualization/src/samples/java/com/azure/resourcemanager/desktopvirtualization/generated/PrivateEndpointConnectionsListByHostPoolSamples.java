@@ -10,8 +10,8 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class PrivateEndpointConnectionsListByHostPoolSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * PrivateEndpointConnection_ListByHostPool.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-11-01-preview/
+     * examples/PrivateEndpointConnection_ListByHostPool.json
      */
     /**
      * Sample code: PrivateEndpointConnection_ListByHostPool.

@@ -10,8 +10,8 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class AppAttachPackageListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * AppAttachPackage_ListByResourceGroup.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-11-01-preview/
+     * examples/AppAttachPackage_ListByResourceGroup.json
      */
     /**
      * Sample code: AppAttachPackage_ListByResourceGroup.

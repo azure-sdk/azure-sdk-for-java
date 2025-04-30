@@ -16,7 +16,8 @@ import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a RegistrationInfo definition.
+ * Represents a RegistrationInfo definition. This is not returned on HostPool GET. In order to get the registration
+ * token use the retrieveRegistrationToken or listRegistrationTokens POST calls.
  */
 @Fluent
 public final class RegistrationInfoInner implements JsonSerializable<RegistrationInfoInner> {

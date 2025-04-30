@@ -102,6 +102,75 @@ public final class SessionHostInner extends ProxyResource {
     }
 
     /**
+     * Get the activeSessions property: Number of active sessions on SessionHost.
+     * 
+     * @return the activeSessions value.
+     */
+    public Integer activeSessions() {
+        return this.innerProperties() == null ? null : this.innerProperties().activeSessions();
+    }
+
+    /**
+     * Set the activeSessions property: Number of active sessions on SessionHost.
+     * 
+     * @param activeSessions the activeSessions value to set.
+     * @return the SessionHostInner object itself.
+     */
+    public SessionHostInner withActiveSessions(Integer activeSessions) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SessionHostProperties();
+        }
+        this.innerProperties().withActiveSessions(activeSessions);
+        return this;
+    }
+
+    /**
+     * Get the disconnectedSessions property: Number of disconnected sessions on SessionHost.
+     * 
+     * @return the disconnectedSessions value.
+     */
+    public Integer disconnectedSessions() {
+        return this.innerProperties() == null ? null : this.innerProperties().disconnectedSessions();
+    }
+
+    /**
+     * Set the disconnectedSessions property: Number of disconnected sessions on SessionHost.
+     * 
+     * @param disconnectedSessions the disconnectedSessions value to set.
+     * @return the SessionHostInner object itself.
+     */
+    public SessionHostInner withDisconnectedSessions(Integer disconnectedSessions) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SessionHostProperties();
+        }
+        this.innerProperties().withDisconnectedSessions(disconnectedSessions);
+        return this;
+    }
+
+    /**
+     * Get the pendingSessions property: Number of pending sessions on SessionHost.
+     * 
+     * @return the pendingSessions value.
+     */
+    public Integer pendingSessions() {
+        return this.innerProperties() == null ? null : this.innerProperties().pendingSessions();
+    }
+
+    /**
+     * Set the pendingSessions property: Number of pending sessions on SessionHost.
+     * 
+     * @param pendingSessions the pendingSessions value to set.
+     * @return the SessionHostInner object itself.
+     */
+    public SessionHostInner withPendingSessions(Integer pendingSessions) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SessionHostProperties();
+        }
+        this.innerProperties().withPendingSessions(pendingSessions);
+        return this;
+    }
+
+    /**
      * Get the objectId property: ObjectId of SessionHost. (internal use).
      * 
      * @return the objectId value.
@@ -397,6 +466,25 @@ public final class SessionHostInner extends ProxyResource {
         }
         this.innerProperties().withUpdateErrorMessage(updateErrorMessage);
         return this;
+    }
+
+    /**
+     * Get the lastSessionHostUpdateTime property: The last time update was completed.
+     * 
+     * @return the lastSessionHostUpdateTime value.
+     */
+    public OffsetDateTime lastSessionHostUpdateTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastSessionHostUpdateTime();
+    }
+
+    /**
+     * Get the sessionHostConfiguration property: SessionHostConfiguration version reference at the time the update is
+     * initiated, in the format of date time. Example: 2024-04-26T04:56:45Z.
+     * 
+     * @return the sessionHostConfiguration value.
+     */
+    public String sessionHostConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().sessionHostConfiguration();
     }
 
     /**

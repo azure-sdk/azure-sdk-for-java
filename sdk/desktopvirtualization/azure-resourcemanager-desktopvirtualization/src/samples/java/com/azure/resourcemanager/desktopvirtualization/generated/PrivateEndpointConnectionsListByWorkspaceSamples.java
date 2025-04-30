@@ -10,8 +10,8 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class PrivateEndpointConnectionsListByWorkspaceSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * PrivateEndpointConnection_ListByWorkspace.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-11-01-preview/
+     * examples/PrivateEndpointConnection_ListByWorkspace.json
      */
     /**
      * Sample code: PrivateEndpointConnection_ListByWorkspace.

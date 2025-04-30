@@ -14,8 +14,8 @@ import com.azure.resourcemanager.desktopvirtualization.models.PrivateLinkService
 public final class PrivateEndpointConnectionsUpdateByHostPoolSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * PrivateEndpointConnection_UpdateByHostPool.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-11-01-preview/
+     * examples/PrivateEndpointConnection_UpdateByHostPool.json
      */
     /**
      * Sample code: PrivateEndpointConnection_UpdateByHostPool.
