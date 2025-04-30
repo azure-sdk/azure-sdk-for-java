@@ -58,6 +58,29 @@ public final class AppsCheckNameAvailabilitySamples {
 ### Apps_CheckSubdomainAvailability
 
 ```java
+/**
+ * Samples for Apps ListByResourceGroup.
+ */
+public final class AppsListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/
+     * Apps_ListByResourceGroup.json
+     */
+    /**
+     * Sample code: Apps_ListByResourceGroup.
+     * 
+     * @param manager Entry point to IotCentralManager.
+     */
+    public static void appsListByResourceGroup(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
+        manager.apps().listByResourceGroup("resRg", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Apps_CreateOrUpdate
+
+```java
 import com.azure.resourcemanager.iotcentral.models.OperationInputs;
 
 /**
@@ -83,7 +106,86 @@ public final class AppsCheckSubdomainAvailabilitySamples {
 }
 ```
 
-### Apps_CreateOrUpdate
+### Apps_Delete
+
+```java
+import com.azure.resourcemanager.iotcentral.models.PrivateEndpointServiceConnectionStatus;
+import com.azure.resourcemanager.iotcentral.models.PrivateLinkServiceConnectionState;
+
+/**
+ * Samples for PrivateEndpointConnections Create.
+ */
+public final class PrivateEndpointConnectionsCreateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/
+     * PrivateEndpointConnections_Update.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnections_Update.
+     * 
+     * @param manager Entry point to IotCentralManager.
+     */
+    public static void
+        privateEndpointConnectionsUpdate(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
+        manager.privateEndpointConnections()
+            .define("myIoTCentralAppEndpoint")
+            .withExistingIotApp("resRg", "myIoTCentralApp")
+            .withPrivateLinkServiceConnectionState(
+                new PrivateLinkServiceConnectionState().withStatus(PrivateEndpointServiceConnectionStatus.APPROVED)
+                    .withDescription("Auto-approved")
+                    .withActionsRequired("None"))
+            .create();
+    }
+}
+```
+
+### Apps_GetByResourceGroup
+
+```java
+/**
+ * Samples for Apps GetByResourceGroup.
+ */
+public final class AppsGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/Apps_Get.json
+     */
+    /**
+     * Sample code: Apps_Get.
+     * 
+     * @param manager Entry point to IotCentralManager.
+     */
+    public static void appsGet(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
+        manager.apps().getByResourceGroupWithResponse("resRg", "myIoTCentralApp", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Apps_List
+
+```java
+/**
+ * Samples for PrivateLinks List.
+ */
+public final class PrivateLinksListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/
+     * PrivateLinks_List.json
+     */
+    /**
+     * Sample code: PrivateLinks_List.
+     * 
+     * @param manager Entry point to IotCentralManager.
+     */
+    public static void privateLinksList(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
+        manager.privateLinks().list("resRg", "myIoTCentralApp", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Apps_ListByResourceGroup
 
 ```java
 import com.azure.resourcemanager.iotcentral.models.AppSku;
@@ -121,7 +223,7 @@ public final class AppsCreateOrUpdateSamples {
 }
 ```
 
-### Apps_Delete
+### Apps_ListTemplates
 
 ```java
 /**
@@ -144,29 +246,30 @@ public final class AppsDeleteSamples {
 }
 ```
 
-### Apps_GetByResourceGroup
+### Apps_Update
 
 ```java
 /**
- * Samples for Apps GetByResourceGroup.
+ * Samples for PrivateLinks Get.
  */
-public final class AppsGetByResourceGroupSamples {
+public final class PrivateLinksGetSamples {
     /*
      * x-ms-original-file:
-     * specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/Apps_Get.json
+     * specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/
+     * PrivateLinks_Get.json
      */
     /**
-     * Sample code: Apps_Get.
+     * Sample code: PrivateLinks_Get.
      * 
      * @param manager Entry point to IotCentralManager.
      */
-    public static void appsGet(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
-        manager.apps().getByResourceGroupWithResponse("resRg", "myIoTCentralApp", com.azure.core.util.Context.NONE);
+    public static void privateLinksGet(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
+        manager.privateLinks().getWithResponse("resRg", "myIoTCentralApp", "iotApp", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Apps_List
+### Operations_List
 
 ```java
 /**
@@ -189,53 +292,7 @@ public final class AppsListSamples {
 }
 ```
 
-### Apps_ListByResourceGroup
-
-```java
-/**
- * Samples for Apps ListByResourceGroup.
- */
-public final class AppsListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/
-     * Apps_ListByResourceGroup.json
-     */
-    /**
-     * Sample code: Apps_ListByResourceGroup.
-     * 
-     * @param manager Entry point to IotCentralManager.
-     */
-    public static void appsListByResourceGroup(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
-        manager.apps().listByResourceGroup("resRg", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Apps_ListTemplates
-
-```java
-/**
- * Samples for Apps ListTemplates.
- */
-public final class AppsListTemplatesSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/Apps_Templates
-     * .json
-     */
-    /**
-     * Sample code: Apps_ListTemplates.
-     * 
-     * @param manager Entry point to IotCentralManager.
-     */
-    public static void appsListTemplates(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
-        manager.apps().listTemplates(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Apps_Update
+### PrivateEndpointConnections_Create
 
 ```java
 import com.azure.resourcemanager.iotcentral.models.AppPatch;
@@ -268,7 +325,7 @@ public final class AppsUpdateSamples {
 }
 ```
 
-### Operations_List
+### PrivateEndpointConnections_Delete
 
 ```java
 /**
@@ -291,66 +348,53 @@ public final class OperationsListSamples {
 }
 ```
 
-### PrivateEndpointConnections_Create
-
-```java
-import com.azure.resourcemanager.iotcentral.models.PrivateEndpointServiceConnectionStatus;
-import com.azure.resourcemanager.iotcentral.models.PrivateLinkServiceConnectionState;
-
-/**
- * Samples for PrivateEndpointConnections Create.
- */
-public final class PrivateEndpointConnectionsCreateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/
-     * PrivateEndpointConnections_Update.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnections_Update.
-     * 
-     * @param manager Entry point to IotCentralManager.
-     */
-    public static void
-        privateEndpointConnectionsUpdate(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
-        manager.privateEndpointConnections()
-            .define("myIoTCentralAppEndpoint")
-            .withExistingIotApp("resRg", "myIoTCentralApp")
-            .withPrivateLinkServiceConnectionState(
-                new PrivateLinkServiceConnectionState().withStatus(PrivateEndpointServiceConnectionStatus.APPROVED)
-                    .withDescription("Auto-approved")
-                    .withActionsRequired("None"))
-            .create();
-    }
-}
-```
-
-### PrivateEndpointConnections_Delete
-
-```java
-/**
- * Samples for PrivateEndpointConnections Delete.
- */
-public final class PrivateEndpointConnectionsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/
-     * PrivateEndpointConnections_Delete.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnections_Delete.
-     * 
-     * @param manager Entry point to IotCentralManager.
-     */
-    public static void
-        privateEndpointConnectionsDelete(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
-        manager.privateEndpointConnections()
-            .delete("resRg", "myIoTCentralApp", "myIoTCentralAppEndpoint", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### PrivateEndpointConnections_Get
+
+```java
+/**
+ * Samples for PrivateEndpointConnections List.
+ */
+public final class PrivateEndpointConnectionsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/
+     * PrivateEndpointConnections_List.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnections_List.
+     * 
+     * @param manager Entry point to IotCentralManager.
+     */
+    public static void privateEndpointConnectionsList(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
+        manager.privateEndpointConnections().list("resRg", "myIoTCentralApp", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_List
+
+```java
+/**
+ * Samples for Apps ListTemplates.
+ */
+public final class AppsListTemplatesSamples {
+    /*
+     * x-ms-original-file:
+     * specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/Apps_Templates
+     * .json
+     */
+    /**
+     * Sample code: Apps_ListTemplates.
+     * 
+     * @param manager Entry point to IotCentralManager.
+     */
+    public static void appsListTemplates(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
+        manager.apps().listTemplates(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateLinks_Get
 
 ```java
 /**
@@ -374,71 +418,27 @@ public final class PrivateEndpointConnectionsGetSamples {
 }
 ```
 
-### PrivateEndpointConnections_List
-
-```java
-/**
- * Samples for PrivateEndpointConnections List.
- */
-public final class PrivateEndpointConnectionsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/
-     * PrivateEndpointConnections_List.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnections_List.
-     * 
-     * @param manager Entry point to IotCentralManager.
-     */
-    public static void privateEndpointConnectionsList(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
-        manager.privateEndpointConnections().list("resRg", "myIoTCentralApp", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateLinks_Get
-
-```java
-/**
- * Samples for PrivateLinks Get.
- */
-public final class PrivateLinksGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/
-     * PrivateLinks_Get.json
-     */
-    /**
-     * Sample code: PrivateLinks_Get.
-     * 
-     * @param manager Entry point to IotCentralManager.
-     */
-    public static void privateLinksGet(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
-        manager.privateLinks().getWithResponse("resRg", "myIoTCentralApp", "iotApp", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### PrivateLinks_List
 
 ```java
 /**
- * Samples for PrivateLinks List.
+ * Samples for PrivateEndpointConnections Delete.
  */
-public final class PrivateLinksListSamples {
+public final class PrivateEndpointConnectionsDeleteSamples {
     /*
      * x-ms-original-file:
      * specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/
-     * PrivateLinks_List.json
+     * PrivateEndpointConnections_Delete.json
      */
     /**
-     * Sample code: PrivateLinks_List.
+     * Sample code: PrivateEndpointConnections_Delete.
      * 
      * @param manager Entry point to IotCentralManager.
      */
-    public static void privateLinksList(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
-        manager.privateLinks().list("resRg", "myIoTCentralApp", com.azure.core.util.Context.NONE);
+    public static void
+        privateEndpointConnectionsDelete(com.azure.resourcemanager.iotcentral.IotCentralManager manager) {
+        manager.privateEndpointConnections()
+            .delete("resRg", "myIoTCentralApp", "myIoTCentralAppEndpoint", com.azure.core.util.Context.NONE);
     }
 }
 ```
