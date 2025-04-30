@@ -11,7 +11,11 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridnetwork.fluent.ArtifactStoresClient;
 import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStoreInner;
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner;
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStorePrivateEndPointsFormatInner;
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactStore;
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactStoreNetworkFabricControllerEndPoints;
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactStorePrivateEndPointsFormat;
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactStores;
 
 public final class ArtifactStoresImpl implements ArtifactStores {
@@ -67,6 +71,86 @@ public final class ArtifactStoresImpl implements ArtifactStores {
         } else {
             return null;
         }
+    }
+
+    public void addNetworkFabricControllerEndPoints(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters) {
+        this.serviceClient()
+            .addNetworkFabricControllerEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters);
+    }
+
+    public void addNetworkFabricControllerEndPoints(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters, Context context) {
+        this.serviceClient()
+            .addNetworkFabricControllerEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters,
+                context);
+    }
+
+    public void deleteNetworkFabricControllerEndPoints(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters) {
+        this.serviceClient()
+            .deleteNetworkFabricControllerEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters);
+    }
+
+    public void deleteNetworkFabricControllerEndPoints(String resourceGroupName, String publisherName,
+        String artifactStoreName, ArtifactStoreNetworkFabricControllerEndPointsInner parameters, Context context) {
+        this.serviceClient()
+            .deleteNetworkFabricControllerEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters,
+                context);
+    }
+
+    public PagedIterable<ArtifactStoreNetworkFabricControllerEndPoints> listNetworkFabricControllerPrivateEndPoints(
+        String resourceGroupName, String publisherName, String artifactStoreName) {
+        PagedIterable<ArtifactStoreNetworkFabricControllerEndPointsInner> inner = this.serviceClient()
+            .listNetworkFabricControllerPrivateEndPoints(resourceGroupName, publisherName, artifactStoreName);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new ArtifactStoreNetworkFabricControllerEndPointsImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ArtifactStoreNetworkFabricControllerEndPoints> listNetworkFabricControllerPrivateEndPoints(
+        String resourceGroupName, String publisherName, String artifactStoreName, Context context) {
+        PagedIterable<ArtifactStoreNetworkFabricControllerEndPointsInner> inner = this.serviceClient()
+            .listNetworkFabricControllerPrivateEndPoints(resourceGroupName, publisherName, artifactStoreName, context);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new ArtifactStoreNetworkFabricControllerEndPointsImpl(inner1, this.manager()));
+    }
+
+    public void approvePrivateEndPoints(String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStorePrivateEndPointsFormatInner parameters) {
+        this.serviceClient().approvePrivateEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters);
+    }
+
+    public void approvePrivateEndPoints(String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStorePrivateEndPointsFormatInner parameters, Context context) {
+        this.serviceClient()
+            .approvePrivateEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters, context);
+    }
+
+    public void removePrivateEndPoints(String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStorePrivateEndPointsFormatInner parameters) {
+        this.serviceClient().removePrivateEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters);
+    }
+
+    public void removePrivateEndPoints(String resourceGroupName, String publisherName, String artifactStoreName,
+        ArtifactStorePrivateEndPointsFormatInner parameters, Context context) {
+        this.serviceClient()
+            .removePrivateEndPoints(resourceGroupName, publisherName, artifactStoreName, parameters, context);
+    }
+
+    public PagedIterable<ArtifactStorePrivateEndPointsFormat> listPrivateEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName) {
+        PagedIterable<ArtifactStorePrivateEndPointsFormatInner> inner
+            = this.serviceClient().listPrivateEndPoints(resourceGroupName, publisherName, artifactStoreName);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new ArtifactStorePrivateEndPointsFormatImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ArtifactStorePrivateEndPointsFormat> listPrivateEndPoints(String resourceGroupName,
+        String publisherName, String artifactStoreName, Context context) {
+        PagedIterable<ArtifactStorePrivateEndPointsFormatInner> inner
+            = this.serviceClient().listPrivateEndPoints(resourceGroupName, publisherName, artifactStoreName, context);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new ArtifactStorePrivateEndPointsFormatImpl(inner1, this.manager()));
     }
 
     public ArtifactStore getById(String id) {

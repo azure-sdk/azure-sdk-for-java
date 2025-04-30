@@ -68,6 +68,54 @@ public final class NetworkFunctionValueWithSecrets extends NetworkFunctionProper
      * {@inheritDoc}
      */
     @Override
+    public NetworkFunctionValueWithSecrets withPublisherName(String publisherName) {
+        super.withPublisherName(publisherName);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public NetworkFunctionValueWithSecrets withPublisherScope(PublisherScope publisherScope) {
+        super.withPublisherScope(publisherScope);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public NetworkFunctionValueWithSecrets
+        withNetworkFunctionDefinitionGroupName(String networkFunctionDefinitionGroupName) {
+        super.withNetworkFunctionDefinitionGroupName(networkFunctionDefinitionGroupName);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public NetworkFunctionValueWithSecrets
+        withNetworkFunctionDefinitionVersion(String networkFunctionDefinitionVersion) {
+        super.withNetworkFunctionDefinitionVersion(networkFunctionDefinitionVersion);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public NetworkFunctionValueWithSecrets
+        withNetworkFunctionDefinitionOfferingLocation(String networkFunctionDefinitionOfferingLocation) {
+        super.withNetworkFunctionDefinitionOfferingLocation(networkFunctionDefinitionOfferingLocation);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public NetworkFunctionValueWithSecrets withNetworkFunctionDefinitionVersionResourceReference(
         DeploymentResourceIdReference networkFunctionDefinitionVersionResourceReference) {
         super.withNetworkFunctionDefinitionVersionResourceReference(networkFunctionDefinitionVersionResourceReference);
@@ -128,6 +176,12 @@ public final class NetworkFunctionValueWithSecrets extends NetworkFunctionProper
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("publisherName", publisherName());
+        jsonWriter.writeStringField("publisherScope", publisherScope() == null ? null : publisherScope().toString());
+        jsonWriter.writeStringField("networkFunctionDefinitionGroupName", networkFunctionDefinitionGroupName());
+        jsonWriter.writeStringField("networkFunctionDefinitionVersion", networkFunctionDefinitionVersion());
+        jsonWriter.writeStringField("networkFunctionDefinitionOfferingLocation",
+            networkFunctionDefinitionOfferingLocation());
         jsonWriter.writeJsonField("networkFunctionDefinitionVersionResourceReference",
             networkFunctionDefinitionVersionResourceReference());
         jsonWriter.writeStringField("nfviType", nfviType() == null ? null : nfviType().toString());

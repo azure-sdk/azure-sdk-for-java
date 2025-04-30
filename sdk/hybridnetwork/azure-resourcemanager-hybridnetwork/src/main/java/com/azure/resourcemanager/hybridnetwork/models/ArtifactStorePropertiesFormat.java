@@ -27,6 +27,11 @@ public final class ArtifactStorePropertiesFormat implements JsonSerializable<Art
     private ArtifactStoreType storeType;
 
     /*
+     * The artifact store backing resource network access type
+     */
+    private BackingResourcePublicNetworkAccess backingResourcePublicNetworkAccess;
+
+    /*
      * The replication strategy.
      */
     private ArtifactReplicationStrategy replicationStrategy;
@@ -73,6 +78,27 @@ public final class ArtifactStorePropertiesFormat implements JsonSerializable<Art
      */
     public ArtifactStorePropertiesFormat withStoreType(ArtifactStoreType storeType) {
         this.storeType = storeType;
+        return this;
+    }
+
+    /**
+     * Get the backingResourcePublicNetworkAccess property: The artifact store backing resource network access type.
+     * 
+     * @return the backingResourcePublicNetworkAccess value.
+     */
+    public BackingResourcePublicNetworkAccess backingResourcePublicNetworkAccess() {
+        return this.backingResourcePublicNetworkAccess;
+    }
+
+    /**
+     * Set the backingResourcePublicNetworkAccess property: The artifact store backing resource network access type.
+     * 
+     * @param backingResourcePublicNetworkAccess the backingResourcePublicNetworkAccess value to set.
+     * @return the ArtifactStorePropertiesFormat object itself.
+     */
+    public ArtifactStorePropertiesFormat
+        withBackingResourcePublicNetworkAccess(BackingResourcePublicNetworkAccess backingResourcePublicNetworkAccess) {
+        this.backingResourcePublicNetworkAccess = backingResourcePublicNetworkAccess;
         return this;
     }
 
@@ -144,6 +170,10 @@ public final class ArtifactStorePropertiesFormat implements JsonSerializable<Art
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("storeType", this.storeType == null ? null : this.storeType.toString());
+        jsonWriter.writeStringField("backingResourcePublicNetworkAccess",
+            this.backingResourcePublicNetworkAccess == null
+                ? null
+                : this.backingResourcePublicNetworkAccess.toString());
         jsonWriter.writeStringField("replicationStrategy",
             this.replicationStrategy == null ? null : this.replicationStrategy.toString());
         jsonWriter.writeJsonField("managedResourceGroupConfiguration", this.managedResourceGroupConfiguration);
@@ -172,6 +202,9 @@ public final class ArtifactStorePropertiesFormat implements JsonSerializable<Art
                 } else if ("storeType".equals(fieldName)) {
                     deserializedArtifactStorePropertiesFormat.storeType
                         = ArtifactStoreType.fromString(reader.getString());
+                } else if ("backingResourcePublicNetworkAccess".equals(fieldName)) {
+                    deserializedArtifactStorePropertiesFormat.backingResourcePublicNetworkAccess
+                        = BackingResourcePublicNetworkAccess.fromString(reader.getString());
                 } else if ("replicationStrategy".equals(fieldName)) {
                     deserializedArtifactStorePropertiesFormat.replicationStrategy
                         = ArtifactReplicationStrategy.fromString(reader.getString());

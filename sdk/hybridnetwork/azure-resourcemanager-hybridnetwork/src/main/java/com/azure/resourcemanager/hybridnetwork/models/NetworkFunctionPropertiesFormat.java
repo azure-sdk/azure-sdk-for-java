@@ -128,7 +128,7 @@ public class NetworkFunctionPropertiesFormat implements JsonSerializable<Network
      * @param publisherName the publisherName value to set.
      * @return the NetworkFunctionPropertiesFormat object itself.
      */
-    NetworkFunctionPropertiesFormat withPublisherName(String publisherName) {
+    public NetworkFunctionPropertiesFormat withPublisherName(String publisherName) {
         this.publisherName = publisherName;
         return this;
     }
@@ -148,7 +148,7 @@ public class NetworkFunctionPropertiesFormat implements JsonSerializable<Network
      * @param publisherScope the publisherScope value to set.
      * @return the NetworkFunctionPropertiesFormat object itself.
      */
-    NetworkFunctionPropertiesFormat withPublisherScope(PublisherScope publisherScope) {
+    public NetworkFunctionPropertiesFormat withPublisherScope(PublisherScope publisherScope) {
         this.publisherScope = publisherScope;
         return this;
     }
@@ -170,7 +170,8 @@ public class NetworkFunctionPropertiesFormat implements JsonSerializable<Network
      * @param networkFunctionDefinitionGroupName the networkFunctionDefinitionGroupName value to set.
      * @return the NetworkFunctionPropertiesFormat object itself.
      */
-    NetworkFunctionPropertiesFormat withNetworkFunctionDefinitionGroupName(String networkFunctionDefinitionGroupName) {
+    public NetworkFunctionPropertiesFormat
+        withNetworkFunctionDefinitionGroupName(String networkFunctionDefinitionGroupName) {
         this.networkFunctionDefinitionGroupName = networkFunctionDefinitionGroupName;
         return this;
     }
@@ -192,7 +193,8 @@ public class NetworkFunctionPropertiesFormat implements JsonSerializable<Network
      * @param networkFunctionDefinitionVersion the networkFunctionDefinitionVersion value to set.
      * @return the NetworkFunctionPropertiesFormat object itself.
      */
-    NetworkFunctionPropertiesFormat withNetworkFunctionDefinitionVersion(String networkFunctionDefinitionVersion) {
+    public NetworkFunctionPropertiesFormat
+        withNetworkFunctionDefinitionVersion(String networkFunctionDefinitionVersion) {
         this.networkFunctionDefinitionVersion = networkFunctionDefinitionVersion;
         return this;
     }
@@ -214,7 +216,7 @@ public class NetworkFunctionPropertiesFormat implements JsonSerializable<Network
      * @param networkFunctionDefinitionOfferingLocation the networkFunctionDefinitionOfferingLocation value to set.
      * @return the NetworkFunctionPropertiesFormat object itself.
      */
-    NetworkFunctionPropertiesFormat
+    public NetworkFunctionPropertiesFormat
         withNetworkFunctionDefinitionOfferingLocation(String networkFunctionDefinitionOfferingLocation) {
         this.networkFunctionDefinitionOfferingLocation = networkFunctionDefinitionOfferingLocation;
         return this;
@@ -343,6 +345,13 @@ public class NetworkFunctionPropertiesFormat implements JsonSerializable<Network
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("configurationType",
             this.configurationType == null ? null : this.configurationType.toString());
+        jsonWriter.writeStringField("publisherName", this.publisherName);
+        jsonWriter.writeStringField("publisherScope",
+            this.publisherScope == null ? null : this.publisherScope.toString());
+        jsonWriter.writeStringField("networkFunctionDefinitionGroupName", this.networkFunctionDefinitionGroupName);
+        jsonWriter.writeStringField("networkFunctionDefinitionVersion", this.networkFunctionDefinitionVersion);
+        jsonWriter.writeStringField("networkFunctionDefinitionOfferingLocation",
+            this.networkFunctionDefinitionOfferingLocation);
         jsonWriter.writeJsonField("networkFunctionDefinitionVersionResourceReference",
             this.networkFunctionDefinitionVersionResourceReference);
         jsonWriter.writeStringField("nfviType", this.nfviType == null ? null : this.nfviType.toString());

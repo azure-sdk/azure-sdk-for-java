@@ -46,7 +46,7 @@ import java.util.Arrays;
 public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/AzureCore/
      * VirtualNetworkFunctionDefinitionVersionCreate.json
      */
     /**
@@ -101,7 +101,7 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * AzureOperatorNexus/VirtualNetworkFunctionDefinitionVersionCreate.json
      */
     /**
@@ -157,7 +157,7 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionVersionCreate.json
      */
     /**
@@ -195,10 +195,10 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
                                     .withValues("")
                                     .withOptions(new HelmMappingRuleProfileOptions()
                                         .withInstallOptions(new HelmInstallOptions().withAtomic("true")
-                                            .withWaitOption("true")
+                                            .withWaitOption("waitValue")
                                             .withTimeout("30"))
                                         .withUpgradeOptions(new HelmUpgradeOptions().withAtomic("true")
-                                            .withWaitOption("true")
+                                            .withWaitOption("waitValue")
                                             .withTimeout("30")))))))))
             .create();
     }

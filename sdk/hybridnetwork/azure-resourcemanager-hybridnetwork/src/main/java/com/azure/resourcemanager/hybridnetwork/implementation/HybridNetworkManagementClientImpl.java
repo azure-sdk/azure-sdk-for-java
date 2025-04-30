@@ -364,7 +364,7 @@ public final class HybridNetworkManagementClientImpl implements HybridNetworkMan
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-09-01";
+        this.apiVersion = "2024-04-15";
         this.configurationGroupSchemas = new ConfigurationGroupSchemasClientImpl(this);
         this.configurationGroupValues = new ConfigurationGroupValuesClientImpl(this);
         this.networkFunctions = new NetworkFunctionsClientImpl(this);

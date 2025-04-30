@@ -4,10 +4,13 @@
 
 package com.azure.resourcemanager.hybridnetwork.models;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStoreInner;
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner;
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStorePrivateEndPointsFormatInner;
 import java.util.Map;
 
 /**
@@ -250,4 +253,131 @@ public interface ArtifactStore {
      * @return the refreshed resource.
      */
     ArtifactStore refresh(Context context);
+
+    /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void addNetworkFabricControllerEndPoints(ArtifactStoreNetworkFabricControllerEndPointsInner parameters);
+
+    /**
+     * Add network fabric controllers to artifact stores.
+     * 
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void addNetworkFabricControllerEndPoints(ArtifactStoreNetworkFabricControllerEndPointsInner parameters,
+        Context context);
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteNetworkFabricControllerEndPoints(ArtifactStoreNetworkFabricControllerEndPointsInner parameters);
+
+    /**
+     * Delete network fabric controllers on artifact stores.
+     * 
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteNetworkFabricControllerEndPoints(ArtifactStoreNetworkFabricControllerEndPointsInner parameters,
+        Context context);
+
+    /**
+     * List network fabric controllers to artifact stores.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ArtifactStoreNetworkFabricControllerEndPoints> listNetworkFabricControllerPrivateEndPoints();
+
+    /**
+     * List network fabric controllers to artifact stores.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ArtifactStoreNetworkFabricControllerEndPoints>
+        listNetworkFabricControllerPrivateEndPoints(Context context);
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void approvePrivateEndPoints(ArtifactStorePrivateEndPointsFormatInner parameters);
+
+    /**
+     * Approve manual private endpoints on artifact stores.
+     * 
+     * @param parameters Parameters supplied to approve private endpoints.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void approvePrivateEndPoints(ArtifactStorePrivateEndPointsFormatInner parameters, Context context);
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void removePrivateEndPoints(ArtifactStorePrivateEndPointsFormatInner parameters);
+
+    /**
+     * Remove manual private endpoints on artifact stores.
+     * 
+     * @param parameters Parameters supplied to the create or update application group operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void removePrivateEndPoints(ArtifactStorePrivateEndPointsFormatInner parameters, Context context);
+
+    /**
+     * List manual private endpoints on artifact stores.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ArtifactStorePrivateEndPointsFormat> listPrivateEndPoints();
+
+    /**
+     * List manual private endpoints on artifact stores.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of manual private endpoints as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ArtifactStorePrivateEndPointsFormat> listPrivateEndPoints(Context context);
 }
