@@ -26,6 +26,11 @@ public final class GuestCredential implements JsonSerializable<GuestCredential> 
      */
     private String password;
 
+    /*
+     * Private key used to authenticate to a virtual machine through ssh.
+     */
+    private String privateKey;
+
     /**
      * Creates an instance of GuestCredential class.
      */
@@ -73,6 +78,26 @@ public final class GuestCredential implements JsonSerializable<GuestCredential> 
     }
 
     /**
+     * Get the privateKey property: Private key used to authenticate to a virtual machine through ssh.
+     * 
+     * @return the privateKey value.
+     */
+    public String privateKey() {
+        return this.privateKey;
+    }
+
+    /**
+     * Set the privateKey property: Private key used to authenticate to a virtual machine through ssh.
+     * 
+     * @param privateKey the privateKey value to set.
+     * @return the GuestCredential object itself.
+     */
+    public GuestCredential withPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -88,6 +113,7 @@ public final class GuestCredential implements JsonSerializable<GuestCredential> 
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("username", this.username);
         jsonWriter.writeStringField("password", this.password);
+        jsonWriter.writeStringField("privateKey", this.privateKey);
         return jsonWriter.writeEndObject();
     }
 
@@ -110,6 +136,8 @@ public final class GuestCredential implements JsonSerializable<GuestCredential> 
                     deserializedGuestCredential.username = reader.getString();
                 } else if ("password".equals(fieldName)) {
                     deserializedGuestCredential.password = reader.getString();
+                } else if ("privateKey".equals(fieldName)) {
+                    deserializedGuestCredential.privateKey = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

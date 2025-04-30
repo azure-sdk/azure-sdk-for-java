@@ -25,6 +25,36 @@ public final class HostInventoryItem extends InventoryItemProperties {
      */
     private InventoryItemDetails parent;
 
+    /*
+     * Gets or sets the number of cores per socket on the host.
+     */
+    private Integer numCoresPerSocket;
+
+    /*
+     * Gets or sets the number of sockets on the host.
+     */
+    private Integer numSockets;
+
+    /*
+     * Gets or sets the version of the host.
+     */
+    private String version;
+
+    /*
+     * Gets or sets the cpu model of the host.
+     */
+    private String cpuModel;
+
+    /*
+     * Gets the total amount of physical memory on the host in GB.
+     */
+    private Long memorySizeGB;
+
+    /*
+     * Gets or sets the power state of the host.
+     */
+    private String powerState;
+
     /**
      * Creates an instance of HostInventoryItem class.
      */
@@ -59,6 +89,60 @@ public final class HostInventoryItem extends InventoryItemProperties {
     public HostInventoryItem withParent(InventoryItemDetails parent) {
         this.parent = parent;
         return this;
+    }
+
+    /**
+     * Get the numCoresPerSocket property: Gets or sets the number of cores per socket on the host.
+     * 
+     * @return the numCoresPerSocket value.
+     */
+    public Integer numCoresPerSocket() {
+        return this.numCoresPerSocket;
+    }
+
+    /**
+     * Get the numSockets property: Gets or sets the number of sockets on the host.
+     * 
+     * @return the numSockets value.
+     */
+    public Integer numSockets() {
+        return this.numSockets;
+    }
+
+    /**
+     * Get the version property: Gets or sets the version of the host.
+     * 
+     * @return the version value.
+     */
+    public String version() {
+        return this.version;
+    }
+
+    /**
+     * Get the cpuModel property: Gets or sets the cpu model of the host.
+     * 
+     * @return the cpuModel value.
+     */
+    public String cpuModel() {
+        return this.cpuModel;
+    }
+
+    /**
+     * Get the memorySizeGB property: Gets the total amount of physical memory on the host in GB.
+     * 
+     * @return the memorySizeGB value.
+     */
+    public Long memorySizeGB() {
+        return this.memorySizeGB;
+    }
+
+    /**
+     * Get the powerState property: Gets or sets the power state of the host.
+     * 
+     * @return the powerState value.
+     */
+    public String powerState() {
+        return this.powerState;
     }
 
     /**
@@ -142,6 +226,18 @@ public final class HostInventoryItem extends InventoryItemProperties {
                     deserializedHostInventoryItem.inventoryType = InventoryType.fromString(reader.getString());
                 } else if ("parent".equals(fieldName)) {
                     deserializedHostInventoryItem.parent = InventoryItemDetails.fromJson(reader);
+                } else if ("numCoresPerSocket".equals(fieldName)) {
+                    deserializedHostInventoryItem.numCoresPerSocket = reader.getNullable(JsonReader::getInt);
+                } else if ("numSockets".equals(fieldName)) {
+                    deserializedHostInventoryItem.numSockets = reader.getNullable(JsonReader::getInt);
+                } else if ("version".equals(fieldName)) {
+                    deserializedHostInventoryItem.version = reader.getString();
+                } else if ("cpuModel".equals(fieldName)) {
+                    deserializedHostInventoryItem.cpuModel = reader.getString();
+                } else if ("memorySizeGB".equals(fieldName)) {
+                    deserializedHostInventoryItem.memorySizeGB = reader.getNullable(JsonReader::getLong);
+                } else if ("powerState".equals(fieldName)) {
+                    deserializedHostInventoryItem.powerState = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

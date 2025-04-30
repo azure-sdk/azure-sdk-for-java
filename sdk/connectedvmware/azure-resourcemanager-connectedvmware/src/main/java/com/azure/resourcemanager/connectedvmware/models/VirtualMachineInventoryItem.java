@@ -86,6 +86,61 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
      */
     private String toolsVersion;
 
+    /*
+     * Firmware type
+     */
+    private FirmwareType firmwareType;
+
+    /*
+     * Gets a value indicating whether change tracking is supported.
+     */
+    private Boolean changeTrackingSupported;
+
+    /*
+     * Gets a value indicating whether change tracking is enabled.
+     */
+    private Boolean changeTrackingEnabled;
+
+    /*
+     * Gets a value indicating the maximum possible number of snapshots.
+     */
+    private Integer maxSnapshots;
+
+    /*
+     * Gets a value indicating the number of snapshots on the vm.
+     */
+    private Integer numberOfSnapshots;
+
+    /*
+     * Gets or sets the disk Enabled UUID of the vm.
+     */
+    private String diskEnabledUuid;
+
+    /*
+     * Gets the computer name.
+     */
+    private String computerName;
+
+    /*
+     * Gets or sets memory size in MBs for the vm.
+     */
+    private Integer memorySizeMB;
+
+    /*
+     * Gets or sets the number of vCPU for the vm.
+     */
+    private Integer numCPUs;
+
+    /*
+     * Storage properties.
+     */
+    private StorageProfileInventory storageProfile;
+
+    /*
+     * Network properties.
+     */
+    private NetworkProfileInventory networkProfile;
+
     /**
      * Creates an instance of VirtualMachineInventoryItem class.
      */
@@ -321,6 +376,127 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
     }
 
     /**
+     * Get the firmwareType property: Firmware type.
+     * 
+     * @return the firmwareType value.
+     */
+    public FirmwareType firmwareType() {
+        return this.firmwareType;
+    }
+
+    /**
+     * Get the changeTrackingSupported property: Gets a value indicating whether change tracking is supported.
+     * 
+     * @return the changeTrackingSupported value.
+     */
+    public Boolean changeTrackingSupported() {
+        return this.changeTrackingSupported;
+    }
+
+    /**
+     * Get the changeTrackingEnabled property: Gets a value indicating whether change tracking is enabled.
+     * 
+     * @return the changeTrackingEnabled value.
+     */
+    public Boolean changeTrackingEnabled() {
+        return this.changeTrackingEnabled;
+    }
+
+    /**
+     * Get the maxSnapshots property: Gets a value indicating the maximum possible number of snapshots.
+     * 
+     * @return the maxSnapshots value.
+     */
+    public Integer maxSnapshots() {
+        return this.maxSnapshots;
+    }
+
+    /**
+     * Get the numberOfSnapshots property: Gets a value indicating the number of snapshots on the vm.
+     * 
+     * @return the numberOfSnapshots value.
+     */
+    public Integer numberOfSnapshots() {
+        return this.numberOfSnapshots;
+    }
+
+    /**
+     * Get the diskEnabledUuid property: Gets or sets the disk Enabled UUID of the vm.
+     * 
+     * @return the diskEnabledUuid value.
+     */
+    public String diskEnabledUuid() {
+        return this.diskEnabledUuid;
+    }
+
+    /**
+     * Get the computerName property: Gets the computer name.
+     * 
+     * @return the computerName value.
+     */
+    public String computerName() {
+        return this.computerName;
+    }
+
+    /**
+     * Get the memorySizeMB property: Gets or sets memory size in MBs for the vm.
+     * 
+     * @return the memorySizeMB value.
+     */
+    public Integer memorySizeMB() {
+        return this.memorySizeMB;
+    }
+
+    /**
+     * Get the numCPUs property: Gets or sets the number of vCPU for the vm.
+     * 
+     * @return the numCPUs value.
+     */
+    public Integer numCPUs() {
+        return this.numCPUs;
+    }
+
+    /**
+     * Get the storageProfile property: Storage properties.
+     * 
+     * @return the storageProfile value.
+     */
+    public StorageProfileInventory storageProfile() {
+        return this.storageProfile;
+    }
+
+    /**
+     * Set the storageProfile property: Storage properties.
+     * 
+     * @param storageProfile the storageProfile value to set.
+     * @return the VirtualMachineInventoryItem object itself.
+     */
+    public VirtualMachineInventoryItem withStorageProfile(StorageProfileInventory storageProfile) {
+        this.storageProfile = storageProfile;
+        return this;
+    }
+
+    /**
+     * Get the networkProfile property: Network properties.
+     * 
+     * @return the networkProfile value.
+     */
+    public NetworkProfileInventory networkProfile() {
+        return this.networkProfile;
+    }
+
+    /**
+     * Set the networkProfile property: Network properties.
+     * 
+     * @param networkProfile the networkProfile value to set.
+     * @return the VirtualMachineInventoryItem object itself.
+     */
+    public VirtualMachineInventoryItem withNetworkProfile(NetworkProfileInventory networkProfile) {
+        this.networkProfile = networkProfile;
+        return this;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -363,6 +539,12 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
         if (cluster() != null) {
             cluster().validate();
         }
+        if (storageProfile() != null) {
+            storageProfile().validate();
+        }
+        if (networkProfile() != null) {
+            networkProfile().validate();
+        }
     }
 
     /**
@@ -384,6 +566,8 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
         jsonWriter.writeJsonField("cluster", this.cluster);
         jsonWriter.writeStringField("instanceUuid", this.instanceUuid);
         jsonWriter.writeStringField("smbiosUuid", this.smbiosUuid);
+        jsonWriter.writeJsonField("storageProfile", this.storageProfile);
+        jsonWriter.writeJsonField("networkProfile", this.networkProfile);
         return jsonWriter.writeEndObject();
     }
 
@@ -441,6 +625,30 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
                     deserializedVirtualMachineInventoryItem.toolsVersionStatus = reader.getString();
                 } else if ("toolsVersion".equals(fieldName)) {
                     deserializedVirtualMachineInventoryItem.toolsVersion = reader.getString();
+                } else if ("firmwareType".equals(fieldName)) {
+                    deserializedVirtualMachineInventoryItem.firmwareType = FirmwareType.fromString(reader.getString());
+                } else if ("changeTrackingSupported".equals(fieldName)) {
+                    deserializedVirtualMachineInventoryItem.changeTrackingSupported
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("changeTrackingEnabled".equals(fieldName)) {
+                    deserializedVirtualMachineInventoryItem.changeTrackingEnabled
+                        = reader.getNullable(JsonReader::getBoolean);
+                } else if ("maxSnapshots".equals(fieldName)) {
+                    deserializedVirtualMachineInventoryItem.maxSnapshots = reader.getNullable(JsonReader::getInt);
+                } else if ("numberOfSnapshots".equals(fieldName)) {
+                    deserializedVirtualMachineInventoryItem.numberOfSnapshots = reader.getNullable(JsonReader::getInt);
+                } else if ("diskEnabledUuid".equals(fieldName)) {
+                    deserializedVirtualMachineInventoryItem.diskEnabledUuid = reader.getString();
+                } else if ("computerName".equals(fieldName)) {
+                    deserializedVirtualMachineInventoryItem.computerName = reader.getString();
+                } else if ("memorySizeMB".equals(fieldName)) {
+                    deserializedVirtualMachineInventoryItem.memorySizeMB = reader.getNullable(JsonReader::getInt);
+                } else if ("numCPUs".equals(fieldName)) {
+                    deserializedVirtualMachineInventoryItem.numCPUs = reader.getNullable(JsonReader::getInt);
+                } else if ("storageProfile".equals(fieldName)) {
+                    deserializedVirtualMachineInventoryItem.storageProfile = StorageProfileInventory.fromJson(reader);
+                } else if ("networkProfile".equals(fieldName)) {
+                    deserializedVirtualMachineInventoryItem.networkProfile = NetworkProfileInventory.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

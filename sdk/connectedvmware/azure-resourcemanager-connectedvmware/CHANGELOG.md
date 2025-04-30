@@ -1,14 +1,55 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-30)
+
+- Azure Resource Manager ConnectedVMware client library for Java. This package contains Microsoft Azure SDK for ConnectedVMware Management SDK. Connected VMware Client. Package tag package-2023-12. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.StorageProfileInventory` was added
 
-### Bugs Fixed
+* `models.WindowsConfiguration` was added
 
-### Other Changes
+* `models.NetworkInterfaceInventory` was added
+
+* `models.VirtualDiskInventory` was added
+
+* `models.NetworkProfileInventory` was added
+
+#### `models.VirtualMachineInventoryItem` was modified
+
+* `memorySizeMB()` was added
+* `firmwareType()` was added
+* `maxSnapshots()` was added
+* `changeTrackingSupported()` was added
+* `storageProfile()` was added
+* `networkProfile()` was added
+* `withStorageProfile(models.StorageProfileInventory)` was added
+* `numCPUs()` was added
+* `withNetworkProfile(models.NetworkProfileInventory)` was added
+* `diskEnabledUuid()` was added
+* `changeTrackingEnabled()` was added
+* `numberOfSnapshots()` was added
+* `computerName()` was added
+
+#### `models.HostInventoryItem` was modified
+
+* `numSockets()` was added
+* `cpuModel()` was added
+* `numCoresPerSocket()` was added
+* `memorySizeGB()` was added
+* `powerState()` was added
+* `version()` was added
+
+#### `models.GuestCredential` was modified
+
+* `privateKey()` was added
+* `withPrivateKey(java.lang.String)` was added
+
+#### `models.OsProfileForVMInstance` was modified
+
+* `withWindowsConfiguration(models.WindowsConfiguration)` was added
+* `windowsConfiguration()` was added
 
 ## 1.1.0 (2024-12-13)
 
