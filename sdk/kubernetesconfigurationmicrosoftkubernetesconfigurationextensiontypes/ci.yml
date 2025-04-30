@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes/ci.yml
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes/azure-resourcemanager-kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes/
+    exclude:
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes/pom.xml
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes/azure-resourcemanager-kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes/ci.yml
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes/azure-resourcemanager-kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes/
+    exclude:
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes/pom.xml
+      - sdk/kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes/azure-resourcemanager-kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerkubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes
+    displayName: azure-resourcemanager-kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes
+    Artifacts:
+      - name: azure-resourcemanager-kubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerkubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerkubernetesconfigurationmicrosoftkubernetesconfigurationextensiontypes }}
