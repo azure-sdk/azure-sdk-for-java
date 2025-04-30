@@ -23,7 +23,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.PipelineRunsClient;
 import com.azure.resourcemanager.datafactory.fluent.models.PipelineRunInner;
 import com.azure.resourcemanager.datafactory.fluent.models.PipelineRunsQueryResponseInner;
@@ -74,17 +73,6 @@ public final class PipelineRunsClientImpl implements PipelineRunsClient {
             Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/queryPipelineRuns")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Response<PipelineRunsQueryResponseInner> queryByFactorySync(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("factoryName") String factoryName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") RunFilterParameters filterParameters, @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -95,30 +83,10 @@ public final class PipelineRunsClientImpl implements PipelineRunsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Response<PipelineRunInner> getSync(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("factoryName") String factoryName,
-            @PathParam("runId") String runId, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}/cancel")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> cancel(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("factoryName") String factoryName,
-            @PathParam("runId") String runId, @QueryParam("isRecursive") Boolean isRecursive,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}/cancel")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Response<Void> cancelSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("factoryName") String factoryName,
             @PathParam("runId") String runId, @QueryParam("isRecursive") Boolean isRecursive,
@@ -173,6 +141,48 @@ public final class PipelineRunsClientImpl implements PipelineRunsClient {
      * @param resourceGroupName The resource group name.
      * @param factoryName The factory name.
      * @param filterParameters Parameters to filter the pipeline run.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list pipeline runs along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<PipelineRunsQueryResponseInner>> queryByFactoryWithResponseAsync(String resourceGroupName,
+        String factoryName, RunFilterParameters filterParameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (factoryName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter factoryName is required and cannot be null."));
+        }
+        if (filterParameters == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter filterParameters is required and cannot be null."));
+        } else {
+            filterParameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.queryByFactory(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            factoryName, this.client.getApiVersion(), filterParameters, accept, context);
+    }
+
+    /**
+     * Query pipeline runs in the factory based on input filter conditions.
+     * 
+     * @param resourceGroupName The resource group name.
+     * @param factoryName The factory name.
+     * @param filterParameters Parameters to filter the pipeline run.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -200,33 +210,7 @@ public final class PipelineRunsClientImpl implements PipelineRunsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PipelineRunsQueryResponseInner> queryByFactoryWithResponse(String resourceGroupName,
         String factoryName, RunFilterParameters filterParameters, Context context) {
-        if (this.client.getEndpoint() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (factoryName == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Parameter factoryName is required and cannot be null."));
-        }
-        if (filterParameters == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Parameter filterParameters is required and cannot be null."));
-        } else {
-            filterParameters.validate();
-        }
-        final String accept = "application/json";
-        return service.queryByFactorySync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            factoryName, this.client.getApiVersion(), filterParameters, accept, context);
+        return queryByFactoryWithResponseAsync(resourceGroupName, factoryName, filterParameters, context).block();
     }
 
     /**
@@ -291,6 +275,45 @@ public final class PipelineRunsClientImpl implements PipelineRunsClient {
      * @param resourceGroupName The resource group name.
      * @param factoryName The factory name.
      * @param runId The pipeline run identifier.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a pipeline run by its run ID along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<PipelineRunInner>> getWithResponseAsync(String resourceGroupName, String factoryName,
+        String runId, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (factoryName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter factoryName is required and cannot be null."));
+        }
+        if (runId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter runId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, factoryName,
+            runId, this.client.getApiVersion(), accept, context);
+    }
+
+    /**
+     * Get a pipeline run by its run ID.
+     * 
+     * @param resourceGroupName The resource group name.
+     * @param factoryName The factory name.
+     * @param runId The pipeline run identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -317,30 +340,7 @@ public final class PipelineRunsClientImpl implements PipelineRunsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PipelineRunInner> getWithResponse(String resourceGroupName, String factoryName, String runId,
         Context context) {
-        if (this.client.getEndpoint() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (factoryName == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Parameter factoryName is required and cannot be null."));
-        }
-        if (runId == null) {
-            throw LOGGER.atError().log(new IllegalArgumentException("Parameter runId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return service.getSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            factoryName, runId, this.client.getApiVersion(), accept, context);
+        return getWithResponseAsync(resourceGroupName, factoryName, runId, context).block();
     }
 
     /**
@@ -405,6 +405,46 @@ public final class PipelineRunsClientImpl implements PipelineRunsClient {
      * @param resourceGroupName The resource group name.
      * @param factoryName The factory name.
      * @param runId The pipeline run identifier.
+     * @param isRecursive If true, cancel all the Child pipelines that are triggered by the current pipeline.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> cancelWithResponseAsync(String resourceGroupName, String factoryName, String runId,
+        Boolean isRecursive, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (factoryName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter factoryName is required and cannot be null."));
+        }
+        if (runId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter runId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.cancel(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            factoryName, runId, isRecursive, this.client.getApiVersion(), accept, context);
+    }
+
+    /**
+     * Cancel a pipeline run by its run ID.
+     * 
+     * @param resourceGroupName The resource group name.
+     * @param factoryName The factory name.
+     * @param runId The pipeline run identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -433,30 +473,7 @@ public final class PipelineRunsClientImpl implements PipelineRunsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> cancelWithResponse(String resourceGroupName, String factoryName, String runId,
         Boolean isRecursive, Context context) {
-        if (this.client.getEndpoint() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (factoryName == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Parameter factoryName is required and cannot be null."));
-        }
-        if (runId == null) {
-            throw LOGGER.atError().log(new IllegalArgumentException("Parameter runId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return service.cancelSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            factoryName, runId, isRecursive, this.client.getApiVersion(), accept, context);
+        return cancelWithResponseAsync(resourceGroupName, factoryName, runId, isRecursive, context).block();
     }
 
     /**
@@ -474,6 +491,4 @@ public final class PipelineRunsClientImpl implements PipelineRunsClient {
         final Boolean isRecursive = null;
         cancelWithResponse(resourceGroupName, factoryName, runId, isRecursive, Context.NONE);
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PipelineRunsClientImpl.class);
 }
