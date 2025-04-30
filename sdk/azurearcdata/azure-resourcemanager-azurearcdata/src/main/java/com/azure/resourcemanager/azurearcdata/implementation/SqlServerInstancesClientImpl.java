@@ -14,6 +14,7 @@ import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -34,9 +35,17 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.azurearcdata.fluent.SqlServerInstancesClient;
 import com.azure.resourcemanager.azurearcdata.fluent.models.SqlServerInstanceInner;
+import com.azure.resourcemanager.azurearcdata.fluent.models.SqlServerInstanceJobsStatusResponseInner;
+import com.azure.resourcemanager.azurearcdata.fluent.models.SqlServerInstanceManagedInstanceLinkAssessmentResponseInner;
+import com.azure.resourcemanager.azurearcdata.fluent.models.SqlServerInstanceRunMigrationAssessmentResponseInner;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceJobsStatusRequest;
 import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceListResult;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceManagedInstanceLinkAssessmentRequest;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceTelemetryRequest;
+import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceTelemetryResponse;
 import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceUpdate;
 import java.nio.ByteBuffer;
+import java.util.List;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -123,15 +132,81 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
 
         @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData/sqlServerInstances/{sqlServerInstanceName}")
-        @ExpectedResponses({ 200 })
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SqlServerInstanceInner>> update(@HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("sqlServerInstanceName") String sqlServerInstanceName,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") SqlServerInstanceUpdate parameters, @HeaderParam("Accept") String accept,
             Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData/sqlServerInstances/{sqlServerInstanceName}/getTelemetry")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> getTelemetry(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("sqlServerInstanceName") String sqlServerInstanceName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData/sqlServerInstances/{sqlServerInstanceName}/runMigrationAssessment")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SqlServerInstanceRunMigrationAssessmentResponseInner>> runMigrationAssessment(
+            @HostParam("$host") String endpoint, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("sqlServerInstanceName") String sqlServerInstanceName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData/sqlServerInstances/{sqlServerInstanceName}/getJobsStatus")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SqlServerInstanceJobsStatusResponseInner>> getJobsStatus(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("sqlServerInstanceName") String sqlServerInstanceName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") SqlServerInstanceJobsStatusRequest sqlServerInstanceJobsStatusRequest,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData/sqlServerInstances/{sqlServerInstanceName}/preUpgrade")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SqlServerInstanceInner>> preUpgrade(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("sqlServerInstanceName") String sqlServerInstanceName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData/sqlServerInstances/{sqlServerInstanceName}/postUpgrade")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SqlServerInstanceInner>> postUpgrade(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("sqlServerInstanceName") String sqlServerInstanceName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureArcData/sqlServerInstances/{sqlServerInstanceName}/runManagedInstanceLinkAssessment")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> runManagedInstanceLinkAssessment(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("sqlServerInstanceName") String sqlServerInstanceName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") SqlServerInstanceManagedInstanceLinkAssessmentRequest sqlServerInstanceManagedInstanceLinkAssessmentRequest,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -148,6 +223,13 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
         Mono<Response<SqlServerInstanceListResult>> listByResourceGroupNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Accept: application/json", "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SqlServerInstanceTelemetryResponse>>
+            postInstanceTelemetry(@PathParam(value = "nextLink", encoded = true) String nextLink, Context context);
     }
 
     /**
@@ -523,7 +605,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -567,7 +649,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -610,7 +692,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -631,7 +713,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -654,7 +736,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -671,7 +753,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -690,7 +772,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -708,7 +790,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -727,7 +809,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -744,7 +826,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -762,7 +844,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -798,7 +880,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -834,7 +916,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -852,7 +934,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -873,7 +955,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -888,7 +970,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -905,7 +987,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -921,7 +1003,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -938,7 +1020,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -952,7 +1034,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -967,7 +1049,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Updates a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName Name of sqlServerInstance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param parameters The SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -975,7 +1057,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @return a SqlServerInstance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SqlServerInstanceInner>> updateWithResponseAsync(String resourceGroupName,
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
         String sqlServerInstanceName, SqlServerInstanceUpdate parameters) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -1009,7 +1091,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Updates a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName Name of sqlServerInstance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param parameters The SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1018,7 +1100,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @return a SqlServerInstance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SqlServerInstanceInner>> updateWithResponseAsync(String resourceGroupName,
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
         String sqlServerInstanceName, SqlServerInstanceUpdate parameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -1051,7 +1133,85 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Updates a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName Name of sqlServerInstance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param parameters The SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a SqlServerInstance.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<SqlServerInstanceInner>, SqlServerInstanceInner>
+        beginUpdateAsync(String resourceGroupName, String sqlServerInstanceName, SqlServerInstanceUpdate parameters) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, sqlServerInstanceName, parameters);
+        return this.client.<SqlServerInstanceInner, SqlServerInstanceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), SqlServerInstanceInner.class, SqlServerInstanceInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Updates a SQL Server Instance resource.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param parameters The SQL Server Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a SqlServerInstance.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<SqlServerInstanceInner>, SqlServerInstanceInner> beginUpdateAsync(
+        String resourceGroupName, String sqlServerInstanceName, SqlServerInstanceUpdate parameters, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, sqlServerInstanceName, parameters, context);
+        return this.client.<SqlServerInstanceInner, SqlServerInstanceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), SqlServerInstanceInner.class, SqlServerInstanceInner.class, context);
+    }
+
+    /**
+     * Updates a SQL Server Instance resource.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param parameters The SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a SqlServerInstance.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<SqlServerInstanceInner>, SqlServerInstanceInner> beginUpdate(String resourceGroupName,
+        String sqlServerInstanceName, SqlServerInstanceUpdate parameters) {
+        return this.beginUpdateAsync(resourceGroupName, sqlServerInstanceName, parameters).getSyncPoller();
+    }
+
+    /**
+     * Updates a SQL Server Instance resource.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param parameters The SQL Server Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a SqlServerInstance.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<SqlServerInstanceInner>, SqlServerInstanceInner> beginUpdate(String resourceGroupName,
+        String sqlServerInstanceName, SqlServerInstanceUpdate parameters, Context context) {
+        return this.beginUpdateAsync(resourceGroupName, sqlServerInstanceName, parameters, context).getSyncPoller();
+    }
+
+    /**
+     * Updates a SQL Server Instance resource.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param parameters The SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1061,33 +1221,34 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SqlServerInstanceInner> updateAsync(String resourceGroupName, String sqlServerInstanceName,
         SqlServerInstanceUpdate parameters) {
-        return updateWithResponseAsync(resourceGroupName, sqlServerInstanceName, parameters)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+        return beginUpdateAsync(resourceGroupName, sqlServerInstanceName, parameters).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Updates a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName Name of sqlServerInstance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param parameters The SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance along with {@link Response}.
+     * @return a SqlServerInstance on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<SqlServerInstanceInner> updateWithResponse(String resourceGroupName, String sqlServerInstanceName,
+    private Mono<SqlServerInstanceInner> updateAsync(String resourceGroupName, String sqlServerInstanceName,
         SqlServerInstanceUpdate parameters, Context context) {
-        return updateWithResponseAsync(resourceGroupName, sqlServerInstanceName, parameters, context).block();
+        return beginUpdateAsync(resourceGroupName, sqlServerInstanceName, parameters, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Updates a SQL Server Instance resource.
      * 
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName Name of sqlServerInstance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param parameters The SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1097,7 +1258,1011 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SqlServerInstanceInner update(String resourceGroupName, String sqlServerInstanceName,
         SqlServerInstanceUpdate parameters) {
-        return updateWithResponse(resourceGroupName, sqlServerInstanceName, parameters, Context.NONE).getValue();
+        return updateAsync(resourceGroupName, sqlServerInstanceName, parameters).block();
+    }
+
+    /**
+     * Updates a SQL Server Instance resource.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param parameters The SQL Server Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SqlServerInstanceInner update(String resourceGroupName, String sqlServerInstanceName,
+        SqlServerInstanceUpdate parameters, Context context) {
+        return updateAsync(resourceGroupName, sqlServerInstanceName, parameters, context).block();
+    }
+
+    /**
+     * Retrieves SQL Server instance telemetry.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceTelemetryRequest Contains the parameters to get SQL Server instance telemetry.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<List<String>>> getTelemetrySinglePageAsync(String resourceGroupName,
+        String sqlServerInstanceName, SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (sqlServerInstanceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter sqlServerInstanceName is required and cannot be null."));
+        }
+        if (sqlServerInstanceTelemetryRequest == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter sqlServerInstanceTelemetryRequest is required and cannot be null."));
+        } else {
+            sqlServerInstanceTelemetryRequest.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> {
+            Mono<Response<Flux<ByteBuffer>>> mono
+                = service
+                    .getTelemetry(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                        sqlServerInstanceName, this.client.getApiVersion(), sqlServerInstanceTelemetryRequest, accept,
+                        context)
+                    .cache();
+            return Mono.zip(mono,
+                this.client
+                    .<SqlServerInstanceTelemetryResponse, SqlServerInstanceTelemetryResponse>getLroResult(mono,
+                        this.client.getHttpPipeline(), SqlServerInstanceTelemetryResponse.class,
+                        SqlServerInstanceTelemetryResponse.class, this.client.getContext())
+                    .last()
+                    .flatMap(this.client::getLroFinalResultOrError));
+        })
+            .<PagedResponse<List<String>>>map(
+                res -> new PagedResponseBase<>(res.getT1().getRequest(), res.getT1().getStatusCode(),
+                    res.getT1().getHeaders(), res.getT2().rows(), res.getT2().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Retrieves SQL Server instance telemetry.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceTelemetryRequest Contains the parameters to get SQL Server instance telemetry.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<List<String>>> getTelemetrySinglePageAsync(String resourceGroupName,
+        String sqlServerInstanceName, SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (sqlServerInstanceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter sqlServerInstanceName is required and cannot be null."));
+        }
+        if (sqlServerInstanceTelemetryRequest == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter sqlServerInstanceTelemetryRequest is required and cannot be null."));
+        } else {
+            sqlServerInstanceTelemetryRequest.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = service
+            .getTelemetry(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                sqlServerInstanceName, this.client.getApiVersion(), sqlServerInstanceTelemetryRequest, accept, context)
+            .cache();
+        return Mono
+            .zip(mono,
+                this.client
+                    .<SqlServerInstanceTelemetryResponse, SqlServerInstanceTelemetryResponse>getLroResult(mono,
+                        this.client.getHttpPipeline(), SqlServerInstanceTelemetryResponse.class,
+                        SqlServerInstanceTelemetryResponse.class, context)
+                    .last()
+                    .flatMap(this.client::getLroFinalResultOrError))
+            .map(res -> new PagedResponseBase<>(res.getT1().getRequest(), res.getT1().getStatusCode(),
+                res.getT1().getHeaders(), res.getT2().rows(), res.getT2().nextLink(), null));
+    }
+
+    /**
+     * Retrieves SQL Server instance telemetry.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceTelemetryRequest Contains the parameters to get SQL Server instance telemetry.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance as paginated response with
+     * {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<List<String>> getTelemetryAsync(String resourceGroupName, String sqlServerInstanceName,
+        SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest) {
+        return new PagedFlux<>(() -> getTelemetrySinglePageAsync(resourceGroupName, sqlServerInstanceName,
+            sqlServerInstanceTelemetryRequest), nextLink -> postInstanceTelemetrySinglePageAsync(nextLink));
+    }
+
+    /**
+     * Retrieves SQL Server instance telemetry.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceTelemetryRequest Contains the parameters to get SQL Server instance telemetry.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance as paginated response with
+     * {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<List<String>> getTelemetryAsync(String resourceGroupName, String sqlServerInstanceName,
+        SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest, Context context) {
+        return new PagedFlux<>(
+            () -> getTelemetrySinglePageAsync(resourceGroupName, sqlServerInstanceName,
+                sqlServerInstanceTelemetryRequest, context),
+            nextLink -> postInstanceTelemetrySinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Retrieves SQL Server instance telemetry.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceTelemetryRequest Contains the parameters to get SQL Server instance telemetry.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<List<String>> getTelemetry(String resourceGroupName, String sqlServerInstanceName,
+        SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest) {
+        return new PagedIterable<>(
+            getTelemetryAsync(resourceGroupName, sqlServerInstanceName, sqlServerInstanceTelemetryRequest));
+    }
+
+    /**
+     * Retrieves SQL Server instance telemetry.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceTelemetryRequest Contains the parameters to get SQL Server instance telemetry.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<List<String>> getTelemetry(String resourceGroupName, String sqlServerInstanceName,
+        SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest, Context context) {
+        return new PagedIterable<>(
+            getTelemetryAsync(resourceGroupName, sqlServerInstanceName, sqlServerInstanceTelemetryRequest, context));
+    }
+
+    /**
+     * Runs migration assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response for running migration assessment on the SQL Server instance along with {@link Response} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SqlServerInstanceRunMigrationAssessmentResponseInner>>
+        runMigrationAssessmentWithResponseAsync(String resourceGroupName, String sqlServerInstanceName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (sqlServerInstanceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter sqlServerInstanceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.runMigrationAssessment(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, sqlServerInstanceName, this.client.getApiVersion(), accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Runs migration assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response for running migration assessment on the SQL Server instance along with {@link Response} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SqlServerInstanceRunMigrationAssessmentResponseInner>>
+        runMigrationAssessmentWithResponseAsync(String resourceGroupName, String sqlServerInstanceName,
+            Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (sqlServerInstanceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter sqlServerInstanceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.runMigrationAssessment(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, sqlServerInstanceName, this.client.getApiVersion(), accept, context);
+    }
+
+    /**
+     * Runs migration assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response for running migration assessment on the SQL Server instance on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SqlServerInstanceRunMigrationAssessmentResponseInner>
+        runMigrationAssessmentAsync(String resourceGroupName, String sqlServerInstanceName) {
+        return runMigrationAssessmentWithResponseAsync(resourceGroupName, sqlServerInstanceName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Runs migration assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response for running migration assessment on the SQL Server instance along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<SqlServerInstanceRunMigrationAssessmentResponseInner>
+        runMigrationAssessmentWithResponse(String resourceGroupName, String sqlServerInstanceName, Context context) {
+        return runMigrationAssessmentWithResponseAsync(resourceGroupName, sqlServerInstanceName, context).block();
+    }
+
+    /**
+     * Runs migration assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response for running migration assessment on the SQL Server instance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SqlServerInstanceRunMigrationAssessmentResponseInner runMigrationAssessment(String resourceGroupName,
+        String sqlServerInstanceName) {
+        return runMigrationAssessmentWithResponse(resourceGroupName, sqlServerInstanceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Gets jobs status details for sql arc resource.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceJobsStatusRequest Contains the parameters to get SQL Server instance agent jobs status.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return jobs status details for sql arc resource along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SqlServerInstanceJobsStatusResponseInner>> getJobsStatusWithResponseAsync(
+        String resourceGroupName, String sqlServerInstanceName,
+        SqlServerInstanceJobsStatusRequest sqlServerInstanceJobsStatusRequest) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (sqlServerInstanceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter sqlServerInstanceName is required and cannot be null."));
+        }
+        if (sqlServerInstanceJobsStatusRequest != null) {
+            sqlServerInstanceJobsStatusRequest.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.getJobsStatus(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, sqlServerInstanceName, this.client.getApiVersion(),
+                sqlServerInstanceJobsStatusRequest, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets jobs status details for sql arc resource.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceJobsStatusRequest Contains the parameters to get SQL Server instance agent jobs status.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return jobs status details for sql arc resource along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SqlServerInstanceJobsStatusResponseInner>> getJobsStatusWithResponseAsync(
+        String resourceGroupName, String sqlServerInstanceName,
+        SqlServerInstanceJobsStatusRequest sqlServerInstanceJobsStatusRequest, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (sqlServerInstanceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter sqlServerInstanceName is required and cannot be null."));
+        }
+        if (sqlServerInstanceJobsStatusRequest != null) {
+            sqlServerInstanceJobsStatusRequest.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.getJobsStatus(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            sqlServerInstanceName, this.client.getApiVersion(), sqlServerInstanceJobsStatusRequest, accept, context);
+    }
+
+    /**
+     * Gets jobs status details for sql arc resource.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return jobs status details for sql arc resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SqlServerInstanceJobsStatusResponseInner> getJobsStatusAsync(String resourceGroupName,
+        String sqlServerInstanceName) {
+        final SqlServerInstanceJobsStatusRequest sqlServerInstanceJobsStatusRequest = null;
+        return getJobsStatusWithResponseAsync(resourceGroupName, sqlServerInstanceName,
+            sqlServerInstanceJobsStatusRequest).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets jobs status details for sql arc resource.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceJobsStatusRequest Contains the parameters to get SQL Server instance agent jobs status.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return jobs status details for sql arc resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<SqlServerInstanceJobsStatusResponseInner> getJobsStatusWithResponse(String resourceGroupName,
+        String sqlServerInstanceName, SqlServerInstanceJobsStatusRequest sqlServerInstanceJobsStatusRequest,
+        Context context) {
+        return getJobsStatusWithResponseAsync(resourceGroupName, sqlServerInstanceName,
+            sqlServerInstanceJobsStatusRequest, context).block();
+    }
+
+    /**
+     * Gets jobs status details for sql arc resource.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return jobs status details for sql arc resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SqlServerInstanceJobsStatusResponseInner getJobsStatus(String resourceGroupName,
+        String sqlServerInstanceName) {
+        final SqlServerInstanceJobsStatusRequest sqlServerInstanceJobsStatusRequest = null;
+        return getJobsStatusWithResponse(resourceGroupName, sqlServerInstanceName, sqlServerInstanceJobsStatusRequest,
+            Context.NONE).getValue();
+    }
+
+    /**
+     * Request Upgrade Permission before upgrading.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SqlServerInstanceInner>> preUpgradeWithResponseAsync(String resourceGroupName,
+        String sqlServerInstanceName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (sqlServerInstanceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter sqlServerInstanceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.preUpgrade(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, sqlServerInstanceName, this.client.getApiVersion(), accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Request Upgrade Permission before upgrading.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SqlServerInstanceInner>> preUpgradeWithResponseAsync(String resourceGroupName,
+        String sqlServerInstanceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (sqlServerInstanceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter sqlServerInstanceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.preUpgrade(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            sqlServerInstanceName, this.client.getApiVersion(), accept, context);
+    }
+
+    /**
+     * Request Upgrade Permission before upgrading.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SqlServerInstanceInner> preUpgradeAsync(String resourceGroupName, String sqlServerInstanceName) {
+        return preUpgradeWithResponseAsync(resourceGroupName, sqlServerInstanceName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Request Upgrade Permission before upgrading.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<SqlServerInstanceInner> preUpgradeWithResponse(String resourceGroupName,
+        String sqlServerInstanceName, Context context) {
+        return preUpgradeWithResponseAsync(resourceGroupName, sqlServerInstanceName, context).block();
+    }
+
+    /**
+     * Request Upgrade Permission before upgrading.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SqlServerInstanceInner preUpgrade(String resourceGroupName, String sqlServerInstanceName) {
+        return preUpgradeWithResponse(resourceGroupName, sqlServerInstanceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Clean up after upgrading.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SqlServerInstanceInner>> postUpgradeWithResponseAsync(String resourceGroupName,
+        String sqlServerInstanceName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (sqlServerInstanceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter sqlServerInstanceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.postUpgrade(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, sqlServerInstanceName, this.client.getApiVersion(), accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Clean up after upgrading.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SqlServerInstanceInner>> postUpgradeWithResponseAsync(String resourceGroupName,
+        String sqlServerInstanceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (sqlServerInstanceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter sqlServerInstanceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.postUpgrade(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            sqlServerInstanceName, this.client.getApiVersion(), accept, context);
+    }
+
+    /**
+     * Clean up after upgrading.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SqlServerInstanceInner> postUpgradeAsync(String resourceGroupName, String sqlServerInstanceName) {
+        return postUpgradeWithResponseAsync(resourceGroupName, sqlServerInstanceName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Clean up after upgrading.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<SqlServerInstanceInner> postUpgradeWithResponse(String resourceGroupName,
+        String sqlServerInstanceName, Context context) {
+        return postUpgradeWithResponseAsync(resourceGroupName, sqlServerInstanceName, context).block();
+    }
+
+    /**
+     * Clean up after upgrading.
+     * 
+     * @param resourceGroupName The name of the Azure resource group.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SqlServerInstance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SqlServerInstanceInner postUpgrade(String resourceGroupName, String sqlServerInstanceName) {
+        return postUpgradeWithResponse(resourceGroupName, sqlServerInstanceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Runs Managed Instance Link assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceManagedInstanceLinkAssessmentRequest Contains the parameters to run SQL Server instance
+     * MI link assessment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response containing the results of the MI Link assessment along with {@link Response} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> runManagedInstanceLinkAssessmentWithResponseAsync(String resourceGroupName,
+        String sqlServerInstanceName,
+        SqlServerInstanceManagedInstanceLinkAssessmentRequest sqlServerInstanceManagedInstanceLinkAssessmentRequest) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (sqlServerInstanceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter sqlServerInstanceName is required and cannot be null."));
+        }
+        if (sqlServerInstanceManagedInstanceLinkAssessmentRequest == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter sqlServerInstanceManagedInstanceLinkAssessmentRequest is required and cannot be null."));
+        } else {
+            sqlServerInstanceManagedInstanceLinkAssessmentRequest.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.runManagedInstanceLinkAssessment(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, sqlServerInstanceName, this.client.getApiVersion(),
+                sqlServerInstanceManagedInstanceLinkAssessmentRequest, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Runs Managed Instance Link assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceManagedInstanceLinkAssessmentRequest Contains the parameters to run SQL Server instance
+     * MI link assessment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response containing the results of the MI Link assessment along with {@link Response} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> runManagedInstanceLinkAssessmentWithResponseAsync(String resourceGroupName,
+        String sqlServerInstanceName,
+        SqlServerInstanceManagedInstanceLinkAssessmentRequest sqlServerInstanceManagedInstanceLinkAssessmentRequest,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (sqlServerInstanceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter sqlServerInstanceName is required and cannot be null."));
+        }
+        if (sqlServerInstanceManagedInstanceLinkAssessmentRequest == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter sqlServerInstanceManagedInstanceLinkAssessmentRequest is required and cannot be null."));
+        } else {
+            sqlServerInstanceManagedInstanceLinkAssessmentRequest.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.runManagedInstanceLinkAssessment(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, sqlServerInstanceName, this.client.getApiVersion(),
+            sqlServerInstanceManagedInstanceLinkAssessmentRequest, accept, context);
+    }
+
+    /**
+     * Runs Managed Instance Link assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceManagedInstanceLinkAssessmentRequest Contains the parameters to run SQL Server instance
+     * MI link assessment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the response containing the results of the MI Link assessment.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private
+        PollerFlux<PollResult<SqlServerInstanceManagedInstanceLinkAssessmentResponseInner>, SqlServerInstanceManagedInstanceLinkAssessmentResponseInner>
+        beginRunManagedInstanceLinkAssessmentAsync(String resourceGroupName, String sqlServerInstanceName,
+            SqlServerInstanceManagedInstanceLinkAssessmentRequest sqlServerInstanceManagedInstanceLinkAssessmentRequest) {
+        Mono<Response<Flux<ByteBuffer>>> mono = runManagedInstanceLinkAssessmentWithResponseAsync(resourceGroupName,
+            sqlServerInstanceName, sqlServerInstanceManagedInstanceLinkAssessmentRequest);
+        return this.client
+            .<SqlServerInstanceManagedInstanceLinkAssessmentResponseInner, SqlServerInstanceManagedInstanceLinkAssessmentResponseInner>getLroResult(
+                mono, this.client.getHttpPipeline(), SqlServerInstanceManagedInstanceLinkAssessmentResponseInner.class,
+                SqlServerInstanceManagedInstanceLinkAssessmentResponseInner.class, this.client.getContext());
+    }
+
+    /**
+     * Runs Managed Instance Link assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceManagedInstanceLinkAssessmentRequest Contains the parameters to run SQL Server instance
+     * MI link assessment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the response containing the results of the MI Link assessment.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private
+        PollerFlux<PollResult<SqlServerInstanceManagedInstanceLinkAssessmentResponseInner>, SqlServerInstanceManagedInstanceLinkAssessmentResponseInner>
+        beginRunManagedInstanceLinkAssessmentAsync(String resourceGroupName, String sqlServerInstanceName,
+            SqlServerInstanceManagedInstanceLinkAssessmentRequest sqlServerInstanceManagedInstanceLinkAssessmentRequest,
+            Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = runManagedInstanceLinkAssessmentWithResponseAsync(resourceGroupName,
+            sqlServerInstanceName, sqlServerInstanceManagedInstanceLinkAssessmentRequest, context);
+        return this.client
+            .<SqlServerInstanceManagedInstanceLinkAssessmentResponseInner, SqlServerInstanceManagedInstanceLinkAssessmentResponseInner>getLroResult(
+                mono, this.client.getHttpPipeline(), SqlServerInstanceManagedInstanceLinkAssessmentResponseInner.class,
+                SqlServerInstanceManagedInstanceLinkAssessmentResponseInner.class, context);
+    }
+
+    /**
+     * Runs Managed Instance Link assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceManagedInstanceLinkAssessmentRequest Contains the parameters to run SQL Server instance
+     * MI link assessment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the response containing the results of the MI Link assessment.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public
+        SyncPoller<PollResult<SqlServerInstanceManagedInstanceLinkAssessmentResponseInner>, SqlServerInstanceManagedInstanceLinkAssessmentResponseInner>
+        beginRunManagedInstanceLinkAssessment(String resourceGroupName, String sqlServerInstanceName,
+            SqlServerInstanceManagedInstanceLinkAssessmentRequest sqlServerInstanceManagedInstanceLinkAssessmentRequest) {
+        return this
+            .beginRunManagedInstanceLinkAssessmentAsync(resourceGroupName, sqlServerInstanceName,
+                sqlServerInstanceManagedInstanceLinkAssessmentRequest)
+            .getSyncPoller();
+    }
+
+    /**
+     * Runs Managed Instance Link assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceManagedInstanceLinkAssessmentRequest Contains the parameters to run SQL Server instance
+     * MI link assessment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the response containing the results of the MI Link assessment.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public
+        SyncPoller<PollResult<SqlServerInstanceManagedInstanceLinkAssessmentResponseInner>, SqlServerInstanceManagedInstanceLinkAssessmentResponseInner>
+        beginRunManagedInstanceLinkAssessment(String resourceGroupName, String sqlServerInstanceName,
+            SqlServerInstanceManagedInstanceLinkAssessmentRequest sqlServerInstanceManagedInstanceLinkAssessmentRequest,
+            Context context) {
+        return this
+            .beginRunManagedInstanceLinkAssessmentAsync(resourceGroupName, sqlServerInstanceName,
+                sqlServerInstanceManagedInstanceLinkAssessmentRequest, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Runs Managed Instance Link assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceManagedInstanceLinkAssessmentRequest Contains the parameters to run SQL Server instance
+     * MI link assessment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response containing the results of the MI Link assessment on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SqlServerInstanceManagedInstanceLinkAssessmentResponseInner> runManagedInstanceLinkAssessmentAsync(
+        String resourceGroupName, String sqlServerInstanceName,
+        SqlServerInstanceManagedInstanceLinkAssessmentRequest sqlServerInstanceManagedInstanceLinkAssessmentRequest) {
+        return beginRunManagedInstanceLinkAssessmentAsync(resourceGroupName, sqlServerInstanceName,
+            sqlServerInstanceManagedInstanceLinkAssessmentRequest).last()
+                .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Runs Managed Instance Link assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceManagedInstanceLinkAssessmentRequest Contains the parameters to run SQL Server instance
+     * MI link assessment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response containing the results of the MI Link assessment on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SqlServerInstanceManagedInstanceLinkAssessmentResponseInner> runManagedInstanceLinkAssessmentAsync(
+        String resourceGroupName, String sqlServerInstanceName,
+        SqlServerInstanceManagedInstanceLinkAssessmentRequest sqlServerInstanceManagedInstanceLinkAssessmentRequest,
+        Context context) {
+        return beginRunManagedInstanceLinkAssessmentAsync(resourceGroupName, sqlServerInstanceName,
+            sqlServerInstanceManagedInstanceLinkAssessmentRequest, context).last()
+                .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Runs Managed Instance Link assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceManagedInstanceLinkAssessmentRequest Contains the parameters to run SQL Server instance
+     * MI link assessment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response containing the results of the MI Link assessment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SqlServerInstanceManagedInstanceLinkAssessmentResponseInner runManagedInstanceLinkAssessment(
+        String resourceGroupName, String sqlServerInstanceName,
+        SqlServerInstanceManagedInstanceLinkAssessmentRequest sqlServerInstanceManagedInstanceLinkAssessmentRequest) {
+        return runManagedInstanceLinkAssessmentAsync(resourceGroupName, sqlServerInstanceName,
+            sqlServerInstanceManagedInstanceLinkAssessmentRequest).block();
+    }
+
+    /**
+     * Runs Managed Instance Link assessment for SQL Server instance.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
+     * @param sqlServerInstanceManagedInstanceLinkAssessmentRequest Contains the parameters to run SQL Server instance
+     * MI link assessment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response containing the results of the MI Link assessment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SqlServerInstanceManagedInstanceLinkAssessmentResponseInner runManagedInstanceLinkAssessment(
+        String resourceGroupName, String sqlServerInstanceName,
+        SqlServerInstanceManagedInstanceLinkAssessmentRequest sqlServerInstanceManagedInstanceLinkAssessmentRequest,
+        Context context) {
+        return runManagedInstanceLinkAssessmentAsync(resourceGroupName, sqlServerInstanceName,
+            sqlServerInstanceManagedInstanceLinkAssessmentRequest, context).block();
     }
 
     /**
@@ -1203,5 +2368,48 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
         return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<List<String>>> postInstanceTelemetrySinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        return FluxUtil.withContext(context -> service.postInstanceTelemetry(nextLink, context))
+            .<PagedResponse<List<String>>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().rows(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<List<String>>> postInstanceTelemetrySinglePageAsync(String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        context = this.client.mergeContext(context);
+        return service.postInstanceTelemetry(nextLink, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().rows(), res.getValue().nextLink(), null));
     }
 }
