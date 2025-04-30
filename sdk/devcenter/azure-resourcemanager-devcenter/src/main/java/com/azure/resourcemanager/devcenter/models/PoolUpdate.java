@@ -57,7 +57,33 @@ public final class PoolUpdate extends TrackedResourceUpdate {
     }
 
     /**
-     * Get the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool.
+     * Get the devBoxDefinitionType property: Indicates if the pool is created from an existing Dev Box Definition or if
+     * one is provided directly.
+     * 
+     * @return the devBoxDefinitionType value.
+     */
+    public PoolDevBoxDefinitionType devBoxDefinitionType() {
+        return this.innerProperties() == null ? null : this.innerProperties().devBoxDefinitionType();
+    }
+
+    /**
+     * Set the devBoxDefinitionType property: Indicates if the pool is created from an existing Dev Box Definition or if
+     * one is provided directly.
+     * 
+     * @param devBoxDefinitionType the devBoxDefinitionType value to set.
+     * @return the PoolUpdate object itself.
+     */
+    public PoolUpdate withDevBoxDefinitionType(PoolDevBoxDefinitionType devBoxDefinitionType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PoolUpdateProperties();
+        }
+        this.innerProperties().withDevBoxDefinitionType(devBoxDefinitionType);
+        return this;
+    }
+
+    /**
+     * Get the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool. Will be
+     * ignored if devBoxDefinitionType is Value.
      * 
      * @return the devBoxDefinitionName value.
      */
@@ -66,7 +92,8 @@ public final class PoolUpdate extends TrackedResourceUpdate {
     }
 
     /**
-     * Set the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool.
+     * Set the devBoxDefinitionName property: Name of a Dev Box definition in parent Project of this Pool. Will be
+     * ignored if devBoxDefinitionType is Value.
      * 
      * @param devBoxDefinitionName the devBoxDefinitionName value to set.
      * @return the PoolUpdate object itself.
@@ -76,6 +103,31 @@ public final class PoolUpdate extends TrackedResourceUpdate {
             this.innerProperties = new PoolUpdateProperties();
         }
         this.innerProperties().withDevBoxDefinitionName(devBoxDefinitionName);
+        return this;
+    }
+
+    /**
+     * Get the devBoxDefinition property: A definition of the machines that are created from this Pool. Will be ignored
+     * if devBoxDefinitionType is Reference or not provided.
+     * 
+     * @return the devBoxDefinition value.
+     */
+    public PoolDevBoxDefinition devBoxDefinition() {
+        return this.innerProperties() == null ? null : this.innerProperties().devBoxDefinition();
+    }
+
+    /**
+     * Set the devBoxDefinition property: A definition of the machines that are created from this Pool. Will be ignored
+     * if devBoxDefinitionType is Reference or not provided.
+     * 
+     * @param devBoxDefinition the devBoxDefinition value to set.
+     * @return the PoolUpdate object itself.
+     */
+    public PoolUpdate withDevBoxDefinition(PoolDevBoxDefinition devBoxDefinition) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PoolUpdateProperties();
+        }
+        this.innerProperties().withDevBoxDefinition(devBoxDefinition);
         return this;
     }
 
@@ -176,6 +228,29 @@ public final class PoolUpdate extends TrackedResourceUpdate {
     }
 
     /**
+     * Get the stopOnNoConnect property: Stop on no connect configuration settings for Dev Boxes created in this pool.
+     * 
+     * @return the stopOnNoConnect value.
+     */
+    public StopOnNoConnectConfiguration stopOnNoConnect() {
+        return this.innerProperties() == null ? null : this.innerProperties().stopOnNoConnect();
+    }
+
+    /**
+     * Set the stopOnNoConnect property: Stop on no connect configuration settings for Dev Boxes created in this pool.
+     * 
+     * @param stopOnNoConnect the stopOnNoConnect value to set.
+     * @return the PoolUpdate object itself.
+     */
+    public PoolUpdate withStopOnNoConnect(StopOnNoConnectConfiguration stopOnNoConnect) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PoolUpdateProperties();
+        }
+        this.innerProperties().withStopOnNoConnect(stopOnNoConnect);
+        return this;
+    }
+
+    /**
      * Get the singleSignOnStatus property: Indicates whether Dev Boxes in this pool are created with single sign on
      * enabled. The also requires that single sign on be enabled on the tenant.
      * 
@@ -270,6 +345,54 @@ public final class PoolUpdate extends TrackedResourceUpdate {
             this.innerProperties = new PoolUpdateProperties();
         }
         this.innerProperties().withManagedVirtualNetworkRegions(managedVirtualNetworkRegions);
+        return this;
+    }
+
+    /**
+     * Get the activeHoursConfiguration property: Active hours configuration settings for Dev Boxes created in this
+     * pool.
+     * 
+     * @return the activeHoursConfiguration value.
+     */
+    public ActiveHoursConfiguration activeHoursConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().activeHoursConfiguration();
+    }
+
+    /**
+     * Set the activeHoursConfiguration property: Active hours configuration settings for Dev Boxes created in this
+     * pool.
+     * 
+     * @param activeHoursConfiguration the activeHoursConfiguration value to set.
+     * @return the PoolUpdate object itself.
+     */
+    public PoolUpdate withActiveHoursConfiguration(ActiveHoursConfiguration activeHoursConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PoolUpdateProperties();
+        }
+        this.innerProperties().withActiveHoursConfiguration(activeHoursConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the devBoxTunnelEnableStatus property: Indicates whether Dev Box Tunnel is enabled for a the pool.
+     * 
+     * @return the devBoxTunnelEnableStatus value.
+     */
+    public DevBoxTunnelEnableStatus devBoxTunnelEnableStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().devBoxTunnelEnableStatus();
+    }
+
+    /**
+     * Set the devBoxTunnelEnableStatus property: Indicates whether Dev Box Tunnel is enabled for a the pool.
+     * 
+     * @param devBoxTunnelEnableStatus the devBoxTunnelEnableStatus value to set.
+     * @return the PoolUpdate object itself.
+     */
+    public PoolUpdate withDevBoxTunnelEnableStatus(DevBoxTunnelEnableStatus devBoxTunnelEnableStatus) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PoolUpdateProperties();
+        }
+        this.innerProperties().withDevBoxTunnelEnableStatus(devBoxTunnelEnableStatus);
         return this;
     }
 
