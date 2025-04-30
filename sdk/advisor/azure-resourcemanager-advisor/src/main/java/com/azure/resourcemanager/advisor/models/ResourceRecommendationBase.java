@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.advisor.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.advisor.fluent.models.ResourceRecommendationBaseInner;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -34,6 +35,13 @@ public interface ResourceRecommendationBase {
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the category property: The category of the recommendation.
@@ -83,6 +91,13 @@ public interface ResourceRecommendationBase {
      * @return the recommendationTypeId value.
      */
     String recommendationTypeId();
+
+    /**
+     * Gets the risk property: The potential risk of not implementing the recommendation.
+     * 
+     * @return the risk value.
+     */
+    Risk risk();
 
     /**
      * Gets the shortDescription property: A summary of the recommendation.
@@ -161,6 +176,48 @@ public interface ResourceRecommendationBase {
      * @return the exposedMetadataProperties value.
      */
     Map<String, Object> exposedMetadataProperties();
+
+    /**
+     * Gets the tracked property: If the Recommendation has Tracking enabled.
+     * 
+     * @return the tracked value.
+     */
+    Boolean tracked();
+
+    /**
+     * Gets the trackedProperties property: The properties of a tracked recommendation.
+     * 
+     * @return the trackedProperties value.
+     */
+    TrackedRecommendationProperties trackedProperties();
+
+    /**
+     * Gets the review property: The Review that this Recommendation belongs to.
+     * 
+     * @return the review value.
+     */
+    RecommendationPropertiesReview review();
+
+    /**
+     * Gets the resourceWorkload property: The Workload that this Resource belongs to.
+     * 
+     * @return the resourceWorkload value.
+     */
+    RecommendationPropertiesResourceWorkload resourceWorkload();
+
+    /**
+     * Gets the sourceSystem property: The Source System that this Recommendation originated from.
+     * 
+     * @return the sourceSystem value.
+     */
+    String sourceSystem();
+
+    /**
+     * Gets the notes property: Additional notes for the Recommendation.
+     * 
+     * @return the notes value.
+     */
+    String notes();
 
     /**
      * Gets the inner com.azure.resourcemanager.advisor.fluent.models.ResourceRecommendationBaseInner object.
