@@ -46,7 +46,7 @@ public interface AttestationProvidersClient {
     AttestationProviderInner getByResourceGroup(String resourceGroupName, String providerName);
 
     /**
-     * Creates a new Attestation Provider.
+     * Creates or updates an Attestation Provider.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param providerName Name of the attestation provider.
@@ -62,7 +62,7 @@ public interface AttestationProvidersClient {
         AttestationServiceCreationParams creationParams, Context context);
 
     /**
-     * Creates a new Attestation Provider.
+     * Creates or updates an Attestation Provider.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param providerName Name of the attestation provider.

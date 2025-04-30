@@ -10,7 +10,7 @@ package com.azure.resourcemanager.attestation.generated;
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/Operations_List.json
+     * specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/Operations_List.json
      */
     /**
      * Sample code: Operations_List.

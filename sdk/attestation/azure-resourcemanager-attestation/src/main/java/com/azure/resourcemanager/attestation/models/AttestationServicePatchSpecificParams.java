@@ -12,21 +12,15 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Client supplied parameters used to create a new attestation provider.
+ * Client supplied parameters used to patch an existing attestation provider.
  */
 @Fluent
-public final class AttestationServiceCreationSpecificParams
-    implements JsonSerializable<AttestationServiceCreationSpecificParams> {
+public final class AttestationServicePatchSpecificParams
+    implements JsonSerializable<AttestationServicePatchSpecificParams> {
     /*
      * Controls whether traffic from the public network is allowed to access the Attestation Provider APIs.
      */
     private PublicNetworkAccessType publicNetworkAccess;
-
-    /*
-     * JSON Web Key Set defining a set of X.509 Certificates that will represent the parent certificate for the signing
-     * certificate used for policy operations
-     */
-    private JsonWebKeySet policySigningCertificates;
 
     /*
      * The setting that controls whether authentication is enabled or disabled for TPM Attestation REST APIs.
@@ -34,9 +28,9 @@ public final class AttestationServiceCreationSpecificParams
     private TpmAttestationAuthenticationType tpmAttestationAuthentication;
 
     /**
-     * Creates an instance of AttestationServiceCreationSpecificParams class.
+     * Creates an instance of AttestationServicePatchSpecificParams class.
      */
-    public AttestationServiceCreationSpecificParams() {
+    public AttestationServicePatchSpecificParams() {
     }
 
     /**
@@ -54,34 +48,10 @@ public final class AttestationServiceCreationSpecificParams
      * Attestation Provider APIs.
      * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
-     * @return the AttestationServiceCreationSpecificParams object itself.
+     * @return the AttestationServicePatchSpecificParams object itself.
      */
-    public AttestationServiceCreationSpecificParams
-        withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess) {
+    public AttestationServicePatchSpecificParams withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess) {
         this.publicNetworkAccess = publicNetworkAccess;
-        return this;
-    }
-
-    /**
-     * Get the policySigningCertificates property: JSON Web Key Set defining a set of X.509 Certificates that will
-     * represent the parent certificate for the signing certificate used for policy operations.
-     * 
-     * @return the policySigningCertificates value.
-     */
-    public JsonWebKeySet policySigningCertificates() {
-        return this.policySigningCertificates;
-    }
-
-    /**
-     * Set the policySigningCertificates property: JSON Web Key Set defining a set of X.509 Certificates that will
-     * represent the parent certificate for the signing certificate used for policy operations.
-     * 
-     * @param policySigningCertificates the policySigningCertificates value to set.
-     * @return the AttestationServiceCreationSpecificParams object itself.
-     */
-    public AttestationServiceCreationSpecificParams
-        withPolicySigningCertificates(JsonWebKeySet policySigningCertificates) {
-        this.policySigningCertificates = policySigningCertificates;
         return this;
     }
 
@@ -100,9 +70,9 @@ public final class AttestationServiceCreationSpecificParams
      * disabled for TPM Attestation REST APIs.
      * 
      * @param tpmAttestationAuthentication the tpmAttestationAuthentication value to set.
-     * @return the AttestationServiceCreationSpecificParams object itself.
+     * @return the AttestationServicePatchSpecificParams object itself.
      */
-    public AttestationServiceCreationSpecificParams
+    public AttestationServicePatchSpecificParams
         withTpmAttestationAuthentication(TpmAttestationAuthenticationType tpmAttestationAuthentication) {
         this.tpmAttestationAuthentication = tpmAttestationAuthentication;
         return this;
@@ -114,9 +84,6 @@ public final class AttestationServiceCreationSpecificParams
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (policySigningCertificates() != null) {
-            policySigningCertificates().validate();
-        }
     }
 
     /**
@@ -127,43 +94,39 @@ public final class AttestationServiceCreationSpecificParams
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("publicNetworkAccess",
             this.publicNetworkAccess == null ? null : this.publicNetworkAccess.toString());
-        jsonWriter.writeJsonField("policySigningCertificates", this.policySigningCertificates);
         jsonWriter.writeStringField("tpmAttestationAuthentication",
             this.tpmAttestationAuthentication == null ? null : this.tpmAttestationAuthentication.toString());
         return jsonWriter.writeEndObject();
     }
 
     /**
-     * Reads an instance of AttestationServiceCreationSpecificParams from the JsonReader.
+     * Reads an instance of AttestationServicePatchSpecificParams from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of AttestationServiceCreationSpecificParams if the JsonReader was pointing to an instance of
-     * it, or null if it was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the AttestationServiceCreationSpecificParams.
+     * @return An instance of AttestationServicePatchSpecificParams if the JsonReader was pointing to an instance of it,
+     * or null if it was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the AttestationServicePatchSpecificParams.
      */
-    public static AttestationServiceCreationSpecificParams fromJson(JsonReader jsonReader) throws IOException {
+    public static AttestationServicePatchSpecificParams fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            AttestationServiceCreationSpecificParams deserializedAttestationServiceCreationSpecificParams
-                = new AttestationServiceCreationSpecificParams();
+            AttestationServicePatchSpecificParams deserializedAttestationServicePatchSpecificParams
+                = new AttestationServicePatchSpecificParams();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("publicNetworkAccess".equals(fieldName)) {
-                    deserializedAttestationServiceCreationSpecificParams.publicNetworkAccess
+                    deserializedAttestationServicePatchSpecificParams.publicNetworkAccess
                         = PublicNetworkAccessType.fromString(reader.getString());
-                } else if ("policySigningCertificates".equals(fieldName)) {
-                    deserializedAttestationServiceCreationSpecificParams.policySigningCertificates
-                        = JsonWebKeySet.fromJson(reader);
                 } else if ("tpmAttestationAuthentication".equals(fieldName)) {
-                    deserializedAttestationServiceCreationSpecificParams.tpmAttestationAuthentication
+                    deserializedAttestationServicePatchSpecificParams.tpmAttestationAuthentication
                         = TpmAttestationAuthenticationType.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedAttestationServiceCreationSpecificParams;
+            return deserializedAttestationServicePatchSpecificParams;
         });
     }
 }

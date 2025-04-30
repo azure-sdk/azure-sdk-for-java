@@ -9,7 +9,7 @@ package com.azure.resourcemanager.attestation.generated;
  */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/
      * AttestationProviderDeletePrivateEndpointConnection.json
      */
     /**

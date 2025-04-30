@@ -18,7 +18,7 @@
   <packaging>jar</packaging>
 
   <name>Microsoft Azure SDK for Attestation Management</name>
-  <description>This package contains Microsoft Azure SDK for Attestation Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. Various APIs for managing resources in attestation service. This primarily encompasses per-provider management. Package tag package-2020-10-01.</description>
+  <description>This package contains Microsoft Azure SDK for Attestation Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. Various APIs for managing resources in attestation service. This primarily encompasses per-provider management. Package tag package-2021-06-01.</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 
   <licenses>

@@ -5,6 +5,9 @@
 package com.azure.resourcemanager.attestation.generated;
 
 import com.azure.resourcemanager.attestation.models.AttestationProvider;
+import com.azure.resourcemanager.attestation.models.AttestationServicePatchSpecificParams;
+import com.azure.resourcemanager.attestation.models.PublicNetworkAccessType;
+import com.azure.resourcemanager.attestation.models.TpmAttestationAuthenticationType;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +16,7 @@ import java.util.Map;
  */
 public final class AttestationProvidersUpdateSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/
      * Update_AttestationProvider.json
      */
     /**
@@ -26,7 +29,12 @@ public final class AttestationProvidersUpdateSamples {
             .getByResourceGroupWithResponse("MyResourceGroup", "myattestationprovider",
                 com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withTags(mapOf("Property1", "Value1", "Property2", "Value2", "Property3", "Value3")).apply();
+        resource.update()
+            .withTags(mapOf("Property1", "Value1", "Property2", "Value2", "Property3", "Value3"))
+            .withProperties(
+                new AttestationServicePatchSpecificParams().withPublicNetworkAccess(PublicNetworkAccessType.DISABLED)
+                    .withTpmAttestationAuthentication(TpmAttestationAuthenticationType.DISABLED))
+            .apply();
     }
 
     // Use "Map.of" if available

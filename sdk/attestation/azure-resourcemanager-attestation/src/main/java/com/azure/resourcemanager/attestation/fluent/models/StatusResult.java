@@ -10,6 +10,8 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.attestation.models.AttestationServiceStatus;
+import com.azure.resourcemanager.attestation.models.PublicNetworkAccessType;
+import com.azure.resourcemanager.attestation.models.TpmAttestationAuthenticationType;
 import java.io.IOException;
 import java.util.List;
 
@@ -34,9 +36,19 @@ public final class StatusResult implements JsonSerializable<StatusResult> {
     private String attestUri;
 
     /*
+     * Controls whether traffic from the public network is allowed to access the Attestation Provider APIs.
+     */
+    private PublicNetworkAccessType publicNetworkAccess;
+
+    /*
      * List of private endpoint connections associated with the attestation provider.
      */
     private List<PrivateEndpointConnectionInner> privateEndpointConnections;
+
+    /*
+     * The setting that controls whether authentication is enabled or disabled for TPM Attestation REST APIs.
+     */
+    private TpmAttestationAuthenticationType tpmAttestationAuthentication;
 
     /**
      * Creates an instance of StatusResult class.
@@ -105,6 +117,28 @@ public final class StatusResult implements JsonSerializable<StatusResult> {
     }
 
     /**
+     * Get the publicNetworkAccess property: Controls whether traffic from the public network is allowed to access the
+     * Attestation Provider APIs.
+     * 
+     * @return the publicNetworkAccess value.
+     */
+    public PublicNetworkAccessType publicNetworkAccess() {
+        return this.publicNetworkAccess;
+    }
+
+    /**
+     * Set the publicNetworkAccess property: Controls whether traffic from the public network is allowed to access the
+     * Attestation Provider APIs.
+     * 
+     * @param publicNetworkAccess the publicNetworkAccess value to set.
+     * @return the StatusResult object itself.
+     */
+    public StatusResult withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess) {
+        this.publicNetworkAccess = publicNetworkAccess;
+        return this;
+    }
+
+    /**
      * Get the privateEndpointConnections property: List of private endpoint connections associated with the attestation
      * provider.
      * 
@@ -112,6 +146,29 @@ public final class StatusResult implements JsonSerializable<StatusResult> {
      */
     public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
         return this.privateEndpointConnections;
+    }
+
+    /**
+     * Get the tpmAttestationAuthentication property: The setting that controls whether authentication is enabled or
+     * disabled for TPM Attestation REST APIs.
+     * 
+     * @return the tpmAttestationAuthentication value.
+     */
+    public TpmAttestationAuthenticationType tpmAttestationAuthentication() {
+        return this.tpmAttestationAuthentication;
+    }
+
+    /**
+     * Set the tpmAttestationAuthentication property: The setting that controls whether authentication is enabled or
+     * disabled for TPM Attestation REST APIs.
+     * 
+     * @param tpmAttestationAuthentication the tpmAttestationAuthentication value to set.
+     * @return the StatusResult object itself.
+     */
+    public StatusResult
+        withTpmAttestationAuthentication(TpmAttestationAuthenticationType tpmAttestationAuthentication) {
+        this.tpmAttestationAuthentication = tpmAttestationAuthentication;
+        return this;
     }
 
     /**
@@ -134,6 +191,10 @@ public final class StatusResult implements JsonSerializable<StatusResult> {
         jsonWriter.writeStringField("trustModel", this.trustModel);
         jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
         jsonWriter.writeStringField("attestUri", this.attestUri);
+        jsonWriter.writeStringField("publicNetworkAccess",
+            this.publicNetworkAccess == null ? null : this.publicNetworkAccess.toString());
+        jsonWriter.writeStringField("tpmAttestationAuthentication",
+            this.tpmAttestationAuthentication == null ? null : this.tpmAttestationAuthentication.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -158,10 +219,16 @@ public final class StatusResult implements JsonSerializable<StatusResult> {
                     deserializedStatusResult.status = AttestationServiceStatus.fromString(reader.getString());
                 } else if ("attestUri".equals(fieldName)) {
                     deserializedStatusResult.attestUri = reader.getString();
+                } else if ("publicNetworkAccess".equals(fieldName)) {
+                    deserializedStatusResult.publicNetworkAccess
+                        = PublicNetworkAccessType.fromString(reader.getString());
                 } else if ("privateEndpointConnections".equals(fieldName)) {
                     List<PrivateEndpointConnectionInner> privateEndpointConnections
                         = reader.readArray(reader1 -> PrivateEndpointConnectionInner.fromJson(reader1));
                     deserializedStatusResult.privateEndpointConnections = privateEndpointConnections;
+                } else if ("tpmAttestationAuthentication".equals(fieldName)) {
+                    deserializedStatusResult.tpmAttestationAuthentication
+                        = TpmAttestationAuthenticationType.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

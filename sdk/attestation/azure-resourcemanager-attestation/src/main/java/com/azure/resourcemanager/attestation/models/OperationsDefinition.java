@@ -26,6 +26,11 @@ public final class OperationsDefinition implements JsonSerializable<OperationsDe
      */
     private OperationsDisplayDefinition display;
 
+    /*
+     * Properties of the operation
+     */
+    private OperationProperties properties;
+
     /**
      * Creates an instance of OperationsDefinition class.
      */
@@ -73,6 +78,26 @@ public final class OperationsDefinition implements JsonSerializable<OperationsDe
     }
 
     /**
+     * Get the properties property: Properties of the operation.
+     * 
+     * @return the properties value.
+     */
+    public OperationProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Properties of the operation.
+     * 
+     * @param properties the properties value to set.
+     * @return the OperationsDefinition object itself.
+     */
+    public OperationsDefinition withProperties(OperationProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -80,6 +105,9 @@ public final class OperationsDefinition implements JsonSerializable<OperationsDe
     public void validate() {
         if (display() != null) {
             display().validate();
+        }
+        if (properties() != null) {
+            properties().validate();
         }
     }
 
@@ -91,6 +119,7 @@ public final class OperationsDefinition implements JsonSerializable<OperationsDe
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("name", this.name);
         jsonWriter.writeJsonField("display", this.display);
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -113,6 +142,8 @@ public final class OperationsDefinition implements JsonSerializable<OperationsDe
                     deserializedOperationsDefinition.name = reader.getString();
                 } else if ("display".equals(fieldName)) {
                     deserializedOperationsDefinition.display = OperationsDisplayDefinition.fromJson(reader);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedOperationsDefinition.properties = OperationProperties.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
