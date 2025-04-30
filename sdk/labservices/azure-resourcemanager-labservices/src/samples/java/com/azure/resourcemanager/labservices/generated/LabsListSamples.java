@@ -10,7 +10,7 @@ package com.azure.resourcemanager.labservices.generated;
 public final class LabsListSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/listLabs.json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/listLabs.json
      */
     /**
      * Sample code: listLabs.

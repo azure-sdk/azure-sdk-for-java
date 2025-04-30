@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.azure.resourcemanager.labservices.models.VirtualMachineConnectionProfile;
 import com.azure.resourcemanager.labservices.models.VirtualMachineState;
 import com.azure.resourcemanager.labservices.models.VirtualMachineType;
@@ -29,6 +30,11 @@ public final class VirtualMachineProperties implements JsonSerializable<VirtualM
      * The current state of the virtual machine
      */
     private VirtualMachineState state;
+
+    /*
+     * Error details of last operation done on lab plan.
+     */
+    private ResourceOperationError resourceOperationError;
 
     /*
      * Profile for information about connecting to the virtual machine.
@@ -70,6 +76,15 @@ public final class VirtualMachineProperties implements JsonSerializable<VirtualM
     }
 
     /**
+     * Get the resourceOperationError property: Error details of last operation done on lab plan.
+     * 
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.resourceOperationError;
+    }
+
+    /**
      * Get the connectionProfile property: Profile for information about connecting to the virtual machine.
      * 
      * @return the connectionProfile value.
@@ -102,6 +117,9 @@ public final class VirtualMachineProperties implements JsonSerializable<VirtualM
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (resourceOperationError() != null) {
+            resourceOperationError().validate();
+        }
         if (connectionProfile() != null) {
             connectionProfile().validate();
         }
@@ -136,6 +154,9 @@ public final class VirtualMachineProperties implements JsonSerializable<VirtualM
                         = ProvisioningState.fromString(reader.getString());
                 } else if ("state".equals(fieldName)) {
                     deserializedVirtualMachineProperties.state = VirtualMachineState.fromString(reader.getString());
+                } else if ("resourceOperationError".equals(fieldName)) {
+                    deserializedVirtualMachineProperties.resourceOperationError
+                        = ResourceOperationError.fromJson(reader);
                 } else if ("connectionProfile".equals(fieldName)) {
                     deserializedVirtualMachineProperties.connectionProfile
                         = VirtualMachineConnectionProfile.fromJson(reader);

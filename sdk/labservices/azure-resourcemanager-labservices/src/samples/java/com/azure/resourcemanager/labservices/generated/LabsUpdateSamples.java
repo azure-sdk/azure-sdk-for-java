@@ -14,7 +14,7 @@ import com.azure.resourcemanager.labservices.models.SecurityProfile;
 public final class LabsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/patchLab.json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/patchLab.json
      */
     /**
      * Sample code: patchLab.

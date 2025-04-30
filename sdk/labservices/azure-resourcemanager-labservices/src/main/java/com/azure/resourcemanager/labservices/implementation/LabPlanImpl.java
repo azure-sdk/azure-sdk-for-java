@@ -15,6 +15,7 @@ import com.azure.resourcemanager.labservices.models.LabPlan;
 import com.azure.resourcemanager.labservices.models.LabPlanNetworkProfile;
 import com.azure.resourcemanager.labservices.models.LabPlanUpdate;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.azure.resourcemanager.labservices.models.SaveImageBody;
 import com.azure.resourcemanager.labservices.models.SupportInfo;
 import java.util.Collections;
@@ -61,6 +62,10 @@ public final class LabPlanImpl implements LabPlan, LabPlan.Definition, LabPlan.U
 
     public ProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
+    }
+
+    public ResourceOperationError resourceOperationError() {
+        return this.innerModel().resourceOperationError();
     }
 
     public ConnectionProfile defaultConnectionProfile() {

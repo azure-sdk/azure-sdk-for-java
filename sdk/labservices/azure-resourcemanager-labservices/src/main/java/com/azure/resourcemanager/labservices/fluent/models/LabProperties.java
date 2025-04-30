@@ -13,6 +13,7 @@ import com.azure.resourcemanager.labservices.models.ConnectionProfile;
 import com.azure.resourcemanager.labservices.models.LabNetworkProfile;
 import com.azure.resourcemanager.labservices.models.LabState;
 import com.azure.resourcemanager.labservices.models.ProvisioningState;
+import com.azure.resourcemanager.labservices.models.ResourceOperationError;
 import com.azure.resourcemanager.labservices.models.RosterProfile;
 import com.azure.resourcemanager.labservices.models.SecurityProfile;
 import com.azure.resourcemanager.labservices.models.VirtualMachineProfile;
@@ -38,6 +39,11 @@ public final class LabProperties extends LabUpdateProperties {
      * The lab state.
      */
     private LabState state;
+
+    /*
+     * Error details of last operation done on lab.
+     */
+    private ResourceOperationError resourceOperationError;
 
     /**
      * Creates an instance of LabProperties class.
@@ -83,6 +89,15 @@ public final class LabProperties extends LabUpdateProperties {
      */
     public LabState state() {
         return this.state;
+    }
+
+    /**
+     * Get the resourceOperationError property: Error details of last operation done on lab.
+     * 
+     * @return the resourceOperationError value.
+     */
+    public ResourceOperationError resourceOperationError() {
+        return this.resourceOperationError;
     }
 
     /**
@@ -167,6 +182,9 @@ public final class LabProperties extends LabUpdateProperties {
         if (networkProfile() != null) {
             networkProfile().validate();
         }
+        if (resourceOperationError() != null) {
+            resourceOperationError().validate();
+        }
         if (autoShutdownProfile() != null) {
             autoShutdownProfile().validate();
         }
@@ -239,6 +257,8 @@ public final class LabProperties extends LabUpdateProperties {
                     deserializedLabProperties.networkProfile = LabNetworkProfile.fromJson(reader);
                 } else if ("state".equals(fieldName)) {
                     deserializedLabProperties.state = LabState.fromString(reader.getString());
+                } else if ("resourceOperationError".equals(fieldName)) {
+                    deserializedLabProperties.resourceOperationError = ResourceOperationError.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

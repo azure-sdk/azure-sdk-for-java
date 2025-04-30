@@ -10,7 +10,7 @@ package com.azure.resourcemanager.labservices.generated;
 public final class UsagesListByLocationSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Usages/getUsages.json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Usages/getUsages.json
      */
     /**
      * Sample code: listUsages.

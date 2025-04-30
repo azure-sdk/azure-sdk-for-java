@@ -80,6 +80,13 @@ public interface Lab {
     LabState state();
 
     /**
+     * Gets the resourceOperationError property: Error details of last operation done on lab.
+     * 
+     * @return the resourceOperationError value.
+     */
+    ResourceOperationError resourceOperationError();
+
+    /**
      * Gets the autoShutdownProfile property: The resource auto shutdown configuration for the lab. This controls
      * whether actions are taken on resources that are sitting idle.
      * 

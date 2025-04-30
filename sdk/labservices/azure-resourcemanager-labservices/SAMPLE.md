@@ -74,26 +74,35 @@
 ### Images_CreateOrUpdate
 
 ```java
-import com.azure.resourcemanager.labservices.models.EnableState;
+import com.azure.resourcemanager.labservices.models.RecurrenceFrequency;
+import com.azure.resourcemanager.labservices.models.RecurrencePattern;
+import java.time.OffsetDateTime;
 
 /**
- * Samples for Images CreateOrUpdate.
+ * Samples for Schedules CreateOrUpdate.
  */
-public final class ImagesCreateOrUpdateSamples {
+public final class SchedulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/putImage.json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Schedules/putSchedule
+     * .json
      */
     /**
-     * Sample code: putImage.
+     * Sample code: putSchedule.
      * 
      * @param manager Entry point to LabServicesManager.
      */
-    public static void putImage(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.images()
-            .define("image1")
-            .withExistingLabPlan("testrg123", "testlabplan")
-            .withEnabledState(EnableState.ENABLED)
+    public static void putSchedule(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.schedules()
+            .define("schedule1")
+            .withExistingLab("testrg123", "testlab")
+            .withStartAt(OffsetDateTime.parse("2020-05-26T12:00:00Z"))
+            .withStopAt(OffsetDateTime.parse("2020-05-26T18:00:00Z"))
+            .withRecurrencePattern(new RecurrencePattern().withFrequency(RecurrenceFrequency.DAILY)
+                .withInterval(2)
+                .withExpirationDate(OffsetDateTime.parse("2020-08-14T23:59:59Z")))
+            .withTimeZoneId("America/Los_Angeles")
+            .withNotes("Schedule 1 for students")
             .create();
     }
 }
@@ -103,20 +112,21 @@ public final class ImagesCreateOrUpdateSamples {
 
 ```java
 /**
- * Samples for Images Get.
+ * Samples for Schedules Delete.
  */
-public final class ImagesGetSamples {
+public final class SchedulesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/getImage.json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Schedules/
+     * deleteSchedule.json
      */
     /**
-     * Sample code: getImage.
+     * Sample code: deleteSchedule.
      * 
      * @param manager Entry point to LabServicesManager.
      */
-    public static void getImage(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.images().getWithResponse("testrg123", "testlabplan", "image1", com.azure.core.util.Context.NONE);
+    public static void deleteSchedule(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.schedules().delete("testrg123", "testlab", "schedule1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -124,22 +134,27 @@ public final class ImagesGetSamples {
 ### Images_ListByLabPlan
 
 ```java
+import com.azure.resourcemanager.labservices.models.User;
+import java.time.Duration;
+
 /**
- * Samples for Images ListByLabPlan.
+ * Samples for Users Update.
  */
-public final class ImagesListByLabPlanSamples {
+public final class UsersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/listImages.
-     * json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/patchUser.json
      */
     /**
-     * Sample code: listImages.
+     * Sample code: patchUser.
      * 
      * @param manager Entry point to LabServicesManager.
      */
-    public static void listImages(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.images().listByLabPlan("testrg123", "testlabplan", null, com.azure.core.util.Context.NONE);
+    public static void patchUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        User resource = manager.users()
+            .getWithResponse("testrg123", "testlab", "testuser", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withAdditionalUsageQuota(Duration.parse("PT10H")).apply();
     }
 }
 ```
@@ -147,179 +162,27 @@ public final class ImagesListByLabPlanSamples {
 ### Images_Update
 
 ```java
-import com.azure.resourcemanager.labservices.models.EnableState;
-import com.azure.resourcemanager.labservices.models.Image;
-
 /**
- * Samples for Images Update.
+ * Samples for VirtualMachines Get.
  */
-public final class ImagesUpdateSamples {
+public final class VirtualMachinesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/patchImage.
-     * json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/
+     * getVirtualMachine.json
      */
     /**
-     * Sample code: patchImage.
+     * Sample code: getVirtualMachine.
      * 
      * @param manager Entry point to LabServicesManager.
      */
-    public static void patchImage(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        Image resource = manager.images()
-            .getWithResponse("testrg123", "testlabplan", "image1", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withEnabledState(EnableState.ENABLED).apply();
+    public static void getVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.virtualMachines().getWithResponse("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### LabPlans_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.labservices.models.AutoShutdownProfile;
-import com.azure.resourcemanager.labservices.models.ConnectionProfile;
-import com.azure.resourcemanager.labservices.models.ConnectionType;
-import com.azure.resourcemanager.labservices.models.EnableState;
-import com.azure.resourcemanager.labservices.models.LabPlanNetworkProfile;
-import com.azure.resourcemanager.labservices.models.ShutdownOnIdleMode;
-import com.azure.resourcemanager.labservices.models.SupportInfo;
-import java.time.Duration;
-
-/**
- * Samples for LabPlans CreateOrUpdate.
- */
-public final class LabPlansCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/putLabPlan.
-     * json
-     */
-    /**
-     * Sample code: putLabPlan.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void putLabPlan(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labPlans()
-            .define("testlabplan")
-            .withRegion("westus")
-            .withExistingResourceGroup("testrg123")
-            .withDefaultConnectionProfile(new ConnectionProfile().withWebSshAccess(ConnectionType.NONE)
-                .withWebRdpAccess(ConnectionType.NONE)
-                .withClientSshAccess(ConnectionType.PUBLIC)
-                .withClientRdpAccess(ConnectionType.PUBLIC))
-            .withDefaultAutoShutdownProfile(new AutoShutdownProfile().withShutdownOnDisconnect(EnableState.ENABLED)
-                .withShutdownWhenNotConnected(EnableState.ENABLED)
-                .withShutdownOnIdle(ShutdownOnIdleMode.USER_ABSENCE)
-                .withDisconnectDelay(Duration.parse("PT5M"))
-                .withNoConnectDelay(Duration.parse("PT5M"))
-                .withIdleDelay(Duration.parse("PT5M")))
-            .withDefaultNetworkProfile(new LabPlanNetworkProfile().withSubnetId(
-                "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testrg123/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/default"))
-            .withSharedGalleryId(
-                "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testrg123/providers/Microsoft.Compute/galleries/testsig")
-            .withSupportInfo(new SupportInfo().withUrl("help.contoso.com")
-                .withEmail("help@contoso.com")
-                .withPhone("+1-202-555-0123")
-                .withInstructions("Contact support for help."))
-            .create();
-    }
-}
-```
-
-### LabPlans_Delete
-
-```java
-/**
- * Samples for LabPlans Delete.
- */
-public final class LabPlansDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/
-     * deleteLabPlan.json
-     */
-    /**
-     * Sample code: deleteLabPlan.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void deleteLabPlan(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labPlans().delete("testrg123", "testlabplan", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### LabPlans_GetByResourceGroup
-
-```java
-/**
- * Samples for LabPlans GetByResourceGroup.
- */
-public final class LabPlansGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/getLabPlan.
-     * json
-     */
-    /**
-     * Sample code: getLabPlan.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void getLabPlan(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labPlans().getByResourceGroupWithResponse("testrg123", "testlabplan", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### LabPlans_List
-
-```java
-/**
- * Samples for LabPlans List.
- */
-public final class LabPlansListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/listLabPlans
-     * .json
-     */
-    /**
-     * Sample code: listLabPlans.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void listLabPlans(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labPlans().list(null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### LabPlans_ListByResourceGroup
-
-```java
-/**
- * Samples for LabPlans ListByResourceGroup.
- */
-public final class LabPlansListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/
-     * listResourceGroupLabPlans.json
-     */
-    /**
-     * Sample code: listResourceGroupLabPlans.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void listResourceGroupLabPlans(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labPlans().listByResourceGroup("testrg123", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### LabPlans_SaveImage
 
 ```java
 import com.azure.resourcemanager.labservices.models.SaveImageBody;
@@ -330,7 +193,7 @@ import com.azure.resourcemanager.labservices.models.SaveImageBody;
 public final class LabPlansSaveImageSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/
      * saveImageVirtualMachine.json
      */
     /**
@@ -348,7 +211,84 @@ public final class LabPlansSaveImageSamples {
 }
 ```
 
-### LabPlans_Update
+### LabPlans_Delete
+
+```java
+import com.azure.resourcemanager.labservices.models.ResetPasswordBody;
+
+/**
+ * Samples for VirtualMachines ResetPassword.
+ */
+public final class VirtualMachinesResetPasswordSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/
+     * resetPasswordVirtualMachine.json
+     */
+    /**
+     * Sample code: resetPasswordVirtualMachine.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void resetPasswordVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.virtualMachines()
+            .resetPassword("testrg123", "testlab", "template",
+                new ResetPasswordBody().withUsername("example-username").withPassword("fakeTokenPlaceholder"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### LabPlans_GetByResourceGroup
+
+```java
+import com.azure.resourcemanager.labservices.models.InviteBody;
+
+/**
+ * Samples for Users Invite.
+ */
+public final class UsersInviteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/inviteUser.json
+     */
+    /**
+     * Sample code: inviteUser.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void inviteUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.users()
+            .invite("testrg123", "testlab", "testuser", new InviteBody().withText("Invitation to lab testlab"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### LabPlans_List
+
+```java
+/**
+ * Samples for LabPlans ListByResourceGroup.
+ */
+public final class LabPlansListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/
+     * listResourceGroupLabPlans.json
+     */
+    /**
+     * Sample code: listResourceGroupLabPlans.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void listResourceGroupLabPlans(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.labPlans().listByResourceGroup("testrg123", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### LabPlans_ListByResourceGroup
 
 ```java
 import com.azure.resourcemanager.labservices.models.ConnectionProfile;
@@ -361,7 +301,7 @@ import com.azure.resourcemanager.labservices.models.LabPlan;
 public final class LabPlansUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/patchLabPlan
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/patchLabPlan
      * .json
      */
     /**
@@ -383,7 +323,171 @@ public final class LabPlansUpdateSamples {
 }
 ```
 
+### LabPlans_SaveImage
+
+```java
+/**
+ * Samples for Schedules Get.
+ */
+public final class SchedulesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Schedules/getSchedule
+     * .json
+     */
+    /**
+     * Sample code: getSchedule.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void getSchedule(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.schedules().getWithResponse("testrg123", "testlab", "schedule1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### LabPlans_Update
+
+```java
+/**
+ * Samples for Labs Delete.
+ */
+public final class LabsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/deleteLab.json
+     */
+    /**
+     * Sample code: deleteLab.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void deleteLab(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.labs().delete("testrg123", "testlab", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Labs_CreateOrUpdate
+
+```java
+/**
+ * Samples for VirtualMachines Reimage.
+ */
+public final class VirtualMachinesReimageSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/
+     * reimageVirtualMachine.json
+     */
+    /**
+     * Sample code: reimageVirtualMachine.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void reimageVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.virtualMachines().reimage("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Labs_Delete
+
+```java
+import com.azure.resourcemanager.labservices.models.EnableState;
+import com.azure.resourcemanager.labservices.models.Image;
+
+/**
+ * Samples for Images Update.
+ */
+public final class ImagesUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Images/patchImage.
+     * json
+     */
+    /**
+     * Sample code: patchImage.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void patchImage(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        Image resource = manager.images()
+            .getWithResponse("testrg123", "testlabplan", "image1", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withEnabledState(EnableState.ENABLED).apply();
+    }
+}
+```
+
+### Labs_GetByResourceGroup
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabServices/
+     * listOperations.json
+     */
+    /**
+     * Sample code: listOperations.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void listOperations(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Labs_List
+
+```java
+/**
+ * Samples for Usages ListByLocation.
+ */
+public final class UsagesListByLocationSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Usages/getUsages.json
+     */
+    /**
+     * Sample code: listUsages.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void listUsages(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.usages().listByLocation("eastus2", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Labs_ListByResourceGroup
+
+```java
+/**
+ * Samples for Images Get.
+ */
+public final class ImagesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Images/getImage.json
+     */
+    /**
+     * Sample code: getImage.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void getImage(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.images().getWithResponse("testrg123", "testlabplan", "image1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Labs_Publish
 
 ```java
 import com.azure.resourcemanager.labservices.models.AutoShutdownProfile;
@@ -407,7 +511,7 @@ import java.time.Duration;
 public final class LabsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/putLab.json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/putLab.json
      */
     /**
      * Sample code: putLab.
@@ -452,73 +556,210 @@ public final class LabsCreateOrUpdateSamples {
 }
 ```
 
-### Labs_Delete
+### Labs_SyncGroup
 
 ```java
 /**
- * Samples for Labs Delete.
+ * Samples for Labs Publish.
  */
-public final class LabsDeleteSamples {
+public final class LabsPublishSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/deleteLab.json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/publishLab.json
      */
     /**
-     * Sample code: deleteLab.
+     * Sample code: publishLab.
      * 
      * @param manager Entry point to LabServicesManager.
      */
-    public static void deleteLab(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labs().delete("testrg123", "testlab", com.azure.core.util.Context.NONE);
+    public static void publishLab(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.labs().publish("testrg123", "testlab", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Labs_GetByResourceGroup
+### Labs_Update
 
 ```java
 /**
- * Samples for Labs GetByResourceGroup.
+ * Samples for VirtualMachines ListByLab.
  */
-public final class LabsGetByResourceGroupSamples {
+public final class VirtualMachinesListByLabSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/getLab.json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/
+     * listVirtualMachine.json
      */
     /**
-     * Sample code: getLab.
+     * Sample code: listVirtualMachine.
      * 
      * @param manager Entry point to LabServicesManager.
      */
-    public static void getLab(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labs().getByResourceGroupWithResponse("testrg123", "testlab", com.azure.core.util.Context.NONE);
+    public static void listVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.virtualMachines().listByLab("testrg123", "testlab", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Labs_List
+### OperationResults_Get
 
 ```java
 /**
- * Samples for Labs List.
+ * Samples for Images ListByLabPlan.
  */
-public final class LabsListSamples {
+public final class ImagesListByLabPlanSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/listLabs.json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Images/listImages.
+     * json
      */
     /**
-     * Sample code: listLabs.
+     * Sample code: listImages.
      * 
      * @param manager Entry point to LabServicesManager.
      */
-    public static void listLabs(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labs().list(null, com.azure.core.util.Context.NONE);
+    public static void listImages(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.images().listByLabPlan("testrg123", "testlabplan", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Labs_ListByResourceGroup
+### Operations_List
+
+```java
+/**
+ * Samples for Schedules ListByLab.
+ */
+public final class SchedulesListByLabSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Schedules/
+     * listSchedule.json
+     */
+    /**
+     * Sample code: getListSchedule.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void getListSchedule(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.schedules().listByLab("testrg123", "testlab", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Schedules_CreateOrUpdate
+
+```java
+/**
+ * Samples for Users Delete.
+ */
+public final class UsersDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/deleteUser.json
+     */
+    /**
+     * Sample code: deleteUser.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void deleteUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.users().delete("testrg123", "testlab", "testuser", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Schedules_Delete
+
+```java
+/**
+ * Samples for Users ListByLab.
+ */
+public final class UsersListByLabSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/listUser.json
+     */
+    /**
+     * Sample code: listUser.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void listUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.users().listByLab("testrg123", "testlab", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Schedules_Get
+
+```java
+/**
+ * Samples for VirtualMachines Stop.
+ */
+public final class VirtualMachinesStopSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/
+     * stopVirtualMachine.json
+     */
+    /**
+     * Sample code: stopVirtualMachine.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void stopVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.virtualMachines().stop("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Schedules_ListByLab
+
+```java
+/**
+ * Samples for Skus List.
+ */
+public final class SkusListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Skus/listSkus.json
+     */
+    /**
+     * Sample code: listSkus.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void listSkus(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.skus().list(null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Schedules_Update
+
+```java
+/**
+ * Samples for LabPlans GetByResourceGroup.
+ */
+public final class LabPlansGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/getLabPlan.
+     * json
+     */
+    /**
+     * Sample code: getLabPlan.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void getLabPlan(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.labPlans().getByResourceGroupWithResponse("testrg123", "testlabplan", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Skus_List
 
 ```java
 /**
@@ -527,7 +768,7 @@ public final class LabsListSamples {
 public final class LabsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/
      * listResourceGroupLabs.json
      */
     /**
@@ -541,29 +782,7 @@ public final class LabsListByResourceGroupSamples {
 }
 ```
 
-### Labs_Publish
-
-```java
-/**
- * Samples for Labs Publish.
- */
-public final class LabsPublishSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/publishLab.json
-     */
-    /**
-     * Sample code: publishLab.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void publishLab(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.labs().publish("testrg123", "testlab", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Labs_SyncGroup
+### Usages_ListByLocation
 
 ```java
 /**
@@ -572,7 +791,7 @@ public final class LabsPublishSamples {
 public final class LabsSyncGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/syncLab.json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/syncLab.json
      */
     /**
      * Sample code: syncLab.
@@ -585,7 +804,58 @@ public final class LabsSyncGroupSamples {
 }
 ```
 
-### Labs_Update
+### Users_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.labservices.models.EnableState;
+
+/**
+ * Samples for Images CreateOrUpdate.
+ */
+public final class ImagesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Images/putImage.json
+     */
+    /**
+     * Sample code: putImage.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void putImage(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.images()
+            .define("image1")
+            .withExistingLabPlan("testrg123", "testlabplan")
+            .withEnabledState(EnableState.ENABLED)
+            .create();
+    }
+}
+```
+
+### Users_Delete
+
+```java
+/**
+ * Samples for LabPlans Delete.
+ */
+public final class LabPlansDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/
+     * deleteLabPlan.json
+     */
+    /**
+     * Sample code: deleteLabPlan.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void deleteLabPlan(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.labPlans().delete("testrg123", "testlabplan", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Users_Get
 
 ```java
 import com.azure.resourcemanager.labservices.models.EnableState;
@@ -598,7 +868,7 @@ import com.azure.resourcemanager.labservices.models.SecurityProfile;
 public final class LabsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/patchLab.json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/patchLab.json
      */
     /**
      * Sample code: patchLab.
@@ -614,7 +884,128 @@ public final class LabsUpdateSamples {
 }
 ```
 
-### OperationResults_Get
+### Users_Invite
+
+```java
+/**
+ * Samples for Users Get.
+ */
+public final class UsersGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/getUser.json
+     */
+    /**
+     * Sample code: getUser.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void getUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.users().getWithResponse("testrg123", "testlab", "testuser", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Users_ListByLab
+
+```java
+/**
+ * Samples for LabPlans List.
+ */
+public final class LabPlansListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/listLabPlans
+     * .json
+     */
+    /**
+     * Sample code: listLabPlans.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void listLabPlans(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.labPlans().list(null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Users_Update
+
+```java
+import com.azure.resourcemanager.labservices.models.AutoShutdownProfile;
+import com.azure.resourcemanager.labservices.models.ConnectionProfile;
+import com.azure.resourcemanager.labservices.models.ConnectionType;
+import com.azure.resourcemanager.labservices.models.EnableState;
+import com.azure.resourcemanager.labservices.models.LabPlanNetworkProfile;
+import com.azure.resourcemanager.labservices.models.ShutdownOnIdleMode;
+import com.azure.resourcemanager.labservices.models.SupportInfo;
+import java.time.Duration;
+
+/**
+ * Samples for LabPlans CreateOrUpdate.
+ */
+public final class LabPlansCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/LabPlans/putLabPlan.
+     * json
+     */
+    /**
+     * Sample code: putLabPlan.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void putLabPlan(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.labPlans()
+            .define("testlabplan")
+            .withRegion("westus")
+            .withExistingResourceGroup("testrg123")
+            .withDefaultConnectionProfile(new ConnectionProfile().withWebSshAccess(ConnectionType.NONE)
+                .withWebRdpAccess(ConnectionType.NONE)
+                .withClientSshAccess(ConnectionType.PUBLIC)
+                .withClientRdpAccess(ConnectionType.PUBLIC))
+            .withDefaultAutoShutdownProfile(new AutoShutdownProfile().withShutdownOnDisconnect(EnableState.ENABLED)
+                .withShutdownWhenNotConnected(EnableState.ENABLED)
+                .withShutdownOnIdle(ShutdownOnIdleMode.USER_ABSENCE)
+                .withDisconnectDelay(Duration.parse("PT5M"))
+                .withNoConnectDelay(Duration.parse("PT5M"))
+                .withIdleDelay(Duration.parse("PT5M")))
+            .withDefaultNetworkProfile(new LabPlanNetworkProfile().withSubnetId(
+                "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testrg123/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/default"))
+            .withSharedGalleryId(
+                "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testrg123/providers/Microsoft.Compute/galleries/testsig")
+            .withSupportInfo(new SupportInfo().withUrl("help.contoso.com")
+                .withEmail("help@contoso.com")
+                .withPhone("+1-202-555-0123")
+                .withInstructions("Contact support for help."))
+            .create();
+    }
+}
+```
+
+### VirtualMachines_Get
+
+```java
+/**
+ * Samples for Labs GetByResourceGroup.
+ */
+public final class LabsGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/getLab.json
+     */
+    /**
+     * Sample code: getLab.
+     * 
+     * @param manager Entry point to LabServicesManager.
+     */
+    public static void getLab(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.labs().getByResourceGroupWithResponse("testrg123", "testlab", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### VirtualMachines_ListByLab
 
 ```java
 /**
@@ -623,7 +1014,7 @@ public final class LabsUpdateSamples {
 public final class OperationResultsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/OperationResults/
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/OperationResults/
      * getOperationResult.json
      */
     /**
@@ -638,136 +1029,52 @@ public final class OperationResultsGetSamples {
 }
 ```
 
-### Operations_List
+### VirtualMachines_Redeploy
 
 ```java
 /**
- * Samples for Operations List.
+ * Samples for Labs List.
  */
-public final class OperationsListSamples {
+public final class LabsListSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabServices/
-     * listOperations.json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Labs/listLabs.json
      */
     /**
-     * Sample code: listOperations.
+     * Sample code: listLabs.
      * 
      * @param manager Entry point to LabServicesManager.
      */
-    public static void listOperations(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
+    public static void listLabs(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.labs().list(null, com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Schedules_CreateOrUpdate
+### VirtualMachines_Reimage
 
 ```java
-import com.azure.resourcemanager.labservices.models.RecurrenceFrequency;
-import com.azure.resourcemanager.labservices.models.RecurrencePattern;
-import java.time.OffsetDateTime;
-
 /**
- * Samples for Schedules CreateOrUpdate.
+ * Samples for VirtualMachines Redeploy.
  */
-public final class SchedulesCreateOrUpdateSamples {
+public final class VirtualMachinesRedeploySamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/putSchedule
-     * .json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/
+     * redeployVirtualMachine.json
      */
     /**
-     * Sample code: putSchedule.
+     * Sample code: redeployVirtualMachine.
      * 
      * @param manager Entry point to LabServicesManager.
      */
-    public static void putSchedule(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.schedules()
-            .define("schedule1")
-            .withExistingLab("testrg123", "testlab")
-            .withStartAt(OffsetDateTime.parse("2020-05-26T12:00:00Z"))
-            .withStopAt(OffsetDateTime.parse("2020-05-26T18:00:00Z"))
-            .withRecurrencePattern(new RecurrencePattern().withFrequency(RecurrenceFrequency.DAILY)
-                .withInterval(2)
-                .withExpirationDate(OffsetDateTime.parse("2020-08-14T23:59:59Z")))
-            .withTimeZoneId("America/Los_Angeles")
-            .withNotes("Schedule 1 for students")
-            .create();
+    public static void redeployVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
+        manager.virtualMachines().redeploy("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Schedules_Delete
-
-```java
-/**
- * Samples for Schedules Delete.
- */
-public final class SchedulesDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/
-     * deleteSchedule.json
-     */
-    /**
-     * Sample code: deleteSchedule.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void deleteSchedule(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.schedules().delete("testrg123", "testlab", "schedule1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Schedules_Get
-
-```java
-/**
- * Samples for Schedules Get.
- */
-public final class SchedulesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/getSchedule
-     * .json
-     */
-    /**
-     * Sample code: getSchedule.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void getSchedule(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.schedules().getWithResponse("testrg123", "testlab", "schedule1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Schedules_ListByLab
-
-```java
-/**
- * Samples for Schedules ListByLab.
- */
-public final class SchedulesListByLabSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/
-     * listSchedule.json
-     */
-    /**
-     * Sample code: getListSchedule.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void getListSchedule(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.schedules().listByLab("testrg123", "testlab", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Schedules_Update
+### VirtualMachines_ResetPassword
 
 ```java
 import com.azure.resourcemanager.labservices.models.RecurrenceFrequency;
@@ -781,7 +1088,7 @@ import java.time.OffsetDateTime;
 public final class SchedulesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Schedules/
      * patchSchedule.json
      */
     /**
@@ -802,51 +1109,7 @@ public final class SchedulesUpdateSamples {
 }
 ```
 
-### Skus_List
-
-```java
-/**
- * Samples for Skus List.
- */
-public final class SkusListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Skus/listSkus.json
-     */
-    /**
-     * Sample code: listSkus.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void listSkus(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.skus().list(null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Usages_ListByLocation
-
-```java
-/**
- * Samples for Usages ListByLocation.
- */
-public final class UsagesListByLocationSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Usages/getUsages.json
-     */
-    /**
-     * Sample code: listUsages.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void listUsages(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.usages().listByLocation("eastus2", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Users_CreateOrUpdate
+### VirtualMachines_Start
 
 ```java
 import java.time.Duration;
@@ -857,7 +1120,7 @@ import java.time.Duration;
 public final class UsersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/putUser.json
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/Users/putUser.json
      */
     /**
      * Sample code: putUser.
@@ -875,247 +1138,7 @@ public final class UsersCreateOrUpdateSamples {
 }
 ```
 
-### Users_Delete
-
-```java
-/**
- * Samples for Users Delete.
- */
-public final class UsersDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/deleteUser.json
-     */
-    /**
-     * Sample code: deleteUser.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void deleteUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.users().delete("testrg123", "testlab", "testuser", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Users_Get
-
-```java
-/**
- * Samples for Users Get.
- */
-public final class UsersGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/getUser.json
-     */
-    /**
-     * Sample code: getUser.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void getUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.users().getWithResponse("testrg123", "testlab", "testuser", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Users_Invite
-
-```java
-import com.azure.resourcemanager.labservices.models.InviteBody;
-
-/**
- * Samples for Users Invite.
- */
-public final class UsersInviteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/inviteUser.json
-     */
-    /**
-     * Sample code: inviteUser.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void inviteUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.users()
-            .invite("testrg123", "testlab", "testuser", new InviteBody().withText("Invitation to lab testlab"),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Users_ListByLab
-
-```java
-/**
- * Samples for Users ListByLab.
- */
-public final class UsersListByLabSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/listUser.json
-     */
-    /**
-     * Sample code: listUser.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void listUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.users().listByLab("testrg123", "testlab", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Users_Update
-
-```java
-import com.azure.resourcemanager.labservices.models.User;
-import java.time.Duration;
-
-/**
- * Samples for Users Update.
- */
-public final class UsersUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/patchUser.json
-     */
-    /**
-     * Sample code: patchUser.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void patchUser(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        User resource = manager.users()
-            .getWithResponse("testrg123", "testlab", "testuser", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withAdditionalUsageQuota(Duration.parse("PT10H")).apply();
-    }
-}
-```
-
-### VirtualMachines_Get
-
-```java
-/**
- * Samples for VirtualMachines Get.
- */
-public final class VirtualMachinesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/
-     * getVirtualMachine.json
-     */
-    /**
-     * Sample code: getVirtualMachine.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void getVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.virtualMachines().getWithResponse("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VirtualMachines_ListByLab
-
-```java
-/**
- * Samples for VirtualMachines ListByLab.
- */
-public final class VirtualMachinesListByLabSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/
-     * listVirtualMachine.json
-     */
-    /**
-     * Sample code: listVirtualMachine.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void listVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.virtualMachines().listByLab("testrg123", "testlab", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VirtualMachines_Redeploy
-
-```java
-/**
- * Samples for VirtualMachines Redeploy.
- */
-public final class VirtualMachinesRedeploySamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/
-     * redeployVirtualMachine.json
-     */
-    /**
-     * Sample code: redeployVirtualMachine.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void redeployVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.virtualMachines().redeploy("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VirtualMachines_Reimage
-
-```java
-/**
- * Samples for VirtualMachines Reimage.
- */
-public final class VirtualMachinesReimageSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/
-     * reimageVirtualMachine.json
-     */
-    /**
-     * Sample code: reimageVirtualMachine.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void reimageVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.virtualMachines().reimage("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VirtualMachines_ResetPassword
-
-```java
-import com.azure.resourcemanager.labservices.models.ResetPasswordBody;
-
-/**
- * Samples for VirtualMachines ResetPassword.
- */
-public final class VirtualMachinesResetPasswordSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/
-     * resetPasswordVirtualMachine.json
-     */
-    /**
-     * Sample code: resetPasswordVirtualMachine.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void resetPasswordVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.virtualMachines()
-            .resetPassword("testrg123", "testlab", "template",
-                new ResetPasswordBody().withUsername("example-username").withPassword("fakeTokenPlaceholder"),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VirtualMachines_Start
+### VirtualMachines_Stop
 
 ```java
 /**
@@ -1124,7 +1147,7 @@ public final class VirtualMachinesResetPasswordSamples {
 public final class VirtualMachinesStartSamples {
     /*
      * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/
+     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2023-06-07/examples/VirtualMachines/
      * startVirtualMachine.json
      */
     /**
@@ -1134,29 +1157,6 @@ public final class VirtualMachinesStartSamples {
      */
     public static void startVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
         manager.virtualMachines().start("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VirtualMachines_Stop
-
-```java
-/**
- * Samples for VirtualMachines Stop.
- */
-public final class VirtualMachinesStopSamples {
-    /*
-     * x-ms-original-file:
-     * specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/
-     * stopVirtualMachine.json
-     */
-    /**
-     * Sample code: stopVirtualMachine.
-     * 
-     * @param manager Entry point to LabServicesManager.
-     */
-    public static void stopVirtualMachine(com.azure.resourcemanager.labservices.LabServicesManager manager) {
-        manager.virtualMachines().stop("testrg123", "testlab", "template", com.azure.core.util.Context.NONE);
     }
 }
 ```
