@@ -10,8 +10,8 @@ package com.azure.resourcemanager.deviceprovisioningservices.generated;
 public final class IotDpsResourceGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/DPSGet.
-     * json
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
+     * DPSGet.json
      */
     /**
      * Sample code: DPSGet.

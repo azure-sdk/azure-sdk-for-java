@@ -12,7 +12,7 @@ import com.azure.resourcemanager.deviceprovisioningservices.models.OperationInpu
 public final class IotDpsResourceCheckProvisioningServiceNameAvailabilit {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
      * DPSCheckNameAvailability.json
      */
     /**
