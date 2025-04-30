@@ -20,7 +20,7 @@ import java.util.Arrays;
 public final class SharesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/SharePut.json
+     * specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2023-12-01/examples/SharePut.json
      */
     /**
      * Sample code: SharePut.

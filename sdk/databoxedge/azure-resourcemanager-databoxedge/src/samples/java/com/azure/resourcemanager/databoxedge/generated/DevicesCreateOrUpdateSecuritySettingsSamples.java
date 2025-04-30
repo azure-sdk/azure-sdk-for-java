@@ -13,7 +13,7 @@ import com.azure.resourcemanager.databoxedge.models.SecuritySettings;
  */
 public final class DevicesCreateOrUpdateSecuritySettingsSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2023-12-01/examples/
      * SecuritySettingsUpdatePost.json
      */
     /**
@@ -25,9 +25,10 @@ public final class DevicesCreateOrUpdateSecuritySettingsSamples {
         createOrUpdateSecuritySettings(com.azure.resourcemanager.databoxedge.DataBoxEdgeManager manager) {
         manager.devices()
             .createOrUpdateSecuritySettings("testedgedevice", "AzureVM",
-                new SecuritySettings().withDeviceAdminPassword(new AsymmetricEncryptedSecret().withValue("<value>")
-                    .withEncryptionCertThumbprint("7DCBDFC44ED968D232C9A998FC105B5C70E84BE0")
-                    .withEncryptionAlgorithm(EncryptionAlgorithm.AES256)),
+                new SecuritySettings()
+                    .withDeviceAdminPassword(new AsymmetricEncryptedSecret().withValue("<deviceAdminPassword>")
+                        .withEncryptionCertThumbprint("<encryptionThumprint>")
+                        .withEncryptionAlgorithm(EncryptionAlgorithm.AES256)),
                 com.azure.core.util.Context.NONE);
     }
 }

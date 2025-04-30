@@ -42,6 +42,21 @@ public final class JobType extends ExpandableStringEnum<JobType> {
     public static final JobType REFRESH_CONTAINER = fromString("RefreshContainer");
 
     /**
+     * Static value Backup for JobType.
+     */
+    public static final JobType BACKUP = fromString("Backup");
+
+    /**
+     * Static value Restore for JobType.
+     */
+    public static final JobType RESTORE = fromString("Restore");
+
+    /**
+     * Static value TriggerSupportPackage for JobType.
+     */
+    public static final JobType TRIGGER_SUPPORT_PACKAGE = fromString("TriggerSupportPackage");
+
+    /**
      * Creates a new instance of JobType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

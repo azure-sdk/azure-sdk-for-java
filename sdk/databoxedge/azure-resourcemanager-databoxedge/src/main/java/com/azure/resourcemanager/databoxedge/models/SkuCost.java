@@ -27,7 +27,7 @@ public final class SkuCost implements JsonSerializable<SkuCost> {
     private Long quantity;
 
     /*
-     * Restriction of the SKU for the location/zone
+     * The extended unit.
      */
     private String extendedUnit;
 
@@ -56,7 +56,7 @@ public final class SkuCost implements JsonSerializable<SkuCost> {
     }
 
     /**
-     * Get the extendedUnit property: Restriction of the SKU for the location/zone.
+     * Get the extendedUnit property: The extended unit.
      * 
      * @return the extendedUnit value.
      */

@@ -9,7 +9,7 @@ package com.azure.resourcemanager.databoxedge.generated;
  */
 public final class DevicesListSamples {
     /*
-     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2019-08-01/examples/
+     * x-ms-original-file: specification/databoxedge/resource-manager/Microsoft.DataBoxEdge/stable/2023-12-01/examples/
      * DataBoxEdgeDeviceGetBySubscription.json
      */
     /**
