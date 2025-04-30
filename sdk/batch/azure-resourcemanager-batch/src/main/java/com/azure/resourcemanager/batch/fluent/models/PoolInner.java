@@ -233,11 +233,9 @@ public final class PoolInner extends AzureProxyResource {
     }
 
     /**
-     * Get the vmSize property: For information about available VM sizes, see Sizes for Virtual Machines (Linux)
-     * (https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/) or Sizes for Virtual Machines
-     * (Windows) (https://azure.microsoft.com/documentation/articles/virtual-machines-windows-sizes/). Batch supports
-     * all Azure VM sizes except STANDARD_A0 and those with premium storage (STANDARD_GS, STANDARD_DS, and STANDARD_DSV2
-     * series).
+     * Get the vmSize property: For information about available VM sizes, see Sizes for Virtual Machines in Azure
+     * (https://learn.microsoft.com/azure/virtual-machines/sizes/overview). Batch supports all Azure VM sizes except
+     * STANDARD_A0 and those with premium storage (STANDARD_GS, STANDARD_DS, and STANDARD_DSV2 series).
      * 
      * @return the vmSize value.
      */
@@ -246,11 +244,9 @@ public final class PoolInner extends AzureProxyResource {
     }
 
     /**
-     * Set the vmSize property: For information about available VM sizes, see Sizes for Virtual Machines (Linux)
-     * (https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/) or Sizes for Virtual Machines
-     * (Windows) (https://azure.microsoft.com/documentation/articles/virtual-machines-windows-sizes/). Batch supports
-     * all Azure VM sizes except STANDARD_A0 and those with premium storage (STANDARD_GS, STANDARD_DS, and STANDARD_DSV2
-     * series).
+     * Set the vmSize property: For information about available VM sizes, see Sizes for Virtual Machines in Azure
+     * (https://learn.microsoft.com/azure/virtual-machines/sizes/overview). Batch supports all Azure VM sizes except
+     * STANDARD_A0 and those with premium storage (STANDARD_GS, STANDARD_DS, and STANDARD_DSV2 series).
      * 
      * @param vmSize the vmSize value to set.
      * @return the PoolInner object itself.
