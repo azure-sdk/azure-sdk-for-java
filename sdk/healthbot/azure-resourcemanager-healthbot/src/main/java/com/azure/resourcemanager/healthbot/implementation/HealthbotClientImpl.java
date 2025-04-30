@@ -169,7 +169,7 @@ public final class HealthbotClientImpl implements HealthbotClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2020-12-08";
+        this.apiVersion = "2024-02-01";
         this.bots = new BotsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
     }

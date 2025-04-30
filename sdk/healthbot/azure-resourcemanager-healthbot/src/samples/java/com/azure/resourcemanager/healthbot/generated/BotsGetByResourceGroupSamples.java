@@ -10,7 +10,7 @@ package com.azure.resourcemanager.healthbot.generated;
 public final class BotsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ResourceInfoGet.json
+     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2024-02-01/examples/ResourceInfoGet.json
      */
     /**
      * Sample code: ResourceInfoGet.
