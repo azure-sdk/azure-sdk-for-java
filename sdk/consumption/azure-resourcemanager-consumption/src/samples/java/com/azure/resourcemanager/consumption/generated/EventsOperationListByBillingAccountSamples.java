@@ -9,7 +9,38 @@ package com.azure.resourcemanager.consumption.generated;
  */
 public final class EventsOperationListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
+     * EventsGetByBillingAccount-Primary.json
+     */
+    /**
+     * Sample code: EventsGetByBillingAccount-Primary.
+     * 
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void
+        eventsGetByBillingAccountPrimary(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.eventsOperations().listByBillingAccount("1234:5678", null, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
+     * EventsGetByBillingAccountWithFilters-Primary.json
+     */
+    /**
+     * Sample code: EventsGetByBillingAccountWithFilters-Primary.
+     * 
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void
+        eventsGetByBillingAccountWithFiltersPrimary(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.eventsOperations()
+            .listByBillingAccount("1234:5678",
+                "lotid eq 'G202001083926600XXXXX' AND lotsource eq 'consumptioncommitment'",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * EventsGetByBillingAccount.json
      */
     /**
@@ -22,7 +53,7 @@ public final class EventsOperationListByBillingAccountSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * EventsGetByBillingAccountWithFilters.json
      */
     /**
@@ -36,5 +67,36 @@ public final class EventsOperationListByBillingAccountSamples {
             .listByBillingAccount("1234:5678",
                 "lotid eq 'G202001083926600XXXXX' AND lotsource eq 'consumptioncommitment'",
                 com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
+     * EventsGetByBillingAccountWithFilters-Contributor.json
+     */
+    /**
+     * Sample code: EventsGetByBillingAccountWithFilters-Contributor.json.
+     * 
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void eventsGetByBillingAccountWithFiltersContributorJson(
+        com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.eventsOperations()
+            .listByBillingAccount("1234:5678",
+                "lotid eq 'G202001083926600XXXXX' AND lotsource eq 'consumptioncommitment'",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
+     * EventsGetByBillingAccount-Contributor.json
+     */
+    /**
+     * Sample code: EventsGetByBillingAccount-Contributor.
+     * 
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void
+        eventsGetByBillingAccountContributor(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.eventsOperations().listByBillingAccount("1234:5678", null, com.azure.core.util.Context.NONE);
     }
 }

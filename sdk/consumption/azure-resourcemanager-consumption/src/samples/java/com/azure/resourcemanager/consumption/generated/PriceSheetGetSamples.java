@@ -10,7 +10,7 @@ package com.azure.resourcemanager.consumption.generated;
 public final class PriceSheetGetSamples {
     /*
      * x-ms-original-file:
-     * specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/PriceSheet.json
+     * specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/PriceSheet.json
      */
     /**
      * Sample code: PriceSheet.

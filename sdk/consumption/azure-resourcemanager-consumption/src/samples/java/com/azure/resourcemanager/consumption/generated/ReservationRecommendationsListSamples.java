@@ -9,7 +9,7 @@ package com.azure.resourcemanager.consumption.generated;
  */
 public final class ReservationRecommendationsListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ReservationRecommendationsBySubscription.json
      */
     /**
@@ -24,7 +24,7 @@ public final class ReservationRecommendationsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ReservationRecommendationsByBillingProfile.json
      */
     /**
@@ -40,7 +40,7 @@ public final class ReservationRecommendationsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ReservationRecommendationsByResourceGroup.json
      */
     /**
@@ -56,7 +56,7 @@ public final class ReservationRecommendationsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ReservationRecommendationsFilterBySubscriptionForScopeLookBackPeriod.json
      */
     /**
@@ -73,7 +73,7 @@ public final class ReservationRecommendationsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ReservationRecommendationsByBillingAccount.json
      */
     /**
@@ -85,5 +85,21 @@ public final class ReservationRecommendationsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager.reservationRecommendations()
             .list("providers/Microsoft.Billing/billingAccounts/123456", null, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
+     * ReservationRecommendationsByBillingAccountFilterByScope.json
+     */
+    /**
+     * Sample code: ReservationRecommendationsByBillingAccountFilterForScope.
+     * 
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void reservationRecommendationsByBillingAccountFilterForScope(
+        com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.reservationRecommendations()
+            .list("providers/Microsoft.Billing/billingAccounts/123456", "properties/scope eq 'Single'",
+                com.azure.core.util.Context.NONE);
     }
 }

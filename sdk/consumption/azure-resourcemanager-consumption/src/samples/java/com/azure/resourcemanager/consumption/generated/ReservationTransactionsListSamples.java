@@ -4,12 +4,14 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
+import java.math.BigDecimal;
+
 /**
  * Samples for ReservationTransactions List.
  */
 public final class ReservationTransactionsListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2024-08-01/examples/
      * ReservationTransactionsListByEnrollmentNumber.json
      */
     /**
@@ -20,7 +22,7 @@ public final class ReservationTransactionsListSamples {
     public static void
         reservationTransactionsByEnrollmentNumber(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager.reservationTransactions()
-            .list("123456", "properties/eventDate ge 2020-05-20 AND properties/eventDate le 2020-05-30",
-                com.azure.core.util.Context.NONE);
+            .list("123456", "properties/eventDate ge 2020-05-20 AND properties/eventDate le 2020-05-30", true,
+                new BigDecimal("15.5"), com.azure.core.util.Context.NONE);
     }
 }
