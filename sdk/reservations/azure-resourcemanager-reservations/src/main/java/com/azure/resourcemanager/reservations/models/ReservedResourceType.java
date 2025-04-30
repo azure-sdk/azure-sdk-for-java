@@ -8,7 +8,8 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * The type of the resource that is being reserved.
+ * The type of the resource that is being reserved. In addition to below types we have also added the following:
+ * OpenAIPTU, MDC, Sentinel.
  */
 public final class ReservedResourceType extends ExpandableStringEnum<ReservedResourceType> {
     /**

@@ -27,7 +27,8 @@ import java.util.List;
 @Fluent
 public final class PurchaseRequestProperties implements JsonSerializable<PurchaseRequestProperties> {
     /*
-     * The type of the resource that is being reserved.
+     * The type of the resource that is being reserved. In addition to below types we have also added the following:
+     * OpenAIPTU, MDC, Sentinel.
      */
     private ReservedResourceType reservedResourceType;
 
@@ -95,7 +96,8 @@ public final class PurchaseRequestProperties implements JsonSerializable<Purchas
     }
 
     /**
-     * Get the reservedResourceType property: The type of the resource that is being reserved.
+     * Get the reservedResourceType property: The type of the resource that is being reserved. In addition to below
+     * types we have also added the following: OpenAIPTU, MDC, Sentinel.
      * 
      * @return the reservedResourceType value.
      */
@@ -104,7 +106,8 @@ public final class PurchaseRequestProperties implements JsonSerializable<Purchas
     }
 
     /**
-     * Set the reservedResourceType property: The type of the resource that is being reserved.
+     * Set the reservedResourceType property: The type of the resource that is being reserved. In addition to below
+     * types we have also added the following: OpenAIPTU, MDC, Sentinel.
      * 
      * @param reservedResourceType the reservedResourceType value to set.
      * @return the PurchaseRequestProperties object itself.

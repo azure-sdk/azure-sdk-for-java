@@ -90,7 +90,8 @@ public final class PurchaseRequest implements JsonSerializable<PurchaseRequest> 
     }
 
     /**
-     * Get the reservedResourceType property: The type of the resource that is being reserved.
+     * Get the reservedResourceType property: The type of the resource that is being reserved. In addition to below
+     * types we have also added the following: OpenAIPTU, MDC, Sentinel.
      * 
      * @return the reservedResourceType value.
      */
@@ -99,7 +100,8 @@ public final class PurchaseRequest implements JsonSerializable<PurchaseRequest> 
     }
 
     /**
-     * Set the reservedResourceType property: The type of the resource that is being reserved.
+     * Set the reservedResourceType property: The type of the resource that is being reserved. In addition to below
+     * types we have also added the following: OpenAIPTU, MDC, Sentinel.
      * 
      * @param reservedResourceType the reservedResourceType value to set.
      * @return the PurchaseRequest object itself.
