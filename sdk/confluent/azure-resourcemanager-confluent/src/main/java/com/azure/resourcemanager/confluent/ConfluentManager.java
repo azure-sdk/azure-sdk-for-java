@@ -22,23 +22,33 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.confluent.fluent.ConfluentManagementClient;
 import com.azure.resourcemanager.confluent.implementation.AccessImpl;
+import com.azure.resourcemanager.confluent.implementation.ClustersImpl;
 import com.azure.resourcemanager.confluent.implementation.ConfluentManagementClientBuilder;
+import com.azure.resourcemanager.confluent.implementation.ConnectorsImpl;
+import com.azure.resourcemanager.confluent.implementation.EnvironmentsImpl;
 import com.azure.resourcemanager.confluent.implementation.MarketplaceAgreementsImpl;
 import com.azure.resourcemanager.confluent.implementation.OrganizationOperationsImpl;
 import com.azure.resourcemanager.confluent.implementation.OrganizationsImpl;
+import com.azure.resourcemanager.confluent.implementation.TopicsImpl;
 import com.azure.resourcemanager.confluent.implementation.ValidationsImpl;
 import com.azure.resourcemanager.confluent.models.Access;
+import com.azure.resourcemanager.confluent.models.Clusters;
+import com.azure.resourcemanager.confluent.models.Connectors;
+import com.azure.resourcemanager.confluent.models.Environments;
 import com.azure.resourcemanager.confluent.models.MarketplaceAgreements;
 import com.azure.resourcemanager.confluent.models.OrganizationOperations;
 import com.azure.resourcemanager.confluent.models.Organizations;
+import com.azure.resourcemanager.confluent.models.Topics;
 import com.azure.resourcemanager.confluent.models.Validations;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -55,6 +65,14 @@ public final class ConfluentManager {
     private Validations validations;
 
     private Access access;
+
+    private Environments environments;
+
+    private Clusters clusters;
+
+    private Connectors connectors;
+
+    private Topics topics;
 
     private final ConfluentManagementClient clientObject;
 
@@ -108,6 +126,9 @@ public final class ConfluentManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-confluent.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -215,12 +236,14 @@ public final class ConfluentManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.confluent")
                 .append("/")
-                .append("1.2.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -325,6 +348,54 @@ public final class ConfluentManager {
             this.access = new AccessImpl(clientObject.getAccess(), this);
         }
         return access;
+    }
+
+    /**
+     * Gets the resource collection API of Environments. It manages SCEnvironmentRecord.
+     * 
+     * @return Resource collection API of Environments.
+     */
+    public Environments environments() {
+        if (this.environments == null) {
+            this.environments = new EnvironmentsImpl(clientObject.getEnvironments(), this);
+        }
+        return environments;
+    }
+
+    /**
+     * Gets the resource collection API of Clusters. It manages SCClusterRecord.
+     * 
+     * @return Resource collection API of Clusters.
+     */
+    public Clusters clusters() {
+        if (this.clusters == null) {
+            this.clusters = new ClustersImpl(clientObject.getClusters(), this);
+        }
+        return clusters;
+    }
+
+    /**
+     * Gets the resource collection API of Connectors. It manages ConnectorResource.
+     * 
+     * @return Resource collection API of Connectors.
+     */
+    public Connectors connectors() {
+        if (this.connectors == null) {
+            this.connectors = new ConnectorsImpl(clientObject.getConnectors(), this);
+        }
+        return connectors;
+    }
+
+    /**
+     * Gets the resource collection API of Topics. It manages TopicRecord.
+     * 
+     * @return Resource collection API of Topics.
+     */
+    public Topics topics() {
+        if (this.topics == null) {
+            this.topics = new TopicsImpl(clientObject.getTopics(), this);
+        }
+        return topics;
     }
 
     /**

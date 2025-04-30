@@ -4,20 +4,17 @@
 
 package com.azure.resourcemanager.confluent.implementation;
 
+import com.azure.core.util.Context;
 import com.azure.resourcemanager.confluent.fluent.models.SCEnvironmentRecordInner;
 import com.azure.resourcemanager.confluent.models.SCEnvironmentRecord;
 import com.azure.resourcemanager.confluent.models.SCMetadataEntity;
+import com.azure.resourcemanager.confluent.models.StreamGovernanceConfig;
 
-public final class SCEnvironmentRecordImpl implements SCEnvironmentRecord {
+public final class SCEnvironmentRecordImpl
+    implements SCEnvironmentRecord, SCEnvironmentRecord.Definition, SCEnvironmentRecord.Update {
     private SCEnvironmentRecordInner innerObject;
 
     private final com.azure.resourcemanager.confluent.ConfluentManager serviceManager;
-
-    SCEnvironmentRecordImpl(SCEnvironmentRecordInner innerObject,
-        com.azure.resourcemanager.confluent.ConfluentManager serviceManager) {
-        this.innerObject = innerObject;
-        this.serviceManager = serviceManager;
-    }
 
     public String kind() {
         return this.innerModel().kind();
@@ -27,12 +24,24 @@ public final class SCEnvironmentRecordImpl implements SCEnvironmentRecord {
         return this.innerModel().id();
     }
 
+    public String type() {
+        return this.innerModel().type();
+    }
+
     public String name() {
         return this.innerModel().name();
     }
 
+    public StreamGovernanceConfig streamGovernanceConfig() {
+        return this.innerModel().streamGovernanceConfig();
+    }
+
     public SCMetadataEntity metadata() {
         return this.innerModel().metadata();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public SCEnvironmentRecordInner innerModel() {
@@ -41,5 +50,95 @@ public final class SCEnvironmentRecordImpl implements SCEnvironmentRecord {
 
     private com.azure.resourcemanager.confluent.ConfluentManager manager() {
         return this.serviceManager;
+    }
+
+    private String resourceGroupName;
+
+    private String organizationName;
+
+    private String environmentId;
+
+    public SCEnvironmentRecordImpl withExistingOrganization(String resourceGroupName, String organizationName) {
+        this.resourceGroupName = resourceGroupName;
+        this.organizationName = organizationName;
+        return this;
+    }
+
+    public SCEnvironmentRecord create() {
+        this.innerObject = serviceManager.serviceClient()
+            .getEnvironments()
+            .createOrUpdateWithResponse(resourceGroupName, organizationName, environmentId, this.innerModel(),
+                Context.NONE)
+            .getValue();
+        return this;
+    }
+
+    public SCEnvironmentRecord create(Context context) {
+        this.innerObject = serviceManager.serviceClient()
+            .getEnvironments()
+            .createOrUpdateWithResponse(resourceGroupName, organizationName, environmentId, this.innerModel(), context)
+            .getValue();
+        return this;
+    }
+
+    SCEnvironmentRecordImpl(String name, com.azure.resourcemanager.confluent.ConfluentManager serviceManager) {
+        this.innerObject = new SCEnvironmentRecordInner();
+        this.serviceManager = serviceManager;
+        this.environmentId = name;
+    }
+
+    public SCEnvironmentRecordImpl update() {
+        return this;
+    }
+
+    public SCEnvironmentRecord apply() {
+        this.innerObject = serviceManager.serviceClient()
+            .getEnvironments()
+            .createOrUpdateWithResponse(resourceGroupName, organizationName, environmentId, this.innerModel(),
+                Context.NONE)
+            .getValue();
+        return this;
+    }
+
+    public SCEnvironmentRecord apply(Context context) {
+        this.innerObject = serviceManager.serviceClient()
+            .getEnvironments()
+            .createOrUpdateWithResponse(resourceGroupName, organizationName, environmentId, this.innerModel(), context)
+            .getValue();
+        return this;
+    }
+
+    SCEnvironmentRecordImpl(SCEnvironmentRecordInner innerObject,
+        com.azure.resourcemanager.confluent.ConfluentManager serviceManager) {
+        this.innerObject = innerObject;
+        this.serviceManager = serviceManager;
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.organizationName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "organizations");
+        this.environmentId = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "environments");
+    }
+
+    public SCEnvironmentRecordImpl withKind(String kind) {
+        this.innerModel().withKind(kind);
+        return this;
+    }
+
+    public SCEnvironmentRecordImpl withType(String type) {
+        this.innerModel().withType(type);
+        return this;
+    }
+
+    public SCEnvironmentRecordImpl withName(String name) {
+        this.innerModel().withName(name);
+        return this;
+    }
+
+    public SCEnvironmentRecordImpl withStreamGovernanceConfig(StreamGovernanceConfig streamGovernanceConfig) {
+        this.innerModel().withStreamGovernanceConfig(streamGovernanceConfig);
+        return this;
+    }
+
+    public SCEnvironmentRecordImpl withMetadata(SCMetadataEntity metadata) {
+        this.innerModel().withMetadata(metadata);
+        return this;
     }
 }

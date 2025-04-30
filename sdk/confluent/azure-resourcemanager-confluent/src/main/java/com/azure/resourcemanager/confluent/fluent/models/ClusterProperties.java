@@ -15,7 +15,7 @@ import com.azure.resourcemanager.confluent.models.SCMetadataEntity;
 import java.io.IOException;
 
 /**
- * Cluster Properties.
+ * Service Connector Cluster Properties.
  */
 @Fluent
 public final class ClusterProperties implements JsonSerializable<ClusterProperties> {

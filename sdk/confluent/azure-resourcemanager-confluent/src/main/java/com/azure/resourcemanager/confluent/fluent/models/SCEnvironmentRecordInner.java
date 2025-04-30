@@ -5,18 +5,19 @@
 package com.azure.resourcemanager.confluent.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.ProxyResource;
 import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.confluent.models.SCMetadataEntity;
+import com.azure.resourcemanager.confluent.models.StreamGovernanceConfig;
 import java.io.IOException;
 
 /**
  * Details about environment name, metadata and environment id of an environment.
  */
 @Fluent
-public final class SCEnvironmentRecordInner implements JsonSerializable<SCEnvironmentRecordInner> {
+public final class SCEnvironmentRecordInner extends ProxyResource {
     /*
      * Type of environment
      */
@@ -26,6 +27,11 @@ public final class SCEnvironmentRecordInner implements JsonSerializable<SCEnviro
      * Id of the environment
      */
     private String id;
+
+    /*
+     * Type of the resource
+     */
+    private String type;
 
     /*
      * Environment properties
@@ -84,6 +90,26 @@ public final class SCEnvironmentRecordInner implements JsonSerializable<SCEnviro
     }
 
     /**
+     * Get the type property: Type of the resource.
+     * 
+     * @return the type value.
+     */
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Set the type property: Type of the resource.
+     * 
+     * @param type the type value to set.
+     * @return the SCEnvironmentRecordInner object itself.
+     */
+    public SCEnvironmentRecordInner withType(String type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
      * Get the innerProperties property: Environment properties.
      * 
      * @return the innerProperties value.
@@ -109,6 +135,29 @@ public final class SCEnvironmentRecordInner implements JsonSerializable<SCEnviro
      */
     public SCEnvironmentRecordInner withName(String name) {
         this.name = name;
+        return this;
+    }
+
+    /**
+     * Get the streamGovernanceConfig property: Stream governance configuration.
+     * 
+     * @return the streamGovernanceConfig value.
+     */
+    public StreamGovernanceConfig streamGovernanceConfig() {
+        return this.innerProperties() == null ? null : this.innerProperties().streamGovernanceConfig();
+    }
+
+    /**
+     * Set the streamGovernanceConfig property: Stream governance configuration.
+     * 
+     * @param streamGovernanceConfig the streamGovernanceConfig value to set.
+     * @return the SCEnvironmentRecordInner object itself.
+     */
+    public SCEnvironmentRecordInner withStreamGovernanceConfig(StreamGovernanceConfig streamGovernanceConfig) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EnvironmentProperties();
+        }
+        this.innerProperties().withStreamGovernanceConfig(streamGovernanceConfig);
         return this;
     }
 
@@ -154,6 +203,7 @@ public final class SCEnvironmentRecordInner implements JsonSerializable<SCEnviro
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("kind", this.kind);
         jsonWriter.writeStringField("id", this.id);
+        jsonWriter.writeStringField("type", this.type);
         jsonWriter.writeJsonField("properties", this.innerProperties);
         jsonWriter.writeStringField("name", this.name);
         return jsonWriter.writeEndObject();
@@ -165,6 +215,7 @@ public final class SCEnvironmentRecordInner implements JsonSerializable<SCEnviro
      * @param jsonReader The JsonReader being read.
      * @return An instance of SCEnvironmentRecordInner if the JsonReader was pointing to an instance of it, or null if
      * it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the SCEnvironmentRecordInner.
      */
     public static SCEnvironmentRecordInner fromJson(JsonReader jsonReader) throws IOException {
@@ -178,6 +229,8 @@ public final class SCEnvironmentRecordInner implements JsonSerializable<SCEnviro
                     deserializedSCEnvironmentRecordInner.kind = reader.getString();
                 } else if ("id".equals(fieldName)) {
                     deserializedSCEnvironmentRecordInner.id = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedSCEnvironmentRecordInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedSCEnvironmentRecordInner.innerProperties = EnvironmentProperties.fromJson(reader);
                 } else if ("name".equals(fieldName)) {

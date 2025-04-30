@@ -13,7 +13,7 @@ import com.azure.resourcemanager.confluent.models.AccessInvitedUserDetails;
 public final class AccessInviteUserSamples {
     /*
      * x-ms-original-file:
-     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/Access_InviteUser.json
+     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-07-01/examples/Access_InviteUser.json
      */
     /**
      * Sample code: Access_InviteUser.

@@ -14,7 +14,7 @@ import java.util.Map;
 public final class OrganizationListRegionsSamples {
     /*
      * x-ms-original-file:
-     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/Organization_ListRegions.
+     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-07-01/examples/Organization_ListRegions.
      * json
      */
     /**

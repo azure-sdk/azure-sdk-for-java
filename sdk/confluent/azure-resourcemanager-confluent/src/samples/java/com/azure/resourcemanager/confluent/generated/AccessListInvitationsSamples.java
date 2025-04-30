@@ -14,7 +14,7 @@ import java.util.Map;
 public final class AccessListInvitationsSamples {
     /*
      * x-ms-original-file:
-     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/Access_InvitationsList.
+     * specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-07-01/examples/Access_InvitationsList.
      * json
      */
     /**
