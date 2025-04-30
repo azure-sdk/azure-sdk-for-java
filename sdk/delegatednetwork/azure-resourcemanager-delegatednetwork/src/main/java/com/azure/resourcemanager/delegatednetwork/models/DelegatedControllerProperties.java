@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.delegatednetwork.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * Properties of Delegated controller resource.
  */
-@Immutable
+@Fluent
 public final class DelegatedControllerProperties implements JsonSerializable<DelegatedControllerProperties> {
     /*
      * Resource guid.
@@ -40,6 +40,11 @@ public final class DelegatedControllerProperties implements JsonSerializable<Del
      * dnc endpoint url that customers can use to connect to
      */
     private String dncEndpoint;
+
+    /*
+     * The purpose of the dnc controller resource.
+     */
+    private ControllerPurpose purpose;
 
     /**
      * Creates an instance of DelegatedControllerProperties class.
@@ -93,6 +98,26 @@ public final class DelegatedControllerProperties implements JsonSerializable<Del
     }
 
     /**
+     * Get the purpose property: The purpose of the dnc controller resource.
+     * 
+     * @return the purpose value.
+     */
+    public ControllerPurpose purpose() {
+        return this.purpose;
+    }
+
+    /**
+     * Set the purpose property: The purpose of the dnc controller resource.
+     * 
+     * @param purpose the purpose value to set.
+     * @return the DelegatedControllerProperties object itself.
+     */
+    public DelegatedControllerProperties withPurpose(ControllerPurpose purpose) {
+        this.purpose = purpose;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -106,6 +131,7 @@ public final class DelegatedControllerProperties implements JsonSerializable<Del
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("purpose", this.purpose == null ? null : this.purpose.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -136,6 +162,9 @@ public final class DelegatedControllerProperties implements JsonSerializable<Del
                     deserializedDelegatedControllerProperties.dncTenantId = reader.getString();
                 } else if ("dncEndpoint".equals(fieldName)) {
                     deserializedDelegatedControllerProperties.dncEndpoint = reader.getString();
+                } else if ("purpose".equals(fieldName)) {
+                    deserializedDelegatedControllerProperties.purpose
+                        = ControllerPurpose.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

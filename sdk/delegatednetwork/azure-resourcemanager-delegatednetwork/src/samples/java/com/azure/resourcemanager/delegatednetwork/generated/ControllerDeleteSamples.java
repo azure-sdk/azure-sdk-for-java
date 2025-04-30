@@ -10,7 +10,8 @@ package com.azure.resourcemanager.delegatednetwork.generated;
 public final class ControllerDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/deleteController.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * deleteController.json
      */
     /**
      * Sample code: Delete controller.

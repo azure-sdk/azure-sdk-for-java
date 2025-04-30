@@ -10,7 +10,8 @@ package com.azure.resourcemanager.delegatednetwork.generated;
 public final class DelegatedNetworkListSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/controllerListBySub.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * controllerListBySub.json
      */
     /**
      * Sample code: Get DelegatedController resources by subscription.

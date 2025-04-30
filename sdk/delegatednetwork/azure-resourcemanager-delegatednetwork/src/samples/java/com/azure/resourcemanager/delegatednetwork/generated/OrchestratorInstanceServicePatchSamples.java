@@ -14,7 +14,8 @@ import java.util.Map;
 public final class OrchestratorInstanceServicePatchSamples {
     /*
      * x-ms-original-file:
-     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/stable/2021-03-15/examples/patchOrchestrator.json
+     * specification/dnc/resource-manager/Microsoft.DelegatedNetwork/preview/2023-06-27-preview/examples/
+     * patchOrchestrator.json
      */
     /**
      * Sample code: update Orchestrator Instance.

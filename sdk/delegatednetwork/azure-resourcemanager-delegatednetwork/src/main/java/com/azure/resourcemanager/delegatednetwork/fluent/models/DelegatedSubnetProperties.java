@@ -39,6 +39,12 @@ public final class DelegatedSubnetProperties implements JsonSerializable<Delegat
      */
     private ControllerDetails controllerDetails;
 
+    /*
+     * Defines prefix size of CIDR blocks allocated to nodes in VnetBlock Mode.
+     * Delegated subnet's prefix size should be smaller than this by a minimum of 3.
+     */
+    private Integer allocationBlockPrefixSize;
+
     /**
      * Creates an instance of DelegatedSubnetProperties class.
      */
@@ -104,6 +110,30 @@ public final class DelegatedSubnetProperties implements JsonSerializable<Delegat
     }
 
     /**
+     * Get the allocationBlockPrefixSize property: Defines prefix size of CIDR blocks allocated to nodes in VnetBlock
+     * Mode.
+     * Delegated subnet's prefix size should be smaller than this by a minimum of 3.
+     * 
+     * @return the allocationBlockPrefixSize value.
+     */
+    public Integer allocationBlockPrefixSize() {
+        return this.allocationBlockPrefixSize;
+    }
+
+    /**
+     * Set the allocationBlockPrefixSize property: Defines prefix size of CIDR blocks allocated to nodes in VnetBlock
+     * Mode.
+     * Delegated subnet's prefix size should be smaller than this by a minimum of 3.
+     * 
+     * @param allocationBlockPrefixSize the allocationBlockPrefixSize value to set.
+     * @return the DelegatedSubnetProperties object itself.
+     */
+    public DelegatedSubnetProperties withAllocationBlockPrefixSize(Integer allocationBlockPrefixSize) {
+        this.allocationBlockPrefixSize = allocationBlockPrefixSize;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -125,6 +155,7 @@ public final class DelegatedSubnetProperties implements JsonSerializable<Delegat
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("subnetDetails", this.subnetDetails);
         jsonWriter.writeJsonField("controllerDetails", this.controllerDetails);
+        jsonWriter.writeNumberField("allocationBlockPrefixSize", this.allocationBlockPrefixSize);
         return jsonWriter.writeEndObject();
     }
 
@@ -152,6 +183,9 @@ public final class DelegatedSubnetProperties implements JsonSerializable<Delegat
                     deserializedDelegatedSubnetProperties.subnetDetails = SubnetDetails.fromJson(reader);
                 } else if ("controllerDetails".equals(fieldName)) {
                     deserializedDelegatedSubnetProperties.controllerDetails = ControllerDetails.fromJson(reader);
+                } else if ("allocationBlockPrefixSize".equals(fieldName)) {
+                    deserializedDelegatedSubnetProperties.allocationBlockPrefixSize
+                        = reader.getNullable(JsonReader::getInt);
                 } else {
                     reader.skipChildren();
                 }

@@ -54,6 +54,17 @@ public final class DelegatedControllerInner extends ControllerResource {
     }
 
     /**
+     * Set the properties property: Properties of the provision operation request.
+     * 
+     * @param properties the properties value to set.
+     * @return the DelegatedControllerInner object itself.
+     */
+    public DelegatedControllerInner withProperties(DelegatedControllerProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
      * Get the type property: The type of the resource.
      * 
      * @return the type value.
@@ -121,6 +132,7 @@ public final class DelegatedControllerInner extends ControllerResource {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
