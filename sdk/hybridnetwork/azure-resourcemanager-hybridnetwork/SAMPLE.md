@@ -13,10 +13,16 @@
 
 ## ArtifactStores
 
+- [AddNetworkFabricControllerEndPoints](#artifactstores_addnetworkfabriccontrollerendpoints)
+- [ApprovePrivateEndPoints](#artifactstores_approveprivateendpoints)
 - [CreateOrUpdate](#artifactstores_createorupdate)
 - [Delete](#artifactstores_delete)
+- [DeleteNetworkFabricControllerEndPoints](#artifactstores_deletenetworkfabriccontrollerendpoints)
 - [Get](#artifactstores_get)
 - [ListByPublisher](#artifactstores_listbypublisher)
+- [ListNetworkFabricControllerPrivateEndPoints](#artifactstores_listnetworkfabriccontrollerprivateendpoints)
+- [ListPrivateEndPoints](#artifactstores_listprivateendpoints)
+- [RemovePrivateEndPoints](#artifactstores_removeprivateendpoints)
 - [Update](#artifactstores_update)
 
 ## Components
@@ -125,6 +131,1814 @@
 ### ArtifactManifests_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.hybridnetwork.models.ConfigurationValueWithSecrets;
+import com.azure.resourcemanager.hybridnetwork.models.ConfigurationValueWithoutSecrets;
+import com.azure.resourcemanager.hybridnetwork.models.OpenDeploymentResourceReference;
+import com.azure.resourcemanager.hybridnetwork.models.SecretDeploymentResourceReference;
+
+/**
+ * Samples for ConfigurationGroupValues CreateOrUpdate.
+ */
+public final class ConfigurationGroupValuesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ConfigurationGroupValueCreate.json
+     */
+    /**
+     * Sample code: Create or update configuration group value.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        createOrUpdateConfigurationGroupValue(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupValues()
+            .define("testConfigurationGroupValue")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg1")
+            .withProperties(new ConfigurationValueWithoutSecrets()
+                .withConfigurationGroupSchemaResourceReference(new OpenDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/testRG/providers/microsoft.hybridnetwork/publishers/testPublisher/configurationGroupSchemas/testConfigurationGroupSchemaName"))
+                .withConfigurationValue(
+                    "{\"interconnect-groups\":{\"stripe-one\":{\"name\":\"Stripe one\",\"international-interconnects\":[\"france\",\"germany\"],\"domestic-interconnects\":[\"birmingham\",\"edinburgh\"]},\"stripe-two\":{\"name\":\"Stripe two\",\"international-interconnects\":[\"germany\",\"italy\"],\"domestic-interconnects\":[\"edinburgh\",\"london\"]}},\"interconnect-group-assignments\":{\"ssc-one\":{\"ssc\":\"SSC 1\",\"interconnects\":\"stripe-one\"},\"ssc-two\":{\"ssc\":\"SSC 2\",\"interconnects\":\"stripe-two\"}}}"))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ConfigurationGroupValueFirstPartyCreate.json
+     */
+    /**
+     * Sample code: Create or update first party configuration group value.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createOrUpdateFirstPartyConfigurationGroupValue(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupValues()
+            .define("testConfigurationGroupValue")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg1")
+            .withProperties(new ConfigurationValueWithoutSecrets()
+                .withConfigurationGroupSchemaResourceReference(new SecretDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/testRG/providers/microsoft.hybridnetwork/publishers/testPublisher/configurationGroupSchemas/testConfigurationGroupSchemaName"))
+                .withConfigurationValue(
+                    "{\"interconnect-groups\":{\"stripe-one\":{\"name\":\"Stripe one\",\"international-interconnects\":[\"france\",\"germany\"],\"domestic-interconnects\":[\"birmingham\",\"edinburgh\"]},\"stripe-two\":{\"name\":\"Stripe two\",\"international-interconnects\":[\"germany\",\"italy\"],\"domestic-interconnects\":[\"edinburgh\",\"london\"]}},\"interconnect-group-assignments\":{\"ssc-one\":{\"ssc\":\"SSC 1\",\"interconnects\":\"stripe-one\"},\"ssc-two\":{\"ssc\":\"SSC 2\",\"interconnects\":\"stripe-two\"}}}"))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ConfigurationGroupValueCreateSecret.json
+     */
+    /**
+     * Sample code: Create or update configuration group value with secrets.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createOrUpdateConfigurationGroupValueWithSecrets(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupValues()
+            .define("testConfigurationGroupValue")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg1")
+            .withProperties(new ConfigurationValueWithSecrets()
+                .withConfigurationGroupSchemaResourceReference(new OpenDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/testRG/providers/microsoft.hybridnetwork/publishers/testPublisher/configurationGroupSchemas/testConfigurationGroupSchemaName"))
+                .withSecretConfigurationValue("fakeTokenPlaceholder"))
+            .create();
+    }
+}
+```
+
+### ArtifactManifests_Delete
+
+```java
+/**
+ * Samples for Publishers List.
+ */
+public final class PublishersListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * PublisherListBySubscription.json
+     */
+    /**
+     * Sample code: List all publisher resources in a subscription.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        listAllPublisherResourcesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.publishers().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactManifests_Get
+
+```java
+/**
+ * Samples for ConfigurationGroupSchemas Delete.
+ */
+public final class ConfigurationGroupSchemasDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ConfigurationGroupSchemaDelete.json
+     */
+    /**
+     * Sample code: Delete a network function group resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        deleteANetworkFunctionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupSchemas()
+            .delete("rg1", "testPublisher", "testConfigurationGroupSchema", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactManifests_ListByArtifactStore
+
+```java
+/**
+ * Samples for NetworkFunctions ListByResourceGroup.
+ */
+public final class NetworkFunctionsListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionListByResourceGroup.json
+     */
+    /**
+     * Sample code: List network function in resource group.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        listNetworkFunctionInResourceGroup(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions().listByResourceGroup("rg", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactManifests_ListCredential
+
+```java
+/**
+ * Samples for Sites GetByResourceGroup.
+ */
+public final class SitesGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/SiteGet.json
+     */
+    /**
+     * Sample code: Get network site.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getNetworkSite(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.sites().getByResourceGroupWithResponse("rg1", "testSite", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactManifests_Update
+
+```java
+import com.azure.resourcemanager.hybridnetwork.models.PublisherPropertiesFormat;
+import com.azure.resourcemanager.hybridnetwork.models.PublisherScope;
+
+/**
+ * Samples for Publishers CreateOrUpdate.
+ */
+public final class PublishersCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/PublisherCreate.
+     * json
+     */
+    /**
+     * Sample code: Create or update a publisher resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        createOrUpdateAPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.publishers()
+            .define("TestPublisher")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg")
+            .withProperties(new PublisherPropertiesFormat().withScope(PublisherScope.fromString("Public")))
+            .create();
+    }
+}
+```
+
+### ArtifactManifests_UpdateState
+
+```java
+/**
+ * Samples for Publishers GetByResourceGroup.
+ */
+public final class PublishersGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/PublisherGet.json
+     */
+    /**
+     * Sample code: Get a publisher resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getAPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.publishers().getByResourceGroupWithResponse("rg", "TestPublisher", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactStores_AddNetworkFabricControllerEndPoints
+
+```java
+import com.azure.resourcemanager.hybridnetwork.fluent.models.NetworkFunctionDefinitionVersionUpdateStateInner;
+import com.azure.resourcemanager.hybridnetwork.models.VersionState;
+
+/**
+ * Samples for NetworkFunctionDefinitionVersions UpdateState.
+ */
+public final class NetworkFunctionDefinitionVersionsUpdateStateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionDefinitionVersionUpdateState.json
+     */
+    /**
+     * Sample code: Update network function definition version state.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void updateNetworkFunctionDefinitionVersionState(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .updateState("rg", "TestPublisher", "TestSkuGroup", "1.0.0",
+                new NetworkFunctionDefinitionVersionUpdateStateInner().withVersionState(VersionState.ACTIVE),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactStores_ApprovePrivateEndPoints
+
+```java
+/**
+ * Samples for SiteNetworkServices GetByResourceGroup.
+ */
+public final class SiteNetworkServicesGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * SiteNetworkServiceGet.json
+     */
+    /**
+     * Sample code: Get network site.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getNetworkSite(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.siteNetworkServices()
+            .getByResourceGroupWithResponse("rg1", "testSiteNetworkServiceName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactStores_CreateOrUpdate
+
+```java
+/**
+ * Samples for SiteNetworkServices List.
+ */
+public final class SiteNetworkServicesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * SiteNetworkServiceListBySubscription.json
+     */
+    /**
+     * Sample code: List all hybrid network sites in a subscription.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        listAllHybridNetworkSitesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.siteNetworkServices().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactStores_Delete
+
+```java
+/**
+ * Samples for NetworkFunctionDefinitionGroups CreateOrUpdate.
+ */
+public final class NetworkFunctionDefinitionGroupsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionDefinitionGroupCreate.json
+     */
+    /**
+     * Sample code: Create or update the network function definition group.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createOrUpdateTheNetworkFunctionDefinitionGroup(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionGroups()
+            .define("TestNetworkFunctionDefinitionGroupName")
+            .withRegion("eastus")
+            .withExistingPublisher("rg", "TestPublisher")
+            .create();
+    }
+}
+```
+
+### ArtifactStores_DeleteNetworkFabricControllerEndPoints
+
+```java
+/**
+ * Samples for SiteNetworkServices Delete.
+ */
+public final class SiteNetworkServicesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * SiteNetworkServiceDelete.json
+     */
+    /**
+     * Sample code: Delete network site.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void deleteNetworkSite(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.siteNetworkServices().delete("rg1", "testSiteNetworkServiceName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactStores_Get
+
+```java
+/**
+ * Samples for NetworkServiceDesignVersions ListByNetworkServiceDesignGroup.
+ */
+public final class NetworkServiceDesignVersionsListByNetworkServiceDesignGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkServiceDesignVersionListByNetworkServiceDesignGroup.json
+     */
+    /**
+     * Sample code: Get Publisher resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignVersions()
+            .listByNetworkServiceDesignGroup("rg", "TestPublisher", "TestNetworkServiceDesignGroupName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactStores_ListByPublisher
+
+```java
+/**
+ * Samples for ArtifactManifests Get.
+ */
+public final class ArtifactManifestsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactManifestGet.json
+     */
+    /**
+     * Sample code: Get a artifact manifest resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        getAArtifactManifestResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactManifests()
+            .getWithResponse("rg", "TestPublisher", "TestArtifactStore", "TestManifest",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactStores_ListNetworkFabricControllerPrivateEndPoints
+
+```java
+import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionValueWithSecrets;
+import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionValueWithoutSecrets;
+import com.azure.resourcemanager.hybridnetwork.models.NfviType;
+import com.azure.resourcemanager.hybridnetwork.models.OpenDeploymentResourceReference;
+import com.azure.resourcemanager.hybridnetwork.models.SecretDeploymentResourceReference;
+import java.util.Arrays;
+
+/**
+ * Samples for NetworkFunctions CreateOrUpdate.
+ */
+public final class NetworkFunctionsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/AzureCore/
+     * VirtualNetworkFunctionCreate.json
+     */
+    /**
+     * Sample code: Create virtual network function resource on AzureCore.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createVirtualNetworkFunctionResourceOnAzureCore(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions()
+            .define("testNf")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg")
+            .withProperties(new NetworkFunctionValueWithoutSecrets()
+                .withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1"))
+                .withNfviType(NfviType.AZURE_CORE)
+                .withNfviId("/subscriptions/subid/resourceGroups/testResourceGroup")
+                .withAllowSoftwareUpdate(false)
+                .withDeploymentValues(
+                    "{\"virtualMachineName\":\"test-VM\",\"cpuCores\":4,\"memorySizeGB\":8,\"cloudServicesNetworkAttachment\":{\"attachedNetworkId\":\"test-csnet\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-cs-vlan\"},\"networkAttachments\":[{\"attachedNetworkId\":\"test-l3vlan\",\"defaultGateway\":\"True\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-vlan\"}],\"sshPublicKeys\":[{\"keyData\":\"ssh-rsa CMIIIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA0TqlveKKlc2MFvEmuXJiLGBsY1t4ML4uiRADGSZlnc+7Ugv3h+MCjkkwOKiOdsNo8k4KSBIG5GcQfKYOOd17AJvqCL6cGQbaLuqv0a64jeDm8oO8/xN/IM0oKw7rMr/2oAJOgIsfeXPkRxWWic9AVIS++H5Qi2r7bUFX+cqFsyUCAwEBBQ==\"}],\"storageProfile\":{\"osDisk\":{\"createOption\":\"Ephemeral\",\"deleteOption\":\"Delete\",\"diskSizeGB\":10}},\"userData\":\"testUserData\",\"adminUsername\":\"testUser\",\"virtioInterface\":\"Transitional\",\"isolateEmulatorThread\":\"False\",\"bootMethod\":\"BIOS\",\"placementHints\":[]}"))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionFirstPartyCreate.json
+     */
+    /**
+     * Sample code: Create first party network function resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        createFirstPartyNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions()
+            .define("testNf")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg")
+            .withProperties(new NetworkFunctionValueWithoutSecrets()
+                .withNetworkFunctionDefinitionVersionResourceReference(new SecretDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1"))
+                .withNfviType(NfviType.AZURE_ARC_KUBERNETES)
+                .withNfviId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation")
+                .withAllowSoftwareUpdate(false)
+                .withRoleOverrideValues(Arrays.asList(
+                    "{\"name\":\"testRoleOne\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"helmPackageVersion\":\"2.1.3\",\"values\":\"{\\\"roleOneParam\\\":\\\"roleOneOverrideValue\\\"}\"}}}",
+                    "{\"name\":\"testRoleTwo\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"releaseName\":\"overrideReleaseName\",\"releaseNamespace\":\"overrideNamespace\",\"values\":\"{\\\"roleTwoParam\\\":\\\"roleTwoOverrideValue\\\"}\"}}}"))
+                .withDeploymentValues("{\"releaseName\":\"testReleaseName\",\"namespace\":\"testNamespace\"}"))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionCreate.json
+     */
+    /**
+     * Sample code: Create network function resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        createNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions()
+            .define("testNf")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg")
+            .withProperties(new NetworkFunctionValueWithoutSecrets()
+                .withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1"))
+                .withNfviType(NfviType.AZURE_ARC_KUBERNETES)
+                .withNfviId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation")
+                .withAllowSoftwareUpdate(false)
+                .withRoleOverrideValues(Arrays.asList(
+                    "{\"name\":\"testRoleOne\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"helmPackageVersion\":\"2.1.3\",\"values\":\"{\\\"roleOneParam\\\":\\\"roleOneOverrideValue\\\"}\"}}}",
+                    "{\"name\":\"testRoleTwo\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"releaseName\":\"overrideReleaseName\",\"releaseNamespace\":\"overrideNamespace\",\"values\":\"{\\\"roleTwoParam\\\":\\\"roleTwoOverrideValue\\\"}\"}}}"))
+                .withDeploymentValues("{\"releaseName\":\"testReleaseName\",\"namespace\":\"testNamespace\"}"))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionCreateSecret.json
+     */
+    /**
+     * Sample code: Create network function resource with secrets.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        createNetworkFunctionResourceWithSecrets(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions()
+            .define("testNf")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg")
+            .withProperties(new NetworkFunctionValueWithSecrets()
+                .withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1"))
+                .withNfviType(NfviType.AZURE_ARC_KUBERNETES)
+                .withNfviId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation")
+                .withAllowSoftwareUpdate(false)
+                .withRoleOverrideValues(Arrays.asList(
+                    "{\"name\":\"testRoleOne\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"helmPackageVersion\":\"2.1.3\",\"values\":\"{\\\"roleOneParam\\\":\\\"roleOneOverrideValue\\\"}\"}}}",
+                    "{\"name\":\"testRoleTwo\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"releaseName\":\"overrideReleaseName\",\"releaseNamespace\":\"overrideNamespace\",\"values\":\"{\\\"roleTwoParam\\\":\\\"roleTwoOverrideValue\\\"}\"}}}"))
+                .withSecretDeploymentValues("fakeTokenPlaceholder"))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * AzureOperatorNexus/VirtualNetworkFunctionCreate.json
+     */
+    /**
+     * Sample code: Create virtual network function resource on AzureOperatorNexus.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createVirtualNetworkFunctionResourceOnAzureOperatorNexus(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions()
+            .define("testNf")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg")
+            .withProperties(new NetworkFunctionValueWithoutSecrets()
+                .withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1"))
+                .withNfviType(NfviType.AZURE_OPERATOR_NEXUS)
+                .withNfviId(
+                    "/subscriptions/subid/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation")
+                .withAllowSoftwareUpdate(false)
+                .withDeploymentValues(
+                    "{\"virtualMachineName\":\"test-VM\",\"extendedLocationName\":\"test-cluster\",\"cpuCores\":4,\"memorySizeGB\":8,\"cloudServicesNetworkAttachment\":{\"attachedNetworkId\":\"test-csnet\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-cs-vlan\"},\"networkAttachments\":[{\"attachedNetworkId\":\"test-l3vlan\",\"defaultGateway\":\"True\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-vlan\"}],\"sshPublicKeys\":[{\"keyData\":\"ssh-rsa CMIIIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA0TqlveKKlc2MFvEmuXJiLGBsY1t4ML4uiRADGSZlnc+7Ugv3h+MCjkkwOKiOdsNo8k4KSBIG5GcQfKYOOd17AJvqCL6cGQbaLuqv0a64jeDm8oO8/xN/IM0oKw7rMr/2oAJOgIsfeXPkRxWWic9AVIS++H5Qi2r7bUFX+cqFsyUCAwEBBQ==\"}],\"storageProfile\":{\"osDisk\":{\"createOption\":\"Ephemeral\",\"deleteOption\":\"Delete\",\"diskSizeGB\":10}},\"userData\":\"testUserData\",\"adminUsername\":\"testUser\",\"virtioInterface\":\"Transitional\",\"isolateEmulatorThread\":\"False\",\"bootMethod\":\"BIOS\",\"placementHints\":[]}"))
+            .create();
+    }
+}
+```
+
+### ArtifactStores_ListPrivateEndPoints
+
+```java
+/**
+ * Samples for ConfigurationGroupValues List.
+ */
+public final class ConfigurationGroupValuesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ConfigurationGroupValueListBySubscription.json
+     */
+    /**
+     * Sample code: List all hybrid network sites in a subscription.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        listAllHybridNetworkSitesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupValues().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ArtifactStores_RemovePrivateEndPoints
+
+```java
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactReplicationStrategy;
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactStorePropertiesFormat;
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactStorePropertiesFormatManagedResourceGroupConfiguration;
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactStoreType;
+import com.azure.resourcemanager.hybridnetwork.models.BackingResourcePublicNetworkAccess;
+
+/**
+ * Samples for ArtifactStores CreateOrUpdate.
+ */
+public final class ArtifactStoresCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreCreateContainer.json
+     */
+    /**
+     * Sample code: Create or update an artifact store of publisher resource with container registry.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createOrUpdateAnArtifactStoreOfPublisherResourceWithContainerRegistry(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .define("TestArtifactStore")
+            .withRegion("eastus")
+            .withExistingPublisher("rg", "TestPublisher")
+            .withProperties(
+                new ArtifactStorePropertiesFormat().withStoreType(ArtifactStoreType.AZURE_CONTAINER_REGISTRY)
+                    .withBackingResourcePublicNetworkAccess(BackingResourcePublicNetworkAccess.DISABLED)
+                    .withReplicationStrategy(ArtifactReplicationStrategy.SINGLE_REPLICATION)
+                    .withManagedResourceGroupConfiguration(
+                        new ArtifactStorePropertiesFormatManagedResourceGroupConfiguration().withName("testRg")
+                            .withLocation("eastus")))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreCreate.json
+     */
+    /**
+     * Sample code: Create or update an artifact store of publisher resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createOrUpdateAnArtifactStoreOfPublisherResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .define("TestArtifactStore")
+            .withRegion("eastus")
+            .withExistingPublisher("rg", "TestPublisher")
+            .withProperties(
+                new ArtifactStorePropertiesFormat().withStoreType(ArtifactStoreType.AZURE_CONTAINER_REGISTRY)
+                    .withReplicationStrategy(ArtifactReplicationStrategy.SINGLE_REPLICATION)
+                    .withManagedResourceGroupConfiguration(
+                        new ArtifactStorePropertiesFormatManagedResourceGroupConfiguration().withName("testRg")
+                            .withLocation("eastus")))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreCreateStorage.json
+     */
+    /**
+     * Sample code: Create or update an artifact store of publisher resource with storage.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createOrUpdateAnArtifactStoreOfPublisherResourceWithStorage(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .define("TestArtifactStore")
+            .withRegion("eastus")
+            .withExistingPublisher("rg", "TestPublisher")
+            .withProperties(new ArtifactStorePropertiesFormat().withStoreType(ArtifactStoreType.AZURE_STORAGE_ACCOUNT)
+                .withBackingResourcePublicNetworkAccess(BackingResourcePublicNetworkAccess.ENABLED)
+                .withReplicationStrategy(ArtifactReplicationStrategy.SINGLE_REPLICATION)
+                .withManagedResourceGroupConfiguration(
+                    new ArtifactStorePropertiesFormatManagedResourceGroupConfiguration().withName("testRg")
+                        .withLocation("eastus")))
+            .create();
+    }
+}
+```
+
+### ArtifactStores_Update
+
+```java
+import com.azure.resourcemanager.hybridnetwork.models.ConfigurationGroupSchema;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for ConfigurationGroupSchemas Update.
+ */
+public final class ConfigurationGroupSchemasUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ConfigurationGroupSchemaUpdateTags.json
+     */
+    /**
+     * Sample code: Create or update the configuration group schema resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createOrUpdateTheConfigurationGroupSchemaResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        ConfigurationGroupSchema resource = manager.configurationGroupSchemas()
+            .getWithResponse("rg1", "testPublisher", "testConfigurationGroupSchema", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### Components_Get
+
+```java
+/**
+ * Samples for NetworkFunctionDefinitionGroups Get.
+ */
+public final class NetworkFunctionDefinitionGroupsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionDefinitionGroupGet.json
+     */
+    /**
+     * Sample code: Get a networkFunctionDefinition group resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getANetworkFunctionDefinitionGroupResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionGroups()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Components_ListByNetworkFunction
+
+```java
+/**
+ * Samples for ArtifactStores Get.
+ */
+public final class ArtifactStoresGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/ArtifactStoreGet.
+     * json
+     */
+    /**
+     * Sample code: Get a artifact store resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getAArtifactStoreResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .getWithResponse("rg", "TestPublisher", "TestArtifactStoreName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ConfigurationGroupSchemas_CreateOrUpdate
+
+```java
+/**
+ * Samples for NetworkFunctions Delete.
+ */
+public final class NetworkFunctionsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionDelete.json
+     */
+    /**
+     * Sample code: Delete network function resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        deleteNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions().delete("rg", "testNf", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/AzureCore/
+     * VirtualNetworkFunctionDelete.json
+     */
+    /**
+     * Sample code: Delete virtual network function resource on AzureCore.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void deleteVirtualNetworkFunctionResourceOnAzureCore(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions().delete("rg", "testNf", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * AzureOperatorNexus/VirtualNetworkFunctionDelete.json
+     */
+    /**
+     * Sample code: Delete virtual network function resource on AzureOperatorNexus.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void deleteVirtualNetworkFunctionResourceOnAzureOperatorNexus(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions().delete("rg", "testNf", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ConfigurationGroupSchemas_Delete
+
+```java
+/**
+ * Samples for ArtifactManifests ListCredential.
+ */
+public final class ArtifactManifestsListCredentialSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactManifestListCredential.json
+     */
+    /**
+     * Sample code: List a credential for artifact manifest.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        listACredentialForArtifactManifest(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactManifests()
+            .listCredentialWithResponse("rg", "TestPublisher", "TestArtifactStore", "TestArtifactManifestName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ConfigurationGroupSchemas_Get
+
+```java
+import com.azure.resourcemanager.hybridnetwork.fluent.models.NetworkServiceDesignVersionUpdateStateInner;
+import com.azure.resourcemanager.hybridnetwork.models.VersionState;
+
+/**
+ * Samples for NetworkServiceDesignVersions UpdateState.
+ */
+public final class NetworkServiceDesignVersionsUpdateStateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkServiceDesignVersionUpdateState.json
+     */
+    /**
+     * Sample code: Update network service design version state.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        updateNetworkServiceDesignVersionState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignVersions()
+            .updateState("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0",
+                new NetworkServiceDesignVersionUpdateStateInner().withVersionState(VersionState.ACTIVE),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ConfigurationGroupSchemas_ListByPublisher
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/GetOperations.
+     * json
+     */
+    /**
+     * Sample code: Get Registration Operations.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getRegistrationOperations(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ConfigurationGroupSchemas_Update
+
+```java
+/**
+ * Samples for ArtifactStores ListPrivateEndPoints.
+ */
+public final class ArtifactStoresListPrivateEndPointsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreListPrivateEndPoints.json
+     */
+    /**
+     * Sample code: List Manual Private Endpoints.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        listManualPrivateEndpoints(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .listPrivateEndPoints("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ConfigurationGroupSchemas_UpdateState
+
+```java
+/**
+ * Samples for NetworkFunctionDefinitionVersions ListByNetworkFunctionDefinitionGroup.
+ */
+public final class NetworkFunctionDefinitionVersionsListByNetworkFunctionDefinitionGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionDefinitionVersionListByNetworkFunctionDefinitionGroup.json
+     */
+    /**
+     * Sample code: Get Publisher resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .listByNetworkFunctionDefinitionGroup("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupNameName",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ConfigurationGroupValues_CreateOrUpdate
+
+```java
+/**
+ * Samples for ArtifactManifests Delete.
+ */
+public final class ArtifactManifestsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactManifestDelete.json
+     */
+    /**
+     * Sample code: Delete a artifact manifest resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        deleteAArtifactManifestResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactManifests()
+            .delete("rg", "TestPublisher", "TestArtifactStore", "TestManifest", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ConfigurationGroupValues_Delete
+
+```java
+/**
+ * Samples for Publishers ListByResourceGroup.
+ */
+public final class PublishersListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * PublisherListByResourceGroup.json
+     */
+    /**
+     * Sample code: List all publisher resources in a resource group.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void listAllPublisherResourcesInAResourceGroup(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.publishers().listByResourceGroup("rg", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ConfigurationGroupValues_GetByResourceGroup
+
+```java
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner;
+import com.azure.resourcemanager.hybridnetwork.models.ReferencedResource;
+import java.util.Arrays;
+
+/**
+ * Samples for ArtifactStores DeleteNetworkFabricControllerEndPoints.
+ */
+public final class ArtifactStoresDeleteNetworkFabricControllerEndPointsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreDeleteNFCEndPoints.json
+     */
+    /**
+     * Sample code: Delete Network Fabric Endpoints.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        deleteNetworkFabricEndpoints(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .deleteNetworkFabricControllerEndPoints("rg", "TestPublisher", "TestArtifactStore",
+                new ArtifactStoreNetworkFabricControllerEndPointsInner()
+                    .withNetworkFabricControllerIds(Arrays.asList(new ReferencedResource().withId(
+                        "/subscriptions/testsubid/resourceGroups/testNFCMRG/providers/Microsoft.ManagedNetworkFabric/networkFabricControllers/testNFCControllerId"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ConfigurationGroupValues_List
+
+```java
+/**
+ * Samples for ConfigurationGroupValues GetByResourceGroup.
+ */
+public final class ConfigurationGroupValuesGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ConfigurationGroupValueGet.json
+     */
+    /**
+     * Sample code: Get hybrid configuration group.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        getHybridConfigurationGroup(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupValues()
+            .getByResourceGroupWithResponse("rg1", "testConfigurationGroupValue", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ConfigurationGroupValues_ListByResourceGroup
+
+```java
+/**
+ * Samples for NetworkFunctionDefinitionVersions Get.
+ */
+public final class NetworkFunctionDefinitionVersionsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionDefinitionVersionGet.json
+     */
+    /**
+     * Sample code: Get a network function definition version resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getANetworkFunctionDefinitionVersionResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/AzureCore/
+     * VirtualNetworkFunctionDefinitionVersionGet.json
+     */
+    /**
+     * Sample code: Get network function definition version resource for AzureCore VNF.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getNetworkFunctionDefinitionVersionResourceForAzureCoreVNF(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * AzureOperatorNexus/VirtualNetworkFunctionDefinitionVersionGet.json
+     */
+    /**
+     * Sample code: Get network function definition version resource for AzureOperatorNexus VNF.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getNetworkFunctionDefinitionVersionResourceForAzureOperatorNexusVNF(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ConfigurationGroupValues_UpdateTags
+
+```java
+import com.azure.resourcemanager.hybridnetwork.models.OpenDeploymentResourceReference;
+import com.azure.resourcemanager.hybridnetwork.models.ReferencedResource;
+import com.azure.resourcemanager.hybridnetwork.models.SecretDeploymentResourceReference;
+import com.azure.resourcemanager.hybridnetwork.models.SiteNetworkServicePropertiesFormat;
+import com.azure.resourcemanager.hybridnetwork.models.Sku;
+import com.azure.resourcemanager.hybridnetwork.models.SkuName;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for SiteNetworkServices CreateOrUpdate.
+ */
+public final class SiteNetworkServicesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * SiteNetworkServiceCreate.json
+     */
+    /**
+     * Sample code: Create site network service.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createSiteNetworkService(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.siteNetworkServices()
+            .define("testSiteNetworkServiceName")
+            .withRegion("westUs2")
+            .withExistingResourceGroup("rg1")
+            .withProperties(new SiteNetworkServicePropertiesFormat()
+                .withSiteReference(new ReferencedResource().withId(
+                    "/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/sites/testSite"))
+                .withNetworkServiceDesignVersionResourceReference(new OpenDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/TestPublisher/networkServiceDesignGroups/TestNetworkServiceDesignGroupName/networkServiceDesignVersions/1.0.0"))
+                .withDesiredStateConfigurationGroupValueReferences(mapOf("MyVM_Configuration",
+                    new ReferencedResource().withId(
+                        "/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/configurationgroupvalues/MyVM_Configuration1"))))
+            .withSku(new Sku().withName(SkuName.STANDARD))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * SiteNetworkServiceFirstPartyCreate.json
+     */
+    /**
+     * Sample code: Create first party site network service.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        createFirstPartySiteNetworkService(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.siteNetworkServices()
+            .define("testSiteNetworkServiceName")
+            .withRegion("westUs2")
+            .withExistingResourceGroup("rg1")
+            .withProperties(new SiteNetworkServicePropertiesFormat()
+                .withSiteReference(new ReferencedResource().withId(
+                    "/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/sites/testSite"))
+                .withNetworkServiceDesignVersionResourceReference(new SecretDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/TestPublisher/networkServiceDesignGroups/TestNetworkServiceDesignGroupName/networkServiceDesignVersions/1.0.0"))
+                .withDesiredStateConfigurationGroupValueReferences(mapOf("MyVM_Configuration",
+                    new ReferencedResource().withId(
+                        "/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/configurationgroupvalues/MyVM_Configuration1"))))
+            .withSku(new Sku().withName(SkuName.STANDARD))
+            .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### NetworkFunctionDefinitionGroups_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.hybridnetwork.models.SiteNetworkService;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for SiteNetworkServices UpdateTags.
+ */
+public final class SiteNetworkServicesUpdateTagsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * SiteNetworkServiceUpdateTags.json
+     */
+    /**
+     * Sample code: Update network site tags.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void updateNetworkSiteTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        SiteNetworkService resource = manager.siteNetworkServices()
+            .getByResourceGroupWithResponse("rg1", "testSiteNetworkServiceName", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### NetworkFunctionDefinitionGroups_Delete
+
+```java
+/**
+ * Samples for ConfigurationGroupValues ListByResourceGroup.
+ */
+public final class ConfigurationGroupValuesListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ConfigurationGroupValueListByResourceGroup.json
+     */
+    /**
+     * Sample code: List all hybrid network configurationGroupValues in a subscription.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void listAllHybridNetworkConfigurationGroupValuesInASubscription(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupValues().listByResourceGroup("rg1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkFunctionDefinitionGroups_Get
+
+```java
+import com.azure.resourcemanager.hybridnetwork.models.ConfigurationGroupValue;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for ConfigurationGroupValues UpdateTags.
+ */
+public final class ConfigurationGroupValuesUpdateTagsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ConfigurationGroupValueUpdateTags.json
+     */
+    /**
+     * Sample code: Update hybrid configuration group tags.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        updateHybridConfigurationGroupTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        ConfigurationGroupValue resource = manager.configurationGroupValues()
+            .getByResourceGroupWithResponse("rg1", "testConfigurationGroupValue", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### NetworkFunctionDefinitionGroups_ListByPublisher
+
+```java
+/**
+ * Samples for NetworkServiceDesignVersions Get.
+ */
+public final class NetworkServiceDesignVersionsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkServiceDesignVersionGet.json
+     */
+    /**
+     * Sample code: Get a network service design version resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        getANetworkServiceDesignVersionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignVersions()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkFunctionDefinitionGroups_Update
+
+```java
+import com.azure.resourcemanager.hybridnetwork.models.Site;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for Sites UpdateTags.
+ */
+public final class SitesUpdateTagsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/SiteUpdateTags.
+     * json
+     */
+    /**
+     * Sample code: Update network site tags.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void updateNetworkSiteTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        Site resource = manager.sites()
+            .getByResourceGroupWithResponse("rg1", "testSite", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### NetworkFunctionDefinitionVersions_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactStore;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for ArtifactStores Update.
+ */
+public final class ArtifactStoresUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreUpdateTags.json
+     */
+    /**
+     * Sample code: Update artifact store resource tags.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        updateArtifactStoreResourceTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        ArtifactStore resource = manager.artifactStores()
+            .getWithResponse("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### NetworkFunctionDefinitionVersions_Delete
+
+```java
+/**
+ * Samples for ProxyArtifact List.
+ */
+public final class ProxyArtifactListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/PureProxyArtifact
+     * /ArtifactList.json
+     */
+    /**
+     * Sample code: List artifacts under an artifact store.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        listArtifactsUnderAnArtifactStore(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.proxyArtifacts()
+            .list("TestResourceGroup", "TestPublisher", "TestArtifactStoreName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkFunctionDefinitionVersions_Get
+
+```java
+/**
+ * Samples for ArtifactStores ListByPublisher.
+ */
+public final class ArtifactStoresListByPublisherSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoresListByPublisherName.json
+     */
+    /**
+     * Sample code: Get application groups under a publisher resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getApplicationGroupsUnderAPublisherResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores().listByPublisher("rg", "TestPublisher", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkFunctionDefinitionVersions_ListByNetworkFunctionDefinitionGroup
+
+```java
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner;
+import com.azure.resourcemanager.hybridnetwork.models.ReferencedResource;
+import java.util.Arrays;
+
+/**
+ * Samples for ArtifactStores AddNetworkFabricControllerEndPoints.
+ */
+public final class ArtifactStoresAddNetworkFabricControllerEndPointsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreAddNFCEndPoints.json
+     */
+    /**
+     * Sample code: Add Network Fabric Endpoint.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void addNetworkFabricEndpoint(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .addNetworkFabricControllerEndPoints("rg", "TestPublisher", "TestArtifactStore",
+                new ArtifactStoreNetworkFabricControllerEndPointsInner()
+                    .withNetworkFabricControllerIds(Arrays.asList(new ReferencedResource().withId(
+                        "/subscriptions/testsubid/resourceGroups/testNFCMRG/providers/Microsoft.ManagedNetworkFabric/networkFabricControllers/testNFCControllerId"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkFunctionDefinitionVersions_Update
+
+```java
+/**
+ * Samples for ArtifactStores ListNetworkFabricControllerPrivateEndPoints.
+ */
+public final class ArtifactStoresListNetworkFabricControllerPrivateEndPointsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreListNFCEndPoints.json
+     */
+    /**
+     * Sample code: List Network Fabric Endpoints.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        listNetworkFabricEndpoints(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .listNetworkFabricControllerPrivateEndPoints("rg", "TestPublisher", "TestArtifactStore",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkFunctionDefinitionVersions_UpdateState
+
+```java
+/**
+ * Samples for NetworkServiceDesignGroups ListByPublisher.
+ */
+public final class NetworkServiceDesignGroupsListByPublisherSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkServiceDesignGroupsListByPublisherName.json
+     */
+    /**
+     * Sample code: Get networkServiceDesign groups under publisher resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getNetworkServiceDesignGroupsUnderPublisherResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignGroups().listByPublisher("rg", "TestPublisher", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkFunctions_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactManifestUpdateStateInner;
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactManifestState;
+
+/**
+ * Samples for ArtifactManifests UpdateState.
+ */
+public final class ArtifactManifestsUpdateStateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactManifestUpdateState.json
+     */
+    /**
+     * Sample code: Update artifact manifest state.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        updateArtifactManifestState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactManifests()
+            .updateState("rg", "TestPublisher", "TestArtifactStore", "TestArtifactManifestName",
+                new ArtifactManifestUpdateStateInner().withArtifactManifestState(ArtifactManifestState.UPLOADED),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkFunctions_Delete
+
+```java
+/**
+ * Samples for ConfigurationGroupSchemas Get.
+ */
+public final class ConfigurationGroupSchemasGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ConfigurationGroupSchemaGet.json
+     */
+    /**
+     * Sample code: Get a networkFunctionDefinition group resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getANetworkFunctionDefinitionGroupResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupSchemas()
+            .getWithResponse("rg1", "testPublisher", "testConfigurationGroupSchema", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkFunctions_ExecuteRequest
+
+```java
+/**
+ * Samples for NetworkServiceDesignVersions Delete.
+ */
+public final class NetworkServiceDesignVersionsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkServiceDesignVersionDelete.json
+     */
+    /**
+     * Sample code: Delete a network service design version.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        deleteANetworkServiceDesignVersion(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignVersions()
+            .delete("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkFunctions_GetByResourceGroup
+
+```java
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ConfigurationGroupSchemaVersionUpdateStateInner;
+import com.azure.resourcemanager.hybridnetwork.models.VersionState;
+
+/**
+ * Samples for ConfigurationGroupSchemas UpdateState.
+ */
+public final class ConfigurationGroupSchemasUpdateStateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ConfigurationGroupSchemaVersionUpdateState.json
+     */
+    /**
+     * Sample code: Update network service design version state.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        updateNetworkServiceDesignVersionState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupSchemas()
+            .updateState("rg1", "testPublisher", "testConfigurationGroupSchema",
+                new ConfigurationGroupSchemaVersionUpdateStateInner().withVersionState(VersionState.ACTIVE),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkFunctions_List
+
+```java
+/**
+ * Samples for NetworkFunctionDefinitionGroups Delete.
+ */
+public final class NetworkFunctionDefinitionGroupsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionDefinitionGroupDelete.json
+     */
+    /**
+     * Sample code: Delete a network function group resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        deleteANetworkFunctionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionGroups()
+            .delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkFunctions_ListByResourceGroup
+
+```java
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStorePrivateEndPointsFormatInner;
+import com.azure.resourcemanager.hybridnetwork.models.ReferencedResource;
+import java.util.Arrays;
+
+/**
+ * Samples for ArtifactStores ApprovePrivateEndPoints.
+ */
+public final class ArtifactStoresApprovePrivateEndPointsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreApprovePrivateEndPoints.json
+     */
+    /**
+     * Sample code: Approve manual private endpoints.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        approveManualPrivateEndpoints(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .approvePrivateEndPoints("rg", "TestPublisher", "TestArtifactStore",
+                new ArtifactStorePrivateEndPointsFormatInner()
+                    .withManualPrivateEndPointConnections(Arrays.asList(new ReferencedResource().withId(
+                        "/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Network/privateEndpoints/newpetest"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkFunctions_UpdateTags
+
+```java
+/**
+ * Samples for ProxyArtifact Get.
+ */
+public final class ProxyArtifactGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/PureProxyArtifact
+     * /ArtifactGet.json
+     */
+    /**
+     * Sample code: Get an artifact overview.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getAnArtifactOverview(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.proxyArtifacts()
+            .get("TestResourceGroup", "TestPublisher", "TestArtifactStoreName", "fedrbac",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkServiceDesignGroups_CreateOrUpdate
+
+```java
+/**
+ * Samples for Publishers Delete.
+ */
+public final class PublishersDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/PublisherDelete.
+     * json
+     */
+    /**
+     * Sample code: Delete a publisher resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void deleteAPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.publishers().delete("rg", "TestPublisher", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkServiceDesignGroups_Delete
+
+```java
+/**
+ * Samples for Sites Delete.
+ */
+public final class SitesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/SiteDelete.json
+     */
+    /**
+     * Sample code: Delete network site.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void deleteNetworkSite(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.sites().delete("rg1", "testSite", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### NetworkServiceDesignGroups_Get
+
+```java
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactManifestPropertiesFormat;
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactType;
 import com.azure.resourcemanager.hybridnetwork.models.ManifestArtifactFormat;
@@ -136,7 +1950,7 @@ import java.util.Arrays;
 public final class ArtifactManifestsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactManifestCreate.json
      */
     /**
@@ -162,109 +1976,190 @@ public final class ArtifactManifestsCreateOrUpdateSamples {
 }
 ```
 
-### ArtifactManifests_Delete
+### NetworkServiceDesignGroups_ListByPublisher
 
 ```java
+import com.azure.resourcemanager.hybridnetwork.models.NetworkServiceDesignGroup;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * Samples for ArtifactManifests Delete.
+ * Samples for NetworkServiceDesignGroups Update.
  */
-public final class ArtifactManifestsDeleteSamples {
+public final class NetworkServiceDesignGroupsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ArtifactManifestDelete.json
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkServiceDesignGroupUpdateTags.json
      */
     /**
-     * Sample code: Delete a artifact manifest resource.
+     * Sample code: Create or update the network service design group resource.
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void
-        deleteAArtifactManifestResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactManifests()
-            .delete("rg", "TestPublisher", "TestArtifactStore", "TestManifest", com.azure.core.util.Context.NONE);
+    public static void createOrUpdateTheNetworkServiceDesignGroupResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        NetworkServiceDesignGroup resource = manager.networkServiceDesignGroups()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName",
+                com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
 
-### ArtifactManifests_Get
+### NetworkServiceDesignGroups_Update
 
 ```java
 /**
- * Samples for ArtifactManifests Get.
+ * Samples for ConfigurationGroupValues Delete.
  */
-public final class ArtifactManifestsGetSamples {
+public final class ConfigurationGroupValuesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ArtifactManifestGet.json
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ConfigurationGroupValueDelete.json
      */
     /**
-     * Sample code: Get a artifact manifest resource.
+     * Sample code: Delete hybrid configuration group resource.
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void
-        getAArtifactManifestResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactManifests()
-            .getWithResponse("rg", "TestPublisher", "TestArtifactStore", "TestManifest",
-                com.azure.core.util.Context.NONE);
+        deleteHybridConfigurationGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupValues()
+            .delete("rg1", "testConfigurationGroupValue", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### ArtifactManifests_ListByArtifactStore
+### NetworkServiceDesignVersions_CreateOrUpdate
 
 ```java
 /**
- * Samples for ArtifactManifests ListByArtifactStore.
+ * Samples for ArtifactStores Delete.
  */
-public final class ArtifactManifestsListByArtifactStoreSamples {
+public final class ArtifactStoresDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ArtifactManifestListByArtifactStore.json
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreDelete.json
      */
     /**
-     * Sample code: Get artifact manifest list resource.
+     * Sample code: Delete a artifact store of publisher resource.
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void
-        getArtifactManifestListResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactManifests()
-            .listByArtifactStore("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE);
+        deleteAArtifactStoreOfPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores().delete("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### ArtifactManifests_ListCredential
+### NetworkServiceDesignVersions_Delete
 
 ```java
 /**
- * Samples for ArtifactManifests ListCredential.
+ * Samples for Components ListByNetworkFunction.
  */
-public final class ArtifactManifestsListCredentialSamples {
+public final class ComponentsListByNetworkFunctionSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ArtifactManifestListCredential.json
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ComponentListByNetworkFunction.json
      */
     /**
-     * Sample code: List a credential for artifact manifest.
+     * Sample code: List components in network function.
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void
-        listACredentialForArtifactManifest(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactManifests()
-            .listCredentialWithResponse("rg", "TestPublisher", "TestArtifactStore", "TestArtifactManifestName",
-                com.azure.core.util.Context.NONE);
+        listComponentsInNetworkFunction(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.components().listByNetworkFunction("rg", "testNf", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### ArtifactManifests_Update
+### NetworkServiceDesignVersions_Get
+
+```java
+import com.azure.resourcemanager.hybridnetwork.models.ArmResourceDefinitionResourceElementTemplate;
+import com.azure.resourcemanager.hybridnetwork.models.ArmResourceDefinitionResourceElementTemplateDetails;
+import com.azure.resourcemanager.hybridnetwork.models.DependsOnProfile;
+import com.azure.resourcemanager.hybridnetwork.models.NetworkServiceDesignVersionPropertiesFormat;
+import com.azure.resourcemanager.hybridnetwork.models.NsdArtifactProfile;
+import com.azure.resourcemanager.hybridnetwork.models.ReferencedResource;
+import com.azure.resourcemanager.hybridnetwork.models.TemplateType;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for NetworkServiceDesignVersions CreateOrUpdate.
+ */
+public final class NetworkServiceDesignVersionsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkServiceDesignVersionCreate.json
+     */
+    /**
+     * Sample code: Create or update a network service design version resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createOrUpdateANetworkServiceDesignVersionResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignVersions()
+            .define("1.0.0")
+            .withRegion("eastus")
+            .withExistingNetworkServiceDesignGroup("rg", "TestPublisher", "TestNetworkServiceDesignGroupName")
+            .withProperties(new NetworkServiceDesignVersionPropertiesFormat()
+                .withConfigurationGroupSchemaReferences(mapOf("MyVM_Configuration", new ReferencedResource().withId(
+                    "/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/publishers/contosoGroup/networkServiceDesignGroups/NSD_contoso/configurationGroupSchemas/MyVM_Configuration_Schema")))
+                .withResourceElementTemplates(Arrays.asList(new ArmResourceDefinitionResourceElementTemplateDetails()
+                    .withName("MyVM")
+                    .withDependsOnProfile(new DependsOnProfile().withInstallDependsOn(Arrays.asList()))
+                    .withConfiguration(new ArmResourceDefinitionResourceElementTemplate()
+                        .withTemplateType(TemplateType.ARM_TEMPLATE)
+                        .withParameterValues(
+                            "{\"publisherName\":\"{configurationparameters('MyVM_Configuration').publisherName}\",\"skuGroupName\":\"{configurationparameters('MyVM_Configuration').skuGroupName}\",\"skuVersion\":\"{configurationparameters('MyVM_Configuration').skuVersion}\",\"skuOfferingLocation\":\"{configurationparameters('MyVM_Configuration').skuOfferingLocation}\",\"nfviType\":\"{nfvis().nfvisFromSitePerNfviType.AzureCore.nfviAlias1.nfviType}\",\"nfviId\":\"{nfvis().nfvisFromSitePerNfviType.AzureCore.nfviAlias1.nfviId}\",\"allowSoftwareUpdates\":\"{configurationparameters('MyVM_Configuration').allowSoftwareUpdates}\",\"virtualNetworkName\":\"{configurationparameters('MyVM_Configuration').vnetName}\",\"subnetName\":\"{configurationparameters('MyVM_Configuration').subnetName}\",\"subnetAddressPrefix\":\"{configurationparameters('MyVM_Configuration').subnetAddressPrefix}\",\"managedResourceGroup\":\"{configurationparameters('SNSSelf').managedResourceGroupName}\",\"adminPassword\":\"{secretparameters('MyVM_Configuration').adminPassword}\"}")
+                        .withArtifactProfile(new NsdArtifactProfile()
+                            .withArtifactStoreReference(new ReferencedResource().withId(
+                                "/subscriptions/subid/providers/Microsoft.HybridNetwork/publishers/contosoGroup/artifactStoreReference/store1"))
+                            .withArtifactName("MyVMArmTemplate")
+                            .withArtifactVersion("1.0.0"))))))
+            .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### NetworkServiceDesignVersions_ListByNetworkServiceDesignGroup
 
 ```java
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactManifest;
@@ -277,7 +2172,7 @@ import java.util.Map;
 public final class ArtifactManifestsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * ArtifactManifestUpdateTags.json
      */
     /**
@@ -308,172 +2203,61 @@ public final class ArtifactManifestsUpdateSamples {
 }
 ```
 
-### ArtifactManifests_UpdateState
+### NetworkServiceDesignVersions_Update
 
 ```java
-import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactManifestUpdateStateInner;
-import com.azure.resourcemanager.hybridnetwork.models.ArtifactManifestState;
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactChangeState;
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactChangeStateProperties;
+import com.azure.resourcemanager.hybridnetwork.models.ArtifactState;
 
 /**
- * Samples for ArtifactManifests UpdateState.
+ * Samples for ProxyArtifact UpdateState.
  */
-public final class ArtifactManifestsUpdateStateSamples {
+public final class ProxyArtifactUpdateStateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ArtifactManifestUpdateState.json
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/PureProxyArtifact
+     * /ArtifactChangeState.json
      */
     /**
-     * Sample code: Update artifact manifest state.
+     * Sample code: Update an artifact state.
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void
-        updateArtifactManifestState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactManifests()
-            .updateState("rg", "TestPublisher", "TestArtifactStore", "TestArtifactManifestName",
-                new ArtifactManifestUpdateStateInner().withArtifactManifestState(ArtifactManifestState.UPLOADED),
+    public static void updateAnArtifactState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.proxyArtifacts()
+            .updateState("TestResourceGroup", "TestPublisher", "TestArtifactStoreName", "fedrbac", "1.0.0",
+                new ArtifactChangeState()
+                    .withProperties(new ArtifactChangeStateProperties().withArtifactState(ArtifactState.DEPRECATED)),
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### ArtifactStores_CreateOrUpdate
+### NetworkServiceDesignVersions_UpdateState
 
 ```java
-import com.azure.resourcemanager.hybridnetwork.models.ArtifactReplicationStrategy;
-import com.azure.resourcemanager.hybridnetwork.models.ArtifactStorePropertiesFormat;
-import com.azure.resourcemanager.hybridnetwork.models.ArtifactStorePropertiesFormatManagedResourceGroupConfiguration;
-import com.azure.resourcemanager.hybridnetwork.models.ArtifactStoreType;
-
-/**
- * Samples for ArtifactStores CreateOrUpdate.
- */
-public final class ArtifactStoresCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ArtifactStoreCreate.json
-     */
-    /**
-     * Sample code: Create or update an artifact store of publisher resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void createOrUpdateAnArtifactStoreOfPublisherResource(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactStores()
-            .define("TestArtifactStore")
-            .withRegion("eastus")
-            .withExistingPublisher("rg", "TestPublisher")
-            .withProperties(
-                new ArtifactStorePropertiesFormat().withStoreType(ArtifactStoreType.AZURE_CONTAINER_REGISTRY)
-                    .withReplicationStrategy(ArtifactReplicationStrategy.SINGLE_REPLICATION)
-                    .withManagedResourceGroupConfiguration(
-                        new ArtifactStorePropertiesFormatManagedResourceGroupConfiguration().withName("testRg")
-                            .withLocation("eastus")))
-            .create();
-    }
-}
-```
-
-### ArtifactStores_Delete
-
-```java
-/**
- * Samples for ArtifactStores Delete.
- */
-public final class ArtifactStoresDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ArtifactStoreDelete.json
-     */
-    /**
-     * Sample code: Delete a artifact store of publisher resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        deleteAArtifactStoreOfPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactStores().delete("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ArtifactStores_Get
-
-```java
-/**
- * Samples for ArtifactStores Get.
- */
-public final class ArtifactStoresGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ArtifactStoreGet.
-     * json
-     */
-    /**
-     * Sample code: Get a artifact store resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getAArtifactStoreResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactStores()
-            .getWithResponse("rg", "TestPublisher", "TestArtifactStoreName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ArtifactStores_ListByPublisher
-
-```java
-/**
- * Samples for ArtifactStores ListByPublisher.
- */
-public final class ArtifactStoresListByPublisherSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ArtifactStoresListByPublisherName.json
-     */
-    /**
-     * Sample code: Get application groups under a publisher resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getApplicationGroupsUnderAPublisherResource(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactStores().listByPublisher("rg", "TestPublisher", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ArtifactStores_Update
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.ArtifactStore;
+import com.azure.resourcemanager.hybridnetwork.models.Publisher;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Samples for ArtifactStores Update.
+ * Samples for Publishers Update.
  */
-public final class ArtifactStoresUpdateSamples {
+public final class PublishersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ArtifactStoreUpdateTags.json
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * PublisherUpdateTags.json
      */
     /**
-     * Sample code: Update artifact store resource tags.
+     * Sample code: Update a publisher tags.
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void
-        updateArtifactStoreResourceTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        ArtifactStore resource = manager.artifactStores()
-            .getWithResponse("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE)
+    public static void updateAPublisherTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        Publisher resource = manager.publishers()
+            .getByResourceGroupWithResponse("rg", "TestPublisher", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
@@ -492,184 +2276,32 @@ public final class ArtifactStoresUpdateSamples {
 }
 ```
 
-### Components_Get
+### Operations_List
 
 ```java
-/**
- * Samples for Components Get.
- */
-public final class ComponentsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ComponentGet.json
-     */
-    /**
-     * Sample code: Get component resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getComponentResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.components().getWithResponse("rg", "testNf", "testComponent", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Components_ListByNetworkFunction
-
-```java
-/**
- * Samples for Components ListByNetworkFunction.
- */
-public final class ComponentsListByNetworkFunctionSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ComponentListByNetworkFunction.json
-     */
-    /**
-     * Sample code: List components in network function.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        listComponentsInNetworkFunction(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.components().listByNetworkFunction("rg", "testNf", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ConfigurationGroupSchemas_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.ConfigurationGroupSchemaPropertiesFormat;
-
-/**
- * Samples for ConfigurationGroupSchemas CreateOrUpdate.
- */
-public final class ConfigurationGroupSchemasCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupSchemaCreate.json
-     */
-    /**
-     * Sample code: Create or update the network function definition group.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void createOrUpdateTheNetworkFunctionDefinitionGroup(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupSchemas()
-            .define("testConfigurationGroupSchema")
-            .withRegion("westUs2")
-            .withExistingPublisher("rg1", "testPublisher")
-            .withProperties(new ConfigurationGroupSchemaPropertiesFormat().withDescription("Schema with no secrets")
-                .withSchemaDefinition(
-                    "{\"type\":\"object\",\"properties\":{\"interconnect-groups\":{\"type\":\"object\",\"properties\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"international-interconnects\":{\"type\":\"array\",\"item\":{\"type\":\"string\"}},\"domestic-interconnects\":{\"type\":\"array\",\"item\":{\"type\":\"string\"}}}}},\"interconnect-group-assignments\":{\"type\":\"object\",\"properties\":{\"type\":\"object\",\"properties\":{\"ssc\":{\"type\":\"string\"},\"interconnects-interconnects\":{\"type\":\"string\"}}}}},\"required\":[\"interconnect-groups\",\"interconnect-group-assignments\"]}"))
-            .create();
-    }
-}
-```
-
-### ConfigurationGroupSchemas_Delete
-
-```java
-/**
- * Samples for ConfigurationGroupSchemas Delete.
- */
-public final class ConfigurationGroupSchemasDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupSchemaDelete.json
-     */
-    /**
-     * Sample code: Delete a network function group resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        deleteANetworkFunctionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupSchemas()
-            .delete("rg1", "testPublisher", "testConfigurationGroupSchema", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ConfigurationGroupSchemas_Get
-
-```java
-/**
- * Samples for ConfigurationGroupSchemas Get.
- */
-public final class ConfigurationGroupSchemasGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupSchemaGet.json
-     */
-    /**
-     * Sample code: Get a networkFunctionDefinition group resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getANetworkFunctionDefinitionGroupResource(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupSchemas()
-            .getWithResponse("rg1", "testPublisher", "testConfigurationGroupSchema", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ConfigurationGroupSchemas_ListByPublisher
-
-```java
-/**
- * Samples for ConfigurationGroupSchemas ListByPublisher.
- */
-public final class ConfigurationGroupSchemasListByPublisherSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupSchemaListByPublisherName.json
-     */
-    /**
-     * Sample code: Get networkFunctionDefinition groups under publisher resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getNetworkFunctionDefinitionGroupsUnderPublisherResource(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupSchemas().listByPublisher("rg1", "testPublisher", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ConfigurationGroupSchemas_Update
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.ConfigurationGroupSchema;
+import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionDefinitionVersion;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Samples for ConfigurationGroupSchemas Update.
+ * Samples for NetworkFunctionDefinitionVersions Update.
  */
-public final class ConfigurationGroupSchemasUpdateSamples {
+public final class NetworkFunctionDefinitionVersionsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupSchemaUpdateTags.json
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionDefinitionVersionUpdateTags.json
      */
     /**
-     * Sample code: Create or update the configuration group schema resource.
+     * Sample code: Update the network function definition version tags.
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateTheConfigurationGroupSchemaResource(
+    public static void updateTheNetworkFunctionDefinitionVersionTags(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        ConfigurationGroupSchema resource = manager.configurationGroupSchemas()
-            .getWithResponse("rg1", "testPublisher", "testConfigurationGroupSchema", com.azure.core.util.Context.NONE)
+        NetworkFunctionDefinitionVersion resource = manager.networkFunctionDefinitionVersions()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE)
             .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
@@ -688,342 +2320,33 @@ public final class ConfigurationGroupSchemasUpdateSamples {
 }
 ```
 
-### ConfigurationGroupSchemas_UpdateState
+### ProxyArtifact_Get
 
 ```java
-import com.azure.resourcemanager.hybridnetwork.fluent.models.ConfigurationGroupSchemaVersionUpdateStateInner;
-import com.azure.resourcemanager.hybridnetwork.models.VersionState;
-
 /**
- * Samples for ConfigurationGroupSchemas UpdateState.
+ * Samples for NetworkServiceDesignGroups Get.
  */
-public final class ConfigurationGroupSchemasUpdateStateSamples {
+public final class NetworkServiceDesignGroupsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupSchemaVersionUpdateState.json
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkServiceDesignGroupGet.json
      */
     /**
-     * Sample code: Update network service design version state.
+     * Sample code: Get a networkServiceDesign group resource.
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void
-        updateNetworkServiceDesignVersionState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupSchemas()
-            .updateState("rg1", "testPublisher", "testConfigurationGroupSchema",
-                new ConfigurationGroupSchemaVersionUpdateStateInner().withVersionState(VersionState.ACTIVE),
+        getANetworkServiceDesignGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignGroups()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName",
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### ConfigurationGroupValues_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.ConfigurationValueWithSecrets;
-import com.azure.resourcemanager.hybridnetwork.models.ConfigurationValueWithoutSecrets;
-import com.azure.resourcemanager.hybridnetwork.models.OpenDeploymentResourceReference;
-import com.azure.resourcemanager.hybridnetwork.models.SecretDeploymentResourceReference;
-
-/**
- * Samples for ConfigurationGroupValues CreateOrUpdate.
- */
-public final class ConfigurationGroupValuesCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupValueCreate.json
-     */
-    /**
-     * Sample code: Create or update configuration group value.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        createOrUpdateConfigurationGroupValue(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues()
-            .define("testConfigurationGroupValue")
-            .withRegion("eastus")
-            .withExistingResourceGroup("rg1")
-            .withProperties(new ConfigurationValueWithoutSecrets()
-                .withConfigurationGroupSchemaResourceReference(new OpenDeploymentResourceReference().withId(
-                    "/subscriptions/subid/resourcegroups/testRG/providers/microsoft.hybridnetwork/publishers/testPublisher/configurationGroupSchemas/testConfigurationGroupSchemaName"))
-                .withConfigurationValue(
-                    "{\"interconnect-groups\":{\"stripe-one\":{\"name\":\"Stripe one\",\"international-interconnects\":[\"france\",\"germany\"],\"domestic-interconnects\":[\"birmingham\",\"edinburgh\"]},\"stripe-two\":{\"name\":\"Stripe two\",\"international-interconnects\":[\"germany\",\"italy\"],\"domestic-interconnects\":[\"edinburgh\",\"london\"]}},\"interconnect-group-assignments\":{\"ssc-one\":{\"ssc\":\"SSC 1\",\"interconnects\":\"stripe-one\"},\"ssc-two\":{\"ssc\":\"SSC 2\",\"interconnects\":\"stripe-two\"}}}"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupValueFirstPartyCreate.json
-     */
-    /**
-     * Sample code: Create or update first party configuration group value.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void createOrUpdateFirstPartyConfigurationGroupValue(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues()
-            .define("testConfigurationGroupValue")
-            .withRegion("eastus")
-            .withExistingResourceGroup("rg1")
-            .withProperties(new ConfigurationValueWithoutSecrets()
-                .withConfigurationGroupSchemaResourceReference(new SecretDeploymentResourceReference().withId(
-                    "/subscriptions/subid/resourcegroups/testRG/providers/microsoft.hybridnetwork/publishers/testPublisher/configurationGroupSchemas/testConfigurationGroupSchemaName"))
-                .withConfigurationValue(
-                    "{\"interconnect-groups\":{\"stripe-one\":{\"name\":\"Stripe one\",\"international-interconnects\":[\"france\",\"germany\"],\"domestic-interconnects\":[\"birmingham\",\"edinburgh\"]},\"stripe-two\":{\"name\":\"Stripe two\",\"international-interconnects\":[\"germany\",\"italy\"],\"domestic-interconnects\":[\"edinburgh\",\"london\"]}},\"interconnect-group-assignments\":{\"ssc-one\":{\"ssc\":\"SSC 1\",\"interconnects\":\"stripe-one\"},\"ssc-two\":{\"ssc\":\"SSC 2\",\"interconnects\":\"stripe-two\"}}}"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupValueCreateSecret.json
-     */
-    /**
-     * Sample code: Create or update configuration group value with secrets.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void createOrUpdateConfigurationGroupValueWithSecrets(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues()
-            .define("testConfigurationGroupValue")
-            .withRegion("eastus")
-            .withExistingResourceGroup("rg1")
-            .withProperties(new ConfigurationValueWithSecrets()
-                .withConfigurationGroupSchemaResourceReference(new OpenDeploymentResourceReference().withId(
-                    "/subscriptions/subid/resourcegroups/testRG/providers/microsoft.hybridnetwork/publishers/testPublisher/configurationGroupSchemas/testConfigurationGroupSchemaName"))
-                .withSecretConfigurationValue("fakeTokenPlaceholder"))
-            .create();
-    }
-}
-```
-
-### ConfigurationGroupValues_Delete
-
-```java
-/**
- * Samples for ConfigurationGroupValues Delete.
- */
-public final class ConfigurationGroupValuesDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupValueDelete.json
-     */
-    /**
-     * Sample code: Delete hybrid configuration group resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        deleteHybridConfigurationGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues()
-            .delete("rg1", "testConfigurationGroupValue", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ConfigurationGroupValues_GetByResourceGroup
-
-```java
-/**
- * Samples for ConfigurationGroupValues GetByResourceGroup.
- */
-public final class ConfigurationGroupValuesGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupValueGet.json
-     */
-    /**
-     * Sample code: Get hybrid configuration group.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        getHybridConfigurationGroup(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues()
-            .getByResourceGroupWithResponse("rg1", "testConfigurationGroupValue", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ConfigurationGroupValues_List
-
-```java
-/**
- * Samples for ConfigurationGroupValues List.
- */
-public final class ConfigurationGroupValuesListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupValueListBySubscription.json
-     */
-    /**
-     * Sample code: List all hybrid network sites in a subscription.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        listAllHybridNetworkSitesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ConfigurationGroupValues_ListByResourceGroup
-
-```java
-/**
- * Samples for ConfigurationGroupValues ListByResourceGroup.
- */
-public final class ConfigurationGroupValuesListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupValueListByResourceGroup.json
-     */
-    /**
-     * Sample code: List all hybrid network configurationGroupValues in a subscription.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void listAllHybridNetworkConfigurationGroupValuesInASubscription(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues().listByResourceGroup("rg1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ConfigurationGroupValues_UpdateTags
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.ConfigurationGroupValue;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for ConfigurationGroupValues UpdateTags.
- */
-public final class ConfigurationGroupValuesUpdateTagsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupValueUpdateTags.json
-     */
-    /**
-     * Sample code: Update hybrid configuration group tags.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        updateHybridConfigurationGroupTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        ConfigurationGroupValue resource = manager.configurationGroupValues()
-            .getByResourceGroupWithResponse("rg1", "testConfigurationGroupValue", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### NetworkFunctionDefinitionGroups_CreateOrUpdate
-
-```java
-/**
- * Samples for NetworkFunctionDefinitionGroups CreateOrUpdate.
- */
-public final class NetworkFunctionDefinitionGroupsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionDefinitionGroupCreate.json
-     */
-    /**
-     * Sample code: Create or update the network function definition group.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void createOrUpdateTheNetworkFunctionDefinitionGroup(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionGroups()
-            .define("TestNetworkFunctionDefinitionGroupName")
-            .withRegion("eastus")
-            .withExistingPublisher("rg", "TestPublisher")
-            .create();
-    }
-}
-```
-
-### NetworkFunctionDefinitionGroups_Delete
-
-```java
-/**
- * Samples for NetworkFunctionDefinitionGroups Delete.
- */
-public final class NetworkFunctionDefinitionGroupsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionDefinitionGroupDelete.json
-     */
-    /**
-     * Sample code: Delete a network function group resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        deleteANetworkFunctionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionGroups()
-            .delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkFunctionDefinitionGroups_Get
-
-```java
-/**
- * Samples for NetworkFunctionDefinitionGroups Get.
- */
-public final class NetworkFunctionDefinitionGroupsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionDefinitionGroupGet.json
-     */
-    /**
-     * Sample code: Get a networkFunctionDefinition group resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getANetworkFunctionDefinitionGroupResource(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionGroups()
-            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkFunctionDefinitionGroups_ListByPublisher
+### ProxyArtifact_List
 
 ```java
 /**
@@ -1032,7 +2355,7 @@ public final class NetworkFunctionDefinitionGroupsGetSamples {
 public final class NetworkFunctionDefinitionGroupsListByPublisherSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionGroupsListByPublisherName.json
      */
     /**
@@ -1048,7 +2371,7 @@ public final class NetworkFunctionDefinitionGroupsListByPublisherSamples {
 }
 ```
 
-### NetworkFunctionDefinitionGroups_Update
+### ProxyArtifact_UpdateState
 
 ```java
 import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionDefinitionGroup;
@@ -1061,7 +2384,7 @@ import java.util.Map;
 public final class NetworkFunctionDefinitionGroupsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionGroupUpdateTags.json
      */
     /**
@@ -1092,7 +2415,568 @@ public final class NetworkFunctionDefinitionGroupsUpdateSamples {
 }
 ```
 
-### NetworkFunctionDefinitionVersions_CreateOrUpdate
+### Publishers_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.hybridnetwork.models.AzureArcK8SClusterNfviDetails;
+import com.azure.resourcemanager.hybridnetwork.models.AzureCoreNfviDetails;
+import com.azure.resourcemanager.hybridnetwork.models.AzureOperatorNexusClusterNfviDetails;
+import com.azure.resourcemanager.hybridnetwork.models.ReferencedResource;
+import com.azure.resourcemanager.hybridnetwork.models.SitePropertiesFormat;
+import java.util.Arrays;
+
+/**
+ * Samples for Sites CreateOrUpdate.
+ */
+public final class SitesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/SiteCreate.json
+     */
+    /**
+     * Sample code: Create network site.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createNetworkSite(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.sites()
+            .define("testSite")
+            .withRegion("westUs2")
+            .withExistingResourceGroup("rg1")
+            .withProperties(new SitePropertiesFormat().withNfvis(Arrays.asList(
+                new AzureCoreNfviDetails().withName("nfvi1").withLocation("westUs2"),
+                new AzureArcK8SClusterNfviDetails().withName("nfvi2")
+                    .withCustomLocationReference(new ReferencedResource().withId(
+                        "/subscriptions/subid/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation1")),
+                new AzureOperatorNexusClusterNfviDetails().withName("nfvi3")
+                    .withCustomLocationReference(new ReferencedResource().withId(
+                        "/subscriptions/subid/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation2")))))
+            .create();
+    }
+}
+```
+
+### Publishers_Delete
+
+```java
+/**
+ * Samples for ConfigurationGroupSchemas ListByPublisher.
+ */
+public final class ConfigurationGroupSchemasListByPublisherSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ConfigurationGroupSchemaListByPublisherName.json
+     */
+    /**
+     * Sample code: Get networkFunctionDefinition groups under publisher resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getNetworkFunctionDefinitionGroupsUnderPublisherResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupSchemas().listByPublisher("rg1", "testPublisher", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Publishers_GetByResourceGroup
+
+```java
+/**
+ * Samples for NetworkFunctions GetByResourceGroup.
+ */
+public final class NetworkFunctionsGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * AzureOperatorNexus/VirtualNetworkFunctionGet.json
+     */
+    /**
+     * Sample code: Get virtual network function resource on AzureOperatorNexus.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getVirtualNetworkFunctionResourceOnAzureOperatorNexus(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions().getByResourceGroupWithResponse("rg", "testNf", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionGet.json
+     */
+    /**
+     * Sample code: Get network function resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        getNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions().getByResourceGroupWithResponse("rg", "testNf", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/AzureCore/
+     * VirtualNetworkFunctionGet.json
+     */
+    /**
+     * Sample code: Get virtual network function resource on AzureCore.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getVirtualNetworkFunctionResourceOnAzureCore(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions().getByResourceGroupWithResponse("rg", "testNf", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Publishers_List
+
+```java
+import com.azure.resourcemanager.hybridnetwork.models.NetworkServiceDesignVersion;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for NetworkServiceDesignVersions Update.
+ */
+public final class NetworkServiceDesignVersionsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkServiceDesignVersionUpdateTags.json
+     */
+    /**
+     * Sample code: Update the network service design version tags.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        updateTheNetworkServiceDesignVersionTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        NetworkServiceDesignVersion resource = manager.networkServiceDesignVersions()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### Publishers_ListByResourceGroup
+
+```java
+/**
+ * Samples for NetworkServiceDesignGroups CreateOrUpdate.
+ */
+public final class NetworkServiceDesignGroupsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkServiceDesignGroupCreate.json
+     */
+    /**
+     * Sample code: Create or update the network service design group.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createOrUpdateTheNetworkServiceDesignGroup(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignGroups()
+            .define("TestNetworkServiceDesignGroupName")
+            .withRegion("eastus")
+            .withExistingPublisher("rg", "TestPublisher")
+            .create();
+    }
+}
+```
+
+### Publishers_Update
+
+```java
+/**
+ * Samples for NetworkServiceDesignGroups Delete.
+ */
+public final class NetworkServiceDesignGroupsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkServiceDesignGroupDelete.json
+     */
+    /**
+     * Sample code: Delete a network function group resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        deleteANetworkFunctionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignGroups()
+            .delete("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SiteNetworkServices_CreateOrUpdate
+
+```java
+/**
+ * Samples for NetworkFunctions List.
+ */
+public final class NetworkFunctionsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionListBySubscription.json
+     */
+    /**
+     * Sample code: List all network function resources in subscription.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void listAllNetworkFunctionResourcesInSubscription(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SiteNetworkServices_Delete
+
+```java
+import com.azure.resourcemanager.hybridnetwork.models.NetworkFunction;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for NetworkFunctions UpdateTags.
+ */
+public final class NetworkFunctionsUpdateTagsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionUpdateTags.json
+     */
+    /**
+     * Sample code: Update tags for network function resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        updateTagsForNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        NetworkFunction resource = manager.networkFunctions()
+            .getByResourceGroupWithResponse("rg", "testNf", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### SiteNetworkServices_GetByResourceGroup
+
+```java
+import com.azure.resourcemanager.hybridnetwork.models.ConfigurationGroupSchemaPropertiesFormat;
+
+/**
+ * Samples for ConfigurationGroupSchemas CreateOrUpdate.
+ */
+public final class ConfigurationGroupSchemasCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ConfigurationGroupSchemaCreate.json
+     */
+    /**
+     * Sample code: Create or update the network function definition group.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void createOrUpdateTheNetworkFunctionDefinitionGroup(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupSchemas()
+            .define("testConfigurationGroupSchema")
+            .withRegion("westUs2")
+            .withExistingPublisher("rg1", "testPublisher")
+            .withProperties(new ConfigurationGroupSchemaPropertiesFormat().withDescription("Schema with no secrets")
+                .withSchemaDefinition(
+                    "{\"type\":\"object\",\"properties\":{\"interconnect-groups\":{\"type\":\"object\",\"properties\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"international-interconnects\":{\"type\":\"array\",\"item\":{\"type\":\"string\"}},\"domestic-interconnects\":{\"type\":\"array\",\"item\":{\"type\":\"string\"}}}}},\"interconnect-group-assignments\":{\"type\":\"object\",\"properties\":{\"type\":\"object\",\"properties\":{\"ssc\":{\"type\":\"string\"},\"interconnects-interconnects\":{\"type\":\"string\"}}}}},\"required\":[\"interconnect-groups\",\"interconnect-group-assignments\"]}"))
+            .create();
+    }
+}
+```
+
+### SiteNetworkServices_List
+
+```java
+/**
+ * Samples for SiteNetworkServices ListByResourceGroup.
+ */
+public final class SiteNetworkServicesListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * SiteNetworkServiceListByResourceGroup.json
+     */
+    /**
+     * Sample code: List all network sites.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void listAllNetworkSites(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.siteNetworkServices().listByResourceGroup("rg1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SiteNetworkServices_ListByResourceGroup
+
+```java
+/**
+ * Samples for Sites ListByResourceGroup.
+ */
+public final class SitesListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * SiteListByResourceGroup.json
+     */
+    /**
+     * Sample code: List all network sites.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void listAllNetworkSites(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.sites().listByResourceGroup("rg1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SiteNetworkServices_UpdateTags
+
+```java
+/**
+ * Samples for Sites List.
+ */
+public final class SitesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * SiteListBySubscription.json
+     */
+    /**
+     * Sample code: List all hybrid network sites in a subscription.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        listAllHybridNetworkSitesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.sites().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Sites_CreateOrUpdate
+
+```java
+/**
+ * Samples for ArtifactManifests ListByArtifactStore.
+ */
+public final class ArtifactManifestsListByArtifactStoreSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactManifestListByArtifactStore.json
+     */
+    /**
+     * Sample code: Get artifact manifest list resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        getArtifactManifestListResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactManifests()
+            .listByArtifactStore("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Sites_Delete
+
+```java
+/**
+ * Samples for Components Get.
+ */
+public final class ComponentsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/ComponentGet.json
+     */
+    /**
+     * Sample code: Get component resource.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void getComponentResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.components().getWithResponse("rg", "testNf", "testComponent", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Sites_GetByResourceGroup
+
+```java
+/**
+ * Samples for NetworkFunctionDefinitionVersions Delete.
+ */
+public final class NetworkFunctionDefinitionVersionsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionDefinitionVersionDelete.json
+     */
+    /**
+     * Sample code: Delete a network function definition version.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        deleteANetworkFunctionDefinitionVersion(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * AzureOperatorNexus/VirtualNetworkFunctionDefinitionVersionDelete.json
+     */
+    /**
+     * Sample code: Delete a network function definition version for AzureOperatorNexus VNF.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void deleteANetworkFunctionDefinitionVersionForAzureOperatorNexusVNF(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/AzureCore/
+     * VirtualNetworkFunctionDefinitionVersionDelete.json
+     */
+    /**
+     * Sample code: Delete a network function definition version for AzureCore VNF.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void deleteANetworkFunctionDefinitionVersionForAzureCoreVNF(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Sites_List
+
+```java
+import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactStorePrivateEndPointsFormatInner;
+import com.azure.resourcemanager.hybridnetwork.models.ReferencedResource;
+import java.util.Arrays;
+
+/**
+ * Samples for ArtifactStores RemovePrivateEndPoints.
+ */
+public final class ArtifactStoresRemovePrivateEndPointsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * ArtifactStoreRemovePrivateEndPoints.json
+     */
+    /**
+     * Sample code: Remove Manual Endpoint.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void removeManualEndpoint(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .removePrivateEndPoints("rg", "TestPublisher", "TestArtifactStore",
+                new ArtifactStorePrivateEndPointsFormatInner()
+                    .withManualPrivateEndPointConnections(Arrays.asList(new ReferencedResource().withId(
+                        "/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Network/privateEndpoints/newpetest"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Sites_ListByResourceGroup
+
+```java
+import com.azure.resourcemanager.hybridnetwork.models.ExecuteRequestParameters;
+import com.azure.resourcemanager.hybridnetwork.models.HttpMethod;
+import com.azure.resourcemanager.hybridnetwork.models.RequestMetadata;
+
+/**
+ * Samples for NetworkFunctions ExecuteRequest.
+ */
+public final class NetworkFunctionsExecuteRequestSamples {
+    /*
+     * x-ms-original-file:
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
+     * NetworkFunctionsExecuteRequest.json
+     */
+    /**
+     * Sample code: Send request to network function services.
+     * 
+     * @param manager Entry point to HybridNetworkManager.
+     */
+    public static void
+        sendRequestToNetworkFunctionServices(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions()
+            .executeRequest("rg", "testNetworkfunction", new ExecuteRequestParameters()
+                .withServiceEndpoint("serviceEndpoint")
+                .withRequestMetadata(new RequestMetadata().withRelativePath("/simProfiles/testSimProfile")
+                    .withHttpMethod(HttpMethod.POST)
+                    .withSerializedBody(
+                        "{\"subscriptionProfile\":\"ChantestSubscription15\",\"permanentKey\":\"00112233445566778899AABBCCDDEEFF\",\"opcOperatorCode\":\"63bfa50ee6523365ff14c1f45f88737d\",\"staticIpAddresses\":{\"internet\":{\"ipv4Addr\":\"198.51.100.1\",\"ipv6Prefix\":\"2001:db8:abcd:12::0/64\"},\"another_network\":{\"ipv6Prefix\":\"2001:111:cdef:22::0/64\"}}}")
+                    .withApiVersion("apiVersionQueryString")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Sites_UpdateTags
 
 ```java
 import com.azure.resourcemanager.hybridnetwork.models.ApplicationEnablement;
@@ -1137,7 +3021,7 @@ import java.util.Arrays;
 public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/AzureCore/
      * VirtualNetworkFunctionDefinitionVersionCreate.json
      */
     /**
@@ -1192,7 +3076,7 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * AzureOperatorNexus/VirtualNetworkFunctionDefinitionVersionCreate.json
      */
     /**
@@ -1248,7 +3132,7 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
+     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2024-04-15/examples/
      * NetworkFunctionDefinitionVersionCreate.json
      */
     /**
@@ -1286,1657 +3170,12 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
                                     .withValues("")
                                     .withOptions(new HelmMappingRuleProfileOptions()
                                         .withInstallOptions(new HelmInstallOptions().withAtomic("true")
-                                            .withWaitOption("true")
+                                            .withWaitOption("waitValue")
                                             .withTimeout("30"))
                                         .withUpgradeOptions(new HelmUpgradeOptions().withAtomic("true")
-                                            .withWaitOption("true")
+                                            .withWaitOption("waitValue")
                                             .withTimeout("30")))))))))
             .create();
-    }
-}
-```
-
-### NetworkFunctionDefinitionVersions_Delete
-
-```java
-/**
- * Samples for NetworkFunctionDefinitionVersions Delete.
- */
-public final class NetworkFunctionDefinitionVersionsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionDefinitionVersionDelete.json
-     */
-    /**
-     * Sample code: Delete a network function definition version.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        deleteANetworkFunctionDefinitionVersion(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions()
-            .delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * AzureOperatorNexus/VirtualNetworkFunctionDefinitionVersionDelete.json
-     */
-    /**
-     * Sample code: Delete a network function definition version for AzureOperatorNexus VNF.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void deleteANetworkFunctionDefinitionVersionForAzureOperatorNexusVNF(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions()
-            .delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
-     * VirtualNetworkFunctionDefinitionVersionDelete.json
-     */
-    /**
-     * Sample code: Delete a network function definition version for AzureCore VNF.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void deleteANetworkFunctionDefinitionVersionForAzureCoreVNF(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions()
-            .delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkFunctionDefinitionVersions_Get
-
-```java
-/**
- * Samples for NetworkFunctionDefinitionVersions Get.
- */
-public final class NetworkFunctionDefinitionVersionsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionDefinitionVersionGet.json
-     */
-    /**
-     * Sample code: Get a network function definition version resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getANetworkFunctionDefinitionVersionResource(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions()
-            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
-     * VirtualNetworkFunctionDefinitionVersionGet.json
-     */
-    /**
-     * Sample code: Get network function definition version resource for AzureCore VNF.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getNetworkFunctionDefinitionVersionResourceForAzureCoreVNF(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions()
-            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * AzureOperatorNexus/VirtualNetworkFunctionDefinitionVersionGet.json
-     */
-    /**
-     * Sample code: Get network function definition version resource for AzureOperatorNexus VNF.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getNetworkFunctionDefinitionVersionResourceForAzureOperatorNexusVNF(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions()
-            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkFunctionDefinitionVersions_ListByNetworkFunctionDefinitionGroup
-
-```java
-/**
- * Samples for NetworkFunctionDefinitionVersions ListByNetworkFunctionDefinitionGroup.
- */
-public final class NetworkFunctionDefinitionVersionsListByNetworkFunctionDefinitionGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionDefinitionVersionListByNetworkFunctionDefinitionGroup.json
-     */
-    /**
-     * Sample code: Get Publisher resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions()
-            .listByNetworkFunctionDefinitionGroup("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupNameName",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkFunctionDefinitionVersions_Update
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionDefinitionVersion;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for NetworkFunctionDefinitionVersions Update.
- */
-public final class NetworkFunctionDefinitionVersionsUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionDefinitionVersionUpdateTags.json
-     */
-    /**
-     * Sample code: Update the network function definition version tags.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void updateTheNetworkFunctionDefinitionVersionTags(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        NetworkFunctionDefinitionVersion resource = manager.networkFunctionDefinitionVersions()
-            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
-                com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### NetworkFunctionDefinitionVersions_UpdateState
-
-```java
-import com.azure.resourcemanager.hybridnetwork.fluent.models.NetworkFunctionDefinitionVersionUpdateStateInner;
-import com.azure.resourcemanager.hybridnetwork.models.VersionState;
-
-/**
- * Samples for NetworkFunctionDefinitionVersions UpdateState.
- */
-public final class NetworkFunctionDefinitionVersionsUpdateStateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionDefinitionVersionUpdateState.json
-     */
-    /**
-     * Sample code: Update network function definition version state.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void updateNetworkFunctionDefinitionVersionState(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions()
-            .updateState("rg", "TestPublisher", "TestSkuGroup", "1.0.0",
-                new NetworkFunctionDefinitionVersionUpdateStateInner().withVersionState(VersionState.ACTIVE),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkFunctions_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionValueWithSecrets;
-import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionValueWithoutSecrets;
-import com.azure.resourcemanager.hybridnetwork.models.NfviType;
-import com.azure.resourcemanager.hybridnetwork.models.OpenDeploymentResourceReference;
-import com.azure.resourcemanager.hybridnetwork.models.SecretDeploymentResourceReference;
-import java.util.Arrays;
-
-/**
- * Samples for NetworkFunctions CreateOrUpdate.
- */
-public final class NetworkFunctionsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
-     * VirtualNetworkFunctionCreate.json
-     */
-    /**
-     * Sample code: Create virtual network function resource on AzureCore.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void createVirtualNetworkFunctionResourceOnAzureCore(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions()
-            .define("testNf")
-            .withRegion("eastus")
-            .withExistingResourceGroup("rg")
-            .withProperties(new NetworkFunctionValueWithoutSecrets()
-                .withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId(
-                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1"))
-                .withNfviType(NfviType.AZURE_CORE)
-                .withNfviId("/subscriptions/subid/resourceGroups/testResourceGroup")
-                .withAllowSoftwareUpdate(false)
-                .withDeploymentValues(
-                    "{\"virtualMachineName\":\"test-VM\",\"cpuCores\":4,\"memorySizeGB\":8,\"cloudServicesNetworkAttachment\":{\"attachedNetworkId\":\"test-csnet\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-cs-vlan\"},\"networkAttachments\":[{\"attachedNetworkId\":\"test-l3vlan\",\"defaultGateway\":\"True\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-vlan\"}],\"sshPublicKeys\":[{\"keyData\":\"ssh-rsa CMIIIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA0TqlveKKlc2MFvEmuXJiLGBsY1t4ML4uiRADGSZlnc+7Ugv3h+MCjkkwOKiOdsNo8k4KSBIG5GcQfKYOOd17AJvqCL6cGQbaLuqv0a64jeDm8oO8/xN/IM0oKw7rMr/2oAJOgIsfeXPkRxWWic9AVIS++H5Qi2r7bUFX+cqFsyUCAwEBBQ==\"}],\"storageProfile\":{\"osDisk\":{\"createOption\":\"Ephemeral\",\"deleteOption\":\"Delete\",\"diskSizeGB\":10}},\"userData\":\"testUserData\",\"adminUsername\":\"testUser\",\"virtioInterface\":\"Transitional\",\"isolateEmulatorThread\":\"False\",\"bootMethod\":\"BIOS\",\"placementHints\":[]}"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionFirstPartyCreate.json
-     */
-    /**
-     * Sample code: Create first party network function resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        createFirstPartyNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions()
-            .define("testNf")
-            .withRegion("eastus")
-            .withExistingResourceGroup("rg")
-            .withProperties(new NetworkFunctionValueWithoutSecrets()
-                .withNetworkFunctionDefinitionVersionResourceReference(new SecretDeploymentResourceReference().withId(
-                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1"))
-                .withNfviType(NfviType.AZURE_ARC_KUBERNETES)
-                .withNfviId(
-                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation")
-                .withAllowSoftwareUpdate(false)
-                .withRoleOverrideValues(Arrays.asList(
-                    "{\"name\":\"testRoleOne\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"helmPackageVersion\":\"2.1.3\",\"values\":\"{\\\"roleOneParam\\\":\\\"roleOneOverrideValue\\\"}\"}}}",
-                    "{\"name\":\"testRoleTwo\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"releaseName\":\"overrideReleaseName\",\"releaseNamespace\":\"overrideNamespace\",\"values\":\"{\\\"roleTwoParam\\\":\\\"roleTwoOverrideValue\\\"}\"}}}"))
-                .withDeploymentValues("{\"releaseName\":\"testReleaseName\",\"namespace\":\"testNamespace\"}"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionCreate.json
-     */
-    /**
-     * Sample code: Create network function resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        createNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions()
-            .define("testNf")
-            .withRegion("eastus")
-            .withExistingResourceGroup("rg")
-            .withProperties(new NetworkFunctionValueWithoutSecrets()
-                .withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId(
-                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1"))
-                .withNfviType(NfviType.AZURE_ARC_KUBERNETES)
-                .withNfviId(
-                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation")
-                .withAllowSoftwareUpdate(false)
-                .withRoleOverrideValues(Arrays.asList(
-                    "{\"name\":\"testRoleOne\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"helmPackageVersion\":\"2.1.3\",\"values\":\"{\\\"roleOneParam\\\":\\\"roleOneOverrideValue\\\"}\"}}}",
-                    "{\"name\":\"testRoleTwo\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"releaseName\":\"overrideReleaseName\",\"releaseNamespace\":\"overrideNamespace\",\"values\":\"{\\\"roleTwoParam\\\":\\\"roleTwoOverrideValue\\\"}\"}}}"))
-                .withDeploymentValues("{\"releaseName\":\"testReleaseName\",\"namespace\":\"testNamespace\"}"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionCreateSecret.json
-     */
-    /**
-     * Sample code: Create network function resource with secrets.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        createNetworkFunctionResourceWithSecrets(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions()
-            .define("testNf")
-            .withRegion("eastus")
-            .withExistingResourceGroup("rg")
-            .withProperties(new NetworkFunctionValueWithSecrets()
-                .withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId(
-                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1"))
-                .withNfviType(NfviType.AZURE_ARC_KUBERNETES)
-                .withNfviId(
-                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation")
-                .withAllowSoftwareUpdate(false)
-                .withRoleOverrideValues(Arrays.asList(
-                    "{\"name\":\"testRoleOne\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"helmPackageVersion\":\"2.1.3\",\"values\":\"{\\\"roleOneParam\\\":\\\"roleOneOverrideValue\\\"}\"}}}",
-                    "{\"name\":\"testRoleTwo\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"releaseName\":\"overrideReleaseName\",\"releaseNamespace\":\"overrideNamespace\",\"values\":\"{\\\"roleTwoParam\\\":\\\"roleTwoOverrideValue\\\"}\"}}}"))
-                .withSecretDeploymentValues("fakeTokenPlaceholder"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * AzureOperatorNexus/VirtualNetworkFunctionCreate.json
-     */
-    /**
-     * Sample code: Create virtual network function resource on AzureOperatorNexus.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void createVirtualNetworkFunctionResourceOnAzureOperatorNexus(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions()
-            .define("testNf")
-            .withRegion("eastus")
-            .withExistingResourceGroup("rg")
-            .withProperties(new NetworkFunctionValueWithoutSecrets()
-                .withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId(
-                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1"))
-                .withNfviType(NfviType.AZURE_OPERATOR_NEXUS)
-                .withNfviId(
-                    "/subscriptions/subid/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation")
-                .withAllowSoftwareUpdate(false)
-                .withDeploymentValues(
-                    "{\"virtualMachineName\":\"test-VM\",\"extendedLocationName\":\"test-cluster\",\"cpuCores\":4,\"memorySizeGB\":8,\"cloudServicesNetworkAttachment\":{\"attachedNetworkId\":\"test-csnet\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-cs-vlan\"},\"networkAttachments\":[{\"attachedNetworkId\":\"test-l3vlan\",\"defaultGateway\":\"True\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-vlan\"}],\"sshPublicKeys\":[{\"keyData\":\"ssh-rsa CMIIIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA0TqlveKKlc2MFvEmuXJiLGBsY1t4ML4uiRADGSZlnc+7Ugv3h+MCjkkwOKiOdsNo8k4KSBIG5GcQfKYOOd17AJvqCL6cGQbaLuqv0a64jeDm8oO8/xN/IM0oKw7rMr/2oAJOgIsfeXPkRxWWic9AVIS++H5Qi2r7bUFX+cqFsyUCAwEBBQ==\"}],\"storageProfile\":{\"osDisk\":{\"createOption\":\"Ephemeral\",\"deleteOption\":\"Delete\",\"diskSizeGB\":10}},\"userData\":\"testUserData\",\"adminUsername\":\"testUser\",\"virtioInterface\":\"Transitional\",\"isolateEmulatorThread\":\"False\",\"bootMethod\":\"BIOS\",\"placementHints\":[]}"))
-            .create();
-    }
-}
-```
-
-### NetworkFunctions_Delete
-
-```java
-/**
- * Samples for NetworkFunctions Delete.
- */
-public final class NetworkFunctionsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionDelete.json
-     */
-    /**
-     * Sample code: Delete network function resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        deleteNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions().delete("rg", "testNf", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
-     * VirtualNetworkFunctionDelete.json
-     */
-    /**
-     * Sample code: Delete virtual network function resource on AzureCore.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void deleteVirtualNetworkFunctionResourceOnAzureCore(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions().delete("rg", "testNf", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * AzureOperatorNexus/VirtualNetworkFunctionDelete.json
-     */
-    /**
-     * Sample code: Delete virtual network function resource on AzureOperatorNexus.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void deleteVirtualNetworkFunctionResourceOnAzureOperatorNexus(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions().delete("rg", "testNf", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkFunctions_ExecuteRequest
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.ExecuteRequestParameters;
-import com.azure.resourcemanager.hybridnetwork.models.HttpMethod;
-import com.azure.resourcemanager.hybridnetwork.models.RequestMetadata;
-
-/**
- * Samples for NetworkFunctions ExecuteRequest.
- */
-public final class NetworkFunctionsExecuteRequestSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionsExecuteRequest.json
-     */
-    /**
-     * Sample code: Send request to network function services.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        sendRequestToNetworkFunctionServices(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions()
-            .executeRequest("rg", "testNetworkfunction", new ExecuteRequestParameters()
-                .withServiceEndpoint("serviceEndpoint")
-                .withRequestMetadata(new RequestMetadata().withRelativePath("/simProfiles/testSimProfile")
-                    .withHttpMethod(HttpMethod.POST)
-                    .withSerializedBody(
-                        "{\"subscriptionProfile\":\"ChantestSubscription15\",\"permanentKey\":\"00112233445566778899AABBCCDDEEFF\",\"opcOperatorCode\":\"63bfa50ee6523365ff14c1f45f88737d\",\"staticIpAddresses\":{\"internet\":{\"ipv4Addr\":\"198.51.100.1\",\"ipv6Prefix\":\"2001:db8:abcd:12::0/64\"},\"another_network\":{\"ipv6Prefix\":\"2001:111:cdef:22::0/64\"}}}")
-                    .withApiVersion("apiVersionQueryString")),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkFunctions_GetByResourceGroup
-
-```java
-/**
- * Samples for NetworkFunctions GetByResourceGroup.
- */
-public final class NetworkFunctionsGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * AzureOperatorNexus/VirtualNetworkFunctionGet.json
-     */
-    /**
-     * Sample code: Get virtual network function resource on AzureOperatorNexus.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getVirtualNetworkFunctionResourceOnAzureOperatorNexus(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions().getByResourceGroupWithResponse("rg", "testNf", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionGet.json
-     */
-    /**
-     * Sample code: Get network function resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        getNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions().getByResourceGroupWithResponse("rg", "testNf", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
-     * VirtualNetworkFunctionGet.json
-     */
-    /**
-     * Sample code: Get virtual network function resource on AzureCore.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getVirtualNetworkFunctionResourceOnAzureCore(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions().getByResourceGroupWithResponse("rg", "testNf", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkFunctions_List
-
-```java
-/**
- * Samples for NetworkFunctions List.
- */
-public final class NetworkFunctionsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionListBySubscription.json
-     */
-    /**
-     * Sample code: List all network function resources in subscription.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void listAllNetworkFunctionResourcesInSubscription(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkFunctions_ListByResourceGroup
-
-```java
-/**
- * Samples for NetworkFunctions ListByResourceGroup.
- */
-public final class NetworkFunctionsListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionListByResourceGroup.json
-     */
-    /**
-     * Sample code: List network function in resource group.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        listNetworkFunctionInResourceGroup(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions().listByResourceGroup("rg", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkFunctions_UpdateTags
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.NetworkFunction;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for NetworkFunctions UpdateTags.
- */
-public final class NetworkFunctionsUpdateTagsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionUpdateTags.json
-     */
-    /**
-     * Sample code: Update tags for network function resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        updateTagsForNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        NetworkFunction resource = manager.networkFunctions()
-            .getByResourceGroupWithResponse("rg", "testNf", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### NetworkServiceDesignGroups_CreateOrUpdate
-
-```java
-/**
- * Samples for NetworkServiceDesignGroups CreateOrUpdate.
- */
-public final class NetworkServiceDesignGroupsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkServiceDesignGroupCreate.json
-     */
-    /**
-     * Sample code: Create or update the network service design group.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void createOrUpdateTheNetworkServiceDesignGroup(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignGroups()
-            .define("TestNetworkServiceDesignGroupName")
-            .withRegion("eastus")
-            .withExistingPublisher("rg", "TestPublisher")
-            .create();
-    }
-}
-```
-
-### NetworkServiceDesignGroups_Delete
-
-```java
-/**
- * Samples for NetworkServiceDesignGroups Delete.
- */
-public final class NetworkServiceDesignGroupsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkServiceDesignGroupDelete.json
-     */
-    /**
-     * Sample code: Delete a network function group resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        deleteANetworkFunctionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignGroups()
-            .delete("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkServiceDesignGroups_Get
-
-```java
-/**
- * Samples for NetworkServiceDesignGroups Get.
- */
-public final class NetworkServiceDesignGroupsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkServiceDesignGroupGet.json
-     */
-    /**
-     * Sample code: Get a networkServiceDesign group resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        getANetworkServiceDesignGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignGroups()
-            .getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkServiceDesignGroups_ListByPublisher
-
-```java
-/**
- * Samples for NetworkServiceDesignGroups ListByPublisher.
- */
-public final class NetworkServiceDesignGroupsListByPublisherSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkServiceDesignGroupsListByPublisherName.json
-     */
-    /**
-     * Sample code: Get networkServiceDesign groups under publisher resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getNetworkServiceDesignGroupsUnderPublisherResource(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignGroups().listByPublisher("rg", "TestPublisher", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkServiceDesignGroups_Update
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.NetworkServiceDesignGroup;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for NetworkServiceDesignGroups Update.
- */
-public final class NetworkServiceDesignGroupsUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkServiceDesignGroupUpdateTags.json
-     */
-    /**
-     * Sample code: Create or update the network service design group resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void createOrUpdateTheNetworkServiceDesignGroupResource(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        NetworkServiceDesignGroup resource = manager.networkServiceDesignGroups()
-            .getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName",
-                com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### NetworkServiceDesignVersions_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.ArmResourceDefinitionResourceElementTemplate;
-import com.azure.resourcemanager.hybridnetwork.models.ArmResourceDefinitionResourceElementTemplateDetails;
-import com.azure.resourcemanager.hybridnetwork.models.DependsOnProfile;
-import com.azure.resourcemanager.hybridnetwork.models.NetworkServiceDesignVersionPropertiesFormat;
-import com.azure.resourcemanager.hybridnetwork.models.NsdArtifactProfile;
-import com.azure.resourcemanager.hybridnetwork.models.ReferencedResource;
-import com.azure.resourcemanager.hybridnetwork.models.TemplateType;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for NetworkServiceDesignVersions CreateOrUpdate.
- */
-public final class NetworkServiceDesignVersionsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkServiceDesignVersionCreate.json
-     */
-    /**
-     * Sample code: Create or update a network service design version resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void createOrUpdateANetworkServiceDesignVersionResource(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignVersions()
-            .define("1.0.0")
-            .withRegion("eastus")
-            .withExistingNetworkServiceDesignGroup("rg", "TestPublisher", "TestNetworkServiceDesignGroupName")
-            .withProperties(new NetworkServiceDesignVersionPropertiesFormat()
-                .withConfigurationGroupSchemaReferences(mapOf("MyVM_Configuration", new ReferencedResource().withId(
-                    "/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/publishers/contosoGroup/networkServiceDesignGroups/NSD_contoso/configurationGroupSchemas/MyVM_Configuration_Schema")))
-                .withResourceElementTemplates(Arrays.asList(new ArmResourceDefinitionResourceElementTemplateDetails()
-                    .withName("MyVM")
-                    .withDependsOnProfile(new DependsOnProfile().withInstallDependsOn(Arrays.asList()))
-                    .withConfiguration(new ArmResourceDefinitionResourceElementTemplate()
-                        .withTemplateType(TemplateType.ARM_TEMPLATE)
-                        .withParameterValues(
-                            "{\"publisherName\":\"{configurationparameters('MyVM_Configuration').publisherName}\",\"skuGroupName\":\"{configurationparameters('MyVM_Configuration').skuGroupName}\",\"skuVersion\":\"{configurationparameters('MyVM_Configuration').skuVersion}\",\"skuOfferingLocation\":\"{configurationparameters('MyVM_Configuration').skuOfferingLocation}\",\"nfviType\":\"{nfvis().nfvisFromSitePerNfviType.AzureCore.nfviAlias1.nfviType}\",\"nfviId\":\"{nfvis().nfvisFromSitePerNfviType.AzureCore.nfviAlias1.nfviId}\",\"allowSoftwareUpdates\":\"{configurationparameters('MyVM_Configuration').allowSoftwareUpdates}\",\"virtualNetworkName\":\"{configurationparameters('MyVM_Configuration').vnetName}\",\"subnetName\":\"{configurationparameters('MyVM_Configuration').subnetName}\",\"subnetAddressPrefix\":\"{configurationparameters('MyVM_Configuration').subnetAddressPrefix}\",\"managedResourceGroup\":\"{configurationparameters('SNSSelf').managedResourceGroupName}\",\"adminPassword\":\"{secretparameters('MyVM_Configuration').adminPassword}\"}")
-                        .withArtifactProfile(new NsdArtifactProfile()
-                            .withArtifactStoreReference(new ReferencedResource().withId(
-                                "/subscriptions/subid/providers/Microsoft.HybridNetwork/publishers/contosoGroup/artifactStoreReference/store1"))
-                            .withArtifactName("MyVMArmTemplate")
-                            .withArtifactVersion("1.0.0"))))))
-            .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### NetworkServiceDesignVersions_Delete
-
-```java
-/**
- * Samples for NetworkServiceDesignVersions Delete.
- */
-public final class NetworkServiceDesignVersionsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkServiceDesignVersionDelete.json
-     */
-    /**
-     * Sample code: Delete a network service design version.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        deleteANetworkServiceDesignVersion(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignVersions()
-            .delete("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkServiceDesignVersions_Get
-
-```java
-/**
- * Samples for NetworkServiceDesignVersions Get.
- */
-public final class NetworkServiceDesignVersionsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkServiceDesignVersionGet.json
-     */
-    /**
-     * Sample code: Get a network service design version resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        getANetworkServiceDesignVersionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignVersions()
-            .getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkServiceDesignVersions_ListByNetworkServiceDesignGroup
-
-```java
-/**
- * Samples for NetworkServiceDesignVersions ListByNetworkServiceDesignGroup.
- */
-public final class NetworkServiceDesignVersionsListByNetworkServiceDesignGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkServiceDesignVersionListByNetworkServiceDesignGroup.json
-     */
-    /**
-     * Sample code: Get Publisher resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignVersions()
-            .listByNetworkServiceDesignGroup("rg", "TestPublisher", "TestNetworkServiceDesignGroupName",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### NetworkServiceDesignVersions_Update
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.NetworkServiceDesignVersion;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for NetworkServiceDesignVersions Update.
- */
-public final class NetworkServiceDesignVersionsUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkServiceDesignVersionUpdateTags.json
-     */
-    /**
-     * Sample code: Update the network service design version tags.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        updateTheNetworkServiceDesignVersionTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        NetworkServiceDesignVersion resource = manager.networkServiceDesignVersions()
-            .getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0",
-                com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### NetworkServiceDesignVersions_UpdateState
-
-```java
-import com.azure.resourcemanager.hybridnetwork.fluent.models.NetworkServiceDesignVersionUpdateStateInner;
-import com.azure.resourcemanager.hybridnetwork.models.VersionState;
-
-/**
- * Samples for NetworkServiceDesignVersions UpdateState.
- */
-public final class NetworkServiceDesignVersionsUpdateStateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkServiceDesignVersionUpdateState.json
-     */
-    /**
-     * Sample code: Update network service design version state.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        updateNetworkServiceDesignVersionState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignVersions()
-            .updateState("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0",
-                new NetworkServiceDesignVersionUpdateStateInner().withVersionState(VersionState.ACTIVE),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/GetOperations.
-     * json
-     */
-    /**
-     * Sample code: Get Registration Operations.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getRegistrationOperations(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProxyArtifact_Get
-
-```java
-/**
- * Samples for ProxyArtifact Get.
- */
-public final class ProxyArtifactGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PureProxyArtifact
-     * /ArtifactGet.json
-     */
-    /**
-     * Sample code: Get an artifact overview.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getAnArtifactOverview(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.proxyArtifacts()
-            .get("TestResourceGroup", "TestPublisher", "TestArtifactStoreName", "fedrbac",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProxyArtifact_List
-
-```java
-/**
- * Samples for ProxyArtifact List.
- */
-public final class ProxyArtifactListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PureProxyArtifact
-     * /ArtifactList.json
-     */
-    /**
-     * Sample code: List artifacts under an artifact store.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        listArtifactsUnderAnArtifactStore(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.proxyArtifacts()
-            .list("TestResourceGroup", "TestPublisher", "TestArtifactStoreName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ProxyArtifact_UpdateState
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.ArtifactChangeState;
-import com.azure.resourcemanager.hybridnetwork.models.ArtifactChangeStateProperties;
-import com.azure.resourcemanager.hybridnetwork.models.ArtifactState;
-
-/**
- * Samples for ProxyArtifact UpdateState.
- */
-public final class ProxyArtifactUpdateStateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PureProxyArtifact
-     * /ArtifactChangeState.json
-     */
-    /**
-     * Sample code: Update an artifact state.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void updateAnArtifactState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.proxyArtifacts()
-            .updateState("TestResourceGroup", "TestPublisher", "TestArtifactStoreName", "fedrbac", "1.0.0",
-                new ArtifactChangeState()
-                    .withProperties(new ArtifactChangeStateProperties().withArtifactState(ArtifactState.DEPRECATED)),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Publishers_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.PublisherPropertiesFormat;
-import com.azure.resourcemanager.hybridnetwork.models.PublisherScope;
-
-/**
- * Samples for Publishers CreateOrUpdate.
- */
-public final class PublishersCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PublisherCreate.
-     * json
-     */
-    /**
-     * Sample code: Create or update a publisher resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        createOrUpdateAPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.publishers()
-            .define("TestPublisher")
-            .withRegion("eastus")
-            .withExistingResourceGroup("rg")
-            .withProperties(new PublisherPropertiesFormat().withScope(PublisherScope.fromString("Public")))
-            .create();
-    }
-}
-```
-
-### Publishers_Delete
-
-```java
-/**
- * Samples for Publishers Delete.
- */
-public final class PublishersDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PublisherDelete.
-     * json
-     */
-    /**
-     * Sample code: Delete a publisher resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void deleteAPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.publishers().delete("rg", "TestPublisher", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Publishers_GetByResourceGroup
-
-```java
-/**
- * Samples for Publishers GetByResourceGroup.
- */
-public final class PublishersGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PublisherGet.json
-     */
-    /**
-     * Sample code: Get a publisher resource.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getAPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.publishers().getByResourceGroupWithResponse("rg", "TestPublisher", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Publishers_List
-
-```java
-/**
- * Samples for Publishers List.
- */
-public final class PublishersListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * PublisherListBySubscription.json
-     */
-    /**
-     * Sample code: List all publisher resources in a subscription.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        listAllPublisherResourcesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.publishers().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Publishers_ListByResourceGroup
-
-```java
-/**
- * Samples for Publishers ListByResourceGroup.
- */
-public final class PublishersListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * PublisherListByResourceGroup.json
-     */
-    /**
-     * Sample code: List all publisher resources in a resource group.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void listAllPublisherResourcesInAResourceGroup(
-        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.publishers().listByResourceGroup("rg", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Publishers_Update
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.Publisher;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for Publishers Update.
- */
-public final class PublishersUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * PublisherUpdateTags.json
-     */
-    /**
-     * Sample code: Update a publisher tags.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void updateAPublisherTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        Publisher resource = manager.publishers()
-            .getByResourceGroupWithResponse("rg", "TestPublisher", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### SiteNetworkServices_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.OpenDeploymentResourceReference;
-import com.azure.resourcemanager.hybridnetwork.models.ReferencedResource;
-import com.azure.resourcemanager.hybridnetwork.models.SecretDeploymentResourceReference;
-import com.azure.resourcemanager.hybridnetwork.models.SiteNetworkServicePropertiesFormat;
-import com.azure.resourcemanager.hybridnetwork.models.Sku;
-import com.azure.resourcemanager.hybridnetwork.models.SkuName;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for SiteNetworkServices CreateOrUpdate.
- */
-public final class SiteNetworkServicesCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * SiteNetworkServiceCreate.json
-     */
-    /**
-     * Sample code: Create site network service.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void createSiteNetworkService(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.siteNetworkServices()
-            .define("testSiteNetworkServiceName")
-            .withRegion("westUs2")
-            .withExistingResourceGroup("rg1")
-            .withProperties(new SiteNetworkServicePropertiesFormat()
-                .withSiteReference(new ReferencedResource().withId(
-                    "/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/sites/testSite"))
-                .withNetworkServiceDesignVersionResourceReference(new OpenDeploymentResourceReference().withId(
-                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/TestPublisher/networkServiceDesignGroups/TestNetworkServiceDesignGroupName/networkServiceDesignVersions/1.0.0"))
-                .withDesiredStateConfigurationGroupValueReferences(mapOf("MyVM_Configuration",
-                    new ReferencedResource().withId(
-                        "/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/configurationgroupvalues/MyVM_Configuration1"))))
-            .withSku(new Sku().withName(SkuName.STANDARD))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * SiteNetworkServiceFirstPartyCreate.json
-     */
-    /**
-     * Sample code: Create first party site network service.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        createFirstPartySiteNetworkService(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.siteNetworkServices()
-            .define("testSiteNetworkServiceName")
-            .withRegion("westUs2")
-            .withExistingResourceGroup("rg1")
-            .withProperties(new SiteNetworkServicePropertiesFormat()
-                .withSiteReference(new ReferencedResource().withId(
-                    "/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/sites/testSite"))
-                .withNetworkServiceDesignVersionResourceReference(new SecretDeploymentResourceReference().withId(
-                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/TestPublisher/networkServiceDesignGroups/TestNetworkServiceDesignGroupName/networkServiceDesignVersions/1.0.0"))
-                .withDesiredStateConfigurationGroupValueReferences(mapOf("MyVM_Configuration",
-                    new ReferencedResource().withId(
-                        "/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/configurationgroupvalues/MyVM_Configuration1"))))
-            .withSku(new Sku().withName(SkuName.STANDARD))
-            .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### SiteNetworkServices_Delete
-
-```java
-/**
- * Samples for SiteNetworkServices Delete.
- */
-public final class SiteNetworkServicesDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * SiteNetworkServiceDelete.json
-     */
-    /**
-     * Sample code: Delete network site.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void deleteNetworkSite(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.siteNetworkServices().delete("rg1", "testSiteNetworkServiceName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SiteNetworkServices_GetByResourceGroup
-
-```java
-/**
- * Samples for SiteNetworkServices GetByResourceGroup.
- */
-public final class SiteNetworkServicesGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * SiteNetworkServiceGet.json
-     */
-    /**
-     * Sample code: Get network site.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getNetworkSite(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.siteNetworkServices()
-            .getByResourceGroupWithResponse("rg1", "testSiteNetworkServiceName", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SiteNetworkServices_List
-
-```java
-/**
- * Samples for SiteNetworkServices List.
- */
-public final class SiteNetworkServicesListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * SiteNetworkServiceListBySubscription.json
-     */
-    /**
-     * Sample code: List all hybrid network sites in a subscription.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        listAllHybridNetworkSitesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.siteNetworkServices().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SiteNetworkServices_ListByResourceGroup
-
-```java
-/**
- * Samples for SiteNetworkServices ListByResourceGroup.
- */
-public final class SiteNetworkServicesListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * SiteNetworkServiceListByResourceGroup.json
-     */
-    /**
-     * Sample code: List all network sites.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void listAllNetworkSites(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.siteNetworkServices().listByResourceGroup("rg1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SiteNetworkServices_UpdateTags
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.SiteNetworkService;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for SiteNetworkServices UpdateTags.
- */
-public final class SiteNetworkServicesUpdateTagsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * SiteNetworkServiceUpdateTags.json
-     */
-    /**
-     * Sample code: Update network site tags.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void updateNetworkSiteTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        SiteNetworkService resource = manager.siteNetworkServices()
-            .getByResourceGroupWithResponse("rg1", "testSiteNetworkServiceName", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### Sites_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.AzureArcK8SClusterNfviDetails;
-import com.azure.resourcemanager.hybridnetwork.models.AzureCoreNfviDetails;
-import com.azure.resourcemanager.hybridnetwork.models.AzureOperatorNexusClusterNfviDetails;
-import com.azure.resourcemanager.hybridnetwork.models.ReferencedResource;
-import com.azure.resourcemanager.hybridnetwork.models.SitePropertiesFormat;
-import java.util.Arrays;
-
-/**
- * Samples for Sites CreateOrUpdate.
- */
-public final class SitesCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteCreate.json
-     */
-    /**
-     * Sample code: Create network site.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void createNetworkSite(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.sites()
-            .define("testSite")
-            .withRegion("westUs2")
-            .withExistingResourceGroup("rg1")
-            .withProperties(new SitePropertiesFormat().withNfvis(Arrays.asList(
-                new AzureCoreNfviDetails().withName("nfvi1").withLocation("westUs2"),
-                new AzureArcK8SClusterNfviDetails().withName("nfvi2")
-                    .withCustomLocationReference(new ReferencedResource().withId(
-                        "/subscriptions/subid/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation1")),
-                new AzureOperatorNexusClusterNfviDetails().withName("nfvi3")
-                    .withCustomLocationReference(new ReferencedResource().withId(
-                        "/subscriptions/subid/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation2")))))
-            .create();
-    }
-}
-```
-
-### Sites_Delete
-
-```java
-/**
- * Samples for Sites Delete.
- */
-public final class SitesDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteDelete.json
-     */
-    /**
-     * Sample code: Delete network site.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void deleteNetworkSite(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.sites().delete("rg1", "testSite", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Sites_GetByResourceGroup
-
-```java
-/**
- * Samples for Sites GetByResourceGroup.
- */
-public final class SitesGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteGet.json
-     */
-    /**
-     * Sample code: Get network site.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void getNetworkSite(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.sites().getByResourceGroupWithResponse("rg1", "testSite", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Sites_List
-
-```java
-/**
- * Samples for Sites List.
- */
-public final class SitesListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * SiteListBySubscription.json
-     */
-    /**
-     * Sample code: List all hybrid network sites in a subscription.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void
-        listAllHybridNetworkSitesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.sites().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Sites_ListByResourceGroup
-
-```java
-/**
- * Samples for Sites ListByResourceGroup.
- */
-public final class SitesListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * SiteListByResourceGroup.json
-     */
-    /**
-     * Sample code: List all network sites.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void listAllNetworkSites(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.sites().listByResourceGroup("rg1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Sites_UpdateTags
-
-```java
-import com.azure.resourcemanager.hybridnetwork.models.Site;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for Sites UpdateTags.
- */
-public final class SitesUpdateTagsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteUpdateTags.
-     * json
-     */
-    /**
-     * Sample code: Update network site tags.
-     * 
-     * @param manager Entry point to HybridNetworkManager.
-     */
-    public static void updateNetworkSiteTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        Site resource = manager.sites()
-            .getByResourceGroupWithResponse("rg1", "testSite", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
     }
 }
 ```

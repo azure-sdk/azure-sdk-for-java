@@ -1,14 +1,81 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-30)
 
-### Features Added
+- Azure Resource Manager HybridNetwork client library for Java. This package contains Microsoft Azure SDK for HybridNetwork Management SDK. The definitions in this swagger specification will be used to manage the Hybrid Network resources. Package tag package-2024-04-15. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.NetworkFunctionPropertiesFormat` was modified
 
-### Other Changes
+* `models.NetworkFunctionPropertiesFormat withPublisherName(java.lang.String)` -> `models.NetworkFunctionPropertiesFormat withPublisherName(java.lang.String)`
+* `models.NetworkFunctionPropertiesFormat withNetworkFunctionDefinitionGroupName(java.lang.String)` -> `models.NetworkFunctionPropertiesFormat withNetworkFunctionDefinitionGroupName(java.lang.String)`
+* `models.NetworkFunctionPropertiesFormat withNetworkFunctionDefinitionOfferingLocation(java.lang.String)` -> `models.NetworkFunctionPropertiesFormat withNetworkFunctionDefinitionOfferingLocation(java.lang.String)`
+* `models.NetworkFunctionPropertiesFormat withNetworkFunctionDefinitionVersion(java.lang.String)` -> `models.NetworkFunctionPropertiesFormat withNetworkFunctionDefinitionVersion(java.lang.String)`
+* `models.NetworkFunctionPropertiesFormat withPublisherScope(models.PublisherScope)` -> `models.NetworkFunctionPropertiesFormat withPublisherScope(models.PublisherScope)`
+
+### Features Added
+
+* `models.ArtifactStorePrivateEndPointsListResult` was added
+
+* `models.BackingResourcePublicNetworkAccess` was added
+
+* `models.ArtifactStoreNetworkFabricControllerEndPoints` was added
+
+* `models.ArtifactStoreNetworkFabricControllerEndPointsList` was added
+
+* `models.ArtifactStorePrivateEndPointsFormat` was added
+
+#### `models.ArtifactStores` was modified
+
+* `addNetworkFabricControllerEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner,com.azure.core.util.Context)` was added
+* `deleteNetworkFabricControllerEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner)` was added
+* `removePrivateEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStorePrivateEndPointsFormatInner,com.azure.core.util.Context)` was added
+* `listPrivateEndPoints(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `approvePrivateEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStorePrivateEndPointsFormatInner,com.azure.core.util.Context)` was added
+* `listNetworkFabricControllerPrivateEndPoints(java.lang.String,java.lang.String,java.lang.String)` was added
+* `approvePrivateEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStorePrivateEndPointsFormatInner)` was added
+* `removePrivateEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStorePrivateEndPointsFormatInner)` was added
+* `deleteNetworkFabricControllerEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner,com.azure.core.util.Context)` was added
+* `listNetworkFabricControllerPrivateEndPoints(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `listPrivateEndPoints(java.lang.String,java.lang.String,java.lang.String)` was added
+* `addNetworkFabricControllerEndPoints(java.lang.String,java.lang.String,java.lang.String,fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner)` was added
+
+#### `models.NetworkFunctionValueWithoutSecrets` was modified
+
+* `withNetworkFunctionDefinitionVersion(java.lang.String)` was added
+* `withNetworkFunctionDefinitionGroupName(java.lang.String)` was added
+* `withNetworkFunctionDefinitionOfferingLocation(java.lang.String)` was added
+* `withPublisherName(java.lang.String)` was added
+* `withPublisherScope(models.PublisherScope)` was added
+
+#### `models.ArtifactStorePropertiesFormat` was modified
+
+* `withBackingResourcePublicNetworkAccess(models.BackingResourcePublicNetworkAccess)` was added
+* `backingResourcePublicNetworkAccess()` was added
+
+#### `models.NetworkFunctionValueWithSecrets` was modified
+
+* `withNetworkFunctionDefinitionOfferingLocation(java.lang.String)` was added
+* `withNetworkFunctionDefinitionVersion(java.lang.String)` was added
+* `withPublisherScope(models.PublisherScope)` was added
+* `withNetworkFunctionDefinitionGroupName(java.lang.String)` was added
+* `withPublisherName(java.lang.String)` was added
+
+#### `models.ArtifactStore` was modified
+
+* `listPrivateEndPoints(com.azure.core.util.Context)` was added
+* `deleteNetworkFabricControllerEndPoints(fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner,com.azure.core.util.Context)` was added
+* `removePrivateEndPoints(fluent.models.ArtifactStorePrivateEndPointsFormatInner)` was added
+* `approvePrivateEndPoints(fluent.models.ArtifactStorePrivateEndPointsFormatInner)` was added
+* `listPrivateEndPoints()` was added
+* `removePrivateEndPoints(fluent.models.ArtifactStorePrivateEndPointsFormatInner,com.azure.core.util.Context)` was added
+* `listNetworkFabricControllerPrivateEndPoints(com.azure.core.util.Context)` was added
+* `addNetworkFabricControllerEndPoints(fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner,com.azure.core.util.Context)` was added
+* `deleteNetworkFabricControllerEndPoints(fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner)` was added
+* `listNetworkFabricControllerPrivateEndPoints()` was added
+* `approvePrivateEndPoints(fluent.models.ArtifactStorePrivateEndPointsFormatInner,com.azure.core.util.Context)` was added
+* `addNetworkFabricControllerEndPoints(fluent.models.ArtifactStoreNetworkFabricControllerEndPointsInner)` was added
 
 ## 1.1.0 (2024-12-13)
 
