@@ -14,16 +14,20 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.Backup;
 import com.azure.resourcemanager.mysqlflexibleserver.models.CreateMode;
 import com.azure.resourcemanager.mysqlflexibleserver.models.DataEncryption;
 import com.azure.resourcemanager.mysqlflexibleserver.models.HighAvailability;
-import com.azure.resourcemanager.mysqlflexibleserver.models.Identity;
+import com.azure.resourcemanager.mysqlflexibleserver.models.ImportSourceProperties;
+import com.azure.resourcemanager.mysqlflexibleserver.models.MaintenancePolicy;
 import com.azure.resourcemanager.mysqlflexibleserver.models.MaintenanceWindow;
+import com.azure.resourcemanager.mysqlflexibleserver.models.MySqlServerIdentity;
+import com.azure.resourcemanager.mysqlflexibleserver.models.MySqlServerSku;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Network;
+import com.azure.resourcemanager.mysqlflexibleserver.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ReplicationRole;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerState;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerVersion;
-import com.azure.resourcemanager.mysqlflexibleserver.models.Sku;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Storage;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,12 +38,12 @@ public final class ServerInner extends Resource {
     /*
      * The cmk identity for the server.
      */
-    private Identity identity;
+    private MySqlServerIdentity identity;
 
     /*
      * The SKU (pricing tier) of the server.
      */
-    private Sku sku;
+    private MySqlServerSku sku;
 
     /*
      * Properties of the server.
@@ -47,7 +51,7 @@ public final class ServerInner extends Resource {
     private ServerProperties innerProperties;
 
     /*
-     * The system metadata relating to this resource.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
 
@@ -77,7 +81,7 @@ public final class ServerInner extends Resource {
      * 
      * @return the identity value.
      */
-    public Identity identity() {
+    public MySqlServerIdentity identity() {
         return this.identity;
     }
 
@@ -87,7 +91,7 @@ public final class ServerInner extends Resource {
      * @param identity the identity value to set.
      * @return the ServerInner object itself.
      */
-    public ServerInner withIdentity(Identity identity) {
+    public ServerInner withIdentity(MySqlServerIdentity identity) {
         this.identity = identity;
         return this;
     }
@@ -97,7 +101,7 @@ public final class ServerInner extends Resource {
      * 
      * @return the sku value.
      */
-    public Sku sku() {
+    public MySqlServerSku sku() {
         return this.sku;
     }
 
@@ -107,7 +111,7 @@ public final class ServerInner extends Resource {
      * @param sku the sku value to set.
      * @return the ServerInner object itself.
      */
-    public ServerInner withSku(Sku sku) {
+    public ServerInner withSku(MySqlServerSku sku) {
         this.sku = sku;
         return this;
     }
@@ -122,7 +126,7 @@ public final class ServerInner extends Resource {
     }
 
     /**
-     * Get the systemData property: The system metadata relating to this resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -229,7 +233,7 @@ public final class ServerInner extends Resource {
     }
 
     /**
-     * Get the version property: Server version.
+     * Get the version property: Major version of MySQL. 8.0.21 stands for MySQL 8.0, 5.7.44 stands for MySQL 5.7.
      * 
      * @return the version value.
      */
@@ -238,7 +242,7 @@ public final class ServerInner extends Resource {
     }
 
     /**
-     * Set the version property: Server version.
+     * Set the version property: Major version of MySQL. 8.0.21 stands for MySQL 8.0, 5.7.44 stands for MySQL 5.7.
      * 
      * @param version the version value to set.
      * @return the ServerInner object itself.
@@ -248,6 +252,29 @@ public final class ServerInner extends Resource {
             this.innerProperties = new ServerProperties();
         }
         this.innerProperties().withVersion(version);
+        return this;
+    }
+
+    /**
+     * Get the fullVersion property: Major version and actual engine version.
+     * 
+     * @return the fullVersion value.
+     */
+    public String fullVersion() {
+        return this.innerProperties() == null ? null : this.innerProperties().fullVersion();
+    }
+
+    /**
+     * Set the fullVersion property: Major version and actual engine version.
+     * 
+     * @param fullVersion the fullVersion value to set.
+     * @return the ServerInner object itself.
+     */
+    public ServerInner withFullVersion(String fullVersion) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ServerProperties();
+        }
+        this.innerProperties().withFullVersion(fullVersion);
         return this;
     }
 
@@ -419,6 +446,29 @@ public final class ServerInner extends Resource {
     }
 
     /**
+     * Get the databasePort property: The server database port. Can only be specified when the server is being created.
+     * 
+     * @return the databasePort value.
+     */
+    public Integer databasePort() {
+        return this.innerProperties() == null ? null : this.innerProperties().databasePort();
+    }
+
+    /**
+     * Set the databasePort property: The server database port. Can only be specified when the server is being created.
+     * 
+     * @param databasePort the databasePort value to set.
+     * @return the ServerInner object itself.
+     */
+    public ServerInner withDatabasePort(Integer databasePort) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ServerProperties();
+        }
+        this.innerProperties().withDatabasePort(databasePort);
+        return this;
+    }
+
+    /**
      * Get the storage property: Storage related properties of a server.
      * 
      * @return the storage value.
@@ -511,7 +561,40 @@ public final class ServerInner extends Resource {
     }
 
     /**
-     * Get the maintenanceWindow property: Maintenance window of a server.
+     * Get the privateEndpointConnections property: PrivateEndpointConnections related properties of a server.
+     * 
+     * @return the privateEndpointConnections value.
+     */
+    public List<PrivateEndpointConnection> privateEndpointConnections() {
+        return this.innerProperties() == null ? null : this.innerProperties().privateEndpointConnections();
+    }
+
+    /**
+     * Get the maintenancePolicy property: Maintenance policy of a server.
+     * 
+     * @return the maintenancePolicy value.
+     */
+    public MaintenancePolicy maintenancePolicy() {
+        return this.innerProperties() == null ? null : this.innerProperties().maintenancePolicy();
+    }
+
+    /**
+     * Set the maintenancePolicy property: Maintenance policy of a server.
+     * 
+     * @param maintenancePolicy the maintenancePolicy value to set.
+     * @return the ServerInner object itself.
+     */
+    public ServerInner withMaintenancePolicy(MaintenancePolicy maintenancePolicy) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ServerProperties();
+        }
+        this.innerProperties().withMaintenancePolicy(maintenancePolicy);
+        return this;
+    }
+
+    /**
+     * Get the maintenanceWindow property: Maintenance window of a server. Known issue: cannot be set during server
+     * creation or updated with other properties during server update; must be updated separately.
      * 
      * @return the maintenanceWindow value.
      */
@@ -520,7 +603,8 @@ public final class ServerInner extends Resource {
     }
 
     /**
-     * Set the maintenanceWindow property: Maintenance window of a server.
+     * Set the maintenanceWindow property: Maintenance window of a server. Known issue: cannot be set during server
+     * creation or updated with other properties during server update; must be updated separately.
      * 
      * @param maintenanceWindow the maintenanceWindow value to set.
      * @return the ServerInner object itself.
@@ -530,6 +614,29 @@ public final class ServerInner extends Resource {
             this.innerProperties = new ServerProperties();
         }
         this.innerProperties().withMaintenanceWindow(maintenanceWindow);
+        return this;
+    }
+
+    /**
+     * Get the importSourceProperties property: Source properties for import from storage.
+     * 
+     * @return the importSourceProperties value.
+     */
+    public ImportSourceProperties importSourceProperties() {
+        return this.innerProperties() == null ? null : this.innerProperties().importSourceProperties();
+    }
+
+    /**
+     * Set the importSourceProperties property: Source properties for import from storage.
+     * 
+     * @param importSourceProperties the importSourceProperties value to set.
+     * @return the ServerInner object itself.
+     */
+    public ServerInner withImportSourceProperties(ImportSourceProperties importSourceProperties) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ServerProperties();
+        }
+        this.innerProperties().withImportSourceProperties(importSourceProperties);
         return this;
     }
 
@@ -592,9 +699,9 @@ public final class ServerInner extends Resource {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedServerInner.withTags(tags);
                 } else if ("identity".equals(fieldName)) {
-                    deserializedServerInner.identity = Identity.fromJson(reader);
+                    deserializedServerInner.identity = MySqlServerIdentity.fromJson(reader);
                 } else if ("sku".equals(fieldName)) {
-                    deserializedServerInner.sku = Sku.fromJson(reader);
+                    deserializedServerInner.sku = MySqlServerSku.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
                     deserializedServerInner.innerProperties = ServerProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {

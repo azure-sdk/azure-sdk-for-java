@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Network related properties of a server.
+ * High availability properties of a server.
  */
 @Fluent
 public final class HighAvailability implements JsonSerializable<HighAvailability> {

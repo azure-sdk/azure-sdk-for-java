@@ -10,8 +10,8 @@ package com.azure.resourcemanager.mysqlflexibleserver.generated;
 public final class DatabasesListByServerSamples {
     /*
      * x-ms-original-file:
-     * specification/mysql/resource-manager/Microsoft.DBforMySQL/legacy/stable/2021-05-01/examples/DatabasesListByServer
-     * .json
+     * specification/mysql/resource-manager/Microsoft.DBforMySQL/Databases/stable/2023-12-30/examples/
+     * DatabasesListByServer.json
      */
     /**
      * Sample code: List databases in a server.
