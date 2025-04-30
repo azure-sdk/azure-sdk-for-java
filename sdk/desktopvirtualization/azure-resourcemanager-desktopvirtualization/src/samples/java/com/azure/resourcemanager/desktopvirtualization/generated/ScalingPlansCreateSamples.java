@@ -4,10 +4,10 @@
 
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
+import com.azure.resourcemanager.desktopvirtualization.models.DayOfWeek;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolReference;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
-import com.azure.resourcemanager.desktopvirtualization.models.ScalingScheduleDaysOfWeekItem;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHostLoadBalancingAlgorithm;
 import com.azure.resourcemanager.desktopvirtualization.models.Time;
 import java.util.Arrays;
@@ -20,8 +20,8 @@ import java.util.Map;
 public final class ScalingPlansCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * ScalingPlan_Create.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-11-01-preview/
+     * examples/ScalingPlan_Create.json
      */
     /**
      * Sample code: ScalingPlans_Create.
@@ -41,9 +41,8 @@ public final class ScalingPlansCreateSamples {
             .withHostPoolType(ScalingHostPoolType.POOLED)
             .withExclusionTag("value")
             .withSchedules(Arrays.asList(new ScalingSchedule().withName("schedule1")
-                .withDaysOfWeek(Arrays.asList(ScalingScheduleDaysOfWeekItem.MONDAY,
-                    ScalingScheduleDaysOfWeekItem.TUESDAY, ScalingScheduleDaysOfWeekItem.WEDNESDAY,
-                    ScalingScheduleDaysOfWeekItem.THURSDAY, ScalingScheduleDaysOfWeekItem.FRIDAY))
+                .withDaysOfWeek(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
+                    DayOfWeek.THURSDAY, DayOfWeek.FRIDAY))
                 .withRampUpStartTime(new Time().withHour(6).withMinute(0))
                 .withRampUpLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)
                 .withRampUpMinimumHostsPct(20)

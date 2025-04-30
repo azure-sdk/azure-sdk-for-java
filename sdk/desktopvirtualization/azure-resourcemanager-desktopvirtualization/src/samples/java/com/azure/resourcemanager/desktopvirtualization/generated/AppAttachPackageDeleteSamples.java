@@ -10,8 +10,8 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 public final class AppAttachPackageDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2024-04-03/examples/
-     * AppAttachPackage_Delete.json
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-11-01-preview/
+     * examples/AppAttachPackage_Delete.json
      */
     /**
      * Sample code: AppAttachPackage_Delete.
@@ -21,6 +21,6 @@ public final class AppAttachPackageDeleteSamples {
     public static void
         appAttachPackageDelete(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.appAttachPackages()
-            .deleteByResourceGroupWithResponse("resourceGroup1", "packagefullname", com.azure.core.util.Context.NONE);
+            .deleteWithResponse("resourceGroup1", "packagefullname", null, com.azure.core.util.Context.NONE);
     }
 }

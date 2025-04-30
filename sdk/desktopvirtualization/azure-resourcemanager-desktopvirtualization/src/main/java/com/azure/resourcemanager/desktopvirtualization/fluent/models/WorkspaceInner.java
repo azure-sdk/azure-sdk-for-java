@@ -9,12 +9,12 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.desktopvirtualization.models.Plan;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySet;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
+import com.azure.resourcemanager.desktopvirtualization.models.Sku;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -147,7 +147,7 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
      * {@inheritDoc}
      */
     @Override
-    public WorkspaceInner withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
+    public WorkspaceInner withIdentity(ManagedServiceIdentity identity) {
         super.withIdentity(identity);
         return this;
     }
@@ -156,7 +156,7 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
      * {@inheritDoc}
      */
     @Override
-    public WorkspaceInner withSku(ResourceModelWithAllowedPropertySetSku sku) {
+    public WorkspaceInner withSku(Sku sku) {
         super.withSku(sku);
         return this;
     }
@@ -165,7 +165,7 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
      * {@inheritDoc}
      */
     @Override
-    public WorkspaceInner withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
+    public WorkspaceInner withPlan(Plan plan) {
         super.withPlan(plan);
         return this;
     }
@@ -382,12 +382,11 @@ public final class WorkspaceInner extends ResourceModelWithAllowedPropertySet {
                 } else if ("etag".equals(fieldName)) {
                     deserializedWorkspaceInner.etag = reader.getString();
                 } else if ("identity".equals(fieldName)) {
-                    deserializedWorkspaceInner
-                        .withIdentity(ResourceModelWithAllowedPropertySetIdentity.fromJson(reader));
+                    deserializedWorkspaceInner.withIdentity(ManagedServiceIdentity.fromJson(reader));
                 } else if ("sku".equals(fieldName)) {
-                    deserializedWorkspaceInner.withSku(ResourceModelWithAllowedPropertySetSku.fromJson(reader));
+                    deserializedWorkspaceInner.withSku(Sku.fromJson(reader));
                 } else if ("plan".equals(fieldName)) {
-                    deserializedWorkspaceInner.withPlan(ResourceModelWithAllowedPropertySetPlan.fromJson(reader));
+                    deserializedWorkspaceInner.withPlan(Plan.fromJson(reader));
                 } else if ("systemData".equals(fieldName)) {
                     deserializedWorkspaceInner.systemData = SystemData.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
