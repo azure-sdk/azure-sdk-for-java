@@ -10,7 +10,7 @@ package com.azure.resourcemanager.datadog.generated;
 public final class CreationSupportedGetSamples {
     /*
      * x-ms-original-file:
-     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-01-01/examples/CreationSupported_Get.json
+     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-10-20/examples/CreationSupported_Get.json
      */
     /**
      * Sample code: CreationSupported_Get.
