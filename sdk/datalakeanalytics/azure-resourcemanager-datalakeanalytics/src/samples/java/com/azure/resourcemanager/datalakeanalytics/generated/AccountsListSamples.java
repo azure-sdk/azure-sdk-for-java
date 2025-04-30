@@ -10,8 +10,8 @@ package com.azure.resourcemanager.datalakeanalytics.generated;
 public final class AccountsListSamples {
     /*
      * x-ms-original-file:
-     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/stable/2016-11-01/examples/
-     * Accounts_List.json
+     * specification/datalake-analytics/resource-manager/Microsoft.DataLakeAnalytics/preview/2019-11-01-preview/examples
+     * /Accounts_List.json
      */
     /**
      * Sample code: Gets the first page of Data Lake Analytics accounts, if any, within the current subscription. This
