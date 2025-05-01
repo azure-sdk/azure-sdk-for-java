@@ -1,14 +1,34 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-05-01)
+
+- Azure Resource Manager AppConfiguration client library for Java. This package contains Microsoft Azure SDK for AppConfiguration Management SDK.  Package tag package-preview-2024-06-15-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.TelemetryProperties` was added
 
-### Bugs Fixed
+#### `models.ConfigurationStoreUpdateParameters` was modified
 
-### Other Changes
+* `defaultKeyValueRevisionRetentionPeriodInSeconds()` was added
+* `telemetry()` was added
+* `withTelemetry(models.TelemetryProperties)` was added
+* `withDefaultKeyValueRevisionRetentionPeriodInSeconds(java.lang.Long)` was added
+
+#### `models.ConfigurationStore$Definition` was modified
+
+* `withDefaultKeyValueRevisionRetentionPeriodInSeconds(java.lang.Long)` was added
+* `withTelemetry(models.TelemetryProperties)` was added
+
+#### `models.ConfigurationStore$Update` was modified
+
+* `withDefaultKeyValueRevisionRetentionPeriodInSeconds(java.lang.Long)` was added
+* `withTelemetry(models.TelemetryProperties)` was added
+
+#### `models.ConfigurationStore` was modified
+
+* `defaultKeyValueRevisionRetentionPeriodInSeconds()` was added
+* `telemetry()` was added
 
 ## 1.0.0 (2024-11-20)
 

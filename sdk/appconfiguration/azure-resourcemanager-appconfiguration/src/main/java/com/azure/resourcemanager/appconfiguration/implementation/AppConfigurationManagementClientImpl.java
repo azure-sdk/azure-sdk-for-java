@@ -244,7 +244,7 @@ public final class AppConfigurationManagementClientImpl implements AppConfigurat
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-05-01";
+        this.apiVersion = "2024-06-15-preview";
         this.configurationStores = new ConfigurationStoresClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);

@@ -22,6 +22,7 @@ import com.azure.resourcemanager.appconfiguration.models.PublicNetworkAccess;
 import com.azure.resourcemanager.appconfiguration.models.RegenerateKeyParameters;
 import com.azure.resourcemanager.appconfiguration.models.ResourceIdentity;
 import com.azure.resourcemanager.appconfiguration.models.Sku;
+import com.azure.resourcemanager.appconfiguration.models.TelemetryProperties;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -107,6 +108,10 @@ public final class ConfigurationStoreImpl
         return this.innerModel().softDeleteRetentionInDays();
     }
 
+    public Long defaultKeyValueRevisionRetentionPeriodInSeconds() {
+        return this.innerModel().defaultKeyValueRevisionRetentionPeriodInSeconds();
+    }
+
     public Boolean enablePurgeProtection() {
         return this.innerModel().enablePurgeProtection();
     }
@@ -117,6 +122,10 @@ public final class ConfigurationStoreImpl
 
     public CreateMode createMode() {
         return this.innerModel().createMode();
+    }
+
+    public TelemetryProperties telemetry() {
+        return this.innerModel().telemetry();
     }
 
     public Region region() {
@@ -308,6 +317,19 @@ public final class ConfigurationStoreImpl
         return this;
     }
 
+    public ConfigurationStoreImpl
+        withDefaultKeyValueRevisionRetentionPeriodInSeconds(Long defaultKeyValueRevisionRetentionPeriodInSeconds) {
+        if (isInCreateMode()) {
+            this.innerModel()
+                .withDefaultKeyValueRevisionRetentionPeriodInSeconds(defaultKeyValueRevisionRetentionPeriodInSeconds);
+            return this;
+        } else {
+            this.updateConfigStoreUpdateParameters
+                .withDefaultKeyValueRevisionRetentionPeriodInSeconds(defaultKeyValueRevisionRetentionPeriodInSeconds);
+            return this;
+        }
+    }
+
     public ConfigurationStoreImpl withEnablePurgeProtection(Boolean enablePurgeProtection) {
         if (isInCreateMode()) {
             this.innerModel().withEnablePurgeProtection(enablePurgeProtection);
@@ -331,6 +353,16 @@ public final class ConfigurationStoreImpl
     public ConfigurationStoreImpl withCreateMode(CreateMode createMode) {
         this.innerModel().withCreateMode(createMode);
         return this;
+    }
+
+    public ConfigurationStoreImpl withTelemetry(TelemetryProperties telemetry) {
+        if (isInCreateMode()) {
+            this.innerModel().withTelemetry(telemetry);
+            return this;
+        } else {
+            this.updateConfigStoreUpdateParameters.withTelemetry(telemetry);
+            return this;
+        }
     }
 
     private boolean isInCreateMode() {
