@@ -13,14 +13,15 @@ public final class CarbonEmissionTopItemMonthlySummaryDataTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         CarbonEmissionTopItemMonthlySummaryData model = BinaryData.fromString(
-            "{\"dataType\":\"TopItemsMonthlySummaryData\",\"itemName\":\"utduqktapspwgcu\",\"categoryType\":\"Resource\",\"date\":\"tumkdosvqwhbm\",\"latestMonthEmissions\":77.20989115341301,\"previousMonthEmissions\":14.188551295894204,\"monthOverMonthEmissionsChangeRatio\":25.363232512736268,\"monthlyEmissionsChangeValue\":56.94086077283642}")
+            "{\"dataType\":\"TopItemsMonthlySummaryData\",\"itemName\":\"utduqktapspwgcu\",\"itemType\":\"rtumkdosvq\",\"categoryType\":\"Location\",\"date\":\"bmdg\",\"latestMonthEmissions\":14.188551295894204,\"previousMonthEmissions\":0.0161532366757422,\"monthOverMonthEmissionsChangeRatio\":67.78135831565946,\"monthlyEmissionsChangeValue\":15.264463948606}")
             .toObject(CarbonEmissionTopItemMonthlySummaryData.class);
-        Assertions.assertEquals(77.20989115341301, model.latestMonthEmissions());
-        Assertions.assertEquals(14.188551295894204, model.previousMonthEmissions());
-        Assertions.assertEquals(25.363232512736268D, model.monthOverMonthEmissionsChangeRatio());
-        Assertions.assertEquals(56.94086077283642D, model.monthlyEmissionsChangeValue());
+        Assertions.assertEquals(14.188551295894204, model.latestMonthEmissions());
+        Assertions.assertEquals(0.0161532366757422, model.previousMonthEmissions());
+        Assertions.assertEquals(67.78135831565946D, model.monthOverMonthEmissionsChangeRatio());
+        Assertions.assertEquals(15.264463948606D, model.monthlyEmissionsChangeValue());
         Assertions.assertEquals("utduqktapspwgcu", model.itemName());
-        Assertions.assertEquals(CategoryTypeEnum.RESOURCE, model.categoryType());
-        Assertions.assertEquals("tumkdosvqwhbm", model.date());
+        Assertions.assertEquals("rtumkdosvq", model.itemType());
+        Assertions.assertEquals(CategoryTypeEnum.LOCATION, model.categoryType());
+        Assertions.assertEquals("bmdg", model.date());
     }
 }

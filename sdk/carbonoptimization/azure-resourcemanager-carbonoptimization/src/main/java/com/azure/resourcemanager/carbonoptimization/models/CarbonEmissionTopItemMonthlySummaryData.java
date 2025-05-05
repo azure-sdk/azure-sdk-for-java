@@ -28,6 +28,11 @@ public final class CarbonEmissionTopItemMonthlySummaryData extends CarbonEmissio
     private String itemName;
 
     /*
+     * Item type
+     */
+    private String itemType;
+
+    /*
      * Item category, see supported type value defined in CategoryTypeEnum
      */
     private CategoryTypeEnum categoryType;
@@ -65,6 +70,15 @@ public final class CarbonEmissionTopItemMonthlySummaryData extends CarbonEmissio
     }
 
     /**
+     * Get the itemType property: Item type.
+     * 
+     * @return the itemType value.
+     */
+    public String itemType() {
+        return this.itemType;
+    }
+
+    /**
      * Get the categoryType property: Item category, see supported type value defined in CategoryTypeEnum.
      * 
      * @return the categoryType value.
@@ -95,6 +109,11 @@ public final class CarbonEmissionTopItemMonthlySummaryData extends CarbonEmissio
                 .log(new IllegalArgumentException(
                     "Missing required property itemName in model CarbonEmissionTopItemMonthlySummaryData"));
         }
+        if (itemType() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property itemType in model CarbonEmissionTopItemMonthlySummaryData"));
+        }
         if (categoryType() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
@@ -120,6 +139,7 @@ public final class CarbonEmissionTopItemMonthlySummaryData extends CarbonEmissio
         jsonWriter.writeNumberField("monthOverMonthEmissionsChangeRatio", monthOverMonthEmissionsChangeRatio());
         jsonWriter.writeNumberField("monthlyEmissionsChangeValue", monthlyEmissionsChangeValue());
         jsonWriter.writeStringField("itemName", this.itemName);
+        jsonWriter.writeStringField("itemType", this.itemType);
         jsonWriter.writeStringField("categoryType", this.categoryType == null ? null : this.categoryType.toString());
         jsonWriter.writeStringField("date", this.date);
         jsonWriter.writeStringField("dataType", this.dataType == null ? null : this.dataType.toString());
@@ -155,6 +175,8 @@ public final class CarbonEmissionTopItemMonthlySummaryData extends CarbonEmissio
                         .withMonthlyEmissionsChangeValue(reader.getNullable(JsonReader::getDouble));
                 } else if ("itemName".equals(fieldName)) {
                     deserializedCarbonEmissionTopItemMonthlySummaryData.itemName = reader.getString();
+                } else if ("itemType".equals(fieldName)) {
+                    deserializedCarbonEmissionTopItemMonthlySummaryData.itemType = reader.getString();
                 } else if ("categoryType".equals(fieldName)) {
                     deserializedCarbonEmissionTopItemMonthlySummaryData.categoryType
                         = CategoryTypeEnum.fromString(reader.getString());

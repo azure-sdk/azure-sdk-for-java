@@ -153,7 +153,7 @@ public final class CarbonOptimizationManagementClientImpl implements CarbonOptim
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
         this.endpoint = endpoint;
-        this.apiVersion = "2025-04-01";
+        this.apiVersion = "2025-06-01";
         this.operations = new OperationsClientImpl(this);
         this.carbonServices = new CarbonServicesClientImpl(this);
     }
