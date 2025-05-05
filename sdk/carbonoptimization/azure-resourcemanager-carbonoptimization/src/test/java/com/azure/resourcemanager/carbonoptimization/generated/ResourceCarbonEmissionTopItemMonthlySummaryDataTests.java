@@ -13,15 +13,15 @@ public final class ResourceCarbonEmissionTopItemMonthlySummaryDataTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         ResourceCarbonEmissionTopItemMonthlySummaryData model = BinaryData.fromString(
-            "{\"dataType\":\"ResourceTopItemsMonthlySummaryData\",\"itemName\":\"mbe\",\"categoryType\":\"ResourceGroup\",\"date\":\"pbhtqqrolfpfpsa\",\"subscriptionId\":\"gbquxigj\",\"resourceGroup\":\"jgzjaoyfhrtx\",\"resourceId\":\"lnerkujysvleju\",\"latestMonthEmissions\":53.270921871511824,\"previousMonthEmissions\":32.5671340961653,\"monthOverMonthEmissionsChangeRatio\":84.4490802290868,\"monthlyEmissionsChangeValue\":25.93289205065018}")
+            "{\"dataType\":\"ResourceTopItemsMonthlySummaryData\",\"itemName\":\"ex\",\"categoryType\":\"Resource\",\"date\":\"bhtqqrolfpfpsa\",\"subscriptionId\":\"gbquxigj\",\"resourceGroup\":\"jgzjaoyfhrtx\",\"resourceId\":\"lnerkujysvleju\",\"latestMonthEmissions\":53.270921871511824,\"previousMonthEmissions\":32.5671340961653,\"monthOverMonthEmissionsChangeRatio\":84.4490802290868,\"monthlyEmissionsChangeValue\":25.93289205065018}")
             .toObject(ResourceCarbonEmissionTopItemMonthlySummaryData.class);
         Assertions.assertEquals(53.270921871511824, model.latestMonthEmissions());
         Assertions.assertEquals(32.5671340961653, model.previousMonthEmissions());
         Assertions.assertEquals(84.4490802290868D, model.monthOverMonthEmissionsChangeRatio());
         Assertions.assertEquals(25.93289205065018D, model.monthlyEmissionsChangeValue());
-        Assertions.assertEquals("mbe", model.itemName());
-        Assertions.assertEquals(CategoryTypeEnum.RESOURCE_GROUP, model.categoryType());
-        Assertions.assertEquals("pbhtqqrolfpfpsa", model.date());
+        Assertions.assertEquals("ex", model.itemName());
+        Assertions.assertEquals(CategoryTypeEnum.RESOURCE, model.categoryType());
+        Assertions.assertEquals("bhtqqrolfpfpsa", model.date());
         Assertions.assertEquals("gbquxigj", model.subscriptionId());
         Assertions.assertEquals("jgzjaoyfhrtx", model.resourceGroup());
         Assertions.assertEquals("lnerkujysvleju", model.resourceId());
