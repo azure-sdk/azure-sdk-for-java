@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/liftrmongodb/ci.yml
+      - sdk/liftrmongodb/azure-resourcemanager-liftrmongodb/
+    exclude:
+      - sdk/liftrmongodb/pom.xml
+      - sdk/liftrmongodb/azure-resourcemanager-liftrmongodb/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/liftrmongodb/ci.yml
+      - sdk/liftrmongodb/azure-resourcemanager-liftrmongodb/
+    exclude:
+      - sdk/liftrmongodb/pom.xml
+      - sdk/liftrmongodb/azure-resourcemanager-liftrmongodb/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerliftrmongodb
+    displayName: azure-resourcemanager-liftrmongodb
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: liftrmongodb
+    Artifacts:
+      - name: azure-resourcemanager-liftrmongodb
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerliftrmongodb
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerliftrmongodb }}
