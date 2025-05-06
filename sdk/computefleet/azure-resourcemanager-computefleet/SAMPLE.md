@@ -17,6 +17,70 @@
 ### Fleets_CreateOrUpdate
 
 ```java
+/**
+ * Samples for Fleets ListByResourceGroup.
+ */
+public final class FleetsListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: 2024-11-01/Fleets_ListByResourceGroup.json
+     */
+    /**
+     * Sample code: Fleets_ListByResourceGroup.
+     * 
+     * @param manager Entry point to ComputeFleetManager.
+     */
+    public static void fleetsListByResourceGroup(com.azure.resourcemanager.computefleet.ComputeFleetManager manager) {
+        manager.fleets().listByResourceGroup("rgazurefleet", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Fleets_Delete
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file: 2024-11-01/Operations_List.json
+     */
+    /**
+     * Sample code: Operations_List.
+     * 
+     * @param manager Entry point to ComputeFleetManager.
+     */
+    public static void operationsList(com.azure.resourcemanager.computefleet.ComputeFleetManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Fleets_GetByResourceGroup
+
+```java
+/**
+ * Samples for Fleets ListVirtualMachineScaleSets.
+ */
+public final class FleetsListVirtualMachineScaleSetsSamples {
+    /*
+     * x-ms-original-file: 2024-11-01/Fleets_ListVirtualMachineScaleSets.json
+     */
+    /**
+     * Sample code: Fleets_ListVirtualMachineScaleSets.
+     * 
+     * @param manager Entry point to ComputeFleetManager.
+     */
+    public static void
+        fleetsListVirtualMachineScaleSets(com.azure.resourcemanager.computefleet.ComputeFleetManager manager) {
+        manager.fleets().listVirtualMachineScaleSets("rgazurefleet", "myFleet", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Fleets_List
+
+```java
 import com.azure.core.management.SubResource;
 import com.azure.resourcemanager.computefleet.models.AdditionalUnattendContent;
 import com.azure.resourcemanager.computefleet.models.AdditionalUnattendContentComponentName;
@@ -466,7 +530,7 @@ public final class FleetsCreateOrUpdateSamples {
 }
 ```
 
-### Fleets_Delete
+### Fleets_ListByResourceGroup
 
 ```java
 /**
@@ -487,28 +551,7 @@ public final class FleetsDeleteSamples {
 }
 ```
 
-### Fleets_GetByResourceGroup
-
-```java
-/**
- * Samples for Fleets GetByResourceGroup.
- */
-public final class FleetsGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/Fleets_Get.json
-     */
-    /**
-     * Sample code: Fleets_Get.
-     * 
-     * @param manager Entry point to ComputeFleetManager.
-     */
-    public static void fleetsGet(com.azure.resourcemanager.computefleet.ComputeFleetManager manager) {
-        manager.fleets().getByResourceGroupWithResponse("rgazurefleet", "testFleet", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Fleets_List
+### Fleets_ListVirtualMachineScaleSets
 
 ```java
 /**
@@ -525,49 +568,6 @@ public final class FleetsListSamples {
      */
     public static void fleetsListBySubscription(com.azure.resourcemanager.computefleet.ComputeFleetManager manager) {
         manager.fleets().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Fleets_ListByResourceGroup
-
-```java
-/**
- * Samples for Fleets ListByResourceGroup.
- */
-public final class FleetsListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/Fleets_ListByResourceGroup.json
-     */
-    /**
-     * Sample code: Fleets_ListByResourceGroup.
-     * 
-     * @param manager Entry point to ComputeFleetManager.
-     */
-    public static void fleetsListByResourceGroup(com.azure.resourcemanager.computefleet.ComputeFleetManager manager) {
-        manager.fleets().listByResourceGroup("rgazurefleet", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Fleets_ListVirtualMachineScaleSets
-
-```java
-/**
- * Samples for Fleets ListVirtualMachineScaleSets.
- */
-public final class FleetsListVirtualMachineScaleSetsSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/Fleets_ListVirtualMachineScaleSets.json
-     */
-    /**
-     * Sample code: Fleets_ListVirtualMachineScaleSets.
-     * 
-     * @param manager Entry point to ComputeFleetManager.
-     */
-    public static void
-        fleetsListVirtualMachineScaleSets(com.azure.resourcemanager.computefleet.ComputeFleetManager manager) {
-        manager.fleets().listVirtualMachineScaleSets("rgazurefleet", "myFleet", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -963,19 +963,19 @@ public final class FleetsUpdateSamples {
 
 ```java
 /**
- * Samples for Operations List.
+ * Samples for Fleets GetByResourceGroup.
  */
-public final class OperationsListSamples {
+public final class FleetsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Operations_List.json
+     * x-ms-original-file: 2024-11-01/Fleets_Get.json
      */
     /**
-     * Sample code: Operations_List.
+     * Sample code: Fleets_Get.
      * 
      * @param manager Entry point to ComputeFleetManager.
      */
-    public static void operationsList(com.azure.resourcemanager.computefleet.ComputeFleetManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
+    public static void fleetsGet(com.azure.resourcemanager.computefleet.ComputeFleetManager manager) {
+        manager.fleets().getByResourceGroupWithResponse("rgazurefleet", "testFleet", com.azure.core.util.Context.NONE);
     }
 }
 ```
