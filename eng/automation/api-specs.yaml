@@ -85,6 +85,8 @@ mysql:
   service: mysqlflexibleserver
 network:
   suffix: generated
+network/Microsoft.Network/networkmanager:
+  service: networknetworkmanager
 newrelic:
   service: newrelicobservability
 offazurespringboot:
