@@ -1,4 +1,4 @@
 directory: specification/liftrweightsandbiases/Liftr.WeightsAndBiases.Management
-commit: 1b47f62ee9da78db7e011c709c48ecd700095a5a
+commit: 65ea9a38c20488eb047876e4207713aa4a392f82
 repo: Azure/azure-rest-api-specs
 additionalDirectories: 
