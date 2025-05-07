@@ -10,8 +10,8 @@ package com.azure.resourcemanager.dashboard.generated;
 public final class GrafanaCheckEnterpriseDetailsSamples {
     /*
      * x-ms-original-file:
-     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/EnterpriseDetails_Post.
-     * json
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/preview/2024-11-01-preview/examples/
+     * EnterpriseDetails_Post.json
      */
     /**
      * Sample code: EnterpriseDetails_Post.

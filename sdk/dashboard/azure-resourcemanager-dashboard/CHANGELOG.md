@@ -1,14 +1,73 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-05-07)
+
+- Azure Resource Manager Dashboard client library for Java. This package contains Microsoft Azure SDK for Dashboard Management SDK. The Microsoft.Dashboard Rest API spec. Package tag package-2024-11-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.UnifiedAlertingScreenshots` was added
 
-### Bugs Fixed
+* `models.Dashboards` was added
 
-### Other Changes
+* `models.IntegrationFabricListResponse` was added
+
+* `models.ManagedDashboards` was added
+
+* `models.IntegrationFabricProperties` was added
+
+* `models.ManagedDashboard$DefinitionStages` was added
+
+* `models.IntegrationFabricPropertiesUpdateParameters` was added
+
+* `models.IntegrationFabric$DefinitionStages` was added
+
+* `models.ManagedDashboardListResponse` was added
+
+* `models.Security` was added
+
+* `models.IntegrationFabric$Update` was added
+
+* `models.Users` was added
+
+* `models.ManagedDashboard$UpdateStages` was added
+
+* `models.IntegrationFabric$Definition` was added
+
+* `models.ManagedDashboard` was added
+
+* `models.ManagedDashboard$Definition` was added
+
+* `models.IntegrationFabricUpdateParameters` was added
+
+* `models.IntegrationFabrics` was added
+
+* `models.ManagedDashboardUpdateParameters` was added
+
+* `models.IntegrationFabric` was added
+
+* `models.Snapshots` was added
+
+* `models.IntegrationFabric$UpdateStages` was added
+
+* `models.ManagedDashboard$Update` was added
+
+#### `DashboardManager` was modified
+
+* `dashboards()` was added
+* `managedDashboards()` was added
+* `integrationFabrics()` was added
+
+#### `models.GrafanaConfigurations` was modified
+
+* `unifiedAlertingScreenshots()` was added
+* `withSecurity(models.Security)` was added
+* `users()` was added
+* `withUnifiedAlertingScreenshots(models.UnifiedAlertingScreenshots)` was added
+* `withUsers(models.Users)` was added
+* `snapshots()` was added
+* `withSnapshots(models.Snapshots)` was added
+* `security()` was added
 
 ## 1.1.0 (2024-12-13)
 

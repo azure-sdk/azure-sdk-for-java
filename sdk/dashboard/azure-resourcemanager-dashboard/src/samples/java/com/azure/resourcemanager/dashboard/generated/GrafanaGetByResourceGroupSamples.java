@@ -10,7 +10,7 @@ package com.azure.resourcemanager.dashboard.generated;
 public final class GrafanaGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/Grafana_Get.json
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/preview/2024-11-01-preview/examples/Grafana_Get.json
      */
     /**
      * Sample code: Grafana_Get.
