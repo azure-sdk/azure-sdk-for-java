@@ -17,7 +17,7 @@ public final class InstancePatchModelTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
         InstancePatchModel model = BinaryData.fromString(
-            "{\"tags\":{\"k\":\"zwyiftyhxhur\",\"kjfkg\":\"tyxolniwpwc\",\"plwckbas\":\"awxklr\",\"cph\":\"ypnddhsgcb\"},\"identity\":{\"principalId\":\"ot\",\"tenantId\":\"qgoulznd\",\"type\":\"None\",\"userAssignedIdentities\":{\"xybz\":{\"clientId\":\"qkgfgibma\",\"principalId\":\"akeqs\"},\"iqfouflmmnkz\":{\"clientId\":\"e\",\"principalId\":\"ytb\"},\"uqktap\":{\"clientId\":\"odmgl\",\"principalId\":\"gpbkwtmut\"}}}}")
+            "{\"tags\":{\"k\":\"zwyiftyhxhur\",\"kjfkg\":\"tyxolniwpwc\",\"plwckbas\":\"awxklr\",\"cph\":\"ypnddhsgcb\"},\"identity\":{\"principalId\":\"ot\",\"tenantId\":\"qgoulznd\",\"type\":\"None\",\"userAssignedIdentities\":{\"xybz\":{\"principalId\":\"qkgfgibma\",\"clientId\":\"akeqs\"},\"iqfouflmmnkz\":{\"principalId\":\"e\",\"clientId\":\"ytb\"},\"uqktap\":{\"principalId\":\"odmgl\",\"clientId\":\"gpbkwtmut\"}}}}")
             .toObject(InstancePatchModel.class);
         Assertions.assertEquals("zwyiftyhxhur", model.tags().get("k"));
         Assertions.assertEquals(ManagedServiceIdentityType.NONE, model.identity().type());
