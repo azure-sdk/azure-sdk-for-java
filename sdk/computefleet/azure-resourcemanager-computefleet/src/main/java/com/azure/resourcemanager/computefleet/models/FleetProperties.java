@@ -65,6 +65,11 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
      */
     private String uniqueId;
 
+    /*
+     * Specifies the display name a Compute Fleet.
+     */
+    private String displayName;
+
     /**
      * Creates an instance of FleetProperties class.
      */
@@ -221,6 +226,26 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
     }
 
     /**
+     * Get the displayName property: Specifies the display name a Compute Fleet.
+     * 
+     * @return the displayName value.
+     */
+    public String displayName() {
+        return this.displayName;
+    }
+
+    /**
+     * Set the displayName property: Specifies the display name a Compute Fleet.
+     * 
+     * @param displayName the displayName value to set.
+     * @return the FleetProperties object itself.
+     */
+    public FleetProperties withDisplayName(String displayName) {
+        this.displayName = displayName;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -267,6 +292,7 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
         jsonWriter.writeJsonField("regularPriorityProfile", this.regularPriorityProfile);
         jsonWriter.writeJsonField("vmAttributes", this.vmAttributes);
         jsonWriter.writeJsonField("additionalLocationsProfile", this.additionalLocationsProfile);
+        jsonWriter.writeStringField("displayName", this.displayName);
         return jsonWriter.writeEndObject();
     }
 
@@ -307,6 +333,8 @@ public final class FleetProperties implements JsonSerializable<FleetProperties> 
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("uniqueId".equals(fieldName)) {
                     deserializedFleetProperties.uniqueId = reader.getString();
+                } else if ("displayName".equals(fieldName)) {
+                    deserializedFleetProperties.displayName = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
