@@ -2,13 +2,558 @@
 
 ## 4.8.0-beta.2 (Unreleased)
 
-### Features Added
-
 ### Breaking Changes
 
-### Bugs Fixed
+#### `implementation.models.Attributes` was removed
 
-### Other Changes
+#### `implementation.models.PendingCertificateSigningRequestResult` was removed
+
+#### `implementation.models.KeyVaultError` was removed
+
+#### `implementation.models.KeyVaultErrorException` was removed
+
+#### `implementation.models.CertificateItem` was modified
+
+* `setId(java.lang.String)` was removed
+* `setAttributes(implementation.models.CertificateAttributes)` was removed
+* `setTags(java.util.Map)` was removed
+* `setX509Thumbprint(byte[])` was removed
+
+#### `implementation.models.CertificateOperationUpdateParameter` was modified
+
+* `setCancellationRequested(boolean)` was removed
+
+#### `implementation.models.Action` was modified
+
+* `setActionType(models.CertificatePolicyAction)` was removed
+* `models.CertificatePolicyAction getActionType()` -> `implementation.models.CertificatePolicyAction getActionType()`
+
+#### `implementation.CertificateIssuerHelper$CertificateIssuerAccessor` was modified
+
+* `getImpl(models.CertificateIssuer)` was removed
+
+#### `implementation.CertificateClientImpl` was modified
+
+* `getCertificatesNextSinglePage(java.lang.String,java.lang.String)` was removed
+* `getCertificatesAsync(java.lang.String,java.lang.Integer,java.lang.Boolean,com.azure.core.util.Context)` was removed
+* `getCertificatesSinglePageAsync(java.lang.String,java.lang.Integer,java.lang.Boolean)` was removed
+* `setCertificateIssuerAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.IssuerCredentials,implementation.models.OrganizationDetails,implementation.models.IssuerAttributes)` was removed
+* `purgeDeletedCertificateWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `recoverDeletedCertificateWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `backupCertificateWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateIssuerAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateOperationWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `getCertificates(java.lang.String,java.lang.Integer,java.lang.Boolean,com.azure.core.util.Context)` was removed
+* `getCertificateIssuersAsync(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `getCertificateIssuersNextSinglePageAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedCertificatesNextSinglePage(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `recoverDeletedCertificateAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateCertificatePolicyWithResponseAsync(java.lang.String,java.lang.String,implementation.models.CertificatePolicy,com.azure.core.util.Context)` was removed
+* `importCertificateWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map)` was removed
+* `deleteCertificate(java.lang.String,java.lang.String)` was removed
+* `updateCertificateWithResponse(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map,com.azure.core.util.Context)` was removed
+* `getCertificatePolicy(java.lang.String,java.lang.String)` was removed
+* `createCertificateWithResponseAsync(java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map,com.azure.core.util.Context)` was removed
+* `getCertificateIssuersAsync(java.lang.String,java.lang.Integer)` was removed
+* `getCertificateContactsAsync(java.lang.String)` was removed
+* `updateCertificateIssuer(java.lang.String,java.lang.String,java.lang.String,implementation.models.IssuerCredentials,implementation.models.OrganizationDetails,implementation.models.IssuerAttributes)` was removed
+* `getCertificateWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `createCertificateWithResponse(java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map,com.azure.core.util.Context)` was removed
+* `updateCertificatePolicyWithResponse(java.lang.String,java.lang.String,implementation.models.CertificatePolicy,com.azure.core.util.Context)` was removed
+* `setCertificateIssuerWithResponse(java.lang.String,java.lang.String,java.lang.String,implementation.models.IssuerCredentials,implementation.models.OrganizationDetails,implementation.models.IssuerAttributes,com.azure.core.util.Context)` was removed
+* `deleteCertificateWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `getCertificateVersionsSinglePage(java.lang.String,java.lang.String,java.lang.Integer)` was removed
+* `restoreCertificateWithResponseAsync(java.lang.String,byte[])` was removed
+* `getDeletedCertificateAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `restoreCertificateWithResponseAsync(java.lang.String,byte[],com.azure.core.util.Context)` was removed
+* `deleteCertificateOperationAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificatesSinglePage(java.lang.String,java.lang.Integer,java.lang.Boolean)` was removed
+* `updateCertificateIssuerWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.IssuerCredentials,implementation.models.OrganizationDetails,implementation.models.IssuerAttributes,com.azure.core.util.Context)` was removed
+* `getCertificateOperationAsync(java.lang.String,java.lang.String)` was removed
+* `setCertificateIssuer(java.lang.String,java.lang.String,java.lang.String,implementation.models.IssuerCredentials,implementation.models.OrganizationDetails,implementation.models.IssuerAttributes)` was removed
+* `setCertificateContactsWithResponse(java.lang.String,implementation.models.Contacts,com.azure.core.util.Context)` was removed
+* `getCertificateVersionsNextSinglePageAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `mergeCertificateAsync(java.lang.String,java.lang.String,java.util.List,implementation.models.CertificateAttributes,java.util.Map)` was removed
+* `restoreCertificate(java.lang.String,byte[])` was removed
+* `deleteCertificateAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificatesNextSinglePage(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `purgeDeletedCertificate(java.lang.String,java.lang.String)` was removed
+* `setCertificateContactsAsync(java.lang.String,implementation.models.Contacts,com.azure.core.util.Context)` was removed
+* `updateCertificateOperationAsync(java.lang.String,java.lang.String,boolean,com.azure.core.util.Context)` was removed
+* `importCertificateWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map,com.azure.core.util.Context)` was removed
+* `setCertificateContactsWithResponseAsync(java.lang.String,implementation.models.Contacts,com.azure.core.util.Context)` was removed
+* `getCertificateContactsWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateIssuers(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `purgeDeletedCertificateWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedCertificates(java.lang.String,java.lang.Integer,java.lang.Boolean)` was removed
+* `deleteCertificateIssuerWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteCertificateAsync(java.lang.String,java.lang.String)` was removed
+* `getDeletedCertificatesNextSinglePageAsync(java.lang.String,java.lang.String)` was removed
+* `updateCertificateOperationWithResponseAsync(java.lang.String,java.lang.String,boolean)` was removed
+* `getCertificatesSinglePage(java.lang.String,java.lang.Integer,java.lang.Boolean,com.azure.core.util.Context)` was removed
+* `deleteCertificateIssuerWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificatesSinglePageAsync(java.lang.String,java.lang.Integer,java.lang.Boolean,com.azure.core.util.Context)` was removed
+* `getDeletedCertificatesSinglePage(java.lang.String,java.lang.Integer,java.lang.Boolean)` was removed
+* `getCertificateIssuersSinglePageAsync(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `importCertificateAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map,com.azure.core.util.Context)` was removed
+* `getCertificates(java.lang.String,java.lang.Integer,java.lang.Boolean)` was removed
+* `getCertificatePolicyWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateOperation(java.lang.String,java.lang.String)` was removed
+* `getCertificateVersionsSinglePage(java.lang.String,java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `updateCertificateOperation(java.lang.String,java.lang.String,boolean)` was removed
+* `deleteCertificateContacts(java.lang.String)` was removed
+* `setCertificateContactsWithResponseAsync(java.lang.String,implementation.models.Contacts)` was removed
+* `getDeletedCertificatesNextSinglePage(java.lang.String,java.lang.String)` was removed
+* `createCertificate(java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map)` was removed
+* `mergeCertificate(java.lang.String,java.lang.String,java.util.List,implementation.models.CertificateAttributes,java.util.Map)` was removed
+* `importCertificateWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map,com.azure.core.util.Context)` was removed
+* `getApiVersion()` was removed
+* `getCertificateIssuersSinglePage(java.lang.String,java.lang.Integer)` was removed
+* `getCertificateVersionsNextSinglePageAsync(java.lang.String,java.lang.String)` was removed
+* `updateCertificateIssuerAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.IssuerCredentials,implementation.models.OrganizationDetails,implementation.models.IssuerAttributes,com.azure.core.util.Context)` was removed
+* `deleteCertificateContactsWithResponseAsync(java.lang.String,com.azure.core.util.Context)` was removed
+* `updateCertificate(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map)` was removed
+* `updateCertificateIssuerWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.IssuerCredentials,implementation.models.OrganizationDetails,implementation.models.IssuerAttributes)` was removed
+* `getCertificateIssuersNextSinglePageAsync(java.lang.String,java.lang.String)` was removed
+* `getCertificateAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `updateCertificatePolicyAsync(java.lang.String,java.lang.String,implementation.models.CertificatePolicy)` was removed
+* `getCertificatePolicyWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `getCertificateIssuer(java.lang.String,java.lang.String)` was removed
+* `deleteCertificateOperationAsync(java.lang.String,java.lang.String)` was removed
+* `getCertificateVersions(java.lang.String,java.lang.String,java.lang.Integer)` was removed
+* `purgeDeletedCertificateWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `restoreCertificateWithResponse(java.lang.String,byte[],com.azure.core.util.Context)` was removed
+* `getDeletedCertificate(java.lang.String,java.lang.String)` was removed
+* `deleteCertificateOperation(java.lang.String,java.lang.String)` was removed
+* `createCertificateAsync(java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map)` was removed
+* `mergeCertificateWithResponseAsync(java.lang.String,java.lang.String,java.util.List,implementation.models.CertificateAttributes,java.util.Map,com.azure.core.util.Context)` was removed
+* `getCertificateIssuersNextSinglePage(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateIssuerWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedCertificatesSinglePage(java.lang.String,java.lang.Integer,java.lang.Boolean,com.azure.core.util.Context)` was removed
+* `deleteCertificateIssuerAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteCertificateOperationWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateContactsWithResponseAsync(java.lang.String,com.azure.core.util.Context)` was removed
+* `updateCertificateAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map)` was removed
+* `getDeletedCertificatesSinglePageAsync(java.lang.String,java.lang.Integer,java.lang.Boolean,com.azure.core.util.Context)` was removed
+* `getDeletedCertificatesNextSinglePageAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteCertificateOperationWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `recoverDeletedCertificateWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `setCertificateIssuerWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.IssuerCredentials,implementation.models.OrganizationDetails,implementation.models.IssuerAttributes)` was removed
+* `purgeDeletedCertificateAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateCertificatePolicyAsync(java.lang.String,java.lang.String,implementation.models.CertificatePolicy,com.azure.core.util.Context)` was removed
+* `deleteCertificateContactsWithResponseAsync(java.lang.String)` was removed
+* `updateCertificateWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map,com.azure.core.util.Context)` was removed
+* `deleteCertificateIssuerAsync(java.lang.String,java.lang.String)` was removed
+* `backupCertificateAsync(java.lang.String,java.lang.String)` was removed
+* `backupCertificateWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `deleteCertificateContactsAsync(java.lang.String)` was removed
+* `updateCertificateIssuerAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.IssuerCredentials,implementation.models.OrganizationDetails,implementation.models.IssuerAttributes)` was removed
+* `createCertificateAsync(java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map,com.azure.core.util.Context)` was removed
+* `getCertificateVersions(java.lang.String,java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `deleteCertificateWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateCertificateIssuerWithResponse(java.lang.String,java.lang.String,java.lang.String,implementation.models.IssuerCredentials,implementation.models.OrganizationDetails,implementation.models.IssuerAttributes,com.azure.core.util.Context)` was removed
+* `importCertificateAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map)` was removed
+* `getCertificatePolicyWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateCertificateOperationWithResponse(java.lang.String,java.lang.String,boolean,com.azure.core.util.Context)` was removed
+* `updateCertificatePolicy(java.lang.String,java.lang.String,implementation.models.CertificatePolicy)` was removed
+* `deleteCertificateContactsAsync(java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificatesNextSinglePageAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `backupCertificateWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedCertificateAsync(java.lang.String,java.lang.String)` was removed
+* `importCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map)` was removed
+* `getCertificateIssuerAsync(java.lang.String,java.lang.String)` was removed
+* `recoverDeletedCertificateWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `setCertificateContacts(java.lang.String,implementation.models.Contacts)` was removed
+* `backupCertificate(java.lang.String,java.lang.String)` was removed
+* `mergeCertificateWithResponse(java.lang.String,java.lang.String,java.util.List,implementation.models.CertificateAttributes,java.util.Map,com.azure.core.util.Context)` was removed
+* `getCertificateVersionsSinglePageAsync(java.lang.String,java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `updateCertificatePolicyWithResponseAsync(java.lang.String,java.lang.String,implementation.models.CertificatePolicy)` was removed
+* `updateCertificateOperationWithResponseAsync(java.lang.String,java.lang.String,boolean,com.azure.core.util.Context)` was removed
+* `getDeletedCertificatesSinglePageAsync(java.lang.String,java.lang.Integer,java.lang.Boolean)` was removed
+* `getDeletedCertificatesAsync(java.lang.String,java.lang.Integer,java.lang.Boolean)` was removed
+* `updateCertificateOperationAsync(java.lang.String,java.lang.String,boolean)` was removed
+* `getCertificateVersionsAsync(java.lang.String,java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `recoverDeletedCertificate(java.lang.String,java.lang.String)` was removed
+* `mergeCertificateAsync(java.lang.String,java.lang.String,java.util.List,implementation.models.CertificateAttributes,java.util.Map,com.azure.core.util.Context)` was removed
+* `backupCertificateAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateWithResponseAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `setCertificateIssuerAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.IssuerCredentials,implementation.models.OrganizationDetails,implementation.models.IssuerAttributes,com.azure.core.util.Context)` was removed
+* `recoverDeletedCertificateAsync(java.lang.String,java.lang.String)` was removed
+* `deleteCertificateIssuer(java.lang.String,java.lang.String)` was removed
+* `deleteCertificateContactsWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteCertificateWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `purgeDeletedCertificateAsync(java.lang.String,java.lang.String)` was removed
+* `getCertificateIssuers(java.lang.String,java.lang.Integer)` was removed
+* `getDeletedCertificateWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateIssuersSinglePageAsync(java.lang.String,java.lang.Integer)` was removed
+* `getCertificate(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getCertificateIssuerWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `restoreCertificateAsync(java.lang.String,byte[])` was removed
+* `setCertificateIssuerWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.IssuerCredentials,implementation.models.OrganizationDetails,implementation.models.IssuerAttributes,com.azure.core.util.Context)` was removed
+* `getDeletedCertificateWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateOperationWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateOperationWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificatePolicyAsync(java.lang.String,java.lang.String)` was removed
+* `getDeletedCertificatesAsync(java.lang.String,java.lang.Integer,java.lang.Boolean,com.azure.core.util.Context)` was removed
+* `getCertificateContacts(java.lang.String)` was removed
+* `createCertificateWithResponseAsync(java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map)` was removed
+* `restoreCertificateAsync(java.lang.String,byte[],com.azure.core.util.Context)` was removed
+* `getCertificatesNextSinglePageAsync(java.lang.String,java.lang.String)` was removed
+* `getCertificatePolicyAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteCertificateIssuerWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `getCertificateContactsAsync(java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificatesAsync(java.lang.String,java.lang.Integer,java.lang.Boolean)` was removed
+* `getCertificateIssuerWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateIssuersNextSinglePage(java.lang.String,java.lang.String)` was removed
+* `getCertificateVersionsNextSinglePage(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateOperationAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateVersionsNextSinglePage(java.lang.String,java.lang.String)` was removed
+* `getDeletedCertificates(java.lang.String,java.lang.Integer,java.lang.Boolean,com.azure.core.util.Context)` was removed
+* `updateCertificateAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map,com.azure.core.util.Context)` was removed
+* `deleteCertificateOperationWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `getCertificateVersionsSinglePageAsync(java.lang.String,java.lang.String,java.lang.Integer)` was removed
+* `getDeletedCertificateWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `getCertificateIssuersSinglePage(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `setCertificateContactsAsync(java.lang.String,implementation.models.Contacts)` was removed
+* `mergeCertificateWithResponseAsync(java.lang.String,java.lang.String,java.util.List,implementation.models.CertificateAttributes,java.util.Map)` was removed
+* `getCertificateContactsWithResponseAsync(java.lang.String)` was removed
+* `getCertificateVersionsAsync(java.lang.String,java.lang.String,java.lang.Integer)` was removed
+* `updateCertificateWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificatePolicy,implementation.models.CertificateAttributes,java.util.Map)` was removed
+
+#### `implementation.models.KeyProperties` was modified
+
+* `getKty()` was removed
+* `getCrv()` was removed
+* `setCrv(models.CertificateKeyCurveName)` was removed
+* `setKty(models.CertificateKeyType)` was removed
+
+#### `implementation.models.CertificateAttributes` was modified
+
+* `getRecoveryLevel()` was removed
+* `setExpires(java.time.OffsetDateTime)` was removed
+* `setNotBefore(java.time.OffsetDateTime)` was removed
+* `setEnabled(java.lang.Boolean)` was removed
+
+#### `implementation.models.DeletedCertificateItem` was modified
+
+* `setTags(java.util.Map)` was removed
+* `setAttributes(implementation.models.CertificateAttributes)` was removed
+* `setId(java.lang.String)` was removed
+* `setRecoveryId(java.lang.String)` was removed
+* `setX509Thumbprint(byte[])` was removed
+
+#### `implementation.CertificateClientImpl$CertificateClientService` was modified
+
+* `getDeletedCertificates(java.lang.String,java.lang.Integer,java.lang.Boolean,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedCertificatesNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `createCertificateSync(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificateCreateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `setCertificateContacts(java.lang.String,java.lang.String,implementation.models.Contacts,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateCertificateIssuer(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificateIssuerUpdateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `importCertificateSync(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificateImportParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteCertificateIssuer(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateIssuers(java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `setCertificateIssuerSync(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificateIssuerSetParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateOperationSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateCertificateOperationSync(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificateOperationUpdateParameter,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateVersionsSync(java.lang.String,java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificatePolicy(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `createCertificate(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificateCreateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificatesNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificates(java.lang.String,java.lang.Integer,java.lang.Boolean,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateOperation(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateVersions(java.lang.String,java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateVersionsNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `restoreCertificate(java.lang.String,java.lang.String,implementation.models.CertificateRestoreParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateIssuer(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateVersionsNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateCertificatePolicySync(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificatePolicy,java.lang.String,com.azure.core.util.Context)` was removed
+* `backupCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificatesSync(java.lang.String,java.lang.Integer,java.lang.Boolean,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `restoreCertificateSync(java.lang.String,java.lang.String,implementation.models.CertificateRestoreParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateCertificateIssuerSync(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificateIssuerUpdateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateContacts(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateContactsSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedCertificatesSync(java.lang.String,java.lang.Integer,java.lang.Boolean,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `importCertificate(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificateImportParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificatePolicySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteCertificateContactsSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `setCertificateIssuer(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificateIssuerSetParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateCertificatePolicy(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificatePolicy,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateIssuersSync(java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `mergeCertificate(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificateMergeParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteCertificateOperation(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificateUpdateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `backupCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificatesNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateIssuerSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateCertificateOperation(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificateOperationUpdateParameter,java.lang.String,com.azure.core.util.Context)` was removed
+* `purgeDeletedCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificateUpdateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteCertificateContacts(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteCertificateIssuerSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedCertificatesNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `setCertificateContactsSync(java.lang.String,java.lang.String,implementation.models.Contacts,java.lang.String,com.azure.core.util.Context)` was removed
+* `purgeDeletedCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteCertificateOperationSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `recoverDeletedCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `mergeCertificateSync(java.lang.String,java.lang.String,java.lang.String,implementation.models.CertificateMergeParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `recoverDeletedCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateIssuersNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getCertificateIssuersNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `implementation.models.CertificateImportParameters` was modified
+
+* `setBase64EncodedCertificate(java.lang.String)` was removed
+
+#### `implementation.models.CertificateRestoreParameters` was modified
+
+* `setCertificateBundleBackup(byte[])` was removed
+
+#### `implementation.models.CertificateBundle` was modified
+
+* `setTags(java.util.Map)` was removed
+* `setCer(byte[])` was removed
+* `setAttributes(implementation.models.CertificateAttributes)` was removed
+* `setContentType(java.lang.String)` was removed
+
+#### `implementation.models.CertificateMergeParameters` was modified
+
+* `setX509Certificates(java.util.List)` was removed
+
+#### `implementation.models.CertificateIssuerSetParameters` was modified
+
+* `setProvider(java.lang.String)` was removed
+
+#### `implementation.models.DeletedCertificateBundle` was modified
+
+* `setAttributes(implementation.models.CertificateAttributes)` was removed
+* `setRecoveryId(java.lang.String)` was removed
+* `setCer(byte[])` was removed
+* `setContentType(java.lang.String)` was removed
+* `setTags(java.util.Map)` was removed
+
+### Features Added
+
+#### `implementation.models.Action` was modified
+
+* `setActionType(implementation.models.CertificatePolicyAction)` was added
+
+#### `models.CertificateProperties` was modified
+
+* `isCertificateOrderPreserved()` was added
+
+#### `implementation.models.CertificateCreateParameters` was modified
+
+* `isPreserveCertOrder()` was added
+* `setPreserveCertOrder(java.lang.Boolean)` was added
+
+#### `implementation.CertificateIssuerHelper$CertificateIssuerAccessor` was modified
+
+* `getIssuerBundle(models.CertificateIssuer)` was added
+
+#### `implementation.CertificateClientImpl` was modified
+
+* `getCertificateIssuerWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `updateCertificateWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `setCertificateContactsWithResponse(com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `deleteCertificateIssuerWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `setCertificateIssuerWithResponse(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `backupCertificateWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getVaultBaseUrl()` was added
+* `getDeletedCertificates(com.azure.core.http.rest.RequestOptions)` was added
+* `restoreCertificateWithResponse(com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `importCertificateWithResponseAsync(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `deleteCertificateOperationWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getCertificateVersions(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `deleteCertificateContactsWithResponse(com.azure.core.http.rest.RequestOptions)` was added
+* `mergeCertificateWithResponseAsync(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `deleteCertificateContactsWithResponseAsync(com.azure.core.http.rest.RequestOptions)` was added
+* `importCertificateWithResponse(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getCertificateWithResponse(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getCertificateWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `deleteCertificateIssuerWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getCertificateVersionsAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `updateCertificateIssuerWithResponse(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getCertificateContactsWithResponseAsync(com.azure.core.http.rest.RequestOptions)` was added
+* `getDeletedCertificateWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `deleteCertificateWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getDeletedCertificateWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `updateCertificateWithResponse(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getDeletedCertificatesAsync(com.azure.core.http.rest.RequestOptions)` was added
+* `recoverDeletedCertificateWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getCertificateIssuerWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `mergeCertificateWithResponse(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `setCertificateContactsWithResponseAsync(com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `createCertificateWithResponseAsync(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getCertificatePolicyWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `setCertificateIssuerWithResponseAsync(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `updateCertificatePolicyWithResponseAsync(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `updateCertificateOperationWithResponseAsync(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getCertificatePolicyWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `recoverDeletedCertificateWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `deleteCertificateWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getCertificateOperationWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `backupCertificateWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `createCertificateWithResponse(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `deleteCertificateOperationWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `updateCertificateOperationWithResponse(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getCertificateOperationWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `updateCertificatePolicyWithResponse(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `updateCertificateIssuerWithResponseAsync(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getCertificates(com.azure.core.http.rest.RequestOptions)` was added
+* `getServiceVersion()` was added
+* `getCertificateIssuersAsync(com.azure.core.http.rest.RequestOptions)` was added
+* `purgeDeletedCertificateWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getCertificateIssuers(com.azure.core.http.rest.RequestOptions)` was added
+* `purgeDeletedCertificateWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getCertificatesAsync(com.azure.core.http.rest.RequestOptions)` was added
+* `getCertificateContactsWithResponse(com.azure.core.http.rest.RequestOptions)` was added
+* `restoreCertificateWithResponseAsync(com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+
+#### `implementation.models.KeyProperties` was modified
+
+* `setCurve(models.CertificateKeyCurveName)` was added
+* `setKeyType(models.CertificateKeyType)` was added
+* `getCurve()` was added
+* `getKeyType()` was added
+
+#### `implementation.models.CertificateAttributes` was modified
+
+* `getAdminContacts()` was added
+* `isEnabled()` was added
+* `getExpires()` was added
+* `getNotBefore()` was added
+
+#### `implementation.models.DeletedCertificateItem` was modified
+
+* `getId()` was added
+* `getAttributes()` was added
+* `getTags()` was added
+* `getX509Thumbprint()` was added
+
+#### `implementation.models.CertificateOperation` was modified
+
+* `isPreserveCertOrder()` was added
+* `setPreserveCertOrder(java.lang.Boolean)` was added
+
+#### `models.ImportCertificateOptions` was modified
+
+* `isCertificateOrderPreserved()` was added
+* `setCertificateOrderPreserved(java.lang.Boolean)` was added
+
+#### `models.CertificateOperation` was modified
+
+* `isCertificateOrderPreserved()` was added
+
+#### `models.KeyVaultCertificate` was modified
+
+* `isCertificateOrderPreserved()` was added
+
+#### `implementation.CertificatePropertiesHelper` was modified
+
+* `createCertificateProperties(implementation.models.DeletedCertificateItem)` was added
+
+#### `implementation.CertificateClientImpl$CertificateClientService` was modified
+
+* `restoreCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `mergeCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `mergeCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `updateCertificateOperationSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `purgeDeletedCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedCertificates(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `deleteCertificateIssuer(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `purgeDeletedCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `deleteCertificateIssuerSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `updateCertificateOperation(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `updateCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificatesSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificates(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificateIssuer(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `setCertificateIssuer(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedCertificatesSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `createCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificateIssuersSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `recoverDeletedCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `restoreCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificateVersions(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `backupCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `updateCertificatePolicySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedCertificatesNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `updateCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `updateCertificateIssuerSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `recoverDeletedCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `deleteCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `deleteCertificateContacts(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificateVersionsNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificateOperationSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificateContactsSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificateIssuerSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificatesNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `setCertificateContactsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedCertificatesNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `setCertificateContacts(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `deleteCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificateContacts(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificateVersionsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `updateCertificateIssuer(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `deleteCertificateContactsSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `updateCertificatePolicy(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `createCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `importCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificatePolicySync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificateIssuers(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `setCertificateIssuerSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificateOperation(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificateIssuersNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `backupCertificateSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificatesNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `importCertificate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `deleteCertificateOperation(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificateVersionsNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `deleteCertificateOperationSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificatePolicy(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getCertificateIssuersNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+
+#### `implementation.models.CertificateImportParameters` was modified
+
+* `setPreserveCertOrder(java.lang.Boolean)` was added
+* `isPreserveCertOrder()` was added
+
+#### `CertificateClient` was modified
+
+* `beginCreateCertificate(java.lang.String,models.CertificatePolicy,java.lang.Boolean,java.util.Map,java.lang.Boolean)` was added
+
+#### `implementation.CertificatePropertiesHelper$CertificatePropertiesAccessor` was modified
+
+* `createCertificateProperties(implementation.models.DeletedCertificateItem)` was added
+
+#### `implementation.models.CertificateBundle` was modified
+
+* `isPreserveCertOrder()` was added
+
+#### `CertificateAsyncClient` was modified
+
+* `beginCreateCertificate(java.lang.String,models.CertificatePolicy,java.lang.Boolean,java.util.Map,java.lang.Boolean)` was added
+
+#### `implementation.models.DeletedCertificateBundle` was modified
+
+* `getContentType()` was added
+* `getCer()` was added
+* `getAttributes()` was added
+* `getTags()` was added
+* `isPreserveCertOrder()` was added
 
 ## 4.8.0-beta.1 (2025-04-10)
 
