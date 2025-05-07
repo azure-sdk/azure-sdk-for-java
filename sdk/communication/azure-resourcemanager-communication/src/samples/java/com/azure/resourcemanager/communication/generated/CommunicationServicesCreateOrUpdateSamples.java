@@ -13,7 +13,7 @@ import com.azure.resourcemanager.communication.models.ManagedServiceIdentityType
 public final class CommunicationServicesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/communication/resource-manager/Microsoft.Communication/stable/2023-04-01/examples/
+     * specification/communication/resource-manager/Microsoft.Communication/stable/2025-06-01/examples/
      * communicationServices/createOrUpdate.json
      */
     /**
@@ -32,7 +32,7 @@ public final class CommunicationServicesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/communication/resource-manager/Microsoft.Communication/stable/2023-04-01/examples/
+     * specification/communication/resource-manager/Microsoft.Communication/stable/2025-06-01/examples/
      * communicationServices/createOrUpdateWithSystemAssignedIdentity.json
      */
     /**
@@ -48,6 +48,27 @@ public final class CommunicationServicesCreateOrUpdateSamples {
             .withExistingResourceGroup("MyResourceGroup")
             .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
             .withDataLocation("United States")
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/communication/resource-manager/Microsoft.Communication/stable/2025-06-01/examples/
+     * communicationServices/createOrUpdateWithDisableLocalAuth.json
+     */
+    /**
+     * Sample code: Create resource with disableLocalAuth.
+     * 
+     * @param manager Entry point to CommunicationManager.
+     */
+    public static void
+        createResourceWithDisableLocalAuth(com.azure.resourcemanager.communication.CommunicationManager manager) {
+        manager.communicationServices()
+            .define("MyCommunicationResource")
+            .withRegion("Global")
+            .withExistingResourceGroup("MyResourceGroup")
+            .withDataLocation("United States")
+            .withDisableLocalAuth(true)
             .create();
     }
 }

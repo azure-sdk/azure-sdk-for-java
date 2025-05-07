@@ -116,6 +116,13 @@ public interface CommunicationServiceResource {
     List<String> linkedDomains();
 
     /**
+     * Gets the disableLocalAuth property: Disable local authentication for the CommunicationService.
+     * 
+     * @return the disableLocalAuth value.
+     */
+    Boolean disableLocalAuth();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -198,8 +205,9 @@ public interface CommunicationServiceResource {
          * The stage of the CommunicationServiceResource definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
-            DefinitionStages.WithDataLocation, DefinitionStages.WithLinkedDomains {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithDataLocation,
+            DefinitionStages.WithLinkedDomains, DefinitionStages.WithDisableLocalAuth {
             /**
              * Executes the create request.
              * 
@@ -268,6 +276,19 @@ public interface CommunicationServiceResource {
              * @return the next definition stage.
              */
             WithCreate withLinkedDomains(List<String> linkedDomains);
+        }
+
+        /**
+         * The stage of the CommunicationServiceResource definition allowing to specify disableLocalAuth.
+         */
+        interface WithDisableLocalAuth {
+            /**
+             * Specifies the disableLocalAuth property: Disable local authentication for the CommunicationService..
+             * 
+             * @param disableLocalAuth Disable local authentication for the CommunicationService.
+             * @return the next definition stage.
+             */
+            WithCreate withDisableLocalAuth(Boolean disableLocalAuth);
         }
     }
 
