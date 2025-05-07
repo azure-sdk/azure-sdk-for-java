@@ -142,6 +142,7 @@
     <module>sdk/managedapplications</module>
     <module>sdk/managednetworkfabric</module>
     <module>sdk/managementgroups</module>
+    <module>sdk/manufacturingplatform</module>
     <module>sdk/maps</module>
     <module>sdk/mariadb</module>
     <module>sdk/marketplaceordering</module>
