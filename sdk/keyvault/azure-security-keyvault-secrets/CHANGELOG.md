@@ -2,13 +2,320 @@
 
 ## 4.10.0-beta.2 (Unreleased)
 
-### Features Added
-
 ### Breaking Changes
 
-### Bugs Fixed
+#### `implementation.models.KeyVaultError` was removed
 
-### Other Changes
+#### `implementation.models.Error` was removed
+
+#### `implementation.models.SecretListResult` was removed
+
+#### `implementation.models.SecretProperties` was removed
+
+#### `implementation.models.KeyVaultErrorException` was removed
+
+#### `implementation.models.DeletedSecretListResult` was removed
+
+#### `implementation.models.Attributes` was removed
+
+#### `implementation.models.DeletedSecretItem` was modified
+
+* `setAttributes(implementation.models.SecretAttributes)` was removed
+* `setContentType(java.lang.String)` was removed
+* `setTags(java.util.Map)` was removed
+* `setId(java.lang.String)` was removed
+* `setRecoveryId(java.lang.String)` was removed
+
+#### `implementation.models.SecretUpdateParameters` was modified
+
+* `setSecretContentType(java.lang.String)` was removed
+* `getSecretContentType()` was removed
+
+#### `implementation.models.SecretAttributes` was modified
+
+* `setEnabled(java.lang.Boolean)` was removed
+* `setExpires(java.time.OffsetDateTime)` was removed
+* `setNotBefore(java.time.OffsetDateTime)` was removed
+
+#### `implementation.models.SecretRestoreParameters` was modified
+
+* `setSecretBundleBackup(byte[])` was removed
+
+#### `implementation.SecretClientImpl$SecretClientService` was modified
+
+* `getDeletedSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `setSecretSync(java.lang.String,java.lang.String,java.lang.String,implementation.models.SecretSetParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedSecrets(java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.SecretUpdateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecretVersionsSync(java.lang.String,java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `restoreSecret(java.lang.String,java.lang.String,implementation.models.SecretRestoreParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `purgeDeletedSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecretsSync(java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `setSecret(java.lang.String,java.lang.String,java.lang.String,implementation.models.SecretSetParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedSecretsNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecretsNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `backupSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `recoverDeletedSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedSecretsSync(java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `backupSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecrets(java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedSecretsNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecretVersions(java.lang.String,java.lang.String,java.lang.Integer,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `purgeDeletedSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecretsNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecretVersionsNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecretVersionsNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `restoreSecretSync(java.lang.String,java.lang.String,implementation.models.SecretRestoreParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.SecretUpdateParameters,java.lang.String,com.azure.core.util.Context)` was removed
+* `recoverDeletedSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `implementation.models.DeletedSecretBundle` was modified
+
+* `setId(java.lang.String)` was removed
+* `setContentType(java.lang.String)` was removed
+* `setValue(java.lang.String)` was removed
+* `setAttributes(implementation.models.SecretAttributes)` was removed
+* `setRecoveryId(java.lang.String)` was removed
+* `setTags(java.util.Map)` was removed
+
+#### `implementation.models.SecretBundle` was modified
+
+* `setAttributes(implementation.models.SecretAttributes)` was removed
+* `setContentType(java.lang.String)` was removed
+* `setId(java.lang.String)` was removed
+* `setTags(java.util.Map)` was removed
+* `setValue(java.lang.String)` was removed
+
+#### `implementation.models.SecretItem` was modified
+
+* `setContentType(java.lang.String)` was removed
+* `setAttributes(implementation.models.SecretAttributes)` was removed
+* `setTags(java.util.Map)` was removed
+* `setId(java.lang.String)` was removed
+
+#### `implementation.models.SecretSetParameters` was modified
+
+* `setValue(java.lang.String)` was removed
+* `getSecretContentType()` was removed
+* `setSecretContentType(java.lang.String)` was removed
+
+#### `implementation.SecretClientImpl` was modified
+
+* `recoverDeletedSecret(java.lang.String,java.lang.String)` was removed
+* `deleteSecretWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `deleteSecretWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecrets(java.lang.String,java.lang.Integer)` was removed
+* `getSecretVersionsAsync(java.lang.String,java.lang.String,java.lang.Integer)` was removed
+* `getDeletedSecretsSinglePageAsync(java.lang.String,java.lang.Integer)` was removed
+* `purgeDeletedSecretAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedSecretsNextSinglePage(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecretAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `deleteSecret(java.lang.String,java.lang.String)` was removed
+* `deleteSecretWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `restoreSecret(java.lang.String,byte[])` was removed
+* `getSecretAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedSecretsNextSinglePageAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecretWithResponseAsync(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getDeletedSecretsAsync(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `getSecretsNextSinglePage(java.lang.String,java.lang.String)` was removed
+* `getDeletedSecretsNextSinglePage(java.lang.String,java.lang.String)` was removed
+* `updateSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.SecretAttributes,java.util.Map)` was removed
+* `purgeDeletedSecretAsync(java.lang.String,java.lang.String)` was removed
+* `setSecretAsync(java.lang.String,java.lang.String,java.lang.String,java.util.Map,java.lang.String,implementation.models.SecretAttributes)` was removed
+* `updateSecretWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.SecretAttributes,java.util.Map,com.azure.core.util.Context)` was removed
+* `getSecretWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `setSecretWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.util.Map,java.lang.String,implementation.models.SecretAttributes)` was removed
+* `getSecretsSinglePage(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `getDeletedSecretsSinglePage(java.lang.String,java.lang.Integer)` was removed
+* `getSecretVersionsSinglePageAsync(java.lang.String,java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `getSecretsNextSinglePageAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedSecretsAsync(java.lang.String,java.lang.Integer)` was removed
+* `getDeletedSecretAsync(java.lang.String,java.lang.String)` was removed
+* `recoverDeletedSecretWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `recoverDeletedSecretWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `getSecretsSinglePageAsync(java.lang.String,java.lang.Integer)` was removed
+* `restoreSecretAsync(java.lang.String,byte[],com.azure.core.util.Context)` was removed
+* `updateSecretAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.SecretAttributes,java.util.Map,com.azure.core.util.Context)` was removed
+* `getDeletedSecretsSinglePageAsync(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `purgeDeletedSecretWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `updateSecretAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.SecretAttributes,java.util.Map)` was removed
+* `getSecretWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `backupSecretWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedSecretWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecretsSinglePageAsync(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `restoreSecretWithResponse(java.lang.String,byte[],com.azure.core.util.Context)` was removed
+* `restoreSecretWithResponseAsync(java.lang.String,byte[])` was removed
+* `setSecretWithResponse(java.lang.String,java.lang.String,java.lang.String,java.util.Map,java.lang.String,implementation.models.SecretAttributes,com.azure.core.util.Context)` was removed
+* `purgeDeletedSecret(java.lang.String,java.lang.String)` was removed
+* `recoverDeletedSecretAsync(java.lang.String,java.lang.String)` was removed
+* `purgeDeletedSecretWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `getSecretsNextSinglePageAsync(java.lang.String,java.lang.String)` was removed
+* `setSecret(java.lang.String,java.lang.String,java.lang.String,java.util.Map,java.lang.String,implementation.models.SecretAttributes)` was removed
+* `getDeletedSecretsSinglePage(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `recoverDeletedSecretAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedSecrets(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `getSecretVersionsNextSinglePage(java.lang.String,java.lang.String)` was removed
+* `getSecretsAsync(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `getSecretVersionsAsync(java.lang.String,java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `deleteSecretAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `restoreSecretAsync(java.lang.String,byte[])` was removed
+* `getSecretVersionsNextSinglePageAsync(java.lang.String,java.lang.String)` was removed
+* `updateSecretWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.SecretAttributes,java.util.Map,com.azure.core.util.Context)` was removed
+* `updateSecretWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,implementation.models.SecretAttributes,java.util.Map)` was removed
+* `getDeletedSecret(java.lang.String,java.lang.String)` was removed
+* `setSecretWithResponseAsync(java.lang.String,java.lang.String,java.lang.String,java.util.Map,java.lang.String,implementation.models.SecretAttributes,com.azure.core.util.Context)` was removed
+* `getSecrets(java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `getSecretVersionsNextSinglePage(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getApiVersion()` was removed
+* `getSecretVersionsSinglePageAsync(java.lang.String,java.lang.String,java.lang.Integer)` was removed
+* `purgeDeletedSecretWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedSecrets(java.lang.String,java.lang.Integer)` was removed
+* `getSecretVersionsNextSinglePageAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecretVersionsSinglePage(java.lang.String,java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `getDeletedSecretWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `backupSecretAsync(java.lang.String,java.lang.String)` was removed
+* `getSecretsSinglePage(java.lang.String,java.lang.Integer)` was removed
+* `setSecretAsync(java.lang.String,java.lang.String,java.lang.String,java.util.Map,java.lang.String,implementation.models.SecretAttributes,com.azure.core.util.Context)` was removed
+* `getDeletedSecretsNextSinglePageAsync(java.lang.String,java.lang.String)` was removed
+* `getSecretVersions(java.lang.String,java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was removed
+* `backupSecretWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getDeletedSecretAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `recoverDeletedSecretWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `backupSecretWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `deleteSecretAsync(java.lang.String,java.lang.String)` was removed
+* `getSecret(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getDeletedSecretWithResponseAsync(java.lang.String,java.lang.String)` was removed
+* `restoreSecretWithResponseAsync(java.lang.String,byte[],com.azure.core.util.Context)` was removed
+* `getSecretVersionsSinglePage(java.lang.String,java.lang.String,java.lang.Integer)` was removed
+* `getSecretVersions(java.lang.String,java.lang.String,java.lang.Integer)` was removed
+* `backupSecretAsync(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `backupSecret(java.lang.String,java.lang.String)` was removed
+* `getSecretsNextSinglePage(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getSecretsAsync(java.lang.String,java.lang.Integer)` was removed
+
+### Features Added
+
+#### `implementation.models.DeletedSecretItem` was modified
+
+* `getTags()` was added
+* `getAttributes()` was added
+* `getContentType()` was added
+* `getId()` was added
+
+#### `implementation.DeletedSecretHelper` was modified
+
+* `setKeyId(models.DeletedSecret,java.lang.String)` was added
+* `setName(models.DeletedSecret,java.lang.String)` was added
+* `setManaged(models.DeletedSecret,java.lang.Boolean)` was added
+* `setUpdatedOn(models.DeletedSecret,java.time.OffsetDateTime)` was added
+* `setId(models.DeletedSecret,java.lang.String)` was added
+* `setVersion(models.DeletedSecret,java.lang.String)` was added
+* `setCreatedOn(models.DeletedSecret,java.time.OffsetDateTime)` was added
+* `setRecoveryLevel(models.DeletedSecret,java.lang.String)` was added
+* `setRecoverableDays(models.DeletedSecret,java.lang.Integer)` was added
+
+#### `implementation.models.SecretUpdateParameters` was modified
+
+* `setContentType(java.lang.String)` was added
+* `getContentType()` was added
+
+#### `implementation.models.SecretAttributes` was modified
+
+* `getExpires()` was added
+* `getNotBefore()` was added
+* `isEnabled()` was added
+
+#### `implementation.SecretClientImpl$SecretClientService` was modified
+
+* `setSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `deleteSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `deleteSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `backupSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedSecrets(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getSecretVersions(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getSecretsNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `backupSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `updateSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `updateSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getSecrets(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getSecretVersionsNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `restoreSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getSecretVersionsSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getSecretsSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getSecretVersionsNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedSecretsNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `recoverDeletedSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `recoverDeletedSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedSecretsNext(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getSecretsNextSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedSecretsSync(java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `purgeDeletedSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `getDeletedSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `purgeDeletedSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `setSecretSync(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+* `restoreSecret(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions,com.azure.core.util.Context)` was added
+
+#### `implementation.DeletedSecretHelper$DeletedSecretAccessor` was modified
+
+* `setVersion(models.DeletedSecret,java.lang.String)` was added
+* `setRecoveryLevel(models.DeletedSecret,java.lang.String)` was added
+* `setRecoverableDays(models.DeletedSecret,java.lang.Integer)` was added
+* `setKeyId(models.DeletedSecret,java.lang.String)` was added
+* `setUpdatedOn(models.DeletedSecret,java.time.OffsetDateTime)` was added
+* `setManaged(models.DeletedSecret,java.lang.Boolean)` was added
+* `setCreatedOn(models.DeletedSecret,java.time.OffsetDateTime)` was added
+* `setName(models.DeletedSecret,java.lang.String)` was added
+* `setId(models.DeletedSecret,java.lang.String)` was added
+
+#### `implementation.models.DeletedSecretBundle` was modified
+
+* `getValue()` was added
+* `getContentType()` was added
+* `getTags()` was added
+* `getId()` was added
+* `getAttributes()` was added
+
+#### `implementation.models.SecretSetParameters` was modified
+
+* `setContentType(java.lang.String)` was added
+* `getContentType()` was added
+
+#### `implementation.SecretClientImpl` was modified
+
+* `getVaultBaseUrl()` was added
+* `updateSecretWithResponse(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getSecretsAsync(com.azure.core.http.rest.RequestOptions)` was added
+* `backupSecretWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `setSecretWithResponse(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getDeletedSecretsAsync(com.azure.core.http.rest.RequestOptions)` was added
+* `getSecretVersionsAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getSecretWithResponse(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getSecretVersions(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getSecretWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `deleteSecretWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `purgeDeletedSecretWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getDeletedSecrets(com.azure.core.http.rest.RequestOptions)` was added
+* `backupSecretWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getDeletedSecretWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `purgeDeletedSecretWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getServiceVersion()` was added
+* `restoreSecretWithResponseAsync(com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `deleteSecretWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `updateSecretWithResponseAsync(java.lang.String,java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `recoverDeletedSecretWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `getSecrets(com.azure.core.http.rest.RequestOptions)` was added
+* `setSecretWithResponseAsync(java.lang.String,com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `getDeletedSecretWithResponse(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
+* `restoreSecretWithResponse(com.azure.core.util.BinaryData,com.azure.core.http.rest.RequestOptions)` was added
+* `recoverDeletedSecretWithResponseAsync(java.lang.String,com.azure.core.http.rest.RequestOptions)` was added
 
 ## 4.10.0-beta.1 (2025-04-10)
 
