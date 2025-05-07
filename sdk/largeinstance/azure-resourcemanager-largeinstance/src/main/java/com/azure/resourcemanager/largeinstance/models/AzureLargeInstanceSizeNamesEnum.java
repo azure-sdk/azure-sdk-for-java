@@ -9,7 +9,7 @@ import java.util.Collection;
 
 /**
  * Enum of available model types (each of which have their own storage / memory sizes) for an Azure Large Instance type.
- * See https://docs.microsoft.com/azure/sap/large-instances/hana-available-skus.
+ * See https://learn.microsoft.com/azure/sap/large-instances/hana-available-skus.
  */
 public final class AzureLargeInstanceSizeNamesEnum extends ExpandableStringEnum<AzureLargeInstanceSizeNamesEnum> {
     /**
