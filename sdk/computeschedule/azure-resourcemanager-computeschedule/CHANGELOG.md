@@ -1,14 +1,35 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.1.0-beta.1 (2025-05-07)
+
+- Azure Resource Manager Compute Schedule client library for Java. This package contains Microsoft Azure SDK for Compute Schedule Management SDK. Microsoft.ComputeSchedule Resource Provider management API. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.ResourceProvisionPayload` was added
 
-### Bugs Fixed
+* `models.CreateResourceOperationResponse` was added
 
-### Other Changes
+* `models.SubmitDeleteRequest` was added
+
+* `models.ExecuteDeleteRequest` was added
+
+* `models.ExecuteCreateRequest` was added
+
+* `models.DeleteResourceOperationResponse` was added
+
+* `models.SubmitCreateRequest` was added
+
+#### `models.ScheduledActions` was modified
+
+* `virtualMachinesExecuteCreateWithResponse(java.lang.String,models.ExecuteCreateRequest,com.azure.core.util.Context)` was added
+* `virtualMachinesSubmitDeleteWithResponse(java.lang.String,models.SubmitDeleteRequest,com.azure.core.util.Context)` was added
+* `virtualMachinesSubmitCreateWithResponse(java.lang.String,models.SubmitCreateRequest,com.azure.core.util.Context)` was added
+* `virtualMachinesExecuteCreate(java.lang.String,models.ExecuteCreateRequest)` was added
+* `virtualMachinesExecuteDelete(java.lang.String,models.ExecuteDeleteRequest)` was added
+* `virtualMachinesSubmitDelete(java.lang.String,models.SubmitDeleteRequest)` was added
+* `virtualMachinesSubmitCreate(java.lang.String,models.SubmitCreateRequest)` was added
+* `virtualMachinesExecuteDeleteWithResponse(java.lang.String,models.ExecuteDeleteRequest,com.azure.core.util.Context)` was added
 
 ## 1.0.0 (2025-01-22)
 
