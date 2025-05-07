@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The NginxPublicIpAddress model.
+ * Nginx Public IP Address.
  */
 @Fluent
 public final class NginxPublicIpAddress implements JsonSerializable<NginxPublicIpAddress> {

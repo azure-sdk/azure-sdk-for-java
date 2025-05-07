@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.nginx.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,8 +14,13 @@ import java.io.IOException;
 /**
  * The status of the NGINX App Protect Web Application Firewall.
  */
-@Immutable
+@Fluent
 public final class WebApplicationFirewallStatus implements JsonSerializable<WebApplicationFirewallStatus> {
+    /*
+     * NGINX App Protect WAF release version
+     */
+    private String wafRelease;
+
     /*
      * Package containing attack signatures for the NGINX App Protect Web Application Firewall (WAF).
      */
@@ -40,6 +45,26 @@ public final class WebApplicationFirewallStatus implements JsonSerializable<WebA
      * Creates an instance of WebApplicationFirewallStatus class.
      */
     public WebApplicationFirewallStatus() {
+    }
+
+    /**
+     * Get the wafRelease property: NGINX App Protect WAF release version.
+     * 
+     * @return the wafRelease value.
+     */
+    public String wafRelease() {
+        return this.wafRelease;
+    }
+
+    /**
+     * Set the wafRelease property: NGINX App Protect WAF release version.
+     * 
+     * @param wafRelease the wafRelease value to set.
+     * @return the WebApplicationFirewallStatus object itself.
+     */
+    public WebApplicationFirewallStatus withWafRelease(String wafRelease) {
+        this.wafRelease = wafRelease;
+        return this;
     }
 
     /**
@@ -107,6 +132,7 @@ public final class WebApplicationFirewallStatus implements JsonSerializable<WebA
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("wafRelease", this.wafRelease);
         return jsonWriter.writeEndObject();
     }
 
@@ -125,7 +151,9 @@ public final class WebApplicationFirewallStatus implements JsonSerializable<WebA
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("attackSignaturesPackage".equals(fieldName)) {
+                if ("wafRelease".equals(fieldName)) {
+                    deserializedWebApplicationFirewallStatus.wafRelease = reader.getString();
+                } else if ("attackSignaturesPackage".equals(fieldName)) {
                     deserializedWebApplicationFirewallStatus.attackSignaturesPackage
                         = WebApplicationFirewallPackage.fromJson(reader);
                 } else if ("botSignaturesPackage".equals(fieldName)) {

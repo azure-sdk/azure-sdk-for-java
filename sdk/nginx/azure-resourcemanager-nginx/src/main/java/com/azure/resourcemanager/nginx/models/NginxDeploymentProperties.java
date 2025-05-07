@@ -9,15 +9,16 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.nginx.fluent.models.NginxDeploymentPropertiesNginxAppProtect;
 import java.io.IOException;
 
 /**
- * The NginxDeploymentProperties model.
+ * Nginx Deployment Properties.
  */
 @Fluent
 public final class NginxDeploymentProperties implements JsonSerializable<NginxDeploymentProperties> {
     /*
-     * The provisioningState property.
+     * Provisioning State
      */
     private ProvisioningState provisioningState;
 
@@ -27,7 +28,7 @@ public final class NginxDeploymentProperties implements JsonSerializable<NginxDe
     private String nginxVersion;
 
     /*
-     * The networkProfile property.
+     * Nginx Network Profile
      */
     private NginxNetworkProfile networkProfile;
 
@@ -42,7 +43,7 @@ public final class NginxDeploymentProperties implements JsonSerializable<NginxDe
     private Boolean enableDiagnosticsSupport;
 
     /*
-     * The logging property.
+     * Nginx Logging
      */
     private NginxLogging logging;
 
@@ -57,14 +58,14 @@ public final class NginxDeploymentProperties implements JsonSerializable<NginxDe
     private AutoUpgradeProfile autoUpgradeProfile;
 
     /*
-     * The userProfile property.
+     * Nginx Deployment User Profile
      */
     private NginxDeploymentUserProfile userProfile;
 
     /*
      * Settings for NGINX App Protect (NAP)
      */
-    private NginxDeploymentPropertiesNginxAppProtect nginxAppProtect;
+    private NginxDeploymentPropertiesNginxAppProtect innerNginxAppProtect;
 
     /*
      * Dataplane API endpoint for the caller to update the NGINX state of the deployment.
@@ -78,7 +79,7 @@ public final class NginxDeploymentProperties implements JsonSerializable<NginxDe
     }
 
     /**
-     * Get the provisioningState property: The provisioningState property.
+     * Get the provisioningState property: Provisioning State.
      * 
      * @return the provisioningState value.
      */
@@ -96,7 +97,7 @@ public final class NginxDeploymentProperties implements JsonSerializable<NginxDe
     }
 
     /**
-     * Get the networkProfile property: The networkProfile property.
+     * Get the networkProfile property: Nginx Network Profile.
      * 
      * @return the networkProfile value.
      */
@@ -105,7 +106,7 @@ public final class NginxDeploymentProperties implements JsonSerializable<NginxDe
     }
 
     /**
-     * Set the networkProfile property: The networkProfile property.
+     * Set the networkProfile property: Nginx Network Profile.
      * 
      * @param networkProfile the networkProfile value to set.
      * @return the NginxDeploymentProperties object itself.
@@ -145,7 +146,7 @@ public final class NginxDeploymentProperties implements JsonSerializable<NginxDe
     }
 
     /**
-     * Get the logging property: The logging property.
+     * Get the logging property: Nginx Logging.
      * 
      * @return the logging value.
      */
@@ -154,7 +155,7 @@ public final class NginxDeploymentProperties implements JsonSerializable<NginxDe
     }
 
     /**
-     * Set the logging property: The logging property.
+     * Set the logging property: Nginx Logging.
      * 
      * @param logging the logging value to set.
      * @return the NginxDeploymentProperties object itself.
@@ -205,7 +206,7 @@ public final class NginxDeploymentProperties implements JsonSerializable<NginxDe
     }
 
     /**
-     * Get the userProfile property: The userProfile property.
+     * Get the userProfile property: Nginx Deployment User Profile.
      * 
      * @return the userProfile value.
      */
@@ -214,7 +215,7 @@ public final class NginxDeploymentProperties implements JsonSerializable<NginxDe
     }
 
     /**
-     * Set the userProfile property: The userProfile property.
+     * Set the userProfile property: Nginx Deployment User Profile.
      * 
      * @param userProfile the userProfile value to set.
      * @return the NginxDeploymentProperties object itself.
@@ -225,23 +226,12 @@ public final class NginxDeploymentProperties implements JsonSerializable<NginxDe
     }
 
     /**
-     * Get the nginxAppProtect property: Settings for NGINX App Protect (NAP).
+     * Get the innerNginxAppProtect property: Settings for NGINX App Protect (NAP).
      * 
-     * @return the nginxAppProtect value.
+     * @return the innerNginxAppProtect value.
      */
-    public NginxDeploymentPropertiesNginxAppProtect nginxAppProtect() {
-        return this.nginxAppProtect;
-    }
-
-    /**
-     * Set the nginxAppProtect property: Settings for NGINX App Protect (NAP).
-     * 
-     * @param nginxAppProtect the nginxAppProtect value to set.
-     * @return the NginxDeploymentProperties object itself.
-     */
-    public NginxDeploymentProperties withNginxAppProtect(NginxDeploymentPropertiesNginxAppProtect nginxAppProtect) {
-        this.nginxAppProtect = nginxAppProtect;
-        return this;
+    private NginxDeploymentPropertiesNginxAppProtect innerNginxAppProtect() {
+        return this.innerNginxAppProtect;
     }
 
     /**
@@ -252,6 +242,43 @@ public final class NginxDeploymentProperties implements JsonSerializable<NginxDe
      */
     public String dataplaneApiEndpoint() {
         return this.dataplaneApiEndpoint;
+    }
+
+    /**
+     * Get the webApplicationFirewallSettings property: Settings for the NGINX App Protect Web Application Firewall
+     * (WAF).
+     * 
+     * @return the webApplicationFirewallSettings value.
+     */
+    public WebApplicationFirewallSettings webApplicationFirewallSettings() {
+        return this.innerNginxAppProtect() == null
+            ? null
+            : this.innerNginxAppProtect().webApplicationFirewallSettings();
+    }
+
+    /**
+     * Set the webApplicationFirewallSettings property: Settings for the NGINX App Protect Web Application Firewall
+     * (WAF).
+     * 
+     * @param webApplicationFirewallSettings the webApplicationFirewallSettings value to set.
+     * @return the NginxDeploymentProperties object itself.
+     */
+    public NginxDeploymentProperties
+        withWebApplicationFirewallSettings(WebApplicationFirewallSettings webApplicationFirewallSettings) {
+        if (this.innerNginxAppProtect() == null) {
+            this.innerNginxAppProtect = new NginxDeploymentPropertiesNginxAppProtect();
+        }
+        this.innerNginxAppProtect().withWebApplicationFirewallSettings(webApplicationFirewallSettings);
+        return this;
+    }
+
+    /**
+     * Get the webApplicationFirewallStatus property: The status of the NGINX App Protect Web Application Firewall.
+     * 
+     * @return the webApplicationFirewallStatus value.
+     */
+    public WebApplicationFirewallStatus webApplicationFirewallStatus() {
+        return this.innerNginxAppProtect() == null ? null : this.innerNginxAppProtect().webApplicationFirewallStatus();
     }
 
     /**
@@ -275,8 +302,8 @@ public final class NginxDeploymentProperties implements JsonSerializable<NginxDe
         if (userProfile() != null) {
             userProfile().validate();
         }
-        if (nginxAppProtect() != null) {
-            nginxAppProtect().validate();
+        if (innerNginxAppProtect() != null) {
+            innerNginxAppProtect().validate();
         }
     }
 
@@ -292,7 +319,7 @@ public final class NginxDeploymentProperties implements JsonSerializable<NginxDe
         jsonWriter.writeJsonField("scalingProperties", this.scalingProperties);
         jsonWriter.writeJsonField("autoUpgradeProfile", this.autoUpgradeProfile);
         jsonWriter.writeJsonField("userProfile", this.userProfile);
-        jsonWriter.writeJsonField("nginxAppProtect", this.nginxAppProtect);
+        jsonWriter.writeJsonField("nginxAppProtect", this.innerNginxAppProtect);
         return jsonWriter.writeEndObject();
     }
 
@@ -333,7 +360,7 @@ public final class NginxDeploymentProperties implements JsonSerializable<NginxDe
                 } else if ("userProfile".equals(fieldName)) {
                     deserializedNginxDeploymentProperties.userProfile = NginxDeploymentUserProfile.fromJson(reader);
                 } else if ("nginxAppProtect".equals(fieldName)) {
-                    deserializedNginxDeploymentProperties.nginxAppProtect
+                    deserializedNginxDeploymentProperties.innerNginxAppProtect
                         = NginxDeploymentPropertiesNginxAppProtect.fromJson(reader);
                 } else if ("dataplaneApiEndpoint".equals(fieldName)) {
                     deserializedNginxDeploymentProperties.dataplaneApiEndpoint = reader.getString();

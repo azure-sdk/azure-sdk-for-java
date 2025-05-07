@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The NginxCertificateErrorResponseBody model.
+ * Nginx Certificate Error Response Body.
  */
 @Fluent
 public final class NginxCertificateErrorResponseBody implements JsonSerializable<NginxCertificateErrorResponseBody> {

@@ -9,7 +9,7 @@ package com.azure.resourcemanager.nginx.generated;
  */
 public final class CertificatesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/preview/2024-11-01-preview/examples/
+     * x-ms-original-file: specification/nginx/resource-manager/NGINX.NGINXPLUS/preview/2025-03-01-preview/examples/
      * Certificates_CreateOrUpdate.json
      */
     /**

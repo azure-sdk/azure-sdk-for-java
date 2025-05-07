@@ -12,7 +12,7 @@ import com.azure.resourcemanager.nginx.models.NginxDeployment;
 public final class DeploymentsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/nginx/resource-manager/NGINX.NGINXPLUS/preview/2024-11-01-preview/examples/Deployments_Update.json
+     * specification/nginx/resource-manager/NGINX.NGINXPLUS/preview/2025-03-01-preview/examples/Deployments_Update.json
      */
     /**
      * Sample code: Deployments_Update.
@@ -28,7 +28,7 @@ public final class DeploymentsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/nginx/resource-manager/NGINX.NGINXPLUS/preview/2024-11-01-preview/examples/Deployments_UpdateSubnet
+     * specification/nginx/resource-manager/NGINX.NGINXPLUS/preview/2025-03-01-preview/examples/Deployments_UpdateSubnet
      * .json
      */
     /**

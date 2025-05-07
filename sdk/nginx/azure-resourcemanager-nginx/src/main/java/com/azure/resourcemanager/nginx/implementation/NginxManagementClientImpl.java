@@ -26,9 +26,11 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.nginx.fluent.ApiKeysClient;
 import com.azure.resourcemanager.nginx.fluent.CertificatesClient;
 import com.azure.resourcemanager.nginx.fluent.ConfigurationsClient;
+import com.azure.resourcemanager.nginx.fluent.DefaultWafPoliciesClient;
 import com.azure.resourcemanager.nginx.fluent.DeploymentsClient;
 import com.azure.resourcemanager.nginx.fluent.NginxManagementClient;
 import com.azure.resourcemanager.nginx.fluent.OperationsClient;
+import com.azure.resourcemanager.nginx.fluent.WafPoliciesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -184,6 +186,34 @@ public final class NginxManagementClientImpl implements NginxManagementClient {
     }
 
     /**
+     * The WafPoliciesClient object to access its operations.
+     */
+    private final WafPoliciesClient wafPolicies;
+
+    /**
+     * Gets the WafPoliciesClient object to access its operations.
+     * 
+     * @return the WafPoliciesClient object.
+     */
+    public WafPoliciesClient getWafPolicies() {
+        return this.wafPolicies;
+    }
+
+    /**
+     * The DefaultWafPoliciesClient object to access its operations.
+     */
+    private final DefaultWafPoliciesClient defaultWafPolicies;
+
+    /**
+     * Gets the DefaultWafPoliciesClient object to access its operations.
+     * 
+     * @return the DefaultWafPoliciesClient object.
+     */
+    public DefaultWafPoliciesClient getDefaultWafPolicies() {
+        return this.defaultWafPolicies;
+    }
+
+    /**
      * The OperationsClient object to access its operations.
      */
     private final OperationsClient operations;
@@ -214,11 +244,13 @@ public final class NginxManagementClientImpl implements NginxManagementClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-11-01-preview";
+        this.apiVersion = "2025-03-01-preview";
         this.apiKeys = new ApiKeysClientImpl(this);
         this.certificates = new CertificatesClientImpl(this);
         this.configurations = new ConfigurationsClientImpl(this);
         this.deployments = new DeploymentsClientImpl(this);
+        this.wafPolicies = new WafPoliciesClientImpl(this);
+        this.defaultWafPolicies = new DefaultWafPoliciesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
     }
 

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.nginx.implementation;
 
-import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.fluent.models.NginxCertificateInner;
@@ -33,20 +32,8 @@ public final class NginxCertificateImpl
         return this.innerModel().properties();
     }
 
-    public String location() {
-        return this.innerModel().location();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
-    }
-
-    public Region region() {
-        return Region.fromName(this.regionName());
-    }
-
-    public String regionName() {
-        return this.location();
     }
 
     public String resourceGroupName() {
@@ -133,16 +120,6 @@ public final class NginxCertificateImpl
             .getCertificates()
             .getWithResponse(resourceGroupName, deploymentName, certificateName, context)
             .getValue();
-        return this;
-    }
-
-    public NginxCertificateImpl withRegion(Region location) {
-        this.innerModel().withLocation(location.toString());
-        return this;
-    }
-
-    public NginxCertificateImpl withRegion(String location) {
-        this.innerModel().withLocation(location);
         return this;
     }
 

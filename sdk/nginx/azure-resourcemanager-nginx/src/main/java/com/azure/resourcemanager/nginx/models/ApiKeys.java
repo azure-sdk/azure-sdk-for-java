@@ -75,7 +75,7 @@ public interface ApiKeys {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return nginx Deployment Api Key List Response as paginated response with {@link PagedIterable}.
      */
     PagedIterable<NginxDeploymentApiKeyResponse> list(String resourceGroupName, String deploymentName);
 
@@ -88,7 +88,7 @@ public interface ApiKeys {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return nginx Deployment Api Key List Response as paginated response with {@link PagedIterable}.
      */
     PagedIterable<NginxDeploymentApiKeyResponse> list(String resourceGroupName, String deploymentName, Context context);
 

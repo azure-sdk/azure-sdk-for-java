@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The NginxConfigurationFile model.
+ * Nginx Configuration File.
  */
 @Fluent
 public final class NginxConfigurationFile implements JsonSerializable<NginxConfigurationFile> {

@@ -27,7 +27,7 @@ public interface ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return nginx Deployment Api Key Response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<NginxDeploymentApiKeyResponseInner> createOrUpdateWithResponse(String resourceGroupName,
@@ -42,7 +42,7 @@ public interface ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return nginx Deployment Api Key Response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     NginxDeploymentApiKeyResponseInner createOrUpdate(String resourceGroupName, String deploymentName,
@@ -115,7 +115,7 @@ public interface ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return nginx Deployment Api Key List Response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<NginxDeploymentApiKeyResponseInner> list(String resourceGroupName, String deploymentName);
@@ -129,7 +129,7 @@ public interface ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return nginx Deployment Api Key List Response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<NginxDeploymentApiKeyResponseInner> list(String resourceGroupName, String deploymentName,

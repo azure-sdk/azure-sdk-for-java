@@ -6,6 +6,7 @@ package com.azure.resourcemanager.nginx.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -13,14 +14,19 @@ import com.azure.resourcemanager.nginx.models.NginxDeploymentApiKeyResponsePrope
 import java.io.IOException;
 
 /**
- * The NginxDeploymentApiKeyResponse model.
+ * Nginx Deployment Api Key Response.
  */
 @Fluent
 public final class NginxDeploymentApiKeyResponseInner extends ProxyResource {
     /*
-     * The properties property.
+     * Nginx Deployment Api Key Response Properties
      */
     private NginxDeploymentApiKeyResponseProperties properties;
+
+    /*
+     * Metadata pertaining to creation and last modification of the resource.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -44,7 +50,7 @@ public final class NginxDeploymentApiKeyResponseInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The properties property.
+     * Get the properties property: Nginx Deployment Api Key Response Properties.
      * 
      * @return the properties value.
      */
@@ -53,7 +59,7 @@ public final class NginxDeploymentApiKeyResponseInner extends ProxyResource {
     }
 
     /**
-     * Set the properties property: The properties property.
+     * Set the properties property: Nginx Deployment Api Key Response Properties.
      * 
      * @param properties the properties value to set.
      * @return the NginxDeploymentApiKeyResponseInner object itself.
@@ -61,6 +67,15 @@ public final class NginxDeploymentApiKeyResponseInner extends ProxyResource {
     public NginxDeploymentApiKeyResponseInner withProperties(NginxDeploymentApiKeyResponseProperties properties) {
         this.properties = properties;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -140,6 +155,8 @@ public final class NginxDeploymentApiKeyResponseInner extends ProxyResource {
                 } else if ("properties".equals(fieldName)) {
                     deserializedNginxDeploymentApiKeyResponseInner.properties
                         = NginxDeploymentApiKeyResponseProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedNginxDeploymentApiKeyResponseInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

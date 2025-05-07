@@ -12,17 +12,17 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The NginxNetworkProfile model.
+ * Nginx Network Profile.
  */
 @Fluent
 public final class NginxNetworkProfile implements JsonSerializable<NginxNetworkProfile> {
     /*
-     * The frontEndIPConfiguration property.
+     * Nginx Frontend IP Configuration
      */
     private NginxFrontendIpConfiguration frontEndIpConfiguration;
 
     /*
-     * The networkInterfaceConfiguration property.
+     * Nginx Network Interface Configuration
      */
     private NginxNetworkInterfaceConfiguration networkInterfaceConfiguration;
 
@@ -33,7 +33,7 @@ public final class NginxNetworkProfile implements JsonSerializable<NginxNetworkP
     }
 
     /**
-     * Get the frontEndIpConfiguration property: The frontEndIPConfiguration property.
+     * Get the frontEndIpConfiguration property: Nginx Frontend IP Configuration.
      * 
      * @return the frontEndIpConfiguration value.
      */
@@ -42,7 +42,7 @@ public final class NginxNetworkProfile implements JsonSerializable<NginxNetworkP
     }
 
     /**
-     * Set the frontEndIpConfiguration property: The frontEndIPConfiguration property.
+     * Set the frontEndIpConfiguration property: Nginx Frontend IP Configuration.
      * 
      * @param frontEndIpConfiguration the frontEndIpConfiguration value to set.
      * @return the NginxNetworkProfile object itself.
@@ -53,7 +53,7 @@ public final class NginxNetworkProfile implements JsonSerializable<NginxNetworkP
     }
 
     /**
-     * Get the networkInterfaceConfiguration property: The networkInterfaceConfiguration property.
+     * Get the networkInterfaceConfiguration property: Nginx Network Interface Configuration.
      * 
      * @return the networkInterfaceConfiguration value.
      */
@@ -62,7 +62,7 @@ public final class NginxNetworkProfile implements JsonSerializable<NginxNetworkP
     }
 
     /**
-     * Set the networkInterfaceConfiguration property: The networkInterfaceConfiguration property.
+     * Set the networkInterfaceConfiguration property: Nginx Network Interface Configuration.
      * 
      * @param networkInterfaceConfiguration the networkInterfaceConfiguration value to set.
      * @return the NginxNetworkProfile object itself.

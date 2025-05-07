@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The NginxNetworkInterfaceConfiguration model.
+ * Nginx Network Interface Configuration.
  */
 @Fluent
 public final class NginxNetworkInterfaceConfiguration implements JsonSerializable<NginxNetworkInterfaceConfiguration> {

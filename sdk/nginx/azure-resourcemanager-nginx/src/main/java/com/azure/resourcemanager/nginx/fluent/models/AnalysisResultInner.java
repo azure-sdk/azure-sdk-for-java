@@ -10,8 +10,10 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.nginx.models.AnalysisResultData;
+import com.azure.resourcemanager.nginx.models.AnalysisDiagnostic;
+import com.azure.resourcemanager.nginx.models.DiagnosticItem;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * The response body for an analysis request. Contains the status of the analysis and any errors.
@@ -26,7 +28,7 @@ public final class AnalysisResultInner implements JsonSerializable<AnalysisResul
     /*
      * The data property.
      */
-    private AnalysisResultData data;
+    private AnalysisResultData innerData;
 
     /**
      * Creates an instance of AnalysisResultInner class.
@@ -55,22 +57,57 @@ public final class AnalysisResultInner implements JsonSerializable<AnalysisResul
     }
 
     /**
-     * Get the data property: The data property.
+     * Get the innerData property: The data property.
      * 
-     * @return the data value.
+     * @return the innerData value.
      */
-    public AnalysisResultData data() {
-        return this.data;
+    private AnalysisResultData innerData() {
+        return this.innerData;
     }
 
     /**
-     * Set the data property: The data property.
+     * Get the errors property: The errors property.
      * 
-     * @param data the data value to set.
+     * @return the errors value.
+     */
+    public List<AnalysisDiagnostic> errors() {
+        return this.innerData() == null ? null : this.innerData().errors();
+    }
+
+    /**
+     * Set the errors property: The errors property.
+     * 
+     * @param errors the errors value to set.
      * @return the AnalysisResultInner object itself.
      */
-    public AnalysisResultInner withData(AnalysisResultData data) {
-        this.data = data;
+    public AnalysisResultInner withErrors(List<AnalysisDiagnostic> errors) {
+        if (this.innerData() == null) {
+            this.innerData = new AnalysisResultData();
+        }
+        this.innerData().withErrors(errors);
+        return this;
+    }
+
+    /**
+     * Get the diagnostics property: The diagnostics property.
+     * 
+     * @return the diagnostics value.
+     */
+    public List<DiagnosticItem> diagnostics() {
+        return this.innerData() == null ? null : this.innerData().diagnostics();
+    }
+
+    /**
+     * Set the diagnostics property: The diagnostics property.
+     * 
+     * @param diagnostics the diagnostics value to set.
+     * @return the AnalysisResultInner object itself.
+     */
+    public AnalysisResultInner withDiagnostics(List<DiagnosticItem> diagnostics) {
+        if (this.innerData() == null) {
+            this.innerData = new AnalysisResultData();
+        }
+        this.innerData().withDiagnostics(diagnostics);
         return this;
     }
 
@@ -84,8 +121,8 @@ public final class AnalysisResultInner implements JsonSerializable<AnalysisResul
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property status in model AnalysisResultInner"));
         }
-        if (data() != null) {
-            data().validate();
+        if (innerData() != null) {
+            innerData().validate();
         }
     }
 
@@ -98,7 +135,7 @@ public final class AnalysisResultInner implements JsonSerializable<AnalysisResul
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("status", this.status);
-        jsonWriter.writeJsonField("data", this.data);
+        jsonWriter.writeJsonField("data", this.innerData);
         return jsonWriter.writeEndObject();
     }
 
@@ -121,7 +158,7 @@ public final class AnalysisResultInner implements JsonSerializable<AnalysisResul
                 if ("status".equals(fieldName)) {
                     deserializedAnalysisResultInner.status = reader.getString();
                 } else if ("data".equals(fieldName)) {
-                    deserializedAnalysisResultInner.data = AnalysisResultData.fromJson(reader);
+                    deserializedAnalysisResultInner.innerData = AnalysisResultData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

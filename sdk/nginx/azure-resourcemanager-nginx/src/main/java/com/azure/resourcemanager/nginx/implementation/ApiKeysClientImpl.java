@@ -126,7 +126,7 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return nginx Deployment Api Key Response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NginxDeploymentApiKeyResponseInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
@@ -170,7 +170,7 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return nginx Deployment Api Key Response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NginxDeploymentApiKeyResponseInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
@@ -211,7 +211,7 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return nginx Deployment Api Key Response on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NginxDeploymentApiKeyResponseInner> createOrUpdateAsync(String resourceGroupName,
@@ -232,7 +232,7 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return nginx Deployment Api Key Response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<NginxDeploymentApiKeyResponseInner> createOrUpdateWithResponse(String resourceGroupName,
@@ -249,7 +249,7 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return nginx Deployment Api Key Response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public NginxDeploymentApiKeyResponseInner createOrUpdate(String resourceGroupName, String deploymentName,
@@ -525,7 +525,8 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return nginx Deployment Api Key List Response along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NginxDeploymentApiKeyResponseInner>> listSinglePageAsync(String resourceGroupName,
@@ -563,7 +564,8 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return nginx Deployment Api Key List Response along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NginxDeploymentApiKeyResponseInner>> listSinglePageAsync(String resourceGroupName,
@@ -600,7 +602,7 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return nginx Deployment Api Key List Response as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<NginxDeploymentApiKeyResponseInner> listAsync(String resourceGroupName, String deploymentName) {
@@ -617,7 +619,7 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return nginx Deployment Api Key List Response as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<NginxDeploymentApiKeyResponseInner> listAsync(String resourceGroupName, String deploymentName,
@@ -634,7 +636,7 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return nginx Deployment Api Key List Response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<NginxDeploymentApiKeyResponseInner> list(String resourceGroupName, String deploymentName) {
@@ -650,7 +652,7 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return nginx Deployment Api Key List Response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<NginxDeploymentApiKeyResponseInner> list(String resourceGroupName, String deploymentName,
@@ -665,7 +667,8 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return nginx Deployment Api Key List Response along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NginxDeploymentApiKeyResponseInner>> listNextSinglePageAsync(String nextLink) {
@@ -691,7 +694,8 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return nginx Deployment Api Key List Response along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NginxDeploymentApiKeyResponseInner>> listNextSinglePageAsync(String nextLink,
