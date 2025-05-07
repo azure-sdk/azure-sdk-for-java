@@ -79,6 +79,8 @@ migrate/Microsoft.Migrate/AssessmentProjects:
   suffix: assessment
 monitor:
   suffix: generated
+monitor/Microsoft.Monitor/PipelineGroups:
+  service: monitorpipelinegroups
 msi:
   suffix: generated
 mysql:
