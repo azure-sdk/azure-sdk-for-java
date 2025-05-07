@@ -2,13 +2,107 @@
 
 ## 1.1.0-beta.1 (Unreleased)
 
-### Features Added
-
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.LateralityDiscrepancyInference` was modified
 
-### Other Changes
+* `getExtension()` was removed
+
+#### `models.LimitedOrderDiscrepancyInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.GenericProcedureRecommendation` was modified
+
+* `getExtension()` was removed
+
+#### `models.CompleteOrderDiscrepancyInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.FhirR4ResearchStudy` was modified
+
+* `getModifierExtension()` was removed
+* `getText()` was removed
+* `getExtension()` was removed
+* `getContained()` was removed
+
+#### `models.FollowupCommunicationInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.ImagingProcedureRecommendation` was modified
+
+* `getExtension()` was removed
+
+#### `models.SexMismatchInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.FhirR4Observation` was modified
+
+* `getExtension()` was removed
+* `getContained()` was removed
+* `getModifierExtension()` was removed
+* `getText()` was removed
+
+#### `models.AgeMismatchInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.CriticalResultInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.FhirR4Condition` was modified
+
+* `getExtension()` was removed
+* `getContained()` was removed
+* `getText()` was removed
+* `getModifierExtension()` was removed
+
+#### `models.RadiologyProcedureInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.FindingInference` was modified
+
+* `getExtension()` was removed
+
+#### `models.FollowupRecommendationInference` was modified
+
+* `getExtension()` was removed
+
+### Features Added
+
+* `models.ScoringAndAssessmentInference` was added
+
+* `models.PresentGuidanceInformation` was added
+
+* `models.QualityMeasureOptions` was added
+
+* `models.GuidanceOptions` was added
+
+* `models.QualityMeasureType` was added
+
+* `models.QualityMeasureComplianceType` was added
+
+* `models.QualityMeasureInference` was added
+
+* `models.ScoringAndAssessmentCategoryType` was added
+
+* `models.GuidanceInference` was added
+
+* `models.GuidanceRankingType` was added
+
+* `models.AssessmentValueRange` was added
+
+#### `models.RadiologyInsightsInferenceOptions` was modified
+
+* `setQualityMeasureOptions(models.QualityMeasureOptions)` was added
+* `setGuidanceOptions(models.GuidanceOptions)` was added
+* `getQualityMeasureOptions()` was added
+* `getGuidanceOptions()` was added
 
 ## 1.0.0 (2024-10-09)
 
