@@ -20,39 +20,19 @@ import java.util.List;
 public final class BatchEndpointTrackedResourceArmPaginatedResult
     implements JsonSerializable<BatchEndpointTrackedResourceArmPaginatedResult> {
     /*
-     * An array of objects of type BatchEndpoint.
-     */
-    private List<BatchEndpointInner> value;
-
-    /*
      * The link to the next page of BatchEndpoint objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type BatchEndpoint.
+     */
+    private List<BatchEndpointInner> value;
 
     /**
      * Creates an instance of BatchEndpointTrackedResourceArmPaginatedResult class.
      */
     public BatchEndpointTrackedResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type BatchEndpoint.
-     * 
-     * @return the value value.
-     */
-    public List<BatchEndpointInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type BatchEndpoint.
-     * 
-     * @param value the value value to set.
-     * @return the BatchEndpointTrackedResourceArmPaginatedResult object itself.
-     */
-    public BatchEndpointTrackedResourceArmPaginatedResult withValue(List<BatchEndpointInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -78,6 +58,26 @@ public final class BatchEndpointTrackedResourceArmPaginatedResult
     }
 
     /**
+     * Get the value property: An array of objects of type BatchEndpoint.
+     * 
+     * @return the value value.
+     */
+    public List<BatchEndpointInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type BatchEndpoint.
+     * 
+     * @param value the value value to set.
+     * @return the BatchEndpointTrackedResourceArmPaginatedResult object itself.
+     */
+    public BatchEndpointTrackedResourceArmPaginatedResult withValue(List<BatchEndpointInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -94,8 +94,8 @@ public final class BatchEndpointTrackedResourceArmPaginatedResult
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -115,11 +115,11 @@ public final class BatchEndpointTrackedResourceArmPaginatedResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedBatchEndpointTrackedResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<BatchEndpointInner> value = reader.readArray(reader1 -> BatchEndpointInner.fromJson(reader1));
                     deserializedBatchEndpointTrackedResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedBatchEndpointTrackedResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

@@ -502,8 +502,8 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
      * {@inheritDoc}
      */
     @Override
-    public ImageModelDistributionSettingsObjectDetection withEvaluationFrequency(String evaluationFrequency) {
-        super.withEvaluationFrequency(evaluationFrequency);
+    public ImageModelDistributionSettingsObjectDetection withEnableOnnxNormalization(String enableOnnxNormalization) {
+        super.withEnableOnnxNormalization(enableOnnxNormalization);
         return this;
     }
 
@@ -511,8 +511,8 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
      * {@inheritDoc}
      */
     @Override
-    public ImageModelDistributionSettingsObjectDetection withEnableOnnxNormalization(String enableOnnxNormalization) {
-        super.withEnableOnnxNormalization(enableOnnxNormalization);
+    public ImageModelDistributionSettingsObjectDetection withEvaluationFrequency(String evaluationFrequency) {
+        super.withEvaluationFrequency(evaluationFrequency);
         return this;
     }
 
@@ -686,7 +686,6 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -703,8 +702,8 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
         jsonWriter.writeStringField("earlyStopping", earlyStopping());
         jsonWriter.writeStringField("earlyStoppingDelay", earlyStoppingDelay());
         jsonWriter.writeStringField("earlyStoppingPatience", earlyStoppingPatience());
-        jsonWriter.writeStringField("evaluationFrequency", evaluationFrequency());
         jsonWriter.writeStringField("enableOnnxNormalization", enableOnnxNormalization());
+        jsonWriter.writeStringField("evaluationFrequency", evaluationFrequency());
         jsonWriter.writeStringField("gradientAccumulationStep", gradientAccumulationStep());
         jsonWriter.writeStringField("layersToFreeze", layersToFreeze());
         jsonWriter.writeStringField("learningRate", learningRate());
@@ -773,12 +772,12 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
                 } else if ("earlyStoppingPatience".equals(fieldName)) {
                     deserializedImageModelDistributionSettingsObjectDetection
                         .withEarlyStoppingPatience(reader.getString());
-                } else if ("evaluationFrequency".equals(fieldName)) {
-                    deserializedImageModelDistributionSettingsObjectDetection
-                        .withEvaluationFrequency(reader.getString());
                 } else if ("enableOnnxNormalization".equals(fieldName)) {
                     deserializedImageModelDistributionSettingsObjectDetection
                         .withEnableOnnxNormalization(reader.getString());
+                } else if ("evaluationFrequency".equals(fieldName)) {
+                    deserializedImageModelDistributionSettingsObjectDetection
+                        .withEvaluationFrequency(reader.getString());
                 } else if ("gradientAccumulationStep".equals(fieldName)) {
                     deserializedImageModelDistributionSettingsObjectDetection
                         .withGradientAccumulationStep(reader.getString());

@@ -52,7 +52,6 @@ public final class AzureDevOpsWebhook extends Webhook {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

@@ -10,8 +10,8 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class FeaturestoreEntityVersionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/FeaturestoreEntityVersion/get.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/Workspace/FeaturestoreEntityVersion/get.json
      */
     /**
      * Sample code: Get Workspace Featurestore Entity Version.

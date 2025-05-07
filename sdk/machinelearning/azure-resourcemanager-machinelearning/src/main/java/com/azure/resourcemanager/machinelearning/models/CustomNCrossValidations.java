@@ -68,7 +68,6 @@ public final class CustomNCrossValidations extends NCrossValidations {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
