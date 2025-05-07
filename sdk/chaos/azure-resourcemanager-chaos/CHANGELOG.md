@@ -1,14 +1,154 @@
 # Release History
 
-## 1.3.0-beta.1 (Unreleased)
+## 1.3.0-beta.1 (2025-05-07)
 
-### Features Added
+- Azure Resource Manager Chaos client library for Java. This package contains Microsoft Azure SDK for Chaos Management SDK. Chaos Management Client. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.TargetListResult` was removed
 
-### Other Changes
+#### `models.ResourceIdentity` was removed
+
+#### `models.OperationListResult` was removed
+
+#### `models.CapabilityTypeListResult` was removed
+
+#### `models.ExperimentListResult` was removed
+
+#### `models.ExperimentExecutionListResult` was removed
+
+#### `models.ResourceIdentityType` was removed
+
+#### `models.OperationStatus` was removed
+
+#### `models.TargetTypeListResult` was removed
+
+#### `models.CapabilityListResult` was removed
+
+#### `models.TargetType` was modified
+
+* `location()` was removed
+
+#### `models.UserAssignedIdentity` was modified
+
+* `java.util.UUID principalId()` -> `java.lang.String principalId()`
+* `java.util.UUID clientId()` -> `java.lang.String clientId()`
+
+#### `models.DelayAction` was modified
+
+* `java.lang.String type()` -> `models.ExperimentActionType type()`
+
+#### `models.ContinuousAction` was modified
+
+* `java.lang.String type()` -> `models.ExperimentActionType type()`
+
+#### `models.Experiments` was modified
+
+* `executionDetails(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getExecution(java.lang.String,java.lang.String,java.lang.String)` was removed
+* `getExecutionWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listAllExecutions(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `executionDetailsWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `listAllExecutions(java.lang.String,java.lang.String)` was removed
+
+#### `models.CapabilityType` was modified
+
+* `location()` was removed
+
+#### `models.Operations` was modified
+
+* `listAll()` was removed
+* `listAll(com.azure.core.util.Context)` was removed
+
+#### `models.Experiment$Definition` was modified
+
+* `withIdentity(models.ResourceIdentity)` was removed
+
+#### `models.ChaosExperimentAction` was modified
+
+* `java.lang.String type()` -> `models.ExperimentActionType type()`
+
+#### `models.Experiment` was modified
+
+* `models.ResourceIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+
+#### `models.DiscreteAction` was modified
+
+* `java.lang.String type()` -> `models.ExperimentActionType type()`
+
+#### `models.ChaosTargetSelector` was modified
+
+* `withAdditionalProperties(java.util.Map)` was removed
+* `additionalProperties()` was removed
+
+#### `models.ExperimentUpdate` was modified
+
+* `withIdentity(models.ResourceIdentity)` was removed
+* `models.ResourceIdentity identity()` -> `models.ManagedServiceIdentity identity()`
+
+#### `models.Experiment$Update` was modified
+
+* `withIdentity(models.ResourceIdentity)` was removed
+
+#### `models.OperationStatuses` was modified
+
+* `models.OperationStatus get(java.lang.String,java.lang.String)` -> `models.OperationStatusResult get(java.lang.String,java.lang.String)`
+
+### Features Added
+
+* `implementation.models.TargetTypeListResult` was added
+
+* `models.ExperimentActionType` was added
+
+* `models.ExperimentExecutions` was added
+
+* `implementation.models.TargetListResult` was added
+
+* `models.ManagedServiceIdentityType` was added
+
+* `implementation.models.ExperimentListResult` was added
+
+* `implementation.models.OperationListResult` was added
+
+* `implementation.models.CapabilityTypeListResult` was added
+
+* `models.OperationStatusResult` was added
+
+* `implementation.models.CapabilityListResult` was added
+
+* `models.ManagedServiceIdentity` was added
+
+* `implementation.models.ExperimentExecutionListResult` was added
+
+#### `models.CapabilityType` was modified
+
+* `requiredAzureRoleDefinitionIds()` was added
+
+#### `models.ExperimentExecution` was modified
+
+* `systemData()` was added
+
+#### `models.Operations` was modified
+
+* `list()` was added
+* `list(com.azure.core.util.Context)` was added
+
+#### `models.Experiment$Definition` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+
+#### `ChaosManager` was modified
+
+* `experimentExecutions()` was added
+
+#### `models.ExperimentUpdate` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+
+#### `models.Experiment$Update` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
 
 ## 1.2.0 (2024-12-19)
 
