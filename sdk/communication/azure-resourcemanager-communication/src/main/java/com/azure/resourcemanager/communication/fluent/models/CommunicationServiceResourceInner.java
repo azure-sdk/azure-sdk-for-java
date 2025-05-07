@@ -236,6 +236,29 @@ public final class CommunicationServiceResourceInner extends Resource {
     }
 
     /**
+     * Get the disableLocalAuth property: Disable local authentication for the CommunicationService.
+     * 
+     * @return the disableLocalAuth value.
+     */
+    public Boolean disableLocalAuth() {
+        return this.innerProperties() == null ? null : this.innerProperties().disableLocalAuth();
+    }
+
+    /**
+     * Set the disableLocalAuth property: Disable local authentication for the CommunicationService.
+     * 
+     * @param disableLocalAuth the disableLocalAuth value to set.
+     * @return the CommunicationServiceResourceInner object itself.
+     */
+    public CommunicationServiceResourceInner withDisableLocalAuth(Boolean disableLocalAuth) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CommunicationServiceProperties();
+        }
+        this.innerProperties().withDisableLocalAuth(disableLocalAuth);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.

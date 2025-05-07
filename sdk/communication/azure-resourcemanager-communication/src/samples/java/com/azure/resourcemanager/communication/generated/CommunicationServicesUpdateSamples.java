@@ -17,7 +17,7 @@ import java.util.Map;
 public final class CommunicationServicesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/communication/resource-manager/Microsoft.Communication/stable/2023-04-01/examples/
+     * specification/communication/resource-manager/Microsoft.Communication/stable/2025-06-01/examples/
      * communicationServices/update.json
      */
     /**
@@ -35,7 +35,7 @@ public final class CommunicationServicesUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/communication/resource-manager/Microsoft.Communication/stable/2023-04-01/examples/
+     * specification/communication/resource-manager/Microsoft.Communication/stable/2025-06-01/examples/
      * communicationServices/updateWithUserAssignedIdentity.json
      */
     /**
@@ -58,7 +58,7 @@ public final class CommunicationServicesUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/communication/resource-manager/Microsoft.Communication/stable/2023-04-01/examples/
+     * specification/communication/resource-manager/Microsoft.Communication/stable/2025-06-01/examples/
      * communicationServices/updateWithSystemAssignedIdentity.json
      */
     /**
@@ -80,7 +80,7 @@ public final class CommunicationServicesUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/communication/resource-manager/Microsoft.Communication/stable/2023-04-01/examples/
+     * specification/communication/resource-manager/Microsoft.Communication/stable/2025-06-01/examples/
      * communicationServices/updateRemoveSystemIdentity.json
      */
     /**
@@ -102,7 +102,7 @@ public final class CommunicationServicesUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/communication/resource-manager/Microsoft.Communication/stable/2023-04-01/examples/
+     * specification/communication/resource-manager/Microsoft.Communication/stable/2025-06-01/examples/
      * communicationServices/updateWithSystemAndUserIdentity.json
      */
     /**

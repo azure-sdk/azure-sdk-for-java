@@ -93,6 +93,10 @@ public final class CommunicationServiceResourceImpl implements CommunicationServ
         }
     }
 
+    public Boolean disableLocalAuth() {
+        return this.innerModel().disableLocalAuth();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -265,6 +269,11 @@ public final class CommunicationServiceResourceImpl implements CommunicationServ
             this.updateParameters.withLinkedDomains(linkedDomains);
             return this;
         }
+    }
+
+    public CommunicationServiceResourceImpl withDisableLocalAuth(Boolean disableLocalAuth) {
+        this.innerModel().withDisableLocalAuth(disableLocalAuth);
+        return this;
     }
 
     private boolean isInCreateMode() {
