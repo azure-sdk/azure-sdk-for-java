@@ -541,16 +541,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -594,16 +585,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -644,16 +626,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -694,16 +667,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -744,16 +708,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -799,16 +754,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -852,16 +798,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -905,16 +842,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -958,16 +886,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1011,16 +930,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1063,16 +973,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1094,16 +995,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1149,16 +1041,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1180,16 +1063,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1234,16 +1108,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1265,16 +1130,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1325,16 +1181,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1356,16 +1203,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1416,16 +1254,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1447,16 +1276,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1508,16 +1328,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1539,16 +1350,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1596,18 +1398,11 @@ public final class DeploymentEnvironmentsClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties (Optional): {
+     *         String: Object (Required)
+     *     }
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1648,18 +1443,11 @@ public final class DeploymentEnvironmentsClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties (Optional): {
+     *         String: Object (Required)
+     *     }
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1698,18 +1486,11 @@ public final class DeploymentEnvironmentsClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties (Optional): {
+     *         String: Object (Required)
+     *     }
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1754,18 +1535,11 @@ public final class DeploymentEnvironmentsClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties (Optional): {
+     *         String: Object (Required)
+     *     }
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1810,18 +1584,11 @@ public final class DeploymentEnvironmentsClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties (Optional): {
+     *         String: Object (Required)
+     *     }
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -1866,18 +1633,11 @@ public final class DeploymentEnvironmentsClientImpl {
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
      *     percentComplete: Double (Optional)
-     *     properties: Object (Optional)
+     *     properties (Optional): {
+     *         String: Object (Required)
+     *     }
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -2732,16 +2492,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -2784,16 +2535,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -2835,16 +2577,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
@@ -2888,16 +2621,7 @@ public final class DeploymentEnvironmentsClientImpl {
      *     catalogName: String (Required)
      *     environmentDefinitionName: String (Required)
      *     error (Optional): {
-     *         code: String (Required)
-     *         message: String (Required)
-     *         target: String (Optional)
-     *         details (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *         innererror (Optional): {
-     *             code: String (Optional)
-     *             innererror (Optional): (recursive schema, see innererror above)
-     *         }
+     *         error (Required): (recursive schema, see error above)
      *     }
      * }
      * }
