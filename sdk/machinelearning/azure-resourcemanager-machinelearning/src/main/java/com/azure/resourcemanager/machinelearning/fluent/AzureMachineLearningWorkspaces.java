@@ -47,20 +47,6 @@ public interface AzureMachineLearningWorkspaces {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
-
-    /**
-     * Gets the WorkspacesClient object to access its operations.
-     * 
-     * @return the WorkspacesClient object.
-     */
-    WorkspacesClient getWorkspaces();
-
-    /**
      * Gets the UsagesClient object to access its operations.
      * 
      * @return the UsagesClient object.
@@ -89,39 +75,11 @@ public interface AzureMachineLearningWorkspaces {
     ComputesClient getComputes();
 
     /**
-     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     * Gets the PtuQuotasClient object to access its operations.
      * 
-     * @return the PrivateEndpointConnectionsClient object.
+     * @return the PtuQuotasClient object.
      */
-    PrivateEndpointConnectionsClient getPrivateEndpointConnections();
-
-    /**
-     * Gets the PrivateLinkResourcesClient object to access its operations.
-     * 
-     * @return the PrivateLinkResourcesClient object.
-     */
-    PrivateLinkResourcesClient getPrivateLinkResources();
-
-    /**
-     * Gets the WorkspaceConnectionsClient object to access its operations.
-     * 
-     * @return the WorkspaceConnectionsClient object.
-     */
-    WorkspaceConnectionsClient getWorkspaceConnections();
-
-    /**
-     * Gets the ManagedNetworkSettingsRulesClient object to access its operations.
-     * 
-     * @return the ManagedNetworkSettingsRulesClient object.
-     */
-    ManagedNetworkSettingsRulesClient getManagedNetworkSettingsRules();
-
-    /**
-     * Gets the ManagedNetworkProvisionsClient object to access its operations.
-     * 
-     * @return the ManagedNetworkProvisionsClient object.
-     */
-    ManagedNetworkProvisionsClient getManagedNetworkProvisions();
+    PtuQuotasClient getPtuQuotas();
 
     /**
      * Gets the RegistryCodeContainersClient object to access its operations.
@@ -213,6 +171,13 @@ public interface AzureMachineLearningWorkspaces {
      * @return the BatchDeploymentsClient object.
      */
     BatchDeploymentsClient getBatchDeployments();
+
+    /**
+     * Gets the CapabilityHostsClient object to access its operations.
+     * 
+     * @return the CapabilityHostsClient object.
+     */
+    CapabilityHostsClient getCapabilityHosts();
 
     /**
      * Gets the CodeContainersClient object to access its operations.
@@ -313,6 +278,27 @@ public interface AzureMachineLearningWorkspaces {
     FeaturestoreEntityVersionsClient getFeaturestoreEntityVersions();
 
     /**
+     * Gets the InferencePoolsClient object to access its operations.
+     * 
+     * @return the InferencePoolsClient object.
+     */
+    InferencePoolsClient getInferencePools();
+
+    /**
+     * Gets the InferenceEndpointsClient object to access its operations.
+     * 
+     * @return the InferenceEndpointsClient object.
+     */
+    InferenceEndpointsClient getInferenceEndpoints();
+
+    /**
+     * Gets the InferenceGroupsClient object to access its operations.
+     * 
+     * @return the InferenceGroupsClient object.
+     */
+    InferenceGroupsClient getInferenceGroups();
+
+    /**
      * Gets the JobsClient object to access its operations.
      * 
      * @return the JobsClient object.
@@ -381,4 +367,151 @@ public interface AzureMachineLearningWorkspaces {
      * @return the WorkspaceFeaturesClient object.
      */
     WorkspaceFeaturesClient getWorkspaceFeatures();
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
+
+    /**
+     * Gets the WorkspacesClient object to access its operations.
+     * 
+     * @return the WorkspacesClient object.
+     */
+    WorkspacesClient getWorkspaces();
+
+    /**
+     * Gets the WorkspaceConnectionsClient object to access its operations.
+     * 
+     * @return the WorkspaceConnectionsClient object.
+     */
+    WorkspaceConnectionsClient getWorkspaceConnections();
+
+    /**
+     * Gets the ConnectionsClient object to access its operations.
+     * 
+     * @return the ConnectionsClient object.
+     */
+    ConnectionsClient getConnections();
+
+    /**
+     * Gets the ConnectionRaiBlocklistsClient object to access its operations.
+     * 
+     * @return the ConnectionRaiBlocklistsClient object.
+     */
+    ConnectionRaiBlocklistsClient getConnectionRaiBlocklists();
+
+    /**
+     * Gets the ConnectionRaiBlocklistOperationsClient object to access its operations.
+     * 
+     * @return the ConnectionRaiBlocklistOperationsClient object.
+     */
+    ConnectionRaiBlocklistOperationsClient getConnectionRaiBlocklistOperations();
+
+    /**
+     * Gets the ConnectionRaiBlocklistItemsClient object to access its operations.
+     * 
+     * @return the ConnectionRaiBlocklistItemsClient object.
+     */
+    ConnectionRaiBlocklistItemsClient getConnectionRaiBlocklistItems();
+
+    /**
+     * Gets the ConnectionRaiBlocklistItemsOperationsClient object to access its operations.
+     * 
+     * @return the ConnectionRaiBlocklistItemsOperationsClient object.
+     */
+    ConnectionRaiBlocklistItemsOperationsClient getConnectionRaiBlocklistItemsOperations();
+
+    /**
+     * Gets the ConnectionRaiPoliciesClient object to access its operations.
+     * 
+     * @return the ConnectionRaiPoliciesClient object.
+     */
+    ConnectionRaiPoliciesClient getConnectionRaiPolicies();
+
+    /**
+     * Gets the ConnectionRaiPolicyOperationsClient object to access its operations.
+     * 
+     * @return the ConnectionRaiPolicyOperationsClient object.
+     */
+    ConnectionRaiPolicyOperationsClient getConnectionRaiPolicyOperations();
+
+    /**
+     * Gets the EndpointDeploymentsClient object to access its operations.
+     * 
+     * @return the EndpointDeploymentsClient object.
+     */
+    EndpointDeploymentsClient getEndpointDeployments();
+
+    /**
+     * Gets the EndpointsClient object to access its operations.
+     * 
+     * @return the EndpointsClient object.
+     */
+    EndpointsClient getEndpoints();
+
+    /**
+     * Gets the RaiPoliciesClient object to access its operations.
+     * 
+     * @return the RaiPoliciesClient object.
+     */
+    RaiPoliciesClient getRaiPolicies();
+
+    /**
+     * Gets the RaiPolicyOperationsClient object to access its operations.
+     * 
+     * @return the RaiPolicyOperationsClient object.
+     */
+    RaiPolicyOperationsClient getRaiPolicyOperations();
+
+    /**
+     * Gets the ManagedNetworkSettingsRulesClient object to access its operations.
+     * 
+     * @return the ManagedNetworkSettingsRulesClient object.
+     */
+    ManagedNetworkSettingsRulesClient getManagedNetworkSettingsRules();
+
+    /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     * 
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    PrivateEndpointConnectionsClient getPrivateEndpointConnections();
+
+    /**
+     * Gets the PrivateLinkResourcesClient object to access its operations.
+     * 
+     * @return the PrivateLinkResourcesClient object.
+     */
+    PrivateLinkResourcesClient getPrivateLinkResources();
+
+    /**
+     * Gets the ManagedNetworkProvisionsClient object to access its operations.
+     * 
+     * @return the ManagedNetworkProvisionsClient object.
+     */
+    ManagedNetworkProvisionsClient getManagedNetworkProvisions();
+
+    /**
+     * Gets the OutboundRulesClient object to access its operations.
+     * 
+     * @return the OutboundRulesClient object.
+     */
+    OutboundRulesClient getOutboundRules();
+
+    /**
+     * Gets the OutboundRulesOperationsClient object to access its operations.
+     * 
+     * @return the OutboundRulesOperationsClient object.
+     */
+    OutboundRulesOperationsClient getOutboundRulesOperations();
+
+    /**
+     * Gets the ManagedNetworkSettingsOperationsClient object to access its operations.
+     * 
+     * @return the ManagedNetworkSettingsOperationsClient object.
+     */
+    ManagedNetworkSettingsOperationsClient getManagedNetworkSettingsOperations();
 }

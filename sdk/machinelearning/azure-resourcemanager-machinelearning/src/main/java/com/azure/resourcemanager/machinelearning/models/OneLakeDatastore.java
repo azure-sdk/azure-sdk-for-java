@@ -28,24 +28,19 @@ public final class OneLakeDatastore extends DatastoreProperties {
     private OneLakeArtifact artifact;
 
     /*
-     * [Required] OneLake workspace name.
-     */
-    private String oneLakeWorkspaceName;
-
-    /*
      * OneLake endpoint to use for the datastore.
      */
     private String endpoint;
 
     /*
+     * [Required] OneLake workspace name.
+     */
+    private String oneLakeWorkspaceName;
+
+    /*
      * Indicates which identity to use to authenticate service data access to customer's storage.
      */
     private ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity;
-
-    /*
-     * Readonly property to indicate if datastore is the workspace default datastore
-     */
-    private Boolean isDefault;
 
     /**
      * Creates an instance of OneLakeDatastore class.
@@ -84,26 +79,6 @@ public final class OneLakeDatastore extends DatastoreProperties {
     }
 
     /**
-     * Get the oneLakeWorkspaceName property: [Required] OneLake workspace name.
-     * 
-     * @return the oneLakeWorkspaceName value.
-     */
-    public String oneLakeWorkspaceName() {
-        return this.oneLakeWorkspaceName;
-    }
-
-    /**
-     * Set the oneLakeWorkspaceName property: [Required] OneLake workspace name.
-     * 
-     * @param oneLakeWorkspaceName the oneLakeWorkspaceName value to set.
-     * @return the OneLakeDatastore object itself.
-     */
-    public OneLakeDatastore withOneLakeWorkspaceName(String oneLakeWorkspaceName) {
-        this.oneLakeWorkspaceName = oneLakeWorkspaceName;
-        return this;
-    }
-
-    /**
      * Get the endpoint property: OneLake endpoint to use for the datastore.
      * 
      * @return the endpoint value.
@@ -120,6 +95,26 @@ public final class OneLakeDatastore extends DatastoreProperties {
      */
     public OneLakeDatastore withEndpoint(String endpoint) {
         this.endpoint = endpoint;
+        return this;
+    }
+
+    /**
+     * Get the oneLakeWorkspaceName property: [Required] OneLake workspace name.
+     * 
+     * @return the oneLakeWorkspaceName value.
+     */
+    public String oneLakeWorkspaceName() {
+        return this.oneLakeWorkspaceName;
+    }
+
+    /**
+     * Set the oneLakeWorkspaceName property: [Required] OneLake workspace name.
+     * 
+     * @param oneLakeWorkspaceName the oneLakeWorkspaceName value to set.
+     * @return the OneLakeDatastore object itself.
+     */
+    public OneLakeDatastore withOneLakeWorkspaceName(String oneLakeWorkspaceName) {
+        this.oneLakeWorkspaceName = oneLakeWorkspaceName;
         return this;
     }
 
@@ -147,16 +142,6 @@ public final class OneLakeDatastore extends DatastoreProperties {
     }
 
     /**
-     * Get the isDefault property: Readonly property to indicate if datastore is the workspace default datastore.
-     * 
-     * @return the isDefault value.
-     */
-    @Override
-    public Boolean isDefault() {
-        return this.isDefault;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -178,8 +163,8 @@ public final class OneLakeDatastore extends DatastoreProperties {
      * {@inheritDoc}
      */
     @Override
-    public OneLakeDatastore withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public OneLakeDatastore withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -187,8 +172,8 @@ public final class OneLakeDatastore extends DatastoreProperties {
      * {@inheritDoc}
      */
     @Override
-    public OneLakeDatastore withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
+    public OneLakeDatastore withTags(Map<String, String> tags) {
+        super.withTags(tags);
         return this;
     }
 
@@ -199,7 +184,6 @@ public final class OneLakeDatastore extends DatastoreProperties {
      */
     @Override
     public void validate() {
-        super.validate();
         if (artifact() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property artifact in model OneLakeDatastore"));
@@ -210,6 +194,12 @@ public final class OneLakeDatastore extends DatastoreProperties {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property oneLakeWorkspaceName in model OneLakeDatastore"));
+        }
+        if (credentials() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property credentials in model OneLakeDatastore"));
+        } else {
+            credentials().validate();
         }
     }
 
@@ -223,8 +213,8 @@ public final class OneLakeDatastore extends DatastoreProperties {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("credentials", credentials());
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("artifact", this.artifact);
         jsonWriter.writeStringField("oneLakeWorkspaceName", this.oneLakeWorkspaceName);
         jsonWriter.writeStringField("datastoreType", this.datastoreType == null ? null : this.datastoreType.toString());
@@ -254,14 +244,14 @@ public final class OneLakeDatastore extends DatastoreProperties {
                     deserializedOneLakeDatastore.withCredentials(DatastoreCredentials.fromJson(reader));
                 } else if ("description".equals(fieldName)) {
                     deserializedOneLakeDatastore.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedOneLakeDatastore.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedOneLakeDatastore.withProperties(properties);
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedOneLakeDatastore.withTags(tags);
                 } else if ("isDefault".equals(fieldName)) {
-                    deserializedOneLakeDatastore.isDefault = reader.getNullable(JsonReader::getBoolean);
+                    deserializedOneLakeDatastore.withIsDefault(reader.getNullable(JsonReader::getBoolean));
                 } else if ("artifact".equals(fieldName)) {
                     deserializedOneLakeDatastore.artifact = OneLakeArtifact.fromJson(reader);
                 } else if ("oneLakeWorkspaceName".equals(fieldName)) {

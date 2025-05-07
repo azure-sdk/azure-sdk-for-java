@@ -13,8 +13,8 @@ import com.azure.resourcemanager.machinelearning.models.RegenerateEndpointKeysRe
 public final class OnlineEndpointsRegenerateKeysSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/OnlineEndpoint/regenerateKeys.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/Workspace/OnlineEndpoint/regenerateKeys.json
      */
     /**
      * Sample code: RegenerateKeys Workspace Online Endpoint.
