@@ -25,6 +25,8 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.extendedlocation.fluent.CustomLocationsClient;
 import com.azure.resourcemanager.extendedlocation.fluent.CustomLocationsManagementClient;
+import com.azure.resourcemanager.extendedlocation.fluent.OperationsClient;
+import com.azure.resourcemanager.extendedlocation.fluent.ResourceSyncRulesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -124,6 +126,20 @@ public final class CustomLocationsManagementClientImpl implements CustomLocation
     }
 
     /**
+     * The OperationsClient object to access its operations.
+     */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
+    }
+
+    /**
      * The CustomLocationsClient object to access its operations.
      */
     private final CustomLocationsClient customLocations;
@@ -135,6 +151,20 @@ public final class CustomLocationsManagementClientImpl implements CustomLocation
      */
     public CustomLocationsClient getCustomLocations() {
         return this.customLocations;
+    }
+
+    /**
+     * The ResourceSyncRulesClient object to access its operations.
+     */
+    private final ResourceSyncRulesClient resourceSyncRules;
+
+    /**
+     * Gets the ResourceSyncRulesClient object to access its operations.
+     * 
+     * @return the ResourceSyncRulesClient object.
+     */
+    public ResourceSyncRulesClient getResourceSyncRules() {
+        return this.resourceSyncRules;
     }
 
     /**
@@ -154,8 +184,10 @@ public final class CustomLocationsManagementClientImpl implements CustomLocation
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-08-15";
+        this.apiVersion = "2021-08-31-preview";
+        this.operations = new OperationsClientImpl(this);
         this.customLocations = new CustomLocationsClientImpl(this);
+        this.resourceSyncRules = new ResourceSyncRulesClientImpl(this);
     }
 
     /**

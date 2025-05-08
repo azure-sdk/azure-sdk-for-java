@@ -5,21 +5,23 @@
 package com.azure.resourcemanager.extendedlocation.generated;
 
 /**
- * Samples for CustomLocations List.
+ * Samples for ResourceSyncRules Delete.
  */
-public final class CustomLocationsListSamples {
+public final class ResourceSyncRulesDeleteSamples {
     /*
      * x-ms-original-file:
      * specification/extendedlocation/resource-manager/Microsoft.ExtendedLocation/preview/2021-08-31-preview/examples/
-     * CustomLocationsListBySubscription.json
+     * ResourceSyncRulesDelete.json
      */
     /**
-     * Sample code: List Custom Locations by subscription.
+     * Sample code: Delete Resource Sync Rule.
      * 
      * @param manager Entry point to CustomLocationsManager.
      */
     public static void
-        listCustomLocationsBySubscription(com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
-        manager.customLocations().list(com.azure.core.util.Context.NONE);
+        deleteResourceSyncRule(com.azure.resourcemanager.extendedlocation.CustomLocationsManager manager) {
+        manager.resourceSyncRules()
+            .deleteWithResponse("testresourcegroup", "customLocation01", "resourceSyncRule01",
+                com.azure.core.util.Context.NONE);
     }
 }

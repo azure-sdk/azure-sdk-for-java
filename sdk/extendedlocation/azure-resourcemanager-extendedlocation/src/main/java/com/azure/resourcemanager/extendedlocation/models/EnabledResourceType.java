@@ -34,7 +34,7 @@ public interface EnabledResourceType {
     String type();
 
     /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */

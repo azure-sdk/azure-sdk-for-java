@@ -47,9 +47,23 @@ public interface CustomLocationsManagementClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
+
+    /**
      * Gets the CustomLocationsClient object to access its operations.
      * 
      * @return the CustomLocationsClient object.
      */
     CustomLocationsClient getCustomLocations();
+
+    /**
+     * Gets the ResourceSyncRulesClient object to access its operations.
+     * 
+     * @return the ResourceSyncRulesClient object.
+     */
+    ResourceSyncRulesClient getResourceSyncRules();
 }

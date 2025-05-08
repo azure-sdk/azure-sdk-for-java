@@ -11,37 +11,16 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
+import com.azure.resourcemanager.extendedlocation.fluent.models.CustomLocationFindTargetResourceGroupResultInner;
 import com.azure.resourcemanager.extendedlocation.fluent.models.CustomLocationInner;
-import com.azure.resourcemanager.extendedlocation.fluent.models.CustomLocationOperationInner;
 import com.azure.resourcemanager.extendedlocation.fluent.models.EnabledResourceTypeInner;
+import com.azure.resourcemanager.extendedlocation.models.CustomLocationFindTargetResourceGroupProperties;
 import com.azure.resourcemanager.extendedlocation.models.PatchableCustomLocations;
 
 /**
  * An instance of this class provides access to all the operations defined in CustomLocationsClient.
  */
 public interface CustomLocationsClient {
-    /**
-     * Lists all available Custom Locations operations.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists of Custom Locations operations as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<CustomLocationOperationInner> listOperations();
-
-    /**
-     * Lists all available Custom Locations operations.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists of Custom Locations operations as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<CustomLocationOperationInner> listOperations(Context context);
-
     /**
      * Gets a list of Custom Locations in a subscription.
      * 
@@ -207,6 +186,40 @@ public interface CustomLocationsClient {
         Context context);
 
     /**
+     * Updates a Custom Location.
+     * 
+     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters The updatable fields of an existing Custom Location.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return custom Locations definition along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<CustomLocationInner> updateWithResponse(String resourceGroupName, String resourceName,
+        PatchableCustomLocations parameters, Context context);
+
+    /**
+     * Updates a Custom Location.
+     * 
+     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters The updatable fields of an existing Custom Location.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return custom Locations definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    CustomLocationInner update(String resourceGroupName, String resourceName, PatchableCustomLocations parameters);
+
+    /**
      * Deletes a Custom Location.
      * 
      * Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
@@ -267,40 +280,6 @@ public interface CustomLocationsClient {
     void delete(String resourceGroupName, String resourceName, Context context);
 
     /**
-     * Updates a Custom Location.
-     * 
-     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Custom Locations name.
-     * @param parameters The updatable fields of an existing Custom Location.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom Locations definition along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<CustomLocationInner> updateWithResponse(String resourceGroupName, String resourceName,
-        PatchableCustomLocations parameters, Context context);
-
-    /**
-     * Updates a Custom Location.
-     * 
-     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Custom Locations name.
-     * @param parameters The updatable fields of an existing Custom Location.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom Locations definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    CustomLocationInner update(String resourceGroupName, String resourceName, PatchableCustomLocations parameters);
-
-    /**
      * Gets the list of Enabled Resource Types.
      * 
      * Gets the list of the Enabled Resource Types.
@@ -331,4 +310,42 @@ public interface CustomLocationsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<EnabledResourceTypeInner> listEnabledResourceTypes(String resourceGroupName, String resourceName,
         Context context);
+
+    /**
+     * Gets matching target resource group for resource sync.
+     * 
+     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
+     * rules passed in with the Find Target Resource Group Request.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters Parameters of the find target resource group request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Find Target Resource Group operation response along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<CustomLocationFindTargetResourceGroupResultInner> findTargetResourceGroupWithResponse(
+        String resourceGroupName, String resourceName, CustomLocationFindTargetResourceGroupProperties parameters,
+        Context context);
+
+    /**
+     * Gets matching target resource group for resource sync.
+     * 
+     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
+     * rules passed in with the Find Target Resource Group Request.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters Parameters of the find target resource group request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Find Target Resource Group operation response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    CustomLocationFindTargetResourceGroupResultInner findTargetResourceGroup(String resourceGroupName,
+        String resourceName, CustomLocationFindTargetResourceGroupProperties parameters);
 }
