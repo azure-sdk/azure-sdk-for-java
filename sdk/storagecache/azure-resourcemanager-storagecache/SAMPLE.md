@@ -20,6 +20,22 @@
 
 - [List](#ascusages_list)
 
+## AutoExportJobs
+
+- [CreateOrUpdate](#autoexportjobs_createorupdate)
+- [Delete](#autoexportjobs_delete)
+- [Get](#autoexportjobs_get)
+- [ListByAmlFilesystem](#autoexportjobs_listbyamlfilesystem)
+- [Update](#autoexportjobs_update)
+
+## AutoImportJobs
+
+- [CreateOrUpdate](#autoimportjobs_createorupdate)
+- [Delete](#autoimportjobs_delete)
+- [Get](#autoimportjobs_get)
+- [ListByAmlFilesystem](#autoimportjobs_listbyamlfilesystem)
+- [Update](#autoimportjobs_update)
+
 ## Caches
 
 - [CreateOrUpdate](#caches_createorupdate)
@@ -82,146 +98,13 @@
 ### AmlFilesystems_Archive
 
 ```java
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemArchiveInfo;
-
-/**
- * Samples for AmlFilesystems Archive.
- */
-public final class AmlFilesystemsArchiveSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * amlFilesystems_Archive.json
-     */
-    /**
-     * Sample code: amlFilesystems_Archive.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void amlFilesystemsArchive(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.amlFilesystems()
-            .archiveWithResponse("scgroup", "sc", new AmlFilesystemArchiveInfo().withFilesystemPath("/"),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AmlFilesystems_CancelArchive
-
-```java
-/**
- * Samples for AmlFilesystems CancelArchive.
- */
-public final class AmlFilesystemsCancelArchiveSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * amlFilesystems_CancelArchive.json
-     */
-    /**
-     * Sample code: amlFilesystems_cancelArchive.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void amlFilesystemsCancelArchive(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.amlFilesystems().cancelArchiveWithResponse("scgroup", "sc", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AmlFilesystems_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemEncryptionSettings;
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemHsmSettings;
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemIdentity;
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemIdentityType;
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesHsm;
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesMaintenanceWindow;
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemRootSquashSettings;
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemSquashMode;
-import com.azure.resourcemanager.storagecache.models.KeyVaultKeyReference;
-import com.azure.resourcemanager.storagecache.models.KeyVaultKeyReferenceSourceVault;
-import com.azure.resourcemanager.storagecache.models.MaintenanceDayOfWeekType;
-import com.azure.resourcemanager.storagecache.models.SkuName;
-import com.azure.resourcemanager.storagecache.models.UserAssignedIdentitiesValue;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for AmlFilesystems CreateOrUpdate.
- */
-public final class AmlFilesystemsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * amlFilesystems_CreateOrUpdate.json
-     */
-    /**
-     * Sample code: amlFilesystems_CreateOrUpdate.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void
-        amlFilesystemsCreateOrUpdate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.amlFilesystems()
-            .define("fs1")
-            .withRegion("eastus")
-            .withExistingResourceGroup("scgroup")
-            .withTags(mapOf("Dept", "ContosoAds"))
-            .withIdentity(new AmlFilesystemIdentity().withType(AmlFilesystemIdentityType.USER_ASSIGNED)
-                .withUserAssignedIdentities(mapOf(
-                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity1",
-                    new UserAssignedIdentitiesValue())))
-            .withSku(new SkuName().withName("AMLFS-Durable-Premium-250"))
-            .withZones(Arrays.asList("1"))
-            .withStorageCapacityTiB(16f)
-            .withFilesystemSubnet(
-                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Network/virtualNetworks/scvnet/subnets/fsSub")
-            .withEncryptionSettings(new AmlFilesystemEncryptionSettings()
-                .withKeyEncryptionKey(new KeyVaultKeyReference().withKeyUrl("fakeTokenPlaceholder")
-                    .withSourceVault(new KeyVaultKeyReferenceSourceVault().withId(
-                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.KeyVault/vaults/keyvault-cmk"))))
-            .withMaintenanceWindow(
-                new AmlFilesystemPropertiesMaintenanceWindow().withDayOfWeek(MaintenanceDayOfWeekType.FRIDAY)
-                    .withTimeOfDayUtc("22:00"))
-            .withHsm(new AmlFilesystemPropertiesHsm().withSettings(new AmlFilesystemHsmSettings().withContainer(
-                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Storage/storageAccounts/storageaccountname/blobServices/default/containers/containername")
-                .withLoggingContainer(
-                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Storage/storageAccounts/storageaccountname/blobServices/default/containers/loggingcontainername")
-                .withImportPrefixesInitial(Arrays.asList("/"))))
-            .withRootSquashSettings(new AmlFilesystemRootSquashSettings().withMode(AmlFilesystemSquashMode.ALL)
-                .withNoSquashNidLists("10.0.0.[5-6]@tcp;10.0.1.2@tcp")
-                .withSquashUid(99L)
-                .withSquashGid(99L))
-            .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### AmlFilesystems_Delete
-
-```java
 /**
  * Samples for AmlFilesystems Delete.
  */
 public final class AmlFilesystemsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
      * amlFilesystems_Delete.json
      */
     /**
@@ -235,25 +118,101 @@ public final class AmlFilesystemsDeleteSamples {
 }
 ```
 
-### AmlFilesystems_GetByResourceGroup
+### AmlFilesystems_CancelArchive
 
 ```java
 /**
- * Samples for AmlFilesystems GetByResourceGroup.
+ * Samples for AutoExportJobs Delete.
  */
-public final class AmlFilesystemsGetByResourceGroupSamples {
+public final class AutoExportJobsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/amlFilesystems_Get.
-     * json
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * autoExportJobs_Delete.json
      */
     /**
-     * Sample code: amlFilesystems_Get.
+     * Sample code: autoExportJobs_Delete.
      * 
      * @param manager Entry point to StorageCacheManager.
      */
-    public static void amlFilesystemsGet(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.amlFilesystems().getByResourceGroupWithResponse("scgroup", "fs1", com.azure.core.util.Context.NONE);
+    public static void autoExportJobsDelete(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.autoExportJobs().delete("scgroup", "fs1", "job1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AmlFilesystems_CreateOrUpdate
+
+```java
+/**
+ * Samples for AutoImportJobs ListByAmlFilesystem.
+ */
+public final class AutoImportJobsListByAmlFilesystemSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * autoImportJobs_ListByAmlFilesystem.json
+     */
+    /**
+     * Sample code: autoImportJobs_ListByAmlFilesystem.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void
+        autoImportJobsListByAmlFilesystem(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.autoImportJobs().listByAmlFilesystem("scgroup", "fs1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AmlFilesystems_Delete
+
+```java
+/**
+ * Samples for StorageTargetOperation Flush.
+ */
+public final class StorageTargetOperationFlushSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * StorageTargets_Flush.json
+     */
+    /**
+     * Sample code: StorageTargets_Flush.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void storageTargetsFlush(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.storageTargetOperations().flush("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AmlFilesystems_GetByResourceGroup
+
+```java
+import com.azure.resourcemanager.storagecache.models.AutoImportJob;
+import com.azure.resourcemanager.storagecache.models.AutoImportJobUpdatePropertiesAdminStatus;
+
+/**
+ * Samples for AutoImportJobs Update.
+ */
+public final class AutoImportJobsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * autoImportJobs_Update.json
+     */
+    /**
+     * Sample code: autoImportJobs_Update.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void autoImportJobsUpdate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        AutoImportJob resource = manager.autoImportJobs()
+            .getWithResponse("scgroup", "fs1", "autojob1", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withAdminStatus(AutoImportJobUpdatePropertiesAdminStatus.DISABLE).apply();
     }
 }
 ```
@@ -262,21 +221,21 @@ public final class AmlFilesystemsGetByResourceGroupSamples {
 
 ```java
 /**
- * Samples for AmlFilesystems List.
+ * Samples for AmlFilesystems CancelArchive.
  */
-public final class AmlFilesystemsListSamples {
+public final class AmlFilesystemsCancelArchiveSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/amlFilesystems_List
-     * .json
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * amlFilesystems_CancelArchive.json
      */
     /**
-     * Sample code: amlFilesystems_List.
+     * Sample code: amlFilesystems_cancelArchive.
      * 
      * @param manager Entry point to StorageCacheManager.
      */
-    public static void amlFilesystemsList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.amlFilesystems().list(com.azure.core.util.Context.NONE);
+    public static void amlFilesystemsCancelArchive(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.amlFilesystems().cancelArchiveWithResponse("scgroup", "sc", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -285,135 +244,26 @@ public final class AmlFilesystemsListSamples {
 
 ```java
 /**
- * Samples for AmlFilesystems ListByResourceGroup.
+ * Samples for StorageTargets DnsRefresh.
  */
-public final class AmlFilesystemsListByResourceGroupSamples {
+public final class StorageTargetsDnsRefreshSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * amlFilesystems_ListByResourceGroup.json
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * StorageTargets_DnsRefresh.json
      */
     /**
-     * Sample code: amlFilesystems_ListByResourceGroup.
+     * Sample code: Caches_DnsRefresh.
      * 
      * @param manager Entry point to StorageCacheManager.
      */
-    public static void
-        amlFilesystemsListByResourceGroup(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.amlFilesystems().listByResourceGroup("scgroup", com.azure.core.util.Context.NONE);
+    public static void cachesDnsRefresh(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.storageTargets().dnsRefresh("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### AmlFilesystems_Update
-
-```java
-import com.azure.resourcemanager.storagecache.models.AmlFilesystem;
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemEncryptionSettings;
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemRootSquashSettings;
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemSquashMode;
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemUpdatePropertiesMaintenanceWindow;
-import com.azure.resourcemanager.storagecache.models.KeyVaultKeyReference;
-import com.azure.resourcemanager.storagecache.models.KeyVaultKeyReferenceSourceVault;
-import com.azure.resourcemanager.storagecache.models.MaintenanceDayOfWeekType;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for AmlFilesystems Update.
- */
-public final class AmlFilesystemsUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * amlFilesystems_Update.json
-     */
-    /**
-     * Sample code: amlFilesystems_Update.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void amlFilesystemsUpdate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        AmlFilesystem resource = manager.amlFilesystems()
-            .getByResourceGroupWithResponse("scgroup", "fs1", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update()
-            .withTags(mapOf("Dept", "ContosoAds"))
-            .withEncryptionSettings(new AmlFilesystemEncryptionSettings()
-                .withKeyEncryptionKey(new KeyVaultKeyReference().withKeyUrl("fakeTokenPlaceholder")
-                    .withSourceVault(new KeyVaultKeyReferenceSourceVault().withId(
-                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.KeyVault/vaults/keyvault-cmk"))))
-            .withMaintenanceWindow(
-                new AmlFilesystemUpdatePropertiesMaintenanceWindow().withDayOfWeek(MaintenanceDayOfWeekType.FRIDAY)
-                    .withTimeOfDayUtc("22:00"))
-            .withRootSquashSettings(new AmlFilesystemRootSquashSettings().withMode(AmlFilesystemSquashMode.ALL)
-                .withNoSquashNidLists("10.0.0.[5-6]@tcp;10.0.1.2@tcp")
-                .withSquashUid(99L)
-                .withSquashGid(99L))
-            .apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### AscOperations_Get
-
-```java
-/**
- * Samples for AscOperations Get.
- */
-public final class AscOperationsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/AscOperations_Get.
-     * json
-     */
-    /**
-     * Sample code: AscOperations_Get.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void ascOperationsGet(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.ascOperations().getWithResponse("westus", "testoperationid", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AscUsages_List
-
-```java
-/**
- * Samples for AscUsages List.
- */
-public final class AscUsagesListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * AscResourceUsages_Get.json
-     */
-    /**
-     * Sample code: AscUsages_List.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void ascUsagesList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.ascUsages().list("eastus", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Caches_CreateOrUpdate
 
 ```java
 import com.azure.resourcemanager.storagecache.models.CacheActiveDirectorySettings;
@@ -446,7 +296,7 @@ import java.util.Map;
 public final class CachesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
      * Caches_CreateOrUpdate_ldap_only.json
      */
     /**
@@ -491,7 +341,7 @@ public final class CachesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
      * Caches_CreateOrUpdate.json
      */
     /**
@@ -558,168 +408,121 @@ public final class CachesCreateOrUpdateSamples {
 }
 ```
 
-### Caches_DebugInfo
+### AscOperations_Get
 
 ```java
 /**
- * Samples for Caches DebugInfo.
+ * Samples for Skus List.
  */
-public final class CachesDebugInfoSamples {
+public final class SkusListSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/Caches_DebugInfo.
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/Skus_List.json
+     */
+    /**
+     * Sample code: Skus_List.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void skusList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.skus().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AscUsages_List
+
+```java
+/**
+ * Samples for AutoImportJobs Get.
+ */
+public final class AutoImportJobsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/autoImportJobs_Get.
      * json
      */
     /**
-     * Sample code: Caches_DebugInfo.
+     * Sample code: autoImportJobs_Get.
      * 
      * @param manager Entry point to StorageCacheManager.
      */
-    public static void cachesDebugInfo(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().debugInfo("scgroup", "sc", com.azure.core.util.Context.NONE);
+    public static void autoImportJobsGet(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.autoImportJobs().getWithResponse("scgroup", "fs1", "autojob1", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Caches_Delete
+### AutoExportJobs_CreateOrUpdate
 
 ```java
 /**
- * Samples for Caches Delete.
+ * Samples for AscOperations Get.
  */
-public final class CachesDeleteSamples {
+public final class AscOperationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/Caches_Delete.json
-     */
-    /**
-     * Sample code: Caches_Delete.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void cachesDelete(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().delete("scgroup", "sc", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Caches_Flush
-
-```java
-/**
- * Samples for Caches Flush.
- */
-public final class CachesFlushSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/Caches_Flush.json
-     */
-    /**
-     * Sample code: Caches_Flush.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void cachesFlush(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().flush("scgroup", "sc", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Caches_GetByResourceGroup
-
-```java
-/**
- * Samples for Caches GetByResourceGroup.
- */
-public final class CachesGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/Caches_Get.json
-     */
-    /**
-     * Sample code: Caches_Get.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void cachesGet(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().getByResourceGroupWithResponse("scgroup", "sc1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Caches_List
-
-```java
-/**
- * Samples for Caches List.
- */
-public final class CachesListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/Caches_List.json
-     */
-    /**
-     * Sample code: Caches_List.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void cachesList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Caches_ListByResourceGroup
-
-```java
-/**
- * Samples for Caches ListByResourceGroup.
- */
-public final class CachesListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * Caches_ListByResourceGroup.json
-     */
-    /**
-     * Sample code: Caches_ListByResourceGroup.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void cachesListByResourceGroup(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().listByResourceGroup("scgroup", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Caches_PausePrimingJob
-
-```java
-import com.azure.resourcemanager.storagecache.models.PrimingJobIdParameter;
-
-/**
- * Samples for Caches PausePrimingJob.
- */
-public final class CachesPausePrimingJobSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/PausePrimingJob.
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/AscOperations_Get.
      * json
      */
     /**
-     * Sample code: PausePrimingJob.
+     * Sample code: AscOperations_Get.
      * 
      * @param manager Entry point to StorageCacheManager.
      */
-    public static void pausePrimingJob(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches()
-            .pausePrimingJob("scgroup", "sc1", new PrimingJobIdParameter().withPrimingJobId("00000000000_0000000000"),
-                com.azure.core.util.Context.NONE);
+    public static void ascOperationsGet(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.ascOperations().getWithResponse("westus", "testoperationid", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Caches_ResumePrimingJob
+### AutoExportJobs_Delete
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/Operations_List.
+     * json
+     */
+    /**
+     * Sample code: Operations_List.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void operationsList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AutoExportJobs_Get
+
+```java
+/**
+ * Samples for StorageTargetOperation Resume.
+ */
+public final class StorageTargetOperationResumeSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * StorageTargets_Resume.json
+     */
+    /**
+     * Sample code: StorageTargets_Resume.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void storageTargetsResume(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.storageTargetOperations().resume("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AutoExportJobs_ListByAmlFilesystem
 
 ```java
 import com.azure.resourcemanager.storagecache.models.PrimingJobIdParameter;
@@ -730,7 +533,7 @@ import com.azure.resourcemanager.storagecache.models.PrimingJobIdParameter;
 public final class CachesResumePrimingJobSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/ResumePrimingJob.
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/ResumePrimingJob.
      * json
      */
     /**
@@ -746,60 +549,7 @@ public final class CachesResumePrimingJobSamples {
 }
 ```
 
-### Caches_SpaceAllocation
-
-```java
-import com.azure.resourcemanager.storagecache.models.StorageTargetSpaceAllocation;
-import java.util.Arrays;
-
-/**
- * Samples for Caches SpaceAllocation.
- */
-public final class CachesSpaceAllocationSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * SpaceAllocation_Post.json
-     */
-    /**
-     * Sample code: SpaceAllocation_Post.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void spaceAllocationPost(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches()
-            .spaceAllocation("scgroup", "sc1",
-                Arrays.asList(new StorageTargetSpaceAllocation().withName("st1").withAllocationPercentage(25),
-                    new StorageTargetSpaceAllocation().withName("st2").withAllocationPercentage(50),
-                    new StorageTargetSpaceAllocation().withName("st3").withAllocationPercentage(25)),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Caches_Start
-
-```java
-/**
- * Samples for Caches Start.
- */
-public final class CachesStartSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/Caches_Start.json
-     */
-    /**
-     * Sample code: Caches_Start.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void cachesStart(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().start("scgroup", "sc", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Caches_StartPrimingJob
+### AutoExportJobs_Update
 
 ```java
 import com.azure.resourcemanager.storagecache.models.PrimingJob;
@@ -810,7 +560,7 @@ import com.azure.resourcemanager.storagecache.models.PrimingJob;
 public final class CachesStartPrimingJobSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/StartPrimingJob.
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/StartPrimingJob.
      * json
      */
     /**
@@ -828,29 +578,7 @@ public final class CachesStartPrimingJobSamples {
 }
 ```
 
-### Caches_Stop
-
-```java
-/**
- * Samples for Caches Stop.
- */
-public final class CachesStopSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/Caches_Stop.json
-     */
-    /**
-     * Sample code: Caches_Stop.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void cachesStop(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().stop("scgroup", "sc", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Caches_StopPrimingJob
+### AutoImportJobs_CreateOrUpdate
 
 ```java
 import com.azure.resourcemanager.storagecache.models.PrimingJobIdParameter;
@@ -861,7 +589,7 @@ import com.azure.resourcemanager.storagecache.models.PrimingJobIdParameter;
 public final class CachesStopPrimingJobSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/StopPrimingJob.json
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/StopPrimingJob.json
      */
     /**
      * Sample code: StopPrimingJob.
@@ -876,7 +604,161 @@ public final class CachesStopPrimingJobSamples {
 }
 ```
 
-### Caches_Update
+### AutoImportJobs_Delete
+
+```java
+import com.azure.resourcemanager.storagecache.models.AmlFilesystem;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemEncryptionSettings;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemRootSquashSettings;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemSquashMode;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemUpdatePropertiesMaintenanceWindow;
+import com.azure.resourcemanager.storagecache.models.KeyVaultKeyReference;
+import com.azure.resourcemanager.storagecache.models.KeyVaultKeyReferenceSourceVault;
+import com.azure.resourcemanager.storagecache.models.MaintenanceDayOfWeekType;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for AmlFilesystems Update.
+ */
+public final class AmlFilesystemsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * amlFilesystems_Update.json
+     */
+    /**
+     * Sample code: amlFilesystems_Update.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void amlFilesystemsUpdate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        AmlFilesystem resource = manager.amlFilesystems()
+            .getByResourceGroupWithResponse("scgroup", "fs1", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("Dept", "ContosoAds"))
+            .withEncryptionSettings(new AmlFilesystemEncryptionSettings()
+                .withKeyEncryptionKey(new KeyVaultKeyReference().withKeyUrl("fakeTokenPlaceholder")
+                    .withSourceVault(new KeyVaultKeyReferenceSourceVault().withId(
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.KeyVault/vaults/keyvault-cmk"))))
+            .withMaintenanceWindow(
+                new AmlFilesystemUpdatePropertiesMaintenanceWindow().withDayOfWeek(MaintenanceDayOfWeekType.FRIDAY)
+                    .withTimeOfDayUtc("22:00"))
+            .withRootSquashSettings(new AmlFilesystemRootSquashSettings().withMode(AmlFilesystemSquashMode.ALL)
+                .withNoSquashNidLists("10.0.0.[5-6]@tcp;10.0.1.2@tcp")
+                .withSquashUid(99L)
+                .withSquashGid(99L))
+            .apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### AutoImportJobs_Get
+
+```java
+/**
+ * Samples for Caches Start.
+ */
+public final class CachesStartSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/Caches_Start.json
+     */
+    /**
+     * Sample code: Caches_Start.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void cachesStart(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.caches().start("scgroup", "sc", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AutoImportJobs_ListByAmlFilesystem
+
+```java
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for AutoExportJobs CreateOrUpdate.
+ */
+public final class AutoExportJobsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * autoExportJobs_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: autoExportJobs_CreateOrUpdate.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void
+        autoExportJobsCreateOrUpdate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.autoExportJobs()
+            .define("job1")
+            .withRegion("eastus")
+            .withExistingAmlFilesystem("scgroup", "fs1")
+            .withTags(mapOf("Dept", "ContosoAds"))
+            .withAutoExportPrefixes(Arrays.asList("/"))
+            .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### AutoImportJobs_Update
+
+```java
+/**
+ * Samples for StorageTargets RestoreDefaults.
+ */
+public final class StorageTargetsRestoreDefaultsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * StorageTargets_RestoreDefaults.json
+     */
+    /**
+     * Sample code: StorageTargets_RestoreDefaults.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void
+        storageTargetsRestoreDefaults(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.storageTargets().restoreDefaults("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Caches_CreateOrUpdate
 
 ```java
 import com.azure.resourcemanager.storagecache.models.Cache;
@@ -903,7 +785,7 @@ import java.util.Map;
 public final class CachesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
      * Caches_Update_ldap_only.json
      */
     /**
@@ -964,7 +846,7 @@ public final class CachesUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/Caches_Update.json
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/Caches_Update.json
      */
     /**
      * Sample code: Caches_Update.
@@ -1036,30 +918,722 @@ public final class CachesUpdateSamples {
 }
 ```
 
+### Caches_DebugInfo
+
+```java
+/**
+ * Samples for AscUsages List.
+ */
+public final class AscUsagesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * AscResourceUsages_Get.json
+     */
+    /**
+     * Sample code: AscUsages_List.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void ascUsagesList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.ascUsages().list("eastus", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Caches_Delete
+
+```java
+/**
+ * Samples for AutoExportJobs Get.
+ */
+public final class AutoExportJobsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/autoExportJobs_Get.
+     * json
+     */
+    /**
+     * Sample code: autoExportJobs_Get.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void autoExportJobsGet(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.autoExportJobs().getWithResponse("scgroup", "fs1", "job1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Caches_Flush
+
+```java
+/**
+ * Samples for AmlFilesystems ListByResourceGroup.
+ */
+public final class AmlFilesystemsListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * amlFilesystems_ListByResourceGroup.json
+     */
+    /**
+     * Sample code: amlFilesystems_ListByResourceGroup.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void
+        amlFilesystemsListByResourceGroup(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.amlFilesystems().listByResourceGroup("scgroup", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Caches_GetByResourceGroup
+
+```java
+/**
+ * Samples for ImportJobs Delete.
+ */
+public final class ImportJobsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/importJobs_Delete.
+     * json
+     */
+    /**
+     * Sample code: importJobs_Delete.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void importJobsDelete(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.importJobs().delete("scgroup", "fs1", "job1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Caches_List
+
+```java
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemArchiveInfo;
+
+/**
+ * Samples for AmlFilesystems Archive.
+ */
+public final class AmlFilesystemsArchiveSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * amlFilesystems_Archive.json
+     */
+    /**
+     * Sample code: amlFilesystems_Archive.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void amlFilesystemsArchive(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.amlFilesystems()
+            .archiveWithResponse("scgroup", "sc", new AmlFilesystemArchiveInfo().withFilesystemPath("/"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Caches_ListByResourceGroup
+
+```java
+/**
+ * Samples for StorageTargets ListByCache.
+ */
+public final class StorageTargetsListByCacheSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * StorageTargets_ListByCache.json
+     */
+    /**
+     * Sample code: StorageTargets_List.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void storageTargetsList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.storageTargets().listByCache("scgroup", "sc1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Caches_PausePrimingJob
+
+```java
+/**
+ * Samples for AutoExportJobs ListByAmlFilesystem.
+ */
+public final class AutoExportJobsListByAmlFilesystemSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * autoExportJobs_ListByAmlFilesystem.json
+     */
+    /**
+     * Sample code: autoExportJobs_ListByAmlFilesystem.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void
+        autoExportJobsListByAmlFilesystem(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.autoExportJobs().listByAmlFilesystem("scgroup", "fs1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Caches_ResumePrimingJob
+
+```java
+/**
+ * Samples for Caches Delete.
+ */
+public final class CachesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/Caches_Delete.json
+     */
+    /**
+     * Sample code: Caches_Delete.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void cachesDelete(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.caches().delete("scgroup", "sc", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Caches_SpaceAllocation
+
+```java
+/**
+ * Samples for StorageTargets Get.
+ */
+public final class StorageTargetsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/StorageTargets_Get.
+     * json
+     */
+    /**
+     * Sample code: StorageTargets_Get.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void storageTargetsGet(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.storageTargets().getWithResponse("scgroup", "sc1", "st1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Caches_Start
+
+```java
+import com.azure.resourcemanager.storagecache.models.AutoImportJobPropertiesAdminStatus;
+import com.azure.resourcemanager.storagecache.models.ConflictResolutionMode;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for AutoImportJobs CreateOrUpdate.
+ */
+public final class AutoImportJobsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * autoImportJobs_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: autoImportJobs_CreateOrUpdate.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void
+        autoImportJobsCreateOrUpdate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.autoImportJobs()
+            .define("autojob1")
+            .withRegion("eastus")
+            .withExistingAmlFilesystem("scgroup", "fs1")
+            .withTags(mapOf("Dept", "ContosoAds"))
+            .withAdminStatus(AutoImportJobPropertiesAdminStatus.ENABLE)
+            .withAutoImportPrefixes(Arrays.asList("/"))
+            .withConflictResolutionMode(ConflictResolutionMode.SKIP)
+            .withEnableDeletions(false)
+            .withMaximumErrors(0L)
+            .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### Caches_StartPrimingJob
+
+```java
+/**
+ * Samples for Caches ListByResourceGroup.
+ */
+public final class CachesListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * Caches_ListByResourceGroup.json
+     */
+    /**
+     * Sample code: Caches_ListByResourceGroup.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void cachesListByResourceGroup(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.caches().listByResourceGroup("scgroup", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Caches_Stop
+
+```java
+/**
+ * Samples for Caches DebugInfo.
+ */
+public final class CachesDebugInfoSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/Caches_DebugInfo.
+     * json
+     */
+    /**
+     * Sample code: Caches_DebugInfo.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void cachesDebugInfo(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.caches().debugInfo("scgroup", "sc", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Caches_StopPrimingJob
+
+```java
+/**
+ * Samples for Caches Flush.
+ */
+public final class CachesFlushSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/Caches_Flush.json
+     */
+    /**
+     * Sample code: Caches_Flush.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void cachesFlush(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.caches().flush("scgroup", "sc", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Caches_Update
+
+```java
+/**
+ * Samples for Caches Stop.
+ */
+public final class CachesStopSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/Caches_Stop.json
+     */
+    /**
+     * Sample code: Caches_Stop.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void cachesStop(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.caches().stop("scgroup", "sc", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Caches_UpgradeFirmware
 
 ```java
 /**
- * Samples for Caches UpgradeFirmware.
+ * Samples for AmlFilesystems List.
  */
-public final class CachesUpgradeFirmwareSamples {
+public final class AmlFilesystemsListSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * Caches_UpgradeFirmware.json
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/amlFilesystems_List
+     * .json
      */
     /**
-     * Sample code: Caches_UpgradeFirmware.
+     * Sample code: amlFilesystems_List.
      * 
      * @param manager Entry point to StorageCacheManager.
      */
-    public static void cachesUpgradeFirmware(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.caches().upgradeFirmware("scgroup", "sc1", com.azure.core.util.Context.NONE);
+    public static void amlFilesystemsList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.amlFilesystems().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### ImportJobs_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemEncryptionSettings;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemHsmSettings;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemIdentity;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemIdentityType;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesHsm;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemPropertiesMaintenanceWindow;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemRootSquashSettings;
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemSquashMode;
+import com.azure.resourcemanager.storagecache.models.KeyVaultKeyReference;
+import com.azure.resourcemanager.storagecache.models.KeyVaultKeyReferenceSourceVault;
+import com.azure.resourcemanager.storagecache.models.MaintenanceDayOfWeekType;
+import com.azure.resourcemanager.storagecache.models.SkuName;
+import com.azure.resourcemanager.storagecache.models.UserAssignedIdentitiesValue;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for AmlFilesystems CreateOrUpdate.
+ */
+public final class AmlFilesystemsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * amlFilesystems_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: amlFilesystems_CreateOrUpdate.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void
+        amlFilesystemsCreateOrUpdate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.amlFilesystems()
+            .define("fs1")
+            .withRegion("eastus")
+            .withExistingResourceGroup("scgroup")
+            .withTags(mapOf("Dept", "ContosoAds"))
+            .withIdentity(new AmlFilesystemIdentity().withType(AmlFilesystemIdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity1",
+                    new UserAssignedIdentitiesValue())))
+            .withSku(new SkuName().withName("AMLFS-Durable-Premium-250"))
+            .withZones(Arrays.asList("1"))
+            .withStorageCapacityTiB(16f)
+            .withFilesystemSubnet(
+                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Network/virtualNetworks/scvnet/subnets/fsSub")
+            .withEncryptionSettings(new AmlFilesystemEncryptionSettings()
+                .withKeyEncryptionKey(new KeyVaultKeyReference().withKeyUrl("fakeTokenPlaceholder")
+                    .withSourceVault(new KeyVaultKeyReferenceSourceVault().withId(
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.KeyVault/vaults/keyvault-cmk"))))
+            .withMaintenanceWindow(
+                new AmlFilesystemPropertiesMaintenanceWindow().withDayOfWeek(MaintenanceDayOfWeekType.FRIDAY)
+                    .withTimeOfDayUtc("22:00"))
+            .withHsm(new AmlFilesystemPropertiesHsm().withSettings(new AmlFilesystemHsmSettings().withContainer(
+                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Storage/storageAccounts/storageaccountname/blobServices/default/containers/containername")
+                .withLoggingContainer(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Storage/storageAccounts/storageaccountname/blobServices/default/containers/loggingcontainername")
+                .withImportPrefixesInitial(Arrays.asList("/"))))
+            .withRootSquashSettings(new AmlFilesystemRootSquashSettings().withMode(AmlFilesystemSquashMode.ALL)
+                .withNoSquashNidLists("10.0.0.[5-6]@tcp;10.0.1.2@tcp")
+                .withSquashUid(99L)
+                .withSquashGid(99L))
+            .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### ImportJobs_Delete
+
+```java
+/**
+ * Samples for ImportJobs ListByAmlFilesystem.
+ */
+public final class ImportJobsListByAmlFilesystemSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * importJobs_ListByAmlFilesystem.json
+     */
+    /**
+     * Sample code: importJobs_ListByAmlFilesystem.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void
+        importJobsListByAmlFilesystem(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.importJobs().listByAmlFilesystem("scgroup", "fs1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ImportJobs_Get
+
+```java
+import com.azure.resourcemanager.storagecache.models.AmlFilesystemSubnetInfo;
+import com.azure.resourcemanager.storagecache.models.SkuName;
+
+/**
+ * Samples for ResourceProvider CheckAmlFSSubnets.
+ */
+public final class ResourceProviderCheckAmlFSSubnetsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/checkAmlFSSubnets.
+     * json
+     */
+    /**
+     * Sample code: checkAmlFSSubnets.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void checkAmlFSSubnets(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.resourceProviders()
+            .checkAmlFSSubnetsWithResponse(new AmlFilesystemSubnetInfo().withFilesystemSubnet(
+                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Network/virtualNetworks/scvnet/subnets/fsSub")
+                .withStorageCapacityTiB(16.0F)
+                .withSku(new SkuName().withName("AMLFS-Durable-Premium-125")), com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ImportJobs_ListByAmlFilesystem
+
+```java
+import com.azure.resourcemanager.storagecache.models.ImportJob;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for ImportJobs Update.
+ */
+public final class ImportJobsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/importJob_Update.
+     * json
+     */
+    /**
+     * Sample code: importJobs_Update.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void importJobsUpdate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        ImportJob resource = manager.importJobs()
+            .getWithResponse("scgroup", "fs1", "job1", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("Dept", "ContosoAds")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### ImportJobs_Update
+
+```java
+
+/**
+ * Samples for ResourceProvider GetRequiredAmlFSSubnetsSize.
+ */
+public final class ResourceProviderGetRequiredAmlFSSubnetsSizeSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * getRequiredAmlFSSubnetsSize.json
+     */
+    /**
+     * Sample code: getRequiredAmlFilesystemSubnetsSize.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void
+        getRequiredAmlFilesystemSubnetsSize(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.resourceProviders().getRequiredAmlFSSubnetsSizeWithResponse(null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+/**
+ * Samples for UsageModels List.
+ */
+public final class UsageModelsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/UsageModels_List.
+     * json
+     */
+    /**
+     * Sample code: UsageModels_List.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void usageModelsList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.usageModels().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ResourceProvider_CheckAmlFSSubnets
+
+```java
+/**
+ * Samples for StorageTargets Delete.
+ */
+public final class StorageTargetsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * StorageTargets_Delete.json
+     */
+    /**
+     * Sample code: StorageTargets_Delete.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void storageTargetsDelete(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.storageTargets().delete("scgroup", "sc1", "st1", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ResourceProvider_GetRequiredAmlFSSubnetsSize
+
+```java
+/**
+ * Samples for AutoImportJobs Delete.
+ */
+public final class AutoImportJobsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * autoImportJobs_Delete.json
+     */
+    /**
+     * Sample code: autoImportJobs_Delete.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void autoImportJobsDelete(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.autoImportJobs().delete("scgroup", "fs1", "autojob1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Skus_List
+
+```java
+/**
+ * Samples for AmlFilesystems GetByResourceGroup.
+ */
+public final class AmlFilesystemsGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/amlFilesystems_Get.
+     * json
+     */
+    /**
+     * Sample code: amlFilesystems_Get.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void amlFilesystemsGet(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.amlFilesystems().getByResourceGroupWithResponse("scgroup", "fs1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### StorageTargetOperation_Flush
+
+```java
+import com.azure.resourcemanager.storagecache.models.AutoExportJob;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for AutoExportJobs Update.
+ */
+public final class AutoExportJobsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * autoExportJobs_Update.json
+     */
+    /**
+     * Sample code: autoExportJobs_Update.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void autoExportJobsUpdate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        AutoExportJob resource = manager.autoExportJobs()
+            .getWithResponse("scgroup", "fs1", "job1", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("Dept", "ContosoAds")).apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### StorageTargetOperation_Invalidate
 
 ```java
 import com.azure.resourcemanager.storagecache.models.ConflictResolutionMode;
@@ -1073,7 +1647,7 @@ import java.util.Map;
 public final class ImportJobsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
      * importJobs_CreateOrUpdate.json
      */
     /**
@@ -1107,287 +1681,7 @@ public final class ImportJobsCreateOrUpdateSamples {
 }
 ```
 
-### ImportJobs_Delete
-
-```java
-/**
- * Samples for ImportJobs Delete.
- */
-public final class ImportJobsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/importJobs_Delete.
-     * json
-     */
-    /**
-     * Sample code: importJobs_Delete.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void importJobsDelete(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.importJobs().delete("scgroup", "fs1", "job1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ImportJobs_Get
-
-```java
-/**
- * Samples for ImportJobs Get.
- */
-public final class ImportJobsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/importJobs_Get.json
-     */
-    /**
-     * Sample code: importJobs_Get.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void importJobsGet(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.importJobs().getWithResponse("scgroup", "fs1", "job1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ImportJobs_ListByAmlFilesystem
-
-```java
-/**
- * Samples for ImportJobs ListByAmlFilesystem.
- */
-public final class ImportJobsListByAmlFilesystemSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * importJobs_ListByAmlFilesystem.json
-     */
-    /**
-     * Sample code: importJobs_ListByAmlFilesystem.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void
-        importJobsListByAmlFilesystem(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.importJobs().listByAmlFilesystem("scgroup", "fs1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ImportJobs_Update
-
-```java
-import com.azure.resourcemanager.storagecache.models.ImportJob;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for ImportJobs Update.
- */
-public final class ImportJobsUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/importJob_Update.
-     * json
-     */
-    /**
-     * Sample code: importJobs_Update.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void importJobsUpdate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        ImportJob resource = manager.importJobs()
-            .getWithResponse("scgroup", "fs1", "job1", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withTags(mapOf("Dept", "ContosoAds")).apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/Operations_List.
-     * json
-     */
-    /**
-     * Sample code: Operations_List.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void operationsList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ResourceProvider_CheckAmlFSSubnets
-
-```java
-import com.azure.resourcemanager.storagecache.models.AmlFilesystemSubnetInfo;
-import com.azure.resourcemanager.storagecache.models.SkuName;
-
-/**
- * Samples for ResourceProvider CheckAmlFSSubnets.
- */
-public final class ResourceProviderCheckAmlFSSubnetsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/checkAmlFSSubnets.
-     * json
-     */
-    /**
-     * Sample code: checkAmlFSSubnets.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void checkAmlFSSubnets(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.resourceProviders()
-            .checkAmlFSSubnetsWithResponse(new AmlFilesystemSubnetInfo().withFilesystemSubnet(
-                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Network/virtualNetworks/scvnet/subnets/fsSub")
-                .withStorageCapacityTiB(16.0F)
-                .withSku(new SkuName().withName("AMLFS-Durable-Premium-125")), com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ResourceProvider_GetRequiredAmlFSSubnetsSize
-
-```java
-
-/**
- * Samples for ResourceProvider GetRequiredAmlFSSubnetsSize.
- */
-public final class ResourceProviderGetRequiredAmlFSSubnetsSizeSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * getRequiredAmlFSSubnetsSize.json
-     */
-    /**
-     * Sample code: getRequiredAmlFilesystemSubnetsSize.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void
-        getRequiredAmlFilesystemSubnetsSize(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.resourceProviders().getRequiredAmlFSSubnetsSizeWithResponse(null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Skus_List
-
-```java
-/**
- * Samples for Skus List.
- */
-public final class SkusListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/Skus_List.json
-     */
-    /**
-     * Sample code: Skus_List.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void skusList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.skus().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### StorageTargetOperation_Flush
-
-```java
-/**
- * Samples for StorageTargetOperation Flush.
- */
-public final class StorageTargetOperationFlushSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * StorageTargets_Flush.json
-     */
-    /**
-     * Sample code: StorageTargets_Flush.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void storageTargetsFlush(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargetOperations().flush("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### StorageTargetOperation_Invalidate
-
-```java
-/**
- * Samples for StorageTargetOperation Invalidate.
- */
-public final class StorageTargetOperationInvalidateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * StorageTargets_Invalidate.json
-     */
-    /**
-     * Sample code: StorageTargets_Invalidate.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void storageTargetsInvalidate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargetOperations().invalidate("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### StorageTargetOperation_Resume
-
-```java
-/**
- * Samples for StorageTargetOperation Resume.
- */
-public final class StorageTargetOperationResumeSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * StorageTargets_Resume.json
-     */
-    /**
-     * Sample code: StorageTargets_Resume.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void storageTargetsResume(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargetOperations().resume("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### StorageTargetOperation_Suspend
 
 ```java
 /**
@@ -1396,7 +1690,7 @@ public final class StorageTargetOperationResumeSamples {
 public final class StorageTargetOperationSuspendSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
      * StorageTargets_Suspend.json
      */
     /**
@@ -1410,7 +1704,177 @@ public final class StorageTargetOperationSuspendSamples {
 }
 ```
 
+### StorageTargetOperation_Suspend
+
+```java
+import com.azure.resourcemanager.storagecache.models.PrimingJobIdParameter;
+
+/**
+ * Samples for Caches PausePrimingJob.
+ */
+public final class CachesPausePrimingJobSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/PausePrimingJob.
+     * json
+     */
+    /**
+     * Sample code: PausePrimingJob.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void pausePrimingJob(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.caches()
+            .pausePrimingJob("scgroup", "sc1", new PrimingJobIdParameter().withPrimingJobId("00000000000_0000000000"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### StorageTargets_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.storagecache.models.StorageTargetSpaceAllocation;
+import java.util.Arrays;
+
+/**
+ * Samples for Caches SpaceAllocation.
+ */
+public final class CachesSpaceAllocationSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * SpaceAllocation_Post.json
+     */
+    /**
+     * Sample code: SpaceAllocation_Post.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void spaceAllocationPost(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.caches()
+            .spaceAllocation("scgroup", "sc1",
+                Arrays.asList(new StorageTargetSpaceAllocation().withName("st1").withAllocationPercentage(25),
+                    new StorageTargetSpaceAllocation().withName("st2").withAllocationPercentage(50),
+                    new StorageTargetSpaceAllocation().withName("st3").withAllocationPercentage(25)),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### StorageTargets_Delete
+
+```java
+/**
+ * Samples for StorageTargetOperation Invalidate.
+ */
+public final class StorageTargetOperationInvalidateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * StorageTargets_Invalidate.json
+     */
+    /**
+     * Sample code: StorageTargets_Invalidate.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void storageTargetsInvalidate(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.storageTargetOperations().invalidate("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### StorageTargets_DnsRefresh
+
+```java
+/**
+ * Samples for Caches GetByResourceGroup.
+ */
+public final class CachesGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/Caches_Get.json
+     */
+    /**
+     * Sample code: Caches_Get.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void cachesGet(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.caches().getByResourceGroupWithResponse("scgroup", "sc1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### StorageTargets_Get
+
+```java
+/**
+ * Samples for ImportJobs Get.
+ */
+public final class ImportJobsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/importJobs_Get.json
+     */
+    /**
+     * Sample code: importJobs_Get.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void importJobsGet(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.importJobs().getWithResponse("scgroup", "fs1", "job1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### StorageTargets_ListByCache
+
+```java
+/**
+ * Samples for Caches List.
+ */
+public final class CachesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/Caches_List.json
+     */
+    /**
+     * Sample code: Caches_List.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void cachesList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.caches().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### StorageTargets_RestoreDefaults
+
+```java
+/**
+ * Samples for Caches UpgradeFirmware.
+ */
+public final class CachesUpgradeFirmwareSamples {
+    /*
+     * x-ms-original-file:
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
+     * Caches_UpgradeFirmware.json
+     */
+    /**
+     * Sample code: Caches_UpgradeFirmware.
+     * 
+     * @param manager Entry point to StorageCacheManager.
+     */
+    public static void cachesUpgradeFirmware(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
+        manager.caches().upgradeFirmware("scgroup", "sc1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### UsageModels_List
 
 ```java
 import com.azure.resourcemanager.storagecache.models.BlobNfsTarget;
@@ -1425,7 +1889,7 @@ import java.util.Arrays;
 public final class StorageTargetsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
      * StorageTargets_CreateOrUpdate.json
      */
     /**
@@ -1454,7 +1918,7 @@ public final class StorageTargetsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
      * StorageTargets_CreateOrUpdate_BlobNfs.json
      */
     /**
@@ -1479,7 +1943,7 @@ public final class StorageTargetsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2025-07-01/examples/
      * StorageTargets_CreateOrUpdate_NoJunctions.json
      */
     /**
@@ -1495,145 +1959,6 @@ public final class StorageTargetsCreateOrUpdateSamples {
             .withTargetType(StorageTargetType.NFS3)
             .withNfs3(new Nfs3Target().withTarget("10.0.44.44").withUsageModel("READ_ONLY").withVerificationTimer(30))
             .create();
-    }
-}
-```
-
-### StorageTargets_Delete
-
-```java
-/**
- * Samples for StorageTargets Delete.
- */
-public final class StorageTargetsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * StorageTargets_Delete.json
-     */
-    /**
-     * Sample code: StorageTargets_Delete.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void storageTargetsDelete(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargets().delete("scgroup", "sc1", "st1", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### StorageTargets_DnsRefresh
-
-```java
-/**
- * Samples for StorageTargets DnsRefresh.
- */
-public final class StorageTargetsDnsRefreshSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * StorageTargets_DnsRefresh.json
-     */
-    /**
-     * Sample code: Caches_DnsRefresh.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void cachesDnsRefresh(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargets().dnsRefresh("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### StorageTargets_Get
-
-```java
-/**
- * Samples for StorageTargets Get.
- */
-public final class StorageTargetsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/StorageTargets_Get.
-     * json
-     */
-    /**
-     * Sample code: StorageTargets_Get.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void storageTargetsGet(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargets().getWithResponse("scgroup", "sc1", "st1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### StorageTargets_ListByCache
-
-```java
-/**
- * Samples for StorageTargets ListByCache.
- */
-public final class StorageTargetsListByCacheSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * StorageTargets_ListByCache.json
-     */
-    /**
-     * Sample code: StorageTargets_List.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void storageTargetsList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargets().listByCache("scgroup", "sc1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### StorageTargets_RestoreDefaults
-
-```java
-/**
- * Samples for StorageTargets RestoreDefaults.
- */
-public final class StorageTargetsRestoreDefaultsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
-     * StorageTargets_RestoreDefaults.json
-     */
-    /**
-     * Sample code: StorageTargets_RestoreDefaults.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void
-        storageTargetsRestoreDefaults(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.storageTargets().restoreDefaults("scgroup", "sc", "st1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### UsageModels_List
-
-```java
-/**
- * Samples for UsageModels List.
- */
-public final class UsageModelsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/UsageModels_List.
-     * json
-     */
-    /**
-     * Sample code: UsageModels_List.
-     * 
-     * @param manager Entry point to StorageCacheManager.
-     */
-    public static void usageModelsList(com.azure.resourcemanager.storagecache.StorageCacheManager manager) {
-        manager.usageModels().list(com.azure.core.util.Context.NONE);
     }
 }
 ```

@@ -26,6 +26,8 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.storagecache.fluent.AmlFilesystemsClient;
 import com.azure.resourcemanager.storagecache.fluent.AscOperationsClient;
 import com.azure.resourcemanager.storagecache.fluent.AscUsagesClient;
+import com.azure.resourcemanager.storagecache.fluent.AutoExportJobsClient;
+import com.azure.resourcemanager.storagecache.fluent.AutoImportJobsClient;
 import com.azure.resourcemanager.storagecache.fluent.CachesClient;
 import com.azure.resourcemanager.storagecache.fluent.ImportJobsClient;
 import com.azure.resourcemanager.storagecache.fluent.OperationsClient;
@@ -148,6 +150,20 @@ public final class StorageCacheManagementClientImpl implements StorageCacheManag
     }
 
     /**
+     * The AutoExportJobsClient object to access its operations.
+     */
+    private final AutoExportJobsClient autoExportJobs;
+
+    /**
+     * Gets the AutoExportJobsClient object to access its operations.
+     * 
+     * @return the AutoExportJobsClient object.
+     */
+    public AutoExportJobsClient getAutoExportJobs() {
+        return this.autoExportJobs;
+    }
+
+    /**
      * The ImportJobsClient object to access its operations.
      */
     private final ImportJobsClient importJobs;
@@ -159,6 +175,20 @@ public final class StorageCacheManagementClientImpl implements StorageCacheManag
      */
     public ImportJobsClient getImportJobs() {
         return this.importJobs;
+    }
+
+    /**
+     * The AutoImportJobsClient object to access its operations.
+     */
+    private final AutoImportJobsClient autoImportJobs;
+
+    /**
+     * Gets the AutoImportJobsClient object to access its operations.
+     * 
+     * @return the AutoImportJobsClient object.
+     */
+    public AutoImportJobsClient getAutoImportJobs() {
+        return this.autoImportJobs;
     }
 
     /**
@@ -304,9 +334,11 @@ public final class StorageCacheManagementClientImpl implements StorageCacheManag
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-03-01";
+        this.apiVersion = "2025-07-01";
         this.amlFilesystems = new AmlFilesystemsClientImpl(this);
+        this.autoExportJobs = new AutoExportJobsClientImpl(this);
         this.importJobs = new ImportJobsClientImpl(this);
+        this.autoImportJobs = new AutoImportJobsClientImpl(this);
         this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.skus = new SkusClientImpl(this);
