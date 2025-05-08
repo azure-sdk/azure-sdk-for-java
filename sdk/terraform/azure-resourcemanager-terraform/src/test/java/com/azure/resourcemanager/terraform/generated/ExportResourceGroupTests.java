@@ -16,8 +16,8 @@ public final class ExportResourceGroupTests {
             "{\"type\":\"ExportResourceGroup\",\"resourceGroupName\":\"wby\",\"namePattern\":\"k\",\"targetProvider\":\"azapi\",\"fullProperties\":false,\"maskSensitive\":false}")
             .toObject(ExportResourceGroup.class);
         Assertions.assertEquals(TargetProvider.AZAPI, model.targetProvider());
-        Assertions.assertEquals(false, model.fullProperties());
-        Assertions.assertEquals(false, model.maskSensitive());
+        Assertions.assertFalse(model.fullProperties());
+        Assertions.assertFalse(model.maskSensitive());
         Assertions.assertEquals("wby", model.resourceGroupName());
         Assertions.assertEquals("k", model.namePattern());
     }
@@ -31,8 +31,8 @@ public final class ExportResourceGroupTests {
             .withNamePattern("k");
         model = BinaryData.fromObject(model).toObject(ExportResourceGroup.class);
         Assertions.assertEquals(TargetProvider.AZAPI, model.targetProvider());
-        Assertions.assertEquals(false, model.fullProperties());
-        Assertions.assertEquals(false, model.maskSensitive());
+        Assertions.assertFalse(model.fullProperties());
+        Assertions.assertFalse(model.maskSensitive());
         Assertions.assertEquals("wby", model.resourceGroupName());
         Assertions.assertEquals("k", model.namePattern());
     }
