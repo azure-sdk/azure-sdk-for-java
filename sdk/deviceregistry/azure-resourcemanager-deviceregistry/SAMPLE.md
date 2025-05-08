@@ -34,6 +34,304 @@
 ### AssetEndpointProfiles_CreateOrReplace
 
 ```java
+/**
+ * Samples for Assets List.
+ */
+public final class AssetsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * List_Assets_Subscription.json
+     */
+    /**
+     * Sample code: List_Assets_Subscription.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void listAssetsSubscription(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.assets().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssetEndpointProfiles_Delete
+
+```java
+/**
+ * Samples for BillingContainers List.
+ */
+public final class BillingContainersListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * List_BillingContainers_Subscription.json
+     */
+    /**
+     * Sample code: List_BillingContainers_Subscription.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void
+        listBillingContainersSubscription(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.billingContainers().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssetEndpointProfiles_GetByResourceGroup
+
+```java
+/**
+ * Samples for Assets ListByResourceGroup.
+ */
+public final class AssetsListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * List_Assets_ResourceGroup.json
+     */
+    /**
+     * Sample code: List_Assets_ResourceGroup.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void listAssetsResourceGroup(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.assets().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssetEndpointProfiles_List
+
+```java
+/**
+ * Samples for AssetEndpointProfiles GetByResourceGroup.
+ */
+public final class AssetEndpointProfilesGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * Get_AssetEndpointProfile.json
+     */
+    /**
+     * Sample code: Get_AssetEndpointProfile.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void getAssetEndpointProfile(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.assetEndpointProfiles()
+            .getByResourceGroupWithResponse("myResourceGroup", "my-assetendpointprofile",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * Get_AssetEndpointProfile_With_SyncStatus.json
+     */
+    /**
+     * Sample code: Get_AssetEndpointProfile_With_SyncStatus.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void
+        getAssetEndpointProfileWithSyncStatus(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.assetEndpointProfiles()
+            .getByResourceGroupWithResponse("myResourceGroup", "my-assetendpointprofile",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssetEndpointProfiles_ListByResourceGroup
+
+```java
+/**
+ * Samples for AssetEndpointProfiles List.
+ */
+public final class AssetEndpointProfilesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * List_AssetEndpointProfiles_Subscription.json
+     */
+    /**
+     * Sample code: List_AssetEndpointProfiles_Subscription.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void
+        listAssetEndpointProfilesSubscription(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.assetEndpointProfiles().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssetEndpointProfiles_Update
+
+```java
+/**
+ * Samples for AssetEndpointProfiles ListByResourceGroup.
+ */
+public final class AssetEndpointProfilesListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * List_AssetEndpointProfiles_ResourceGroup.json
+     */
+    /**
+     * Sample code: List_AssetEndpointProfiles_ResourceGroup.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void
+        listAssetEndpointProfilesResourceGroup(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.assetEndpointProfiles().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Assets_CreateOrReplace
+
+```java
+/**
+ * Samples for Assets GetByResourceGroup.
+ */
+public final class AssetsGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * Get_Asset_With_SyncStatus.json
+     */
+    /**
+     * Sample code: Get_Asset_With_SyncStatus.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void getAssetWithSyncStatus(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.assets()
+            .getByResourceGroupWithResponse("myResourceGroup", "my-asset", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/Get_Asset.json
+     */
+    /**
+     * Sample code: Get_Asset.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void getAsset(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.assets()
+            .getByResourceGroupWithResponse("myResourceGroup", "my-asset", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Assets_Delete
+
+```java
+/**
+ * Samples for Assets Delete.
+ */
+public final class AssetsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/Delete_Asset.
+     * json
+     */
+    /**
+     * Sample code: Delete_Asset.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void deleteAsset(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.assets().delete("myResourceGroup", "my-asset", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Assets_GetByResourceGroup
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/List_Operations
+     * .json
+     */
+    /**
+     * Sample code: List_Operations.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void listOperations(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Assets_List
+
+```java
+import com.azure.resourcemanager.deviceregistry.models.Asset;
+import com.azure.resourcemanager.deviceregistry.models.AssetUpdateProperties;
+
+/**
+ * Samples for Assets Update.
+ */
+public final class AssetsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/Update_Asset.
+     * json
+     */
+    /**
+     * Sample code: Update_Asset.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void updateAsset(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        Asset resource = manager.assets()
+            .getByResourceGroupWithResponse("myResourceGroup", "my-asset", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withProperties(new AssetUpdateProperties().withEnabled(false).withDisplayName("NewAssetDisplayName"))
+            .apply();
+    }
+}
+```
+
+### Assets_ListByResourceGroup
+
+```java
+/**
+ * Samples for BillingContainers Get.
+ */
+public final class BillingContainersGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * Get_BillingContainer.json
+     */
+    /**
+     * Sample code: Get_BillingContainer.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void getBillingContainer(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.billingContainers().getWithResponse("my-billingContainer", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Assets_Update
+
+```java
 import com.azure.resourcemanager.deviceregistry.models.AssetEndpointProfileProperties;
 import com.azure.resourcemanager.deviceregistry.models.Authentication;
 import com.azure.resourcemanager.deviceregistry.models.AuthenticationMethod;
@@ -46,7 +344,9 @@ import java.util.Map;
  */
 public final class AssetEndpointProfilesCreateOrReplaceSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Create_AssetEndpointProfile_With_DiscoveredAepRef.json
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * Create_AssetEndpointProfile_With_DiscoveredAepRef.json
      */
     /**
      * Sample code: Create_AssetEndpointProfile_With_DiscoveredAepRef.
@@ -72,7 +372,9 @@ public final class AssetEndpointProfilesCreateOrReplaceSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/Create_AssetEndpointProfile.json
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * Create_AssetEndpointProfile.json
      */
     /**
      * Sample code: Create_AssetEndpointProfile.
@@ -110,144 +412,7 @@ public final class AssetEndpointProfilesCreateOrReplaceSamples {
 }
 ```
 
-### AssetEndpointProfiles_Delete
-
-```java
-/**
- * Samples for AssetEndpointProfiles Delete.
- */
-public final class AssetEndpointProfilesDeleteSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/Delete_AssetEndpointProfile.json
-     */
-    /**
-     * Sample code: Delete_AssetEndpointProfile.
-     * 
-     * @param manager Entry point to DeviceRegistryManager.
-     */
-    public static void
-        deleteAssetEndpointProfile(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
-        manager.assetEndpointProfiles()
-            .delete("myResourceGroup", "my-assetendpointprofile", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AssetEndpointProfiles_GetByResourceGroup
-
-```java
-/**
- * Samples for AssetEndpointProfiles GetByResourceGroup.
- */
-public final class AssetEndpointProfilesGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/Get_AssetEndpointProfile.json
-     */
-    /**
-     * Sample code: Get_AssetEndpointProfile.
-     * 
-     * @param manager Entry point to DeviceRegistryManager.
-     */
-    public static void getAssetEndpointProfile(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
-        manager.assetEndpointProfiles()
-            .getByResourceGroupWithResponse("myResourceGroup", "my-assetendpointprofile",
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: 2024-11-01/Get_AssetEndpointProfile_With_SyncStatus.json
-     */
-    /**
-     * Sample code: Get_AssetEndpointProfile_With_SyncStatus.
-     * 
-     * @param manager Entry point to DeviceRegistryManager.
-     */
-    public static void
-        getAssetEndpointProfileWithSyncStatus(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
-        manager.assetEndpointProfiles()
-            .getByResourceGroupWithResponse("myResourceGroup", "my-assetendpointprofile",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AssetEndpointProfiles_List
-
-```java
-/**
- * Samples for AssetEndpointProfiles List.
- */
-public final class AssetEndpointProfilesListSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/List_AssetEndpointProfiles_Subscription.json
-     */
-    /**
-     * Sample code: List_AssetEndpointProfiles_Subscription.
-     * 
-     * @param manager Entry point to DeviceRegistryManager.
-     */
-    public static void
-        listAssetEndpointProfilesSubscription(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
-        manager.assetEndpointProfiles().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AssetEndpointProfiles_ListByResourceGroup
-
-```java
-/**
- * Samples for AssetEndpointProfiles ListByResourceGroup.
- */
-public final class AssetEndpointProfilesListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/List_AssetEndpointProfiles_ResourceGroup.json
-     */
-    /**
-     * Sample code: List_AssetEndpointProfiles_ResourceGroup.
-     * 
-     * @param manager Entry point to DeviceRegistryManager.
-     */
-    public static void
-        listAssetEndpointProfilesResourceGroup(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
-        manager.assetEndpointProfiles().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AssetEndpointProfiles_Update
-
-```java
-import com.azure.resourcemanager.deviceregistry.models.AssetEndpointProfile;
-import com.azure.resourcemanager.deviceregistry.models.AssetEndpointProfileUpdateProperties;
-
-/**
- * Samples for AssetEndpointProfiles Update.
- */
-public final class AssetEndpointProfilesUpdateSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/Update_AssetEndpointProfile.json
-     */
-    /**
-     * Sample code: Update_AssetEndpointProfile.
-     * 
-     * @param manager Entry point to DeviceRegistryManager.
-     */
-    public static void
-        updateAssetEndpointProfile(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
-        AssetEndpointProfile resource = manager.assetEndpointProfiles()
-            .getByResourceGroupWithResponse("myResourceGroup", "my-assetendpointprofile",
-                com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update()
-            .withProperties(
-                new AssetEndpointProfileUpdateProperties().withTargetAddress("https://www.example.com/myTargetAddress"))
-            .apply();
-    }
-}
-```
-
-### Assets_CreateOrReplace
+### BillingContainers_Get
 
 ```java
 import com.azure.resourcemanager.deviceregistry.models.AssetProperties;
@@ -268,7 +433,9 @@ import java.util.Map;
  */
 public final class AssetsCreateOrReplaceSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Create_Asset_With_DiscoveredAssetRef.json
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * Create_Asset_With_DiscoveredAssetRef.json
      */
     /**
      * Sample code: Create_Asset_With_DiscoveredAssetRefs.
@@ -335,7 +502,9 @@ public final class AssetsCreateOrReplaceSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/Create_Asset_Without_ExternalAssetId.json
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * Create_Asset_Without_ExternalAssetId.json
      */
     /**
      * Sample code: Create_Asset_Without_ExternalAssetId.
@@ -400,7 +569,9 @@ public final class AssetsCreateOrReplaceSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/Create_Asset_With_ExternalAssetId.json
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * Create_Asset_With_ExternalAssetId.json
      */
     /**
      * Sample code: Create_Asset_With_ExternalAssetId.
@@ -466,7 +637,9 @@ public final class AssetsCreateOrReplaceSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/Create_Asset_Without_DisplayName.json
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * Create_Asset_Without_DisplayName.json
      */
     /**
      * Sample code: Create_Asset_Without_DisplayName.
@@ -544,177 +717,7 @@ public final class AssetsCreateOrReplaceSamples {
 }
 ```
 
-### Assets_Delete
-
-```java
-/**
- * Samples for Assets Delete.
- */
-public final class AssetsDeleteSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/Delete_Asset.json
-     */
-    /**
-     * Sample code: Delete_Asset.
-     * 
-     * @param manager Entry point to DeviceRegistryManager.
-     */
-    public static void deleteAsset(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
-        manager.assets().delete("myResourceGroup", "my-asset", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Assets_GetByResourceGroup
-
-```java
-/**
- * Samples for Assets GetByResourceGroup.
- */
-public final class AssetsGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/Get_Asset_With_SyncStatus.json
-     */
-    /**
-     * Sample code: Get_Asset_With_SyncStatus.
-     * 
-     * @param manager Entry point to DeviceRegistryManager.
-     */
-    public static void getAssetWithSyncStatus(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
-        manager.assets()
-            .getByResourceGroupWithResponse("myResourceGroup", "my-asset", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: 2024-11-01/Get_Asset.json
-     */
-    /**
-     * Sample code: Get_Asset.
-     * 
-     * @param manager Entry point to DeviceRegistryManager.
-     */
-    public static void getAsset(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
-        manager.assets()
-            .getByResourceGroupWithResponse("myResourceGroup", "my-asset", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Assets_List
-
-```java
-/**
- * Samples for Assets List.
- */
-public final class AssetsListSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/List_Assets_Subscription.json
-     */
-    /**
-     * Sample code: List_Assets_Subscription.
-     * 
-     * @param manager Entry point to DeviceRegistryManager.
-     */
-    public static void listAssetsSubscription(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
-        manager.assets().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Assets_ListByResourceGroup
-
-```java
-/**
- * Samples for Assets ListByResourceGroup.
- */
-public final class AssetsListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/List_Assets_ResourceGroup.json
-     */
-    /**
-     * Sample code: List_Assets_ResourceGroup.
-     * 
-     * @param manager Entry point to DeviceRegistryManager.
-     */
-    public static void listAssetsResourceGroup(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
-        manager.assets().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Assets_Update
-
-```java
-import com.azure.resourcemanager.deviceregistry.models.Asset;
-import com.azure.resourcemanager.deviceregistry.models.AssetUpdateProperties;
-
-/**
- * Samples for Assets Update.
- */
-public final class AssetsUpdateSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/Update_Asset.json
-     */
-    /**
-     * Sample code: Update_Asset.
-     * 
-     * @param manager Entry point to DeviceRegistryManager.
-     */
-    public static void updateAsset(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
-        Asset resource = manager.assets()
-            .getByResourceGroupWithResponse("myResourceGroup", "my-asset", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update()
-            .withProperties(new AssetUpdateProperties().withEnabled(false).withDisplayName("NewAssetDisplayName"))
-            .apply();
-    }
-}
-```
-
-### BillingContainers_Get
-
-```java
-/**
- * Samples for BillingContainers Get.
- */
-public final class BillingContainersGetSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/Get_BillingContainer.json
-     */
-    /**
-     * Sample code: Get_BillingContainer.
-     * 
-     * @param manager Entry point to DeviceRegistryManager.
-     */
-    public static void getBillingContainer(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
-        manager.billingContainers().getWithResponse("my-billingContainer", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### BillingContainers_List
-
-```java
-/**
- * Samples for BillingContainers List.
- */
-public final class BillingContainersListSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/List_BillingContainers_Subscription.json
-     */
-    /**
-     * Sample code: List_BillingContainers_Subscription.
-     * 
-     * @param manager Entry point to DeviceRegistryManager.
-     */
-    public static void
-        listBillingContainersSubscription(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
-        manager.billingContainers().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### OperationStatus_Get
 
 ```java
 /**
@@ -722,7 +725,9 @@ public final class BillingContainersListSamples {
  */
 public final class OperationStatusGetSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Get_OperationStatus.json
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * Get_OperationStatus.json
      */
     /**
      * Sample code: Get_OperationStatus.
@@ -736,23 +741,61 @@ public final class OperationStatusGetSamples {
 }
 ```
 
-### Operations_List
+### OperationStatus_Get
 
 ```java
 /**
- * Samples for Operations List.
+ * Samples for AssetEndpointProfiles Delete.
  */
-public final class OperationsListSamples {
+public final class AssetEndpointProfilesDeleteSamples {
     /*
-     * x-ms-original-file: 2024-11-01/List_Operations.json
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * Delete_AssetEndpointProfile.json
      */
     /**
-     * Sample code: List_Operations.
+     * Sample code: Delete_AssetEndpointProfile.
      * 
      * @param manager Entry point to DeviceRegistryManager.
      */
-    public static void listOperations(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
+    public static void
+        deleteAssetEndpointProfile(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.assetEndpointProfiles()
+            .delete("myResourceGroup", "my-assetendpointprofile", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+import com.azure.resourcemanager.deviceregistry.models.AssetEndpointProfile;
+import com.azure.resourcemanager.deviceregistry.models.AssetEndpointProfileUpdateProperties;
+
+/**
+ * Samples for AssetEndpointProfiles Update.
+ */
+public final class AssetEndpointProfilesUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/deviceregistry/resource-manager/Microsoft.DeviceRegistry/stable/2024-11-01/examples/
+     * Update_AssetEndpointProfile.json
+     */
+    /**
+     * Sample code: Update_AssetEndpointProfile.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void
+        updateAssetEndpointProfile(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        AssetEndpointProfile resource = manager.assetEndpointProfiles()
+            .getByResourceGroupWithResponse("myResourceGroup", "my-assetendpointprofile",
+                com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withProperties(
+                new AssetEndpointProfileUpdateProperties().withTargetAddress("https://www.example.com/myTargetAddress"))
+            .apply();
     }
 }
 ```

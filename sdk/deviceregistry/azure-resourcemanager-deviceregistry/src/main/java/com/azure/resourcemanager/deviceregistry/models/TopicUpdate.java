@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.deviceregistry.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -16,7 +15,7 @@ import java.io.IOException;
  * Object that describes the topic information.
  */
 @Fluent
-public final class Topic implements JsonSerializable<Topic> {
+public final class TopicUpdate implements JsonSerializable<TopicUpdate> {
     /*
      * The topic path for messages published to an MQTT broker.
      */
@@ -28,9 +27,9 @@ public final class Topic implements JsonSerializable<Topic> {
     private TopicRetainType retain;
 
     /**
-     * Creates an instance of Topic class.
+     * Creates an instance of TopicUpdate class.
      */
-    public Topic() {
+    public TopicUpdate() {
     }
 
     /**
@@ -46,9 +45,9 @@ public final class Topic implements JsonSerializable<Topic> {
      * Set the path property: The topic path for messages published to an MQTT broker.
      * 
      * @param path the path value to set.
-     * @return the Topic object itself.
+     * @return the TopicUpdate object itself.
      */
-    public Topic withPath(String path) {
+    public TopicUpdate withPath(String path) {
         this.path = path;
         return this;
     }
@@ -68,9 +67,9 @@ public final class Topic implements JsonSerializable<Topic> {
      * Default: 'Never'.
      * 
      * @param retain the retain value to set.
-     * @return the Topic object itself.
+     * @return the TopicUpdate object itself.
      */
-    public Topic withRetain(TopicRetainType retain) {
+    public TopicUpdate withRetain(TopicRetainType retain) {
         this.retain = retain;
         return this;
     }
@@ -81,12 +80,7 @@ public final class Topic implements JsonSerializable<Topic> {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (path() == null) {
-            throw LOGGER.atError().log(new IllegalArgumentException("Missing required property path in model Topic"));
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(Topic.class);
 
     /**
      * {@inheritDoc}
@@ -100,31 +94,30 @@ public final class Topic implements JsonSerializable<Topic> {
     }
 
     /**
-     * Reads an instance of Topic from the JsonReader.
+     * Reads an instance of TopicUpdate from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of Topic if the JsonReader was pointing to an instance of it, or null if it was pointing to
-     * JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the Topic.
+     * @return An instance of TopicUpdate if the JsonReader was pointing to an instance of it, or null if it was
+     * pointing to JSON null.
+     * @throws IOException If an error occurs while reading the TopicUpdate.
      */
-    public static Topic fromJson(JsonReader jsonReader) throws IOException {
+    public static TopicUpdate fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            Topic deserializedTopic = new Topic();
+            TopicUpdate deserializedTopicUpdate = new TopicUpdate();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("path".equals(fieldName)) {
-                    deserializedTopic.path = reader.getString();
+                    deserializedTopicUpdate.path = reader.getString();
                 } else if ("retain".equals(fieldName)) {
-                    deserializedTopic.retain = TopicRetainType.fromString(reader.getString());
+                    deserializedTopicUpdate.retain = TopicRetainType.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedTopic;
+            return deserializedTopicUpdate;
         });
     }
 }

@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.deviceregistry.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -16,16 +15,16 @@ import java.io.IOException;
  * The x509 certificate for authentication mode Certificate.
  */
 @Fluent
-public final class X509Credentials implements JsonSerializable<X509Credentials> {
+public final class X509CredentialsUpdate implements JsonSerializable<X509CredentialsUpdate> {
     /*
      * The name of the secret containing the certificate and private key (e.g. stored as .der/.pem or .der/.pfx).
      */
     private String certificateSecretName;
 
     /**
-     * Creates an instance of X509Credentials class.
+     * Creates an instance of X509CredentialsUpdate class.
      */
-    public X509Credentials() {
+    public X509CredentialsUpdate() {
     }
 
     /**
@@ -43,9 +42,9 @@ public final class X509Credentials implements JsonSerializable<X509Credentials> 
      * stored as .der/.pem or .der/.pfx).
      * 
      * @param certificateSecretName the certificateSecretName value to set.
-     * @return the X509Credentials object itself.
+     * @return the X509CredentialsUpdate object itself.
      */
-    public X509Credentials withCertificateSecretName(String certificateSecretName) {
+    public X509CredentialsUpdate withCertificateSecretName(String certificateSecretName) {
         this.certificateSecretName = certificateSecretName;
         return this;
     }
@@ -56,14 +55,7 @@ public final class X509Credentials implements JsonSerializable<X509Credentials> 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (certificateSecretName() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property certificateSecretName in model X509Credentials"));
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(X509Credentials.class);
 
     /**
      * {@inheritDoc}
@@ -76,29 +68,28 @@ public final class X509Credentials implements JsonSerializable<X509Credentials> 
     }
 
     /**
-     * Reads an instance of X509Credentials from the JsonReader.
+     * Reads an instance of X509CredentialsUpdate from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of X509Credentials if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the X509Credentials.
+     * @return An instance of X509CredentialsUpdate if the JsonReader was pointing to an instance of it, or null if it
+     * was pointing to JSON null.
+     * @throws IOException If an error occurs while reading the X509CredentialsUpdate.
      */
-    public static X509Credentials fromJson(JsonReader jsonReader) throws IOException {
+    public static X509CredentialsUpdate fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            X509Credentials deserializedX509Credentials = new X509Credentials();
+            X509CredentialsUpdate deserializedX509CredentialsUpdate = new X509CredentialsUpdate();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("certificateSecretName".equals(fieldName)) {
-                    deserializedX509Credentials.certificateSecretName = reader.getString();
+                    deserializedX509CredentialsUpdate.certificateSecretName = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedX509Credentials;
+            return deserializedX509CredentialsUpdate;
         });
     }
 }
