@@ -6,7 +6,6 @@ package com.azure.resourcemanager.newrelicobservability.generated;
 
 import com.azure.resourcemanager.newrelicobservability.models.AccountCreationSource;
 import com.azure.resourcemanager.newrelicobservability.models.AccountInfo;
-import com.azure.resourcemanager.newrelicobservability.models.BillingCycle;
 import com.azure.resourcemanager.newrelicobservability.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.newrelicobservability.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.newrelicobservability.models.NewRelicAccountProperties;
@@ -28,7 +27,7 @@ import java.util.Map;
  */
 public final class MonitorsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-10-01/examples/
      * Monitors_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -61,7 +60,7 @@ public final class MonitorsCreateOrUpdateSamples {
                 .withPhoneNumber("krf")
                 .withCountry("hslqnwdanrconqyekwbnttaetv"))
             .withPlanData(new PlanData().withUsageType(UsageType.PAYG)
-                .withBillingCycle(BillingCycle.YEARLY)
+                .withBillingCycle("Yearly")
                 .withPlanDetails("tbbiaga")
                 .withEffectiveDate(OffsetDateTime.parse("2022-12-05T14:11:37.786Z")))
             .withOrgCreationSource(OrgCreationSource.LIFTR)

@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public final class MonitorsListAppServicesSamples {
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-10-01/examples/
      * Monitors_ListAppServices_MaximumSet_Gen.json
      */
     /**
@@ -31,7 +31,7 @@ public final class MonitorsListAppServicesSamples {
     }
 
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-10-01/examples/
      * Monitors_ListAppServices_MinimumSet_Gen.json
      */
     /**

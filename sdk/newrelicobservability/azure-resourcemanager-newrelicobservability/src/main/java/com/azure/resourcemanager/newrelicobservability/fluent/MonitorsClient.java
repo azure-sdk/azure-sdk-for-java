@@ -25,6 +25,7 @@ import com.azure.resourcemanager.newrelicobservability.models.MetricsRequest;
 import com.azure.resourcemanager.newrelicobservability.models.MetricsStatusRequest;
 import com.azure.resourcemanager.newrelicobservability.models.MonitorsSwitchBillingResponse;
 import com.azure.resourcemanager.newrelicobservability.models.NewRelicMonitorResourceUpdate;
+import com.azure.resourcemanager.newrelicobservability.models.ResubscribeProperties;
 import com.azure.resourcemanager.newrelicobservability.models.SwitchBillingRequest;
 
 /**
@@ -178,15 +179,30 @@ public interface MonitorsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Name of the Monitors resource.
      * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<NewRelicMonitorResourceInner>, NewRelicMonitorResourceInner>
+        beginUpdate(String resourceGroupName, String monitorName, NewRelicMonitorResourceUpdate properties);
+
+    /**
+     * Update a NewRelicMonitorResource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Name of the Monitors resource.
+     * @param properties The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Monitor Resource by NewRelic along with {@link Response}.
+     * @return the {@link SyncPoller} for polling of a Monitor Resource by NewRelic.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<NewRelicMonitorResourceInner> updateWithResponse(String resourceGroupName, String monitorName,
-        NewRelicMonitorResourceUpdate properties, Context context);
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<NewRelicMonitorResourceInner>, NewRelicMonitorResourceInner> beginUpdate(
+        String resourceGroupName, String monitorName, NewRelicMonitorResourceUpdate properties, Context context);
 
     /**
      * Update a NewRelicMonitorResource.
@@ -202,6 +218,22 @@ public interface MonitorsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     NewRelicMonitorResourceInner update(String resourceGroupName, String monitorName,
         NewRelicMonitorResourceUpdate properties);
+
+    /**
+     * Update a NewRelicMonitorResource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Name of the Monitors resource.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    NewRelicMonitorResourceInner update(String resourceGroupName, String monitorName,
+        NewRelicMonitorResourceUpdate properties, Context context);
 
     /**
      * Delete a NewRelicMonitorResource.
@@ -414,6 +446,32 @@ public interface MonitorsClient {
         Context context);
 
     /**
+     * Refreshes the ingestion key for all monitors linked to the same account associated to this monitor.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Name of the Monitors resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> refreshIngestionKeyWithResponse(String resourceGroupName, String monitorName, Context context);
+
+    /**
+     * Refreshes the ingestion key for all monitors linked to the same account associated to this monitor.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Name of the Monitors resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void refreshIngestionKey(String resourceGroupName, String monitorName);
+
+    /**
      * List the resources currently being monitored by the NewRelic monitor resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -498,4 +556,63 @@ public interface MonitorsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     VMExtensionPayloadInner vmHostPayload(String resourceGroupName, String monitorName);
+
+    /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<NewRelicMonitorResourceInner>, NewRelicMonitorResourceInner>
+        beginResubscribe(String resourceGroupName, String monitorName);
+
+    /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<NewRelicMonitorResourceInner>, NewRelicMonitorResourceInner>
+        beginResubscribe(String resourceGroupName, String monitorName, ResubscribeProperties body, Context context);
+
+    /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    NewRelicMonitorResourceInner resubscribe(String resourceGroupName, String monitorName);
+
+    /**
+     * Resubscribe the NewRelic Organization.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body Resubscribe Properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    NewRelicMonitorResourceInner resubscribe(String resourceGroupName, String monitorName, ResubscribeProperties body,
+        Context context);
 }
