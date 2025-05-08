@@ -94,4 +94,11 @@ public interface AppConfigurationManagementClient {
      * @return the SnapshotsClient object.
      */
     SnapshotsClient getSnapshots();
+
+    /**
+     * Gets the ExperimentationsClient object to access its operations.
+     * 
+     * @return the ExperimentationsClient object.
+     */
+    ExperimentationsClient getExperimentations();
 }

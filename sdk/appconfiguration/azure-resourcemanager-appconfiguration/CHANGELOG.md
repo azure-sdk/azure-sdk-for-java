@@ -1,14 +1,53 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-05-08)
+
+- Azure Resource Manager AppConfiguration client library for Java. This package contains Microsoft Azure SDK for AppConfiguration Management SDK.  Package tag package-2025-02-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `models.Experimentation$DefinitionStages` was added
 
-### Bugs Fixed
+* `models.ManagedOnBehalfOfConfiguration` was added
 
-### Other Changes
+* `models.ExperimentationListResult` was added
+
+* `models.Experimentation` was added
+
+* `models.MoboBrokerResource` was added
+
+* `models.TelemetryProperties` was added
+
+* `models.Experimentations` was added
+
+* `models.Experimentation$Definition` was added
+
+#### `models.ConfigurationStoreUpdateParameters` was modified
+
+* `withDefaultKeyValueRevisionRetentionPeriodInSeconds(java.lang.Long)` was added
+* `withTelemetry(models.TelemetryProperties)` was added
+* `telemetry()` was added
+* `defaultKeyValueRevisionRetentionPeriodInSeconds()` was added
+
+#### `models.ConfigurationStore$Definition` was modified
+
+* `withTelemetry(models.TelemetryProperties)` was added
+* `withDefaultKeyValueRevisionRetentionPeriodInSeconds(java.lang.Long)` was added
+
+#### `models.ConfigurationStore$Update` was modified
+
+* `withDefaultKeyValueRevisionRetentionPeriodInSeconds(java.lang.Long)` was added
+* `withTelemetry(models.TelemetryProperties)` was added
+
+#### `models.ConfigurationStore` was modified
+
+* `managedOnBehalfOfConfiguration()` was added
+* `defaultKeyValueRevisionRetentionPeriodInSeconds()` was added
+* `telemetry()` was added
+
+#### `AppConfigurationManager` was modified
+
+* `experimentations()` was added
 
 ## 1.0.0 (2024-11-20)
 

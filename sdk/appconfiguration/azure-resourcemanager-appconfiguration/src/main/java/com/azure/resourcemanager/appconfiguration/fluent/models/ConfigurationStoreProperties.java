@@ -13,9 +13,11 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.appconfiguration.models.CreateMode;
 import com.azure.resourcemanager.appconfiguration.models.DataPlaneProxyProperties;
 import com.azure.resourcemanager.appconfiguration.models.EncryptionProperties;
+import com.azure.resourcemanager.appconfiguration.models.ManagedOnBehalfOfConfiguration;
 import com.azure.resourcemanager.appconfiguration.models.PrivateEndpointConnectionReference;
 import com.azure.resourcemanager.appconfiguration.models.ProvisioningState;
 import com.azure.resourcemanager.appconfiguration.models.PublicNetworkAccess;
+import com.azure.resourcemanager.appconfiguration.models.TelemetryProperties;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -66,6 +68,12 @@ public final class ConfigurationStoreProperties implements JsonSerializable<Conf
     private Integer softDeleteRetentionInDays;
 
     /*
+     * The duration in seconds to retain new key value revisions. Defaults to 604800 (7 days) for Free SKU stores and
+     * 2592000 (30 days) for Standard SKU stores and Premium SKU stores.
+     */
+    private Long defaultKeyValueRevisionRetentionPeriodInSeconds;
+
+    /*
      * Property specifying whether protection against purge is enabled for this configuration store.
      */
     private Boolean enablePurgeProtection;
@@ -79,6 +87,16 @@ public final class ConfigurationStoreProperties implements JsonSerializable<Conf
      * Indicates whether the configuration store need to be recovered.
      */
     private CreateMode createMode;
+
+    /*
+     * Property specifying the configuration of telemetry for this configuration store
+     */
+    private TelemetryProperties telemetry;
+
+    /*
+     * Managed On Behalf Of Configuration.
+     */
+    private ManagedOnBehalfOfConfiguration managedOnBehalfOfConfiguration;
 
     /**
      * Creates an instance of ConfigurationStoreProperties class.
@@ -208,6 +226,32 @@ public final class ConfigurationStoreProperties implements JsonSerializable<Conf
     }
 
     /**
+     * Get the defaultKeyValueRevisionRetentionPeriodInSeconds property: The duration in seconds to retain new key value
+     * revisions. Defaults to 604800 (7 days) for Free SKU stores and 2592000 (30 days) for Standard SKU stores and
+     * Premium SKU stores.
+     * 
+     * @return the defaultKeyValueRevisionRetentionPeriodInSeconds value.
+     */
+    public Long defaultKeyValueRevisionRetentionPeriodInSeconds() {
+        return this.defaultKeyValueRevisionRetentionPeriodInSeconds;
+    }
+
+    /**
+     * Set the defaultKeyValueRevisionRetentionPeriodInSeconds property: The duration in seconds to retain new key value
+     * revisions. Defaults to 604800 (7 days) for Free SKU stores and 2592000 (30 days) for Standard SKU stores and
+     * Premium SKU stores.
+     * 
+     * @param defaultKeyValueRevisionRetentionPeriodInSeconds the defaultKeyValueRevisionRetentionPeriodInSeconds value
+     * to set.
+     * @return the ConfigurationStoreProperties object itself.
+     */
+    public ConfigurationStoreProperties
+        withDefaultKeyValueRevisionRetentionPeriodInSeconds(Long defaultKeyValueRevisionRetentionPeriodInSeconds) {
+        this.defaultKeyValueRevisionRetentionPeriodInSeconds = defaultKeyValueRevisionRetentionPeriodInSeconds;
+        return this;
+    }
+
+    /**
      * Get the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
      * 
@@ -272,6 +316,35 @@ public final class ConfigurationStoreProperties implements JsonSerializable<Conf
     }
 
     /**
+     * Get the telemetry property: Property specifying the configuration of telemetry for this configuration store.
+     * 
+     * @return the telemetry value.
+     */
+    public TelemetryProperties telemetry() {
+        return this.telemetry;
+    }
+
+    /**
+     * Set the telemetry property: Property specifying the configuration of telemetry for this configuration store.
+     * 
+     * @param telemetry the telemetry value to set.
+     * @return the ConfigurationStoreProperties object itself.
+     */
+    public ConfigurationStoreProperties withTelemetry(TelemetryProperties telemetry) {
+        this.telemetry = telemetry;
+        return this;
+    }
+
+    /**
+     * Get the managedOnBehalfOfConfiguration property: Managed On Behalf Of Configuration.
+     * 
+     * @return the managedOnBehalfOfConfiguration value.
+     */
+    public ManagedOnBehalfOfConfiguration managedOnBehalfOfConfiguration() {
+        return this.managedOnBehalfOfConfiguration;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -286,6 +359,12 @@ public final class ConfigurationStoreProperties implements JsonSerializable<Conf
         if (dataPlaneProxy() != null) {
             dataPlaneProxy().validate();
         }
+        if (telemetry() != null) {
+            telemetry().validate();
+        }
+        if (managedOnBehalfOfConfiguration() != null) {
+            managedOnBehalfOfConfiguration().validate();
+        }
     }
 
     /**
@@ -299,9 +378,12 @@ public final class ConfigurationStoreProperties implements JsonSerializable<Conf
             this.publicNetworkAccess == null ? null : this.publicNetworkAccess.toString());
         jsonWriter.writeBooleanField("disableLocalAuth", this.disableLocalAuth);
         jsonWriter.writeNumberField("softDeleteRetentionInDays", this.softDeleteRetentionInDays);
+        jsonWriter.writeNumberField("defaultKeyValueRevisionRetentionPeriodInSeconds",
+            this.defaultKeyValueRevisionRetentionPeriodInSeconds);
         jsonWriter.writeBooleanField("enablePurgeProtection", this.enablePurgeProtection);
         jsonWriter.writeJsonField("dataPlaneProxy", this.dataPlaneProxy);
         jsonWriter.writeStringField("createMode", this.createMode == null ? null : this.createMode.toString());
+        jsonWriter.writeJsonField("telemetry", this.telemetry);
         return jsonWriter.writeEndObject();
     }
 
@@ -343,6 +425,9 @@ public final class ConfigurationStoreProperties implements JsonSerializable<Conf
                 } else if ("softDeleteRetentionInDays".equals(fieldName)) {
                     deserializedConfigurationStoreProperties.softDeleteRetentionInDays
                         = reader.getNullable(JsonReader::getInt);
+                } else if ("defaultKeyValueRevisionRetentionPeriodInSeconds".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.defaultKeyValueRevisionRetentionPeriodInSeconds
+                        = reader.getNullable(JsonReader::getLong);
                 } else if ("enablePurgeProtection".equals(fieldName)) {
                     deserializedConfigurationStoreProperties.enablePurgeProtection
                         = reader.getNullable(JsonReader::getBoolean);
@@ -350,6 +435,11 @@ public final class ConfigurationStoreProperties implements JsonSerializable<Conf
                     deserializedConfigurationStoreProperties.dataPlaneProxy = DataPlaneProxyProperties.fromJson(reader);
                 } else if ("createMode".equals(fieldName)) {
                     deserializedConfigurationStoreProperties.createMode = CreateMode.fromString(reader.getString());
+                } else if ("telemetry".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.telemetry = TelemetryProperties.fromJson(reader);
+                } else if ("managedOnBehalfOfConfiguration".equals(fieldName)) {
+                    deserializedConfigurationStoreProperties.managedOnBehalfOfConfiguration
+                        = ManagedOnBehalfOfConfiguration.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

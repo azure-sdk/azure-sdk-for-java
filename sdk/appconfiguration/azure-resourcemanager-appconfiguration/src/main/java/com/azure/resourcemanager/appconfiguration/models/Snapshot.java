@@ -103,8 +103,7 @@ public interface Snapshot {
     Long itemsCount();
 
     /**
-     * Gets the tags property: The tags of the snapshot. NOTE: These are data plane tags, not Azure Resource Manager
-     * (ARM) tags.
+     * Gets the tags property: The tags of the snapshot. NOTE: These are data plane tags, not ARM tags.
      * 
      * @return the tags value.
      */
@@ -182,11 +181,9 @@ public interface Snapshot {
          */
         interface WithTags {
             /**
-             * Specifies the tags property: The tags of the snapshot. NOTE: These are data plane tags, not Azure
-             * Resource Manager (ARM) tags..
+             * Specifies the tags property: The tags of the snapshot. NOTE: These are data plane tags, not ARM tags..
              * 
-             * @param tags The tags of the snapshot. NOTE: These are data plane tags, not Azure Resource Manager (ARM)
-             * tags.
+             * @param tags The tags of the snapshot. NOTE: These are data plane tags, not ARM tags.
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);

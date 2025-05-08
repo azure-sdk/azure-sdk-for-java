@@ -8,8 +8,8 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * The data plane proxy private link delegation. This property manages if a request from delegated Azure Resource
- * Manager (ARM) private link is allowed when the data plane resource requires private link.
+ * The data plane proxy private link delegation. This property manages if a request from delegated ARM private link is
+ * allowed when the data plane resource requires private link.
  */
 public final class PrivateLinkDelegation extends ExpandableStringEnum<PrivateLinkDelegation> {
     /**

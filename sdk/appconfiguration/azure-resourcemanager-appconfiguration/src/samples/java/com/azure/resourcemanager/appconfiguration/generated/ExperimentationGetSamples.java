@@ -5,24 +5,21 @@
 package com.azure.resourcemanager.appconfiguration.generated;
 
 /**
- * Samples for Replicas Create.
+ * Samples for Experimentation Get.
  */
-public final class ReplicasCreateSamples {
+public final class ExperimentationGetSamples {
     /*
      * x-ms-original-file:
      * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2025-02-01-preview/examples/
-     * ConfigurationStoresCreateReplica.json
+     * ConfigurationStoresGetExperimentation.json
      */
     /**
-     * Sample code: Replicas_Create.
+     * Sample code: Experimentation_Get.
      * 
      * @param manager Entry point to AppConfigurationManager.
      */
-    public static void replicasCreate(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.replicas()
-            .define("myReplicaEus")
-            .withExistingConfigurationStore("myResourceGroup", "contoso")
-            .withRegion("eastus")
-            .create();
+    public static void experimentationGet(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.experimentations()
+            .getWithResponse("myResourceGroup", "contoso", "default", com.azure.core.util.Context.NONE);
     }
 }
