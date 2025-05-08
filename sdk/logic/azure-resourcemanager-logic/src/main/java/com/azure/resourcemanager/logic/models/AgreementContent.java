@@ -19,7 +19,7 @@ public final class AgreementContent implements JsonSerializable<AgreementContent
     /*
      * The AS2 agreement content.
      */
-    private AS2AgreementContent aS2;
+    private As2AgreementContent aS2;
 
     /*
      * The X12 agreement content.
@@ -42,7 +42,7 @@ public final class AgreementContent implements JsonSerializable<AgreementContent
      * 
      * @return the aS2 value.
      */
-    public AS2AgreementContent aS2() {
+    public As2AgreementContent aS2() {
         return this.aS2;
     }
 
@@ -52,7 +52,7 @@ public final class AgreementContent implements JsonSerializable<AgreementContent
      * @param aS2 the aS2 value to set.
      * @return the AgreementContent object itself.
      */
-    public AgreementContent withAS2(AS2AgreementContent aS2) {
+    public AgreementContent withAS2(As2AgreementContent aS2) {
         this.aS2 = aS2;
         return this;
     }
@@ -142,7 +142,7 @@ public final class AgreementContent implements JsonSerializable<AgreementContent
                 reader.nextToken();
 
                 if ("aS2".equals(fieldName)) {
-                    deserializedAgreementContent.aS2 = AS2AgreementContent.fromJson(reader);
+                    deserializedAgreementContent.aS2 = As2AgreementContent.fromJson(reader);
                 } else if ("x12".equals(fieldName)) {
                     deserializedAgreementContent.x12 = X12AgreementContent.fromJson(reader);
                 } else if ("edifact".equals(fieldName)) {

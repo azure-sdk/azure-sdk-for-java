@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,17 +15,17 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The list of workflows.
+ * The response of a Workflow list operation.
  */
 @Fluent
 public final class WorkflowListResult implements JsonSerializable<WorkflowListResult> {
     /*
-     * The list of workflows.
+     * The Workflow items on this page
      */
     private List<WorkflowInner> value;
 
     /*
-     * The URL to get the next set of results.
+     * The link to the next page of items
      */
     private String nextLink;
 
@@ -35,7 +36,7 @@ public final class WorkflowListResult implements JsonSerializable<WorkflowListRe
     }
 
     /**
-     * Get the value property: The list of workflows.
+     * Get the value property: The Workflow items on this page.
      * 
      * @return the value value.
      */
@@ -44,7 +45,7 @@ public final class WorkflowListResult implements JsonSerializable<WorkflowListRe
     }
 
     /**
-     * Set the value property: The list of workflows.
+     * Set the value property: The Workflow items on this page.
      * 
      * @param value the value value to set.
      * @return the WorkflowListResult object itself.
@@ -55,7 +56,7 @@ public final class WorkflowListResult implements JsonSerializable<WorkflowListRe
     }
 
     /**
-     * Get the nextLink property: The URL to get the next set of results.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -64,7 +65,7 @@ public final class WorkflowListResult implements JsonSerializable<WorkflowListRe
     }
 
     /**
-     * Set the nextLink property: The URL to get the next set of results.
+     * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
      * @return the WorkflowListResult object itself.
@@ -80,10 +81,15 @@ public final class WorkflowListResult implements JsonSerializable<WorkflowListRe
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model WorkflowListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(WorkflowListResult.class);
 
     /**
      * {@inheritDoc}
@@ -102,6 +108,7 @@ public final class WorkflowListResult implements JsonSerializable<WorkflowListRe
      * @param jsonReader The JsonReader being read.
      * @return An instance of WorkflowListResult if the JsonReader was pointing to an instance of it, or null if it was
      * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the WorkflowListResult.
      */
     public static WorkflowListResult fromJson(JsonReader jsonReader) throws IOException {

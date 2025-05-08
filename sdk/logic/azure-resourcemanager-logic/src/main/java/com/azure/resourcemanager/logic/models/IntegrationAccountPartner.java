@@ -5,11 +5,9 @@
 package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountPartnerInner;
-import java.time.OffsetDateTime;
-import java.util.Map;
 
 /**
  * An immutable client-side representation of IntegrationAccountPartner.
@@ -37,67 +35,18 @@ public interface IntegrationAccountPartner {
     String type();
 
     /**
-     * Gets the location property: The geo-location where the resource lives.
+     * Gets the properties property: The integration account partner properties.
      * 
-     * @return the location value.
+     * @return the properties value.
      */
-    String location();
+    IntegrationAccountPartnerProperties properties();
 
     /**
-     * Gets the tags property: Resource tags.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the tags value.
+     * @return the systemData value.
      */
-    Map<String, String> tags();
-
-    /**
-     * Gets the partnerType property: The partner type.
-     * 
-     * @return the partnerType value.
-     */
-    PartnerType partnerType();
-
-    /**
-     * Gets the createdTime property: The created time.
-     * 
-     * @return the createdTime value.
-     */
-    OffsetDateTime createdTime();
-
-    /**
-     * Gets the changedTime property: The changed time.
-     * 
-     * @return the changedTime value.
-     */
-    OffsetDateTime changedTime();
-
-    /**
-     * Gets the metadata property: The metadata.
-     * 
-     * @return the metadata value.
-     */
-    Object metadata();
-
-    /**
-     * Gets the content property: The partner content.
-     * 
-     * @return the content value.
-     */
-    PartnerContent content();
-
-    /**
-     * Gets the region of the resource.
-     * 
-     * @return the region of the resource.
-     */
-    Region region();
-
-    /**
-     * Gets the name of the resource region.
-     * 
-     * @return the name of the resource region.
-     */
-    String regionName();
+    SystemData systemData();
 
     /**
      * Gets the name of the resource group.
@@ -116,9 +65,8 @@ public interface IntegrationAccountPartner {
     /**
      * The entirety of the IntegrationAccountPartner definition.
      */
-    interface Definition
-        extends DefinitionStages.Blank, DefinitionStages.WithLocation, DefinitionStages.WithParentResource,
-        DefinitionStages.WithPartnerType, DefinitionStages.WithContent, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithParentResource,
+        DefinitionStages.WithProperties, DefinitionStages.WithCreate {
     }
 
     /**
@@ -128,28 +76,7 @@ public interface IntegrationAccountPartner {
         /**
          * The first stage of the IntegrationAccountPartner definition.
          */
-        interface Blank extends WithLocation {
-        }
-
-        /**
-         * The stage of the IntegrationAccountPartner definition allowing to specify location.
-         */
-        interface WithLocation {
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(Region location);
-
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(String location);
+        interface Blank extends WithParentResource {
         }
 
         /**
@@ -159,44 +86,31 @@ public interface IntegrationAccountPartner {
             /**
              * Specifies resourceGroupName, integrationAccountName.
              * 
-             * @param resourceGroupName The resource group name.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param integrationAccountName The integration account name.
              * @return the next definition stage.
              */
-            WithPartnerType withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
+            WithProperties withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
         }
 
         /**
-         * The stage of the IntegrationAccountPartner definition allowing to specify partnerType.
+         * The stage of the IntegrationAccountPartner definition allowing to specify properties.
          */
-        interface WithPartnerType {
+        interface WithProperties {
             /**
-             * Specifies the partnerType property: The partner type..
+             * Specifies the properties property: The integration account partner properties..
              * 
-             * @param partnerType The partner type.
+             * @param properties The integration account partner properties.
              * @return the next definition stage.
              */
-            WithContent withPartnerType(PartnerType partnerType);
-        }
-
-        /**
-         * The stage of the IntegrationAccountPartner definition allowing to specify content.
-         */
-        interface WithContent {
-            /**
-             * Specifies the content property: The partner content..
-             * 
-             * @param content The partner content.
-             * @return the next definition stage.
-             */
-            WithCreate withContent(PartnerContent content);
+            WithCreate withProperties(IntegrationAccountPartnerProperties properties);
         }
 
         /**
          * The stage of the IntegrationAccountPartner definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithMetadata {
+        interface WithCreate {
             /**
              * Executes the create request.
              * 
@@ -212,32 +126,6 @@ public interface IntegrationAccountPartner {
              */
             IntegrationAccountPartner create(Context context);
         }
-
-        /**
-         * The stage of the IntegrationAccountPartner definition allowing to specify tags.
-         */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags..
-             * 
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            WithCreate withTags(Map<String, String> tags);
-        }
-
-        /**
-         * The stage of the IntegrationAccountPartner definition allowing to specify metadata.
-         */
-        interface WithMetadata {
-            /**
-             * Specifies the metadata property: The metadata..
-             * 
-             * @param metadata The metadata.
-             * @return the next definition stage.
-             */
-            WithCreate withMetadata(Object metadata);
-        }
     }
 
     /**
@@ -250,8 +138,7 @@ public interface IntegrationAccountPartner {
     /**
      * The template for IntegrationAccountPartner update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithPartnerType, UpdateStages.WithMetadata,
-        UpdateStages.WithContent {
+    interface Update extends UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -273,55 +160,16 @@ public interface IntegrationAccountPartner {
      */
     interface UpdateStages {
         /**
-         * The stage of the IntegrationAccountPartner update allowing to specify tags.
+         * The stage of the IntegrationAccountPartner update allowing to specify properties.
          */
-        interface WithTags {
+        interface WithProperties {
             /**
-             * Specifies the tags property: Resource tags..
+             * Specifies the properties property: The integration account partner properties..
              * 
-             * @param tags Resource tags.
+             * @param properties The integration account partner properties.
              * @return the next definition stage.
              */
-            Update withTags(Map<String, String> tags);
-        }
-
-        /**
-         * The stage of the IntegrationAccountPartner update allowing to specify partnerType.
-         */
-        interface WithPartnerType {
-            /**
-             * Specifies the partnerType property: The partner type..
-             * 
-             * @param partnerType The partner type.
-             * @return the next definition stage.
-             */
-            Update withPartnerType(PartnerType partnerType);
-        }
-
-        /**
-         * The stage of the IntegrationAccountPartner update allowing to specify metadata.
-         */
-        interface WithMetadata {
-            /**
-             * Specifies the metadata property: The metadata..
-             * 
-             * @param metadata The metadata.
-             * @return the next definition stage.
-             */
-            Update withMetadata(Object metadata);
-        }
-
-        /**
-         * The stage of the IntegrationAccountPartner update allowing to specify content.
-         */
-        interface WithContent {
-            /**
-             * Specifies the content property: The partner content..
-             * 
-             * @param content The partner content.
-             * @return the next definition stage.
-             */
-            Update withContent(PartnerContent content);
+            Update withProperties(IntegrationAccountPartnerProperties properties);
         }
     }
 
@@ -343,24 +191,24 @@ public interface IntegrationAccountPartner {
     /**
      * Get the content callback url.
      * 
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the content callback url along with {@link Response}.
      */
-    Response<WorkflowTriggerCallbackUrl>
-        listContentCallbackUrlWithResponse(GetCallbackUrlParameters listContentCallbackUrl, Context context);
+    Response<WorkflowTriggerCallbackUrl> listContentCallbackUrlWithResponse(GetCallbackUrlParameters body,
+        Context context);
 
     /**
      * Get the content callback url.
      * 
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the content callback url.
      */
-    WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters listContentCallbackUrl);
+    WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters body);
 }

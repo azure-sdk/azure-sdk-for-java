@@ -4,13 +4,10 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowTriggerHistoryInner;
-import com.azure.resourcemanager.logic.models.ContentLink;
-import com.azure.resourcemanager.logic.models.Correlation;
-import com.azure.resourcemanager.logic.models.ResourceReference;
-import com.azure.resourcemanager.logic.models.WorkflowStatus;
 import com.azure.resourcemanager.logic.models.WorkflowTriggerHistory;
-import java.time.OffsetDateTime;
+import com.azure.resourcemanager.logic.models.WorkflowTriggerHistoryProperties;
 
 public final class WorkflowTriggerHistoryImpl implements WorkflowTriggerHistory {
     private WorkflowTriggerHistoryInner innerObject;
@@ -35,52 +32,12 @@ public final class WorkflowTriggerHistoryImpl implements WorkflowTriggerHistory 
         return this.innerModel().type();
     }
 
-    public OffsetDateTime startTime() {
-        return this.innerModel().startTime();
+    public WorkflowTriggerHistoryProperties properties() {
+        return this.innerModel().properties();
     }
 
-    public OffsetDateTime endTime() {
-        return this.innerModel().endTime();
-    }
-
-    public OffsetDateTime scheduledTime() {
-        return this.innerModel().scheduledTime();
-    }
-
-    public WorkflowStatus status() {
-        return this.innerModel().status();
-    }
-
-    public String code() {
-        return this.innerModel().code();
-    }
-
-    public Object error() {
-        return this.innerModel().error();
-    }
-
-    public String trackingId() {
-        return this.innerModel().trackingId();
-    }
-
-    public Correlation correlation() {
-        return this.innerModel().correlation();
-    }
-
-    public ContentLink inputsLink() {
-        return this.innerModel().inputsLink();
-    }
-
-    public ContentLink outputsLink() {
-        return this.innerModel().outputsLink();
-    }
-
-    public Boolean fired() {
-        return this.innerModel().fired();
-    }
-
-    public ResourceReference run() {
-        return this.innerModel().run();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public WorkflowTriggerHistoryInner innerModel() {

@@ -315,8 +315,8 @@ public final class X12ValidationSettings implements JsonSerializable<X12Validati
         jsonWriter.writeBooleanField("checkDuplicateGroupControlNumber", this.checkDuplicateGroupControlNumber);
         jsonWriter.writeBooleanField("checkDuplicateTransactionSetControlNumber",
             this.checkDuplicateTransactionSetControlNumber);
-        jsonWriter.writeBooleanField("validateEDITypes", this.validateEdiTypes);
-        jsonWriter.writeBooleanField("validateXSDTypes", this.validateXsdTypes);
+        jsonWriter.writeBooleanField("validateEdiTypes", this.validateEdiTypes);
+        jsonWriter.writeBooleanField("validateXsdTypes", this.validateXsdTypes);
         jsonWriter.writeBooleanField("allowLeadingAndTrailingSpacesAndZeroes",
             this.allowLeadingAndTrailingSpacesAndZeroes);
         jsonWriter.writeBooleanField("trimLeadingAndTrailingSpacesAndZeroes",
@@ -352,9 +352,9 @@ public final class X12ValidationSettings implements JsonSerializable<X12Validati
                     deserializedX12ValidationSettings.checkDuplicateGroupControlNumber = reader.getBoolean();
                 } else if ("checkDuplicateTransactionSetControlNumber".equals(fieldName)) {
                     deserializedX12ValidationSettings.checkDuplicateTransactionSetControlNumber = reader.getBoolean();
-                } else if ("validateEDITypes".equals(fieldName)) {
+                } else if ("validateEdiTypes".equals(fieldName)) {
                     deserializedX12ValidationSettings.validateEdiTypes = reader.getBoolean();
-                } else if ("validateXSDTypes".equals(fieldName)) {
+                } else if ("validateXsdTypes".equals(fieldName)) {
                     deserializedX12ValidationSettings.validateXsdTypes = reader.getBoolean();
                 } else if ("allowLeadingAndTrailingSpacesAndZeroes".equals(fieldName)) {
                     deserializedX12ValidationSettings.allowLeadingAndTrailingSpacesAndZeroes = reader.getBoolean();

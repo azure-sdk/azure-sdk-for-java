@@ -12,6 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 /**
  * The artifact content properties definition.
@@ -19,9 +20,9 @@ import java.time.format.DateTimeFormatter;
 @Fluent
 public class ArtifactContentPropertiesDefinition extends ArtifactProperties {
     /*
-     * Anything
+     * The artifact content
      */
-    private Object content;
+    private Map<String, Object> content;
 
     /*
      * The content type.
@@ -40,21 +41,21 @@ public class ArtifactContentPropertiesDefinition extends ArtifactProperties {
     }
 
     /**
-     * Get the content property: Anything.
+     * Get the content property: The artifact content.
      * 
      * @return the content value.
      */
-    public Object content() {
+    public Map<String, Object> content() {
         return this.content;
     }
 
     /**
-     * Set the content property: Anything.
+     * Set the content property: The artifact content.
      * 
      * @param content the content value to set.
      * @return the ArtifactContentPropertiesDefinition object itself.
      */
-    public ArtifactContentPropertiesDefinition withContent(Object content) {
+    public ArtifactContentPropertiesDefinition withContent(Map<String, Object> content) {
         this.content = content;
         return this;
     }
@@ -121,7 +122,7 @@ public class ArtifactContentPropertiesDefinition extends ArtifactProperties {
      * {@inheritDoc}
      */
     @Override
-    public ArtifactContentPropertiesDefinition withMetadata(Object metadata) {
+    public ArtifactContentPropertiesDefinition withMetadata(Map<String, Object> metadata) {
         super.withMetadata(metadata);
         return this;
     }
@@ -148,8 +149,8 @@ public class ArtifactContentPropertiesDefinition extends ArtifactProperties {
             createdTime() == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(createdTime()));
         jsonWriter.writeStringField("changedTime",
             changedTime() == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(changedTime()));
-        jsonWriter.writeUntypedField("metadata", metadata());
-        jsonWriter.writeUntypedField("content", this.content);
+        jsonWriter.writeMapField("metadata", metadata(), (writer, element) -> writer.writeUntyped(element));
+        jsonWriter.writeMapField("content", this.content, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeStringField("contentType", this.contentType);
         jsonWriter.writeJsonField("contentLink", this.contentLink);
         return jsonWriter.writeEndObject();
@@ -178,9 +179,11 @@ public class ArtifactContentPropertiesDefinition extends ArtifactProperties {
                     deserializedArtifactContentPropertiesDefinition.withChangedTime(reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("metadata".equals(fieldName)) {
-                    deserializedArtifactContentPropertiesDefinition.withMetadata(reader.readUntyped());
+                    Map<String, Object> metadata = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedArtifactContentPropertiesDefinition.withMetadata(metadata);
                 } else if ("content".equals(fieldName)) {
-                    deserializedArtifactContentPropertiesDefinition.content = reader.readUntyped();
+                    Map<String, Object> content = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedArtifactContentPropertiesDefinition.content = content;
                 } else if ("contentType".equals(fieldName)) {
                     deserializedArtifactContentPropertiesDefinition.contentType = reader.getString();
                 } else if ("contentLink".equals(fieldName)) {

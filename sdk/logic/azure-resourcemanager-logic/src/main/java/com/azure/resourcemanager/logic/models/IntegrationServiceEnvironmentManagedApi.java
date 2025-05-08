@@ -5,9 +5,9 @@
 package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentManagedApiInner;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -50,102 +50,18 @@ public interface IntegrationServiceEnvironmentManagedApi {
     Map<String, String> tags();
 
     /**
-     * Gets the deploymentParameters property: The integration service environment managed api deployment parameters.
+     * Gets the properties property: The integration service environment managed api properties.
      * 
-     * @return the deploymentParameters value.
+     * @return the properties value.
      */
-    IntegrationServiceEnvironmentManagedApiDeploymentParameters deploymentParameters();
+    IntegrationServiceEnvironmentManagedApiProperties properties();
 
     /**
-     * Gets the namePropertiesName property: The name.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the namePropertiesName value.
+     * @return the systemData value.
      */
-    String namePropertiesName();
-
-    /**
-     * Gets the connectionParameters property: The connection parameters.
-     * 
-     * @return the connectionParameters value.
-     */
-    Map<String, Object> connectionParameters();
-
-    /**
-     * Gets the metadata property: The metadata.
-     * 
-     * @return the metadata value.
-     */
-    ApiResourceMetadata metadata();
-
-    /**
-     * Gets the runtimeUrls property: The runtime urls.
-     * 
-     * @return the runtimeUrls value.
-     */
-    List<String> runtimeUrls();
-
-    /**
-     * Gets the generalInformation property: The api general information.
-     * 
-     * @return the generalInformation value.
-     */
-    ApiResourceGeneralInformation generalInformation();
-
-    /**
-     * Gets the capabilities property: The capabilities.
-     * 
-     * @return the capabilities value.
-     */
-    List<String> capabilities();
-
-    /**
-     * Gets the backendService property: The backend service.
-     * 
-     * @return the backendService value.
-     */
-    ApiResourceBackendService backendService();
-
-    /**
-     * Gets the policies property: The policies for the API.
-     * 
-     * @return the policies value.
-     */
-    ApiResourcePolicies policies();
-
-    /**
-     * Gets the apiDefinitionUrl property: The API definition.
-     * 
-     * @return the apiDefinitionUrl value.
-     */
-    String apiDefinitionUrl();
-
-    /**
-     * Gets the apiDefinitions property: The api definitions.
-     * 
-     * @return the apiDefinitions value.
-     */
-    ApiResourceDefinitions apiDefinitions();
-
-    /**
-     * Gets the integrationServiceEnvironment property: The integration service environment reference.
-     * 
-     * @return the integrationServiceEnvironment value.
-     */
-    ResourceReference integrationServiceEnvironment();
-
-    /**
-     * Gets the provisioningState property: The provisioning state.
-     * 
-     * @return the provisioningState value.
-     */
-    WorkflowProvisioningState provisioningState();
-
-    /**
-     * Gets the category property: The category.
-     * 
-     * @return the category value.
-     */
-    ApiTier category();
+    SystemData systemData();
 
     /**
      * Gets the region of the resource.
@@ -160,13 +76,6 @@ public interface IntegrationServiceEnvironmentManagedApi {
      * @return the name of the resource region.
      */
     String regionName();
-
-    /**
-     * Gets the name of the resource group.
-     * 
-     * @return the name of the resource group.
-     */
-    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentManagedApiInner object.
@@ -218,22 +127,19 @@ public interface IntegrationServiceEnvironmentManagedApi {
          */
         interface WithParentResource {
             /**
-             * Specifies resourceGroup, integrationServiceEnvironmentName.
+             * Specifies integrationServiceEnvironmentName.
              * 
-             * @param resourceGroup The resource group name.
              * @param integrationServiceEnvironmentName The integration service environment name.
              * @return the next definition stage.
              */
-            WithCreate withExistingIntegrationServiceEnvironment(String resourceGroup,
-                String integrationServiceEnvironmentName);
+            WithCreate withExistingIntegrationServiceEnvironment(String integrationServiceEnvironmentName);
         }
 
         /**
          * The stage of the IntegrationServiceEnvironmentManagedApi definition which contains all the minimum required
          * properties for the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithDeploymentParameters,
-            DefinitionStages.WithIntegrationServiceEnvironment {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithProperties {
             /**
              * Executes the create request.
              * 
@@ -264,32 +170,16 @@ public interface IntegrationServiceEnvironmentManagedApi {
         }
 
         /**
-         * The stage of the IntegrationServiceEnvironmentManagedApi definition allowing to specify deploymentParameters.
+         * The stage of the IntegrationServiceEnvironmentManagedApi definition allowing to specify properties.
          */
-        interface WithDeploymentParameters {
+        interface WithProperties {
             /**
-             * Specifies the deploymentParameters property: The integration service environment managed api deployment
-             * parameters..
+             * Specifies the properties property: The integration service environment managed api properties..
              * 
-             * @param deploymentParameters The integration service environment managed api deployment parameters.
+             * @param properties The integration service environment managed api properties.
              * @return the next definition stage.
              */
-            WithCreate withDeploymentParameters(
-                IntegrationServiceEnvironmentManagedApiDeploymentParameters deploymentParameters);
-        }
-
-        /**
-         * The stage of the IntegrationServiceEnvironmentManagedApi definition allowing to specify
-         * integrationServiceEnvironment.
-         */
-        interface WithIntegrationServiceEnvironment {
-            /**
-             * Specifies the integrationServiceEnvironment property: The integration service environment reference..
-             * 
-             * @param integrationServiceEnvironment The integration service environment reference.
-             * @return the next definition stage.
-             */
-            WithCreate withIntegrationServiceEnvironment(ResourceReference integrationServiceEnvironment);
+            WithCreate withProperties(IntegrationServiceEnvironmentManagedApiProperties properties);
         }
     }
 
@@ -303,8 +193,7 @@ public interface IntegrationServiceEnvironmentManagedApi {
     /**
      * The template for IntegrationServiceEnvironmentManagedApi update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithDeploymentParameters,
-        UpdateStages.WithIntegrationServiceEnvironment {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -339,32 +228,16 @@ public interface IntegrationServiceEnvironmentManagedApi {
         }
 
         /**
-         * The stage of the IntegrationServiceEnvironmentManagedApi update allowing to specify deploymentParameters.
+         * The stage of the IntegrationServiceEnvironmentManagedApi update allowing to specify properties.
          */
-        interface WithDeploymentParameters {
+        interface WithProperties {
             /**
-             * Specifies the deploymentParameters property: The integration service environment managed api deployment
-             * parameters..
+             * Specifies the properties property: The integration service environment managed api properties..
              * 
-             * @param deploymentParameters The integration service environment managed api deployment parameters.
+             * @param properties The integration service environment managed api properties.
              * @return the next definition stage.
              */
-            Update withDeploymentParameters(
-                IntegrationServiceEnvironmentManagedApiDeploymentParameters deploymentParameters);
-        }
-
-        /**
-         * The stage of the IntegrationServiceEnvironmentManagedApi update allowing to specify
-         * integrationServiceEnvironment.
-         */
-        interface WithIntegrationServiceEnvironment {
-            /**
-             * Specifies the integrationServiceEnvironment property: The integration service environment reference..
-             * 
-             * @param integrationServiceEnvironment The integration service environment reference.
-             * @return the next definition stage.
-             */
-            Update withIntegrationServiceEnvironment(ResourceReference integrationServiceEnvironment);
+            Update withProperties(IntegrationServiceEnvironmentManagedApiProperties properties);
         }
     }
 

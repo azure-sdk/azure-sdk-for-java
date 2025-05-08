@@ -13,12 +13,18 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 /**
  * The assembly properties definition.
  */
 @Fluent
 public final class AssemblyProperties extends ArtifactContentPropertiesDefinition {
+    /*
+     * The provisioning state.
+     */
+    private WorkflowProvisioningState provisioningState;
+
     /*
      * The assembly name.
      */
@@ -43,6 +49,15 @@ public final class AssemblyProperties extends ArtifactContentPropertiesDefinitio
      * Creates an instance of AssemblyProperties class.
      */
     public AssemblyProperties() {
+    }
+
+    /**
+     * Get the provisioningState property: The provisioning state.
+     * 
+     * @return the provisioningState value.
+     */
+    public WorkflowProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
@@ -129,7 +144,7 @@ public final class AssemblyProperties extends ArtifactContentPropertiesDefinitio
      * {@inheritDoc}
      */
     @Override
-    public AssemblyProperties withContent(Object content) {
+    public AssemblyProperties withContent(Map<String, Object> content) {
         super.withContent(content);
         return this;
     }
@@ -174,7 +189,7 @@ public final class AssemblyProperties extends ArtifactContentPropertiesDefinitio
      * {@inheritDoc}
      */
     @Override
-    public AssemblyProperties withMetadata(Object metadata) {
+    public AssemblyProperties withMetadata(Map<String, Object> metadata) {
         super.withMetadata(metadata);
         return this;
     }
@@ -208,8 +223,8 @@ public final class AssemblyProperties extends ArtifactContentPropertiesDefinitio
             createdTime() == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(createdTime()));
         jsonWriter.writeStringField("changedTime",
             changedTime() == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(changedTime()));
-        jsonWriter.writeUntypedField("metadata", metadata());
-        jsonWriter.writeUntypedField("content", content());
+        jsonWriter.writeMapField("metadata", metadata(), (writer, element) -> writer.writeUntyped(element));
+        jsonWriter.writeMapField("content", content(), (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeStringField("contentType", contentType());
         jsonWriter.writeJsonField("contentLink", contentLink());
         jsonWriter.writeStringField("assemblyName", this.assemblyName);
@@ -242,15 +257,20 @@ public final class AssemblyProperties extends ArtifactContentPropertiesDefinitio
                     deserializedAssemblyProperties.withChangedTime(reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("metadata".equals(fieldName)) {
-                    deserializedAssemblyProperties.withMetadata(reader.readUntyped());
+                    Map<String, Object> metadata = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedAssemblyProperties.withMetadata(metadata);
                 } else if ("content".equals(fieldName)) {
-                    deserializedAssemblyProperties.withContent(reader.readUntyped());
+                    Map<String, Object> content = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedAssemblyProperties.withContent(content);
                 } else if ("contentType".equals(fieldName)) {
                     deserializedAssemblyProperties.withContentType(reader.getString());
                 } else if ("contentLink".equals(fieldName)) {
                     deserializedAssemblyProperties.withContentLink(ContentLink.fromJson(reader));
                 } else if ("assemblyName".equals(fieldName)) {
                     deserializedAssemblyProperties.assemblyName = reader.getString();
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedAssemblyProperties.provisioningState
+                        = WorkflowProvisioningState.fromString(reader.getString());
                 } else if ("assemblyVersion".equals(fieldName)) {
                     deserializedAssemblyProperties.assemblyVersion = reader.getString();
                 } else if ("assemblyCulture".equals(fieldName)) {

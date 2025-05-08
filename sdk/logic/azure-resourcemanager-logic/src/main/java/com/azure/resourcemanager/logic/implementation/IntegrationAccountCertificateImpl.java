@@ -4,14 +4,11 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
-import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountCertificateInner;
 import com.azure.resourcemanager.logic.models.IntegrationAccountCertificate;
-import com.azure.resourcemanager.logic.models.KeyVaultKeyReference;
-import java.time.OffsetDateTime;
-import java.util.Collections;
-import java.util.Map;
+import com.azure.resourcemanager.logic.models.IntegrationAccountCertificateProperties;
 
 public final class IntegrationAccountCertificateImpl implements IntegrationAccountCertificate,
     IntegrationAccountCertificate.Definition, IntegrationAccountCertificate.Update {
@@ -31,45 +28,12 @@ public final class IntegrationAccountCertificateImpl implements IntegrationAccou
         return this.innerModel().type();
     }
 
-    public String location() {
-        return this.innerModel().location();
+    public IntegrationAccountCertificateProperties properties() {
+        return this.innerModel().properties();
     }
 
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
-    public OffsetDateTime createdTime() {
-        return this.innerModel().createdTime();
-    }
-
-    public OffsetDateTime changedTime() {
-        return this.innerModel().changedTime();
-    }
-
-    public Object metadata() {
-        return this.innerModel().metadata();
-    }
-
-    public KeyVaultKeyReference key() {
-        return this.innerModel().key();
-    }
-
-    public String publicCertificate() {
-        return this.innerModel().publicCertificate();
-    }
-
-    public Region region() {
-        return Region.fromName(this.regionName());
-    }
-
-    public String regionName() {
-        return this.location();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String resourceGroupName() {
@@ -169,33 +133,8 @@ public final class IntegrationAccountCertificateImpl implements IntegrationAccou
         return this;
     }
 
-    public IntegrationAccountCertificateImpl withRegion(Region location) {
-        this.innerModel().withLocation(location.toString());
-        return this;
-    }
-
-    public IntegrationAccountCertificateImpl withRegion(String location) {
-        this.innerModel().withLocation(location);
-        return this;
-    }
-
-    public IntegrationAccountCertificateImpl withTags(Map<String, String> tags) {
-        this.innerModel().withTags(tags);
-        return this;
-    }
-
-    public IntegrationAccountCertificateImpl withMetadata(Object metadata) {
-        this.innerModel().withMetadata(metadata);
-        return this;
-    }
-
-    public IntegrationAccountCertificateImpl withKey(KeyVaultKeyReference key) {
-        this.innerModel().withKey(key);
-        return this;
-    }
-
-    public IntegrationAccountCertificateImpl withPublicCertificate(String publicCertificate) {
-        this.innerModel().withPublicCertificate(publicCertificate);
+    public IntegrationAccountCertificateImpl withProperties(IntegrationAccountCertificateProperties properties) {
+        this.innerModel().withProperties(properties);
         return this;
     }
 }

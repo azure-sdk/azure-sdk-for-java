@@ -4,14 +4,6 @@
 
 package com.azure.resourcemanager.logic.generated;
 
-import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.logic.fluent.models.WorkflowInner;
-import com.azure.resourcemanager.logic.models.ResourceReference;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Samples for Workflows ValidateByResourceGroup.
  */
@@ -26,29 +18,9 @@ public final class WorkflowsValidateByResourceGroupSamples {
      * 
      * @param manager Entry point to LogicManager.
      */
-    public static void validateAWorkflow(com.azure.resourcemanager.logic.LogicManager manager) throws IOException {
+    public static void validateAWorkflow(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.workflows()
-            .validateByResourceGroupWithResponse("test-resource-group", "test-workflow", new WorkflowInner()
-                .withLocation("brazilsouth")
-                .withTags(mapOf())
-                .withIntegrationAccount(new ResourceReference().withId(
-                    "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/test-resource-group/providers/Microsoft.Logic/integrationAccounts/test-integration-account"))
-                .withDefinition(SerializerFactory.createDefaultManagementSerializerAdapter()
-                    .deserialize(
-                        "{\"$schema\":\"https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#\",\"actions\":{},\"contentVersion\":\"1.0.0.0\",\"outputs\":{},\"parameters\":{},\"triggers\":{}}",
-                        Object.class, SerializerEncoding.JSON)),
+            .validateByResourceGroupWithResponse("test-resource-group", "test-workflow", null,
                 com.azure.core.util.Context.NONE);
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
     }
 }

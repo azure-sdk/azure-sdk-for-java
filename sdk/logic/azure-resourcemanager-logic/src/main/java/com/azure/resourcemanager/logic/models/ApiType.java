@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for ApiType.
+ * The API type.
  */
 public final class ApiType extends ExpandableStringEnum<ApiType> {
     /**

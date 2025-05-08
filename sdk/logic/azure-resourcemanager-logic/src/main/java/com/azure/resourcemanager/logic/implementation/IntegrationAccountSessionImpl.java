@@ -4,13 +4,11 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
-import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountSessionInner;
 import com.azure.resourcemanager.logic.models.IntegrationAccountSession;
-import java.time.OffsetDateTime;
-import java.util.Collections;
-import java.util.Map;
+import com.azure.resourcemanager.logic.models.IntegrationAccountSessionProperties;
 
 public final class IntegrationAccountSessionImpl
     implements IntegrationAccountSession, IntegrationAccountSession.Definition, IntegrationAccountSession.Update {
@@ -30,37 +28,12 @@ public final class IntegrationAccountSessionImpl
         return this.innerModel().type();
     }
 
-    public String location() {
-        return this.innerModel().location();
+    public IntegrationAccountSessionProperties properties() {
+        return this.innerModel().properties();
     }
 
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
-    public OffsetDateTime createdTime() {
-        return this.innerModel().createdTime();
-    }
-
-    public OffsetDateTime changedTime() {
-        return this.innerModel().changedTime();
-    }
-
-    public Object content() {
-        return this.innerModel().content();
-    }
-
-    public Region region() {
-        return Region.fromName(this.regionName());
-    }
-
-    public String regionName() {
-        return this.location();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String resourceGroupName() {
@@ -160,23 +133,8 @@ public final class IntegrationAccountSessionImpl
         return this;
     }
 
-    public IntegrationAccountSessionImpl withRegion(Region location) {
-        this.innerModel().withLocation(location.toString());
-        return this;
-    }
-
-    public IntegrationAccountSessionImpl withRegion(String location) {
-        this.innerModel().withLocation(location);
-        return this;
-    }
-
-    public IntegrationAccountSessionImpl withTags(Map<String, String> tags) {
-        this.innerModel().withTags(tags);
-        return this;
-    }
-
-    public IntegrationAccountSessionImpl withContent(Object content) {
-        this.innerModel().withContent(content);
+    public IntegrationAccountSessionImpl withProperties(IntegrationAccountSessionProperties properties) {
+        this.innerModel().withProperties(properties);
         return this;
     }
 }

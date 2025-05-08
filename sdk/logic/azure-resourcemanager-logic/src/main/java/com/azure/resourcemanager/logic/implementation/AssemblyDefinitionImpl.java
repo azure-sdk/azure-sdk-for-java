@@ -5,14 +5,12 @@
 package com.azure.resourcemanager.logic.implementation;
 
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.AssemblyDefinitionInner;
 import com.azure.resourcemanager.logic.models.AssemblyDefinition;
 import com.azure.resourcemanager.logic.models.AssemblyProperties;
 import com.azure.resourcemanager.logic.models.WorkflowTriggerCallbackUrl;
-import java.util.Collections;
-import java.util.Map;
 
 public final class AssemblyDefinitionImpl
     implements AssemblyDefinition, AssemblyDefinition.Definition, AssemblyDefinition.Update {
@@ -32,29 +30,12 @@ public final class AssemblyDefinitionImpl
         return this.innerModel().type();
     }
 
-    public String location() {
-        return this.innerModel().location();
-    }
-
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
     public AssemblyProperties properties() {
         return this.innerModel().properties();
     }
 
-    public Region region() {
-        return Region.fromName(this.regionName());
-    }
-
-    public String regionName() {
-        return this.location();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String resourceGroupName() {
@@ -84,7 +65,7 @@ public final class AssemblyDefinitionImpl
 
     public AssemblyDefinition create() {
         this.innerObject = serviceManager.serviceClient()
-            .getIntegrationAccountAssemblies()
+            .getAssemblyDefinitions()
             .createOrUpdateWithResponse(resourceGroupName, integrationAccountName, assemblyArtifactName,
                 this.innerModel(), Context.NONE)
             .getValue();
@@ -93,7 +74,7 @@ public final class AssemblyDefinitionImpl
 
     public AssemblyDefinition create(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getIntegrationAccountAssemblies()
+            .getAssemblyDefinitions()
             .createOrUpdateWithResponse(resourceGroupName, integrationAccountName, assemblyArtifactName,
                 this.innerModel(), context)
             .getValue();
@@ -112,7 +93,7 @@ public final class AssemblyDefinitionImpl
 
     public AssemblyDefinition apply() {
         this.innerObject = serviceManager.serviceClient()
-            .getIntegrationAccountAssemblies()
+            .getAssemblyDefinitions()
             .createOrUpdateWithResponse(resourceGroupName, integrationAccountName, assemblyArtifactName,
                 this.innerModel(), Context.NONE)
             .getValue();
@@ -121,7 +102,7 @@ public final class AssemblyDefinitionImpl
 
     public AssemblyDefinition apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getIntegrationAccountAssemblies()
+            .getAssemblyDefinitions()
             .createOrUpdateWithResponse(resourceGroupName, integrationAccountName, assemblyArtifactName,
                 this.innerModel(), context)
             .getValue();
@@ -140,7 +121,7 @@ public final class AssemblyDefinitionImpl
 
     public AssemblyDefinition refresh() {
         this.innerObject = serviceManager.serviceClient()
-            .getIntegrationAccountAssemblies()
+            .getAssemblyDefinitions()
             .getWithResponse(resourceGroupName, integrationAccountName, assemblyArtifactName, Context.NONE)
             .getValue();
         return this;
@@ -148,40 +129,25 @@ public final class AssemblyDefinitionImpl
 
     public AssemblyDefinition refresh(Context context) {
         this.innerObject = serviceManager.serviceClient()
-            .getIntegrationAccountAssemblies()
+            .getAssemblyDefinitions()
             .getWithResponse(resourceGroupName, integrationAccountName, assemblyArtifactName, context)
             .getValue();
         return this;
     }
 
     public Response<WorkflowTriggerCallbackUrl> listContentCallbackUrlWithResponse(Context context) {
-        return serviceManager.integrationAccountAssemblies()
+        return serviceManager.assemblyDefinitions()
             .listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, assemblyArtifactName,
                 context);
     }
 
     public WorkflowTriggerCallbackUrl listContentCallbackUrl() {
-        return serviceManager.integrationAccountAssemblies()
+        return serviceManager.assemblyDefinitions()
             .listContentCallbackUrl(resourceGroupName, integrationAccountName, assemblyArtifactName);
-    }
-
-    public AssemblyDefinitionImpl withRegion(Region location) {
-        this.innerModel().withLocation(location.toString());
-        return this;
-    }
-
-    public AssemblyDefinitionImpl withRegion(String location) {
-        this.innerModel().withLocation(location);
-        return this;
     }
 
     public AssemblyDefinitionImpl withProperties(AssemblyProperties properties) {
         this.innerModel().withProperties(properties);
-        return this;
-    }
-
-    public AssemblyDefinitionImpl withTags(Map<String, String> tags) {
-        this.innerModel().withTags(tags);
         return this;
     }
 }

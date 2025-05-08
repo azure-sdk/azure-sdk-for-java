@@ -232,8 +232,8 @@ public final class EdifactValidationOverride implements JsonSerializable<Edifact
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("messageId", this.messageId);
         jsonWriter.writeBooleanField("enforceCharacterSet", this.enforceCharacterSet);
-        jsonWriter.writeBooleanField("validateEDITypes", this.validateEdiTypes);
-        jsonWriter.writeBooleanField("validateXSDTypes", this.validateXsdTypes);
+        jsonWriter.writeBooleanField("validateEdiTypes", this.validateEdiTypes);
+        jsonWriter.writeBooleanField("validateXsdTypes", this.validateXsdTypes);
         jsonWriter.writeBooleanField("allowLeadingAndTrailingSpacesAndZeroes",
             this.allowLeadingAndTrailingSpacesAndZeroes);
         jsonWriter.writeStringField("trailingSeparatorPolicy",
@@ -263,9 +263,9 @@ public final class EdifactValidationOverride implements JsonSerializable<Edifact
                     deserializedEdifactValidationOverride.messageId = reader.getString();
                 } else if ("enforceCharacterSet".equals(fieldName)) {
                     deserializedEdifactValidationOverride.enforceCharacterSet = reader.getBoolean();
-                } else if ("validateEDITypes".equals(fieldName)) {
+                } else if ("validateEdiTypes".equals(fieldName)) {
                     deserializedEdifactValidationOverride.validateEdiTypes = reader.getBoolean();
-                } else if ("validateXSDTypes".equals(fieldName)) {
+                } else if ("validateXsdTypes".equals(fieldName)) {
                     deserializedEdifactValidationOverride.validateXsdTypes = reader.getBoolean();
                 } else if ("allowLeadingAndTrailingSpacesAndZeroes".equals(fieldName)) {
                     deserializedEdifactValidationOverride.allowLeadingAndTrailingSpacesAndZeroes = reader.getBoolean();

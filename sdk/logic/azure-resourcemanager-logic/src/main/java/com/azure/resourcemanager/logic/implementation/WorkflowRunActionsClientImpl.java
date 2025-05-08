@@ -27,9 +27,8 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.logic.fluent.WorkflowRunActionsClient;
+import com.azure.resourcemanager.logic.fluent.models.ExpressionTracesInner;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowRunActionInner;
-import com.azure.resourcemanager.logic.models.ExpressionRoot;
-import com.azure.resourcemanager.logic.models.ExpressionTraces;
 import com.azure.resourcemanager.logic.models.WorkflowRunActionListResult;
 import reactor.core.publisher.Mono;
 
@@ -70,31 +69,30 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkflowRunActionListResult>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
-            @PathParam("runName") String runName, @QueryParam("api-version") String apiVersion,
-            @QueryParam("$top") Integer top, @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("runName") String runName, @QueryParam("$top") Integer top, @QueryParam("$filter") String filter,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkflowRunActionInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
             @PathParam("runName") String runName, @PathParam("actionName") String actionName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}/listExpressionTraces")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ExpressionTraces>> listExpressionTraces(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<ExpressionTracesInner>> listExpressionTraces(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
             @PathParam("runName") String runName, @PathParam("actionName") String actionName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -108,7 +106,7 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
     /**
      * Gets a list of workflow run actions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param top The number of items to be included in the result.
@@ -140,9 +138,8 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
             return Mono.error(new IllegalArgumentException("Parameter runName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, runName, this.client.getApiVersion(), top, filter, accept, context))
+        return FluxUtil.withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, workflowName, runName, top, filter, accept, context))
             .<PagedResponse<WorkflowRunActionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -151,7 +148,7 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
     /**
      * Gets a list of workflow run actions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param top The number of items to be included in the result.
@@ -186,8 +183,8 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workflowName, runName,
-                this.client.getApiVersion(), top, filter, accept, context)
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, workflowName, runName, top, filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -195,7 +192,7 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
     /**
      * Gets a list of workflow run actions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param top The number of items to be included in the result.
@@ -215,7 +212,7 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
     /**
      * Gets a list of workflow run actions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -234,7 +231,7 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
     /**
      * Gets a list of workflow run actions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param top The number of items to be included in the result.
@@ -256,7 +253,7 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
     /**
      * Gets a list of workflow run actions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -274,7 +271,7 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
     /**
      * Gets a list of workflow run actions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param top The number of items to be included in the result.
@@ -294,7 +291,7 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
     /**
      * Gets a workflow run action.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
@@ -329,15 +326,15 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, runName, actionName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, runName, actionName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a workflow run action.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
@@ -373,14 +370,14 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workflowName,
-            runName, actionName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, workflowName, runName, actionName, accept, context);
     }
 
     /**
      * Gets a workflow run action.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
@@ -399,7 +396,7 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
     /**
      * Gets a workflow run action.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
@@ -418,7 +415,7 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
     /**
      * Gets a workflow run action.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
@@ -436,17 +433,17 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
     /**
      * Lists a workflow run expression trace.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the expression traces along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the expression traces along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExpressionRoot>> listExpressionTracesSinglePageAsync(String resourceGroupName,
+    private Mono<Response<ExpressionTracesInner>> listExpressionTracesWithResponseAsync(String resourceGroupName,
         String workflowName, String runName, String actionName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -471,18 +468,15 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listExpressionTraces(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                    resourceGroupName, workflowName, runName, actionName, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<ExpressionRoot>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
-                res.getHeaders(), res.getValue().inputs(), null, null))
+            .withContext(context -> service.listExpressionTraces(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, runName, actionName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists a workflow run expression trace.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
@@ -490,10 +484,10 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the expression traces along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the expression traces along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExpressionRoot>> listExpressionTracesSinglePageAsync(String resourceGroupName,
+    private Mono<Response<ExpressionTracesInner>> listExpressionTracesWithResponseAsync(String resourceGroupName,
         String workflowName, String runName, String actionName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -518,36 +512,33 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listExpressionTraces(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                workflowName, runName, actionName, this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().inputs(), null, null));
+        return service.listExpressionTraces(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, workflowName, runName, actionName, accept, context);
     }
 
     /**
      * Lists a workflow run expression trace.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the expression traces as paginated response with {@link PagedFlux}.
+     * @return the expression traces on successful completion of {@link Mono}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ExpressionRoot> listExpressionTracesAsync(String resourceGroupName, String workflowName,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ExpressionTracesInner> listExpressionTracesAsync(String resourceGroupName, String workflowName,
         String runName, String actionName) {
-        return new PagedFlux<>(
-            () -> listExpressionTracesSinglePageAsync(resourceGroupName, workflowName, runName, actionName));
+        return listExpressionTracesWithResponseAsync(resourceGroupName, workflowName, runName, actionName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Lists a workflow run expression trace.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
@@ -555,51 +546,32 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the expression traces as paginated response with {@link PagedFlux}.
+     * @return the expression traces along with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ExpressionRoot> listExpressionTracesAsync(String resourceGroupName, String workflowName,
-        String runName, String actionName, Context context) {
-        return new PagedFlux<>(
-            () -> listExpressionTracesSinglePageAsync(resourceGroupName, workflowName, runName, actionName, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ExpressionTracesInner> listExpressionTracesWithResponse(String resourceGroupName,
+        String workflowName, String runName, String actionName, Context context) {
+        return listExpressionTracesWithResponseAsync(resourceGroupName, workflowName, runName, actionName, context)
+            .block();
     }
 
     /**
      * Lists a workflow run expression trace.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the expression traces as paginated response with {@link PagedIterable}.
+     * @return the expression traces.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ExpressionRoot> listExpressionTraces(String resourceGroupName, String workflowName,
-        String runName, String actionName) {
-        return new PagedIterable<>(listExpressionTracesAsync(resourceGroupName, workflowName, runName, actionName));
-    }
-
-    /**
-     * Lists a workflow run expression trace.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the expression traces as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ExpressionRoot> listExpressionTraces(String resourceGroupName, String workflowName,
-        String runName, String actionName, Context context) {
-        return new PagedIterable<>(
-            listExpressionTracesAsync(resourceGroupName, workflowName, runName, actionName, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ExpressionTracesInner listExpressionTraces(String resourceGroupName, String workflowName, String runName,
+        String actionName) {
+        return listExpressionTracesWithResponse(resourceGroupName, workflowName, runName, actionName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -609,8 +581,8 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflow run actions along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a WorkflowRunAction list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkflowRunActionInner>> listNextSinglePageAsync(String nextLink) {
@@ -636,8 +608,8 @@ public final class WorkflowRunActionsClientImpl implements WorkflowRunActionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflow run actions along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a WorkflowRunAction list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkflowRunActionInner>> listNextSinglePageAsync(String nextLink, Context context) {

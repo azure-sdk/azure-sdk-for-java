@@ -4,8 +4,8 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowTriggerHistoryInner;
-import java.time.OffsetDateTime;
 
 /**
  * An immutable client-side representation of WorkflowTriggerHistory.
@@ -19,102 +19,32 @@ public interface WorkflowTriggerHistory {
     String id();
 
     /**
-     * Gets the name property: Gets the workflow trigger history name.
+     * Gets the name property: The name of the resource.
      * 
      * @return the name value.
      */
     String name();
 
     /**
-     * Gets the type property: Gets the workflow trigger history type.
+     * Gets the type property: The type of the resource.
      * 
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the startTime property: Gets the start time.
+     * Gets the properties property: Gets the workflow trigger history properties.
      * 
-     * @return the startTime value.
+     * @return the properties value.
      */
-    OffsetDateTime startTime();
+    WorkflowTriggerHistoryProperties properties();
 
     /**
-     * Gets the endTime property: Gets the end time.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the endTime value.
+     * @return the systemData value.
      */
-    OffsetDateTime endTime();
-
-    /**
-     * Gets the scheduledTime property: The scheduled time.
-     * 
-     * @return the scheduledTime value.
-     */
-    OffsetDateTime scheduledTime();
-
-    /**
-     * Gets the status property: Gets the status.
-     * 
-     * @return the status value.
-     */
-    WorkflowStatus status();
-
-    /**
-     * Gets the code property: Gets the code.
-     * 
-     * @return the code value.
-     */
-    String code();
-
-    /**
-     * Gets the error property: Gets the error.
-     * 
-     * @return the error value.
-     */
-    Object error();
-
-    /**
-     * Gets the trackingId property: Gets the tracking id.
-     * 
-     * @return the trackingId value.
-     */
-    String trackingId();
-
-    /**
-     * Gets the correlation property: The run correlation.
-     * 
-     * @return the correlation value.
-     */
-    Correlation correlation();
-
-    /**
-     * Gets the inputsLink property: Gets the link to input parameters.
-     * 
-     * @return the inputsLink value.
-     */
-    ContentLink inputsLink();
-
-    /**
-     * Gets the outputsLink property: Gets the link to output parameters.
-     * 
-     * @return the outputsLink value.
-     */
-    ContentLink outputsLink();
-
-    /**
-     * Gets the fired property: The value indicating whether trigger was fired.
-     * 
-     * @return the fired value.
-     */
-    Boolean fired();
-
-    /**
-     * Gets the run property: Gets the reference to workflow run.
-     * 
-     * @return the run value.
-     */
-    ResourceReference run();
+    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.logic.fluent.models.WorkflowTriggerHistoryInner object.

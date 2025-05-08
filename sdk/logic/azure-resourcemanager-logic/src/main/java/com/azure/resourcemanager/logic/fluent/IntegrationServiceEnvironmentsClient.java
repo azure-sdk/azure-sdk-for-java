@@ -12,6 +12,8 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentInner;
+import com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentNetworkHealthInner;
+import com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentSkuDefinitionInner;
 
 /**
  * An instance of this class provides access to all the operations defined in IntegrationServiceEnvironmentsClient.
@@ -26,7 +28,7 @@ public interface IntegrationServiceEnvironmentsClient {
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<IntegrationServiceEnvironmentInner> list();
+    PagedIterable<IntegrationServiceEnvironmentInner> listBySubscription();
 
     /**
      * Gets a list of integration service environments by subscription.
@@ -40,12 +42,255 @@ public interface IntegrationServiceEnvironmentsClient {
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<IntegrationServiceEnvironmentInner> list(Integer top, Context context);
+    PagedIterable<IntegrationServiceEnvironmentInner> listBySubscription(Integer top, Context context);
+
+    /**
+     * Gets an integration service environment.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an integration service environment along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<IntegrationServiceEnvironmentInner> getWithResponse(String integrationServiceEnvironmentName,
+        Context context);
+
+    /**
+     * Gets an integration service environment.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an integration service environment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    IntegrationServiceEnvironmentInner get(String integrationServiceEnvironmentName);
+
+    /**
+     * Creates or updates an integration service environment.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @param resource The integration service environment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the integration service environment.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<IntegrationServiceEnvironmentInner>, IntegrationServiceEnvironmentInner>
+        beginCreateOrUpdate(String integrationServiceEnvironmentName, IntegrationServiceEnvironmentInner resource);
+
+    /**
+     * Creates or updates an integration service environment.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @param resource The integration service environment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the integration service environment.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<IntegrationServiceEnvironmentInner>, IntegrationServiceEnvironmentInner> beginCreateOrUpdate(
+        String integrationServiceEnvironmentName, IntegrationServiceEnvironmentInner resource, Context context);
+
+    /**
+     * Creates or updates an integration service environment.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @param resource The integration service environment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the integration service environment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    IntegrationServiceEnvironmentInner createOrUpdate(String integrationServiceEnvironmentName,
+        IntegrationServiceEnvironmentInner resource);
+
+    /**
+     * Creates or updates an integration service environment.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @param resource The integration service environment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the integration service environment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    IntegrationServiceEnvironmentInner createOrUpdate(String integrationServiceEnvironmentName,
+        IntegrationServiceEnvironmentInner resource, Context context);
+
+    /**
+     * Updates an integration service environment.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @param properties The integration service environment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the integration service environment.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<IntegrationServiceEnvironmentInner>, IntegrationServiceEnvironmentInner>
+        beginUpdate(String integrationServiceEnvironmentName, IntegrationServiceEnvironmentInner properties);
+
+    /**
+     * Updates an integration service environment.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @param properties The integration service environment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the integration service environment.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<IntegrationServiceEnvironmentInner>, IntegrationServiceEnvironmentInner> beginUpdate(
+        String integrationServiceEnvironmentName, IntegrationServiceEnvironmentInner properties, Context context);
+
+    /**
+     * Updates an integration service environment.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @param properties The integration service environment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the integration service environment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    IntegrationServiceEnvironmentInner update(String integrationServiceEnvironmentName,
+        IntegrationServiceEnvironmentInner properties);
+
+    /**
+     * Updates an integration service environment.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @param properties The integration service environment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the integration service environment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    IntegrationServiceEnvironmentInner update(String integrationServiceEnvironmentName,
+        IntegrationServiceEnvironmentInner properties, Context context);
+
+    /**
+     * Deletes an integration service environment.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> deleteWithResponse(String integrationServiceEnvironmentName, Context context);
+
+    /**
+     * Deletes an integration service environment.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String integrationServiceEnvironmentName);
+
+    /**
+     * Gets the integration service environment network health.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the integration service environment network health along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<IntegrationServiceEnvironmentNetworkHealthInner> integrationServiceEnvironmentNetworkHealthGetWithResponse(
+        String integrationServiceEnvironmentName, Context context);
+
+    /**
+     * Gets the integration service environment network health.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the integration service environment network health.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    IntegrationServiceEnvironmentNetworkHealthInner
+        integrationServiceEnvironmentNetworkHealthGet(String integrationServiceEnvironmentName);
+
+    /**
+     * Restarts an integration service environment.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> restartWithResponse(String integrationServiceEnvironmentName, Context context);
+
+    /**
+     * Restarts an integration service environment.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void restart(String integrationServiceEnvironmentName);
+
+    /**
+     * Gets a list of integration service environment Skus.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of integration service environment Skus as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<IntegrationServiceEnvironmentSkuDefinitionInner> list(String integrationServiceEnvironmentName);
+
+    /**
+     * Gets a list of integration service environment Skus.
+     * 
+     * @param integrationServiceEnvironmentName The integration service environment name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of integration service environment Skus as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<IntegrationServiceEnvironmentSkuDefinitionInner> list(String integrationServiceEnvironmentName,
+        Context context);
 
     /**
      * Gets a list of integration service environments by resource group.
      * 
-     * @param resourceGroup The resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -53,12 +298,12 @@ public interface IntegrationServiceEnvironmentsClient {
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<IntegrationServiceEnvironmentInner> listByResourceGroup(String resourceGroup);
+    PagedIterable<IntegrationServiceEnvironmentInner> listByResourceGroup(String resourceGroupName);
 
     /**
      * Gets a list of integration service environments by resource group.
      * 
-     * @param resourceGroup The resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param top The number of items to be included in the result.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -68,215 +313,6 @@ public interface IntegrationServiceEnvironmentsClient {
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<IntegrationServiceEnvironmentInner> listByResourceGroup(String resourceGroup, Integer top,
+    PagedIterable<IntegrationServiceEnvironmentInner> listByResourceGroup(String resourceGroupName, Integer top,
         Context context);
-
-    /**
-     * Gets an integration service environment.
-     * 
-     * @param resourceGroup The resource group.
-     * @param integrationServiceEnvironmentName The integration service environment name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an integration service environment along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<IntegrationServiceEnvironmentInner> getByResourceGroupWithResponse(String resourceGroup,
-        String integrationServiceEnvironmentName, Context context);
-
-    /**
-     * Gets an integration service environment.
-     * 
-     * @param resourceGroup The resource group.
-     * @param integrationServiceEnvironmentName The integration service environment name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an integration service environment.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    IntegrationServiceEnvironmentInner getByResourceGroup(String resourceGroup,
-        String integrationServiceEnvironmentName);
-
-    /**
-     * Creates or updates an integration service environment.
-     * 
-     * @param resourceGroup The resource group.
-     * @param integrationServiceEnvironmentName The integration service environment name.
-     * @param integrationServiceEnvironment The integration service environment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the integration service environment.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<IntegrationServiceEnvironmentInner>, IntegrationServiceEnvironmentInner> beginCreateOrUpdate(
-        String resourceGroup, String integrationServiceEnvironmentName,
-        IntegrationServiceEnvironmentInner integrationServiceEnvironment);
-
-    /**
-     * Creates or updates an integration service environment.
-     * 
-     * @param resourceGroup The resource group.
-     * @param integrationServiceEnvironmentName The integration service environment name.
-     * @param integrationServiceEnvironment The integration service environment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the integration service environment.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<IntegrationServiceEnvironmentInner>, IntegrationServiceEnvironmentInner> beginCreateOrUpdate(
-        String resourceGroup, String integrationServiceEnvironmentName,
-        IntegrationServiceEnvironmentInner integrationServiceEnvironment, Context context);
-
-    /**
-     * Creates or updates an integration service environment.
-     * 
-     * @param resourceGroup The resource group.
-     * @param integrationServiceEnvironmentName The integration service environment name.
-     * @param integrationServiceEnvironment The integration service environment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the integration service environment.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    IntegrationServiceEnvironmentInner createOrUpdate(String resourceGroup, String integrationServiceEnvironmentName,
-        IntegrationServiceEnvironmentInner integrationServiceEnvironment);
-
-    /**
-     * Creates or updates an integration service environment.
-     * 
-     * @param resourceGroup The resource group.
-     * @param integrationServiceEnvironmentName The integration service environment name.
-     * @param integrationServiceEnvironment The integration service environment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the integration service environment.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    IntegrationServiceEnvironmentInner createOrUpdate(String resourceGroup, String integrationServiceEnvironmentName,
-        IntegrationServiceEnvironmentInner integrationServiceEnvironment, Context context);
-
-    /**
-     * Updates an integration service environment.
-     * 
-     * @param resourceGroup The resource group.
-     * @param integrationServiceEnvironmentName The integration service environment name.
-     * @param integrationServiceEnvironment The integration service environment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the integration service environment.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<IntegrationServiceEnvironmentInner>, IntegrationServiceEnvironmentInner> beginUpdate(
-        String resourceGroup, String integrationServiceEnvironmentName,
-        IntegrationServiceEnvironmentInner integrationServiceEnvironment);
-
-    /**
-     * Updates an integration service environment.
-     * 
-     * @param resourceGroup The resource group.
-     * @param integrationServiceEnvironmentName The integration service environment name.
-     * @param integrationServiceEnvironment The integration service environment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the integration service environment.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<IntegrationServiceEnvironmentInner>, IntegrationServiceEnvironmentInner> beginUpdate(
-        String resourceGroup, String integrationServiceEnvironmentName,
-        IntegrationServiceEnvironmentInner integrationServiceEnvironment, Context context);
-
-    /**
-     * Updates an integration service environment.
-     * 
-     * @param resourceGroup The resource group.
-     * @param integrationServiceEnvironmentName The integration service environment name.
-     * @param integrationServiceEnvironment The integration service environment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the integration service environment.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    IntegrationServiceEnvironmentInner update(String resourceGroup, String integrationServiceEnvironmentName,
-        IntegrationServiceEnvironmentInner integrationServiceEnvironment);
-
-    /**
-     * Updates an integration service environment.
-     * 
-     * @param resourceGroup The resource group.
-     * @param integrationServiceEnvironmentName The integration service environment name.
-     * @param integrationServiceEnvironment The integration service environment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the integration service environment.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    IntegrationServiceEnvironmentInner update(String resourceGroup, String integrationServiceEnvironmentName,
-        IntegrationServiceEnvironmentInner integrationServiceEnvironment, Context context);
-
-    /**
-     * Deletes an integration service environment.
-     * 
-     * @param resourceGroup The resource group.
-     * @param integrationServiceEnvironmentName The integration service environment name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(String resourceGroup, String integrationServiceEnvironmentName, Context context);
-
-    /**
-     * Deletes an integration service environment.
-     * 
-     * @param resourceGroup The resource group.
-     * @param integrationServiceEnvironmentName The integration service environment name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroup, String integrationServiceEnvironmentName);
-
-    /**
-     * Restarts an integration service environment.
-     * 
-     * @param resourceGroup The resource group.
-     * @param integrationServiceEnvironmentName The integration service environment name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> restartWithResponse(String resourceGroup, String integrationServiceEnvironmentName, Context context);
-
-    /**
-     * Restarts an integration service environment.
-     * 
-     * @param resourceGroup The resource group.
-     * @param integrationServiceEnvironmentName The integration service environment name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void restart(String resourceGroup, String integrationServiceEnvironmentName);
 }

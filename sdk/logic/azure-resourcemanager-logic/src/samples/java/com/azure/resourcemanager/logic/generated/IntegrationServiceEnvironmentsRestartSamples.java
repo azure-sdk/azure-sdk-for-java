@@ -19,7 +19,6 @@ public final class IntegrationServiceEnvironmentsRestartSamples {
      */
     public static void restartsAnIntegrationServiceEnvironment(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationServiceEnvironments()
-            .restartWithResponse("testResourceGroup", "testIntegrationServiceEnvironment",
-                com.azure.core.util.Context.NONE);
+            .restartWithResponse("testIntegrationServiceEnvironment", com.azure.core.util.Context.NONE);
     }
 }

@@ -4,9 +4,8 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowRunInner;
-import java.time.OffsetDateTime;
-import java.util.Map;
 
 /**
  * An immutable client-side representation of WorkflowRun.
@@ -20,102 +19,32 @@ public interface WorkflowRun {
     String id();
 
     /**
-     * Gets the name property: Gets the workflow run name.
+     * Gets the name property: The name of the resource.
      * 
      * @return the name value.
      */
     String name();
 
     /**
-     * Gets the type property: Gets the workflow run type.
+     * Gets the type property: The type of the resource.
      * 
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the waitEndTime property: Gets the wait end time.
+     * Gets the properties property: The workflow run properties.
      * 
-     * @return the waitEndTime value.
+     * @return the properties value.
      */
-    OffsetDateTime waitEndTime();
+    WorkflowRunProperties properties();
 
     /**
-     * Gets the startTime property: Gets the start time.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the startTime value.
+     * @return the systemData value.
      */
-    OffsetDateTime startTime();
-
-    /**
-     * Gets the endTime property: Gets the end time.
-     * 
-     * @return the endTime value.
-     */
-    OffsetDateTime endTime();
-
-    /**
-     * Gets the status property: Gets the status.
-     * 
-     * @return the status value.
-     */
-    WorkflowStatus status();
-
-    /**
-     * Gets the code property: Gets the code.
-     * 
-     * @return the code value.
-     */
-    String code();
-
-    /**
-     * Gets the error property: Gets the error.
-     * 
-     * @return the error value.
-     */
-    Object error();
-
-    /**
-     * Gets the correlationId property: Gets the correlation id.
-     * 
-     * @return the correlationId value.
-     */
-    String correlationId();
-
-    /**
-     * Gets the correlation property: The run correlation.
-     * 
-     * @return the correlation value.
-     */
-    Correlation correlation();
-
-    /**
-     * Gets the workflow property: Gets the reference to workflow version.
-     * 
-     * @return the workflow value.
-     */
-    ResourceReference workflow();
-
-    /**
-     * Gets the trigger property: Gets the fired trigger.
-     * 
-     * @return the trigger value.
-     */
-    WorkflowRunTrigger trigger();
-
-    /**
-     * Gets the outputs property: Gets the outputs.
-     * 
-     * @return the outputs value.
-     */
-    Map<String, WorkflowOutputParameter> outputs();
-
-    /**
-     * Gets the response property: Gets the response of the flow run.
-     * 
-     * @return the response value.
-     */
-    WorkflowRunTrigger response();
+    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.logic.fluent.models.WorkflowRunInner object.

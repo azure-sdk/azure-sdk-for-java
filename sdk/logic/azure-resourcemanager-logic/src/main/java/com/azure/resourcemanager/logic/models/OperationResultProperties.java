@@ -13,6 +13,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 /**
  * The run operation result properties.
@@ -45,9 +46,9 @@ public class OperationResultProperties implements JsonSerializable<OperationResu
     private String code;
 
     /*
-     * Anything
+     * The error
      */
-    private Object error;
+    private Map<String, Object> error;
 
     /**
      * Creates an instance of OperationResultProperties class.
@@ -130,7 +131,7 @@ public class OperationResultProperties implements JsonSerializable<OperationResu
      * @param status the status value to set.
      * @return the OperationResultProperties object itself.
      */
-    public OperationResultProperties withStatus(WorkflowStatus status) {
+    OperationResultProperties withStatus(WorkflowStatus status) {
         this.status = status;
         return this;
     }
@@ -156,21 +157,21 @@ public class OperationResultProperties implements JsonSerializable<OperationResu
     }
 
     /**
-     * Get the error property: Anything.
+     * Get the error property: The error.
      * 
      * @return the error value.
      */
-    public Object error() {
+    public Map<String, Object> error() {
         return this.error;
     }
 
     /**
-     * Set the error property: Anything.
+     * Set the error property: The error.
      * 
      * @param error the error value to set.
      * @return the OperationResultProperties object itself.
      */
-    public OperationResultProperties withError(Object error) {
+    public OperationResultProperties withError(Map<String, Object> error) {
         this.error = error;
         return this;
     }
@@ -197,9 +198,8 @@ public class OperationResultProperties implements JsonSerializable<OperationResu
         jsonWriter.writeStringField("endTime",
             this.endTime == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.endTime));
         jsonWriter.writeJsonField("correlation", this.correlation);
-        jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
         jsonWriter.writeStringField("code", this.code);
-        jsonWriter.writeUntypedField("error", this.error);
+        jsonWriter.writeMapField("error", this.error, (writer, element) -> writer.writeUntyped(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -231,7 +231,8 @@ public class OperationResultProperties implements JsonSerializable<OperationResu
                 } else if ("code".equals(fieldName)) {
                     deserializedOperationResultProperties.code = reader.getString();
                 } else if ("error".equals(fieldName)) {
-                    deserializedOperationResultProperties.error = reader.readUntyped();
+                    Map<String, Object> error = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedOperationResultProperties.error = error;
                 } else {
                     reader.skipChildren();
                 }

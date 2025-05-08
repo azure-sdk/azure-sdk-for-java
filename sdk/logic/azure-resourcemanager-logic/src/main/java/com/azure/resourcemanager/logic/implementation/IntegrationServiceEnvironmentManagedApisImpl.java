@@ -27,26 +27,25 @@ public final class IntegrationServiceEnvironmentManagedApisImpl implements Integ
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<IntegrationServiceEnvironmentManagedApi> list(String resourceGroup,
-        String integrationServiceEnvironmentName) {
+    public PagedIterable<IntegrationServiceEnvironmentManagedApi> list(String integrationServiceEnvironmentName) {
         PagedIterable<IntegrationServiceEnvironmentManagedApiInner> inner
-            = this.serviceClient().list(resourceGroup, integrationServiceEnvironmentName);
+            = this.serviceClient().list(integrationServiceEnvironmentName);
         return ResourceManagerUtils.mapPage(inner,
             inner1 -> new IntegrationServiceEnvironmentManagedApiImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<IntegrationServiceEnvironmentManagedApi> list(String resourceGroup,
-        String integrationServiceEnvironmentName, Context context) {
+    public PagedIterable<IntegrationServiceEnvironmentManagedApi> list(String integrationServiceEnvironmentName,
+        Context context) {
         PagedIterable<IntegrationServiceEnvironmentManagedApiInner> inner
-            = this.serviceClient().list(resourceGroup, integrationServiceEnvironmentName, context);
+            = this.serviceClient().list(integrationServiceEnvironmentName, context);
         return ResourceManagerUtils.mapPage(inner,
             inner1 -> new IntegrationServiceEnvironmentManagedApiImpl(inner1, this.manager()));
     }
 
-    public Response<IntegrationServiceEnvironmentManagedApi> getWithResponse(String resourceGroup,
-        String integrationServiceEnvironmentName, String apiName, Context context) {
+    public Response<IntegrationServiceEnvironmentManagedApi> getWithResponse(String integrationServiceEnvironmentName,
+        String apiName, Context context) {
         Response<IntegrationServiceEnvironmentManagedApiInner> inner
-            = this.serviceClient().getWithResponse(resourceGroup, integrationServiceEnvironmentName, apiName, context);
+            = this.serviceClient().getWithResponse(integrationServiceEnvironmentName, apiName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new IntegrationServiceEnvironmentManagedApiImpl(inner.getValue(), this.manager()));
@@ -55,10 +54,9 @@ public final class IntegrationServiceEnvironmentManagedApisImpl implements Integ
         }
     }
 
-    public IntegrationServiceEnvironmentManagedApi get(String resourceGroup, String integrationServiceEnvironmentName,
-        String apiName) {
+    public IntegrationServiceEnvironmentManagedApi get(String integrationServiceEnvironmentName, String apiName) {
         IntegrationServiceEnvironmentManagedApiInner inner
-            = this.serviceClient().get(resourceGroup, integrationServiceEnvironmentName, apiName);
+            = this.serviceClient().get(integrationServiceEnvironmentName, apiName);
         if (inner != null) {
             return new IntegrationServiceEnvironmentManagedApiImpl(inner, this.manager());
         } else {
@@ -66,21 +64,15 @@ public final class IntegrationServiceEnvironmentManagedApisImpl implements Integ
         }
     }
 
-    public void delete(String resourceGroup, String integrationServiceEnvironmentName, String apiName) {
-        this.serviceClient().delete(resourceGroup, integrationServiceEnvironmentName, apiName);
+    public void deleteByResourceGroup(String integrationServiceEnvironmentName, String apiName) {
+        this.serviceClient().delete(integrationServiceEnvironmentName, apiName);
     }
 
-    public void delete(String resourceGroup, String integrationServiceEnvironmentName, String apiName,
-        Context context) {
-        this.serviceClient().delete(resourceGroup, integrationServiceEnvironmentName, apiName, context);
+    public void delete(String integrationServiceEnvironmentName, String apiName, Context context) {
+        this.serviceClient().delete(integrationServiceEnvironmentName, apiName, context);
     }
 
     public IntegrationServiceEnvironmentManagedApi getById(String id) {
-        String resourceGroup = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroup == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
         String integrationServiceEnvironmentName
             = ResourceManagerUtils.getValueFromIdByName(id, "integrationServiceEnvironments");
         if (integrationServiceEnvironmentName == null) {
@@ -92,15 +84,10 @@ public final class IntegrationServiceEnvironmentManagedApisImpl implements Integ
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'managedApis'.", id)));
         }
-        return this.getWithResponse(resourceGroup, integrationServiceEnvironmentName, apiName, Context.NONE).getValue();
+        return this.getWithResponse(integrationServiceEnvironmentName, apiName, Context.NONE).getValue();
     }
 
     public Response<IntegrationServiceEnvironmentManagedApi> getByIdWithResponse(String id, Context context) {
-        String resourceGroup = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroup == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
         String integrationServiceEnvironmentName
             = ResourceManagerUtils.getValueFromIdByName(id, "integrationServiceEnvironments");
         if (integrationServiceEnvironmentName == null) {
@@ -112,15 +99,10 @@ public final class IntegrationServiceEnvironmentManagedApisImpl implements Integ
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'managedApis'.", id)));
         }
-        return this.getWithResponse(resourceGroup, integrationServiceEnvironmentName, apiName, context);
+        return this.getWithResponse(integrationServiceEnvironmentName, apiName, context);
     }
 
     public void deleteById(String id) {
-        String resourceGroup = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroup == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
         String integrationServiceEnvironmentName
             = ResourceManagerUtils.getValueFromIdByName(id, "integrationServiceEnvironments");
         if (integrationServiceEnvironmentName == null) {
@@ -132,15 +114,10 @@ public final class IntegrationServiceEnvironmentManagedApisImpl implements Integ
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'managedApis'.", id)));
         }
-        this.delete(resourceGroup, integrationServiceEnvironmentName, apiName, Context.NONE);
+        this.delete(integrationServiceEnvironmentName, apiName, Context.NONE);
     }
 
     public void deleteByIdWithResponse(String id, Context context) {
-        String resourceGroup = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroup == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
         String integrationServiceEnvironmentName
             = ResourceManagerUtils.getValueFromIdByName(id, "integrationServiceEnvironments");
         if (integrationServiceEnvironmentName == null) {
@@ -152,7 +129,7 @@ public final class IntegrationServiceEnvironmentManagedApisImpl implements Integ
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'managedApis'.", id)));
         }
-        this.delete(resourceGroup, integrationServiceEnvironmentName, apiName, context);
+        this.delete(integrationServiceEnvironmentName, apiName, context);
     }
 
     private IntegrationServiceEnvironmentManagedApisClient serviceClient() {

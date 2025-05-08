@@ -6,12 +6,12 @@ package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.logic.models.IntegrationAccountProperties;
 import com.azure.resourcemanager.logic.models.IntegrationAccountSku;
-import com.azure.resourcemanager.logic.models.ResourceReference;
-import com.azure.resourcemanager.logic.models.WorkflowState;
 import java.io.IOException;
 import java.util.Map;
 
@@ -23,12 +23,17 @@ public final class IntegrationAccountInner extends Resource {
     /*
      * The integration account properties.
      */
-    private IntegrationAccountProperties innerProperties;
+    private IntegrationAccountProperties properties;
 
     /*
      * The sku.
      */
     private IntegrationAccountSku sku;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -52,12 +57,23 @@ public final class IntegrationAccountInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: The integration account properties.
+     * Get the properties property: The integration account properties.
      * 
-     * @return the innerProperties value.
+     * @return the properties value.
      */
-    private IntegrationAccountProperties innerProperties() {
-        return this.innerProperties;
+    public IntegrationAccountProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: The integration account properties.
+     * 
+     * @param properties the properties value to set.
+     * @return the IntegrationAccountInner object itself.
+     */
+    public IntegrationAccountInner withProperties(IntegrationAccountProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
@@ -78,6 +94,15 @@ public final class IntegrationAccountInner extends Resource {
     public IntegrationAccountInner withSku(IntegrationAccountSku sku) {
         this.sku = sku;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -129,59 +154,13 @@ public final class IntegrationAccountInner extends Resource {
     }
 
     /**
-     * Get the integrationServiceEnvironment property: The integration service environment.
-     * 
-     * @return the integrationServiceEnvironment value.
-     */
-    public ResourceReference integrationServiceEnvironment() {
-        return this.innerProperties() == null ? null : this.innerProperties().integrationServiceEnvironment();
-    }
-
-    /**
-     * Set the integrationServiceEnvironment property: The integration service environment.
-     * 
-     * @param integrationServiceEnvironment the integrationServiceEnvironment value to set.
-     * @return the IntegrationAccountInner object itself.
-     */
-    public IntegrationAccountInner withIntegrationServiceEnvironment(ResourceReference integrationServiceEnvironment) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new IntegrationAccountProperties();
-        }
-        this.innerProperties().withIntegrationServiceEnvironment(integrationServiceEnvironment);
-        return this;
-    }
-
-    /**
-     * Get the state property: The workflow state.
-     * 
-     * @return the state value.
-     */
-    public WorkflowState state() {
-        return this.innerProperties() == null ? null : this.innerProperties().state();
-    }
-
-    /**
-     * Set the state property: The workflow state.
-     * 
-     * @param state the state value to set.
-     * @return the IntegrationAccountInner object itself.
-     */
-    public IntegrationAccountInner withState(WorkflowState state) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new IntegrationAccountProperties();
-        }
-        this.innerProperties().withState(state);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
         if (sku() != null) {
             sku().validate();
@@ -196,7 +175,7 @@ public final class IntegrationAccountInner extends Resource {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("properties", this.properties);
         jsonWriter.writeJsonField("sku", this.sku);
         return jsonWriter.writeEndObject();
     }
@@ -229,9 +208,11 @@ public final class IntegrationAccountInner extends Resource {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedIntegrationAccountInner.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
-                    deserializedIntegrationAccountInner.innerProperties = IntegrationAccountProperties.fromJson(reader);
+                    deserializedIntegrationAccountInner.properties = IntegrationAccountProperties.fromJson(reader);
                 } else if ("sku".equals(fieldName)) {
                     deserializedIntegrationAccountInner.sku = IntegrationAccountSku.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedIntegrationAccountInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

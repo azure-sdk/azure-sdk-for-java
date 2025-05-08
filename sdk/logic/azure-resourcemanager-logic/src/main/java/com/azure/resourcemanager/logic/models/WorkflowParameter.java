@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * The workflow parameters.
@@ -24,12 +25,12 @@ public class WorkflowParameter implements JsonSerializable<WorkflowParameter> {
     /*
      * The value.
      */
-    private Object value;
+    private Map<String, Object> value;
 
     /*
      * The metadata.
      */
-    private Object metadata;
+    private Map<String, Object> metadata;
 
     /*
      * The description.
@@ -67,7 +68,7 @@ public class WorkflowParameter implements JsonSerializable<WorkflowParameter> {
      * 
      * @return the value value.
      */
-    public Object value() {
+    public Map<String, Object> value() {
         return this.value;
     }
 
@@ -77,7 +78,7 @@ public class WorkflowParameter implements JsonSerializable<WorkflowParameter> {
      * @param value the value value to set.
      * @return the WorkflowParameter object itself.
      */
-    public WorkflowParameter withValue(Object value) {
+    public WorkflowParameter withValue(Map<String, Object> value) {
         this.value = value;
         return this;
     }
@@ -87,7 +88,7 @@ public class WorkflowParameter implements JsonSerializable<WorkflowParameter> {
      * 
      * @return the metadata value.
      */
-    public Object metadata() {
+    public Map<String, Object> metadata() {
         return this.metadata;
     }
 
@@ -97,7 +98,7 @@ public class WorkflowParameter implements JsonSerializable<WorkflowParameter> {
      * @param metadata the metadata value to set.
      * @return the WorkflowParameter object itself.
      */
-    public WorkflowParameter withMetadata(Object metadata) {
+    public WorkflowParameter withMetadata(Map<String, Object> metadata) {
         this.metadata = metadata;
         return this;
     }
@@ -137,8 +138,8 @@ public class WorkflowParameter implements JsonSerializable<WorkflowParameter> {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("type", this.type == null ? null : this.type.toString());
-        jsonWriter.writeUntypedField("value", this.value);
-        jsonWriter.writeUntypedField("metadata", this.metadata);
+        jsonWriter.writeMapField("value", this.value, (writer, element) -> writer.writeUntyped(element));
+        jsonWriter.writeMapField("metadata", this.metadata, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeStringField("description", this.description);
         return jsonWriter.writeEndObject();
     }
@@ -161,9 +162,11 @@ public class WorkflowParameter implements JsonSerializable<WorkflowParameter> {
                 if ("type".equals(fieldName)) {
                     deserializedWorkflowParameter.type = ParameterType.fromString(reader.getString());
                 } else if ("value".equals(fieldName)) {
-                    deserializedWorkflowParameter.value = reader.readUntyped();
+                    Map<String, Object> value = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowParameter.value = value;
                 } else if ("metadata".equals(fieldName)) {
-                    deserializedWorkflowParameter.metadata = reader.readUntyped();
+                    Map<String, Object> metadata = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowParameter.metadata = metadata;
                 } else if ("description".equals(fieldName)) {
                     deserializedWorkflowParameter.description = reader.getString();
                 } else {

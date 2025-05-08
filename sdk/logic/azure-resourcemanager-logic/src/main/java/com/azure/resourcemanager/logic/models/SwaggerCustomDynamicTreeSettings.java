@@ -86,8 +86,8 @@ public final class SwaggerCustomDynamicTreeSettings implements JsonSerializable<
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeBooleanField("CanSelectParentNodes", this.canSelectParentNodes);
-        jsonWriter.writeBooleanField("CanSelectLeafNodes", this.canSelectLeafNodes);
+        jsonWriter.writeBooleanField("canSelectParentNodes", this.canSelectParentNodes);
+        jsonWriter.writeBooleanField("canSelectLeafNodes", this.canSelectLeafNodes);
         return jsonWriter.writeEndObject();
     }
 
@@ -107,10 +107,10 @@ public final class SwaggerCustomDynamicTreeSettings implements JsonSerializable<
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("CanSelectParentNodes".equals(fieldName)) {
+                if ("canSelectParentNodes".equals(fieldName)) {
                     deserializedSwaggerCustomDynamicTreeSettings.canSelectParentNodes
                         = reader.getNullable(JsonReader::getBoolean);
-                } else if ("CanSelectLeafNodes".equals(fieldName)) {
+                } else if ("canSelectLeafNodes".equals(fieldName)) {
                     deserializedSwaggerCustomDynamicTreeSettings.canSelectLeafNodes
                         = reader.getNullable(JsonReader::getBoolean);
                 } else {

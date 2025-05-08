@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.logic.generated;
 
 import com.azure.resourcemanager.logic.models.IntegrationAccount;
-import com.azure.resourcemanager.logic.models.IntegrationAccountSku;
-import com.azure.resourcemanager.logic.models.IntegrationAccountSkuName;
 
 /**
  * Samples for IntegrationAccounts Update.
@@ -26,6 +24,6 @@ public final class IntegrationAccountsUpdateSamples {
             .getByResourceGroupWithResponse("testResourceGroup", "testIntegrationAccount",
                 com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withSku(new IntegrationAccountSku().withName(IntegrationAccountSkuName.STANDARD)).apply();
+        resource.update().apply();
     }
 }

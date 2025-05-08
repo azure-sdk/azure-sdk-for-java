@@ -23,34 +23,34 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.logic.fluent.ApiOperationsClient;
+import com.azure.resourcemanager.logic.fluent.AssemblyDefinitionsClient;
+import com.azure.resourcemanager.logic.fluent.BatchConfigurationsClient;
 import com.azure.resourcemanager.logic.fluent.IntegrationAccountAgreementsClient;
-import com.azure.resourcemanager.logic.fluent.IntegrationAccountAssembliesClient;
-import com.azure.resourcemanager.logic.fluent.IntegrationAccountBatchConfigurationsClient;
 import com.azure.resourcemanager.logic.fluent.IntegrationAccountCertificatesClient;
 import com.azure.resourcemanager.logic.fluent.IntegrationAccountMapsClient;
 import com.azure.resourcemanager.logic.fluent.IntegrationAccountPartnersClient;
 import com.azure.resourcemanager.logic.fluent.IntegrationAccountSchemasClient;
 import com.azure.resourcemanager.logic.fluent.IntegrationAccountSessionsClient;
 import com.azure.resourcemanager.logic.fluent.IntegrationAccountsClient;
-import com.azure.resourcemanager.logic.fluent.IntegrationServiceEnvironmentManagedApiOperationsClient;
 import com.azure.resourcemanager.logic.fluent.IntegrationServiceEnvironmentManagedApisClient;
-import com.azure.resourcemanager.logic.fluent.IntegrationServiceEnvironmentNetworkHealthsClient;
-import com.azure.resourcemanager.logic.fluent.IntegrationServiceEnvironmentSkusClient;
 import com.azure.resourcemanager.logic.fluent.IntegrationServiceEnvironmentsClient;
 import com.azure.resourcemanager.logic.fluent.LogicManagementClient;
 import com.azure.resourcemanager.logic.fluent.OperationsClient;
-import com.azure.resourcemanager.logic.fluent.WorkflowRunActionRepetitionsClient;
-import com.azure.resourcemanager.logic.fluent.WorkflowRunActionRepetitionsRequestHistoriesClient;
-import com.azure.resourcemanager.logic.fluent.WorkflowRunActionRequestHistoriesClient;
-import com.azure.resourcemanager.logic.fluent.WorkflowRunActionScopeRepetitionsClient;
+import com.azure.resourcemanager.logic.fluent.RequestHistoriesClient;
+import com.azure.resourcemanager.logic.fluent.TemplatesClient;
+import com.azure.resourcemanager.logic.fluent.WorkflowRunActionRepetitionDefinitionsClient;
+import com.azure.resourcemanager.logic.fluent.WorkflowRunActionRequestHistoriesOperationsClient;
+import com.azure.resourcemanager.logic.fluent.WorkflowRunActionScopeRepetitionsOperationsClient;
 import com.azure.resourcemanager.logic.fluent.WorkflowRunActionsClient;
-import com.azure.resourcemanager.logic.fluent.WorkflowRunOperationsClient;
+import com.azure.resourcemanager.logic.fluent.WorkflowRunOperationsOperationsClient;
 import com.azure.resourcemanager.logic.fluent.WorkflowRunsClient;
+import com.azure.resourcemanager.logic.fluent.WorkflowRunsOperationsClient;
 import com.azure.resourcemanager.logic.fluent.WorkflowTriggerHistoriesClient;
 import com.azure.resourcemanager.logic.fluent.WorkflowTriggersClient;
-import com.azure.resourcemanager.logic.fluent.WorkflowVersionTriggersClient;
 import com.azure.resourcemanager.logic.fluent.WorkflowVersionsClient;
 import com.azure.resourcemanager.logic.fluent.WorkflowsClient;
+import com.azure.resourcemanager.logic.fluent.WorkflowsOperationsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -66,12 +66,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = LogicManagementClientBuilder.class)
 public final class LogicManagementClientImpl implements LogicManagementClient {
     /**
-     * The subscription id.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private final String subscriptionId;
 
     /**
-     * Gets The subscription id.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -150,171 +150,17 @@ public final class LogicManagementClientImpl implements LogicManagementClient {
     }
 
     /**
-     * The WorkflowsClient object to access its operations.
+     * The OperationsClient object to access its operations.
      */
-    private final WorkflowsClient workflows;
+    private final OperationsClient operations;
 
     /**
-     * Gets the WorkflowsClient object to access its operations.
+     * Gets the OperationsClient object to access its operations.
      * 
-     * @return the WorkflowsClient object.
+     * @return the OperationsClient object.
      */
-    public WorkflowsClient getWorkflows() {
-        return this.workflows;
-    }
-
-    /**
-     * The WorkflowVersionsClient object to access its operations.
-     */
-    private final WorkflowVersionsClient workflowVersions;
-
-    /**
-     * Gets the WorkflowVersionsClient object to access its operations.
-     * 
-     * @return the WorkflowVersionsClient object.
-     */
-    public WorkflowVersionsClient getWorkflowVersions() {
-        return this.workflowVersions;
-    }
-
-    /**
-     * The WorkflowTriggersClient object to access its operations.
-     */
-    private final WorkflowTriggersClient workflowTriggers;
-
-    /**
-     * Gets the WorkflowTriggersClient object to access its operations.
-     * 
-     * @return the WorkflowTriggersClient object.
-     */
-    public WorkflowTriggersClient getWorkflowTriggers() {
-        return this.workflowTriggers;
-    }
-
-    /**
-     * The WorkflowVersionTriggersClient object to access its operations.
-     */
-    private final WorkflowVersionTriggersClient workflowVersionTriggers;
-
-    /**
-     * Gets the WorkflowVersionTriggersClient object to access its operations.
-     * 
-     * @return the WorkflowVersionTriggersClient object.
-     */
-    public WorkflowVersionTriggersClient getWorkflowVersionTriggers() {
-        return this.workflowVersionTriggers;
-    }
-
-    /**
-     * The WorkflowTriggerHistoriesClient object to access its operations.
-     */
-    private final WorkflowTriggerHistoriesClient workflowTriggerHistories;
-
-    /**
-     * Gets the WorkflowTriggerHistoriesClient object to access its operations.
-     * 
-     * @return the WorkflowTriggerHistoriesClient object.
-     */
-    public WorkflowTriggerHistoriesClient getWorkflowTriggerHistories() {
-        return this.workflowTriggerHistories;
-    }
-
-    /**
-     * The WorkflowRunsClient object to access its operations.
-     */
-    private final WorkflowRunsClient workflowRuns;
-
-    /**
-     * Gets the WorkflowRunsClient object to access its operations.
-     * 
-     * @return the WorkflowRunsClient object.
-     */
-    public WorkflowRunsClient getWorkflowRuns() {
-        return this.workflowRuns;
-    }
-
-    /**
-     * The WorkflowRunActionsClient object to access its operations.
-     */
-    private final WorkflowRunActionsClient workflowRunActions;
-
-    /**
-     * Gets the WorkflowRunActionsClient object to access its operations.
-     * 
-     * @return the WorkflowRunActionsClient object.
-     */
-    public WorkflowRunActionsClient getWorkflowRunActions() {
-        return this.workflowRunActions;
-    }
-
-    /**
-     * The WorkflowRunActionRepetitionsClient object to access its operations.
-     */
-    private final WorkflowRunActionRepetitionsClient workflowRunActionRepetitions;
-
-    /**
-     * Gets the WorkflowRunActionRepetitionsClient object to access its operations.
-     * 
-     * @return the WorkflowRunActionRepetitionsClient object.
-     */
-    public WorkflowRunActionRepetitionsClient getWorkflowRunActionRepetitions() {
-        return this.workflowRunActionRepetitions;
-    }
-
-    /**
-     * The WorkflowRunActionRepetitionsRequestHistoriesClient object to access its operations.
-     */
-    private final WorkflowRunActionRepetitionsRequestHistoriesClient workflowRunActionRepetitionsRequestHistories;
-
-    /**
-     * Gets the WorkflowRunActionRepetitionsRequestHistoriesClient object to access its operations.
-     * 
-     * @return the WorkflowRunActionRepetitionsRequestHistoriesClient object.
-     */
-    public WorkflowRunActionRepetitionsRequestHistoriesClient getWorkflowRunActionRepetitionsRequestHistories() {
-        return this.workflowRunActionRepetitionsRequestHistories;
-    }
-
-    /**
-     * The WorkflowRunActionRequestHistoriesClient object to access its operations.
-     */
-    private final WorkflowRunActionRequestHistoriesClient workflowRunActionRequestHistories;
-
-    /**
-     * Gets the WorkflowRunActionRequestHistoriesClient object to access its operations.
-     * 
-     * @return the WorkflowRunActionRequestHistoriesClient object.
-     */
-    public WorkflowRunActionRequestHistoriesClient getWorkflowRunActionRequestHistories() {
-        return this.workflowRunActionRequestHistories;
-    }
-
-    /**
-     * The WorkflowRunActionScopeRepetitionsClient object to access its operations.
-     */
-    private final WorkflowRunActionScopeRepetitionsClient workflowRunActionScopeRepetitions;
-
-    /**
-     * Gets the WorkflowRunActionScopeRepetitionsClient object to access its operations.
-     * 
-     * @return the WorkflowRunActionScopeRepetitionsClient object.
-     */
-    public WorkflowRunActionScopeRepetitionsClient getWorkflowRunActionScopeRepetitions() {
-        return this.workflowRunActionScopeRepetitions;
-    }
-
-    /**
-     * The WorkflowRunOperationsClient object to access its operations.
-     */
-    private final WorkflowRunOperationsClient workflowRunOperations;
-
-    /**
-     * Gets the WorkflowRunOperationsClient object to access its operations.
-     * 
-     * @return the WorkflowRunOperationsClient object.
-     */
-    public WorkflowRunOperationsClient getWorkflowRunOperations() {
-        return this.workflowRunOperations;
+    public OperationsClient getOperations() {
+        return this.operations;
     }
 
     /**
@@ -332,45 +178,129 @@ public final class LogicManagementClientImpl implements LogicManagementClient {
     }
 
     /**
-     * The IntegrationAccountAssembliesClient object to access its operations.
+     * The IntegrationServiceEnvironmentsClient object to access its operations.
      */
-    private final IntegrationAccountAssembliesClient integrationAccountAssemblies;
+    private final IntegrationServiceEnvironmentsClient integrationServiceEnvironments;
 
     /**
-     * Gets the IntegrationAccountAssembliesClient object to access its operations.
+     * Gets the IntegrationServiceEnvironmentsClient object to access its operations.
      * 
-     * @return the IntegrationAccountAssembliesClient object.
+     * @return the IntegrationServiceEnvironmentsClient object.
      */
-    public IntegrationAccountAssembliesClient getIntegrationAccountAssemblies() {
-        return this.integrationAccountAssemblies;
+    public IntegrationServiceEnvironmentsClient getIntegrationServiceEnvironments() {
+        return this.integrationServiceEnvironments;
     }
 
     /**
-     * The IntegrationAccountBatchConfigurationsClient object to access its operations.
+     * The IntegrationServiceEnvironmentManagedApisClient object to access its operations.
      */
-    private final IntegrationAccountBatchConfigurationsClient integrationAccountBatchConfigurations;
+    private final IntegrationServiceEnvironmentManagedApisClient integrationServiceEnvironmentManagedApis;
 
     /**
-     * Gets the IntegrationAccountBatchConfigurationsClient object to access its operations.
+     * Gets the IntegrationServiceEnvironmentManagedApisClient object to access its operations.
      * 
-     * @return the IntegrationAccountBatchConfigurationsClient object.
+     * @return the IntegrationServiceEnvironmentManagedApisClient object.
      */
-    public IntegrationAccountBatchConfigurationsClient getIntegrationAccountBatchConfigurations() {
-        return this.integrationAccountBatchConfigurations;
+    public IntegrationServiceEnvironmentManagedApisClient getIntegrationServiceEnvironmentManagedApis() {
+        return this.integrationServiceEnvironmentManagedApis;
     }
 
     /**
-     * The IntegrationAccountSchemasClient object to access its operations.
+     * The ApiOperationsClient object to access its operations.
      */
-    private final IntegrationAccountSchemasClient integrationAccountSchemas;
+    private final ApiOperationsClient apiOperations;
 
     /**
-     * Gets the IntegrationAccountSchemasClient object to access its operations.
+     * Gets the ApiOperationsClient object to access its operations.
      * 
-     * @return the IntegrationAccountSchemasClient object.
+     * @return the ApiOperationsClient object.
      */
-    public IntegrationAccountSchemasClient getIntegrationAccountSchemas() {
-        return this.integrationAccountSchemas;
+    public ApiOperationsClient getApiOperations() {
+        return this.apiOperations;
+    }
+
+    /**
+     * The TemplatesClient object to access its operations.
+     */
+    private final TemplatesClient templates;
+
+    /**
+     * Gets the TemplatesClient object to access its operations.
+     * 
+     * @return the TemplatesClient object.
+     */
+    public TemplatesClient getTemplates() {
+        return this.templates;
+    }
+
+    /**
+     * The WorkflowsClient object to access its operations.
+     */
+    private final WorkflowsClient workflows;
+
+    /**
+     * Gets the WorkflowsClient object to access its operations.
+     * 
+     * @return the WorkflowsClient object.
+     */
+    public WorkflowsClient getWorkflows() {
+        return this.workflows;
+    }
+
+    /**
+     * The IntegrationAccountAgreementsClient object to access its operations.
+     */
+    private final IntegrationAccountAgreementsClient integrationAccountAgreements;
+
+    /**
+     * Gets the IntegrationAccountAgreementsClient object to access its operations.
+     * 
+     * @return the IntegrationAccountAgreementsClient object.
+     */
+    public IntegrationAccountAgreementsClient getIntegrationAccountAgreements() {
+        return this.integrationAccountAgreements;
+    }
+
+    /**
+     * The AssemblyDefinitionsClient object to access its operations.
+     */
+    private final AssemblyDefinitionsClient assemblyDefinitions;
+
+    /**
+     * Gets the AssemblyDefinitionsClient object to access its operations.
+     * 
+     * @return the AssemblyDefinitionsClient object.
+     */
+    public AssemblyDefinitionsClient getAssemblyDefinitions() {
+        return this.assemblyDefinitions;
+    }
+
+    /**
+     * The BatchConfigurationsClient object to access its operations.
+     */
+    private final BatchConfigurationsClient batchConfigurations;
+
+    /**
+     * Gets the BatchConfigurationsClient object to access its operations.
+     * 
+     * @return the BatchConfigurationsClient object.
+     */
+    public BatchConfigurationsClient getBatchConfigurations() {
+        return this.batchConfigurations;
+    }
+
+    /**
+     * The IntegrationAccountCertificatesClient object to access its operations.
+     */
+    private final IntegrationAccountCertificatesClient integrationAccountCertificates;
+
+    /**
+     * Gets the IntegrationAccountCertificatesClient object to access its operations.
+     * 
+     * @return the IntegrationAccountCertificatesClient object.
+     */
+    public IntegrationAccountCertificatesClient getIntegrationAccountCertificates() {
+        return this.integrationAccountCertificates;
     }
 
     /**
@@ -402,31 +332,17 @@ public final class LogicManagementClientImpl implements LogicManagementClient {
     }
 
     /**
-     * The IntegrationAccountAgreementsClient object to access its operations.
+     * The IntegrationAccountSchemasClient object to access its operations.
      */
-    private final IntegrationAccountAgreementsClient integrationAccountAgreements;
+    private final IntegrationAccountSchemasClient integrationAccountSchemas;
 
     /**
-     * Gets the IntegrationAccountAgreementsClient object to access its operations.
+     * Gets the IntegrationAccountSchemasClient object to access its operations.
      * 
-     * @return the IntegrationAccountAgreementsClient object.
+     * @return the IntegrationAccountSchemasClient object.
      */
-    public IntegrationAccountAgreementsClient getIntegrationAccountAgreements() {
-        return this.integrationAccountAgreements;
-    }
-
-    /**
-     * The IntegrationAccountCertificatesClient object to access its operations.
-     */
-    private final IntegrationAccountCertificatesClient integrationAccountCertificates;
-
-    /**
-     * Gets the IntegrationAccountCertificatesClient object to access its operations.
-     * 
-     * @return the IntegrationAccountCertificatesClient object.
-     */
-    public IntegrationAccountCertificatesClient getIntegrationAccountCertificates() {
-        return this.integrationAccountCertificates;
+    public IntegrationAccountSchemasClient getIntegrationAccountSchemas() {
+        return this.integrationAccountSchemas;
     }
 
     /**
@@ -444,88 +360,171 @@ public final class LogicManagementClientImpl implements LogicManagementClient {
     }
 
     /**
-     * The IntegrationServiceEnvironmentsClient object to access its operations.
+     * The WorkflowsOperationsClient object to access its operations.
      */
-    private final IntegrationServiceEnvironmentsClient integrationServiceEnvironments;
+    private final WorkflowsOperationsClient workflowsOperations;
 
     /**
-     * Gets the IntegrationServiceEnvironmentsClient object to access its operations.
+     * Gets the WorkflowsOperationsClient object to access its operations.
      * 
-     * @return the IntegrationServiceEnvironmentsClient object.
+     * @return the WorkflowsOperationsClient object.
      */
-    public IntegrationServiceEnvironmentsClient getIntegrationServiceEnvironments() {
-        return this.integrationServiceEnvironments;
+    public WorkflowsOperationsClient getWorkflowsOperations() {
+        return this.workflowsOperations;
     }
 
     /**
-     * The IntegrationServiceEnvironmentSkusClient object to access its operations.
+     * The WorkflowRunsClient object to access its operations.
      */
-    private final IntegrationServiceEnvironmentSkusClient integrationServiceEnvironmentSkus;
+    private final WorkflowRunsClient workflowRuns;
 
     /**
-     * Gets the IntegrationServiceEnvironmentSkusClient object to access its operations.
+     * Gets the WorkflowRunsClient object to access its operations.
      * 
-     * @return the IntegrationServiceEnvironmentSkusClient object.
+     * @return the WorkflowRunsClient object.
      */
-    public IntegrationServiceEnvironmentSkusClient getIntegrationServiceEnvironmentSkus() {
-        return this.integrationServiceEnvironmentSkus;
+    public WorkflowRunsClient getWorkflowRuns() {
+        return this.workflowRuns;
     }
 
     /**
-     * The IntegrationServiceEnvironmentNetworkHealthsClient object to access its operations.
+     * The WorkflowRunActionsClient object to access its operations.
      */
-    private final IntegrationServiceEnvironmentNetworkHealthsClient integrationServiceEnvironmentNetworkHealths;
+    private final WorkflowRunActionsClient workflowRunActions;
 
     /**
-     * Gets the IntegrationServiceEnvironmentNetworkHealthsClient object to access its operations.
+     * Gets the WorkflowRunActionsClient object to access its operations.
      * 
-     * @return the IntegrationServiceEnvironmentNetworkHealthsClient object.
+     * @return the WorkflowRunActionsClient object.
      */
-    public IntegrationServiceEnvironmentNetworkHealthsClient getIntegrationServiceEnvironmentNetworkHealths() {
-        return this.integrationServiceEnvironmentNetworkHealths;
+    public WorkflowRunActionsClient getWorkflowRunActions() {
+        return this.workflowRunActions;
     }
 
     /**
-     * The IntegrationServiceEnvironmentManagedApisClient object to access its operations.
+     * The WorkflowRunActionRepetitionDefinitionsClient object to access its operations.
      */
-    private final IntegrationServiceEnvironmentManagedApisClient integrationServiceEnvironmentManagedApis;
+    private final WorkflowRunActionRepetitionDefinitionsClient workflowRunActionRepetitionDefinitions;
 
     /**
-     * Gets the IntegrationServiceEnvironmentManagedApisClient object to access its operations.
+     * Gets the WorkflowRunActionRepetitionDefinitionsClient object to access its operations.
      * 
-     * @return the IntegrationServiceEnvironmentManagedApisClient object.
+     * @return the WorkflowRunActionRepetitionDefinitionsClient object.
      */
-    public IntegrationServiceEnvironmentManagedApisClient getIntegrationServiceEnvironmentManagedApis() {
-        return this.integrationServiceEnvironmentManagedApis;
+    public WorkflowRunActionRepetitionDefinitionsClient getWorkflowRunActionRepetitionDefinitions() {
+        return this.workflowRunActionRepetitionDefinitions;
     }
 
     /**
-     * The IntegrationServiceEnvironmentManagedApiOperationsClient object to access its operations.
+     * The RequestHistoriesClient object to access its operations.
      */
-    private final IntegrationServiceEnvironmentManagedApiOperationsClient integrationServiceEnvironmentManagedApiOperations;
+    private final RequestHistoriesClient requestHistories;
 
     /**
-     * Gets the IntegrationServiceEnvironmentManagedApiOperationsClient object to access its operations.
+     * Gets the RequestHistoriesClient object to access its operations.
      * 
-     * @return the IntegrationServiceEnvironmentManagedApiOperationsClient object.
+     * @return the RequestHistoriesClient object.
      */
-    public IntegrationServiceEnvironmentManagedApiOperationsClient
-        getIntegrationServiceEnvironmentManagedApiOperations() {
-        return this.integrationServiceEnvironmentManagedApiOperations;
+    public RequestHistoriesClient getRequestHistories() {
+        return this.requestHistories;
     }
 
     /**
-     * The OperationsClient object to access its operations.
+     * The WorkflowRunActionRequestHistoriesOperationsClient object to access its operations.
      */
-    private final OperationsClient operations;
+    private final WorkflowRunActionRequestHistoriesOperationsClient workflowRunActionRequestHistoriesOperations;
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the WorkflowRunActionRequestHistoriesOperationsClient object to access its operations.
      * 
-     * @return the OperationsClient object.
+     * @return the WorkflowRunActionRequestHistoriesOperationsClient object.
      */
-    public OperationsClient getOperations() {
-        return this.operations;
+    public WorkflowRunActionRequestHistoriesOperationsClient getWorkflowRunActionRequestHistoriesOperations() {
+        return this.workflowRunActionRequestHistoriesOperations;
+    }
+
+    /**
+     * The WorkflowRunActionScopeRepetitionsOperationsClient object to access its operations.
+     */
+    private final WorkflowRunActionScopeRepetitionsOperationsClient workflowRunActionScopeRepetitionsOperations;
+
+    /**
+     * Gets the WorkflowRunActionScopeRepetitionsOperationsClient object to access its operations.
+     * 
+     * @return the WorkflowRunActionScopeRepetitionsOperationsClient object.
+     */
+    public WorkflowRunActionScopeRepetitionsOperationsClient getWorkflowRunActionScopeRepetitionsOperations() {
+        return this.workflowRunActionScopeRepetitionsOperations;
+    }
+
+    /**
+     * The WorkflowRunOperationsOperationsClient object to access its operations.
+     */
+    private final WorkflowRunOperationsOperationsClient workflowRunOperationsOperations;
+
+    /**
+     * Gets the WorkflowRunOperationsOperationsClient object to access its operations.
+     * 
+     * @return the WorkflowRunOperationsOperationsClient object.
+     */
+    public WorkflowRunOperationsOperationsClient getWorkflowRunOperationsOperations() {
+        return this.workflowRunOperationsOperations;
+    }
+
+    /**
+     * The WorkflowRunsOperationsClient object to access its operations.
+     */
+    private final WorkflowRunsOperationsClient workflowRunsOperations;
+
+    /**
+     * Gets the WorkflowRunsOperationsClient object to access its operations.
+     * 
+     * @return the WorkflowRunsOperationsClient object.
+     */
+    public WorkflowRunsOperationsClient getWorkflowRunsOperations() {
+        return this.workflowRunsOperations;
+    }
+
+    /**
+     * The WorkflowTriggersClient object to access its operations.
+     */
+    private final WorkflowTriggersClient workflowTriggers;
+
+    /**
+     * Gets the WorkflowTriggersClient object to access its operations.
+     * 
+     * @return the WorkflowTriggersClient object.
+     */
+    public WorkflowTriggersClient getWorkflowTriggers() {
+        return this.workflowTriggers;
+    }
+
+    /**
+     * The WorkflowTriggerHistoriesClient object to access its operations.
+     */
+    private final WorkflowTriggerHistoriesClient workflowTriggerHistories;
+
+    /**
+     * Gets the WorkflowTriggerHistoriesClient object to access its operations.
+     * 
+     * @return the WorkflowTriggerHistoriesClient object.
+     */
+    public WorkflowTriggerHistoriesClient getWorkflowTriggerHistories() {
+        return this.workflowTriggerHistories;
+    }
+
+    /**
+     * The WorkflowVersionsClient object to access its operations.
+     */
+    private final WorkflowVersionsClient workflowVersions;
+
+    /**
+     * Gets the WorkflowVersionsClient object to access its operations.
+     * 
+     * @return the WorkflowVersionsClient object.
+     */
+    public WorkflowVersionsClient getWorkflowVersions() {
+        return this.workflowVersions;
     }
 
     /**
@@ -535,7 +534,7 @@ public final class LogicManagementClientImpl implements LogicManagementClient {
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The subscription id.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     LogicManagementClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
@@ -546,36 +545,35 @@ public final class LogicManagementClientImpl implements LogicManagementClient {
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
         this.apiVersion = "2019-05-01";
-        this.workflows = new WorkflowsClientImpl(this);
-        this.workflowVersions = new WorkflowVersionsClientImpl(this);
-        this.workflowTriggers = new WorkflowTriggersClientImpl(this);
-        this.workflowVersionTriggers = new WorkflowVersionTriggersClientImpl(this);
-        this.workflowTriggerHistories = new WorkflowTriggerHistoriesClientImpl(this);
-        this.workflowRuns = new WorkflowRunsClientImpl(this);
-        this.workflowRunActions = new WorkflowRunActionsClientImpl(this);
-        this.workflowRunActionRepetitions = new WorkflowRunActionRepetitionsClientImpl(this);
-        this.workflowRunActionRepetitionsRequestHistories
-            = new WorkflowRunActionRepetitionsRequestHistoriesClientImpl(this);
-        this.workflowRunActionRequestHistories = new WorkflowRunActionRequestHistoriesClientImpl(this);
-        this.workflowRunActionScopeRepetitions = new WorkflowRunActionScopeRepetitionsClientImpl(this);
-        this.workflowRunOperations = new WorkflowRunOperationsClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
         this.integrationAccounts = new IntegrationAccountsClientImpl(this);
-        this.integrationAccountAssemblies = new IntegrationAccountAssembliesClientImpl(this);
-        this.integrationAccountBatchConfigurations = new IntegrationAccountBatchConfigurationsClientImpl(this);
-        this.integrationAccountSchemas = new IntegrationAccountSchemasClientImpl(this);
+        this.integrationServiceEnvironments = new IntegrationServiceEnvironmentsClientImpl(this);
+        this.integrationServiceEnvironmentManagedApis = new IntegrationServiceEnvironmentManagedApisClientImpl(this);
+        this.apiOperations = new ApiOperationsClientImpl(this);
+        this.templates = new TemplatesClientImpl(this);
+        this.workflows = new WorkflowsClientImpl(this);
+        this.integrationAccountAgreements = new IntegrationAccountAgreementsClientImpl(this);
+        this.assemblyDefinitions = new AssemblyDefinitionsClientImpl(this);
+        this.batchConfigurations = new BatchConfigurationsClientImpl(this);
+        this.integrationAccountCertificates = new IntegrationAccountCertificatesClientImpl(this);
         this.integrationAccountMaps = new IntegrationAccountMapsClientImpl(this);
         this.integrationAccountPartners = new IntegrationAccountPartnersClientImpl(this);
-        this.integrationAccountAgreements = new IntegrationAccountAgreementsClientImpl(this);
-        this.integrationAccountCertificates = new IntegrationAccountCertificatesClientImpl(this);
+        this.integrationAccountSchemas = new IntegrationAccountSchemasClientImpl(this);
         this.integrationAccountSessions = new IntegrationAccountSessionsClientImpl(this);
-        this.integrationServiceEnvironments = new IntegrationServiceEnvironmentsClientImpl(this);
-        this.integrationServiceEnvironmentSkus = new IntegrationServiceEnvironmentSkusClientImpl(this);
-        this.integrationServiceEnvironmentNetworkHealths
-            = new IntegrationServiceEnvironmentNetworkHealthsClientImpl(this);
-        this.integrationServiceEnvironmentManagedApis = new IntegrationServiceEnvironmentManagedApisClientImpl(this);
-        this.integrationServiceEnvironmentManagedApiOperations
-            = new IntegrationServiceEnvironmentManagedApiOperationsClientImpl(this);
-        this.operations = new OperationsClientImpl(this);
+        this.workflowsOperations = new WorkflowsOperationsClientImpl(this);
+        this.workflowRuns = new WorkflowRunsClientImpl(this);
+        this.workflowRunActions = new WorkflowRunActionsClientImpl(this);
+        this.workflowRunActionRepetitionDefinitions = new WorkflowRunActionRepetitionDefinitionsClientImpl(this);
+        this.requestHistories = new RequestHistoriesClientImpl(this);
+        this.workflowRunActionRequestHistoriesOperations
+            = new WorkflowRunActionRequestHistoriesOperationsClientImpl(this);
+        this.workflowRunActionScopeRepetitionsOperations
+            = new WorkflowRunActionScopeRepetitionsOperationsClientImpl(this);
+        this.workflowRunOperationsOperations = new WorkflowRunOperationsOperationsClientImpl(this);
+        this.workflowRunsOperations = new WorkflowRunsOperationsClientImpl(this);
+        this.workflowTriggers = new WorkflowTriggersClientImpl(this);
+        this.workflowTriggerHistories = new WorkflowTriggerHistoriesClientImpl(this);
+        this.workflowVersions = new WorkflowVersionsClientImpl(this);
     }
 
     /**

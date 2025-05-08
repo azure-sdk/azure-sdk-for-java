@@ -13,12 +13,18 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 /**
  * The batch configuration properties definition.
  */
 @Fluent
 public final class BatchConfigurationProperties extends ArtifactProperties {
+    /*
+     * The provisioning state.
+     */
+    private WorkflowProvisioningState provisioningState;
+
     /*
      * The name of the batch group.
      */
@@ -33,6 +39,15 @@ public final class BatchConfigurationProperties extends ArtifactProperties {
      * Creates an instance of BatchConfigurationProperties class.
      */
     public BatchConfigurationProperties() {
+    }
+
+    /**
+     * Get the provisioningState property: The provisioning state.
+     * 
+     * @return the provisioningState value.
+     */
+    public WorkflowProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
@@ -97,7 +112,7 @@ public final class BatchConfigurationProperties extends ArtifactProperties {
      * {@inheritDoc}
      */
     @Override
-    public BatchConfigurationProperties withMetadata(Object metadata) {
+    public BatchConfigurationProperties withMetadata(Map<String, Object> metadata) {
         super.withMetadata(metadata);
         return this;
     }
@@ -135,7 +150,7 @@ public final class BatchConfigurationProperties extends ArtifactProperties {
             createdTime() == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(createdTime()));
         jsonWriter.writeStringField("changedTime",
             changedTime() == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(changedTime()));
-        jsonWriter.writeUntypedField("metadata", metadata());
+        jsonWriter.writeMapField("metadata", metadata(), (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeStringField("batchGroupName", this.batchGroupName);
         jsonWriter.writeJsonField("releaseCriteria", this.releaseCriteria);
         return jsonWriter.writeEndObject();
@@ -164,11 +179,15 @@ public final class BatchConfigurationProperties extends ArtifactProperties {
                     deserializedBatchConfigurationProperties.withChangedTime(reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("metadata".equals(fieldName)) {
-                    deserializedBatchConfigurationProperties.withMetadata(reader.readUntyped());
+                    Map<String, Object> metadata = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedBatchConfigurationProperties.withMetadata(metadata);
                 } else if ("batchGroupName".equals(fieldName)) {
                     deserializedBatchConfigurationProperties.batchGroupName = reader.getString();
                 } else if ("releaseCriteria".equals(fieldName)) {
                     deserializedBatchConfigurationProperties.releaseCriteria = BatchReleaseCriteria.fromJson(reader);
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedBatchConfigurationProperties.provisioningState
+                        = WorkflowProvisioningState.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

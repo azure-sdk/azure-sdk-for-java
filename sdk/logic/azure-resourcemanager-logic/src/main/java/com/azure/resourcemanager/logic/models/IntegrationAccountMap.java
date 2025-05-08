@@ -5,11 +5,9 @@
 package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountMapInner;
-import java.time.OffsetDateTime;
-import java.util.Map;
 
 /**
  * An immutable client-side representation of IntegrationAccountMap.
@@ -37,88 +35,18 @@ public interface IntegrationAccountMap {
     String type();
 
     /**
-     * Gets the location property: The geo-location where the resource lives.
+     * Gets the properties property: The integration account map properties.
      * 
-     * @return the location value.
+     * @return the properties value.
      */
-    String location();
+    IntegrationAccountMapProperties properties();
 
     /**
-     * Gets the tags property: Resource tags.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the tags value.
+     * @return the systemData value.
      */
-    Map<String, String> tags();
-
-    /**
-     * Gets the mapType property: The map type.
-     * 
-     * @return the mapType value.
-     */
-    MapType mapType();
-
-    /**
-     * Gets the parametersSchema property: The parameters schema of integration account map.
-     * 
-     * @return the parametersSchema value.
-     */
-    IntegrationAccountMapPropertiesParametersSchema parametersSchema();
-
-    /**
-     * Gets the createdTime property: The created time.
-     * 
-     * @return the createdTime value.
-     */
-    OffsetDateTime createdTime();
-
-    /**
-     * Gets the changedTime property: The changed time.
-     * 
-     * @return the changedTime value.
-     */
-    OffsetDateTime changedTime();
-
-    /**
-     * Gets the content property: The content.
-     * 
-     * @return the content value.
-     */
-    String content();
-
-    /**
-     * Gets the contentType property: The content type.
-     * 
-     * @return the contentType value.
-     */
-    String contentType();
-
-    /**
-     * Gets the contentLink property: The content link.
-     * 
-     * @return the contentLink value.
-     */
-    ContentLink contentLink();
-
-    /**
-     * Gets the metadata property: The metadata.
-     * 
-     * @return the metadata value.
-     */
-    Object metadata();
-
-    /**
-     * Gets the region of the resource.
-     * 
-     * @return the region of the resource.
-     */
-    Region region();
-
-    /**
-     * Gets the name of the resource region.
-     * 
-     * @return the name of the resource region.
-     */
-    String regionName();
+    SystemData systemData();
 
     /**
      * Gets the name of the resource group.
@@ -137,8 +65,8 @@ public interface IntegrationAccountMap {
     /**
      * The entirety of the IntegrationAccountMap definition.
      */
-    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
-        DefinitionStages.WithParentResource, DefinitionStages.WithMapType, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithParentResource,
+        DefinitionStages.WithProperties, DefinitionStages.WithCreate {
     }
 
     /**
@@ -148,28 +76,7 @@ public interface IntegrationAccountMap {
         /**
          * The first stage of the IntegrationAccountMap definition.
          */
-        interface Blank extends WithLocation {
-        }
-
-        /**
-         * The stage of the IntegrationAccountMap definition allowing to specify location.
-         */
-        interface WithLocation {
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(Region location);
-
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(String location);
+        interface Blank extends WithParentResource {
         }
 
         /**
@@ -179,32 +86,31 @@ public interface IntegrationAccountMap {
             /**
              * Specifies resourceGroupName, integrationAccountName.
              * 
-             * @param resourceGroupName The resource group name.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param integrationAccountName The integration account name.
              * @return the next definition stage.
              */
-            WithMapType withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
+            WithProperties withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
         }
 
         /**
-         * The stage of the IntegrationAccountMap definition allowing to specify mapType.
+         * The stage of the IntegrationAccountMap definition allowing to specify properties.
          */
-        interface WithMapType {
+        interface WithProperties {
             /**
-             * Specifies the mapType property: The map type..
+             * Specifies the properties property: The integration account map properties..
              * 
-             * @param mapType The map type.
+             * @param properties The integration account map properties.
              * @return the next definition stage.
              */
-            WithCreate withMapType(MapType mapType);
+            WithCreate withProperties(IntegrationAccountMapProperties properties);
         }
 
         /**
          * The stage of the IntegrationAccountMap definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithParametersSchema,
-            DefinitionStages.WithContent, DefinitionStages.WithContentType, DefinitionStages.WithMetadata {
+        interface WithCreate {
             /**
              * Executes the create request.
              * 
@@ -220,71 +126,6 @@ public interface IntegrationAccountMap {
              */
             IntegrationAccountMap create(Context context);
         }
-
-        /**
-         * The stage of the IntegrationAccountMap definition allowing to specify tags.
-         */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags..
-             * 
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            WithCreate withTags(Map<String, String> tags);
-        }
-
-        /**
-         * The stage of the IntegrationAccountMap definition allowing to specify parametersSchema.
-         */
-        interface WithParametersSchema {
-            /**
-             * Specifies the parametersSchema property: The parameters schema of integration account map..
-             * 
-             * @param parametersSchema The parameters schema of integration account map.
-             * @return the next definition stage.
-             */
-            WithCreate withParametersSchema(IntegrationAccountMapPropertiesParametersSchema parametersSchema);
-        }
-
-        /**
-         * The stage of the IntegrationAccountMap definition allowing to specify content.
-         */
-        interface WithContent {
-            /**
-             * Specifies the content property: The content..
-             * 
-             * @param content The content.
-             * @return the next definition stage.
-             */
-            WithCreate withContent(String content);
-        }
-
-        /**
-         * The stage of the IntegrationAccountMap definition allowing to specify contentType.
-         */
-        interface WithContentType {
-            /**
-             * Specifies the contentType property: The content type..
-             * 
-             * @param contentType The content type.
-             * @return the next definition stage.
-             */
-            WithCreate withContentType(String contentType);
-        }
-
-        /**
-         * The stage of the IntegrationAccountMap definition allowing to specify metadata.
-         */
-        interface WithMetadata {
-            /**
-             * Specifies the metadata property: The metadata..
-             * 
-             * @param metadata The metadata.
-             * @return the next definition stage.
-             */
-            WithCreate withMetadata(Object metadata);
-        }
     }
 
     /**
@@ -297,8 +138,7 @@ public interface IntegrationAccountMap {
     /**
      * The template for IntegrationAccountMap update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithMapType, UpdateStages.WithParametersSchema,
-        UpdateStages.WithContent, UpdateStages.WithContentType, UpdateStages.WithMetadata {
+    interface Update extends UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -320,81 +160,16 @@ public interface IntegrationAccountMap {
      */
     interface UpdateStages {
         /**
-         * The stage of the IntegrationAccountMap update allowing to specify tags.
+         * The stage of the IntegrationAccountMap update allowing to specify properties.
          */
-        interface WithTags {
+        interface WithProperties {
             /**
-             * Specifies the tags property: Resource tags..
+             * Specifies the properties property: The integration account map properties..
              * 
-             * @param tags Resource tags.
+             * @param properties The integration account map properties.
              * @return the next definition stage.
              */
-            Update withTags(Map<String, String> tags);
-        }
-
-        /**
-         * The stage of the IntegrationAccountMap update allowing to specify mapType.
-         */
-        interface WithMapType {
-            /**
-             * Specifies the mapType property: The map type..
-             * 
-             * @param mapType The map type.
-             * @return the next definition stage.
-             */
-            Update withMapType(MapType mapType);
-        }
-
-        /**
-         * The stage of the IntegrationAccountMap update allowing to specify parametersSchema.
-         */
-        interface WithParametersSchema {
-            /**
-             * Specifies the parametersSchema property: The parameters schema of integration account map..
-             * 
-             * @param parametersSchema The parameters schema of integration account map.
-             * @return the next definition stage.
-             */
-            Update withParametersSchema(IntegrationAccountMapPropertiesParametersSchema parametersSchema);
-        }
-
-        /**
-         * The stage of the IntegrationAccountMap update allowing to specify content.
-         */
-        interface WithContent {
-            /**
-             * Specifies the content property: The content..
-             * 
-             * @param content The content.
-             * @return the next definition stage.
-             */
-            Update withContent(String content);
-        }
-
-        /**
-         * The stage of the IntegrationAccountMap update allowing to specify contentType.
-         */
-        interface WithContentType {
-            /**
-             * Specifies the contentType property: The content type..
-             * 
-             * @param contentType The content type.
-             * @return the next definition stage.
-             */
-            Update withContentType(String contentType);
-        }
-
-        /**
-         * The stage of the IntegrationAccountMap update allowing to specify metadata.
-         */
-        interface WithMetadata {
-            /**
-             * Specifies the metadata property: The metadata..
-             * 
-             * @param metadata The metadata.
-             * @return the next definition stage.
-             */
-            Update withMetadata(Object metadata);
+            Update withProperties(IntegrationAccountMapProperties properties);
         }
     }
 
@@ -416,24 +191,24 @@ public interface IntegrationAccountMap {
     /**
      * Get the content callback url.
      * 
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the content callback url along with {@link Response}.
      */
-    Response<WorkflowTriggerCallbackUrl>
-        listContentCallbackUrlWithResponse(GetCallbackUrlParameters listContentCallbackUrl, Context context);
+    Response<WorkflowTriggerCallbackUrl> listContentCallbackUrlWithResponse(GetCallbackUrlParameters body,
+        Context context);
 
     /**
      * Get the content callback url.
      * 
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the content callback url.
      */
-    WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters listContentCallbackUrl);
+    WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters body);
 }

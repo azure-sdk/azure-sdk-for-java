@@ -5,18 +5,13 @@
 package com.azure.resourcemanager.logic.implementation;
 
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountMapInner;
-import com.azure.resourcemanager.logic.models.ContentLink;
 import com.azure.resourcemanager.logic.models.GetCallbackUrlParameters;
 import com.azure.resourcemanager.logic.models.IntegrationAccountMap;
-import com.azure.resourcemanager.logic.models.IntegrationAccountMapPropertiesParametersSchema;
-import com.azure.resourcemanager.logic.models.MapType;
+import com.azure.resourcemanager.logic.models.IntegrationAccountMapProperties;
 import com.azure.resourcemanager.logic.models.WorkflowTriggerCallbackUrl;
-import java.time.OffsetDateTime;
-import java.util.Collections;
-import java.util.Map;
 
 public final class IntegrationAccountMapImpl
     implements IntegrationAccountMap, IntegrationAccountMap.Definition, IntegrationAccountMap.Update {
@@ -36,57 +31,12 @@ public final class IntegrationAccountMapImpl
         return this.innerModel().type();
     }
 
-    public String location() {
-        return this.innerModel().location();
+    public IntegrationAccountMapProperties properties() {
+        return this.innerModel().properties();
     }
 
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
-    public MapType mapType() {
-        return this.innerModel().mapType();
-    }
-
-    public IntegrationAccountMapPropertiesParametersSchema parametersSchema() {
-        return this.innerModel().parametersSchema();
-    }
-
-    public OffsetDateTime createdTime() {
-        return this.innerModel().createdTime();
-    }
-
-    public OffsetDateTime changedTime() {
-        return this.innerModel().changedTime();
-    }
-
-    public String content() {
-        return this.innerModel().content();
-    }
-
-    public String contentType() {
-        return this.innerModel().contentType();
-    }
-
-    public ContentLink contentLink() {
-        return this.innerModel().contentLink();
-    }
-
-    public Object metadata() {
-        return this.innerModel().metadata();
-    }
-
-    public Region region() {
-        return Region.fromName(this.regionName());
-    }
-
-    public String regionName() {
-        return this.location();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String resourceGroupName() {
@@ -184,56 +134,19 @@ public final class IntegrationAccountMapImpl
         return this;
     }
 
-    public Response<WorkflowTriggerCallbackUrl>
-        listContentCallbackUrlWithResponse(GetCallbackUrlParameters listContentCallbackUrl, Context context) {
+    public Response<WorkflowTriggerCallbackUrl> listContentCallbackUrlWithResponse(GetCallbackUrlParameters body,
+        Context context) {
         return serviceManager.integrationAccountMaps()
-            .listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, mapName,
-                listContentCallbackUrl, context);
+            .listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, mapName, body, context);
     }
 
-    public WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters listContentCallbackUrl) {
+    public WorkflowTriggerCallbackUrl listContentCallbackUrl(GetCallbackUrlParameters body) {
         return serviceManager.integrationAccountMaps()
-            .listContentCallbackUrl(resourceGroupName, integrationAccountName, mapName, listContentCallbackUrl);
+            .listContentCallbackUrl(resourceGroupName, integrationAccountName, mapName, body);
     }
 
-    public IntegrationAccountMapImpl withRegion(Region location) {
-        this.innerModel().withLocation(location.toString());
-        return this;
-    }
-
-    public IntegrationAccountMapImpl withRegion(String location) {
-        this.innerModel().withLocation(location);
-        return this;
-    }
-
-    public IntegrationAccountMapImpl withMapType(MapType mapType) {
-        this.innerModel().withMapType(mapType);
-        return this;
-    }
-
-    public IntegrationAccountMapImpl withTags(Map<String, String> tags) {
-        this.innerModel().withTags(tags);
-        return this;
-    }
-
-    public IntegrationAccountMapImpl
-        withParametersSchema(IntegrationAccountMapPropertiesParametersSchema parametersSchema) {
-        this.innerModel().withParametersSchema(parametersSchema);
-        return this;
-    }
-
-    public IntegrationAccountMapImpl withContent(String content) {
-        this.innerModel().withContent(content);
-        return this;
-    }
-
-    public IntegrationAccountMapImpl withContentType(String contentType) {
-        this.innerModel().withContentType(contentType);
-        return this;
-    }
-
-    public IntegrationAccountMapImpl withMetadata(Object metadata) {
-        this.innerModel().withMetadata(metadata);
+    public IntegrationAccountMapImpl withProperties(IntegrationAccountMapProperties properties) {
+        this.innerModel().withProperties(properties);
         return this;
     }
 }

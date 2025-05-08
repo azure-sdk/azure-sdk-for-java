@@ -20,7 +20,7 @@ public interface IntegrationAccountSchemasClient {
     /**
      * Gets a list of integration account schemas.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -33,7 +33,7 @@ public interface IntegrationAccountSchemasClient {
     /**
      * Gets a list of integration account schemas.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: SchemaType.
@@ -50,7 +50,7 @@ public interface IntegrationAccountSchemasClient {
     /**
      * Gets an integration account schema.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param schemaName The integration account schema name.
      * @param context The context to associate with this operation.
@@ -66,7 +66,7 @@ public interface IntegrationAccountSchemasClient {
     /**
      * Gets an integration account schema.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param schemaName The integration account schema name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -80,10 +80,10 @@ public interface IntegrationAccountSchemasClient {
     /**
      * Creates or updates an integration account schema.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param schemaName The integration account schema name.
-     * @param schema The integration account schema.
+     * @param resource The integration account schema.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -92,15 +92,15 @@ public interface IntegrationAccountSchemasClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IntegrationAccountSchemaInner> createOrUpdateWithResponse(String resourceGroupName,
-        String integrationAccountName, String schemaName, IntegrationAccountSchemaInner schema, Context context);
+        String integrationAccountName, String schemaName, IntegrationAccountSchemaInner resource, Context context);
 
     /**
      * Creates or updates an integration account schema.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param schemaName The integration account schema name.
-     * @param schema The integration account schema.
+     * @param resource The integration account schema.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -108,12 +108,12 @@ public interface IntegrationAccountSchemasClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     IntegrationAccountSchemaInner createOrUpdate(String resourceGroupName, String integrationAccountName,
-        String schemaName, IntegrationAccountSchemaInner schema);
+        String schemaName, IntegrationAccountSchemaInner resource);
 
     /**
      * Deletes an integration account schema.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param schemaName The integration account schema name.
      * @param context The context to associate with this operation.
@@ -129,7 +129,7 @@ public interface IntegrationAccountSchemasClient {
     /**
      * Deletes an integration account schema.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param schemaName The integration account schema name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -142,10 +142,10 @@ public interface IntegrationAccountSchemasClient {
     /**
      * Get the content callback url.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param schemaName The integration account schema name.
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -154,16 +154,15 @@ public interface IntegrationAccountSchemasClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkflowTriggerCallbackUrlInner> listContentCallbackUrlWithResponse(String resourceGroupName,
-        String integrationAccountName, String schemaName, GetCallbackUrlParameters listContentCallbackUrl,
-        Context context);
+        String integrationAccountName, String schemaName, GetCallbackUrlParameters body, Context context);
 
     /**
      * Get the content callback url.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param schemaName The integration account schema name.
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -171,5 +170,5 @@ public interface IntegrationAccountSchemasClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     WorkflowTriggerCallbackUrlInner listContentCallbackUrl(String resourceGroupName, String integrationAccountName,
-        String schemaName, GetCallbackUrlParameters listContentCallbackUrl);
+        String schemaName, GetCallbackUrlParameters body);
 }

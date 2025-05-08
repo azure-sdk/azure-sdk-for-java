@@ -6,6 +6,7 @@ package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentInner;
 import java.util.Map;
@@ -64,11 +65,11 @@ public interface IntegrationServiceEnvironment {
     IntegrationServiceEnvironmentSku sku();
 
     /**
-     * Gets the identity property: Managed service identity properties.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the identity value.
+     * @return the systemData value.
      */
-    ManagedServiceIdentity identity();
+    SystemData systemData();
 
     /**
      * Gets the region of the resource.
@@ -85,13 +86,6 @@ public interface IntegrationServiceEnvironment {
     String regionName();
 
     /**
-     * Gets the name of the resource group.
-     * 
-     * @return the name of the resource group.
-     */
-    String resourceGroupName();
-
-    /**
      * Gets the inner com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentInner object.
      * 
      * @return the inner object.
@@ -101,8 +95,7 @@ public interface IntegrationServiceEnvironment {
     /**
      * The entirety of the IntegrationServiceEnvironment definition.
      */
-    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
-        DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation, DefinitionStages.WithCreate {
     }
 
     /**
@@ -125,7 +118,7 @@ public interface IntegrationServiceEnvironment {
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
-            WithResourceGroup withRegion(Region location);
+            WithCreate withRegion(Region location);
 
             /**
              * Specifies the region for the resource.
@@ -133,28 +126,15 @@ public interface IntegrationServiceEnvironment {
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
-            WithResourceGroup withRegion(String location);
-        }
-
-        /**
-         * The stage of the IntegrationServiceEnvironment definition allowing to specify parent resource.
-         */
-        interface WithResourceGroup {
-            /**
-             * Specifies resourceGroup.
-             * 
-             * @param resourceGroup The resource group.
-             * @return the next definition stage.
-             */
-            WithCreate withExistingResourceGroup(String resourceGroup);
+            WithCreate withRegion(String location);
         }
 
         /**
          * The stage of the IntegrationServiceEnvironment definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithProperties,
-            DefinitionStages.WithSku, DefinitionStages.WithIdentity {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithProperties, DefinitionStages.WithSku {
             /**
              * Executes the create request.
              * 
@@ -209,19 +189,6 @@ public interface IntegrationServiceEnvironment {
              */
             WithCreate withSku(IntegrationServiceEnvironmentSku sku);
         }
-
-        /**
-         * The stage of the IntegrationServiceEnvironment definition allowing to specify identity.
-         */
-        interface WithIdentity {
-            /**
-             * Specifies the identity property: Managed service identity properties..
-             * 
-             * @param identity Managed service identity properties.
-             * @return the next definition stage.
-             */
-            WithCreate withIdentity(ManagedServiceIdentity identity);
-        }
     }
 
     /**
@@ -234,8 +201,7 @@ public interface IntegrationServiceEnvironment {
     /**
      * The template for IntegrationServiceEnvironment update.
      */
-    interface Update
-        extends UpdateStages.WithTags, UpdateStages.WithProperties, UpdateStages.WithSku, UpdateStages.WithIdentity {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties, UpdateStages.WithSku {
         /**
          * Executes the update request.
          * 
@@ -293,19 +259,6 @@ public interface IntegrationServiceEnvironment {
              * @return the next definition stage.
              */
             Update withSku(IntegrationServiceEnvironmentSku sku);
-        }
-
-        /**
-         * The stage of the IntegrationServiceEnvironment update allowing to specify identity.
-         */
-        interface WithIdentity {
-            /**
-             * Specifies the identity property: Managed service identity properties..
-             * 
-             * @param identity Managed service identity properties.
-             * @return the next definition stage.
-             */
-            Update withIdentity(ManagedServiceIdentity identity);
         }
     }
 

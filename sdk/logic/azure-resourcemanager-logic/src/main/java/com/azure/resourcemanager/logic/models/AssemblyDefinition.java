@@ -5,10 +5,9 @@
 package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.http.rest.Response;
-import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.AssemblyDefinitionInner;
-import java.util.Map;
 
 /**
  * An immutable client-side representation of AssemblyDefinition.
@@ -36,20 +35,6 @@ public interface AssemblyDefinition {
     String type();
 
     /**
-     * Gets the location property: The geo-location where the resource lives.
-     * 
-     * @return the location value.
-     */
-    String location();
-
-    /**
-     * Gets the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    Map<String, String> tags();
-
-    /**
      * Gets the properties property: The assembly properties.
      * 
      * @return the properties value.
@@ -57,18 +42,11 @@ public interface AssemblyDefinition {
     AssemblyProperties properties();
 
     /**
-     * Gets the region of the resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the region of the resource.
+     * @return the systemData value.
      */
-    Region region();
-
-    /**
-     * Gets the name of the resource region.
-     * 
-     * @return the name of the resource region.
-     */
-    String regionName();
+    SystemData systemData();
 
     /**
      * Gets the name of the resource group.
@@ -87,8 +65,8 @@ public interface AssemblyDefinition {
     /**
      * The entirety of the AssemblyDefinition definition.
      */
-    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
-        DefinitionStages.WithParentResource, DefinitionStages.WithProperties, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithParentResource,
+        DefinitionStages.WithProperties, DefinitionStages.WithCreate {
     }
 
     /**
@@ -98,28 +76,7 @@ public interface AssemblyDefinition {
         /**
          * The first stage of the AssemblyDefinition definition.
          */
-        interface Blank extends WithLocation {
-        }
-
-        /**
-         * The stage of the AssemblyDefinition definition allowing to specify location.
-         */
-        interface WithLocation {
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(Region location);
-
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithParentResource withRegion(String location);
+        interface Blank extends WithParentResource {
         }
 
         /**
@@ -129,7 +86,7 @@ public interface AssemblyDefinition {
             /**
              * Specifies resourceGroupName, integrationAccountName.
              * 
-             * @param resourceGroupName The resource group name.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param integrationAccountName The integration account name.
              * @return the next definition stage.
              */
@@ -153,7 +110,7 @@ public interface AssemblyDefinition {
          * The stage of the AssemblyDefinition definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags {
+        interface WithCreate {
             /**
              * Executes the create request.
              * 
@@ -169,19 +126,6 @@ public interface AssemblyDefinition {
              */
             AssemblyDefinition create(Context context);
         }
-
-        /**
-         * The stage of the AssemblyDefinition definition allowing to specify tags.
-         */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags..
-             * 
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            WithCreate withTags(Map<String, String> tags);
-        }
     }
 
     /**
@@ -194,7 +138,7 @@ public interface AssemblyDefinition {
     /**
      * The template for AssemblyDefinition update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -215,19 +159,6 @@ public interface AssemblyDefinition {
      * The AssemblyDefinition update stages.
      */
     interface UpdateStages {
-        /**
-         * The stage of the AssemblyDefinition update allowing to specify tags.
-         */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags..
-             * 
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            Update withTags(Map<String, String> tags);
-        }
-
         /**
          * The stage of the AssemblyDefinition update allowing to specify properties.
          */

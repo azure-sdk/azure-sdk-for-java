@@ -4,8 +4,7 @@
 
 package com.azure.resourcemanager.logic.generated;
 
-import com.azure.resourcemanager.logic.models.KeyVaultKeyReference;
-import com.azure.resourcemanager.logic.models.KeyVaultKeyReferenceKeyVault;
+import com.azure.resourcemanager.logic.models.IntegrationAccountCertificateProperties;
 
 /**
  * Samples for IntegrationAccountCertificates CreateOrUpdate.
@@ -23,13 +22,8 @@ public final class IntegrationAccountCertificatesCreateOrUpdateSamples {
     public static void createOrUpdateACertificate(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationAccountCertificates()
             .define("testCertificate")
-            .withRegion("brazilsouth")
             .withExistingIntegrationAccount("testResourceGroup", "testIntegrationAccount")
-            .withKey(new KeyVaultKeyReference().withKeyVault(new KeyVaultKeyReferenceKeyVault().withId(
-                "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourcegroups/testResourceGroup/providers/microsoft.keyvault/vaults/<keyVaultName>"))
-                .withKeyName("fakeTokenPlaceholder")
-                .withKeyVersion("fakeTokenPlaceholder"))
-            .withPublicCertificate("<publicCertificateValue>")
+            .withProperties((IntegrationAccountCertificateProperties) null)
             .create();
     }
 }

@@ -6,12 +6,12 @@ package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentProperties;
 import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentSku;
-import com.azure.resourcemanager.logic.models.ManagedServiceIdentity;
 import java.io.IOException;
 import java.util.Map;
 
@@ -31,9 +31,9 @@ public final class IntegrationServiceEnvironmentInner extends Resource {
     private IntegrationServiceEnvironmentSku sku;
 
     /*
-     * Managed service identity properties.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    private ManagedServiceIdentity identity;
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -97,23 +97,12 @@ public final class IntegrationServiceEnvironmentInner extends Resource {
     }
 
     /**
-     * Get the identity property: Managed service identity properties.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the identity value.
+     * @return the systemData value.
      */
-    public ManagedServiceIdentity identity() {
-        return this.identity;
-    }
-
-    /**
-     * Set the identity property: Managed service identity properties.
-     * 
-     * @param identity the identity value to set.
-     * @return the IntegrationServiceEnvironmentInner object itself.
-     */
-    public IntegrationServiceEnvironmentInner withIdentity(ManagedServiceIdentity identity) {
-        this.identity = identity;
-        return this;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -176,9 +165,6 @@ public final class IntegrationServiceEnvironmentInner extends Resource {
         if (sku() != null) {
             sku().validate();
         }
-        if (identity() != null) {
-            identity().validate();
-        }
     }
 
     /**
@@ -191,7 +177,6 @@ public final class IntegrationServiceEnvironmentInner extends Resource {
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("properties", this.properties);
         jsonWriter.writeJsonField("sku", this.sku);
-        jsonWriter.writeJsonField("identity", this.identity);
         return jsonWriter.writeEndObject();
     }
 
@@ -229,8 +214,8 @@ public final class IntegrationServiceEnvironmentInner extends Resource {
                 } else if ("sku".equals(fieldName)) {
                     deserializedIntegrationServiceEnvironmentInner.sku
                         = IntegrationServiceEnvironmentSku.fromJson(reader);
-                } else if ("identity".equals(fieldName)) {
-                    deserializedIntegrationServiceEnvironmentInner.identity = ManagedServiceIdentity.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedIntegrationServiceEnvironmentInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
