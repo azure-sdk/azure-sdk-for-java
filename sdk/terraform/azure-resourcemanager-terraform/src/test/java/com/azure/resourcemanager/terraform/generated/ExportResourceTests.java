@@ -17,8 +17,8 @@ public final class ExportResourceTests {
             "{\"type\":\"ExportResource\",\"resourceIds\":[\"s\"],\"resourceName\":\"ithxqhabifpi\",\"resourceType\":\"wczbys\",\"namePattern\":\"pqxu\",\"targetProvider\":\"azurerm\",\"fullProperties\":true,\"maskSensitive\":true}")
             .toObject(ExportResource.class);
         Assertions.assertEquals(TargetProvider.AZURERM, model.targetProvider());
-        Assertions.assertEquals(true, model.fullProperties());
-        Assertions.assertEquals(true, model.maskSensitive());
+        Assertions.assertTrue(model.fullProperties());
+        Assertions.assertTrue(model.maskSensitive());
         Assertions.assertEquals("s", model.resourceIds().get(0));
         Assertions.assertEquals("ithxqhabifpi", model.resourceName());
         Assertions.assertEquals("wczbys", model.resourceType());
@@ -36,8 +36,8 @@ public final class ExportResourceTests {
             .withNamePattern("pqxu");
         model = BinaryData.fromObject(model).toObject(ExportResource.class);
         Assertions.assertEquals(TargetProvider.AZURERM, model.targetProvider());
-        Assertions.assertEquals(true, model.fullProperties());
-        Assertions.assertEquals(true, model.maskSensitive());
+        Assertions.assertTrue(model.fullProperties());
+        Assertions.assertTrue(model.maskSensitive());
         Assertions.assertEquals("s", model.resourceIds().get(0));
         Assertions.assertEquals("ithxqhabifpi", model.resourceName());
         Assertions.assertEquals("wczbys", model.resourceType());
