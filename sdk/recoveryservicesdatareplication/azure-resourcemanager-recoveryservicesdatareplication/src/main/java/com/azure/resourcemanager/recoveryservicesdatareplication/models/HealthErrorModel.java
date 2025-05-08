@@ -25,9 +25,8 @@ public final class HealthErrorModel implements JsonSerializable<HealthErrorModel
     private String affectedResourceType;
 
     /*
-     * Gets or sets the list of affected resource correlation Ids. This can be used to
-     * uniquely identify the count of items affected by a specific category and severity
-     * as well as count of item affected by an specific issue.
+     * Gets or sets the list of affected resource correlation Ids. This can be used to uniquely identify the count of
+     * items affected by a specific category and severity as well as count of item affected by an specific issue.
      */
     private List<String> affectedResourceCorrelationIds;
 
@@ -119,9 +118,8 @@ public final class HealthErrorModel implements JsonSerializable<HealthErrorModel
 
     /**
      * Get the affectedResourceCorrelationIds property: Gets or sets the list of affected resource correlation Ids. This
-     * can be used to
-     * uniquely identify the count of items affected by a specific category and severity
-     * as well as count of item affected by an specific issue.
+     * can be used to uniquely identify the count of items affected by a specific category and severity as well as count
+     * of item affected by an specific issue.
      * 
      * @return the affectedResourceCorrelationIds value.
      */
@@ -131,9 +129,8 @@ public final class HealthErrorModel implements JsonSerializable<HealthErrorModel
 
     /**
      * Set the affectedResourceCorrelationIds property: Gets or sets the list of affected resource correlation Ids. This
-     * can be used to
-     * uniquely identify the count of items affected by a specific category and severity
-     * as well as count of item affected by an specific issue.
+     * can be used to uniquely identify the count of items affected by a specific category and severity as well as count
+     * of item affected by an specific issue.
      * 
      * @param affectedResourceCorrelationIds the affectedResourceCorrelationIds value to set.
      * @return the HealthErrorModel object itself.

@@ -10,15 +10,15 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class ReplicationExtensionDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/ReplicationExtension_Delete.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/ReplicationExtension_Delete.json
      */
     /**
-     * Sample code: ReplicationExtension_Delete.
+     * Sample code: Deletes the replication extension.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void replicationExtensionDelete(
+    public static void deletesTheReplicationExtension(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.replicationExtensions()
             .delete("rgrecoveryservicesdatareplication", "4", "g16yjJ", com.azure.core.util.Context.NONE);

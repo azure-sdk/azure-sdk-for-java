@@ -27,6 +27,17 @@ public final class ReplicationExtensionsImpl implements ReplicationExtensions {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<ReplicationExtensionModel> list(String resourceGroupName, String vaultName) {
+        PagedIterable<ReplicationExtensionModelInner> inner = this.serviceClient().list(resourceGroupName, vaultName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ReplicationExtensionModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ReplicationExtensionModel> list(String resourceGroupName, String vaultName, Context context) {
+        PagedIterable<ReplicationExtensionModelInner> inner
+            = this.serviceClient().list(resourceGroupName, vaultName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ReplicationExtensionModelImpl(inner1, this.manager()));
+    }
+
     public Response<ReplicationExtensionModel> getWithResponse(String resourceGroupName, String vaultName,
         String replicationExtensionName, Context context) {
         Response<ReplicationExtensionModelInner> inner
@@ -55,17 +66,6 @@ public final class ReplicationExtensionsImpl implements ReplicationExtensions {
 
     public void delete(String resourceGroupName, String vaultName, String replicationExtensionName, Context context) {
         this.serviceClient().delete(resourceGroupName, vaultName, replicationExtensionName, context);
-    }
-
-    public PagedIterable<ReplicationExtensionModel> list(String resourceGroupName, String vaultName) {
-        PagedIterable<ReplicationExtensionModelInner> inner = this.serviceClient().list(resourceGroupName, vaultName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ReplicationExtensionModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<ReplicationExtensionModel> list(String resourceGroupName, String vaultName, Context context) {
-        PagedIterable<ReplicationExtensionModelInner> inner
-            = this.serviceClient().list(resourceGroupName, vaultName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ReplicationExtensionModelImpl(inner1, this.manager()));
     }
 
     public ReplicationExtensionModel getById(String id) {

@@ -16,8 +16,37 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.E
  */
 public interface EventsClient {
     /**
-     * Gets the event.
+     * Gets the list of events in the given vault.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of events in the given vault as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<EventModelInner> list(String resourceGroupName, String vaultName);
+
+    /**
+     * Gets the list of events in the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param odataOptions OData options.
+     * @param continuationToken Continuation token.
+     * @param pageSize Page size.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of events in the given vault as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<EventModelInner> list(String resourceGroupName, String vaultName, String odataOptions,
+        String continuationToken, Integer pageSize, Context context);
+
+    /**
      * Gets the details of the event.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -34,8 +63,6 @@ public interface EventsClient {
         Context context);
 
     /**
-     * Gets the event.
-     * 
      * Gets the details of the event.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -48,38 +75,4 @@ public interface EventsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     EventModelInner get(String resourceGroupName, String vaultName, String eventName);
-
-    /**
-     * Lists the events.
-     * 
-     * Gets the list of events in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of events in the given vault as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<EventModelInner> list(String resourceGroupName, String vaultName);
-
-    /**
-     * Lists the events.
-     * 
-     * Gets the list of events in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param filter Filter string.
-     * @param continuationToken Continuation token.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of events in the given vault as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<EventModelInner> list(String resourceGroupName, String vaultName, String filter,
-        String continuationToken, Context context);
 }

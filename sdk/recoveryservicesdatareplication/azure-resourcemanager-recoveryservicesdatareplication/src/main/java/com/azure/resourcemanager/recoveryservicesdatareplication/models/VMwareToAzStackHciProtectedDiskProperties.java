@@ -63,8 +63,7 @@ public final class VMwareToAzStackHciProtectedDiskProperties
     private Long capacityInBytes;
 
     /*
-     * Gets or sets a value indicating whether dynamic sizing is enabled on the virtual hard
-     * disk.
+     * Gets or sets a value indicating whether dynamic sizing is enabled on the virtual hard disk.
      */
     private Boolean isDynamic;
 
@@ -72,6 +71,21 @@ public final class VMwareToAzStackHciProtectedDiskProperties
      * Gets or sets the disk type.
      */
     private String diskType;
+
+    /*
+     * Gets or sets a value of disk block size.
+     */
+    private Long diskBlockSize;
+
+    /*
+     * Gets or sets a value of disk logical sector size.
+     */
+    private Long diskLogicalSectorSize;
+
+    /*
+     * Gets or sets a value of disk physical sector size.
+     */
+    private Long diskPhysicalSectorSize;
 
     /**
      * Creates an instance of VMwareToAzStackHciProtectedDiskProperties class.
@@ -180,6 +194,33 @@ public final class VMwareToAzStackHciProtectedDiskProperties
     }
 
     /**
+     * Get the diskBlockSize property: Gets or sets a value of disk block size.
+     * 
+     * @return the diskBlockSize value.
+     */
+    public Long diskBlockSize() {
+        return this.diskBlockSize;
+    }
+
+    /**
+     * Get the diskLogicalSectorSize property: Gets or sets a value of disk logical sector size.
+     * 
+     * @return the diskLogicalSectorSize value.
+     */
+    public Long diskLogicalSectorSize() {
+        return this.diskLogicalSectorSize;
+    }
+
+    /**
+     * Get the diskPhysicalSectorSize property: Gets or sets a value of disk physical sector size.
+     * 
+     * @return the diskPhysicalSectorSize value.
+     */
+    public Long diskPhysicalSectorSize() {
+        return this.diskPhysicalSectorSize;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -238,6 +279,15 @@ public final class VMwareToAzStackHciProtectedDiskProperties
                         = reader.getNullable(JsonReader::getBoolean);
                 } else if ("diskType".equals(fieldName)) {
                     deserializedVMwareToAzStackHciProtectedDiskProperties.diskType = reader.getString();
+                } else if ("diskBlockSize".equals(fieldName)) {
+                    deserializedVMwareToAzStackHciProtectedDiskProperties.diskBlockSize
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("diskLogicalSectorSize".equals(fieldName)) {
+                    deserializedVMwareToAzStackHciProtectedDiskProperties.diskLogicalSectorSize
+                        = reader.getNullable(JsonReader::getLong);
+                } else if ("diskPhysicalSectorSize".equals(fieldName)) {
+                    deserializedVMwareToAzStackHciProtectedDiskProperties.diskPhysicalSectorSize
+                        = reader.getNullable(JsonReader::getLong);
                 } else {
                     reader.skipChildren();
                 }

@@ -4,10 +4,10 @@
 
 package com.azure.resourcemanager.recoveryservicesdatareplication.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.RecoveryPointModelInner;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.RecoveryPointModel;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.RecoveryPointModelProperties;
-import com.azure.resourcemanager.recoveryservicesdatareplication.models.RecoveryPointModelSystemData;
 
 public final class RecoveryPointModelImpl implements RecoveryPointModel {
     private RecoveryPointModelInner innerObject;
@@ -18,10 +18,6 @@ public final class RecoveryPointModelImpl implements RecoveryPointModel {
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-    }
-
-    public RecoveryPointModelProperties properties() {
-        return this.innerModel().properties();
     }
 
     public String id() {
@@ -36,7 +32,11 @@ public final class RecoveryPointModelImpl implements RecoveryPointModel {
         return this.innerModel().type();
     }
 
-    public RecoveryPointModelSystemData systemData() {
+    public RecoveryPointModelProperties properties() {
+        return this.innerModel().properties();
+    }
+
+    public SystemData systemData() {
         return this.innerModel().systemData();
     }
 

@@ -14,15 +14,15 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.models.PlannedF
 public final class ProtectedItemPlannedFailoverSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/ProtectedItem_PlannedFailover.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/ProtectedItem_PlannedFailover.json
      */
     /**
-     * Sample code: ProtectedItem_PlannedFailover.
+     * Sample code: Performs planned failover.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void protectedItemPlannedFailover(
+    public static void performsPlannedFailover(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.protectedItems()
             .plannedFailover("rgrecoveryservicesdatareplication", "4", "d",

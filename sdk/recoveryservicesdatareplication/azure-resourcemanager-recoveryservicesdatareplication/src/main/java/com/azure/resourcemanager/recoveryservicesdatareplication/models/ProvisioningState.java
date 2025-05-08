@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Gets or sets the provisioning state of the Dra.
+ * Gets or sets the provisioning state of the email configuration.
  */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {
     /**

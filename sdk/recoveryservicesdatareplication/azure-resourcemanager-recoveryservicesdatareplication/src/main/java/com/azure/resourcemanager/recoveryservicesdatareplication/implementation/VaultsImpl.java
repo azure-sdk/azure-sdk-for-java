@@ -27,6 +27,28 @@ public final class VaultsImpl implements Vaults {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<VaultModel> list() {
+        PagedIterable<VaultModelInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new VaultModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<VaultModel> list(Context context) {
+        PagedIterable<VaultModelInner> inner = this.serviceClient().list(context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new VaultModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<VaultModel> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<VaultModelInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new VaultModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<VaultModel> listByResourceGroup(String resourceGroupName, String continuationToken,
+        Context context) {
+        PagedIterable<VaultModelInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, continuationToken, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new VaultModelImpl(inner1, this.manager()));
+    }
+
     public Response<VaultModel> getByResourceGroupWithResponse(String resourceGroupName, String vaultName,
         Context context) {
         Response<VaultModelInner> inner
@@ -54,28 +76,6 @@ public final class VaultsImpl implements Vaults {
 
     public void delete(String resourceGroupName, String vaultName, Context context) {
         this.serviceClient().delete(resourceGroupName, vaultName, context);
-    }
-
-    public PagedIterable<VaultModel> list() {
-        PagedIterable<VaultModelInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new VaultModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<VaultModel> list(String continuationToken, Context context) {
-        PagedIterable<VaultModelInner> inner = this.serviceClient().list(continuationToken, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new VaultModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<VaultModel> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<VaultModelInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new VaultModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<VaultModel> listByResourceGroup(String resourceGroupName, String continuationToken,
-        Context context) {
-        PagedIterable<VaultModelInner> inner
-            = this.serviceClient().listByResourceGroup(resourceGroupName, continuationToken, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new VaultModelImpl(inner1, this.manager()));
     }
 
     public VaultModel getById(String id) {

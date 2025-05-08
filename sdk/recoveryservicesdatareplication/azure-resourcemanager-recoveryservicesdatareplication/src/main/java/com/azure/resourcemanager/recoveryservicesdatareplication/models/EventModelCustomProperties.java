@@ -17,7 +17,7 @@ import java.io.IOException;
 @Immutable
 public class EventModelCustomProperties implements JsonSerializable<EventModelCustomProperties> {
     /*
-     * Gets or sets the instance type.
+     * Discriminator property for EventModelCustomProperties.
      */
     private String instanceType = "EventModelCustomProperties";
 
@@ -28,7 +28,7 @@ public class EventModelCustomProperties implements JsonSerializable<EventModelCu
     }
 
     /**
-     * Get the instanceType property: Gets or sets the instance type.
+     * Get the instanceType property: Discriminator property for EventModelCustomProperties.
      * 
      * @return the instanceType value.
      */
@@ -80,6 +80,8 @@ public class EventModelCustomProperties implements JsonSerializable<EventModelCu
                 // Use the discriminator value to determine which subtype should be deserialized.
                 if ("HyperVToAzStackHCI".equals(discriminatorValue)) {
                     return HyperVToAzStackHciEventModelCustomProperties.fromJson(readerToUse.reset());
+                } else if ("VMwareToAzStackHCI".equals(discriminatorValue)) {
+                    return VMwareToAzStackHciEventModelCustomProperties.fromJson(readerToUse.reset());
                 } else {
                     return fromJsonKnownDiscriminator(readerToUse.reset());
                 }

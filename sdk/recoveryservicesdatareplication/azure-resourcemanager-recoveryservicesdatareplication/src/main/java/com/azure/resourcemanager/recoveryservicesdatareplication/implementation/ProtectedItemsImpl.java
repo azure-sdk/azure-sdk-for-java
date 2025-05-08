@@ -29,6 +29,18 @@ public final class ProtectedItemsImpl implements ProtectedItems {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<ProtectedItemModel> list(String resourceGroupName, String vaultName) {
+        PagedIterable<ProtectedItemModelInner> inner = this.serviceClient().list(resourceGroupName, vaultName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProtectedItemModelImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ProtectedItemModel> list(String resourceGroupName, String vaultName, String odataOptions,
+        String continuationToken, Integer pageSize, Context context) {
+        PagedIterable<ProtectedItemModelInner> inner = this.serviceClient()
+            .list(resourceGroupName, vaultName, odataOptions, continuationToken, pageSize, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProtectedItemModelImpl(inner1, this.manager()));
+    }
+
     public Response<ProtectedItemModel> getWithResponse(String resourceGroupName, String vaultName,
         String protectedItemName, Context context) {
         Response<ProtectedItemModelInner> inner
@@ -59,19 +71,10 @@ public final class ProtectedItemsImpl implements ProtectedItems {
         this.serviceClient().delete(resourceGroupName, vaultName, protectedItemName, forceDelete, context);
     }
 
-    public PagedIterable<ProtectedItemModel> list(String resourceGroupName, String vaultName) {
-        PagedIterable<ProtectedItemModelInner> inner = this.serviceClient().list(resourceGroupName, vaultName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProtectedItemModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<ProtectedItemModel> list(String resourceGroupName, String vaultName, Context context) {
-        PagedIterable<ProtectedItemModelInner> inner = this.serviceClient().list(resourceGroupName, vaultName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProtectedItemModelImpl(inner1, this.manager()));
-    }
-
-    public PlannedFailoverModel plannedFailover(String resourceGroupName, String vaultName, String protectedItemName) {
+    public PlannedFailoverModel plannedFailover(String resourceGroupName, String vaultName, String protectedItemName,
+        PlannedFailoverModelInner body) {
         PlannedFailoverModelInner inner
-            = this.serviceClient().plannedFailover(resourceGroupName, vaultName, protectedItemName);
+            = this.serviceClient().plannedFailover(resourceGroupName, vaultName, protectedItemName, body);
         if (inner != null) {
             return new PlannedFailoverModelImpl(inner, this.manager());
         } else {

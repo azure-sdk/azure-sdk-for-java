@@ -17,7 +17,7 @@ import java.io.IOException;
 @Immutable
 public class RecoveryPointModelCustomProperties implements JsonSerializable<RecoveryPointModelCustomProperties> {
     /*
-     * Gets or sets the instance type.
+     * Discriminator property for RecoveryPointModelCustomProperties.
      */
     private String instanceType = "RecoveryPointModelCustomProperties";
 
@@ -28,7 +28,7 @@ public class RecoveryPointModelCustomProperties implements JsonSerializable<Reco
     }
 
     /**
-     * Get the instanceType property: Gets or sets the instance type.
+     * Get the instanceType property: Discriminator property for RecoveryPointModelCustomProperties.
      * 
      * @return the instanceType value.
      */
@@ -80,6 +80,8 @@ public class RecoveryPointModelCustomProperties implements JsonSerializable<Reco
                 // Use the discriminator value to determine which subtype should be deserialized.
                 if ("HyperVToAzStackHCI".equals(discriminatorValue)) {
                     return HyperVToAzStackHciRecoveryPointCustomProps.fromJson(readerToUse.reset());
+                } else if ("VMwareToAzStackHCIRecoveryPointModelCustomProperties".equals(discriminatorValue)) {
+                    return VMwareToAzStackHciRecoveryPointModelCustomProperties.fromJson(readerToUse.reset());
                 } else {
                     return fromJsonKnownDiscriminator(readerToUse.reset());
                 }

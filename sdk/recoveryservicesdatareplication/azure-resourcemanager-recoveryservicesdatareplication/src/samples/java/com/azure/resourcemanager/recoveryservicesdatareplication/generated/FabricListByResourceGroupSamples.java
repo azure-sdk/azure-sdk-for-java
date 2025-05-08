@@ -10,17 +10,16 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class FabricListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/Fabric_List.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/Fabric_List.json
      */
     /**
-     * Sample code: Fabric_List.
+     * Sample code: Lists the fabrics.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void fabricList(
+    public static void listsTheFabrics(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
-        manager.fabrics()
-            .listByResourceGroup("rgrecoveryservicesdatareplication", "mjzsxwwmtvd", com.azure.core.util.Context.NONE);
+        manager.fabrics().listByResourceGroup("rgswagger_2024-09-01", "jw", com.azure.core.util.Context.NONE);
     }
 }
