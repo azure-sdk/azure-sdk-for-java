@@ -27,6 +27,11 @@ public final class ServiceUpdate implements JsonSerializable<ServiceUpdate> {
      */
     private Map<String, String> tags;
 
+    /*
+     * The resource-specific properties for this resource.
+     */
+    private ServiceUpdateProperties properties;
+
     /**
      * Creates an instance of ServiceUpdate class.
      */
@@ -74,6 +79,26 @@ public final class ServiceUpdate implements JsonSerializable<ServiceUpdate> {
     }
 
     /**
+     * Get the properties property: The resource-specific properties for this resource.
+     * 
+     * @return the properties value.
+     */
+    public ServiceUpdateProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: The resource-specific properties for this resource.
+     * 
+     * @param properties the properties value to set.
+     * @return the ServiceUpdate object itself.
+     */
+    public ServiceUpdate withProperties(ServiceUpdateProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -81,6 +106,9 @@ public final class ServiceUpdate implements JsonSerializable<ServiceUpdate> {
     public void validate() {
         if (identity() != null) {
             identity().validate();
+        }
+        if (properties() != null) {
+            properties().validate();
         }
     }
 
@@ -92,6 +120,7 @@ public final class ServiceUpdate implements JsonSerializable<ServiceUpdate> {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("identity", this.identity);
         jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -115,6 +144,8 @@ public final class ServiceUpdate implements JsonSerializable<ServiceUpdate> {
                 } else if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedServiceUpdate.tags = tags;
+                } else if ("properties".equals(fieldName)) {
+                    deserializedServiceUpdate.properties = ServiceUpdateProperties.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
