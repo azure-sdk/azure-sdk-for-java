@@ -4,12 +4,15 @@
 
 package com.azure.resourcemanager.dynatrace.generated;
 
+import com.azure.resourcemanager.dynatrace.models.MetricStatusRequest;
+import java.util.Arrays;
+
 /**
  * Samples for Monitors GetMetricStatus.
  */
 public final class MonitorsGetMetricStatusSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_GetMetricStatus_MinimumSet_Gen.json
      */
     /**
@@ -20,11 +23,12 @@ public final class MonitorsGetMetricStatusSamples {
     public static void
         monitorsGetMetricStatusMinimumSetGen(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
         manager.monitors()
-            .getMetricStatusWithResponse("rgDynatrace", "fhcjxnxumkdlgpwanewtkdnyuz", com.azure.core.util.Context.NONE);
+            .getMetricStatusWithResponse("rgDynatrace", "fhcjxnxumkdlgpwanewtkdnyuz", null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_GetMetricStatus_MaximumSet_Gen.json
      */
     /**
@@ -35,6 +39,9 @@ public final class MonitorsGetMetricStatusSamples {
     public static void
         monitorsGetMetricStatusMaximumSetGen(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
         manager.monitors()
-            .getMetricStatusWithResponse("rgDynatrace", "fhcjxnxumkdlgpwanewtkdnyuz", com.azure.core.util.Context.NONE);
+            .getMetricStatusWithResponse("rgDynatrace", "fhcjxnxumkdlgpwanewtkdnyuz",
+                new MetricStatusRequest().withMonitoredResourceIds(Arrays.asList(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/00000000-0000-0000-0000-000000000000")),
+                com.azure.core.util.Context.NONE);
     }
 }

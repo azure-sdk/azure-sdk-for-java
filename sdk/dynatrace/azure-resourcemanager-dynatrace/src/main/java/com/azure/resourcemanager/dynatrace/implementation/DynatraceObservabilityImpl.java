@@ -23,7 +23,9 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.dynatrace.fluent.CreationSupportedsClient;
 import com.azure.resourcemanager.dynatrace.fluent.DynatraceObservability;
+import com.azure.resourcemanager.dynatrace.fluent.MonitoredSubscriptionsClient;
 import com.azure.resourcemanager.dynatrace.fluent.MonitorsClient;
 import com.azure.resourcemanager.dynatrace.fluent.OperationsClient;
 import com.azure.resourcemanager.dynatrace.fluent.SingleSignOnsClient;
@@ -43,12 +45,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = DynatraceObservabilityBuilder.class)
 public final class DynatraceObservabilityImpl implements DynatraceObservability {
     /**
-     * The ID of the target subscription.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private final String subscriptionId;
 
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -141,6 +143,34 @@ public final class DynatraceObservabilityImpl implements DynatraceObservability 
     }
 
     /**
+     * The MonitoredSubscriptionsClient object to access its operations.
+     */
+    private final MonitoredSubscriptionsClient monitoredSubscriptions;
+
+    /**
+     * Gets the MonitoredSubscriptionsClient object to access its operations.
+     * 
+     * @return the MonitoredSubscriptionsClient object.
+     */
+    public MonitoredSubscriptionsClient getMonitoredSubscriptions() {
+        return this.monitoredSubscriptions;
+    }
+
+    /**
+     * The CreationSupportedsClient object to access its operations.
+     */
+    private final CreationSupportedsClient creationSupporteds;
+
+    /**
+     * Gets the CreationSupportedsClient object to access its operations.
+     * 
+     * @return the CreationSupportedsClient object.
+     */
+    public CreationSupportedsClient getCreationSupporteds() {
+        return this.creationSupporteds;
+    }
+
+    /**
      * The OperationsClient object to access its operations.
      */
     private final OperationsClient operations;
@@ -189,7 +219,7 @@ public final class DynatraceObservabilityImpl implements DynatraceObservability 
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The ID of the target subscription.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     DynatraceObservabilityImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
@@ -199,8 +229,10 @@ public final class DynatraceObservabilityImpl implements DynatraceObservability 
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-04-27";
+        this.apiVersion = "2024-04-24";
         this.monitors = new MonitorsClientImpl(this);
+        this.monitoredSubscriptions = new MonitoredSubscriptionsClientImpl(this);
+        this.creationSupporteds = new CreationSupportedsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.tagRules = new TagRulesClientImpl(this);
         this.singleSignOns = new SingleSignOnsClientImpl(this);

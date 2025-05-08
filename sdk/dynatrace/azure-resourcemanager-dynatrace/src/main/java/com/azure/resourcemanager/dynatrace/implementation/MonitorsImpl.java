@@ -11,6 +11,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.dynatrace.fluent.MonitorsClient;
 import com.azure.resourcemanager.dynatrace.fluent.models.AppServiceInfoInner;
+import com.azure.resourcemanager.dynatrace.fluent.models.ConnectedResourcesCountResponseInner;
 import com.azure.resourcemanager.dynatrace.fluent.models.LinkableEnvironmentResponseInner;
 import com.azure.resourcemanager.dynatrace.fluent.models.MarketplaceSaaSResourceDetailsResponseInner;
 import com.azure.resourcemanager.dynatrace.fluent.models.MetricsStatusResponseInner;
@@ -19,17 +20,23 @@ import com.azure.resourcemanager.dynatrace.fluent.models.MonitoredResourceInner;
 import com.azure.resourcemanager.dynatrace.fluent.models.SsoDetailsResponseInner;
 import com.azure.resourcemanager.dynatrace.fluent.models.VMExtensionPayloadInner;
 import com.azure.resourcemanager.dynatrace.fluent.models.VMInfoInner;
+import com.azure.resourcemanager.dynatrace.models.AgentStatusRequest;
 import com.azure.resourcemanager.dynatrace.models.AppServiceInfo;
+import com.azure.resourcemanager.dynatrace.models.ConnectedResourcesCountResponse;
 import com.azure.resourcemanager.dynatrace.models.LinkableEnvironmentRequest;
 import com.azure.resourcemanager.dynatrace.models.LinkableEnvironmentResponse;
+import com.azure.resourcemanager.dynatrace.models.LogStatusRequest;
 import com.azure.resourcemanager.dynatrace.models.MarketplaceSaaSResourceDetailsRequest;
 import com.azure.resourcemanager.dynatrace.models.MarketplaceSaaSResourceDetailsResponse;
+import com.azure.resourcemanager.dynatrace.models.MarketplaceSubscriptionIdRequest;
+import com.azure.resourcemanager.dynatrace.models.MetricStatusRequest;
 import com.azure.resourcemanager.dynatrace.models.MetricsStatusResponse;
 import com.azure.resourcemanager.dynatrace.models.MonitorResource;
 import com.azure.resourcemanager.dynatrace.models.MonitoredResource;
 import com.azure.resourcemanager.dynatrace.models.Monitors;
 import com.azure.resourcemanager.dynatrace.models.SsoDetailsRequest;
 import com.azure.resourcemanager.dynatrace.models.SsoDetailsResponse;
+import com.azure.resourcemanager.dynatrace.models.UpgradePlanRequest;
 import com.azure.resourcemanager.dynatrace.models.VMExtensionPayload;
 import com.azure.resourcemanager.dynatrace.models.VMInfo;
 
@@ -53,9 +60,9 @@ public final class MonitorsImpl implements Monitors {
     }
 
     public PagedIterable<MonitoredResource> listMonitoredResources(String resourceGroupName, String monitorName,
-        Context context) {
+        LogStatusRequest request, Context context) {
         PagedIterable<MonitoredResourceInner> inner
-            = this.serviceClient().listMonitoredResources(resourceGroupName, monitorName, context);
+            = this.serviceClient().listMonitoredResources(resourceGroupName, monitorName, request, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new MonitoredResourceImpl(inner1, this.manager()));
     }
 
@@ -78,6 +85,15 @@ public final class MonitorsImpl implements Monitors {
         } else {
             return null;
         }
+    }
+
+    public Response<Void> updateAgentStatusWithResponse(String resourceGroupName, String monitorName,
+        AgentStatusRequest request, Context context) {
+        return this.serviceClient().updateAgentStatusWithResponse(resourceGroupName, monitorName, request, context);
+    }
+
+    public void updateAgentStatus(String resourceGroupName, String monitorName, AgentStatusRequest request) {
+        this.serviceClient().updateAgentStatus(resourceGroupName, monitorName, request);
     }
 
     public Response<MonitorResource> getByResourceGroupWithResponse(String resourceGroupName, String monitorName,
@@ -130,6 +146,27 @@ public final class MonitorsImpl implements Monitors {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new MonitorResourceImpl(inner1, this.manager()));
     }
 
+    public Response<ConnectedResourcesCountResponse>
+        getAllConnectedResourcesCountWithResponse(MarketplaceSubscriptionIdRequest request, Context context) {
+        Response<ConnectedResourcesCountResponseInner> inner
+            = this.serviceClient().getAllConnectedResourcesCountWithResponse(request, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new ConnectedResourcesCountResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ConnectedResourcesCountResponse getAllConnectedResourcesCount(MarketplaceSubscriptionIdRequest request) {
+        ConnectedResourcesCountResponseInner inner = this.serviceClient().getAllConnectedResourcesCount(request);
+        if (inner != null) {
+            return new ConnectedResourcesCountResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public Response<MarketplaceSaaSResourceDetailsResponse>
         getMarketplaceSaaSResourceDetailsWithResponse(MarketplaceSaaSResourceDetailsRequest request, Context context) {
         Response<MarketplaceSaaSResourceDetailsResponseInner> inner
@@ -164,9 +201,9 @@ public final class MonitorsImpl implements Monitors {
     }
 
     public Response<MetricsStatusResponse> getMetricStatusWithResponse(String resourceGroupName, String monitorName,
-        Context context) {
+        MetricStatusRequest request, Context context) {
         Response<MetricsStatusResponseInner> inner
-            = this.serviceClient().getMetricStatusWithResponse(resourceGroupName, monitorName, context);
+            = this.serviceClient().getMetricStatusWithResponse(resourceGroupName, monitorName, request, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new MetricsStatusResponseImpl(inner.getValue(), this.manager()));
@@ -194,6 +231,14 @@ public final class MonitorsImpl implements Monitors {
         PagedIterable<AppServiceInfoInner> inner
             = this.serviceClient().listAppServices(resourceGroupName, monitorName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new AppServiceInfoImpl(inner1, this.manager()));
+    }
+
+    public void upgradePlan(String resourceGroupName, String monitorName, UpgradePlanRequest request) {
+        this.serviceClient().upgradePlan(resourceGroupName, monitorName, request);
+    }
+
+    public void upgradePlan(String resourceGroupName, String monitorName, UpgradePlanRequest request, Context context) {
+        this.serviceClient().upgradePlan(resourceGroupName, monitorName, request, context);
     }
 
     public Response<SsoDetailsResponse> getSsoDetailsWithResponse(String resourceGroupName, String monitorName,

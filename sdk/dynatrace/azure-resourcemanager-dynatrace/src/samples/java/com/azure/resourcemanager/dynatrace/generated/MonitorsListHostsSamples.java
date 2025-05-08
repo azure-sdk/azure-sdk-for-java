@@ -9,7 +9,7 @@ package com.azure.resourcemanager.dynatrace.generated;
  */
 public final class MonitorsListHostsSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListHosts_MinimumSet_Gen.json
      */
     /**
@@ -22,7 +22,7 @@ public final class MonitorsListHostsSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListHosts_MaximumSet_Gen.json
      */
     /**

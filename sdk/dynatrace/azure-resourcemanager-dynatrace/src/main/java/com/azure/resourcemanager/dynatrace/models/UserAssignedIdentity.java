@@ -4,28 +4,28 @@
 
 package com.azure.resourcemanager.dynatrace.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
+import com.azure.core.annotation.Immutable;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.UUID;
 
 /**
- * A managed identity assigned by the user.
+ * User assigned identity properties.
  */
-@Fluent
+@Immutable
 public final class UserAssignedIdentity implements JsonSerializable<UserAssignedIdentity> {
     /*
-     * The active directory client identifier for this principal.
+     * The principal ID of the assigned identity.
      */
-    private String clientId;
+    private UUID principalId;
 
     /*
-     * The active directory identifier for this principal.
+     * The client ID of the assigned identity.
      */
-    private String principalId;
+    private UUID clientId;
 
     /**
      * Creates an instance of UserAssignedIdentity class.
@@ -34,43 +34,21 @@ public final class UserAssignedIdentity implements JsonSerializable<UserAssigned
     }
 
     /**
-     * Get the clientId property: The active directory client identifier for this principal.
-     * 
-     * @return the clientId value.
-     */
-    public String clientId() {
-        return this.clientId;
-    }
-
-    /**
-     * Set the clientId property: The active directory client identifier for this principal.
-     * 
-     * @param clientId the clientId value to set.
-     * @return the UserAssignedIdentity object itself.
-     */
-    public UserAssignedIdentity withClientId(String clientId) {
-        this.clientId = clientId;
-        return this;
-    }
-
-    /**
-     * Get the principalId property: The active directory identifier for this principal.
+     * Get the principalId property: The principal ID of the assigned identity.
      * 
      * @return the principalId value.
      */
-    public String principalId() {
+    public UUID principalId() {
         return this.principalId;
     }
 
     /**
-     * Set the principalId property: The active directory identifier for this principal.
+     * Get the clientId property: The client ID of the assigned identity.
      * 
-     * @param principalId the principalId value to set.
-     * @return the UserAssignedIdentity object itself.
+     * @return the clientId value.
      */
-    public UserAssignedIdentity withPrincipalId(String principalId) {
-        this.principalId = principalId;
-        return this;
+    public UUID clientId() {
+        return this.clientId;
     }
 
     /**
@@ -79,18 +57,7 @@ public final class UserAssignedIdentity implements JsonSerializable<UserAssigned
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (clientId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property clientId in model UserAssignedIdentity"));
-        }
-        if (principalId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property principalId in model UserAssignedIdentity"));
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(UserAssignedIdentity.class);
 
     /**
      * {@inheritDoc}
@@ -98,8 +65,6 @@ public final class UserAssignedIdentity implements JsonSerializable<UserAssigned
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("clientId", this.clientId);
-        jsonWriter.writeStringField("principalId", this.principalId);
         return jsonWriter.writeEndObject();
     }
 
@@ -109,7 +74,6 @@ public final class UserAssignedIdentity implements JsonSerializable<UserAssigned
      * @param jsonReader The JsonReader being read.
      * @return An instance of UserAssignedIdentity if the JsonReader was pointing to an instance of it, or null if it
      * was pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the UserAssignedIdentity.
      */
     public static UserAssignedIdentity fromJson(JsonReader jsonReader) throws IOException {
@@ -119,10 +83,12 @@ public final class UserAssignedIdentity implements JsonSerializable<UserAssigned
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("clientId".equals(fieldName)) {
-                    deserializedUserAssignedIdentity.clientId = reader.getString();
-                } else if ("principalId".equals(fieldName)) {
-                    deserializedUserAssignedIdentity.principalId = reader.getString();
+                if ("principalId".equals(fieldName)) {
+                    deserializedUserAssignedIdentity.principalId
+                        = reader.getNullable(nonNullReader -> UUID.fromString(nonNullReader.getString()));
+                } else if ("clientId".equals(fieldName)) {
+                    deserializedUserAssignedIdentity.clientId
+                        = reader.getNullable(nonNullReader -> UUID.fromString(nonNullReader.getString()));
                 } else {
                     reader.skipChildren();
                 }

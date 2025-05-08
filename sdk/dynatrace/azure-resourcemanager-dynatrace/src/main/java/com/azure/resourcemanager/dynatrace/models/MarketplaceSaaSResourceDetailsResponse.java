@@ -32,6 +32,13 @@ public interface MarketplaceSaaSResourceDetailsResponse {
     MarketplaceSubscriptionStatus marketplaceSubscriptionStatus();
 
     /**
+     * Gets the marketplaceSaaSResourceName property: Name of the Marketplace SaaS Resource.
+     * 
+     * @return the marketplaceSaaSResourceName value.
+     */
+    String marketplaceSaaSResourceName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.dynatrace.fluent.models.MarketplaceSaaSResourceDetailsResponseInner
      * object.
      * 

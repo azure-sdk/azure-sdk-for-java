@@ -1,10 +1,24 @@
 # Code snippets and samples
 
 
+## CreationSupported
+
+- [Get](#creationsupported_get)
+- [List](#creationsupported_list)
+
+## MonitoredSubscriptions
+
+- [CreateOrUpdate](#monitoredsubscriptions_createorupdate)
+- [Delete](#monitoredsubscriptions_delete)
+- [Get](#monitoredsubscriptions_get)
+- [List](#monitoredsubscriptions_list)
+- [Update](#monitoredsubscriptions_update)
+
 ## Monitors
 
 - [CreateOrUpdate](#monitors_createorupdate)
 - [Delete](#monitors_delete)
+- [GetAllConnectedResourcesCount](#monitors_getallconnectedresourcescount)
 - [GetByResourceGroup](#monitors_getbyresourcegroup)
 - [GetMarketplaceSaaSResourceDetails](#monitors_getmarketplacesaasresourcedetails)
 - [GetMetricStatus](#monitors_getmetricstatus)
@@ -17,6 +31,8 @@
 - [ListLinkableEnvironments](#monitors_listlinkableenvironments)
 - [ListMonitoredResources](#monitors_listmonitoredresources)
 - [Update](#monitors_update)
+- [UpdateAgentStatus](#monitors_updateagentstatus)
+- [UpgradePlan](#monitors_upgradeplan)
 
 ## Operations
 
@@ -34,6 +50,168 @@
 - [Delete](#tagrules_delete)
 - [Get](#tagrules_get)
 - [List](#tagrules_list)
+### CreationSupported_Get
+
+```java
+/**
+ * Samples for CreationSupported Get.
+ */
+public final class CreationSupportedGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/CreationSupported_Get
+     * .json
+     */
+    /**
+     * Sample code: CreationSupported_Get.
+     * 
+     * @param manager Entry point to DynatraceManager.
+     */
+    public static void creationSupportedGet(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
+        manager.creationSupporteds().getWithResponse("00000000-0000-0000-0000", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CreationSupported_List
+
+```java
+/**
+ * Samples for CreationSupported List.
+ */
+public final class CreationSupportedListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/CreationSupported_Get
+     * .json
+     */
+    /**
+     * Sample code: CreationSupported_Get.
+     * 
+     * @param manager Entry point to DynatraceManager.
+     */
+    public static void creationSupportedGet(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
+        manager.creationSupporteds().listWithResponse("00000000-0000-0000-0000", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MonitoredSubscriptions_CreateOrUpdate
+
+```java
+
+/**
+ * Samples for MonitoredSubscriptions CreateOrUpdate.
+ */
+public final class MonitoredSubscriptionsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
+     * MonitoredSubscriptions_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: Monitors_AddMonitoredSubscriptions.
+     * 
+     * @param manager Entry point to DynatraceManager.
+     */
+    public static void monitorsAddMonitoredSubscriptions(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
+        manager.monitoredSubscriptions()
+            .createOrUpdate("myResourceGroup", "myMonitor", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MonitoredSubscriptions_Delete
+
+```java
+/**
+ * Samples for MonitoredSubscriptions Delete.
+ */
+public final class MonitoredSubscriptionsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
+     * MonitoredSubscriptions_Delete.json
+     */
+    /**
+     * Sample code: Monitors_DeleteMonitoredSubscriptions.
+     * 
+     * @param manager Entry point to DynatraceManager.
+     */
+    public static void
+        monitorsDeleteMonitoredSubscriptions(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
+        manager.monitoredSubscriptions().delete("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MonitoredSubscriptions_Get
+
+```java
+/**
+ * Samples for MonitoredSubscriptions Get.
+ */
+public final class MonitoredSubscriptionsGetSamples {
+    /*
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
+     * MonitoredSubscriptions_Get.json
+     */
+    /**
+     * Sample code: Monitors_GetMonitoredSubscriptions.
+     * 
+     * @param manager Entry point to DynatraceManager.
+     */
+    public static void monitorsGetMonitoredSubscriptions(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
+        manager.monitoredSubscriptions()
+            .getWithResponse("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MonitoredSubscriptions_List
+
+```java
+/**
+ * Samples for MonitoredSubscriptions List.
+ */
+public final class MonitoredSubscriptionsListSamples {
+    /*
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
+     * MonitoredSubscriptions_List.json
+     */
+    /**
+     * Sample code: Monitors_GetMonitoredSubscriptions.
+     * 
+     * @param manager Entry point to DynatraceManager.
+     */
+    public static void monitorsGetMonitoredSubscriptions(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
+        manager.monitoredSubscriptions().list("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### MonitoredSubscriptions_Update
+
+```java
+
+/**
+ * Samples for MonitoredSubscriptions Update.
+ */
+public final class MonitoredSubscriptionsUpdateSamples {
+    /*
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
+     * MonitoredSubscriptions_Update.json
+     */
+    /**
+     * Sample code: Monitors_UpdateMonitoredSubscriptions.
+     * 
+     * @param manager Entry point to DynatraceManager.
+     */
+    public static void
+        monitorsUpdateMonitoredSubscriptions(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
+        manager.monitoredSubscriptions().update("myResourceGroup", "myMonitor", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Monitors_CreateOrUpdate
 
 ```java
@@ -56,7 +234,7 @@ import java.util.Map;
  */
 public final class MonitorsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -90,7 +268,7 @@ public final class MonitorsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -129,7 +307,7 @@ public final class MonitorsCreateOrUpdateSamples {
  */
 public final class MonitorsDeleteSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_Delete_MinimumSet_Gen.json
      */
     /**
@@ -142,7 +320,7 @@ public final class MonitorsDeleteSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_Delete_MaximumSet_Gen.json
      */
     /**
@@ -156,6 +334,51 @@ public final class MonitorsDeleteSamples {
 }
 ```
 
+### Monitors_GetAllConnectedResourcesCount
+
+```java
+import com.azure.resourcemanager.dynatrace.models.MarketplaceSubscriptionIdRequest;
+
+/**
+ * Samples for Monitors GetAllConnectedResourcesCount.
+ */
+public final class MonitorsGetAllConnectedResourcesCountSamples {
+    /*
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
+     * Monitors_GetAllConnectedResourcesCount_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: Monitors_GetAllConnectedResourcesCount_MinimumSet_Gen.
+     * 
+     * @param manager Entry point to DynatraceManager.
+     */
+    public static void monitorsGetAllConnectedResourcesCountMinimumSetGen(
+        com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
+        manager.monitors()
+            .getAllConnectedResourcesCountWithResponse(new MarketplaceSubscriptionIdRequest()
+                .withMarketplaceSubscriptionId("00000000-0000-0000-0000-000005430000"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
+     * Monitors_GetAllConnectedResourcesCount_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Monitors_GetAllConnectedResourcesCount_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to DynatraceManager.
+     */
+    public static void monitorsGetAllConnectedResourcesCountMaximumSetGen(
+        com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
+        manager.monitors()
+            .getAllConnectedResourcesCountWithResponse(new MarketplaceSubscriptionIdRequest()
+                .withMarketplaceSubscriptionId("00000000-0000-0000-0000-000005430000"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Monitors_GetByResourceGroup
 
 ```java
@@ -164,7 +387,7 @@ public final class MonitorsDeleteSamples {
  */
 public final class MonitorsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_Get_MinimumSet_Gen.json
      */
     /**
@@ -178,7 +401,7 @@ public final class MonitorsGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_Get_MaximumSet_Gen.json
      */
     /**
@@ -203,7 +426,7 @@ import com.azure.resourcemanager.dynatrace.models.MarketplaceSaaSResourceDetails
  */
 public final class MonitorsGetMarketplaceSaaSResourceDetailsSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_GetMarketplaceSaaSResourceDetails_MinimumSet_Gen.json
      */
     /**
@@ -220,7 +443,7 @@ public final class MonitorsGetMarketplaceSaaSResourceDetailsSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_GetMarketplaceSaaSResourceDetails_MaximumSet_Gen.json
      */
     /**
@@ -241,12 +464,15 @@ public final class MonitorsGetMarketplaceSaaSResourceDetailsSamples {
 ### Monitors_GetMetricStatus
 
 ```java
+import com.azure.resourcemanager.dynatrace.models.MetricStatusRequest;
+import java.util.Arrays;
+
 /**
  * Samples for Monitors GetMetricStatus.
  */
 public final class MonitorsGetMetricStatusSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_GetMetricStatus_MinimumSet_Gen.json
      */
     /**
@@ -257,11 +483,12 @@ public final class MonitorsGetMetricStatusSamples {
     public static void
         monitorsGetMetricStatusMinimumSetGen(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
         manager.monitors()
-            .getMetricStatusWithResponse("rgDynatrace", "fhcjxnxumkdlgpwanewtkdnyuz", com.azure.core.util.Context.NONE);
+            .getMetricStatusWithResponse("rgDynatrace", "fhcjxnxumkdlgpwanewtkdnyuz", null,
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_GetMetricStatus_MaximumSet_Gen.json
      */
     /**
@@ -272,7 +499,10 @@ public final class MonitorsGetMetricStatusSamples {
     public static void
         monitorsGetMetricStatusMaximumSetGen(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
         manager.monitors()
-            .getMetricStatusWithResponse("rgDynatrace", "fhcjxnxumkdlgpwanewtkdnyuz", com.azure.core.util.Context.NONE);
+            .getMetricStatusWithResponse("rgDynatrace", "fhcjxnxumkdlgpwanewtkdnyuz",
+                new MetricStatusRequest().withMonitoredResourceIds(Arrays.asList(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Network/publicIPAddresses/00000000-0000-0000-0000-000000000000")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -287,7 +517,7 @@ import com.azure.resourcemanager.dynatrace.models.SsoDetailsRequest;
  */
 public final class MonitorsGetSsoDetailsSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_GetSSODetails_MaximumSet_Gen.json
      */
     /**
@@ -303,7 +533,7 @@ public final class MonitorsGetSsoDetailsSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_GetSSODetails_MinimumSet_Gen.json
      */
     /**
@@ -328,7 +558,7 @@ public final class MonitorsGetSsoDetailsSamples {
  */
 public final class MonitorsGetVMHostPayloadSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_GetVMHostPayload_MinimumSet_Gen.json
      */
     /**
@@ -343,7 +573,7 @@ public final class MonitorsGetVMHostPayloadSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_GetVMHostPayload_MaximumSet_Gen.json
      */
     /**
@@ -367,7 +597,7 @@ public final class MonitorsGetVMHostPayloadSamples {
  */
 public final class MonitorsListSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListBySubscriptionId_MinimumSet_Gen.json
      */
     /**
@@ -381,7 +611,7 @@ public final class MonitorsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListBySubscriptionId_MaximumSet_Gen.json
      */
     /**
@@ -404,7 +634,7 @@ public final class MonitorsListSamples {
  */
 public final class MonitorsListAppServicesSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListAppServices_MaximumSet_Gen.json
      */
     /**
@@ -418,7 +648,7 @@ public final class MonitorsListAppServicesSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListAppServices_MinimumSet_Gen.json
      */
     /**
@@ -441,7 +671,7 @@ public final class MonitorsListAppServicesSamples {
  */
 public final class MonitorsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListByResourceGroup_MinimumSet_Gen.json
      */
     /**
@@ -455,7 +685,7 @@ public final class MonitorsListByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
@@ -478,7 +708,7 @@ public final class MonitorsListByResourceGroupSamples {
  */
 public final class MonitorsListHostsSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListHosts_MinimumSet_Gen.json
      */
     /**
@@ -491,7 +721,7 @@ public final class MonitorsListHostsSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListHosts_MaximumSet_Gen.json
      */
     /**
@@ -515,7 +745,7 @@ import com.azure.resourcemanager.dynatrace.models.LinkableEnvironmentRequest;
  */
 public final class MonitorsListLinkableEnvironmentsSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListLinkableEnvironments_MinimumSet_Gen.json
      */
     /**
@@ -534,7 +764,7 @@ public final class MonitorsListLinkableEnvironmentsSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListLinkableEnvironments_MaximumSet_Gen.json
      */
     /**
@@ -557,12 +787,15 @@ public final class MonitorsListLinkableEnvironmentsSamples {
 ### Monitors_ListMonitoredResources
 
 ```java
+import com.azure.resourcemanager.dynatrace.models.LogStatusRequest;
+import java.util.Arrays;
+
 /**
  * Samples for Monitors ListMonitoredResources.
  */
 public final class MonitorsListMonitoredResourcesSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListMonitoredResources_MinimumSet_Gen.json
      */
     /**
@@ -572,11 +805,12 @@ public final class MonitorsListMonitoredResourcesSamples {
      */
     public static void
         monitorsListMonitoredResourcesMinimumSetGen(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
-        manager.monitors().listMonitoredResources("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE);
+        manager.monitors()
+            .listMonitoredResources("myResourceGroup", "myMonitor", null, com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListMonitoredResources_MaximumSet_Gen.json
      */
     /**
@@ -586,7 +820,11 @@ public final class MonitorsListMonitoredResourcesSamples {
      */
     public static void
         monitorsListMonitoredResourcesMaximumSetGen(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
-        manager.monitors().listMonitoredResources("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE);
+        manager.monitors()
+            .listMonitoredResources("myResourceGroup", "myMonitor",
+                new LogStatusRequest().withMonitoredResourceIds(Arrays.asList(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/monitors/myMonitor/listMonitoredResources")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -595,6 +833,9 @@ public final class MonitorsListMonitoredResourcesSamples {
 
 ```java
 import com.azure.resourcemanager.dynatrace.models.MonitorResource;
+import com.azure.resourcemanager.dynatrace.models.MonitorUpdateProperties;
+import com.azure.resourcemanager.dynatrace.models.PlanData;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -603,7 +844,7 @@ import java.util.Map;
  */
 public final class MonitorsUpdateSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_Update_MinimumSet_Gen.json
      */
     /**
@@ -619,7 +860,7 @@ public final class MonitorsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_Update_MaximumSet_Gen.json
      */
     /**
@@ -631,7 +872,13 @@ public final class MonitorsUpdateSamples {
         MonitorResource resource = manager.monitors()
             .getByResourceGroupWithResponse("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withTags(mapOf("Environment", "Dev")).apply();
+        resource.update()
+            .withTags(mapOf("Environment", "Dev"))
+            .withProperties(new MonitorUpdateProperties().withPlanData(new PlanData().withUsageType("Committed")
+                .withBillingCycle("Monthly")
+                .withPlanDetails("dynatraceapitestplan")
+                .withEffectiveDate(OffsetDateTime.parse("2019-08-30T15:14:33+02:00"))))
+            .apply();
     }
 
     // Use "Map.of" if available
@@ -648,6 +895,122 @@ public final class MonitorsUpdateSamples {
 }
 ```
 
+### Monitors_UpdateAgentStatus
+
+```java
+import com.azure.resourcemanager.dynatrace.models.Action;
+import com.azure.resourcemanager.dynatrace.models.AgentStatus;
+import com.azure.resourcemanager.dynatrace.models.AgentStatusRequest;
+import java.util.Arrays;
+
+/**
+ * Samples for Monitors UpdateAgentStatus.
+ */
+public final class MonitorsUpdateAgentStatusSamples {
+    /*
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
+     * Monitors_UpdateAgentStatus_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: Monitors_UpdateAgentStatus_MinimumSet_Gen.
+     * 
+     * @param manager Entry point to DynatraceManager.
+     */
+    public static void
+        monitorsUpdateAgentStatusMinimumSetGen(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
+        manager.monitors()
+            .updateAgentStatusWithResponse("myResourceGroup", "myMonitor",
+                new AgentStatusRequest().withAgentStatusList(Arrays.asList(new AgentStatus().withId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName")
+                    .withResourceType("Microsoft.Compute/virtualMachineScaleSets")
+                    .withDynatraceResourceId(
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Dynatrace.Observability/monitors/myMonitor")
+                    .withDynatraceEnvironmentId("envId"))).withAction(Action.UNINSTALL),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
+     * Monitors_UpdateAgentStatus_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Monitors_UpdateAgentStatus_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to DynatraceManager.
+     */
+    public static void
+        monitorsUpdateAgentStatusMaximumSetGen(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
+        manager.monitors()
+            .updateAgentStatusWithResponse("myResourceGroup", "myMonitor",
+                new AgentStatusRequest().withAgentStatusList(Arrays.asList(new AgentStatus().withId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName")
+                    .withResourceType("Microsoft.Compute/virtualMachineScaleSets")
+                    .withDynatraceResourceId(
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Dynatrace.Observability/monitors/myMonitor")
+                    .withDynatraceEnvironmentId("envId"),
+                    new AgentStatus().withId(
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachineScaleSets/vmssName2")
+                        .withResourceType("Microsoft.Compute/virtualMachineScaleSets")
+                        .withDynatraceResourceId(
+                            "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Dynatrace.Observability/monitors/myMonitor")
+                        .withDynatraceEnvironmentId("envId")))
+                    .withAction(Action.INSTALL),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Monitors_UpgradePlan
+
+```java
+import com.azure.resourcemanager.dynatrace.models.PlanData;
+import com.azure.resourcemanager.dynatrace.models.UpgradePlanRequest;
+import java.time.OffsetDateTime;
+
+/**
+ * Samples for Monitors UpgradePlan.
+ */
+public final class MonitorsUpgradePlanSamples {
+    /*
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
+     * Monitors_UpgradePlan_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: Monitors_UpgradePlan_MinimumSet_Gen.
+     * 
+     * @param manager Entry point to DynatraceManager.
+     */
+    public static void monitorsUpgradePlanMinimumSetGen(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
+        manager.monitors()
+            .upgradePlan("myResourceGroup", "myMonitor",
+                new UpgradePlanRequest().withPlanData(new PlanData().withUsageType("Committed")
+                    .withBillingCycle("Monthly")
+                    .withPlanDetails("dynatraceapitestplan")
+                    .withEffectiveDate(OffsetDateTime.parse("2019-08-30T15:14:33+02:00"))),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
+     * Monitors_UpgradePlan_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Monitors_UpgradePlan_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to DynatraceManager.
+     */
+    public static void monitorsUpgradePlanMaximumSetGen(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
+        manager.monitors()
+            .upgradePlan("myResourceGroup", "myMonitor",
+                new UpgradePlanRequest().withPlanData(new PlanData().withUsageType("Committed")
+                    .withBillingCycle("Monthly")
+                    .withPlanDetails("dynatraceapitestplan")
+                    .withEffectiveDate(OffsetDateTime.parse("2019-08-30T15:14:33+02:00"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Operations_List
 
 ```java
@@ -656,7 +1019,7 @@ public final class MonitorsUpdateSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Operations_List_MinimumSet_Gen.json
      */
     /**
@@ -669,7 +1032,7 @@ public final class OperationsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Operations_List_MaximumSet_Gen.json
      */
     /**
@@ -694,7 +1057,7 @@ import java.util.Arrays;
  */
 public final class SingleSignOnCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * SingleSignOn_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -715,7 +1078,7 @@ public final class SingleSignOnCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * SingleSignOn_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -743,7 +1106,7 @@ public final class SingleSignOnCreateOrUpdateSamples {
  */
 public final class SingleSignOnGetSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * SingleSignOn_Get_MinimumSet_Gen.json
      */
     /**
@@ -757,7 +1120,7 @@ public final class SingleSignOnGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * SingleSignOn_Get_MaximumSet_Gen.json
      */
     /**
@@ -780,7 +1143,7 @@ public final class SingleSignOnGetSamples {
  */
 public final class SingleSignOnListSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * SingleSignOn_List_MaximumSet_Gen.json
      */
     /**
@@ -793,7 +1156,7 @@ public final class SingleSignOnListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * SingleSignOn_List_MinimumSet_Gen.json
      */
     /**
@@ -825,7 +1188,7 @@ import java.util.Arrays;
  */
 public final class TagRulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * TagRules_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -851,7 +1214,7 @@ public final class TagRulesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * TagRules_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -874,7 +1237,7 @@ public final class TagRulesCreateOrUpdateSamples {
  */
 public final class TagRulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * TagRules_Delete_MinimumSet_Gen.json
      */
     /**
@@ -887,7 +1250,7 @@ public final class TagRulesDeleteSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * TagRules_Delete_MaximumSet_Gen.json
      */
     /**
@@ -909,7 +1272,7 @@ public final class TagRulesDeleteSamples {
  */
 public final class TagRulesGetSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * TagRules_Get_MinimumSet_Gen.json
      */
     /**
@@ -922,7 +1285,7 @@ public final class TagRulesGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * TagRules_Get_MaximumSet_Gen.json
      */
     /**
@@ -944,7 +1307,7 @@ public final class TagRulesGetSamples {
  */
 public final class TagRulesListSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * TagRules_List_MaximumSet_Gen.json
      */
     /**
@@ -957,7 +1320,7 @@ public final class TagRulesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * TagRules_List_MinimumSet_Gen.json
      */
     /**

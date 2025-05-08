@@ -4,12 +4,15 @@
 
 package com.azure.resourcemanager.dynatrace.generated;
 
+import com.azure.resourcemanager.dynatrace.models.LogStatusRequest;
+import java.util.Arrays;
+
 /**
  * Samples for Monitors ListMonitoredResources.
  */
 public final class MonitorsListMonitoredResourcesSamples {
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListMonitoredResources_MinimumSet_Gen.json
      */
     /**
@@ -19,11 +22,12 @@ public final class MonitorsListMonitoredResourcesSamples {
      */
     public static void
         monitorsListMonitoredResourcesMinimumSetGen(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
-        manager.monitors().listMonitoredResources("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE);
+        manager.monitors()
+            .listMonitoredResources("myResourceGroup", "myMonitor", null, com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2023-04-27/examples/
+     * x-ms-original-file: specification/dynatrace/resource-manager/Dynatrace.Observability/stable/2024-04-24/examples/
      * Monitors_ListMonitoredResources_MaximumSet_Gen.json
      */
     /**
@@ -33,6 +37,10 @@ public final class MonitorsListMonitoredResourcesSamples {
      */
     public static void
         monitorsListMonitoredResourcesMaximumSetGen(com.azure.resourcemanager.dynatrace.DynatraceManager manager) {
-        manager.monitors().listMonitoredResources("myResourceGroup", "myMonitor", com.azure.core.util.Context.NONE);
+        manager.monitors()
+            .listMonitoredResources("myResourceGroup", "myMonitor",
+                new LogStatusRequest().withMonitoredResourceIds(Arrays.asList(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/monitors/myMonitor/listMonitoredResources")),
+                com.azure.core.util.Context.NONE);
     }
 }

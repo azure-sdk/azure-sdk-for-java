@@ -27,7 +27,7 @@ public final class DynatraceSingleSignOnResourceInner extends ProxyResource {
     private DynatraceSingleSignOnProperties innerProperties = new DynatraceSingleSignOnProperties();
 
     /*
-     * System metadata for this resource.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
 
@@ -62,7 +62,7 @@ public final class DynatraceSingleSignOnResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the systemData property: System metadata for this resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */

@@ -26,6 +26,11 @@ public final class AccountInfo implements JsonSerializable<AccountInfo> {
      */
     private String regionId;
 
+    /*
+     * Name of the customer account / company
+     */
+    private String companyName;
+
     /**
      * Creates an instance of AccountInfo class.
      */
@@ -73,6 +78,26 @@ public final class AccountInfo implements JsonSerializable<AccountInfo> {
     }
 
     /**
+     * Get the companyName property: Name of the customer account / company.
+     * 
+     * @return the companyName value.
+     */
+    public String companyName() {
+        return this.companyName;
+    }
+
+    /**
+     * Set the companyName property: Name of the customer account / company.
+     * 
+     * @param companyName the companyName value to set.
+     * @return the AccountInfo object itself.
+     */
+    public AccountInfo withCompanyName(String companyName) {
+        this.companyName = companyName;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -88,6 +113,7 @@ public final class AccountInfo implements JsonSerializable<AccountInfo> {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("accountId", this.accountId);
         jsonWriter.writeStringField("regionId", this.regionId);
+        jsonWriter.writeStringField("companyName", this.companyName);
         return jsonWriter.writeEndObject();
     }
 
@@ -110,6 +136,8 @@ public final class AccountInfo implements JsonSerializable<AccountInfo> {
                     deserializedAccountInfo.accountId = reader.getString();
                 } else if ("regionId".equals(fieldName)) {
                     deserializedAccountInfo.regionId = reader.getString();
+                } else if ("companyName".equals(fieldName)) {
+                    deserializedAccountInfo.companyName = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

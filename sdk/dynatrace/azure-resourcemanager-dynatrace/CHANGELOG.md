@@ -1,14 +1,124 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-04-11)
 
-### Features Added
+- Azure Resource Manager Dynatrace client library for Java. This package contains Microsoft Azure SDK for Dynatrace Management SDK.  Package tag package-2024-04-24. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.UserAssignedIdentity` was modified
 
-### Other Changes
+* `withClientId(java.lang.String)` was removed
+* `withPrincipalId(java.lang.String)` was removed
+* `java.lang.String principalId()` -> `java.util.UUID principalId()`
+* `java.lang.String clientId()` -> `java.util.UUID clientId()`
+
+#### `models.Monitors` was modified
+
+* `listMonitoredResources(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getMetricStatusWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.MonitorResource` was modified
+
+* `listMonitoredResources(com.azure.core.util.Context)` was removed
+* `getMetricStatusWithResponse(com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.Status` was added
+
+* `models.MonitorUpdateProperties` was added
+
+* `models.AgentStatusRequest` was added
+
+* `models.MonitoredSubscriptionPropertiesList` was added
+
+* `models.Action` was added
+
+* `models.MarketplaceSubscriptionIdRequest` was added
+
+* `models.MetricStatusRequest` was added
+
+* `models.SubscriptionList` was added
+
+* `models.MarketplaceSaasAutoRenew` was added
+
+* `models.UpgradePlanRequest` was added
+
+* `models.AgentStatus` was added
+
+* `models.ManagedServiceIdentity` was added
+
+* `models.MonitoredSubscription` was added
+
+* `models.ManagedServiceIdentityType` was added
+
+* `models.CreateResourceSupportedResponse` was added
+
+* `models.CreateResourceSupportedProperties` was added
+
+* `models.SubscriptionListOperation` was added
+
+* `models.MonitoredSubscriptions` was added
+
+* `models.MonitoredSubscriptionProperties` was added
+
+* `models.ConnectedResourcesCountResponse` was added
+
+* `models.CreationSupporteds` was added
+
+* `models.LogStatusRequest` was added
+
+#### `models.MarketplaceSaaSResourceDetailsResponse` was modified
+
+* `marketplaceSaaSResourceName()` was added
+
+#### `models.Monitors` was modified
+
+* `updateAgentStatusWithResponse(java.lang.String,java.lang.String,models.AgentStatusRequest,com.azure.core.util.Context)` was added
+* `listMonitoredResources(java.lang.String,java.lang.String,models.LogStatusRequest,com.azure.core.util.Context)` was added
+* `getAllConnectedResourcesCount(models.MarketplaceSubscriptionIdRequest)` was added
+* `updateAgentStatus(java.lang.String,java.lang.String,models.AgentStatusRequest)` was added
+* `upgradePlan(java.lang.String,java.lang.String,models.UpgradePlanRequest)` was added
+* `getMetricStatusWithResponse(java.lang.String,java.lang.String,models.MetricStatusRequest,com.azure.core.util.Context)` was added
+* `getAllConnectedResourcesCountWithResponse(models.MarketplaceSubscriptionIdRequest,com.azure.core.util.Context)` was added
+* `upgradePlan(java.lang.String,java.lang.String,models.UpgradePlanRequest,com.azure.core.util.Context)` was added
+
+#### `models.MonitorResource$Definition` was modified
+
+* `withMarketplaceSaasAutoRenew(models.MarketplaceSaasAutoRenew)` was added
+
+#### `models.MonitorResourceUpdate` was modified
+
+* `identity()` was added
+* `withIdentity(models.ManagedServiceIdentity)` was added
+* `properties()` was added
+* `withProperties(models.MonitorUpdateProperties)` was added
+
+#### `DynatraceManager` was modified
+
+* `monitoredSubscriptions()` was added
+* `creationSupporteds()` was added
+
+#### `models.MonitorResource` was modified
+
+* `getMetricStatusWithResponse(models.MetricStatusRequest,com.azure.core.util.Context)` was added
+* `updateAgentStatus(models.AgentStatusRequest)` was added
+* `upgradePlan(models.UpgradePlanRequest)` was added
+* `upgradePlan(models.UpgradePlanRequest,com.azure.core.util.Context)` was added
+* `updateAgentStatusWithResponse(models.AgentStatusRequest,com.azure.core.util.Context)` was added
+* `marketplaceSaasAutoRenew()` was added
+* `listMonitoredResources(models.LogStatusRequest,com.azure.core.util.Context)` was added
+
+#### `models.AccountInfo` was modified
+
+* `withCompanyName(java.lang.String)` was added
+* `companyName()` was added
+
+#### `models.MonitorResource$Update` was modified
+
+* `withProperties(models.MonitorUpdateProperties)` was added
+* `withIdentity(models.ManagedServiceIdentity)` was added
 
 ## 1.0.0 (2024-12-26)
 

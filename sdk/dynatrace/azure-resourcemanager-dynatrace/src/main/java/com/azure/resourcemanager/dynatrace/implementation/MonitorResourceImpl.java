@@ -10,22 +10,29 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.dynatrace.fluent.models.MonitorResourceInner;
+import com.azure.resourcemanager.dynatrace.models.AgentStatusRequest;
 import com.azure.resourcemanager.dynatrace.models.AppServiceInfo;
 import com.azure.resourcemanager.dynatrace.models.DynatraceEnvironmentProperties;
 import com.azure.resourcemanager.dynatrace.models.IdentityProperties;
 import com.azure.resourcemanager.dynatrace.models.LiftrResourceCategories;
 import com.azure.resourcemanager.dynatrace.models.LinkableEnvironmentRequest;
 import com.azure.resourcemanager.dynatrace.models.LinkableEnvironmentResponse;
+import com.azure.resourcemanager.dynatrace.models.LogStatusRequest;
+import com.azure.resourcemanager.dynatrace.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.dynatrace.models.MarketplaceSaasAutoRenew;
 import com.azure.resourcemanager.dynatrace.models.MarketplaceSubscriptionStatus;
+import com.azure.resourcemanager.dynatrace.models.MetricStatusRequest;
 import com.azure.resourcemanager.dynatrace.models.MetricsStatusResponse;
 import com.azure.resourcemanager.dynatrace.models.MonitorResource;
 import com.azure.resourcemanager.dynatrace.models.MonitorResourceUpdate;
+import com.azure.resourcemanager.dynatrace.models.MonitorUpdateProperties;
 import com.azure.resourcemanager.dynatrace.models.MonitoredResource;
 import com.azure.resourcemanager.dynatrace.models.MonitoringStatus;
 import com.azure.resourcemanager.dynatrace.models.PlanData;
 import com.azure.resourcemanager.dynatrace.models.ProvisioningState;
 import com.azure.resourcemanager.dynatrace.models.SsoDetailsRequest;
 import com.azure.resourcemanager.dynatrace.models.SsoDetailsResponse;
+import com.azure.resourcemanager.dynatrace.models.UpgradePlanRequest;
 import com.azure.resourcemanager.dynatrace.models.UserInfo;
 import com.azure.resourcemanager.dynatrace.models.VMExtensionPayload;
 import com.azure.resourcemanager.dynatrace.models.VMInfo;
@@ -62,12 +69,12 @@ public final class MonitorResourceImpl implements MonitorResource, MonitorResour
         }
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public IdentityProperties identity() {
         return this.innerModel().identity();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public MonitoringStatus monitoringStatus() {
@@ -76,6 +83,10 @@ public final class MonitorResourceImpl implements MonitorResource, MonitorResour
 
     public MarketplaceSubscriptionStatus marketplaceSubscriptionStatus() {
         return this.innerModel().marketplaceSubscriptionStatus();
+    }
+
+    public MarketplaceSaasAutoRenew marketplaceSaasAutoRenew() {
+        return this.innerModel().marketplaceSaasAutoRenew();
     }
 
     public DynatraceEnvironmentProperties dynatraceEnvironmentProperties() {
@@ -202,8 +213,8 @@ public final class MonitorResourceImpl implements MonitorResource, MonitorResour
         return serviceManager.monitors().listMonitoredResources(resourceGroupName, monitorName);
     }
 
-    public PagedIterable<MonitoredResource> listMonitoredResources(Context context) {
-        return serviceManager.monitors().listMonitoredResources(resourceGroupName, monitorName, context);
+    public PagedIterable<MonitoredResource> listMonitoredResources(LogStatusRequest request, Context context) {
+        return serviceManager.monitors().listMonitoredResources(resourceGroupName, monitorName, request, context);
     }
 
     public Response<VMExtensionPayload> getVMHostPayloadWithResponse(Context context) {
@@ -214,6 +225,15 @@ public final class MonitorResourceImpl implements MonitorResource, MonitorResour
         return serviceManager.monitors().getVMHostPayload(resourceGroupName, monitorName);
     }
 
+    public Response<Void> updateAgentStatusWithResponse(AgentStatusRequest request, Context context) {
+        return serviceManager.monitors()
+            .updateAgentStatusWithResponse(resourceGroupName, monitorName, request, context);
+    }
+
+    public void updateAgentStatus(AgentStatusRequest request) {
+        serviceManager.monitors().updateAgentStatus(resourceGroupName, monitorName, request);
+    }
+
     public PagedIterable<VMInfo> listHosts() {
         return serviceManager.monitors().listHosts(resourceGroupName, monitorName);
     }
@@ -222,8 +242,8 @@ public final class MonitorResourceImpl implements MonitorResource, MonitorResour
         return serviceManager.monitors().listHosts(resourceGroupName, monitorName, context);
     }
 
-    public Response<MetricsStatusResponse> getMetricStatusWithResponse(Context context) {
-        return serviceManager.monitors().getMetricStatusWithResponse(resourceGroupName, monitorName, context);
+    public Response<MetricsStatusResponse> getMetricStatusWithResponse(MetricStatusRequest request, Context context) {
+        return serviceManager.monitors().getMetricStatusWithResponse(resourceGroupName, monitorName, request, context);
     }
 
     public MetricsStatusResponse getMetricStatus() {
@@ -236,6 +256,14 @@ public final class MonitorResourceImpl implements MonitorResource, MonitorResour
 
     public PagedIterable<AppServiceInfo> listAppServices(Context context) {
         return serviceManager.monitors().listAppServices(resourceGroupName, monitorName, context);
+    }
+
+    public void upgradePlan(UpgradePlanRequest request) {
+        serviceManager.monitors().upgradePlan(resourceGroupName, monitorName, request);
+    }
+
+    public void upgradePlan(UpgradePlanRequest request, Context context) {
+        serviceManager.monitors().upgradePlan(resourceGroupName, monitorName, request, context);
     }
 
     public Response<SsoDetailsResponse> getSsoDetailsWithResponse(SsoDetailsRequest request, Context context) {
@@ -291,6 +319,11 @@ public final class MonitorResourceImpl implements MonitorResource, MonitorResour
         return this;
     }
 
+    public MonitorResourceImpl withMarketplaceSaasAutoRenew(MarketplaceSaasAutoRenew marketplaceSaasAutoRenew) {
+        this.innerModel().withMarketplaceSaasAutoRenew(marketplaceSaasAutoRenew);
+        return this;
+    }
+
     public MonitorResourceImpl
         withDynatraceEnvironmentProperties(DynatraceEnvironmentProperties dynatraceEnvironmentProperties) {
         this.innerModel().withDynatraceEnvironmentProperties(dynatraceEnvironmentProperties);
@@ -304,6 +337,16 @@ public final class MonitorResourceImpl implements MonitorResource, MonitorResour
 
     public MonitorResourceImpl withPlanData(PlanData planData) {
         this.innerModel().withPlanData(planData);
+        return this;
+    }
+
+    public MonitorResourceImpl withProperties(MonitorUpdateProperties properties) {
+        this.updateResource.withProperties(properties);
+        return this;
+    }
+
+    public MonitorResourceImpl withIdentity(ManagedServiceIdentity identity) {
+        this.updateResource.withIdentity(identity);
         return this;
     }
 

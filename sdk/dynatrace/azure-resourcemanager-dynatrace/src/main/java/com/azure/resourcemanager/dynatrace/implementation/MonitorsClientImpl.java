@@ -35,6 +35,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.dynatrace.fluent.MonitorsClient;
 import com.azure.resourcemanager.dynatrace.fluent.models.AppServiceInfoInner;
+import com.azure.resourcemanager.dynatrace.fluent.models.ConnectedResourcesCountResponseInner;
 import com.azure.resourcemanager.dynatrace.fluent.models.LinkableEnvironmentResponseInner;
 import com.azure.resourcemanager.dynatrace.fluent.models.MarketplaceSaaSResourceDetailsResponseInner;
 import com.azure.resourcemanager.dynatrace.fluent.models.MetricsStatusResponseInner;
@@ -43,14 +44,19 @@ import com.azure.resourcemanager.dynatrace.fluent.models.MonitoredResourceInner;
 import com.azure.resourcemanager.dynatrace.fluent.models.SsoDetailsResponseInner;
 import com.azure.resourcemanager.dynatrace.fluent.models.VMExtensionPayloadInner;
 import com.azure.resourcemanager.dynatrace.fluent.models.VMInfoInner;
+import com.azure.resourcemanager.dynatrace.models.AgentStatusRequest;
 import com.azure.resourcemanager.dynatrace.models.AppServiceListResponse;
 import com.azure.resourcemanager.dynatrace.models.LinkableEnvironmentListResponse;
 import com.azure.resourcemanager.dynatrace.models.LinkableEnvironmentRequest;
+import com.azure.resourcemanager.dynatrace.models.LogStatusRequest;
 import com.azure.resourcemanager.dynatrace.models.MarketplaceSaaSResourceDetailsRequest;
+import com.azure.resourcemanager.dynatrace.models.MarketplaceSubscriptionIdRequest;
+import com.azure.resourcemanager.dynatrace.models.MetricStatusRequest;
 import com.azure.resourcemanager.dynatrace.models.MonitorResourceListResult;
 import com.azure.resourcemanager.dynatrace.models.MonitorResourceUpdate;
 import com.azure.resourcemanager.dynatrace.models.MonitoredResourceListResponse;
 import com.azure.resourcemanager.dynatrace.models.SsoDetailsRequest;
+import com.azure.resourcemanager.dynatrace.models.UpgradePlanRequest;
 import com.azure.resourcemanager.dynatrace.models.VMHostsListResponse;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
@@ -94,7 +100,8 @@ public final class MonitorsClientImpl implements MonitorsClient {
         Mono<Response<MonitoredResourceListResponse>> listMonitoredResources(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
-            @HeaderParam("Accept") String accept, Context context);
+            @BodyParam("application/json") LogStatusRequest request, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Dynatrace.Observability/monitors/{monitorName}/getVMHostPayload")
@@ -104,6 +111,16 @@ public final class MonitorsClientImpl implements MonitorsClient {
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
             @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Dynatrace.Observability/monitors/{monitorName}/updateAgentStatus")
+        @ExpectedResponses({ 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> updateAgentStatus(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
+            @BodyParam("application/json") AgentStatusRequest request, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Dynatrace.Observability/monitors/{monitorName}")
@@ -136,7 +153,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Dynatrace.Observability/monitors/{monitorName}")
-        @ExpectedResponses({ 200, 202, 204 })
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
@@ -161,9 +178,18 @@ public final class MonitorsClientImpl implements MonitorsClient {
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/providers/Dynatrace.Observability/getAllConnectedResourcesCount")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ConnectedResourcesCountResponseInner>> getAllConnectedResourcesCount(
+            @HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @BodyParam("application/json") MarketplaceSubscriptionIdRequest request,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/providers/Dynatrace.Observability/getMarketplaceSaaSResourceDetails")
         @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ManagementException.class, code = { 404 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MarketplaceSaaSResourceDetailsResponseInner>> getMarketplaceSaaSResourceDetails(
             @HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
@@ -187,7 +213,8 @@ public final class MonitorsClientImpl implements MonitorsClient {
         Mono<Response<MetricsStatusResponseInner>> getMetricStatus(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
-            @HeaderParam("Accept") String accept, Context context);
+            @BodyParam("application/json") MetricStatusRequest request, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Dynatrace.Observability/monitors/{monitorName}/listAppServices")
@@ -199,9 +226,18 @@ public final class MonitorsClientImpl implements MonitorsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Dynatrace.Observability/monitors/{monitorName}/upgradePlan")
+        @ExpectedResponses({ 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> upgradePlan(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
+            @BodyParam("application/json") UpgradePlanRequest request, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Dynatrace.Observability/monitors/{monitorName}/getSSODetails")
         @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ManagementException.class, code = { 401 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SsoDetailsResponseInner>> getSsoDetails(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
@@ -273,6 +309,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
+     * @param request The details of the log status request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -281,7 +318,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MonitoredResourceInner>> listMonitoredResourcesSinglePageAsync(String resourceGroupName,
-        String monitorName) {
+        String monitorName, LogStatusRequest request) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -297,11 +334,14 @@ public final class MonitorsClientImpl implements MonitorsClient {
         if (monitorName == null) {
             return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
         }
+        if (request != null) {
+            request.validate();
+        }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listMonitoredResources(this.client.getEndpoint(), this.client.getApiVersion(),
-                    this.client.getSubscriptionId(), resourceGroupName, monitorName, accept, context))
+                    this.client.getSubscriptionId(), resourceGroupName, monitorName, request, accept, context))
             .<PagedResponse<MonitoredResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -312,6 +352,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
+     * @param request The details of the log status request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -321,7 +362,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MonitoredResourceInner>> listMonitoredResourcesSinglePageAsync(String resourceGroupName,
-        String monitorName, Context context) {
+        String monitorName, LogStatusRequest request, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -337,13 +378,35 @@ public final class MonitorsClientImpl implements MonitorsClient {
         if (monitorName == null) {
             return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
         }
+        if (request != null) {
+            request.validate();
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listMonitoredResources(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, monitorName, accept, context)
+                this.client.getSubscriptionId(), resourceGroupName, monitorName, request, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * List the resources currently being monitored by the Dynatrace monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request The details of the log status request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of all the resources being monitored by Dynatrace monitor resource as paginated response with
+     * {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<MonitoredResourceInner> listMonitoredResourcesAsync(String resourceGroupName, String monitorName,
+        LogStatusRequest request) {
+        return new PagedFlux<>(() -> listMonitoredResourcesSinglePageAsync(resourceGroupName, monitorName, request),
+            nextLink -> listMonitoredResourcesNextSinglePageAsync(nextLink));
     }
 
     /**
@@ -360,7 +423,8 @@ public final class MonitorsClientImpl implements MonitorsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MonitoredResourceInner> listMonitoredResourcesAsync(String resourceGroupName,
         String monitorName) {
-        return new PagedFlux<>(() -> listMonitoredResourcesSinglePageAsync(resourceGroupName, monitorName),
+        final LogStatusRequest request = null;
+        return new PagedFlux<>(() -> listMonitoredResourcesSinglePageAsync(resourceGroupName, monitorName, request),
             nextLink -> listMonitoredResourcesNextSinglePageAsync(nextLink));
     }
 
@@ -369,6 +433,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
+     * @param request The details of the log status request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -378,8 +443,9 @@ public final class MonitorsClientImpl implements MonitorsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MonitoredResourceInner> listMonitoredResourcesAsync(String resourceGroupName, String monitorName,
-        Context context) {
-        return new PagedFlux<>(() -> listMonitoredResourcesSinglePageAsync(resourceGroupName, monitorName, context),
+        LogStatusRequest request, Context context) {
+        return new PagedFlux<>(
+            () -> listMonitoredResourcesSinglePageAsync(resourceGroupName, monitorName, request, context),
             nextLink -> listMonitoredResourcesNextSinglePageAsync(nextLink, context));
     }
 
@@ -396,7 +462,8 @@ public final class MonitorsClientImpl implements MonitorsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MonitoredResourceInner> listMonitoredResources(String resourceGroupName, String monitorName) {
-        return new PagedIterable<>(listMonitoredResourcesAsync(resourceGroupName, monitorName));
+        final LogStatusRequest request = null;
+        return new PagedIterable<>(listMonitoredResourcesAsync(resourceGroupName, monitorName, request));
     }
 
     /**
@@ -404,6 +471,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
+     * @param request The details of the log status request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -413,8 +481,8 @@ public final class MonitorsClientImpl implements MonitorsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MonitoredResourceInner> listMonitoredResources(String resourceGroupName, String monitorName,
-        Context context) {
-        return new PagedIterable<>(listMonitoredResourcesAsync(resourceGroupName, monitorName, context));
+        LogStatusRequest request, Context context) {
+        return new PagedIterable<>(listMonitoredResourcesAsync(resourceGroupName, monitorName, request, context));
     }
 
     /**
@@ -535,6 +603,139 @@ public final class MonitorsClientImpl implements MonitorsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public VMExtensionPayloadInner getVMHostPayload(String resourceGroupName, String monitorName) {
         return getVMHostPayloadWithResponse(resourceGroupName, monitorName, Context.NONE).getValue();
+    }
+
+    /**
+     * Create/Update the list of all resources that have Dynatrace agent installed through the Azure Dynatrace resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request List of resources and action.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> updateAgentStatusWithResponseAsync(String resourceGroupName, String monitorName,
+        AgentStatusRequest request) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (monitorName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
+        }
+        if (request == null) {
+            return Mono.error(new IllegalArgumentException("Parameter request is required and cannot be null."));
+        } else {
+            request.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.updateAgentStatus(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, monitorName, request, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Create/Update the list of all resources that have Dynatrace agent installed through the Azure Dynatrace resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request List of resources and action.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> updateAgentStatusWithResponseAsync(String resourceGroupName, String monitorName,
+        AgentStatusRequest request, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (monitorName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
+        }
+        if (request == null) {
+            return Mono.error(new IllegalArgumentException("Parameter request is required and cannot be null."));
+        } else {
+            request.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.updateAgentStatus(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, monitorName, request, accept, context);
+    }
+
+    /**
+     * Create/Update the list of all resources that have Dynatrace agent installed through the Azure Dynatrace resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request List of resources and action.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> updateAgentStatusAsync(String resourceGroupName, String monitorName,
+        AgentStatusRequest request) {
+        return updateAgentStatusWithResponseAsync(resourceGroupName, monitorName, request)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Create/Update the list of all resources that have Dynatrace agent installed through the Azure Dynatrace resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request List of resources and action.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> updateAgentStatusWithResponse(String resourceGroupName, String monitorName,
+        AgentStatusRequest request, Context context) {
+        return updateAgentStatusWithResponseAsync(resourceGroupName, monitorName, request, context).block();
+    }
+
+    /**
+     * Create/Update the list of all resources that have Dynatrace agent installed through the Azure Dynatrace resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request List of resources and action.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void updateAgentStatus(String resourceGroupName, String monitorName, AgentStatusRequest request) {
+        updateAgentStatusWithResponse(resourceGroupName, monitorName, request, Context.NONE);
     }
 
     /**
@@ -1458,15 +1659,127 @@ public final class MonitorsClientImpl implements MonitorsClient {
     }
 
     /**
-     * Get Marketplace SaaS resource details of a tenant under a specific subscription.
+     * Get the total number of connected resources for the given marketplace subscription Id.
+     * 
+     * @param request Marketplace Subscription Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the total number of connected resources for the given marketplace subscription Id along with
+     * {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ConnectedResourcesCountResponseInner>>
+        getAllConnectedResourcesCountWithResponseAsync(MarketplaceSubscriptionIdRequest request) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (request == null) {
+            return Mono.error(new IllegalArgumentException("Parameter request is required and cannot be null."));
+        } else {
+            request.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.getAllConnectedResourcesCount(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), request, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the total number of connected resources for the given marketplace subscription Id.
+     * 
+     * @param request Marketplace Subscription Id.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the total number of connected resources for the given marketplace subscription Id along with
+     * {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ConnectedResourcesCountResponseInner>>
+        getAllConnectedResourcesCountWithResponseAsync(MarketplaceSubscriptionIdRequest request, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (request == null) {
+            return Mono.error(new IllegalArgumentException("Parameter request is required and cannot be null."));
+        } else {
+            request.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.getAllConnectedResourcesCount(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), request, accept, context);
+    }
+
+    /**
+     * Get the total number of connected resources for the given marketplace subscription Id.
+     * 
+     * @param request Marketplace Subscription Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the total number of connected resources for the given marketplace subscription Id on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ConnectedResourcesCountResponseInner>
+        getAllConnectedResourcesCountAsync(MarketplaceSubscriptionIdRequest request) {
+        return getAllConnectedResourcesCountWithResponseAsync(request).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get the total number of connected resources for the given marketplace subscription Id.
+     * 
+     * @param request Marketplace Subscription Id.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the total number of connected resources for the given marketplace subscription Id along with
+     * {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ConnectedResourcesCountResponseInner>
+        getAllConnectedResourcesCountWithResponse(MarketplaceSubscriptionIdRequest request, Context context) {
+        return getAllConnectedResourcesCountWithResponseAsync(request, context).block();
+    }
+
+    /**
+     * Get the total number of connected resources for the given marketplace subscription Id.
+     * 
+     * @param request Marketplace Subscription Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the total number of connected resources for the given marketplace subscription Id.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ConnectedResourcesCountResponseInner
+        getAllConnectedResourcesCount(MarketplaceSubscriptionIdRequest request) {
+        return getAllConnectedResourcesCountWithResponse(request, Context.NONE).getValue();
+    }
+
+    /**
+     * Get Marketplace SaaS resource details.
      * 
      * @param request Tenant Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return marketplace SaaS resource details of a tenant under a specific subscription along with {@link Response}
-     * on successful completion of {@link Mono}.
+     * @return marketplace SaaS resource details along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MarketplaceSaaSResourceDetailsResponseInner>>
@@ -1492,16 +1805,14 @@ public final class MonitorsClientImpl implements MonitorsClient {
     }
 
     /**
-     * Get Marketplace SaaS resource details of a tenant under a specific subscription.
+     * Get Marketplace SaaS resource details.
      * 
      * @param request Tenant Id.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return marketplace SaaS resource details of a tenant under a specific subscription along with {@link Response}
-     * on successful completion of {@link Mono}.
+     * @return marketplace SaaS resource details along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MarketplaceSaaSResourceDetailsResponseInner>>
@@ -1527,15 +1838,13 @@ public final class MonitorsClientImpl implements MonitorsClient {
     }
 
     /**
-     * Get Marketplace SaaS resource details of a tenant under a specific subscription.
+     * Get Marketplace SaaS resource details.
      * 
      * @param request Tenant Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return marketplace SaaS resource details of a tenant under a specific subscription on successful completion of
-     * {@link Mono}.
+     * @return marketplace SaaS resource details on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MarketplaceSaaSResourceDetailsResponseInner>
@@ -1545,15 +1854,14 @@ public final class MonitorsClientImpl implements MonitorsClient {
     }
 
     /**
-     * Get Marketplace SaaS resource details of a tenant under a specific subscription.
+     * Get Marketplace SaaS resource details.
      * 
      * @param request Tenant Id.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return marketplace SaaS resource details of a tenant under a specific subscription along with {@link Response}.
+     * @return marketplace SaaS resource details along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MarketplaceSaaSResourceDetailsResponseInner>
@@ -1562,14 +1870,13 @@ public final class MonitorsClientImpl implements MonitorsClient {
     }
 
     /**
-     * Get Marketplace SaaS resource details of a tenant under a specific subscription.
+     * Get Marketplace SaaS resource details.
      * 
      * @param request Tenant Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return marketplace SaaS resource details of a tenant under a specific subscription.
+     * @return marketplace SaaS resource details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public MarketplaceSaaSResourceDetailsResponseInner
@@ -1721,7 +2028,8 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * Get metric status.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Name of the Monitor resource.
+     * @param monitorName Name of the Monitors resource.
+     * @param request The details of the metric status request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1729,7 +2037,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MetricsStatusResponseInner>> getMetricStatusWithResponseAsync(String resourceGroupName,
-        String monitorName) {
+        String monitorName, MetricStatusRequest request) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1745,10 +2053,13 @@ public final class MonitorsClientImpl implements MonitorsClient {
         if (monitorName == null) {
             return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
         }
+        if (request != null) {
+            request.validate();
+        }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getMetricStatus(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, monitorName, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, monitorName, request, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1756,7 +2067,8 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * Get metric status.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Name of the Monitor resource.
+     * @param monitorName Name of the Monitors resource.
+     * @param request The details of the metric status request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1765,7 +2077,7 @@ public final class MonitorsClientImpl implements MonitorsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MetricsStatusResponseInner>> getMetricStatusWithResponseAsync(String resourceGroupName,
-        String monitorName, Context context) {
+        String monitorName, MetricStatusRequest request, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1781,17 +2093,20 @@ public final class MonitorsClientImpl implements MonitorsClient {
         if (monitorName == null) {
             return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
         }
+        if (request != null) {
+            request.validate();
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getMetricStatus(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, monitorName, accept, context);
+            this.client.getSubscriptionId(), resourceGroupName, monitorName, request, accept, context);
     }
 
     /**
      * Get metric status.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Name of the Monitor resource.
+     * @param monitorName Name of the Monitors resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1799,7 +2114,8 @@ public final class MonitorsClientImpl implements MonitorsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MetricsStatusResponseInner> getMetricStatusAsync(String resourceGroupName, String monitorName) {
-        return getMetricStatusWithResponseAsync(resourceGroupName, monitorName)
+        final MetricStatusRequest request = null;
+        return getMetricStatusWithResponseAsync(resourceGroupName, monitorName, request)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -1807,7 +2123,8 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * Get metric status.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Name of the Monitor resource.
+     * @param monitorName Name of the Monitors resource.
+     * @param request The details of the metric status request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1816,15 +2133,15 @@ public final class MonitorsClientImpl implements MonitorsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MetricsStatusResponseInner> getMetricStatusWithResponse(String resourceGroupName,
-        String monitorName, Context context) {
-        return getMetricStatusWithResponseAsync(resourceGroupName, monitorName, context).block();
+        String monitorName, MetricStatusRequest request, Context context) {
+        return getMetricStatusWithResponseAsync(resourceGroupName, monitorName, request, context).block();
     }
 
     /**
      * Get metric status.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Name of the Monitor resource.
+     * @param monitorName Name of the Monitors resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1832,7 +2149,8 @@ public final class MonitorsClientImpl implements MonitorsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public MetricsStatusResponseInner getMetricStatus(String resourceGroupName, String monitorName) {
-        return getMetricStatusWithResponse(resourceGroupName, monitorName, Context.NONE).getValue();
+        final MetricStatusRequest request = null;
+        return getMetricStatusWithResponse(resourceGroupName, monitorName, request, Context.NONE).getValue();
     }
 
     /**
@@ -1981,6 +2299,231 @@ public final class MonitorsClientImpl implements MonitorsClient {
     }
 
     /**
+     * Upgrades the billing Plan for Dynatrace monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request The details of the upgrade plan request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> upgradePlanWithResponseAsync(String resourceGroupName, String monitorName,
+        UpgradePlanRequest request) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (monitorName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
+        }
+        if (request == null) {
+            return Mono.error(new IllegalArgumentException("Parameter request is required and cannot be null."));
+        } else {
+            request.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.upgradePlan(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, monitorName, request, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Upgrades the billing Plan for Dynatrace monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request The details of the upgrade plan request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> upgradePlanWithResponseAsync(String resourceGroupName, String monitorName,
+        UpgradePlanRequest request, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (monitorName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
+        }
+        if (request == null) {
+            return Mono.error(new IllegalArgumentException("Parameter request is required and cannot be null."));
+        } else {
+            request.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.upgradePlan(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, monitorName, request, accept, context);
+    }
+
+    /**
+     * Upgrades the billing Plan for Dynatrace monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request The details of the upgrade plan request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginUpgradePlanAsync(String resourceGroupName, String monitorName,
+        UpgradePlanRequest request) {
+        Mono<Response<Flux<ByteBuffer>>> mono = upgradePlanWithResponseAsync(resourceGroupName, monitorName, request);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Upgrades the billing Plan for Dynatrace monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request The details of the upgrade plan request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginUpgradePlanAsync(String resourceGroupName, String monitorName,
+        UpgradePlanRequest request, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = upgradePlanWithResponseAsync(resourceGroupName, monitorName, request, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
+    }
+
+    /**
+     * Upgrades the billing Plan for Dynatrace monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request The details of the upgrade plan request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginUpgradePlan(String resourceGroupName, String monitorName,
+        UpgradePlanRequest request) {
+        return this.beginUpgradePlanAsync(resourceGroupName, monitorName, request).getSyncPoller();
+    }
+
+    /**
+     * Upgrades the billing Plan for Dynatrace monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request The details of the upgrade plan request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginUpgradePlan(String resourceGroupName, String monitorName,
+        UpgradePlanRequest request, Context context) {
+        return this.beginUpgradePlanAsync(resourceGroupName, monitorName, request, context).getSyncPoller();
+    }
+
+    /**
+     * Upgrades the billing Plan for Dynatrace monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request The details of the upgrade plan request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> upgradePlanAsync(String resourceGroupName, String monitorName, UpgradePlanRequest request) {
+        return beginUpgradePlanAsync(resourceGroupName, monitorName, request).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Upgrades the billing Plan for Dynatrace monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request The details of the upgrade plan request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> upgradePlanAsync(String resourceGroupName, String monitorName, UpgradePlanRequest request,
+        Context context) {
+        return beginUpgradePlanAsync(resourceGroupName, monitorName, request, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Upgrades the billing Plan for Dynatrace monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request The details of the upgrade plan request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void upgradePlan(String resourceGroupName, String monitorName, UpgradePlanRequest request) {
+        upgradePlanAsync(resourceGroupName, monitorName, request).block();
+    }
+
+    /**
+     * Upgrades the billing Plan for Dynatrace monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param request The details of the upgrade plan request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void upgradePlan(String resourceGroupName, String monitorName, UpgradePlanRequest request, Context context) {
+        upgradePlanAsync(resourceGroupName, monitorName, request, context).block();
+    }
+
+    /**
      * Gets the SSO configuration details from the partner.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1988,7 +2531,6 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * @param request The details of the get sso details request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the SSO configuration details from the partner along with {@link Response} on successful completion of
      * {@link Mono}.
@@ -2030,7 +2572,6 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the SSO configuration details from the partner along with {@link Response} on successful completion of
      * {@link Mono}.
@@ -2069,7 +2610,6 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the SSO configuration details from the partner on successful completion of {@link Mono}.
      */
@@ -2089,7 +2629,6 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the SSO configuration details from the partner along with {@link Response}.
      */
@@ -2106,7 +2645,6 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 401.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the SSO configuration details from the partner.
      */

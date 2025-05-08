@@ -14,6 +14,7 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.dynatrace.models.DynatraceEnvironmentProperties;
 import com.azure.resourcemanager.dynatrace.models.IdentityProperties;
 import com.azure.resourcemanager.dynatrace.models.LiftrResourceCategories;
+import com.azure.resourcemanager.dynatrace.models.MarketplaceSaasAutoRenew;
 import com.azure.resourcemanager.dynatrace.models.MarketplaceSubscriptionStatus;
 import com.azure.resourcemanager.dynatrace.models.MonitoringStatus;
 import com.azure.resourcemanager.dynatrace.models.PlanData;
@@ -33,14 +34,14 @@ public final class MonitorResourceInner extends Resource {
     private MonitorProperties innerProperties = new MonitorProperties();
 
     /*
-     * System metadata for this resource.
-     */
-    private SystemData systemData;
-
-    /*
      * The managed service identities assigned to this resource.
      */
     private IdentityProperties identity;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -73,15 +74,6 @@ public final class MonitorResourceInner extends Resource {
     }
 
     /**
-     * Get the systemData property: System metadata for this resource.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
      * Get the identity property: The managed service identities assigned to this resource.
      * 
      * @return the identity value.
@@ -99,6 +91,15 @@ public final class MonitorResourceInner extends Resource {
     public MonitorResourceInner withIdentity(IdentityProperties identity) {
         this.identity = identity;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -193,6 +194,29 @@ public final class MonitorResourceInner extends Resource {
             this.innerProperties = new MonitorProperties();
         }
         this.innerProperties().withMarketplaceSubscriptionStatus(marketplaceSubscriptionStatus);
+        return this;
+    }
+
+    /**
+     * Get the marketplaceSaasAutoRenew property: Marketplace resource autorenew flag.
+     * 
+     * @return the marketplaceSaasAutoRenew value.
+     */
+    public MarketplaceSaasAutoRenew marketplaceSaasAutoRenew() {
+        return this.innerProperties() == null ? null : this.innerProperties().marketplaceSaasAutoRenew();
+    }
+
+    /**
+     * Set the marketplaceSaasAutoRenew property: Marketplace resource autorenew flag.
+     * 
+     * @param marketplaceSaasAutoRenew the marketplaceSaasAutoRenew value to set.
+     * @return the MonitorResourceInner object itself.
+     */
+    public MonitorResourceInner withMarketplaceSaasAutoRenew(MarketplaceSaasAutoRenew marketplaceSaasAutoRenew) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitorProperties();
+        }
+        this.innerProperties().withMarketplaceSaasAutoRenew(marketplaceSaasAutoRenew);
         return this;
     }
 
@@ -355,10 +379,10 @@ public final class MonitorResourceInner extends Resource {
                     deserializedMonitorResourceInner.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     deserializedMonitorResourceInner.innerProperties = MonitorProperties.fromJson(reader);
-                } else if ("systemData".equals(fieldName)) {
-                    deserializedMonitorResourceInner.systemData = SystemData.fromJson(reader);
                 } else if ("identity".equals(fieldName)) {
                     deserializedMonitorResourceInner.identity = IdentityProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedMonitorResourceInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
