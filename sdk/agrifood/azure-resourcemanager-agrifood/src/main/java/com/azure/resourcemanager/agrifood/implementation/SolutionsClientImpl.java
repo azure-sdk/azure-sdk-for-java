@@ -30,7 +30,6 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.agrifood.fluent.SolutionsClient;
 import com.azure.resourcemanager.agrifood.fluent.models.SolutionInner;
-import com.azure.resourcemanager.agrifood.models.SolutionInstallationRequest;
 import com.azure.resourcemanager.agrifood.models.SolutionListResponse;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -72,47 +71,48 @@ public final class SolutionsClientImpl implements SolutionsClient {
     @ServiceInterface(name = "AgriFoodManagementCl")
     public interface SolutionsService {
         @Headers({ "Content-Type: application/json" })
-        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/solutions/{solutionId}")
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{dataManagerForAgricultureResourceName}/solutions/{solutionId}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SolutionInner>> createOrUpdate(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
+            @PathParam("dataManagerForAgricultureResourceName") String dataManagerForAgricultureResourceName,
             @PathParam("solutionId") String solutionId, @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") SolutionInstallationRequest body, @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") SolutionInner requestBody, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/solutions/{solutionId}")
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{dataManagerForAgricultureResourceName}/solutions/{solutionId}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SolutionInner>> get(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
+            @PathParam("dataManagerForAgricultureResourceName") String dataManagerForAgricultureResourceName,
             @PathParam("solutionId") String solutionId, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/solutions/{solutionId}")
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{dataManagerForAgricultureResourceName}/solutions/{solutionId}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
+            @PathParam("dataManagerForAgricultureResourceName") String dataManagerForAgricultureResourceName,
             @PathParam("solutionId") String solutionId, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{farmBeatsResourceName}/solutions")
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform/farmBeats/{dataManagerForAgricultureResourceName}/solutions")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SolutionListResponse>> list(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
+            @PathParam("dataManagerForAgricultureResourceName") String dataManagerForAgricultureResourceName,
+            @QueryParam("api-version") String apiVersion,
             @QueryParam(value = "solutionIds", multipleQueryParams = true) List<String> solutionIds,
             @QueryParam(value = "ids", multipleQueryParams = true) List<String> ids,
             @QueryParam(value = "names", multipleQueryParams = true) List<String> names,
@@ -123,7 +123,7 @@ public final class SolutionsClientImpl implements SolutionsClient {
             @QueryParam("minLastModifiedDateTime") OffsetDateTime minLastModifiedDateTime,
             @QueryParam("maxLastModifiedDateTime") OffsetDateTime maxLastModifiedDateTime,
             @QueryParam("$maxPageSize") Integer maxPageSize, @QueryParam("$skipToken") String skipToken,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -137,9 +137,9 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * Install Or Update Solution.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
-     * @param body Solution resource request body.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
+     * @param requestBody Solution resource request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -147,7 +147,7 @@ public final class SolutionsClientImpl implements SolutionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SolutionInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String farmBeatsResourceName, String solutionId, SolutionInstallationRequest body) {
+        String dataManagerForAgricultureResourceName, String solutionId, SolutionInner requestBody) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -160,21 +160,21 @@ public final class SolutionsClientImpl implements SolutionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (solutionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter solutionId is required and cannot be null."));
         }
-        if (body != null) {
-            body.validate();
+        if (requestBody != null) {
+            requestBody.validate();
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, farmBeatsResourceName, solutionId, this.client.getApiVersion(), body, accept,
-                context))
+                resourceGroupName, dataManagerForAgricultureResourceName, solutionId, this.client.getApiVersion(),
+                requestBody, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -182,9 +182,9 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * Install Or Update Solution.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
-     * @param body Solution resource request body.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
+     * @param requestBody Solution resource request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -193,7 +193,7 @@ public final class SolutionsClientImpl implements SolutionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SolutionInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String farmBeatsResourceName, String solutionId, SolutionInstallationRequest body, Context context) {
+        String dataManagerForAgricultureResourceName, String solutionId, SolutionInner requestBody, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -206,48 +206,49 @@ public final class SolutionsClientImpl implements SolutionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (solutionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter solutionId is required and cannot be null."));
         }
-        if (body != null) {
-            body.validate();
+        if (requestBody != null) {
+            requestBody.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            farmBeatsResourceName, solutionId, this.client.getApiVersion(), body, accept, context);
+            dataManagerForAgricultureResourceName, solutionId, this.client.getApiVersion(), requestBody, accept,
+            context);
     }
 
     /**
      * Install Or Update Solution.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return solution resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SolutionInner> createOrUpdateAsync(String resourceGroupName, String farmBeatsResourceName,
-        String solutionId) {
-        final SolutionInstallationRequest body = null;
-        return createOrUpdateWithResponseAsync(resourceGroupName, farmBeatsResourceName, solutionId, body)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<SolutionInner> createOrUpdateAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String solutionId) {
+        final SolutionInner requestBody = null;
+        return createOrUpdateWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, solutionId,
+            requestBody).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Install Or Update Solution.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
-     * @param body Solution resource request body.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
+     * @param requestBody Solution resource request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -255,36 +256,37 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * @return solution resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<SolutionInner> createOrUpdateWithResponse(String resourceGroupName, String farmBeatsResourceName,
-        String solutionId, SolutionInstallationRequest body, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, farmBeatsResourceName, solutionId, body, context)
-            .block();
+    public Response<SolutionInner> createOrUpdateWithResponse(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String solutionId, SolutionInner requestBody, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, solutionId,
+            requestBody, context).block();
     }
 
     /**
      * Install Or Update Solution.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return solution resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public SolutionInner createOrUpdate(String resourceGroupName, String farmBeatsResourceName, String solutionId) {
-        final SolutionInstallationRequest body = null;
-        return createOrUpdateWithResponse(resourceGroupName, farmBeatsResourceName, solutionId, body, Context.NONE)
-            .getValue();
+    public SolutionInner createOrUpdate(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String solutionId) {
+        final SolutionInner requestBody = null;
+        return createOrUpdateWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, solutionId,
+            requestBody, Context.NONE).getValue();
     }
 
     /**
      * Get installed Solution details by Solution id.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -292,8 +294,8 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SolutionInner>> getWithResponseAsync(String resourceGroupName, String farmBeatsResourceName,
-        String solutionId) {
+    private Mono<Response<SolutionInner>> getWithResponseAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String solutionId) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -306,17 +308,18 @@ public final class SolutionsClientImpl implements SolutionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (solutionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter solutionId is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, farmBeatsResourceName, solutionId, this.client.getApiVersion(), accept, context))
+            .withContext(
+                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    dataManagerForAgricultureResourceName, solutionId, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -324,8 +327,8 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * Get installed Solution details by Solution id.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -334,8 +337,8 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SolutionInner>> getWithResponseAsync(String resourceGroupName, String farmBeatsResourceName,
-        String solutionId, Context context) {
+    private Mono<Response<SolutionInner>> getWithResponseAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String solutionId, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -348,9 +351,9 @@ public final class SolutionsClientImpl implements SolutionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (solutionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter solutionId is required and cannot be null."));
@@ -358,23 +361,24 @@ public final class SolutionsClientImpl implements SolutionsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            farmBeatsResourceName, solutionId, this.client.getApiVersion(), accept, context);
+            dataManagerForAgricultureResourceName, solutionId, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Get installed Solution details by Solution id.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return installed Solution details by Solution id on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SolutionInner> getAsync(String resourceGroupName, String farmBeatsResourceName, String solutionId) {
-        return getWithResponseAsync(resourceGroupName, farmBeatsResourceName, solutionId)
+    private Mono<SolutionInner> getAsync(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String solutionId) {
+        return getWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, solutionId)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -382,8 +386,8 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * Get installed Solution details by Solution id.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -391,41 +395,44 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * @return installed Solution details by Solution id along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<SolutionInner> getWithResponse(String resourceGroupName, String farmBeatsResourceName,
-        String solutionId, Context context) {
-        return getWithResponseAsync(resourceGroupName, farmBeatsResourceName, solutionId, context).block();
+    public Response<SolutionInner> getWithResponse(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String solutionId, Context context) {
+        return getWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, solutionId, context)
+            .block();
     }
 
     /**
      * Get installed Solution details by Solution id.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return installed Solution details by Solution id.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public SolutionInner get(String resourceGroupName, String farmBeatsResourceName, String solutionId) {
-        return getWithResponse(resourceGroupName, farmBeatsResourceName, solutionId, Context.NONE).getValue();
+    public SolutionInner get(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String solutionId) {
+        return getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, solutionId, Context.NONE)
+            .getValue();
     }
 
     /**
      * Uninstall Solution.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String farmBeatsResourceName,
-        String solutionId) {
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String solutionId) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -438,17 +445,18 @@ public final class SolutionsClientImpl implements SolutionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (solutionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter solutionId is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, farmBeatsResourceName, solutionId, this.client.getApiVersion(), accept, context))
+            .withContext(
+                context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    dataManagerForAgricultureResourceName, solutionId, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -456,8 +464,8 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * Uninstall Solution.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -465,8 +473,8 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String farmBeatsResourceName,
-        String solutionId, Context context) {
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String solutionId, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -479,9 +487,9 @@ public final class SolutionsClientImpl implements SolutionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         if (solutionId == null) {
             return Mono.error(new IllegalArgumentException("Parameter solutionId is required and cannot be null."));
@@ -489,23 +497,24 @@ public final class SolutionsClientImpl implements SolutionsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            farmBeatsResourceName, solutionId, this.client.getApiVersion(), accept, context);
+            dataManagerForAgricultureResourceName, solutionId, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Uninstall Solution.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String farmBeatsResourceName, String solutionId) {
-        return deleteWithResponseAsync(resourceGroupName, farmBeatsResourceName, solutionId)
+    private Mono<Void> deleteAsync(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String solutionId) {
+        return deleteWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, solutionId)
             .flatMap(ignored -> Mono.empty());
     }
 
@@ -513,8 +522,8 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * Uninstall Solution.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -522,31 +531,32 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(String resourceGroupName, String farmBeatsResourceName, String solutionId,
-        Context context) {
-        return deleteWithResponseAsync(resourceGroupName, farmBeatsResourceName, solutionId, context).block();
+    public Response<Void> deleteWithResponse(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String solutionId, Context context) {
+        return deleteWithResponseAsync(resourceGroupName, dataManagerForAgricultureResourceName, solutionId, context)
+            .block();
     }
 
     /**
      * Uninstall Solution.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String farmBeatsResourceName, String solutionId) {
-        deleteWithResponse(resourceGroupName, farmBeatsResourceName, solutionId, Context.NONE);
+    public void delete(String resourceGroupName, String dataManagerForAgricultureResourceName, String solutionId) {
+        deleteWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, solutionId, Context.NONE);
     }
 
     /**
      * Get installed Solutions details.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param solutionIds Installed Solution ids.
      * @param ids Ids of the resource.
      * @param names Names of the resource.
@@ -567,7 +577,7 @@ public final class SolutionsClientImpl implements SolutionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SolutionInner>> listSinglePageAsync(String resourceGroupName,
-        String farmBeatsResourceName, List<String> solutionIds, List<String> ids, List<String> names,
+        String dataManagerForAgricultureResourceName, List<String> solutionIds, List<String> ids, List<String> names,
         List<String> propertyFilters, List<String> statuses, OffsetDateTime minCreatedDateTime,
         OffsetDateTime maxCreatedDateTime, OffsetDateTime minLastModifiedDateTime,
         OffsetDateTime maxLastModifiedDateTime, Integer maxPageSize, String skipToken) {
@@ -583,9 +593,9 @@ public final class SolutionsClientImpl implements SolutionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         final String accept = "application/json";
         List<String> solutionIdsConverted = (solutionIds == null)
@@ -604,11 +614,11 @@ public final class SolutionsClientImpl implements SolutionsClient {
             ? new ArrayList<>()
             : statuses.stream().map(item -> Objects.toString(item, "")).collect(Collectors.toList());
         return FluxUtil
-            .withContext(
-                context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    farmBeatsResourceName, solutionIdsConverted, idsConverted, namesConverted, propertyFiltersConverted,
-                    statusesConverted, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime,
-                    maxLastModifiedDateTime, maxPageSize, skipToken, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, dataManagerForAgricultureResourceName, this.client.getApiVersion(),
+                solutionIdsConverted, idsConverted, namesConverted, propertyFiltersConverted, statusesConverted,
+                minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize,
+                skipToken, accept, context))
             .<PagedResponse<SolutionInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -618,7 +628,7 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * Get installed Solutions details.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param solutionIds Installed Solution ids.
      * @param ids Ids of the resource.
      * @param names Names of the resource.
@@ -640,7 +650,7 @@ public final class SolutionsClientImpl implements SolutionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SolutionInner>> listSinglePageAsync(String resourceGroupName,
-        String farmBeatsResourceName, List<String> solutionIds, List<String> ids, List<String> names,
+        String dataManagerForAgricultureResourceName, List<String> solutionIds, List<String> ids, List<String> names,
         List<String> propertyFilters, List<String> statuses, OffsetDateTime minCreatedDateTime,
         OffsetDateTime maxCreatedDateTime, OffsetDateTime minLastModifiedDateTime,
         OffsetDateTime maxLastModifiedDateTime, Integer maxPageSize, String skipToken, Context context) {
@@ -656,9 +666,9 @@ public final class SolutionsClientImpl implements SolutionsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (farmBeatsResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter farmBeatsResourceName is required and cannot be null."));
+        if (dataManagerForAgricultureResourceName == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter dataManagerForAgricultureResourceName is required and cannot be null."));
         }
         final String accept = "application/json";
         List<String> solutionIdsConverted = (solutionIds == null)
@@ -678,10 +688,10 @@ public final class SolutionsClientImpl implements SolutionsClient {
             : statuses.stream().map(item -> Objects.toString(item, "")).collect(Collectors.toList());
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, farmBeatsResourceName,
-                solutionIdsConverted, idsConverted, namesConverted, propertyFiltersConverted, statusesConverted,
-                minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize,
-                skipToken, this.client.getApiVersion(), accept, context)
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                dataManagerForAgricultureResourceName, this.client.getApiVersion(), solutionIdsConverted, idsConverted,
+                namesConverted, propertyFiltersConverted, statusesConverted, minCreatedDateTime, maxCreatedDateTime,
+                minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -690,7 +700,7 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * Get installed Solutions details.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param solutionIds Installed Solution ids.
      * @param ids Ids of the resource.
      * @param names Names of the resource.
@@ -710,28 +720,29 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * @return installed Solutions details as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SolutionInner> listAsync(String resourceGroupName, String farmBeatsResourceName,
+    private PagedFlux<SolutionInner> listAsync(String resourceGroupName, String dataManagerForAgricultureResourceName,
         List<String> solutionIds, List<String> ids, List<String> names, List<String> propertyFilters,
         List<String> statuses, OffsetDateTime minCreatedDateTime, OffsetDateTime maxCreatedDateTime,
         OffsetDateTime minLastModifiedDateTime, OffsetDateTime maxLastModifiedDateTime, Integer maxPageSize,
         String skipToken) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, farmBeatsResourceName, solutionIds, ids,
-            names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime,
-            maxLastModifiedDateTime, maxPageSize, skipToken), nextLink -> listNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, dataManagerForAgricultureResourceName,
+            solutionIds, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime,
+            minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Get installed Solutions details.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return installed Solutions details as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SolutionInner> listAsync(String resourceGroupName, String farmBeatsResourceName) {
+    private PagedFlux<SolutionInner> listAsync(String resourceGroupName, String dataManagerForAgricultureResourceName) {
         final List<String> solutionIds = null;
         final List<String> ids = null;
         final List<String> names = null;
@@ -743,16 +754,17 @@ public final class SolutionsClientImpl implements SolutionsClient {
         final OffsetDateTime maxLastModifiedDateTime = null;
         final Integer maxPageSize = null;
         final String skipToken = null;
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, farmBeatsResourceName, solutionIds, ids,
-            names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime,
-            maxLastModifiedDateTime, maxPageSize, skipToken), nextLink -> listNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, dataManagerForAgricultureResourceName,
+            solutionIds, ids, names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime,
+            minLastModifiedDateTime, maxLastModifiedDateTime, maxPageSize, skipToken),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Get installed Solutions details.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param solutionIds Installed Solution ids.
      * @param ids Ids of the resource.
      * @param names Names of the resource.
@@ -773,13 +785,13 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * @return installed Solutions details as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SolutionInner> listAsync(String resourceGroupName, String farmBeatsResourceName,
+    private PagedFlux<SolutionInner> listAsync(String resourceGroupName, String dataManagerForAgricultureResourceName,
         List<String> solutionIds, List<String> ids, List<String> names, List<String> propertyFilters,
         List<String> statuses, OffsetDateTime minCreatedDateTime, OffsetDateTime maxCreatedDateTime,
         OffsetDateTime minLastModifiedDateTime, OffsetDateTime maxLastModifiedDateTime, Integer maxPageSize,
         String skipToken, Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, farmBeatsResourceName, solutionIds, ids, names,
+            () -> listSinglePageAsync(resourceGroupName, dataManagerForAgricultureResourceName, solutionIds, ids, names,
                 propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime,
                 maxLastModifiedDateTime, maxPageSize, skipToken, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
@@ -789,14 +801,14 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * Get installed Solutions details.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return installed Solutions details as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SolutionInner> list(String resourceGroupName, String farmBeatsResourceName) {
+    public PagedIterable<SolutionInner> list(String resourceGroupName, String dataManagerForAgricultureResourceName) {
         final List<String> solutionIds = null;
         final List<String> ids = null;
         final List<String> names = null;
@@ -808,8 +820,8 @@ public final class SolutionsClientImpl implements SolutionsClient {
         final OffsetDateTime maxLastModifiedDateTime = null;
         final Integer maxPageSize = null;
         final String skipToken = null;
-        return new PagedIterable<>(listAsync(resourceGroupName, farmBeatsResourceName, solutionIds, ids, names,
-            propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime,
+        return new PagedIterable<>(listAsync(resourceGroupName, dataManagerForAgricultureResourceName, solutionIds, ids,
+            names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime,
             maxLastModifiedDateTime, maxPageSize, skipToken));
     }
 
@@ -817,7 +829,7 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * Get installed Solutions details.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param solutionIds Installed Solution ids.
      * @param ids Ids of the resource.
      * @param names Names of the resource.
@@ -838,13 +850,13 @@ public final class SolutionsClientImpl implements SolutionsClient {
      * @return installed Solutions details as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SolutionInner> list(String resourceGroupName, String farmBeatsResourceName,
+    public PagedIterable<SolutionInner> list(String resourceGroupName, String dataManagerForAgricultureResourceName,
         List<String> solutionIds, List<String> ids, List<String> names, List<String> propertyFilters,
         List<String> statuses, OffsetDateTime minCreatedDateTime, OffsetDateTime maxCreatedDateTime,
         OffsetDateTime minLastModifiedDateTime, OffsetDateTime maxLastModifiedDateTime, Integer maxPageSize,
         String skipToken, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, farmBeatsResourceName, solutionIds, ids, names,
-            propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime,
+        return new PagedIterable<>(listAsync(resourceGroupName, dataManagerForAgricultureResourceName, solutionIds, ids,
+            names, propertyFilters, statuses, minCreatedDateTime, maxCreatedDateTime, minLastModifiedDateTime,
             maxLastModifiedDateTime, maxPageSize, skipToken, context));
     }
 

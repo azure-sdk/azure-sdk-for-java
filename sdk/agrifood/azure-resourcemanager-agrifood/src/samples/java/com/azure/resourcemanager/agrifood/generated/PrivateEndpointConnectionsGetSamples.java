@@ -10,7 +10,7 @@ package com.azure.resourcemanager.agrifood.generated;
 public final class PrivateEndpointConnectionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/
+     * specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2023-06-01-preview/examples/
      * PrivateEndpointConnections_Get.json
      */
     /**

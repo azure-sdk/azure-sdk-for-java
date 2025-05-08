@@ -13,14 +13,24 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Model to capture detailed information for farmBeatsExtensions.
+ * Model to capture detailed information for Data Manager For AgricultureExtensions.
  */
 @Fluent
 public final class DetailedInformation implements JsonSerializable<DetailedInformation> {
     /*
-     * ApiName available for the farmBeatsExtension.
+     * ApiName available for the Data Manager For Agriculture Extension.
      */
     private String apiName;
+
+    /*
+     * Extension provider's API documentation link.
+     */
+    private String apiDocsLink;
+
+    /*
+     * Type of Api in Extension.
+     */
+    private String apiType;
 
     /*
      * List of customParameters.
@@ -31,6 +41,11 @@ public final class DetailedInformation implements JsonSerializable<DetailedInfor
      * List of platformParameters.
      */
     private List<String> platformParameters;
+
+    /*
+     * List of defaultParameters.
+     */
+    private List<String> apiDefaultInputParameters;
 
     /*
      * Unit systems info for the data provider.
@@ -49,7 +64,7 @@ public final class DetailedInformation implements JsonSerializable<DetailedInfor
     }
 
     /**
-     * Get the apiName property: ApiName available for the farmBeatsExtension.
+     * Get the apiName property: ApiName available for the Data Manager For Agriculture Extension.
      * 
      * @return the apiName value.
      */
@@ -58,13 +73,53 @@ public final class DetailedInformation implements JsonSerializable<DetailedInfor
     }
 
     /**
-     * Set the apiName property: ApiName available for the farmBeatsExtension.
+     * Set the apiName property: ApiName available for the Data Manager For Agriculture Extension.
      * 
      * @param apiName the apiName value to set.
      * @return the DetailedInformation object itself.
      */
     public DetailedInformation withApiName(String apiName) {
         this.apiName = apiName;
+        return this;
+    }
+
+    /**
+     * Get the apiDocsLink property: Extension provider's API documentation link.
+     * 
+     * @return the apiDocsLink value.
+     */
+    public String apiDocsLink() {
+        return this.apiDocsLink;
+    }
+
+    /**
+     * Set the apiDocsLink property: Extension provider's API documentation link.
+     * 
+     * @param apiDocsLink the apiDocsLink value to set.
+     * @return the DetailedInformation object itself.
+     */
+    public DetailedInformation withApiDocsLink(String apiDocsLink) {
+        this.apiDocsLink = apiDocsLink;
+        return this;
+    }
+
+    /**
+     * Get the apiType property: Type of Api in Extension.
+     * 
+     * @return the apiType value.
+     */
+    public String apiType() {
+        return this.apiType;
+    }
+
+    /**
+     * Set the apiType property: Type of Api in Extension.
+     * 
+     * @param apiType the apiType value to set.
+     * @return the DetailedInformation object itself.
+     */
+    public DetailedInformation withApiType(String apiType) {
+        this.apiType = apiType;
         return this;
     }
 
@@ -105,6 +160,26 @@ public final class DetailedInformation implements JsonSerializable<DetailedInfor
      */
     public DetailedInformation withPlatformParameters(List<String> platformParameters) {
         this.platformParameters = platformParameters;
+        return this;
+    }
+
+    /**
+     * Get the apiDefaultInputParameters property: List of defaultParameters.
+     * 
+     * @return the apiDefaultInputParameters value.
+     */
+    public List<String> apiDefaultInputParameters() {
+        return this.apiDefaultInputParameters;
+    }
+
+    /**
+     * Set the apiDefaultInputParameters property: List of defaultParameters.
+     * 
+     * @param apiDefaultInputParameters the apiDefaultInputParameters value to set.
+     * @return the DetailedInformation object itself.
+     */
+    public DetailedInformation withApiDefaultInputParameters(List<String> apiDefaultInputParameters) {
+        this.apiDefaultInputParameters = apiDefaultInputParameters;
         return this;
     }
 
@@ -166,9 +241,13 @@ public final class DetailedInformation implements JsonSerializable<DetailedInfor
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("apiName", this.apiName);
+        jsonWriter.writeStringField("apiDocsLink", this.apiDocsLink);
+        jsonWriter.writeStringField("apiType", this.apiType);
         jsonWriter.writeArrayField("customParameters", this.customParameters,
             (writer, element) -> writer.writeString(element));
         jsonWriter.writeArrayField("platformParameters", this.platformParameters,
+            (writer, element) -> writer.writeString(element));
+        jsonWriter.writeArrayField("apiDefaultInputParameters", this.apiDefaultInputParameters,
             (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("unitsSupported", this.unitsSupported);
         jsonWriter.writeArrayField("apiInputParameters", this.apiInputParameters,
@@ -193,12 +272,19 @@ public final class DetailedInformation implements JsonSerializable<DetailedInfor
 
                 if ("apiName".equals(fieldName)) {
                     deserializedDetailedInformation.apiName = reader.getString();
+                } else if ("apiDocsLink".equals(fieldName)) {
+                    deserializedDetailedInformation.apiDocsLink = reader.getString();
+                } else if ("apiType".equals(fieldName)) {
+                    deserializedDetailedInformation.apiType = reader.getString();
                 } else if ("customParameters".equals(fieldName)) {
                     List<String> customParameters = reader.readArray(reader1 -> reader1.getString());
                     deserializedDetailedInformation.customParameters = customParameters;
                 } else if ("platformParameters".equals(fieldName)) {
                     List<String> platformParameters = reader.readArray(reader1 -> reader1.getString());
                     deserializedDetailedInformation.platformParameters = platformParameters;
+                } else if ("apiDefaultInputParameters".equals(fieldName)) {
+                    List<String> apiDefaultInputParameters = reader.readArray(reader1 -> reader1.getString());
+                    deserializedDetailedInformation.apiDefaultInputParameters = apiDefaultInputParameters;
                 } else if ("unitsSupported".equals(fieldName)) {
                     deserializedDetailedInformation.unitsSupported = UnitSystemsInfo.fromJson(reader);
                 } else if ("apiInputParameters".equals(fieldName)) {

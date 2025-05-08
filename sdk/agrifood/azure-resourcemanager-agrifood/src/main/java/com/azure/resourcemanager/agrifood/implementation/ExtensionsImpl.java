@@ -28,10 +28,10 @@ public final class ExtensionsImpl implements Extensions {
         this.serviceManager = serviceManager;
     }
 
-    public Response<Extension> getWithResponse(String resourceGroupName, String farmBeatsResourceName,
+    public Response<Extension> getWithResponse(String resourceGroupName, String dataManagerForAgricultureResourceName,
         String extensionId, Context context) {
-        Response<ExtensionInner> inner
-            = this.serviceClient().getWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, context);
+        Response<ExtensionInner> inner = this.serviceClient()
+            .getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, extensionId, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ExtensionImpl(inner.getValue(), this.manager()));
@@ -40,8 +40,9 @@ public final class ExtensionsImpl implements Extensions {
         }
     }
 
-    public Extension get(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        ExtensionInner inner = this.serviceClient().get(resourceGroupName, farmBeatsResourceName, extensionId);
+    public Extension get(String resourceGroupName, String dataManagerForAgricultureResourceName, String extensionId) {
+        ExtensionInner inner
+            = this.serviceClient().get(resourceGroupName, dataManagerForAgricultureResourceName, extensionId);
         if (inner != null) {
             return new ExtensionImpl(inner, this.manager());
         } else {
@@ -49,27 +50,29 @@ public final class ExtensionsImpl implements Extensions {
         }
     }
 
-    public Response<Void> deleteWithResponse(String resourceGroupName, String farmBeatsResourceName, String extensionId,
-        Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, context);
+    public Response<Void> deleteWithResponse(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String extensionId, Context context) {
+        return this.serviceClient()
+            .deleteWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, extensionId, context);
     }
 
-    public void delete(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        this.serviceClient().delete(resourceGroupName, farmBeatsResourceName, extensionId);
+    public void delete(String resourceGroupName, String dataManagerForAgricultureResourceName, String extensionId) {
+        this.serviceClient().delete(resourceGroupName, dataManagerForAgricultureResourceName, extensionId);
     }
 
-    public PagedIterable<Extension> listByFarmBeats(String resourceGroupName, String farmBeatsResourceName) {
-        PagedIterable<ExtensionInner> inner
-            = this.serviceClient().listByFarmBeats(resourceGroupName, farmBeatsResourceName);
+    public PagedIterable<Extension> listByDataManagerForAgriculture(String resourceGroupName,
+        String dataManagerForAgricultureResourceName) {
+        PagedIterable<ExtensionInner> inner = this.serviceClient()
+            .listByDataManagerForAgriculture(resourceGroupName, dataManagerForAgricultureResourceName);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new ExtensionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Extension> listByFarmBeats(String resourceGroupName, String farmBeatsResourceName,
-        List<String> extensionIds, List<String> extensionCategories, Integer maxPageSize, String skipToken,
-        Context context) {
+    public PagedIterable<Extension> listByDataManagerForAgriculture(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, List<String> extensionIds, List<String> extensionCategories,
+        Integer maxPageSize, String skipToken, Context context) {
         PagedIterable<ExtensionInner> inner = this.serviceClient()
-            .listByFarmBeats(resourceGroupName, farmBeatsResourceName, extensionIds, extensionCategories, maxPageSize,
-                skipToken, context);
+            .listByDataManagerForAgriculture(resourceGroupName, dataManagerForAgricultureResourceName, extensionIds,
+                extensionCategories, maxPageSize, skipToken, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new ExtensionImpl(inner1, this.manager()));
     }
 
@@ -79,8 +82,8 @@ public final class ExtensionsImpl implements Extensions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String farmBeatsResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
-        if (farmBeatsResourceName == null) {
+        String dataManagerForAgricultureResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
+        if (dataManagerForAgricultureResourceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'farmBeats'.", id)));
         }
@@ -89,7 +92,8 @@ public final class ExtensionsImpl implements Extensions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'extensions'.", id)));
         }
-        return this.getWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, Context.NONE).getValue();
+        return this.getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, extensionId, Context.NONE)
+            .getValue();
     }
 
     public Response<Extension> getByIdWithResponse(String id, Context context) {
@@ -98,8 +102,8 @@ public final class ExtensionsImpl implements Extensions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String farmBeatsResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
-        if (farmBeatsResourceName == null) {
+        String dataManagerForAgricultureResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
+        if (dataManagerForAgricultureResourceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'farmBeats'.", id)));
         }
@@ -108,7 +112,7 @@ public final class ExtensionsImpl implements Extensions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'extensions'.", id)));
         }
-        return this.getWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, context);
+        return this.getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, extensionId, context);
     }
 
     public void deleteById(String id) {
@@ -117,8 +121,8 @@ public final class ExtensionsImpl implements Extensions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String farmBeatsResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
-        if (farmBeatsResourceName == null) {
+        String dataManagerForAgricultureResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
+        if (dataManagerForAgricultureResourceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'farmBeats'.", id)));
         }
@@ -127,7 +131,7 @@ public final class ExtensionsImpl implements Extensions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'extensions'.", id)));
         }
-        this.deleteWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, Context.NONE);
+        this.deleteWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, extensionId, Context.NONE);
     }
 
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
@@ -136,8 +140,8 @@ public final class ExtensionsImpl implements Extensions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String farmBeatsResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
-        if (farmBeatsResourceName == null) {
+        String dataManagerForAgricultureResourceName = ResourceManagerUtils.getValueFromIdByName(id, "farmBeats");
+        if (dataManagerForAgricultureResourceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'farmBeats'.", id)));
         }
@@ -146,7 +150,7 @@ public final class ExtensionsImpl implements Extensions {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'extensions'.", id)));
         }
-        return this.deleteWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, context);
+        return this.deleteWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, extensionId, context);
     }
 
     private ExtensionsClient serviceClient() {

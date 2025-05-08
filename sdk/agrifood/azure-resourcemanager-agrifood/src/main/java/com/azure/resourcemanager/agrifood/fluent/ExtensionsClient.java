@@ -18,11 +18,11 @@ import java.util.List;
  */
 public interface ExtensionsClient {
     /**
-     * Install or Update extension. AdditionalApiProperties are merged patch and if the extension is updated to a new
-     * version then the obsolete entries will be auto deleted from AdditionalApiProperties.
+     * Install or Update extension. Additional Api Properties are merged patch and if the extension is updated to a new
+     * version then the obsolete entries will be auto deleted from Additional Api Properties.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
      * @param requestBody Extension resource request body.
      * @param context The context to associate with this operation.
@@ -32,15 +32,16 @@ public interface ExtensionsClient {
      * @return extension resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ExtensionInner> createOrUpdateWithResponse(String resourceGroupName, String farmBeatsResourceName,
-        String extensionId, ExtensionInstallationRequest requestBody, Context context);
+    Response<ExtensionInner> createOrUpdateWithResponse(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String extensionId, ExtensionInstallationRequest requestBody,
+        Context context);
 
     /**
-     * Install or Update extension. AdditionalApiProperties are merged patch and if the extension is updated to a new
-     * version then the obsolete entries will be auto deleted from AdditionalApiProperties.
+     * Install or Update extension. Additional Api Properties are merged patch and if the extension is updated to a new
+     * version then the obsolete entries will be auto deleted from Additional Api Properties.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -48,13 +49,14 @@ public interface ExtensionsClient {
      * @return extension resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ExtensionInner createOrUpdate(String resourceGroupName, String farmBeatsResourceName, String extensionId);
+    ExtensionInner createOrUpdate(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String extensionId);
 
     /**
      * Get installed extension details by extension id.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -63,14 +65,14 @@ public interface ExtensionsClient {
      * @return installed extension details by extension id along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ExtensionInner> getWithResponse(String resourceGroupName, String farmBeatsResourceName, String extensionId,
-        Context context);
+    Response<ExtensionInner> getWithResponse(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String extensionId, Context context);
 
     /**
      * Get installed extension details by extension id.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -78,13 +80,13 @@ public interface ExtensionsClient {
      * @return installed extension details by extension id.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ExtensionInner get(String resourceGroupName, String farmBeatsResourceName, String extensionId);
+    ExtensionInner get(String resourceGroupName, String dataManagerForAgricultureResourceName, String extensionId);
 
     /**
      * Uninstall extension.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -93,40 +95,41 @@ public interface ExtensionsClient {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(String resourceGroupName, String farmBeatsResourceName, String extensionId,
-        Context context);
+    Response<Void> deleteWithResponse(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String extensionId, Context context);
 
     /**
      * Uninstall extension.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionId Id of extension resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String farmBeatsResourceName, String extensionId);
+    void delete(String resourceGroupName, String dataManagerForAgricultureResourceName, String extensionId);
 
     /**
      * Get installed extensions details.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return installed extensions details as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ExtensionInner> listByFarmBeats(String resourceGroupName, String farmBeatsResourceName);
+    PagedIterable<ExtensionInner> listByDataManagerForAgriculture(String resourceGroupName,
+        String dataManagerForAgricultureResourceName);
 
     /**
      * Get installed extensions details.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param extensionIds Installed extension ids.
      * @param extensionCategories Installed extension categories.
      * @param maxPageSize Maximum number of items needed (inclusive).
@@ -139,7 +142,7 @@ public interface ExtensionsClient {
      * @return installed extensions details as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ExtensionInner> listByFarmBeats(String resourceGroupName, String farmBeatsResourceName,
-        List<String> extensionIds, List<String> extensionCategories, Integer maxPageSize, String skipToken,
-        Context context);
+    PagedIterable<ExtensionInner> listByDataManagerForAgriculture(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, List<String> extensionIds, List<String> extensionCategories,
+        Integer maxPageSize, String skipToken, Context context);
 }
