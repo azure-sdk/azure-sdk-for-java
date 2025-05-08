@@ -12,7 +12,7 @@ import java.time.Duration;
  */
 public interface BareMetalInfrastructureClient {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -47,6 +47,13 @@ public interface BareMetalInfrastructureClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
+
+    /**
      * Gets the AzureBareMetalInstancesClient object to access its operations.
      * 
      * @return the AzureBareMetalInstancesClient object.
@@ -54,9 +61,9 @@ public interface BareMetalInfrastructureClient {
     AzureBareMetalInstancesClient getAzureBareMetalInstances();
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the AzureBareMetalStorageInstancesClient object to access its operations.
      * 
-     * @return the OperationsClient object.
+     * @return the AzureBareMetalStorageInstancesClient object.
      */
-    OperationsClient getOperations();
+    AzureBareMetalStorageInstancesClient getAzureBareMetalStorageInstances();
 }

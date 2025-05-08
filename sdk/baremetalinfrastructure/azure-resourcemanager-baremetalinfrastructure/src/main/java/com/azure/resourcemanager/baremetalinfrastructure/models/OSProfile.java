@@ -12,12 +12,12 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Specifies the operating system settings for the AzureBareMetal instance.
+ * Specifies the operating system settings for the Azure Bare Metal instance.
  */
 @Fluent
 public final class OSProfile implements JsonSerializable<OSProfile> {
     /*
-     * Specifies the host OS name of the AzureBareMetal instance.
+     * Specifies the host OS name of the Azure Bare Metal instance.
      */
     private String computerName;
 
@@ -43,7 +43,7 @@ public final class OSProfile implements JsonSerializable<OSProfile> {
     }
 
     /**
-     * Get the computerName property: Specifies the host OS name of the AzureBareMetal instance.
+     * Get the computerName property: Specifies the host OS name of the Azure Bare Metal instance.
      * 
      * @return the computerName value.
      */
@@ -52,7 +52,7 @@ public final class OSProfile implements JsonSerializable<OSProfile> {
     }
 
     /**
-     * Set the computerName property: Specifies the host OS name of the AzureBareMetal instance.
+     * Set the computerName property: Specifies the host OS name of the Azure Bare Metal instance.
      * 
      * @param computerName the computerName value to set.
      * @return the OSProfile object itself.
@@ -72,12 +72,34 @@ public final class OSProfile implements JsonSerializable<OSProfile> {
     }
 
     /**
+     * Set the osType property: This property allows you to specify the type of the OS.
+     * 
+     * @param osType the osType value to set.
+     * @return the OSProfile object itself.
+     */
+    public OSProfile withOsType(String osType) {
+        this.osType = osType;
+        return this;
+    }
+
+    /**
      * Get the version property: Specifies version of operating system.
      * 
      * @return the version value.
      */
     public String version() {
         return this.version;
+    }
+
+    /**
+     * Set the version property: Specifies version of operating system.
+     * 
+     * @param version the version value to set.
+     * @return the OSProfile object itself.
+     */
+    public OSProfile withVersion(String version) {
+        this.version = version;
+        return this;
     }
 
     /**
@@ -115,6 +137,8 @@ public final class OSProfile implements JsonSerializable<OSProfile> {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("computerName", this.computerName);
+        jsonWriter.writeStringField("osType", this.osType);
+        jsonWriter.writeStringField("version", this.version);
         jsonWriter.writeStringField("sshPublicKey", this.sshPublicKey);
         return jsonWriter.writeEndObject();
     }
