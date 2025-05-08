@@ -143,6 +143,48 @@ public final class AzureOrbitalImpl implements AzureOrbital {
     }
 
     /**
+     * The AvailableGroundStationsClient object to access its operations.
+     */
+    private final AvailableGroundStationsClient availableGroundStations;
+
+    /**
+     * Gets the AvailableGroundStationsClient object to access its operations.
+     * 
+     * @return the AvailableGroundStationsClient object.
+     */
+    public AvailableGroundStationsClient getAvailableGroundStations() {
+        return this.availableGroundStations;
+    }
+
+    /**
+     * The ContactProfilesClient object to access its operations.
+     */
+    private final ContactProfilesClient contactProfiles;
+
+    /**
+     * Gets the ContactProfilesClient object to access its operations.
+     * 
+     * @return the ContactProfilesClient object.
+     */
+    public ContactProfilesClient getContactProfiles() {
+        return this.contactProfiles;
+    }
+
+    /**
+     * The OperationsResultsClient object to access its operations.
+     */
+    private final OperationsResultsClient operationsResults;
+
+    /**
+     * Gets the OperationsResultsClient object to access its operations.
+     * 
+     * @return the OperationsResultsClient object.
+     */
+    public OperationsResultsClient getOperationsResults() {
+        return this.operationsResults;
+    }
+
+    /**
      * The SpacecraftsClient object to access its operations.
      */
     private final SpacecraftsClient spacecrafts;
@@ -171,48 +213,6 @@ public final class AzureOrbitalImpl implements AzureOrbital {
     }
 
     /**
-     * The ContactProfilesClient object to access its operations.
-     */
-    private final ContactProfilesClient contactProfiles;
-
-    /**
-     * Gets the ContactProfilesClient object to access its operations.
-     * 
-     * @return the ContactProfilesClient object.
-     */
-    public ContactProfilesClient getContactProfiles() {
-        return this.contactProfiles;
-    }
-
-    /**
-     * The AvailableGroundStationsClient object to access its operations.
-     */
-    private final AvailableGroundStationsClient availableGroundStations;
-
-    /**
-     * Gets the AvailableGroundStationsClient object to access its operations.
-     * 
-     * @return the AvailableGroundStationsClient object.
-     */
-    public AvailableGroundStationsClient getAvailableGroundStations() {
-        return this.availableGroundStations;
-    }
-
-    /**
-     * The OperationsResultsClient object to access its operations.
-     */
-    private final OperationsResultsClient operationsResults;
-
-    /**
-     * Gets the OperationsResultsClient object to access its operations.
-     * 
-     * @return the OperationsResultsClient object.
-     */
-    public OperationsResultsClient getOperationsResults() {
-        return this.operationsResults;
-    }
-
-    /**
      * Initializes an instance of AzureOrbital client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -231,11 +231,11 @@ public final class AzureOrbitalImpl implements AzureOrbital {
         this.endpoint = endpoint;
         this.apiVersion = "2022-11-01";
         this.operations = new OperationsClientImpl(this);
+        this.availableGroundStations = new AvailableGroundStationsClientImpl(this);
+        this.contactProfiles = new ContactProfilesClientImpl(this);
+        this.operationsResults = new OperationsResultsClientImpl(this);
         this.spacecrafts = new SpacecraftsClientImpl(this);
         this.contacts = new ContactsClientImpl(this);
-        this.contactProfiles = new ContactProfilesClientImpl(this);
-        this.availableGroundStations = new AvailableGroundStationsClientImpl(this);
-        this.operationsResults = new OperationsResultsClientImpl(this);
     }
 
     /**

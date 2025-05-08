@@ -54,6 +54,27 @@ public interface AzureOrbital {
     OperationsClient getOperations();
 
     /**
+     * Gets the AvailableGroundStationsClient object to access its operations.
+     * 
+     * @return the AvailableGroundStationsClient object.
+     */
+    AvailableGroundStationsClient getAvailableGroundStations();
+
+    /**
+     * Gets the ContactProfilesClient object to access its operations.
+     * 
+     * @return the ContactProfilesClient object.
+     */
+    ContactProfilesClient getContactProfiles();
+
+    /**
+     * Gets the OperationsResultsClient object to access its operations.
+     * 
+     * @return the OperationsResultsClient object.
+     */
+    OperationsResultsClient getOperationsResults();
+
+    /**
      * Gets the SpacecraftsClient object to access its operations.
      * 
      * @return the SpacecraftsClient object.
@@ -66,25 +87,4 @@ public interface AzureOrbital {
      * @return the ContactsClient object.
      */
     ContactsClient getContacts();
-
-    /**
-     * Gets the ContactProfilesClient object to access its operations.
-     * 
-     * @return the ContactProfilesClient object.
-     */
-    ContactProfilesClient getContactProfiles();
-
-    /**
-     * Gets the AvailableGroundStationsClient object to access its operations.
-     * 
-     * @return the AvailableGroundStationsClient object.
-     */
-    AvailableGroundStationsClient getAvailableGroundStations();
-
-    /**
-     * Gets the OperationsResultsClient object to access its operations.
-     * 
-     * @return the OperationsResultsClient object.
-     */
-    OperationsResultsClient getOperationsResults();
 }

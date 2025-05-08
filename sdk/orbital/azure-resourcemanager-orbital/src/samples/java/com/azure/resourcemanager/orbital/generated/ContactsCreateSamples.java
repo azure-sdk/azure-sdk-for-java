@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.orbital.generated;
 
-import com.azure.resourcemanager.orbital.models.ContactsPropertiesContactProfile;
+import com.azure.resourcemanager.orbital.models.ResourceReference;
 import java.time.OffsetDateTime;
 
 /**
@@ -27,7 +27,7 @@ public final class ContactsCreateSamples {
             .withReservationStartTime(OffsetDateTime.parse("2023-02-22T10:58:30Z"))
             .withReservationEndTime(OffsetDateTime.parse("2023-02-22T11:10:45Z"))
             .withGroundStationName("EASTUS2_0")
-            .withContactProfile(new ContactsPropertiesContactProfile().withId(
+            .withContactProfile(new ResourceReference().withId(
                 "/subscriptions/c1be1141-a7c9-4aac-9608-3c2e2f1152c3/resourceGroups/contoso-Rgp/providers/Microsoft.Orbital/contactProfiles/CONTOSO-CP"))
             .create();
     }

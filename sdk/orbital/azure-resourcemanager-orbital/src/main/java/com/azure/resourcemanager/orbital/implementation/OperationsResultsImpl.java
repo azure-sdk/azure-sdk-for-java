@@ -4,12 +4,15 @@
 
 package com.azure.resourcemanager.orbital.implementation;
 
+import com.azure.core.http.rest.Response;
+import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.orbital.fluent.OperationsResultsClient;
 import com.azure.resourcemanager.orbital.fluent.models.OperationResultInner;
 import com.azure.resourcemanager.orbital.models.OperationResult;
 import com.azure.resourcemanager.orbital.models.OperationsResults;
+import com.azure.resourcemanager.orbital.models.OperationsResultsGetResponse;
 
 public final class OperationsResultsImpl implements OperationsResults {
     private static final ClientLogger LOGGER = new ClientLogger(OperationsResultsImpl.class);
@@ -24,17 +27,18 @@ public final class OperationsResultsImpl implements OperationsResults {
         this.serviceManager = serviceManager;
     }
 
-    public OperationResult get(String location, String operationId) {
-        OperationResultInner inner = this.serviceClient().get(location, operationId);
+    public Response<OperationResult> getWithResponse(String location, String operationId, Context context) {
+        OperationsResultsGetResponse inner = this.serviceClient().getWithResponse(location, operationId, context);
         if (inner != null) {
-            return new OperationResultImpl(inner, this.manager());
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new OperationResultImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public OperationResult get(String location, String operationId, Context context) {
-        OperationResultInner inner = this.serviceClient().get(location, operationId, context);
+    public OperationResult get(String location, String operationId) {
+        OperationResultInner inner = this.serviceClient().get(location, operationId);
         if (inner != null) {
             return new OperationResultImpl(inner, this.manager());
         } else {

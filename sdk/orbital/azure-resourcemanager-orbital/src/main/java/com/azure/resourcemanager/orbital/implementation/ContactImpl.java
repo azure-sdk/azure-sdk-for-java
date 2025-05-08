@@ -9,9 +9,9 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.orbital.fluent.models.ContactInner;
 import com.azure.resourcemanager.orbital.models.Contact;
 import com.azure.resourcemanager.orbital.models.ContactsPropertiesAntennaConfiguration;
-import com.azure.resourcemanager.orbital.models.ContactsPropertiesContactProfile;
-import com.azure.resourcemanager.orbital.models.ContactsPropertiesProvisioningState;
 import com.azure.resourcemanager.orbital.models.ContactsStatus;
+import com.azure.resourcemanager.orbital.models.ProvisioningState;
+import com.azure.resourcemanager.orbital.models.ResourceReference;
 import java.time.OffsetDateTime;
 
 public final class ContactImpl implements Contact, Contact.Definition {
@@ -40,7 +40,7 @@ public final class ContactImpl implements Contact, Contact.Definition {
         return this.innerModel().systemData();
     }
 
-    public ContactsPropertiesProvisioningState provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
     }
 
@@ -104,7 +104,7 @@ public final class ContactImpl implements Contact, Contact.Definition {
         return this.innerModel().antennaConfiguration();
     }
 
-    public ContactsPropertiesContactProfile contactProfile() {
+    public ResourceReference contactProfile() {
         return this.innerModel().contactProfile();
     }
 
@@ -179,12 +179,12 @@ public final class ContactImpl implements Contact, Contact.Definition {
         return this;
     }
 
-    public ContactImpl withContactProfile(ContactsPropertiesContactProfile contactProfile) {
+    public ContactImpl withContactProfile(ResourceReference contactProfile) {
         this.innerModel().withContactProfile(contactProfile);
         return this;
     }
 
-    public ContactImpl withProvisioningState(ContactsPropertiesProvisioningState provisioningState) {
+    public ContactImpl withProvisioningState(ProvisioningState provisioningState) {
         this.innerModel().withProvisioningState(provisioningState);
         return this;
     }

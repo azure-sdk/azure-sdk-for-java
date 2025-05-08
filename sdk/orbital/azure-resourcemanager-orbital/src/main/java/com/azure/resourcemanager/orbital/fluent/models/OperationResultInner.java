@@ -15,6 +15,7 @@ import com.azure.resourcemanager.orbital.models.Status;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Operation Result Entity.
@@ -54,7 +55,7 @@ public final class OperationResultInner implements JsonSerializable<OperationRes
     /*
      * A list of results when the operation returns multiple results.
      */
-    private List<Object> value;
+    private List<Map<String, Object>> value;
 
     /*
      * The URL to get the next set of results.
@@ -64,7 +65,7 @@ public final class OperationResultInner implements JsonSerializable<OperationRes
     /*
      * Operation result properties.
      */
-    private Object properties;
+    private Map<String, Object> properties;
 
     /*
      * Operation result error properties.
@@ -136,7 +137,7 @@ public final class OperationResultInner implements JsonSerializable<OperationRes
      * 
      * @return the value value.
      */
-    public List<Object> value() {
+    public List<Map<String, Object>> value() {
         return this.value;
     }
 
@@ -154,7 +155,7 @@ public final class OperationResultInner implements JsonSerializable<OperationRes
      * 
      * @return the properties value.
      */
-    public Object properties() {
+    public Map<String, Object> properties() {
         return this.properties;
     }
 
@@ -164,7 +165,7 @@ public final class OperationResultInner implements JsonSerializable<OperationRes
      * @param properties the properties value to set.
      * @return the OperationResultInner object itself.
      */
-    public OperationResultInner withProperties(Object properties) {
+    public OperationResultInner withProperties(Map<String, Object> properties) {
         this.properties = properties;
         return this;
     }
@@ -206,7 +207,7 @@ public final class OperationResultInner implements JsonSerializable<OperationRes
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeUntypedField("properties", this.properties);
+        jsonWriter.writeMapField("properties", this.properties, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeJsonField("error", this.error);
         return jsonWriter.writeEndObject();
     }
@@ -241,12 +242,14 @@ public final class OperationResultInner implements JsonSerializable<OperationRes
                 } else if ("percentComplete".equals(fieldName)) {
                     deserializedOperationResultInner.percentComplete = reader.getNullable(JsonReader::getDouble);
                 } else if ("value".equals(fieldName)) {
-                    List<Object> value = reader.readArray(reader1 -> reader1.readUntyped());
+                    List<Map<String, Object>> value
+                        = reader.readArray(reader1 -> reader1.readMap(reader2 -> reader2.readUntyped()));
                     deserializedOperationResultInner.value = value;
                 } else if ("nextLink".equals(fieldName)) {
                     deserializedOperationResultInner.nextLink = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedOperationResultInner.properties = reader.readUntyped();
+                    Map<String, Object> properties = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedOperationResultInner.properties = properties;
                 } else if ("error".equals(fieldName)) {
                     deserializedOperationResultInner.error = OperationResultErrorProperties.fromJson(reader);
                 } else {

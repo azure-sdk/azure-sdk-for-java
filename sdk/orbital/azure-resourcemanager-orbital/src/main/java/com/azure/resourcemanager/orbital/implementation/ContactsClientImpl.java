@@ -74,8 +74,8 @@ public final class ContactsClientImpl implements ContactsClient {
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ContactListResult>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
             @PathParam("spacecraftName") String spacecraftName, @QueryParam("$skiptoken") String skiptoken,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -84,8 +84,8 @@ public final class ContactsClientImpl implements ContactsClient {
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ContactInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
             @PathParam("spacecraftName") String spacecraftName, @PathParam("contactName") String contactName,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -94,8 +94,8 @@ public final class ContactsClientImpl implements ContactsClient {
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> create(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
             @PathParam("spacecraftName") String spacecraftName, @PathParam("contactName") String contactName,
             @BodyParam("application/json") ContactInner parameters, @HeaderParam("Accept") String accept,
             Context context);
@@ -105,8 +105,8 @@ public final class ContactsClientImpl implements ContactsClient {
         @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
             @PathParam("spacecraftName") String spacecraftName, @PathParam("contactName") String contactName,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -130,8 +130,8 @@ public final class ContactsClientImpl implements ContactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContacts API service call along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return the response of a Contact list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ContactInner>> listSinglePageAsync(String resourceGroupName, String spacecraftName,
@@ -140,22 +140,21 @@ public final class ContactsClientImpl implements ContactsClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (spacecraftName == null) {
             return Mono.error(new IllegalArgumentException("Parameter spacecraftName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.list(this.client.getEndpoint(), resourceGroupName, this.client.getSubscriptionId(),
-                    this.client.getApiVersion(), spacecraftName, skiptoken, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, spacecraftName, skiptoken, accept, context))
             .<PagedResponse<ContactInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -174,8 +173,8 @@ public final class ContactsClientImpl implements ContactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContacts API service call along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return the response of a Contact list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ContactInner>> listSinglePageAsync(String resourceGroupName, String spacecraftName,
@@ -184,13 +183,13 @@ public final class ContactsClientImpl implements ContactsClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (spacecraftName == null) {
             return Mono.error(new IllegalArgumentException("Parameter spacecraftName is required and cannot be null."));
@@ -198,8 +197,8 @@ public final class ContactsClientImpl implements ContactsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), resourceGroupName, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), spacecraftName, skiptoken, accept, context)
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, spacecraftName, skiptoken, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -216,7 +215,7 @@ public final class ContactsClientImpl implements ContactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContacts API service call as paginated response with {@link PagedFlux}.
+     * @return the response of a Contact list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ContactInner> listAsync(String resourceGroupName, String spacecraftName, String skiptoken) {
@@ -232,7 +231,7 @@ public final class ContactsClientImpl implements ContactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContacts API service call as paginated response with {@link PagedFlux}.
+     * @return the response of a Contact list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ContactInner> listAsync(String resourceGroupName, String spacecraftName) {
@@ -254,7 +253,7 @@ public final class ContactsClientImpl implements ContactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContacts API service call as paginated response with {@link PagedFlux}.
+     * @return the response of a Contact list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ContactInner> listAsync(String resourceGroupName, String spacecraftName, String skiptoken,
@@ -271,7 +270,7 @@ public final class ContactsClientImpl implements ContactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContacts API service call as paginated response with {@link PagedIterable}.
+     * @return the response of a Contact list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ContactInner> list(String resourceGroupName, String spacecraftName) {
@@ -292,7 +291,7 @@ public final class ContactsClientImpl implements ContactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContacts API service call as paginated response with {@link PagedIterable}.
+     * @return the response of a Contact list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ContactInner> list(String resourceGroupName, String spacecraftName, String skiptoken,
@@ -319,13 +318,13 @@ public final class ContactsClientImpl implements ContactsClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (spacecraftName == null) {
             return Mono.error(new IllegalArgumentException("Parameter spacecraftName is required and cannot be null."));
@@ -335,9 +334,8 @@ public final class ContactsClientImpl implements ContactsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.get(this.client.getEndpoint(), resourceGroupName, this.client.getSubscriptionId(),
-                    this.client.getApiVersion(), spacecraftName, contactName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, spacecraftName, contactName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -361,13 +359,13 @@ public final class ContactsClientImpl implements ContactsClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (spacecraftName == null) {
             return Mono.error(new IllegalArgumentException("Parameter spacecraftName is required and cannot be null."));
@@ -377,8 +375,8 @@ public final class ContactsClientImpl implements ContactsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), resourceGroupName, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), spacecraftName, contactName, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, spacecraftName, contactName, accept, context);
     }
 
     /**
@@ -452,13 +450,13 @@ public final class ContactsClientImpl implements ContactsClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (spacecraftName == null) {
             return Mono.error(new IllegalArgumentException("Parameter spacecraftName is required and cannot be null."));
@@ -473,9 +471,9 @@ public final class ContactsClientImpl implements ContactsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.create(this.client.getEndpoint(), resourceGroupName, this.client.getSubscriptionId(),
-                    this.client.getApiVersion(), spacecraftName, contactName, parameters, accept, context))
+            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, spacecraftName, contactName, parameters, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -500,13 +498,13 @@ public final class ContactsClientImpl implements ContactsClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (spacecraftName == null) {
             return Mono.error(new IllegalArgumentException("Parameter spacecraftName is required and cannot be null."));
@@ -521,8 +519,8 @@ public final class ContactsClientImpl implements ContactsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), resourceGroupName, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), spacecraftName, contactName, parameters, accept, context);
+        return service.create(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, spacecraftName, contactName, parameters, accept, context);
     }
 
     /**
@@ -701,13 +699,13 @@ public final class ContactsClientImpl implements ContactsClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (spacecraftName == null) {
             return Mono.error(new IllegalArgumentException("Parameter spacecraftName is required and cannot be null."));
@@ -717,9 +715,8 @@ public final class ContactsClientImpl implements ContactsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.delete(this.client.getEndpoint(), resourceGroupName, this.client.getSubscriptionId(),
-                    this.client.getApiVersion(), spacecraftName, contactName, accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, spacecraftName, contactName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -742,13 +739,13 @@ public final class ContactsClientImpl implements ContactsClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (spacecraftName == null) {
             return Mono.error(new IllegalArgumentException("Parameter spacecraftName is required and cannot be null."));
@@ -758,8 +755,8 @@ public final class ContactsClientImpl implements ContactsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), resourceGroupName, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), spacecraftName, contactName, accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, spacecraftName, contactName, accept, context);
     }
 
     /**
@@ -912,8 +909,8 @@ public final class ContactsClientImpl implements ContactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContacts API service call along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return the response of a Contact list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ContactInner>> listNextSinglePageAsync(String nextLink) {
@@ -939,8 +936,8 @@ public final class ContactsClientImpl implements ContactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContacts API service call along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return the response of a Contact list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ContactInner>> listNextSinglePageAsync(String nextLink, Context context) {

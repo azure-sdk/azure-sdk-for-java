@@ -12,9 +12,9 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.orbital.models.ContactsPropertiesAntennaConfiguration;
-import com.azure.resourcemanager.orbital.models.ContactsPropertiesContactProfile;
-import com.azure.resourcemanager.orbital.models.ContactsPropertiesProvisioningState;
 import com.azure.resourcemanager.orbital.models.ContactsStatus;
+import com.azure.resourcemanager.orbital.models.ProvisioningState;
+import com.azure.resourcemanager.orbital.models.ResourceReference;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,7 +27,7 @@ public final class ContactsProperties implements JsonSerializable<ContactsProper
     /*
      * The current state of the resource's creation, deletion, or modification.
      */
-    private ContactsPropertiesProvisioningState provisioningState;
+    private ProvisioningState provisioningState;
 
     /*
      * Status of a contact.
@@ -107,7 +107,7 @@ public final class ContactsProperties implements JsonSerializable<ContactsProper
     /*
      * The reference to the contact profile resource.
      */
-    private ContactsPropertiesContactProfile contactProfile;
+    private ResourceReference contactProfile;
 
     /**
      * Creates an instance of ContactsProperties class.
@@ -120,7 +120,7 @@ public final class ContactsProperties implements JsonSerializable<ContactsProper
      * 
      * @return the provisioningState value.
      */
-    public ContactsPropertiesProvisioningState provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.provisioningState;
     }
 
@@ -130,7 +130,7 @@ public final class ContactsProperties implements JsonSerializable<ContactsProper
      * @param provisioningState the provisioningState value to set.
      * @return the ContactsProperties object itself.
      */
-    public ContactsProperties withProvisioningState(ContactsPropertiesProvisioningState provisioningState) {
+    public ContactsProperties withProvisioningState(ProvisioningState provisioningState) {
         this.provisioningState = provisioningState;
         return this;
     }
@@ -308,7 +308,7 @@ public final class ContactsProperties implements JsonSerializable<ContactsProper
      * 
      * @return the contactProfile value.
      */
-    public ContactsPropertiesContactProfile contactProfile() {
+    public ResourceReference contactProfile() {
         return this.contactProfile;
     }
 
@@ -318,7 +318,7 @@ public final class ContactsProperties implements JsonSerializable<ContactsProper
      * @param contactProfile the contactProfile value to set.
      * @return the ContactsProperties object itself.
      */
-    public ContactsProperties withContactProfile(ContactsPropertiesContactProfile contactProfile) {
+    public ContactsProperties withContactProfile(ResourceReference contactProfile) {
         this.contactProfile = contactProfile;
         return this;
     }
@@ -404,10 +404,9 @@ public final class ContactsProperties implements JsonSerializable<ContactsProper
                 } else if ("groundStationName".equals(fieldName)) {
                     deserializedContactsProperties.groundStationName = reader.getString();
                 } else if ("contactProfile".equals(fieldName)) {
-                    deserializedContactsProperties.contactProfile = ContactsPropertiesContactProfile.fromJson(reader);
+                    deserializedContactsProperties.contactProfile = ResourceReference.fromJson(reader);
                 } else if ("provisioningState".equals(fieldName)) {
-                    deserializedContactsProperties.provisioningState
-                        = ContactsPropertiesProvisioningState.fromString(reader.getString());
+                    deserializedContactsProperties.provisioningState = ProvisioningState.fromString(reader.getString());
                 } else if ("status".equals(fieldName)) {
                     deserializedContactsProperties.status = ContactsStatus.fromString(reader.getString());
                 } else if ("rxStartTime".equals(fieldName)) {

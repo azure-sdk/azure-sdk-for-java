@@ -11,6 +11,7 @@ import com.azure.resourcemanager.orbital.models.Status;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public final class OperationResultImpl implements OperationResult {
     private OperationResultInner innerObject;
@@ -47,8 +48,8 @@ public final class OperationResultImpl implements OperationResult {
         return this.innerModel().percentComplete();
     }
 
-    public List<Object> value() {
-        List<Object> inner = this.innerModel().value();
+    public List<Map<String, Object>> value() {
+        List<Map<String, Object>> inner = this.innerModel().value();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {
@@ -60,8 +61,13 @@ public final class OperationResultImpl implements OperationResult {
         return this.innerModel().nextLink();
     }
 
-    public Object properties() {
-        return this.innerModel().properties();
+    public Map<String, Object> properties() {
+        Map<String, Object> inner = this.innerModel().properties();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public OperationResultErrorProperties error() {

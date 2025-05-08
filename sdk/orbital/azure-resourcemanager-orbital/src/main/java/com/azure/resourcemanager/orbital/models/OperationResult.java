@@ -7,6 +7,7 @@ package com.azure.resourcemanager.orbital.models;
 import com.azure.resourcemanager.orbital.fluent.models.OperationResultInner;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * An immutable client-side representation of OperationResult.
@@ -59,7 +60,7 @@ public interface OperationResult {
      * 
      * @return the value value.
      */
-    List<Object> value();
+    List<Map<String, Object>> value();
 
     /**
      * Gets the nextLink property: The URL to get the next set of results.
@@ -73,7 +74,7 @@ public interface OperationResult {
      * 
      * @return the properties value.
      */
-    Object properties();
+    Map<String, Object> properties();
 
     /**
      * Gets the error property: Operation result error properties.

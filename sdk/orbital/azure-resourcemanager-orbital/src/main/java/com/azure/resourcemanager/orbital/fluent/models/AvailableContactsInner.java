@@ -9,7 +9,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.orbital.models.AvailableContactsSpacecraft;
+import com.azure.resourcemanager.orbital.models.ResourceReference;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 
@@ -22,7 +22,7 @@ public final class AvailableContactsInner implements JsonSerializable<AvailableC
     /*
      * The reference to the spacecraft resource.
      */
-    private AvailableContactsSpacecraft spacecraft;
+    private ResourceReference spacecraft;
 
     /*
      * Name of Azure Ground Station.
@@ -32,7 +32,7 @@ public final class AvailableContactsInner implements JsonSerializable<AvailableC
     /*
      * Properties of Contact resource.
      */
-    private AvailableContactsProperties innerProperties;
+    private ContactInstanceProperties innerProperties;
 
     /**
      * Creates an instance of AvailableContactsInner class.
@@ -45,7 +45,7 @@ public final class AvailableContactsInner implements JsonSerializable<AvailableC
      * 
      * @return the spacecraft value.
      */
-    public AvailableContactsSpacecraft spacecraft() {
+    public ResourceReference spacecraft() {
         return this.spacecraft;
     }
 
@@ -55,7 +55,7 @@ public final class AvailableContactsInner implements JsonSerializable<AvailableC
      * @param spacecraft the spacecraft value to set.
      * @return the AvailableContactsInner object itself.
      */
-    public AvailableContactsInner withSpacecraft(AvailableContactsSpacecraft spacecraft) {
+    public AvailableContactsInner withSpacecraft(ResourceReference spacecraft) {
         this.spacecraft = spacecraft;
         return this;
     }
@@ -74,7 +74,7 @@ public final class AvailableContactsInner implements JsonSerializable<AvailableC
      * 
      * @return the innerProperties value.
      */
-    private AvailableContactsProperties innerProperties() {
+    private ContactInstanceProperties innerProperties() {
         return this.innerProperties;
     }
 
@@ -200,11 +200,11 @@ public final class AvailableContactsInner implements JsonSerializable<AvailableC
                 reader.nextToken();
 
                 if ("spacecraft".equals(fieldName)) {
-                    deserializedAvailableContactsInner.spacecraft = AvailableContactsSpacecraft.fromJson(reader);
+                    deserializedAvailableContactsInner.spacecraft = ResourceReference.fromJson(reader);
                 } else if ("groundStationName".equals(fieldName)) {
                     deserializedAvailableContactsInner.groundStationName = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedAvailableContactsInner.innerProperties = AvailableContactsProperties.fromJson(reader);
+                    deserializedAvailableContactsInner.innerProperties = ContactInstanceProperties.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

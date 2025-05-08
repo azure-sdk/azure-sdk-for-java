@@ -23,7 +23,7 @@ public final class ContactParameters implements JsonSerializable<ContactParamete
     /*
      * The reference to the contact profile resource.
      */
-    private ContactParametersContactProfile contactProfile;
+    private ResourceReference contactProfile;
 
     /*
      * Name of Azure Ground Station.
@@ -51,7 +51,7 @@ public final class ContactParameters implements JsonSerializable<ContactParamete
      * 
      * @return the contactProfile value.
      */
-    public ContactParametersContactProfile contactProfile() {
+    public ResourceReference contactProfile() {
         return this.contactProfile;
     }
 
@@ -61,7 +61,7 @@ public final class ContactParameters implements JsonSerializable<ContactParamete
      * @param contactProfile the contactProfile value to set.
      * @return the ContactParameters object itself.
      */
-    public ContactParameters withContactProfile(ContactParametersContactProfile contactProfile) {
+    public ContactParameters withContactProfile(ResourceReference contactProfile) {
         this.contactProfile = contactProfile;
         return this;
     }
@@ -188,7 +188,7 @@ public final class ContactParameters implements JsonSerializable<ContactParamete
                 reader.nextToken();
 
                 if ("contactProfile".equals(fieldName)) {
-                    deserializedContactParameters.contactProfile = ContactParametersContactProfile.fromJson(reader);
+                    deserializedContactParameters.contactProfile = ResourceReference.fromJson(reader);
                 } else if ("groundStationName".equals(fieldName)) {
                     deserializedContactParameters.groundStationName = reader.getString();
                 } else if ("startTime".equals(fieldName)) {

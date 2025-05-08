@@ -73,12 +73,29 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
     @ServiceInterface(name = "AzureOrbitalContactP")
     public interface ContactProfilesService {
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/contactProfiles")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ContactProfileListResult>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("$skiptoken") String skiptoken, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/contactProfiles")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ContactProfileListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("$skiptoken") String skiptoken,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/contactProfiles/{contactProfileName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ContactProfileInner>> getByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
             @PathParam("contactProfileName") String contactProfileName, @HeaderParam("Accept") String accept,
             Context context);
 
@@ -87,20 +104,10 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
             @PathParam("contactProfileName") String contactProfileName,
             @BodyParam("application/json") ContactProfileInner parameters, @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/contactProfiles/{contactProfileName}")
-        @ExpectedResponses({ 200, 202, 204 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
-            @PathParam("contactProfileName") String contactProfileName, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -108,28 +115,21 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> updateTags(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
             @PathParam("contactProfileName") String contactProfileName,
             @BodyParam("application/json") TagsObject parameters, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/contactProfiles")
-        @ExpectedResponses({ 200 })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/contactProfiles/{contactProfileName}")
+        @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ContactProfileListResult>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
-            @QueryParam("$skiptoken") String skiptoken, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/contactProfiles")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ContactProfileListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
-            @QueryParam("$skiptoken") String skiptoken, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("contactProfileName") String contactProfileName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -146,6 +146,321 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
         Mono<Response<ContactProfileListResult>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
+    }
+
+    /**
+     * Returns list of contact profiles by Subscription.
+     * 
+     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
+     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
+     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
+     * use for subsequent calls.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ContactProfile list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ContactProfileInner>> listSinglePageAsync(String skiptoken) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), skiptoken, accept, context))
+            .<PagedResponse<ContactProfileInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Returns list of contact profiles by Subscription.
+     * 
+     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
+     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
+     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
+     * use for subsequent calls.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ContactProfile list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ContactProfileInner>> listSinglePageAsync(String skiptoken, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), skiptoken,
+                accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Returns list of contact profiles by Subscription.
+     * 
+     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
+     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
+     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
+     * use for subsequent calls.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ContactProfile list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ContactProfileInner> listAsync(String skiptoken) {
+        return new PagedFlux<>(() -> listSinglePageAsync(skiptoken),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Returns list of contact profiles by Subscription.
+     * 
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ContactProfile list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ContactProfileInner> listAsync() {
+        final String skiptoken = null;
+        return new PagedFlux<>(() -> listSinglePageAsync(skiptoken),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Returns list of contact profiles by Subscription.
+     * 
+     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
+     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
+     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
+     * use for subsequent calls.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ContactProfile list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ContactProfileInner> listAsync(String skiptoken, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(skiptoken, context),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Returns list of contact profiles by Subscription.
+     * 
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ContactProfile list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ContactProfileInner> list() {
+        final String skiptoken = null;
+        return new PagedIterable<>(listAsync(skiptoken));
+    }
+
+    /**
+     * Returns list of contact profiles by Subscription.
+     * 
+     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
+     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
+     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
+     * use for subsequent calls.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ContactProfile list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ContactProfileInner> list(String skiptoken, Context context) {
+        return new PagedIterable<>(listAsync(skiptoken, context));
+    }
+
+    /**
+     * Returns list of contact profiles by Resource Group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
+     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
+     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
+     * use for subsequent calls.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ContactProfile list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ContactProfileInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        String skiptoken) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, skiptoken, accept, context))
+            .<PagedResponse<ContactProfileInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Returns list of contact profiles by Resource Group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
+     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
+     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
+     * use for subsequent calls.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ContactProfile list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<ContactProfileInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        String skiptoken, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, skiptoken, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Returns list of contact profiles by Resource Group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
+     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
+     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
+     * use for subsequent calls.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ContactProfile list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ContactProfileInner> listByResourceGroupAsync(String resourceGroupName, String skiptoken) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, skiptoken),
+            nextLink -> listNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Returns list of contact profiles by Resource Group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ContactProfile list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ContactProfileInner> listByResourceGroupAsync(String resourceGroupName) {
+        final String skiptoken = null;
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, skiptoken),
+            nextLink -> listNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Returns list of contact profiles by Resource Group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
+     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
+     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
+     * use for subsequent calls.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ContactProfile list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ContactProfileInner> listByResourceGroupAsync(String resourceGroupName, String skiptoken,
+        Context context) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, skiptoken, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Returns list of contact profiles by Resource Group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ContactProfile list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ContactProfileInner> listByResourceGroup(String resourceGroupName) {
+        final String skiptoken = null;
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, skiptoken));
+    }
+
+    /**
+     * Returns list of contact profiles by Resource Group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
+     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
+     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
+     * use for subsequent calls.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ContactProfile list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<ContactProfileInner> listByResourceGroup(String resourceGroupName, String skiptoken,
+        Context context) {
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, skiptoken, context));
     }
 
     /**
@@ -166,13 +481,13 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (contactProfileName == null) {
             return Mono
@@ -180,8 +495,8 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), resourceGroupName,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), contactProfileName, accept, context))
+            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, contactProfileName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -204,13 +519,13 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (contactProfileName == null) {
             return Mono
@@ -218,8 +533,8 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getByResourceGroup(this.client.getEndpoint(), resourceGroupName, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), contactProfileName, accept, context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, contactProfileName, accept, context);
     }
 
     /**
@@ -289,13 +604,13 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (contactProfileName == null) {
             return Mono
@@ -308,9 +623,8 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), resourceGroupName,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), contactProfileName, parameters, accept,
-                context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, contactProfileName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -334,13 +648,13 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (contactProfileName == null) {
             return Mono
@@ -353,8 +667,8 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), contactProfileName, parameters, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, contactProfileName, parameters, accept, context);
     }
 
     /**
@@ -516,209 +830,6 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
     }
 
     /**
-     * Deletes a specified contact profile resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param contactProfileName Contact Profile name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String contactProfileName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (contactProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter contactProfileName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), resourceGroupName,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), contactProfileName, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Deletes a specified contact profile resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param contactProfileName Contact Profile name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String contactProfileName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (contactProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter contactProfileName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), resourceGroupName, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), contactProfileName, accept, context);
-    }
-
-    /**
-     * Deletes a specified contact profile resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param contactProfileName Contact Profile name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String contactProfileName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, contactProfileName);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Deletes a specified contact profile resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param contactProfileName Contact Profile name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String contactProfileName,
-        Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, contactProfileName, context);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            context);
-    }
-
-    /**
-     * Deletes a specified contact profile resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param contactProfileName Contact Profile name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String contactProfileName) {
-        return this.beginDeleteAsync(resourceGroupName, contactProfileName).getSyncPoller();
-    }
-
-    /**
-     * Deletes a specified contact profile resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param contactProfileName Contact Profile name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String contactProfileName,
-        Context context) {
-        return this.beginDeleteAsync(resourceGroupName, contactProfileName, context).getSyncPoller();
-    }
-
-    /**
-     * Deletes a specified contact profile resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param contactProfileName Contact Profile name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String contactProfileName) {
-        return beginDeleteAsync(resourceGroupName, contactProfileName).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Deletes a specified contact profile resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param contactProfileName Contact Profile name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String contactProfileName, Context context) {
-        return beginDeleteAsync(resourceGroupName, contactProfileName, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Deletes a specified contact profile resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param contactProfileName Contact Profile name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String contactProfileName) {
-        deleteAsync(resourceGroupName, contactProfileName).block();
-    }
-
-    /**
-     * Deletes a specified contact profile resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param contactProfileName Contact Profile name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String contactProfileName, Context context) {
-        deleteAsync(resourceGroupName, contactProfileName, context).block();
-    }
-
-    /**
      * Updates the specified contact profile tags.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -737,13 +848,13 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (contactProfileName == null) {
             return Mono
@@ -756,9 +867,8 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.updateTags(this.client.getEndpoint(), resourceGroupName,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), contactProfileName, parameters, accept,
-                context))
+            .withContext(context -> service.updateTags(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, contactProfileName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -782,13 +892,13 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (contactProfileName == null) {
             return Mono
@@ -801,8 +911,8 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.updateTags(this.client.getEndpoint(), resourceGroupName, this.client.getSubscriptionId(),
-            this.client.getApiVersion(), contactProfileName, parameters, accept, context);
+        return service.updateTags(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, contactProfileName, parameters, accept, context);
     }
 
     /**
@@ -962,318 +1072,206 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
     }
 
     /**
-     * Returns list of contact profiles by Subscription.
-     * 
-     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
-     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
-     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
-     * use for subsequent calls.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ContactProfileInner>> listSinglePageAsync(String skiptoken) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                this.client.getApiVersion(), skiptoken, accept, context))
-            .<PagedResponse<ContactProfileInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Returns list of contact profiles by Subscription.
-     * 
-     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
-     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
-     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
-     * use for subsequent calls.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ContactProfileInner>> listSinglePageAsync(String skiptoken, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), skiptoken,
-                accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Returns list of contact profiles by Subscription.
-     * 
-     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
-     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
-     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
-     * use for subsequent calls.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ContactProfileInner> listAsync(String skiptoken) {
-        return new PagedFlux<>(() -> listSinglePageAsync(skiptoken),
-            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Returns list of contact profiles by Subscription.
-     * 
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ContactProfileInner> listAsync() {
-        final String skiptoken = null;
-        return new PagedFlux<>(() -> listSinglePageAsync(skiptoken),
-            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Returns list of contact profiles by Subscription.
-     * 
-     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
-     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
-     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
-     * use for subsequent calls.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ContactProfileInner> listAsync(String skiptoken, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(skiptoken, context),
-            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Returns list of contact profiles by Subscription.
-     * 
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ContactProfileInner> list() {
-        final String skiptoken = null;
-        return new PagedIterable<>(listAsync(skiptoken));
-    }
-
-    /**
-     * Returns list of contact profiles by Subscription.
-     * 
-     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
-     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
-     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
-     * use for subsequent calls.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ContactProfileInner> list(String skiptoken, Context context) {
-        return new PagedIterable<>(listAsync(skiptoken, context));
-    }
-
-    /**
-     * Returns list of contact profiles by Resource Group.
+     * Deletes a specified contact profile resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
-     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
-     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
-     * use for subsequent calls.
+     * @param contactProfileName Contact Profile name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ContactProfileInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
-        String skiptoken) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String contactProfileName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        if (contactProfileName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter contactProfileName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), resourceGroupName,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), skiptoken, accept, context))
-            .<PagedResponse<ContactProfileInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, contactProfileName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Returns list of contact profiles by Resource Group.
+     * Deletes a specified contact profile resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
-     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
-     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
-     * use for subsequent calls.
+     * @param contactProfileName Contact Profile name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ContactProfileInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
-        String skiptoken, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String contactProfileName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        if (contactProfileName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter contactProfileName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroup(this.client.getEndpoint(), resourceGroupName, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), skiptoken, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, contactProfileName, accept, context);
     }
 
     /**
-     * Returns list of contact profiles by Resource Group.
+     * Deletes a specified contact profile resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
-     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
-     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
-     * use for subsequent calls.
+     * @param contactProfileName Contact Profile name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call as paginated response with {@link PagedFlux}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ContactProfileInner> listByResourceGroupAsync(String resourceGroupName, String skiptoken) {
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, skiptoken),
-            nextLink -> listNextSinglePageAsync(nextLink));
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String contactProfileName) {
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, contactProfileName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
-     * Returns list of contact profiles by Resource Group.
+     * Deletes a specified contact profile resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ContactProfileInner> listByResourceGroupAsync(String resourceGroupName) {
-        final String skiptoken = null;
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, skiptoken),
-            nextLink -> listNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Returns list of contact profiles by Resource Group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
-     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
-     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
-     * use for subsequent calls.
+     * @param contactProfileName Contact Profile name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call as paginated response with {@link PagedFlux}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ContactProfileInner> listByResourceGroupAsync(String resourceGroupName, String skiptoken,
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String contactProfileName,
         Context context) {
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, skiptoken, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, contactProfileName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
-     * Returns list of contact profiles by Resource Group.
+     * Deletes a specified contact profile resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param contactProfileName Contact Profile name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call as paginated response with {@link PagedIterable}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ContactProfileInner> listByResourceGroup(String resourceGroupName) {
-        final String skiptoken = null;
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, skiptoken));
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String contactProfileName) {
+        return this.beginDeleteAsync(resourceGroupName, contactProfileName).getSyncPoller();
     }
 
     /**
-     * Returns list of contact profiles by Resource Group.
+     * Deletes a specified contact profile resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param skiptoken An opaque string that the resource provider uses to skip over previously-returned results. This
-     * is used when a previous list operation call returned a partial result. If a previous response contains a nextLink
-     * element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to
-     * use for subsequent calls.
+     * @param contactProfileName Contact Profile name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call as paginated response with {@link PagedIterable}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ContactProfileInner> listByResourceGroup(String resourceGroupName, String skiptoken,
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String contactProfileName,
         Context context) {
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, skiptoken, context));
+        return this.beginDeleteAsync(resourceGroupName, contactProfileName, context).getSyncPoller();
+    }
+
+    /**
+     * Deletes a specified contact profile resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param contactProfileName Contact Profile name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String contactProfileName) {
+        return beginDeleteAsync(resourceGroupName, contactProfileName).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Deletes a specified contact profile resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param contactProfileName Contact Profile name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String contactProfileName, Context context) {
+        return beginDeleteAsync(resourceGroupName, contactProfileName, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Deletes a specified contact profile resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param contactProfileName Contact Profile name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String contactProfileName) {
+        deleteAsync(resourceGroupName, contactProfileName).block();
+    }
+
+    /**
+     * Deletes a specified contact profile resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param contactProfileName Contact Profile name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String contactProfileName, Context context) {
+        deleteAsync(resourceGroupName, contactProfileName, context).block();
     }
 
     /**
@@ -1283,8 +1281,8 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return the response of a ContactProfile list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ContactProfileInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -1312,8 +1310,8 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return the response of a ContactProfile list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ContactProfileInner>> listBySubscriptionNextSinglePageAsync(String nextLink,
@@ -1339,8 +1337,8 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return the response of a ContactProfile list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ContactProfileInner>> listNextSinglePageAsync(String nextLink) {
@@ -1366,8 +1364,8 @@ public final class ContactProfilesClientImpl implements ContactProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListContactProfiles API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return the response of a ContactProfile list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ContactProfileInner>> listNextSinglePageAsync(String nextLink, Context context) {

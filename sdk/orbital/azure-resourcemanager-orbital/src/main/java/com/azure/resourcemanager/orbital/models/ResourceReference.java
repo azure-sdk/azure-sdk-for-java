@@ -16,7 +16,7 @@ import java.io.IOException;
  * Resource Reference.
  */
 @Fluent
-public class ResourceReference implements JsonSerializable<ResourceReference> {
+public final class ResourceReference implements JsonSerializable<ResourceReference> {
     /*
      * Resource ID.
      */

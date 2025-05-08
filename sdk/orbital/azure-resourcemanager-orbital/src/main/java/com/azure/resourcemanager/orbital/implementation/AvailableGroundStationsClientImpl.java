@@ -68,7 +68,7 @@ public final class AvailableGroundStationsClientImpl implements AvailableGroundS
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AvailableGroundStationListResult>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @QueryParam("capability") CapabilityParameter capability, @HeaderParam("Accept") String accept,
             Context context);
 
@@ -88,8 +88,8 @@ public final class AvailableGroundStationsClientImpl implements AvailableGroundS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the AvailableGroundStations API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return ground Stations available to schedule Contacts along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AvailableGroundStationInner>> listSinglePageAsync(CapabilityParameter capability) {
@@ -106,8 +106,8 @@ public final class AvailableGroundStationsClientImpl implements AvailableGroundS
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                this.client.getApiVersion(), capability, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), capability, accept, context))
             .<PagedResponse<AvailableGroundStationInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -121,8 +121,8 @@ public final class AvailableGroundStationsClientImpl implements AvailableGroundS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the AvailableGroundStations API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return ground Stations available to schedule Contacts along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AvailableGroundStationInner>> listSinglePageAsync(CapabilityParameter capability,
@@ -141,7 +141,7 @@ public final class AvailableGroundStationsClientImpl implements AvailableGroundS
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), capability,
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), capability,
                 accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
@@ -154,7 +154,7 @@ public final class AvailableGroundStationsClientImpl implements AvailableGroundS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the AvailableGroundStations API service call as paginated response with {@link PagedFlux}.
+     * @return ground Stations available to schedule Contacts as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AvailableGroundStationInner> listAsync(CapabilityParameter capability) {
@@ -170,7 +170,7 @@ public final class AvailableGroundStationsClientImpl implements AvailableGroundS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the AvailableGroundStations API service call as paginated response with {@link PagedFlux}.
+     * @return ground Stations available to schedule Contacts as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AvailableGroundStationInner> listAsync(CapabilityParameter capability, Context context) {
@@ -185,8 +185,7 @@ public final class AvailableGroundStationsClientImpl implements AvailableGroundS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the AvailableGroundStations API service call as paginated response with
-     * {@link PagedIterable}.
+     * @return ground Stations available to schedule Contacts as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AvailableGroundStationInner> list(CapabilityParameter capability) {
@@ -201,8 +200,7 @@ public final class AvailableGroundStationsClientImpl implements AvailableGroundS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the AvailableGroundStations API service call as paginated response with
-     * {@link PagedIterable}.
+     * @return ground Stations available to schedule Contacts as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AvailableGroundStationInner> list(CapabilityParameter capability, Context context) {
@@ -216,8 +214,8 @@ public final class AvailableGroundStationsClientImpl implements AvailableGroundS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the AvailableGroundStations API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return ground Stations available to schedule Contacts along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AvailableGroundStationInner>> listByCapabilityNextSinglePageAsync(String nextLink) {
@@ -244,8 +242,8 @@ public final class AvailableGroundStationsClientImpl implements AvailableGroundS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the AvailableGroundStations API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return ground Stations available to schedule Contacts along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AvailableGroundStationInner>> listByCapabilityNextSinglePageAsync(String nextLink,

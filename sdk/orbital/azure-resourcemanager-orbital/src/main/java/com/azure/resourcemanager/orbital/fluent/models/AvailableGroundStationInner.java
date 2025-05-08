@@ -14,7 +14,7 @@ import com.azure.resourcemanager.orbital.models.ReleaseMode;
 import java.io.IOException;
 
 /**
- * Ground Stations available to schedule Contacts.
+ * The AvailableGroundStation model.
  */
 @Fluent
 public final class AvailableGroundStationInner implements JsonSerializable<AvailableGroundStationInner> {
