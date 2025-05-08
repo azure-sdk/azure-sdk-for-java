@@ -11,6 +11,9 @@
 - [CheckNameAvailability](#accounts_checknameavailability)
 - [CreateOrUpdate](#accounts_createorupdate)
 - [Delete](#accounts_delete)
+- [GetByResourceGroup](#accounts_getbyresourcegroup)
+- [List](#accounts_list)
+- [ListByResourceGroup](#accounts_listbyresourcegroup)
 - [Update](#accounts_update)
 
 ## Operations
@@ -24,24 +27,46 @@
 ### AccountQuotas_Get
 
 ```java
-import com.azure.resourcemanager.playwrighttesting.models.QuotaNames;
+import com.azure.resourcemanager.playwrighttesting.models.Account;
+import com.azure.resourcemanager.playwrighttesting.models.AccountUpdateProperties;
+import com.azure.resourcemanager.playwrighttesting.models.EnablementStatus;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Samples for AccountQuotas Get.
+ * Samples for Accounts Update.
  */
-public final class AccountQuotasGetSamples {
+public final class AccountsUpdateSamples {
     /*
-     * x-ms-original-file: 2024-12-01/AccountQuotas_Get.json
+     * x-ms-original-file:
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/stable/2024-12-01/examples/
+     * Accounts_Update.json
      */
     /**
-     * Sample code: AccountQuotas_Get.
+     * Sample code: Accounts_Update.
      * 
      * @param manager Entry point to PlaywrightTestingManager.
      */
-    public static void accountQuotasGet(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
-        manager.accountQuotas()
-            .getWithResponse("dummyrg", "myPlaywrightAccount", QuotaNames.SCALABLE_EXECUTION,
-                com.azure.core.util.Context.NONE);
+    public static void accountsUpdate(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
+        Account resource = manager.accounts()
+            .getByResourceGroupWithResponse("dummyrg", "myPlaywrightAccount", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("Division", "LT", "Team", "Dev Exp"))
+            .withProperties(new AccountUpdateProperties().withRegionalAffinity(EnablementStatus.ENABLED))
+            .apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
@@ -50,25 +75,50 @@ public final class AccountQuotasGetSamples {
 
 ```java
 /**
- * Samples for AccountQuotas ListByAccount.
+ * Samples for Accounts List.
  */
-public final class AccountQuotasListByAccountSamples {
+public final class AccountsListSamples {
     /*
-     * x-ms-original-file: 2024-12-01/AccountQuotas_ListByAccount.json
+     * x-ms-original-file:
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/stable/2024-12-01/examples/
+     * Accounts_ListBySubscription.json
      */
     /**
-     * Sample code: AccountQuotas_ListByAccount.
+     * Sample code: Accounts_ListBySubscription.
      * 
      * @param manager Entry point to PlaywrightTestingManager.
      */
     public static void
-        accountQuotasListByAccount(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
-        manager.accountQuotas().listByAccount("dummyrg", "myPlaywrightAccount", com.azure.core.util.Context.NONE);
+        accountsListBySubscription(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
+        manager.accounts().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### Accounts_CheckNameAvailability
+
+```java
+/**
+ * Samples for Accounts Delete.
+ */
+public final class AccountsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/stable/2024-12-01/examples/
+     * Accounts_Delete.json
+     */
+    /**
+     * Sample code: Accounts_Delete.
+     * 
+     * @param manager Entry point to PlaywrightTestingManager.
+     */
+    public static void accountsDelete(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
+        manager.accounts().delete("dummyrg", "myPlaywrightAccount", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Accounts_CreateOrUpdate
 
 ```java
 import com.azure.resourcemanager.playwrighttesting.models.CheckNameAvailabilityRequest;
@@ -78,7 +128,9 @@ import com.azure.resourcemanager.playwrighttesting.models.CheckNameAvailabilityR
  */
 public final class AccountsCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: 2024-12-01/Accounts_CheckNameAvailability.json
+     * x-ms-original-file:
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/stable/2024-12-01/examples/
+     * Accounts_CheckNameAvailability.json
      */
     /**
      * Sample code: Accounts_CheckNameAvailability.
@@ -94,7 +146,127 @@ public final class AccountsCheckNameAvailabilitySamples {
 }
 ```
 
-### Accounts_CreateOrUpdate
+### Accounts_Delete
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/stable/2024-12-01/examples/
+     * Operations_List.json
+     */
+    /**
+     * Sample code: Operations_List.
+     * 
+     * @param manager Entry point to PlaywrightTestingManager.
+     */
+    public static void operationsList(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Accounts_GetByResourceGroup
+
+```java
+/**
+ * Samples for Quotas ListBySubscription.
+ */
+public final class QuotasListBySubscriptionSamples {
+    /*
+     * x-ms-original-file:
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/stable/2024-12-01/examples/
+     * Quotas_ListBySubscription.json
+     */
+    /**
+     * Sample code: Quotas_ListBySubscription.
+     * 
+     * @param manager Entry point to PlaywrightTestingManager.
+     */
+    public static void
+        quotasListBySubscription(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
+        manager.quotas().listBySubscription("eastus", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Accounts_List
+
+```java
+import com.azure.resourcemanager.playwrighttesting.models.QuotaNames;
+
+/**
+ * Samples for Quotas Get.
+ */
+public final class QuotasGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/stable/2024-12-01/examples/
+     * Quotas_Get.json
+     */
+    /**
+     * Sample code: Quotas_Get.
+     * 
+     * @param manager Entry point to PlaywrightTestingManager.
+     */
+    public static void quotasGet(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
+        manager.quotas().getWithResponse("eastus", QuotaNames.SCALABLE_EXECUTION, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Accounts_ListByResourceGroup
+
+```java
+/**
+ * Samples for AccountQuotas ListByAccount.
+ */
+public final class AccountQuotasListByAccountSamples {
+    /*
+     * x-ms-original-file:
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/stable/2024-12-01/examples/
+     * AccountQuotas_ListByAccount.json
+     */
+    /**
+     * Sample code: AccountQuotas_ListByAccount.
+     * 
+     * @param manager Entry point to PlaywrightTestingManager.
+     */
+    public static void
+        accountQuotasListByAccount(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
+        manager.accountQuotas().listByAccount("dummyrg", "myPlaywrightAccount", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Accounts_Update
+
+```java
+/**
+ * Samples for Accounts ListByResourceGroup.
+ */
+public final class AccountsListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/stable/2024-12-01/examples/
+     * Accounts_ListByResourceGroup.json
+     */
+    /**
+     * Sample code: Accounts_ListByResourceGroup.
+     * 
+     * @param manager Entry point to PlaywrightTestingManager.
+     */
+    public static void
+        accountsListByResourceGroup(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
+        manager.accounts().listByResourceGroup("dummyrg", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
 
 ```java
 import com.azure.resourcemanager.playwrighttesting.models.AccountProperties;
@@ -107,7 +279,9 @@ import java.util.Map;
  */
 public final class AccountsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-12-01/Accounts_CreateOrUpdate.json
+     * x-ms-original-file:
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/stable/2024-12-01/examples/
+     * Accounts_CreateOrUpdate.json
      */
     /**
      * Sample code: Accounts_CreateOrUpdate.
@@ -139,112 +313,26 @@ public final class AccountsCreateOrUpdateSamples {
 }
 ```
 
-### Accounts_Delete
-
-```java
-/**
- * Samples for Accounts Delete.
- */
-public final class AccountsDeleteSamples {
-    /*
-     * x-ms-original-file: 2024-12-01/Accounts_Delete.json
-     */
-    /**
-     * Sample code: Accounts_Delete.
-     * 
-     * @param manager Entry point to PlaywrightTestingManager.
-     */
-    public static void accountsDelete(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
-        manager.accounts().delete("dummyrg", "myPlaywrightAccount", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Accounts_Update
-
-```java
-import com.azure.resourcemanager.playwrighttesting.models.Account;
-import com.azure.resourcemanager.playwrighttesting.models.AccountUpdateProperties;
-import com.azure.resourcemanager.playwrighttesting.models.EnablementStatus;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for Accounts Update.
- */
-public final class AccountsUpdateSamples {
-    /*
-     * x-ms-original-file: 2024-12-01/Accounts_Update.json
-     */
-    /**
-     * Sample code: Accounts_Update.
-     * 
-     * @param manager Entry point to PlaywrightTestingManager.
-     */
-    public static void accountsUpdate(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
-        Account resource = manager.accounts()
-            .getByResourceGroupWithResponse("dummyrg", "myPlaywrightAccount", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update()
-            .withTags(mapOf("Team", "Dev Exp", "Division", "LT"))
-            .withProperties(new AccountUpdateProperties().withRegionalAffinity(EnablementStatus.ENABLED))
-            .apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file: 2024-12-01/Operations_List.json
-     */
-    /**
-     * Sample code: Operations_List.
-     * 
-     * @param manager Entry point to PlaywrightTestingManager.
-     */
-    public static void operationsList(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Quotas_Get
 
 ```java
-import com.azure.resourcemanager.playwrighttesting.models.QuotaNames;
-
 /**
- * Samples for Quotas Get.
+ * Samples for Accounts GetByResourceGroup.
  */
-public final class QuotasGetSamples {
+public final class AccountsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-12-01/Quotas_Get.json
+     * x-ms-original-file:
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/stable/2024-12-01/examples/
+     * Accounts_Get.json
      */
     /**
-     * Sample code: Quotas_Get.
+     * Sample code: Accounts_Get.
      * 
      * @param manager Entry point to PlaywrightTestingManager.
      */
-    public static void quotasGet(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
-        manager.quotas().getWithResponse("eastus", QuotaNames.SCALABLE_EXECUTION, com.azure.core.util.Context.NONE);
+    public static void accountsGet(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
+        manager.accounts()
+            .getByResourceGroupWithResponse("dummyrg", "myPlaywrightAccount", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -252,21 +340,26 @@ public final class QuotasGetSamples {
 ### Quotas_ListBySubscription
 
 ```java
+import com.azure.resourcemanager.playwrighttesting.models.QuotaNames;
+
 /**
- * Samples for Quotas ListBySubscription.
+ * Samples for AccountQuotas Get.
  */
-public final class QuotasListBySubscriptionSamples {
+public final class AccountQuotasGetSamples {
     /*
-     * x-ms-original-file: 2024-12-01/Quotas_ListBySubscription.json
+     * x-ms-original-file:
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/stable/2024-12-01/examples/
+     * AccountQuotas_Get.json
      */
     /**
-     * Sample code: Quotas_ListBySubscription.
+     * Sample code: AccountQuotas_Get.
      * 
      * @param manager Entry point to PlaywrightTestingManager.
      */
-    public static void
-        quotasListBySubscription(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
-        manager.quotas().listBySubscription("eastus", com.azure.core.util.Context.NONE);
+    public static void accountQuotasGet(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
+        manager.accountQuotas()
+            .getWithResponse("dummyrg", "myPlaywrightAccount", QuotaNames.SCALABLE_EXECUTION,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
