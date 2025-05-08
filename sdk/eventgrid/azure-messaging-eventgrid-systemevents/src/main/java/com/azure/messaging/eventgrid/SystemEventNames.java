@@ -3,6 +3,11 @@
 
 package com.azure.messaging.eventgrid;
 
+import com.azure.messaging.eventgrid.systemevents.AcsCallEndedEventData;
+import com.azure.messaging.eventgrid.systemevents.AcsCallParticipantAddedEventData;
+import com.azure.messaging.eventgrid.systemevents.AcsCallParticipantRemovedEventData;
+import com.azure.messaging.eventgrid.systemevents.AcsCallStartedEventData;
+import com.azure.messaging.eventgrid.systemevents.AcsChatAzureBotCommandReceivedInThreadEventData;
 import com.azure.messaging.eventgrid.systemevents.AcsChatMessageDeletedEventData;
 import com.azure.messaging.eventgrid.systemevents.AcsChatMessageDeletedInThreadEventData;
 import com.azure.messaging.eventgrid.systemevents.AcsChatMessageEditedEventData;
@@ -19,6 +24,7 @@ import com.azure.messaging.eventgrid.systemevents.AcsChatThreadDeletedEventData;
 import com.azure.messaging.eventgrid.systemevents.AcsChatThreadPropertiesUpdatedEventData;
 import com.azure.messaging.eventgrid.systemevents.AcsChatThreadPropertiesUpdatedPerUserEventData;
 import com.azure.messaging.eventgrid.systemevents.AcsChatThreadWithUserDeletedEventData;
+import com.azure.messaging.eventgrid.systemevents.AcsChatTypingIndicatorReceivedInThreadEventData;
 import com.azure.messaging.eventgrid.systemevents.AcsEmailDeliveryReportReceivedEventData;
 import com.azure.messaging.eventgrid.systemevents.AcsEmailEngagementTrackingReportReceivedEventData;
 import com.azure.messaging.eventgrid.systemevents.AcsIncomingCallEventData;
@@ -213,6 +219,33 @@ import java.util.Map;
 public final class SystemEventNames {
 
     /**
+     * Schema of the Data property of an EventGridEvent for a Microsoft.Communication.CallEnded event.
+     */
+    public static final String ACS_CALL_ENDED = "Microsoft.Communication.CallEnded";
+
+    /**
+     * Schema of the Data property of an EventGridEvent for a Microsoft.Communication.CallParticipantAdded event.
+     */
+    public static final String ACS_CALL_PARTICIPANT_ADDED = "Microsoft.Communication.CallParticipantAdded";
+
+    /**
+     * Schema of the Data property of an EventGridEvent for a Microsoft.Communication.CallParticipantRemoved event.
+     */
+    public static final String ACS_CALL_PARTICIPANT_REMOVED = "Microsoft.Communication.CallParticipantRemoved";
+
+    /**
+     * Schema of the Data property of an EventGridEvent for a Microsoft.Communication.CallStarted event.
+     */
+    public static final String ACS_CALL_STARTED = "Microsoft.Communication.CallStarted";
+
+    /**
+     * Schema of the Data property of an EventGridEvent for a
+     * Microsoft.Communication.ChatAzureBotCommandReceivedInThread event.
+     */
+    public static final String ACS_CHAT_AZURE_BOT_COMMAND_RECEIVED_IN_THREAD
+        = "Microsoft.Communication.ChatAzureBotCommandReceivedInThread";
+
+    /**
      * Schema of the Data property of an EventGridEvent for a Microsoft.Communication.ChatMessageDeleted event.
      */
     public static final String ACS_CHAT_MESSAGE_DELETED = "Microsoft.Communication.ChatMessageDeleted";
@@ -303,6 +336,13 @@ public final class SystemEventNames {
      * Schema of the Data property of an EventGridEvent for a Microsoft.Communication.ChatThreadWithUserDeleted event.
      */
     public static final String ACS_CHAT_THREAD_WITH_USER_DELETED = "Microsoft.Communication.ChatThreadWithUserDeleted";
+
+    /**
+     * Schema of the Data property of an EventGridEvent for a
+     * Microsoft.Communication.ChatTypingIndicatorReceivedInThread event.
+     */
+    public static final String ACS_CHAT_TYPING_INDICATOR_RECEIVED_IN_THREAD
+        = "Microsoft.Communication.ChatTypingIndicatorReceivedInThread";
 
     /**
      * Schema of the Data property of an EventGridEvent for a Microsoft.Communication.EmailDeliveryReportReceived event.
@@ -1267,6 +1307,11 @@ public final class SystemEventNames {
 
     private static final Map<String, Class<?>> SYSTEM_EVENT_MAPPINGS = new HashMap<String, Class<?>>() {
         {
+            put(ACS_CALL_ENDED, AcsCallEndedEventData.class);
+            put(ACS_CALL_PARTICIPANT_ADDED, AcsCallParticipantAddedEventData.class);
+            put(ACS_CALL_PARTICIPANT_REMOVED, AcsCallParticipantRemovedEventData.class);
+            put(ACS_CALL_STARTED, AcsCallStartedEventData.class);
+            put(ACS_CHAT_AZURE_BOT_COMMAND_RECEIVED_IN_THREAD, AcsChatAzureBotCommandReceivedInThreadEventData.class);
             put(ACS_CHAT_MESSAGE_DELETED, AcsChatMessageDeletedEventData.class);
             put(ACS_CHAT_MESSAGE_DELETED_IN_THREAD, AcsChatMessageDeletedInThreadEventData.class);
             put(ACS_CHAT_MESSAGE_EDITED, AcsChatMessageEditedEventData.class);
@@ -1284,6 +1329,7 @@ public final class SystemEventNames {
             put(ACS_CHAT_THREAD_PROPERTIES_UPDATED, AcsChatThreadPropertiesUpdatedEventData.class);
             put(ACS_CHAT_THREAD_PROPERTIES_UPDATED_PER_USER, AcsChatThreadPropertiesUpdatedPerUserEventData.class);
             put(ACS_CHAT_THREAD_WITH_USER_DELETED, AcsChatThreadWithUserDeletedEventData.class);
+            put(ACS_CHAT_TYPING_INDICATOR_RECEIVED_IN_THREAD, AcsChatTypingIndicatorReceivedInThreadEventData.class);
             put(ACS_EMAIL_DELIVERY_REPORT_RECEIVED, AcsEmailDeliveryReportReceivedEventData.class);
             put(ACS_EMAIL_ENGAGEMENT_TRACKING_REPORT_RECEIVED, AcsEmailEngagementTrackingReportReceivedEventData.class);
             put(ACS_INCOMING_CALL, AcsIncomingCallEventData.class);
