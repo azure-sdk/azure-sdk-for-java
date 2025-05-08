@@ -47,14 +47,6 @@ public final class ElasticSansImpl implements ElasticSans {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new ElasticSanImpl(inner1, this.manager()));
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String elasticSanName) {
-        this.serviceClient().delete(resourceGroupName, elasticSanName);
-    }
-
-    public void delete(String resourceGroupName, String elasticSanName, Context context) {
-        this.serviceClient().delete(resourceGroupName, elasticSanName, context);
-    }
-
     public Response<ElasticSan> getByResourceGroupWithResponse(String resourceGroupName, String elasticSanName,
         Context context) {
         Response<ElasticSanInner> inner
@@ -74,6 +66,14 @@ public final class ElasticSansImpl implements ElasticSans {
         } else {
             return null;
         }
+    }
+
+    public void deleteByResourceGroup(String resourceGroupName, String elasticSanName) {
+        this.serviceClient().delete(resourceGroupName, elasticSanName);
+    }
+
+    public void delete(String resourceGroupName, String elasticSanName, Context context) {
+        this.serviceClient().delete(resourceGroupName, elasticSanName, context);
     }
 
     public ElasticSan getById(String id) {

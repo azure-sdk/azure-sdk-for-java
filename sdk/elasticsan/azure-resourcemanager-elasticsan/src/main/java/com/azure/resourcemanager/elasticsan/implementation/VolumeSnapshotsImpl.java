@@ -41,15 +41,6 @@ public final class VolumeSnapshotsImpl implements VolumeSnapshots {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new SnapshotImpl(inner1, this.manager()));
     }
 
-    public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName) {
-        this.serviceClient().delete(resourceGroupName, elasticSanName, volumeGroupName, snapshotName);
-    }
-
-    public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName,
-        Context context) {
-        this.serviceClient().delete(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, context);
-    }
-
     public Response<Snapshot> getWithResponse(String resourceGroupName, String elasticSanName, String volumeGroupName,
         String snapshotName, Context context) {
         Response<SnapshotInner> inner = this.serviceClient()
@@ -70,6 +61,15 @@ public final class VolumeSnapshotsImpl implements VolumeSnapshots {
         } else {
             return null;
         }
+    }
+
+    public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName) {
+        this.serviceClient().delete(resourceGroupName, elasticSanName, volumeGroupName, snapshotName);
+    }
+
+    public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName,
+        Context context) {
+        this.serviceClient().delete(resourceGroupName, elasticSanName, volumeGroupName, snapshotName, context);
     }
 
     public Snapshot getById(String id) {

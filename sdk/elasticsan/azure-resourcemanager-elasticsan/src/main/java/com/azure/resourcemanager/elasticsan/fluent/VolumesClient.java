@@ -26,6 +26,213 @@ import com.azure.resourcemanager.elasticsan.models.XMsForceDelete;
  */
 public interface VolumesClient {
     /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List (currently only one volume name in the list is supported. Server would return
+     * error if list is bigger).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreBackup(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, VolumeNameList parameters);
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List (currently only one volume name in the list is supported. Server would return
+     * error if list is bigger).
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreBackup(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, VolumeNameList parameters,
+        Context context);
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List (currently only one volume name in the list is supported. Server would return
+     * error if list is bigger).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PreValidationResponseInner preBackup(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        VolumeNameList parameters);
+
+    /**
+     * Validate whether a disk snapshot backup can be taken for list of volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Volume Name List (currently only one volume name in the list is supported. Server would return
+     * error if list is bigger).
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PreValidationResponseInner preBackup(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        VolumeNameList parameters, Context context);
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List (currently only one Disk Snapshot in the list is supported and that the Disk
+     * Snapshot must be in same azure region as the ElasticSan. Server would return error if list is bigger).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreRestore(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, DiskSnapshotList parameters);
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List (currently only one Disk Snapshot in the list is supported and that the Disk
+     * Snapshot must be in same azure region as the ElasticSan. Server would return error if list is bigger).
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreRestore(
+        String resourceGroupName, String elasticSanName, String volumeGroupName, DiskSnapshotList parameters,
+        Context context);
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List (currently only one Disk Snapshot in the list is supported and that the Disk
+     * Snapshot must be in same azure region as the ElasticSan. Server would return error if list is bigger).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PreValidationResponseInner preRestore(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        DiskSnapshotList parameters);
+
+    /**
+     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param parameters Disk Snapshot List (currently only one Disk Snapshot in the list is supported and that the Disk
+     * Snapshot must be in same azure region as the ElasticSan. Server would return error if list is bigger).
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response object for pre validation api.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PreValidationResponseInner preRestore(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        DiskSnapshotList parameters, Context context);
+
+    /**
+     * List Volumes in a VolumeGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Volumes as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<VolumeInner> listByVolumeGroup(String resourceGroupName, String elasticSanName,
+        String volumeGroupName);
+
+    /**
+     * List Volumes in a VolumeGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param xMsAccessSoftDeletedResources Optional, returns only soft deleted volumes if set to true. If set to false
+     * or if not specified, returns only active volumes.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Volumes as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<VolumeInner> listByVolumeGroup(String resourceGroupName, String elasticSanName,
+        String volumeGroupName, XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources, Context context);
+
+    /**
+     * Get an Volume.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param volumeName The name of the Volume.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an Volume along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<VolumeInner> getWithResponse(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        String volumeName, Context context);
+
+    /**
+     * Get an Volume.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param volumeName The name of the Volume.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an Volume.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    VolumeInner get(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName);
+
+    /**
      * Create a Volume.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -240,211 +447,4 @@ public interface VolumesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName,
         XMsDeleteSnapshots xMsDeleteSnapshots, XMsForceDelete xMsForceDelete, DeleteType deleteType, Context context);
-
-    /**
-     * Get an Volume.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param volumeName The name of the Volume.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Volume along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<VolumeInner> getWithResponse(String resourceGroupName, String elasticSanName, String volumeGroupName,
-        String volumeName, Context context);
-
-    /**
-     * Get an Volume.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param volumeName The name of the Volume.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Volume.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    VolumeInner get(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName);
-
-    /**
-     * List Volumes in a VolumeGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Volumes as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<VolumeInner> listByVolumeGroup(String resourceGroupName, String elasticSanName,
-        String volumeGroupName);
-
-    /**
-     * List Volumes in a VolumeGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param xMsAccessSoftDeletedResources Optional, returns only soft deleted volumes if set to true. If set to false
-     * or if not specified, returns only active volumes.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Volumes as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<VolumeInner> listByVolumeGroup(String resourceGroupName, String elasticSanName,
-        String volumeGroupName, XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources, Context context);
-
-    /**
-     * Validate whether a disk snapshot backup can be taken for list of volumes.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param parameters Volume Name List (currently only one volume name in the list is supported. Server would return
-     * error if list is bigger).
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response object for pre validation api.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreBackup(
-        String resourceGroupName, String elasticSanName, String volumeGroupName, VolumeNameList parameters);
-
-    /**
-     * Validate whether a disk snapshot backup can be taken for list of volumes.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param parameters Volume Name List (currently only one volume name in the list is supported. Server would return
-     * error if list is bigger).
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response object for pre validation api.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreBackup(
-        String resourceGroupName, String elasticSanName, String volumeGroupName, VolumeNameList parameters,
-        Context context);
-
-    /**
-     * Validate whether a disk snapshot backup can be taken for list of volumes.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param parameters Volume Name List (currently only one volume name in the list is supported. Server would return
-     * error if list is bigger).
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response object for pre validation api.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    PreValidationResponseInner preBackup(String resourceGroupName, String elasticSanName, String volumeGroupName,
-        VolumeNameList parameters);
-
-    /**
-     * Validate whether a disk snapshot backup can be taken for list of volumes.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param parameters Volume Name List (currently only one volume name in the list is supported. Server would return
-     * error if list is bigger).
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response object for pre validation api.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    PreValidationResponseInner preBackup(String resourceGroupName, String elasticSanName, String volumeGroupName,
-        VolumeNameList parameters, Context context);
-
-    /**
-     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param parameters Disk Snapshot List (currently only one Disk Snapshot in the list is supported and that the Disk
-     * Snapshot must be in same azure region as the ElasticSan. Server would return error if list is bigger).
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response object for pre validation api.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreRestore(
-        String resourceGroupName, String elasticSanName, String volumeGroupName, DiskSnapshotList parameters);
-
-    /**
-     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param parameters Disk Snapshot List (currently only one Disk Snapshot in the list is supported and that the Disk
-     * Snapshot must be in same azure region as the ElasticSan. Server would return error if list is bigger).
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response object for pre validation api.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<PreValidationResponseInner>, PreValidationResponseInner> beginPreRestore(
-        String resourceGroupName, String elasticSanName, String volumeGroupName, DiskSnapshotList parameters,
-        Context context);
-
-    /**
-     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param parameters Disk Snapshot List (currently only one Disk Snapshot in the list is supported and that the Disk
-     * Snapshot must be in same azure region as the ElasticSan. Server would return error if list is bigger).
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response object for pre validation api.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    PreValidationResponseInner preRestore(String resourceGroupName, String elasticSanName, String volumeGroupName,
-        DiskSnapshotList parameters);
-
-    /**
-     * Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param parameters Disk Snapshot List (currently only one Disk Snapshot in the list is supported and that the Disk
-     * Snapshot must be in same azure region as the ElasticSan. Server would return error if list is bigger).
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response object for pre validation api.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    PreValidationResponseInner preRestore(String resourceGroupName, String elasticSanName, String volumeGroupName,
-        DiskSnapshotList parameters, Context context);
 }

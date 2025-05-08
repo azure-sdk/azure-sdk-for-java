@@ -42,34 +42,6 @@ public interface VolumeSnapshots {
         String filter, Context context);
 
     /**
-     * Delete a Volume Snapshot.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param snapshotName The name of the volume snapshot within the given volume group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName);
-
-    /**
-     * Delete a Volume Snapshot.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param snapshotName The name of the volume snapshot within the given volume group.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName,
-        Context context);
-
-    /**
      * Get a Volume Snapshot.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -98,6 +70,34 @@ public interface VolumeSnapshots {
      * @return a Volume Snapshot.
      */
     Snapshot get(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName);
+
+    /**
+     * Delete a Volume Snapshot.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName);
+
+    /**
+     * Delete a Volume Snapshot.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName,
+        Context context);
 
     /**
      * Get a Volume Snapshot.

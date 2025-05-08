@@ -50,6 +50,38 @@ public interface VolumeSnapshotsClient {
         String volumeGroupName, String filter, Context context);
 
     /**
+     * Get a Volume Snapshot.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Volume Snapshot along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<SnapshotInner> getWithResponse(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        String snapshotName, Context context);
+
+    /**
+     * Get a Volume Snapshot.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param snapshotName The name of the volume snapshot within the given volume group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Volume Snapshot.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SnapshotInner get(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName);
+
+    /**
      * Create a Volume Snapshot.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -181,36 +213,4 @@ public interface VolumeSnapshotsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName,
         Context context);
-
-    /**
-     * Get a Volume Snapshot.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param snapshotName The name of the volume snapshot within the given volume group.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Volume Snapshot along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<SnapshotInner> getWithResponse(String resourceGroupName, String elasticSanName, String volumeGroupName,
-        String snapshotName, Context context);
-
-    /**
-     * Get a Volume Snapshot.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param snapshotName The name of the volume snapshot within the given volume group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Volume Snapshot.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    SnapshotInner get(String resourceGroupName, String elasticSanName, String volumeGroupName, String snapshotName);
 }

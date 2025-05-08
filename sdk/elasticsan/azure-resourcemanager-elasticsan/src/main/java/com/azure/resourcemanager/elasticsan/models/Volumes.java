@@ -13,100 +13,6 @@ import com.azure.core.util.Context;
  */
 public interface Volumes {
     /**
-     * Delete an Volume.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param volumeName The name of the Volume.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName);
-
-    /**
-     * Delete an Volume.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param volumeName The name of the Volume.
-     * @param xMsDeleteSnapshots Optional, used to delete snapshots under volume. Allowed value are only true or false.
-     * Default value is false.
-     * @param xMsForceDelete Optional, used to delete volume if active sessions present. Allowed value are only true or
-     * false. Default value is false.
-     * @param deleteType Optional. Specifies that the delete operation should be a permanent delete for the soft deleted
-     * volume. The value of deleteType can only be 'permanent'.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName,
-        XMsDeleteSnapshots xMsDeleteSnapshots, XMsForceDelete xMsForceDelete, DeleteType deleteType, Context context);
-
-    /**
-     * Get an Volume.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param volumeName The name of the Volume.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Volume along with {@link Response}.
-     */
-    Response<Volume> getWithResponse(String resourceGroupName, String elasticSanName, String volumeGroupName,
-        String volumeName, Context context);
-
-    /**
-     * Get an Volume.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param volumeName The name of the Volume.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Volume.
-     */
-    Volume get(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName);
-
-    /**
-     * List Volumes in a VolumeGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Volumes as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<Volume> listByVolumeGroup(String resourceGroupName, String elasticSanName, String volumeGroupName);
-
-    /**
-     * List Volumes in a VolumeGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param volumeGroupName The name of the VolumeGroup.
-     * @param xMsAccessSoftDeletedResources Optional, returns only soft deleted volumes if set to true. If set to false
-     * or if not specified, returns only active volumes.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Volumes as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<Volume> listByVolumeGroup(String resourceGroupName, String elasticSanName, String volumeGroupName,
-        XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources, Context context);
-
-    /**
      * Validate whether a disk snapshot backup can be taken for list of volumes.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -171,6 +77,100 @@ public interface Volumes {
      */
     PreValidationResponse preRestore(String resourceGroupName, String elasticSanName, String volumeGroupName,
         DiskSnapshotList parameters, Context context);
+
+    /**
+     * List Volumes in a VolumeGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Volumes as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<Volume> listByVolumeGroup(String resourceGroupName, String elasticSanName, String volumeGroupName);
+
+    /**
+     * List Volumes in a VolumeGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param xMsAccessSoftDeletedResources Optional, returns only soft deleted volumes if set to true. If set to false
+     * or if not specified, returns only active volumes.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Volumes as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<Volume> listByVolumeGroup(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources, Context context);
+
+    /**
+     * Get an Volume.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param volumeName The name of the Volume.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an Volume along with {@link Response}.
+     */
+    Response<Volume> getWithResponse(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        String volumeName, Context context);
+
+    /**
+     * Get an Volume.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param volumeName The name of the Volume.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an Volume.
+     */
+    Volume get(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName);
+
+    /**
+     * Delete an Volume.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param volumeName The name of the Volume.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName);
+
+    /**
+     * Delete an Volume.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param volumeGroupName The name of the VolumeGroup.
+     * @param volumeName The name of the Volume.
+     * @param xMsDeleteSnapshots Optional, used to delete snapshots under volume. Allowed value are only true or false.
+     * Default value is false.
+     * @param xMsForceDelete Optional, used to delete volume if active sessions present. Allowed value are only true or
+     * false. Default value is false.
+     * @param deleteType Optional. Specifies that the delete operation should be a permanent delete for the soft deleted
+     * volume. The value of deleteType can only be 'permanent'.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName,
+        XMsDeleteSnapshots xMsDeleteSnapshots, XMsForceDelete xMsForceDelete, DeleteType deleteType, Context context);
 
     /**
      * Get an Volume.

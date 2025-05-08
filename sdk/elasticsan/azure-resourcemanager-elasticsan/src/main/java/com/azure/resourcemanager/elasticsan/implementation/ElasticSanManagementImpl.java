@@ -146,20 +146,6 @@ public final class ElasticSanManagementImpl implements ElasticSanManagement {
     }
 
     /**
-     * The SkusClient object to access its operations.
-     */
-    private final SkusClient skus;
-
-    /**
-     * Gets the SkusClient object to access its operations.
-     * 
-     * @return the SkusClient object.
-     */
-    public SkusClient getSkus() {
-        return this.skus;
-    }
-
-    /**
      * The ElasticSansClient object to access its operations.
      */
     private final ElasticSansClient elasticSans;
@@ -174,45 +160,17 @@ public final class ElasticSanManagementImpl implements ElasticSanManagement {
     }
 
     /**
-     * The VolumeGroupsClient object to access its operations.
+     * The SkusClient object to access its operations.
      */
-    private final VolumeGroupsClient volumeGroups;
+    private final SkusClient skus;
 
     /**
-     * Gets the VolumeGroupsClient object to access its operations.
+     * Gets the SkusClient object to access its operations.
      * 
-     * @return the VolumeGroupsClient object.
+     * @return the SkusClient object.
      */
-    public VolumeGroupsClient getVolumeGroups() {
-        return this.volumeGroups;
-    }
-
-    /**
-     * The VolumesClient object to access its operations.
-     */
-    private final VolumesClient volumes;
-
-    /**
-     * Gets the VolumesClient object to access its operations.
-     * 
-     * @return the VolumesClient object.
-     */
-    public VolumesClient getVolumes() {
-        return this.volumes;
-    }
-
-    /**
-     * The ResourceProvidersClient object to access its operations.
-     */
-    private final ResourceProvidersClient resourceProviders;
-
-    /**
-     * Gets the ResourceProvidersClient object to access its operations.
-     * 
-     * @return the ResourceProvidersClient object.
-     */
-    public ResourceProvidersClient getResourceProviders() {
-        return this.resourceProviders;
+    public SkusClient getSkus() {
+        return this.skus;
     }
 
     /**
@@ -244,6 +202,34 @@ public final class ElasticSanManagementImpl implements ElasticSanManagement {
     }
 
     /**
+     * The VolumeGroupsClient object to access its operations.
+     */
+    private final VolumeGroupsClient volumeGroups;
+
+    /**
+     * Gets the VolumeGroupsClient object to access its operations.
+     * 
+     * @return the VolumeGroupsClient object.
+     */
+    public VolumeGroupsClient getVolumeGroups() {
+        return this.volumeGroups;
+    }
+
+    /**
+     * The VolumesClient object to access its operations.
+     */
+    private final VolumesClient volumes;
+
+    /**
+     * Gets the VolumesClient object to access its operations.
+     * 
+     * @return the VolumesClient object.
+     */
+    public VolumesClient getVolumes() {
+        return this.volumes;
+    }
+
+    /**
      * The VolumeSnapshotsClient object to access its operations.
      */
     private final VolumeSnapshotsClient volumeSnapshots;
@@ -255,6 +241,20 @@ public final class ElasticSanManagementImpl implements ElasticSanManagement {
      */
     public VolumeSnapshotsClient getVolumeSnapshots() {
         return this.volumeSnapshots;
+    }
+
+    /**
+     * The ResourceProvidersClient object to access its operations.
+     */
+    private final ResourceProvidersClient resourceProviders;
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     * 
+     * @return the ResourceProvidersClient object.
+     */
+    public ResourceProvidersClient getResourceProviders() {
+        return this.resourceProviders;
     }
 
     /**
@@ -276,14 +276,14 @@ public final class ElasticSanManagementImpl implements ElasticSanManagement {
         this.endpoint = endpoint;
         this.apiVersion = "2024-07-01-preview";
         this.operations = new OperationsClientImpl(this);
-        this.skus = new SkusClientImpl(this);
         this.elasticSans = new ElasticSansClientImpl(this);
-        this.volumeGroups = new VolumeGroupsClientImpl(this);
-        this.volumes = new VolumesClientImpl(this);
-        this.resourceProviders = new ResourceProvidersClientImpl(this);
+        this.skus = new SkusClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
+        this.volumeGroups = new VolumeGroupsClientImpl(this);
+        this.volumes = new VolumesClientImpl(this);
         this.volumeSnapshots = new VolumeSnapshotsClientImpl(this);
+        this.resourceProviders = new ResourceProvidersClientImpl(this);
     }
 
     /**

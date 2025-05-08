@@ -58,21 +58,21 @@ import java.util.stream.Collectors;
 public final class ElasticSanManager {
     private Operations operations;
 
-    private Skus skus;
-
     private ElasticSans elasticSans;
 
-    private VolumeGroups volumeGroups;
-
-    private Volumes volumes;
-
-    private ResourceProviders resourceProviders;
+    private Skus skus;
 
     private PrivateEndpointConnections privateEndpointConnections;
 
     private PrivateLinkResources privateLinkResources;
 
+    private VolumeGroups volumeGroups;
+
+    private Volumes volumes;
+
     private VolumeSnapshots volumeSnapshots;
+
+    private ResourceProviders resourceProviders;
 
     private final ElasticSanManagement clientObject;
 
@@ -302,18 +302,6 @@ public final class ElasticSanManager {
     }
 
     /**
-     * Gets the resource collection API of Skus.
-     * 
-     * @return Resource collection API of Skus.
-     */
-    public Skus skus() {
-        if (this.skus == null) {
-            this.skus = new SkusImpl(clientObject.getSkus(), this);
-        }
-        return skus;
-    }
-
-    /**
      * Gets the resource collection API of ElasticSans. It manages ElasticSan.
      * 
      * @return Resource collection API of ElasticSans.
@@ -326,39 +314,15 @@ public final class ElasticSanManager {
     }
 
     /**
-     * Gets the resource collection API of VolumeGroups. It manages VolumeGroup.
+     * Gets the resource collection API of Skus.
      * 
-     * @return Resource collection API of VolumeGroups.
+     * @return Resource collection API of Skus.
      */
-    public VolumeGroups volumeGroups() {
-        if (this.volumeGroups == null) {
-            this.volumeGroups = new VolumeGroupsImpl(clientObject.getVolumeGroups(), this);
+    public Skus skus() {
+        if (this.skus == null) {
+            this.skus = new SkusImpl(clientObject.getSkus(), this);
         }
-        return volumeGroups;
-    }
-
-    /**
-     * Gets the resource collection API of Volumes. It manages Volume.
-     * 
-     * @return Resource collection API of Volumes.
-     */
-    public Volumes volumes() {
-        if (this.volumes == null) {
-            this.volumes = new VolumesImpl(clientObject.getVolumes(), this);
-        }
-        return volumes;
-    }
-
-    /**
-     * Gets the resource collection API of ResourceProviders.
-     * 
-     * @return Resource collection API of ResourceProviders.
-     */
-    public ResourceProviders resourceProviders() {
-        if (this.resourceProviders == null) {
-            this.resourceProviders = new ResourceProvidersImpl(clientObject.getResourceProviders(), this);
-        }
-        return resourceProviders;
+        return skus;
     }
 
     /**
@@ -387,6 +351,30 @@ public final class ElasticSanManager {
     }
 
     /**
+     * Gets the resource collection API of VolumeGroups. It manages VolumeGroup.
+     * 
+     * @return Resource collection API of VolumeGroups.
+     */
+    public VolumeGroups volumeGroups() {
+        if (this.volumeGroups == null) {
+            this.volumeGroups = new VolumeGroupsImpl(clientObject.getVolumeGroups(), this);
+        }
+        return volumeGroups;
+    }
+
+    /**
+     * Gets the resource collection API of Volumes. It manages Volume.
+     * 
+     * @return Resource collection API of Volumes.
+     */
+    public Volumes volumes() {
+        if (this.volumes == null) {
+            this.volumes = new VolumesImpl(clientObject.getVolumes(), this);
+        }
+        return volumes;
+    }
+
+    /**
      * Gets the resource collection API of VolumeSnapshots. It manages Snapshot.
      * 
      * @return Resource collection API of VolumeSnapshots.
@@ -396,6 +384,18 @@ public final class ElasticSanManager {
             this.volumeSnapshots = new VolumeSnapshotsImpl(clientObject.getVolumeSnapshots(), this);
         }
         return volumeSnapshots;
+    }
+
+    /**
+     * Gets the resource collection API of ResourceProviders.
+     * 
+     * @return Resource collection API of ResourceProviders.
+     */
+    public ResourceProviders resourceProviders() {
+        if (this.resourceProviders == null) {
+            this.resourceProviders = new ResourceProvidersImpl(clientObject.getResourceProviders(), this);
+        }
+        return resourceProviders;
     }
 
     /**

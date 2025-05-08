@@ -54,13 +54,6 @@ public interface ElasticSanManagement {
     OperationsClient getOperations();
 
     /**
-     * Gets the SkusClient object to access its operations.
-     * 
-     * @return the SkusClient object.
-     */
-    SkusClient getSkus();
-
-    /**
      * Gets the ElasticSansClient object to access its operations.
      * 
      * @return the ElasticSansClient object.
@@ -68,25 +61,11 @@ public interface ElasticSanManagement {
     ElasticSansClient getElasticSans();
 
     /**
-     * Gets the VolumeGroupsClient object to access its operations.
+     * Gets the SkusClient object to access its operations.
      * 
-     * @return the VolumeGroupsClient object.
+     * @return the SkusClient object.
      */
-    VolumeGroupsClient getVolumeGroups();
-
-    /**
-     * Gets the VolumesClient object to access its operations.
-     * 
-     * @return the VolumesClient object.
-     */
-    VolumesClient getVolumes();
-
-    /**
-     * Gets the ResourceProvidersClient object to access its operations.
-     * 
-     * @return the ResourceProvidersClient object.
-     */
-    ResourceProvidersClient getResourceProviders();
+    SkusClient getSkus();
 
     /**
      * Gets the PrivateEndpointConnectionsClient object to access its operations.
@@ -103,9 +82,30 @@ public interface ElasticSanManagement {
     PrivateLinkResourcesClient getPrivateLinkResources();
 
     /**
+     * Gets the VolumeGroupsClient object to access its operations.
+     * 
+     * @return the VolumeGroupsClient object.
+     */
+    VolumeGroupsClient getVolumeGroups();
+
+    /**
+     * Gets the VolumesClient object to access its operations.
+     * 
+     * @return the VolumesClient object.
+     */
+    VolumesClient getVolumes();
+
+    /**
      * Gets the VolumeSnapshotsClient object to access its operations.
      * 
      * @return the VolumeSnapshotsClient object.
      */
     VolumeSnapshotsClient getVolumeSnapshots();
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     * 
+     * @return the ResourceProvidersClient object.
+     */
+    ResourceProvidersClient getResourceProviders();
 }

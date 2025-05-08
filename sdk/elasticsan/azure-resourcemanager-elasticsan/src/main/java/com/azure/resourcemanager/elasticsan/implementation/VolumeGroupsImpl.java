@@ -41,14 +41,6 @@ public final class VolumeGroupsImpl implements VolumeGroups {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new VolumeGroupImpl(inner1, this.manager()));
     }
 
-    public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName) {
-        this.serviceClient().delete(resourceGroupName, elasticSanName, volumeGroupName);
-    }
-
-    public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, Context context) {
-        this.serviceClient().delete(resourceGroupName, elasticSanName, volumeGroupName, context);
-    }
-
     public Response<VolumeGroup> getWithResponse(String resourceGroupName, String elasticSanName,
         String volumeGroupName, Context context) {
         Response<VolumeGroupInner> inner
@@ -68,6 +60,14 @@ public final class VolumeGroupsImpl implements VolumeGroups {
         } else {
             return null;
         }
+    }
+
+    public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName) {
+        this.serviceClient().delete(resourceGroupName, elasticSanName, volumeGroupName);
+    }
+
+    public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, Context context) {
+        this.serviceClient().delete(resourceGroupName, elasticSanName, volumeGroupName, context);
     }
 
     public VolumeGroup getById(String id) {

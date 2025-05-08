@@ -66,6 +66,34 @@ public interface ElasticSansClient {
     PagedIterable<ElasticSanInner> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
+     * Get a ElasticSan.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a ElasticSan along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ElasticSanInner> getByResourceGroupWithResponse(String resourceGroupName, String elasticSanName,
+        Context context);
+
+    /**
+     * Get a ElasticSan.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param elasticSanName The name of the ElasticSan.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a ElasticSan.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ElasticSanInner getByResourceGroup(String resourceGroupName, String elasticSanName);
+
+    /**
      * Create ElasticSan.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -238,32 +266,4 @@ public interface ElasticSansClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String elasticSanName, Context context);
-
-    /**
-     * Get a ElasticSan.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a ElasticSan along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ElasticSanInner> getByResourceGroupWithResponse(String resourceGroupName, String elasticSanName,
-        Context context);
-
-    /**
-     * Get a ElasticSan.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param elasticSanName The name of the ElasticSan.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a ElasticSan.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ElasticSanInner getByResourceGroup(String resourceGroupName, String elasticSanName);
 }

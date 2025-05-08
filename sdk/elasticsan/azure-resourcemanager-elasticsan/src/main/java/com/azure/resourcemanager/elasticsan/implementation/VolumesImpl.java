@@ -35,53 +35,6 @@ public final class VolumesImpl implements Volumes {
         this.serviceManager = serviceManager;
     }
 
-    public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName) {
-        this.serviceClient().delete(resourceGroupName, elasticSanName, volumeGroupName, volumeName);
-    }
-
-    public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName,
-        XMsDeleteSnapshots xMsDeleteSnapshots, XMsForceDelete xMsForceDelete, DeleteType deleteType, Context context) {
-        this.serviceClient()
-            .delete(resourceGroupName, elasticSanName, volumeGroupName, volumeName, xMsDeleteSnapshots, xMsForceDelete,
-                deleteType, context);
-    }
-
-    public Response<Volume> getWithResponse(String resourceGroupName, String elasticSanName, String volumeGroupName,
-        String volumeName, Context context) {
-        Response<VolumeInner> inner = this.serviceClient()
-            .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, volumeName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new VolumeImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public Volume get(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName) {
-        VolumeInner inner = this.serviceClient().get(resourceGroupName, elasticSanName, volumeGroupName, volumeName);
-        if (inner != null) {
-            return new VolumeImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public PagedIterable<Volume> listByVolumeGroup(String resourceGroupName, String elasticSanName,
-        String volumeGroupName) {
-        PagedIterable<VolumeInner> inner
-            = this.serviceClient().listByVolumeGroup(resourceGroupName, elasticSanName, volumeGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new VolumeImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Volume> listByVolumeGroup(String resourceGroupName, String elasticSanName,
-        String volumeGroupName, XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources, Context context) {
-        PagedIterable<VolumeInner> inner = this.serviceClient()
-            .listByVolumeGroup(resourceGroupName, elasticSanName, volumeGroupName, xMsAccessSoftDeletedResources,
-                context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new VolumeImpl(inner1, this.manager()));
-    }
-
     public PreValidationResponse preBackup(String resourceGroupName, String elasticSanName, String volumeGroupName,
         VolumeNameList parameters) {
         PreValidationResponseInner inner
@@ -124,6 +77,53 @@ public final class VolumesImpl implements Volumes {
         } else {
             return null;
         }
+    }
+
+    public PagedIterable<Volume> listByVolumeGroup(String resourceGroupName, String elasticSanName,
+        String volumeGroupName) {
+        PagedIterable<VolumeInner> inner
+            = this.serviceClient().listByVolumeGroup(resourceGroupName, elasticSanName, volumeGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new VolumeImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Volume> listByVolumeGroup(String resourceGroupName, String elasticSanName,
+        String volumeGroupName, XMsAccessSoftDeletedResources xMsAccessSoftDeletedResources, Context context) {
+        PagedIterable<VolumeInner> inner = this.serviceClient()
+            .listByVolumeGroup(resourceGroupName, elasticSanName, volumeGroupName, xMsAccessSoftDeletedResources,
+                context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new VolumeImpl(inner1, this.manager()));
+    }
+
+    public Response<Volume> getWithResponse(String resourceGroupName, String elasticSanName, String volumeGroupName,
+        String volumeName, Context context) {
+        Response<VolumeInner> inner = this.serviceClient()
+            .getWithResponse(resourceGroupName, elasticSanName, volumeGroupName, volumeName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new VolumeImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Volume get(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName) {
+        VolumeInner inner = this.serviceClient().get(resourceGroupName, elasticSanName, volumeGroupName, volumeName);
+        if (inner != null) {
+            return new VolumeImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName) {
+        this.serviceClient().delete(resourceGroupName, elasticSanName, volumeGroupName, volumeName);
+    }
+
+    public void delete(String resourceGroupName, String elasticSanName, String volumeGroupName, String volumeName,
+        XMsDeleteSnapshots xMsDeleteSnapshots, XMsForceDelete xMsForceDelete, DeleteType deleteType, Context context) {
+        this.serviceClient()
+            .delete(resourceGroupName, elasticSanName, volumeGroupName, volumeName, xMsDeleteSnapshots, xMsForceDelete,
+                deleteType, context);
     }
 
     public Volume getById(String id) {
