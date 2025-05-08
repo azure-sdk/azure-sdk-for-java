@@ -37,7 +37,7 @@ public final class MongoClustersCheckNameAvailabilityWithResponseMockTests {
                 com.azure.core.util.Context.NONE)
             .getValue();
 
-        Assertions.assertEquals(true, response.nameAvailable());
+        Assertions.assertTrue(response.nameAvailable());
         Assertions.assertEquals(CheckNameAvailabilityReason.INVALID, response.reason());
         Assertions.assertEquals("xw", response.message());
     }

@@ -15,7 +15,7 @@ public final class CheckNameAvailabilityResponseInnerTests {
         CheckNameAvailabilityResponseInner model = BinaryData
             .fromString("{\"nameAvailable\":false,\"reason\":\"AlreadyExists\",\"message\":\"qsrxybzqqed\"}")
             .toObject(CheckNameAvailabilityResponseInner.class);
-        Assertions.assertEquals(false, model.nameAvailable());
+        Assertions.assertFalse(model.nameAvailable());
         Assertions.assertEquals(CheckNameAvailabilityReason.ALREADY_EXISTS, model.reason());
         Assertions.assertEquals("qsrxybzqqed", model.message());
     }
