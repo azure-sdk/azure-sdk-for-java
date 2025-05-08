@@ -32,7 +32,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-storageactions</artifactId>
-    <version>1.0.0-beta.3</version>
+    <version>1.0.0-beta.4</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -70,6 +70,26 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Examples
 
+```java
+Map<String, String> operationMap = new LinkedHashMap<>();
+operationMap.put("tier", "Hot");
+storageTask = storageActionsManager.storageTasks()
+    .define(taskName)
+    .withRegion(REGION)
+    .withExistingResourceGroup(resourceGroupName)
+    .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
+    .withProperties(new StorageTaskProperties()
+        .withAction(new StorageTaskAction()
+            .withIfProperty(new IfCondition().withCondition("[[[equals(AccessTier, 'Cool')]]")
+                .withOperations(Arrays
+                    .asList(new StorageTaskOperation().withName(StorageTaskOperationName.SET_BLOB_TIER)
+                        .withParameters(operationMap)
+                        .withOnSuccess(OnSuccess.CONTINUE)
+                        .withOnFailure(OnFailure.BREAK)))))
+        .withDescription("Storage task")
+        .withEnabled(true))
+    .create();
+```
 [Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/storageactions/azure-resourcemanager-storageactions/SAMPLE.md)
 
 

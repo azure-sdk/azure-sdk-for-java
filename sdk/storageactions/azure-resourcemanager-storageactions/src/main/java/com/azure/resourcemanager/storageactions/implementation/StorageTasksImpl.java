@@ -29,30 +29,22 @@ public final class StorageTasksImpl implements StorageTasks {
         this.serviceManager = serviceManager;
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String storageTaskName) {
-        this.serviceClient().delete(resourceGroupName, storageTaskName);
-    }
-
-    public void delete(String resourceGroupName, String storageTaskName, Context context) {
-        this.serviceClient().delete(resourceGroupName, storageTaskName, context);
-    }
-
-    public Response<StorageTask> getByResourceGroupWithResponse(String resourceGroupName, String storageTaskName,
-        Context context) {
-        Response<StorageTaskInner> inner
-            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, storageTaskName, context);
+    public Response<StorageTaskPreviewAction> previewActionsWithResponse(String location,
+        StorageTaskPreviewActionInner parameters, Context context) {
+        Response<StorageTaskPreviewActionInner> inner
+            = this.serviceClient().previewActionsWithResponse(location, parameters, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new StorageTaskImpl(inner.getValue(), this.manager()));
+                new StorageTaskPreviewActionImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public StorageTask getByResourceGroup(String resourceGroupName, String storageTaskName) {
-        StorageTaskInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, storageTaskName);
+    public StorageTaskPreviewAction previewActions(String location, StorageTaskPreviewActionInner parameters) {
+        StorageTaskPreviewActionInner inner = this.serviceClient().previewActions(location, parameters);
         if (inner != null) {
-            return new StorageTaskImpl(inner, this.manager());
+            return new StorageTaskPreviewActionImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -78,25 +70,33 @@ public final class StorageTasksImpl implements StorageTasks {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new StorageTaskImpl(inner1, this.manager()));
     }
 
-    public Response<StorageTaskPreviewAction> previewActionsWithResponse(String location,
-        StorageTaskPreviewActionInner parameters, Context context) {
-        Response<StorageTaskPreviewActionInner> inner
-            = this.serviceClient().previewActionsWithResponse(location, parameters, context);
+    public Response<StorageTask> getByResourceGroupWithResponse(String resourceGroupName, String storageTaskName,
+        Context context) {
+        Response<StorageTaskInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, storageTaskName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new StorageTaskPreviewActionImpl(inner.getValue(), this.manager()));
+                new StorageTaskImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public StorageTaskPreviewAction previewActions(String location, StorageTaskPreviewActionInner parameters) {
-        StorageTaskPreviewActionInner inner = this.serviceClient().previewActions(location, parameters);
+    public StorageTask getByResourceGroup(String resourceGroupName, String storageTaskName) {
+        StorageTaskInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, storageTaskName);
         if (inner != null) {
-            return new StorageTaskPreviewActionImpl(inner, this.manager());
+            return new StorageTaskImpl(inner, this.manager());
         } else {
             return null;
         }
+    }
+
+    public void deleteByResourceGroup(String resourceGroupName, String storageTaskName) {
+        this.serviceClient().delete(resourceGroupName, storageTaskName);
+    }
+
+    public void delete(String resourceGroupName, String storageTaskName, Context context) {
+        this.serviceClient().delete(resourceGroupName, storageTaskName, context);
     }
 
     public StorageTask getById(String id) {
