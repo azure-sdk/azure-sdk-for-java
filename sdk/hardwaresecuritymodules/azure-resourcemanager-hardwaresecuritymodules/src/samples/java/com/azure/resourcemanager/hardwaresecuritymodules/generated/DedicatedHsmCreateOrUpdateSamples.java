@@ -20,7 +20,7 @@ import java.util.Map;
 public final class DedicatedHsmCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2021-11-30/
+     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2025-03-31/
      * examples/PaymentHsm_CreateOrUpdate_WithManagementProfile.json
      */
     /**
@@ -34,22 +34,22 @@ public final class DedicatedHsmCreateOrUpdateSamples {
             .define("hsm1")
             .withRegion("westus")
             .withExistingResourceGroup("hsm-group")
+            .withSku(new Sku().withName(SkuName.PAY_SHIELD10K_LMK1_CPS60))
             .withProperties(new DedicatedHsmProperties()
-                .withNetworkProfile(new NetworkProfile().withSubnet(new ApiEntityReference().withId(
+                .withNetworkProfile(new NetworkProfile().withSubnet(new ApiEntityReference().withResourceId(
                     "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/hsm-group/providers/Microsoft.Network/virtualNetworks/stamp01/subnets/stamp01"))
                     .withNetworkInterfaces(Arrays.asList(new NetworkInterface().withPrivateIpAddress("1.0.0.1"))))
-                .withManagementNetworkProfile(new NetworkProfile().withSubnet(new ApiEntityReference().withId(
+                .withManagementNetworkProfile(new NetworkProfile().withSubnet(new ApiEntityReference().withResourceId(
                     "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/hsm-group/providers/Microsoft.Network/virtualNetworks/stamp01/subnets/stamp01"))
                     .withNetworkInterfaces(Arrays.asList(new NetworkInterface().withPrivateIpAddress("1.0.0.2"))))
                 .withStampId("stamp01"))
             .withTags(mapOf("Dept", "hsm", "Environment", "dogfood"))
-            .withSku(new Sku().withName(SkuName.PAY_SHIELD10K_LMK1_CPS60))
             .create();
     }
 
     /*
      * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2021-11-30/
+     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2025-03-31/
      * examples/DedicatedHsm_CreateOrUpdate.json
      */
     /**
@@ -63,19 +63,19 @@ public final class DedicatedHsmCreateOrUpdateSamples {
             .define("hsm1")
             .withRegion("westus")
             .withExistingResourceGroup("hsm-group")
+            .withSku(new Sku().withName(SkuName.SAFE_NET_LUNA_NETWORK_HSM_A790))
             .withProperties(new DedicatedHsmProperties()
-                .withNetworkProfile(new NetworkProfile().withSubnet(new ApiEntityReference().withId(
+                .withNetworkProfile(new NetworkProfile().withSubnet(new ApiEntityReference().withResourceId(
                     "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/hsm-group/providers/Microsoft.Network/virtualNetworks/stamp01/subnets/stamp01"))
                     .withNetworkInterfaces(Arrays.asList(new NetworkInterface().withPrivateIpAddress("1.0.0.1"))))
                 .withStampId("stamp01"))
             .withTags(mapOf("Dept", "hsm", "Environment", "dogfood"))
-            .withSku(new Sku().withName(SkuName.SAFE_NET_LUNA_NETWORK_HSM_A790))
             .create();
     }
 
     /*
      * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2021-11-30/
+     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2025-03-31/
      * examples/PaymentHsm_CreateOrUpdate.json
      */
     /**
@@ -89,13 +89,13 @@ public final class DedicatedHsmCreateOrUpdateSamples {
             .define("hsm1")
             .withRegion("westus")
             .withExistingResourceGroup("hsm-group")
+            .withSku(new Sku().withName(SkuName.PAY_SHIELD10K_LMK1_CPS60))
             .withProperties(new DedicatedHsmProperties()
-                .withNetworkProfile(new NetworkProfile().withSubnet(new ApiEntityReference().withId(
+                .withNetworkProfile(new NetworkProfile().withSubnet(new ApiEntityReference().withResourceId(
                     "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/hsm-group/providers/Microsoft.Network/virtualNetworks/stamp01/subnets/stamp01"))
                     .withNetworkInterfaces(Arrays.asList(new NetworkInterface().withPrivateIpAddress("1.0.0.1"))))
                 .withStampId("stamp01"))
             .withTags(mapOf("Dept", "hsm", "Environment", "dogfood"))
-            .withSku(new Sku().withName(SkuName.PAY_SHIELD10K_LMK1_CPS60))
             .create();
     }
 
