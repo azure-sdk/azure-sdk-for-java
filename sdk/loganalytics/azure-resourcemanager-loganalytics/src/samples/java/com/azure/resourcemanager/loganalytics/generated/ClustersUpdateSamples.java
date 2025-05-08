@@ -21,7 +21,7 @@ import java.util.Map;
 public final class ClustersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/
+     * specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2025-02-01/examples/
      * ClustersUpdate.json
      */
     /**

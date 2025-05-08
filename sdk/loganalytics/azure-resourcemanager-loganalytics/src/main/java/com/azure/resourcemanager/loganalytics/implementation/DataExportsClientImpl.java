@@ -135,11 +135,10 @@ public final class DataExportsClientImpl implements DataExportsClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByWorkspace(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), accept, context))
             .<PagedResponse<DataExportInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), null, null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -175,12 +174,11 @@ public final class DataExportsClientImpl implements DataExportsClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByWorkspace(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                workspaceName, apiVersion, accept, context)
+                workspaceName, this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), null, null));
     }
@@ -288,11 +286,11 @@ public final class DataExportsClientImpl implements DataExportsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, dataExportName, apiVersion, parameters, accept, context))
+                resourceGroupName, workspaceName, dataExportName, this.client.getApiVersion(), parameters, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -336,11 +334,10 @@ public final class DataExportsClientImpl implements DataExportsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, dataExportName, apiVersion, parameters, accept, context);
+            workspaceName, dataExportName, this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
@@ -433,11 +430,10 @@ public final class DataExportsClientImpl implements DataExportsClient {
         if (dataExportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter dataExportName is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, dataExportName, apiVersion, accept, context))
+                resourceGroupName, workspaceName, dataExportName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -474,11 +470,10 @@ public final class DataExportsClientImpl implements DataExportsClient {
         if (dataExportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter dataExportName is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workspaceName,
-            dataExportName, apiVersion, accept, context);
+            dataExportName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -564,11 +559,10 @@ public final class DataExportsClientImpl implements DataExportsClient {
         if (dataExportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter dataExportName is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, dataExportName, apiVersion, accept, context))
+                resourceGroupName, workspaceName, dataExportName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -605,11 +599,10 @@ public final class DataExportsClientImpl implements DataExportsClient {
         if (dataExportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter dataExportName is required and cannot be null."));
         }
-        final String apiVersion = "2020-08-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, dataExportName, apiVersion, accept, context);
+            workspaceName, dataExportName, this.client.getApiVersion(), accept, context);
     }
 
     /**
