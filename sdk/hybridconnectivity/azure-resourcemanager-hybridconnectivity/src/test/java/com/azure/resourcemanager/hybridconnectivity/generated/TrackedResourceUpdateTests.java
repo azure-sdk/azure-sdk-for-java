@@ -5,25 +5,25 @@
 package com.azure.resourcemanager.hybridconnectivity.generated;
 
 import com.azure.core.util.BinaryData;
-import com.azure.resourcemanager.hybridconnectivity.models.SolutionSettings;
+import com.azure.resourcemanager.hybridconnectivity.models.TrackedResourceUpdate;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 
-public final class SolutionSettingsTests {
+public final class TrackedResourceUpdateTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        SolutionSettings model = BinaryData.fromString("{\"f\":\"dgbb\",\"bexppb\":\"dgmb\",\"rolfpfp\":\"tq\"}")
-            .toObject(SolutionSettings.class);
-        Assertions.assertEquals("tq", model.additionalProperties().get("rolfpfp"));
+        TrackedResourceUpdate model = BinaryData.fromString(
+            "{\"tags\":{\"djwzrlov\":\"gmaajrm\"},\"id\":\"lwhijcoejctbzaq\",\"name\":\"qsycbkbfkgu\",\"type\":\"dkexxppofm\"}")
+            .toObject(TrackedResourceUpdate.class);
+        Assertions.assertEquals("gmaajrm", model.tags().get("djwzrlov"));
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        SolutionSettings model
-            = new SolutionSettings().withAdditionalProperties(mapOf("rolfpfp", "tq", "f", "dgbb", "bexppb", "dgmb"));
-        model = BinaryData.fromObject(model).toObject(SolutionSettings.class);
-        Assertions.assertEquals("tq", model.additionalProperties().get("rolfpfp"));
+        TrackedResourceUpdate model = new TrackedResourceUpdate().withTags(mapOf("djwzrlov", "gmaajrm"));
+        model = BinaryData.fromObject(model).toObject(TrackedResourceUpdate.class);
+        Assertions.assertEquals("gmaajrm", model.tags().get("djwzrlov"));
     }
 
     // Use "Map.of" if available
