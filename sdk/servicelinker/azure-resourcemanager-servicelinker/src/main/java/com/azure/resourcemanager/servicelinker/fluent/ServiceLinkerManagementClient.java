@@ -12,6 +12,13 @@ import java.time.Duration;
  */
 public interface ServiceLinkerManagementClient {
     /**
+     * Gets The ID of the target subscription.
+     * 
+     * @return the subscriptionId value.
+     */
+    String getSubscriptionId();
+
+    /**
      * Gets server parameter.
      * 
      * @return the endpoint value.
@@ -47,9 +54,30 @@ public interface ServiceLinkerManagementClient {
     LinkersClient getLinkers();
 
     /**
+     * Gets the LinkersOperationsClient object to access its operations.
+     * 
+     * @return the LinkersOperationsClient object.
+     */
+    LinkersOperationsClient getLinkersOperations();
+
+    /**
+     * Gets the ConfigurationNamesOperationsClient object to access its operations.
+     * 
+     * @return the ConfigurationNamesOperationsClient object.
+     */
+    ConfigurationNamesOperationsClient getConfigurationNamesOperations();
+
+    /**
      * Gets the OperationsClient object to access its operations.
      * 
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
+
+    /**
+     * Gets the ConnectorsClient object to access its operations.
+     * 
+     * @return the ConnectorsClient object.
+     */
+    ConnectorsClient getConnectors();
 }

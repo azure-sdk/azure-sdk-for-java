@@ -23,7 +23,10 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.servicelinker.fluent.ConfigurationNamesOperationsClient;
+import com.azure.resourcemanager.servicelinker.fluent.ConnectorsClient;
 import com.azure.resourcemanager.servicelinker.fluent.LinkersClient;
+import com.azure.resourcemanager.servicelinker.fluent.LinkersOperationsClient;
 import com.azure.resourcemanager.servicelinker.fluent.OperationsClient;
 import com.azure.resourcemanager.servicelinker.fluent.ServiceLinkerManagementClient;
 import java.io.IOException;
@@ -40,6 +43,20 @@ import reactor.core.publisher.Mono;
  */
 @ServiceClient(builder = ServiceLinkerManagementClientBuilder.class)
 public final class ServiceLinkerManagementClientImpl implements ServiceLinkerManagementClient {
+    /**
+     * The ID of the target subscription.
+     */
+    private final String subscriptionId;
+
+    /**
+     * Gets The ID of the target subscription.
+     * 
+     * @return the subscriptionId value.
+     */
+    public String getSubscriptionId() {
+        return this.subscriptionId;
+    }
+
     /**
      * server parameter.
      */
@@ -125,6 +142,34 @@ public final class ServiceLinkerManagementClientImpl implements ServiceLinkerMan
     }
 
     /**
+     * The LinkersOperationsClient object to access its operations.
+     */
+    private final LinkersOperationsClient linkersOperations;
+
+    /**
+     * Gets the LinkersOperationsClient object to access its operations.
+     * 
+     * @return the LinkersOperationsClient object.
+     */
+    public LinkersOperationsClient getLinkersOperations() {
+        return this.linkersOperations;
+    }
+
+    /**
+     * The ConfigurationNamesOperationsClient object to access its operations.
+     */
+    private final ConfigurationNamesOperationsClient configurationNamesOperations;
+
+    /**
+     * Gets the ConfigurationNamesOperationsClient object to access its operations.
+     * 
+     * @return the ConfigurationNamesOperationsClient object.
+     */
+    public ConfigurationNamesOperationsClient getConfigurationNamesOperations() {
+        return this.configurationNamesOperations;
+    }
+
+    /**
      * The OperationsClient object to access its operations.
      */
     private final OperationsClient operations;
@@ -139,23 +184,42 @@ public final class ServiceLinkerManagementClientImpl implements ServiceLinkerMan
     }
 
     /**
+     * The ConnectorsClient object to access its operations.
+     */
+    private final ConnectorsClient connectors;
+
+    /**
+     * Gets the ConnectorsClient object to access its operations.
+     * 
+     * @return the ConnectorsClient object.
+     */
+    public ConnectorsClient getConnectors() {
+        return this.connectors;
+    }
+
+    /**
      * Initializes an instance of ServiceLinkerManagementClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
+     * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
     ServiceLinkerManagementClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
-        Duration defaultPollInterval, AzureEnvironment environment, String endpoint) {
+        Duration defaultPollInterval, AzureEnvironment environment, String subscriptionId, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
+        this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-05-01";
+        this.apiVersion = "2024-07-01-preview";
         this.linkers = new LinkersClientImpl(this);
+        this.linkersOperations = new LinkersOperationsClientImpl(this);
+        this.configurationNamesOperations = new ConfigurationNamesOperationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.connectors = new ConnectorsClientImpl(this);
     }
 
     /**

@@ -78,12 +78,12 @@ public class SecretInfoBase implements JsonSerializable<SecretInfoBase> {
                     }
                 }
                 // Use the discriminator value to determine which subtype should be deserialized.
-                if ("rawValue".equals(discriminatorValue)) {
-                    return ValueSecretInfo.fromJson(readerToUse.reset());
-                } else if ("keyVaultSecretReference".equals(discriminatorValue)) {
+                if ("keyVaultSecretReference".equals(discriminatorValue)) {
                     return KeyVaultSecretReferenceSecretInfo.fromJson(readerToUse.reset());
                 } else if ("keyVaultSecretUri".equals(discriminatorValue)) {
                     return KeyVaultSecretUriSecretInfo.fromJson(readerToUse.reset());
+                } else if ("rawValue".equals(discriminatorValue)) {
+                    return ValueSecretInfo.fromJson(readerToUse.reset());
                 } else {
                     return fromJsonKnownDiscriminator(readerToUse.reset());
                 }

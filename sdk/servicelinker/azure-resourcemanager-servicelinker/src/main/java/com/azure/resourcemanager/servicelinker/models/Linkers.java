@@ -7,25 +7,30 @@ package com.azure.resourcemanager.servicelinker.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.servicelinker.fluent.models.LinkerResourceInner;
 
 /**
  * Resource collection API of Linkers.
  */
 public interface Linkers {
     /**
-     * Returns list of Linkers which connects to the resource.
+     * Returns list of Linkers which connects to the resource. which supports to config both application and target
+     * service during the resource provision.
      * 
+     * @param providers {resourceUri}.
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of Linker as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<LinkerResource> list(String resourceUri);
+    PagedIterable<LinkerResource> list(String providers, String resourceUri);
 
     /**
-     * Returns list of Linkers which connects to the resource.
+     * Returns list of Linkers which connects to the resource. which supports to config both application and target
+     * service during the resource provision.
      * 
+     * @param providers {resourceUri}.
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -33,11 +38,13 @@ public interface Linkers {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of Linker as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<LinkerResource> list(String resourceUri, Context context);
+    PagedIterable<LinkerResource> list(String providers, String resourceUri, Context context);
 
     /**
      * Returns Linker resource for a given name.
      * 
+     * @param providers {resourceUri}.
+     * @param linkers The name of the LinkerResource.
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
@@ -46,11 +53,14 @@ public interface Linkers {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return linker of source and target resource along with {@link Response}.
      */
-    Response<LinkerResource> getWithResponse(String resourceUri, String linkerName, Context context);
+    Response<LinkerResource> getWithResponse(String providers, String linkers, String resourceUri, String linkerName,
+        Context context);
 
     /**
      * Returns Linker resource for a given name.
      * 
+     * @param providers {resourceUri}.
+     * @param linkers The name of the LinkerResource.
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -58,22 +68,92 @@ public interface Linkers {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return linker of source and target resource.
      */
-    LinkerResource get(String resourceUri, String linkerName);
+    LinkerResource get(String providers, String linkers, String resourceUri, String linkerName);
 
     /**
-     * Delete a link.
+     * Create or update Linker resource.
      * 
+     * @param providers {resourceUri}.
+     * @param linkers The name of the LinkerResource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
+     * @param linkerName The name Linker resource.
+     * @param parameters Linker details.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return linker of source and target resource.
+     */
+    LinkerResource createOrUpdate(String providers, String linkers, String resourceUri, String linkerName,
+        LinkerResourceInner parameters);
+
+    /**
+     * Create or update Linker resource.
+     * 
+     * @param providers {resourceUri}.
+     * @param linkers The name of the LinkerResource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
+     * @param linkerName The name Linker resource.
+     * @param parameters Linker details.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return linker of source and target resource.
+     */
+    LinkerResource createOrUpdate(String providers, String linkers, String resourceUri, String linkerName,
+        LinkerResourceInner parameters, Context context);
+
+    /**
+     * Operation to update an existing Linker.
+     * 
+     * @param providers {resourceUri}.
+     * @param linkers The name of the LinkerResource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
+     * @param linkerName The name Linker resource.
+     * @param parameters Linker details.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return linker of source and target resource.
+     */
+    Response<LinkerResource> updateWithResponse(String providers, String linkers, String resourceUri, String linkerName,
+        LinkerPatch parameters, Context context);
+
+    /**
+     * Operation to update an existing Linker.
+     * 
+     * @param providers {resourceUri}.
+     * @param linkers The name of the LinkerResource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
+     * @param linkerName The name Linker resource.
+     * @param parameters Linker details.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return linker of source and target resource.
+     */
+    LinkerResource update(String providers, String linkers, String resourceUri, String linkerName,
+        LinkerPatch parameters);
+
+    /**
+     * Delete a Linker.
+     * 
+     * @param providers {resourceUri}.
+     * @param linkers The name of the LinkerResource.
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteByResourceGroup(String resourceUri, String linkerName);
+    void delete(String providers, String linkers, String resourceUri, String linkerName);
 
     /**
-     * Delete a link.
+     * Delete a Linker.
      * 
+     * @param providers {resourceUri}.
+     * @param linkers The name of the LinkerResource.
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
@@ -81,36 +161,13 @@ public interface Linkers {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void delete(String resourceUri, String linkerName, Context context);
+    void delete(String providers, String linkers, String resourceUri, String linkerName, Context context);
 
     /**
-     * Validate a link.
+     * list source configurations for a Linker.
      * 
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the validation operation result for a linker.
-     */
-    ValidateOperationResult validate(String resourceUri, String linkerName);
-
-    /**
-     * Validate a link.
-     * 
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the validation operation result for a linker.
-     */
-    ValidateOperationResult validate(String resourceUri, String linkerName, Context context);
-
-    /**
-     * list source configurations for a linker.
-     * 
+     * @param providers {resourceUri}.
+     * @param linkers The name of the LinkerResource.
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
@@ -120,12 +177,14 @@ public interface Linkers {
      * @return configurations for source resource, include appSettings, connectionString and serviceBindings along with
      * {@link Response}.
      */
-    Response<SourceConfigurationResult> listConfigurationsWithResponse(String resourceUri, String linkerName,
-        Context context);
+    Response<ConfigurationResult> listConfigurationsWithResponse(String providers, String linkers, String resourceUri,
+        String linkerName, Context context);
 
     /**
-     * list source configurations for a linker.
+     * list source configurations for a Linker.
      * 
+     * @param providers {resourceUri}.
+     * @param linkers The name of the LinkerResource.
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -133,57 +192,35 @@ public interface Linkers {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return configurations for source resource, include appSettings, connectionString and serviceBindings.
      */
-    SourceConfigurationResult listConfigurations(String resourceUri, String linkerName);
+    ConfigurationResult listConfigurations(String providers, String linkers, String resourceUri, String linkerName);
 
     /**
-     * Returns Linker resource for a given name.
+     * Validate a Linker.
      * 
-     * @param id the resource ID.
+     * @param providers {resourceUri}.
+     * @param linkers The name of the LinkerResource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
+     * @param linkerName The name Linker resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return linker of source and target resource along with {@link Response}.
+     * @return the validation operation result for a Linker.
      */
-    LinkerResource getById(String id);
+    ValidateOperationResult validate(String providers, String linkers, String resourceUri, String linkerName);
 
     /**
-     * Returns Linker resource for a given name.
+     * Validate a Linker.
      * 
-     * @param id the resource ID.
+     * @param providers {resourceUri}.
+     * @param linkers The name of the LinkerResource.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
+     * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return linker of source and target resource along with {@link Response}.
+     * @return the validation operation result for a Linker.
      */
-    Response<LinkerResource> getByIdWithResponse(String id, Context context);
-
-    /**
-     * Delete a link.
-     * 
-     * @param id the resource ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void deleteById(String id);
-
-    /**
-     * Delete a link.
-     * 
-     * @param id the resource ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void deleteByIdWithResponse(String id, Context context);
-
-    /**
-     * Begins definition for a new LinkerResource resource.
-     * 
-     * @param name resource name.
-     * @return the first stage of the new LinkerResource definition.
-     */
-    LinkerResource.DefinitionStages.Blank define(String name);
+    ValidateOperationResult validate(String providers, String linkers, String resourceUri, String linkerName,
+        Context context);
 }

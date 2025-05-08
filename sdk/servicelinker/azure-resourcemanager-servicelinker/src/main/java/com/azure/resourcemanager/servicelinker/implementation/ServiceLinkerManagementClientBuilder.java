@@ -20,6 +20,22 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = { ServiceLinkerManagementClientImpl.class })
 public final class ServiceLinkerManagementClientBuilder {
     /*
+     * The ID of the target subscription.
+     */
+    private String subscriptionId;
+
+    /**
+     * Sets The ID of the target subscription.
+     * 
+     * @param subscriptionId the subscriptionId value.
+     * @return the ServiceLinkerManagementClientBuilder.
+     */
+    public ServiceLinkerManagementClientBuilder subscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
+        return this;
+    }
+
+    /*
      * server parameter
      */
     private String endpoint;
@@ -116,7 +132,7 @@ public final class ServiceLinkerManagementClientBuilder {
             ? serializerAdapter
             : SerializerFactory.createDefaultManagementSerializerAdapter();
         ServiceLinkerManagementClientImpl client = new ServiceLinkerManagementClientImpl(localPipeline,
-            localSerializerAdapter, localDefaultPollInterval, localEnvironment, localEndpoint);
+            localSerializerAdapter, localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
         return client;
     }
 }

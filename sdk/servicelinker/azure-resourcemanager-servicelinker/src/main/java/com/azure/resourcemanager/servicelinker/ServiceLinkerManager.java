@@ -22,17 +22,25 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.servicelinker.fluent.ServiceLinkerManagementClient;
+import com.azure.resourcemanager.servicelinker.implementation.ConfigurationNamesOperationsImpl;
+import com.azure.resourcemanager.servicelinker.implementation.ConnectorsImpl;
 import com.azure.resourcemanager.servicelinker.implementation.LinkersImpl;
+import com.azure.resourcemanager.servicelinker.implementation.LinkersOperationsImpl;
 import com.azure.resourcemanager.servicelinker.implementation.OperationsImpl;
 import com.azure.resourcemanager.servicelinker.implementation.ServiceLinkerManagementClientBuilder;
+import com.azure.resourcemanager.servicelinker.models.ConfigurationNamesOperations;
+import com.azure.resourcemanager.servicelinker.models.Connectors;
 import com.azure.resourcemanager.servicelinker.models.Linkers;
+import com.azure.resourcemanager.servicelinker.models.LinkersOperations;
 import com.azure.resourcemanager.servicelinker.models.Operations;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -43,7 +51,13 @@ import java.util.stream.Collectors;
 public final class ServiceLinkerManager {
     private Linkers linkers;
 
+    private LinkersOperations linkersOperations;
+
+    private ConfigurationNamesOperations configurationNamesOperations;
+
     private Operations operations;
+
+    private Connectors connectors;
 
     private final ServiceLinkerManagementClient clientObject;
 
@@ -52,6 +66,7 @@ public final class ServiceLinkerManager {
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         this.clientObject = new ServiceLinkerManagementClientBuilder().pipeline(httpPipeline)
             .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
+            .subscriptionId(profile.getSubscriptionId())
             .defaultPollInterval(defaultPollInterval)
             .buildClient();
     }
@@ -96,6 +111,9 @@ public final class ServiceLinkerManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-servicelinker.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -203,12 +221,14 @@ public final class ServiceLinkerManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.servicelinker")
                 .append("/")
-                .append("1.0.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -255,7 +275,7 @@ public final class ServiceLinkerManager {
     }
 
     /**
-     * Gets the resource collection API of Linkers. It manages LinkerResource.
+     * Gets the resource collection API of Linkers.
      * 
      * @return Resource collection API of Linkers.
      */
@@ -264,6 +284,31 @@ public final class ServiceLinkerManager {
             this.linkers = new LinkersImpl(clientObject.getLinkers(), this);
         }
         return linkers;
+    }
+
+    /**
+     * Gets the resource collection API of LinkersOperations.
+     * 
+     * @return Resource collection API of LinkersOperations.
+     */
+    public LinkersOperations linkersOperations() {
+        if (this.linkersOperations == null) {
+            this.linkersOperations = new LinkersOperationsImpl(clientObject.getLinkersOperations(), this);
+        }
+        return linkersOperations;
+    }
+
+    /**
+     * Gets the resource collection API of ConfigurationNamesOperations.
+     * 
+     * @return Resource collection API of ConfigurationNamesOperations.
+     */
+    public ConfigurationNamesOperations configurationNamesOperations() {
+        if (this.configurationNamesOperations == null) {
+            this.configurationNamesOperations
+                = new ConfigurationNamesOperationsImpl(clientObject.getConfigurationNamesOperations(), this);
+        }
+        return configurationNamesOperations;
     }
 
     /**
@@ -276,6 +321,18 @@ public final class ServiceLinkerManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of Connectors. It manages LinkerResource, DryrunResource.
+     * 
+     * @return Resource collection API of Connectors.
+     */
+    public Connectors connectors() {
+        if (this.connectors == null) {
+            this.connectors = new ConnectorsImpl(clientObject.getConnectors(), this);
+        }
+        return connectors;
     }
 
     /**
