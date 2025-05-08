@@ -14,7 +14,7 @@ public interface WorkflowVersionTriggers {
     /**
      * Get the callback url for a trigger of a workflow version.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param versionId The workflow versionId.
      * @param triggerName The workflow trigger name.
@@ -31,7 +31,7 @@ public interface WorkflowVersionTriggers {
     /**
      * Get the callback url for a trigger of a workflow version.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param versionId The workflow versionId.
      * @param triggerName The workflow trigger name.

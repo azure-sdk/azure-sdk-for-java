@@ -22,14 +22,14 @@ public final class TrackingRecordType extends ExpandableStringEnum<TrackingRecor
     public static final TrackingRecordType CUSTOM = fromString("Custom");
 
     /**
-     * Static value AS2Message for TrackingRecordType.
+     * Static value As2Message for TrackingRecordType.
      */
-    public static final TrackingRecordType AS2MESSAGE = fromString("AS2Message");
+    public static final TrackingRecordType AS2MESSAGE = fromString("As2Message");
 
     /**
-     * Static value AS2MDN for TrackingRecordType.
+     * Static value As2MDN for TrackingRecordType.
      */
-    public static final TrackingRecordType AS2MDN = fromString("AS2MDN");
+    public static final TrackingRecordType AS2MDN = fromString("As2MDN");
 
     /**
      * Static value X12Interchange for TrackingRecordType.

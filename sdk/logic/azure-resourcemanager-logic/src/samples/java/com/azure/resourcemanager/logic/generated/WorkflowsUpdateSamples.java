@@ -19,6 +19,6 @@ public final class WorkflowsUpdateSamples {
      */
     public static void patchAWorkflow(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.workflows()
-            .updateWithResponse("test-resource-group", "test-workflow", com.azure.core.util.Context.NONE);
+            .updateWithResponse("test-resource-group", "test-workflow", null, com.azure.core.util.Context.NONE);
     }
 }

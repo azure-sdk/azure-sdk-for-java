@@ -9,8 +9,8 @@ import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.logic.fluent.models.ExpressionTracesInner;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowRunActionInner;
-import com.azure.resourcemanager.logic.models.ExpressionRoot;
 
 /**
  * An instance of this class provides access to all the operations defined in WorkflowRunActionsClient.
@@ -19,7 +19,7 @@ public interface WorkflowRunActionsClient {
     /**
      * Gets a list of workflow run actions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -33,7 +33,7 @@ public interface WorkflowRunActionsClient {
     /**
      * Gets a list of workflow run actions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param top The number of items to be included in the result.
@@ -51,7 +51,7 @@ public interface WorkflowRunActionsClient {
     /**
      * Gets a workflow run action.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
@@ -68,7 +68,7 @@ public interface WorkflowRunActionsClient {
     /**
      * Gets a workflow run action.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
@@ -83,23 +83,7 @@ public interface WorkflowRunActionsClient {
     /**
      * Lists a workflow run expression trace.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the expression traces as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ExpressionRoot> listExpressionTraces(String resourceGroupName, String workflowName, String runName,
-        String actionName);
-
-    /**
-     * Lists a workflow run expression trace.
-     * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param runName The workflow run name.
      * @param actionName The workflow action name.
@@ -107,9 +91,25 @@ public interface WorkflowRunActionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the expression traces as paginated response with {@link PagedIterable}.
+     * @return the expression traces along with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ExpressionRoot> listExpressionTraces(String resourceGroupName, String workflowName, String runName,
-        String actionName, Context context);
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ExpressionTracesInner> listExpressionTracesWithResponse(String resourceGroupName, String workflowName,
+        String runName, String actionName, Context context);
+
+    /**
+     * Lists a workflow run expression trace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param runName The workflow run name.
+     * @param actionName The workflow action name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the expression traces.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ExpressionTracesInner listExpressionTraces(String resourceGroupName, String workflowName, String runName,
+        String actionName);
 }

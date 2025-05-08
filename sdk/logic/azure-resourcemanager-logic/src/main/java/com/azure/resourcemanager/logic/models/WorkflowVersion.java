@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowVersionInner;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -46,6 +47,13 @@ public interface WorkflowVersion {
      * @return the tags value.
      */
     Map<String, String> tags();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the provisioningState property: The provisioning state.
@@ -122,7 +130,7 @@ public interface WorkflowVersion {
      * 
      * @return the definition value.
      */
-    Object definition();
+    Map<String, Object> definition();
 
     /**
      * Gets the parameters property: The parameters.

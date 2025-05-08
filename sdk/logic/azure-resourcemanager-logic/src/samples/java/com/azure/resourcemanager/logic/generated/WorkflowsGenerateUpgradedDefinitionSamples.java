@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.logic.generated;
 
-import com.azure.resourcemanager.logic.models.GenerateUpgradedDefinitionParameters;
-
 /**
  * Samples for Workflows GenerateUpgradedDefinition.
  */
@@ -21,8 +19,7 @@ public final class WorkflowsGenerateUpgradedDefinitionSamples {
      */
     public static void generateAnUpgradedDefinition(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.workflows()
-            .generateUpgradedDefinitionWithResponse("test-resource-group", "test-workflow",
-                new GenerateUpgradedDefinitionParameters().withTargetSchemaVersion("2016-06-01"),
+            .generateUpgradedDefinitionWithResponse("test-resource-group", "test-workflow", null,
                 com.azure.core.util.Context.NONE);
     }
 }

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowRunInner;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -20,18 +21,25 @@ public interface WorkflowRun {
     String id();
 
     /**
-     * Gets the name property: Gets the workflow run name.
+     * Gets the name property: The name of the resource.
      * 
      * @return the name value.
      */
     String name();
 
     /**
-     * Gets the type property: Gets the workflow run type.
+     * Gets the type property: The type of the resource.
      * 
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the waitEndTime property: Gets the wait end time.
@@ -73,7 +81,7 @@ public interface WorkflowRun {
      * 
      * @return the error value.
      */
-    Object error();
+    Map<String, Object> error();
 
     /**
      * Gets the correlationId property: Gets the correlation id.

@@ -130,7 +130,7 @@ public class OperationResultProperties implements JsonSerializable<OperationResu
      * @param status the status value to set.
      * @return the OperationResultProperties object itself.
      */
-    public OperationResultProperties withStatus(WorkflowStatus status) {
+    OperationResultProperties withStatus(WorkflowStatus status) {
         this.status = status;
         return this;
     }
@@ -197,7 +197,6 @@ public class OperationResultProperties implements JsonSerializable<OperationResu
         jsonWriter.writeStringField("endTime",
             this.endTime == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.endTime));
         jsonWriter.writeJsonField("correlation", this.correlation);
-        jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
         jsonWriter.writeStringField("code", this.code);
         jsonWriter.writeUntypedField("error", this.error);
         return jsonWriter.writeEndObject();

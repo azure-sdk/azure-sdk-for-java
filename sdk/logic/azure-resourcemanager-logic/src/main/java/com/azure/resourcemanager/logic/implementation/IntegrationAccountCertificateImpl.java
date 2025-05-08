@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.logic.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountCertificateInner;
 import com.azure.resourcemanager.logic.models.IntegrationAccountCertificate;
@@ -44,6 +45,10 @@ public final class IntegrationAccountCertificateImpl implements IntegrationAccou
         }
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public OffsetDateTime createdTime() {
         return this.innerModel().createdTime();
     }
@@ -52,8 +57,13 @@ public final class IntegrationAccountCertificateImpl implements IntegrationAccou
         return this.innerModel().changedTime();
     }
 
-    public Object metadata() {
-        return this.innerModel().metadata();
+    public Map<String, Object> metadata() {
+        Map<String, Object> inner = this.innerModel().metadata();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public KeyVaultKeyReference key() {
@@ -184,7 +194,7 @@ public final class IntegrationAccountCertificateImpl implements IntegrationAccou
         return this;
     }
 
-    public IntegrationAccountCertificateImpl withMetadata(Object metadata) {
+    public IntegrationAccountCertificateImpl withMetadata(Map<String, Object> metadata) {
         this.innerModel().withMetadata(metadata);
         return this;
     }

@@ -12,7 +12,6 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Managed service identity properties.
@@ -28,12 +27,12 @@ public final class ManagedServiceIdentity implements JsonSerializable<ManagedSer
     /*
      * Tenant of managed service identity.
      */
-    private UUID tenantId;
+    private String tenantId;
 
     /*
      * Principal Id of managed service identity.
      */
-    private UUID principalId;
+    private String principalId;
 
     /*
      * The list of user assigned identities associated with the resource. The user identity dictionary key references
@@ -76,7 +75,7 @@ public final class ManagedServiceIdentity implements JsonSerializable<ManagedSer
      * 
      * @return the tenantId value.
      */
-    public UUID tenantId() {
+    public String tenantId() {
         return this.tenantId;
     }
 
@@ -85,7 +84,7 @@ public final class ManagedServiceIdentity implements JsonSerializable<ManagedSer
      * 
      * @return the principalId value.
      */
-    public UUID principalId() {
+    public String principalId() {
         return this.principalId;
     }
 
@@ -165,11 +164,9 @@ public final class ManagedServiceIdentity implements JsonSerializable<ManagedSer
                 if ("type".equals(fieldName)) {
                     deserializedManagedServiceIdentity.type = ManagedServiceIdentityType.fromString(reader.getString());
                 } else if ("tenantId".equals(fieldName)) {
-                    deserializedManagedServiceIdentity.tenantId
-                        = reader.getNullable(nonNullReader -> UUID.fromString(nonNullReader.getString()));
+                    deserializedManagedServiceIdentity.tenantId = reader.getString();
                 } else if ("principalId".equals(fieldName)) {
-                    deserializedManagedServiceIdentity.principalId
-                        = reader.getNullable(nonNullReader -> UUID.fromString(nonNullReader.getString()));
+                    deserializedManagedServiceIdentity.principalId = reader.getString();
                 } else if ("userAssignedIdentities".equals(fieldName)) {
                     Map<String, UserAssignedIdentity> userAssignedIdentities
                         = reader.readMap(reader1 -> UserAssignedIdentity.fromJson(reader1));

@@ -6,9 +6,9 @@ package com.azure.resourcemanager.logic.fluent;
 
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.logic.fluent.models.BatchConfigurationCollectionInner;
 import com.azure.resourcemanager.logic.fluent.models.BatchConfigurationInner;
 
 /**
@@ -19,35 +19,35 @@ public interface IntegrationAccountBatchConfigurationsClient {
     /**
      * List the batch configurations for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param integrationAccountName The integration account name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of batch configurations as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchConfigurationInner> list(String resourceGroupName, String integrationAccountName);
-
-    /**
-     * List the batch configurations for an integration account.
-     * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of batch configurations as paginated response with {@link PagedIterable}.
+     * @return a collection of batch configurations along with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BatchConfigurationInner> list(String resourceGroupName, String integrationAccountName,
-        Context context);
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<BatchConfigurationCollectionInner> listWithResponse(String resourceGroupName,
+        String integrationAccountName, Context context);
+
+    /**
+     * List the batch configurations for an integration account.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param integrationAccountName The integration account name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a collection of batch configurations.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    BatchConfigurationCollectionInner list(String resourceGroupName, String integrationAccountName);
 
     /**
      * Get a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
      * @param context The context to associate with this operation.
@@ -63,7 +63,7 @@ public interface IntegrationAccountBatchConfigurationsClient {
     /**
      * Get a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -77,10 +77,10 @@ public interface IntegrationAccountBatchConfigurationsClient {
     /**
      * Create or update a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
-     * @param batchConfiguration The batch configuration.
+     * @param resource The batch configuration.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -89,16 +89,16 @@ public interface IntegrationAccountBatchConfigurationsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BatchConfigurationInner> createOrUpdateWithResponse(String resourceGroupName,
-        String integrationAccountName, String batchConfigurationName, BatchConfigurationInner batchConfiguration,
+        String integrationAccountName, String batchConfigurationName, BatchConfigurationInner resource,
         Context context);
 
     /**
      * Create or update a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
-     * @param batchConfiguration The batch configuration.
+     * @param resource The batch configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -106,12 +106,12 @@ public interface IntegrationAccountBatchConfigurationsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     BatchConfigurationInner createOrUpdate(String resourceGroupName, String integrationAccountName,
-        String batchConfigurationName, BatchConfigurationInner batchConfiguration);
+        String batchConfigurationName, BatchConfigurationInner resource);
 
     /**
      * Delete a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
      * @param context The context to associate with this operation.
@@ -127,7 +127,7 @@ public interface IntegrationAccountBatchConfigurationsClient {
     /**
      * Delete a batch configuration for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param batchConfigurationName The batch configuration name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

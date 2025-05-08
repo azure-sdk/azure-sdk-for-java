@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The operation result definition.
@@ -27,7 +28,7 @@ public class OperationResult extends OperationResultProperties {
     /*
      * Gets the inputs.
      */
-    private Object inputs;
+    private Map<String, Object> inputs;
 
     /*
      * Gets the link to inputs.
@@ -37,7 +38,7 @@ public class OperationResult extends OperationResultProperties {
     /*
      * Gets the outputs.
      */
-    private Object outputs;
+    private Map<String, Object> outputs;
 
     /*
      * Gets the link to outputs.
@@ -47,7 +48,7 @@ public class OperationResult extends OperationResultProperties {
     /*
      * Gets the tracked properties.
      */
-    private Object trackedProperties;
+    private Map<String, Object> trackedProperties;
 
     /*
      * Gets the retry histories.
@@ -58,6 +59,11 @@ public class OperationResult extends OperationResultProperties {
      * The iterationCount property.
      */
     private Integer iterationCount;
+
+    /*
+     * The status of the workflow scope repetition.
+     */
+    private WorkflowStatus status;
 
     /**
      * Creates an instance of OperationResult class.
@@ -90,7 +96,7 @@ public class OperationResult extends OperationResultProperties {
      * 
      * @return the inputs value.
      */
-    public Object inputs() {
+    public Map<String, Object> inputs() {
         return this.inputs;
     }
 
@@ -100,7 +106,7 @@ public class OperationResult extends OperationResultProperties {
      * @param inputs the inputs value to set.
      * @return the OperationResult object itself.
      */
-    OperationResult withInputs(Object inputs) {
+    OperationResult withInputs(Map<String, Object> inputs) {
         this.inputs = inputs;
         return this;
     }
@@ -130,7 +136,7 @@ public class OperationResult extends OperationResultProperties {
      * 
      * @return the outputs value.
      */
-    public Object outputs() {
+    public Map<String, Object> outputs() {
         return this.outputs;
     }
 
@@ -140,7 +146,7 @@ public class OperationResult extends OperationResultProperties {
      * @param outputs the outputs value to set.
      * @return the OperationResult object itself.
      */
-    OperationResult withOutputs(Object outputs) {
+    OperationResult withOutputs(Map<String, Object> outputs) {
         this.outputs = outputs;
         return this;
     }
@@ -170,7 +176,7 @@ public class OperationResult extends OperationResultProperties {
      * 
      * @return the trackedProperties value.
      */
-    public Object trackedProperties() {
+    public Map<String, Object> trackedProperties() {
         return this.trackedProperties;
     }
 
@@ -180,7 +186,7 @@ public class OperationResult extends OperationResultProperties {
      * @param trackedProperties the trackedProperties value to set.
      * @return the OperationResult object itself.
      */
-    OperationResult withTrackedProperties(Object trackedProperties) {
+    OperationResult withTrackedProperties(Map<String, Object> trackedProperties) {
         this.trackedProperties = trackedProperties;
         return this;
     }
@@ -226,6 +232,16 @@ public class OperationResult extends OperationResultProperties {
     }
 
     /**
+     * Get the status property: The status of the workflow scope repetition.
+     * 
+     * @return the status value.
+     */
+    @Override
+    public WorkflowStatus status() {
+        return this.status;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -249,15 +265,6 @@ public class OperationResult extends OperationResultProperties {
     @Override
     public OperationResult withCorrelation(RunActionCorrelation correlation) {
         super.withCorrelation(correlation);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public OperationResult withStatus(WorkflowStatus status) {
-        super.withStatus(status);
         return this;
     }
 
@@ -311,7 +318,6 @@ public class OperationResult extends OperationResultProperties {
         jsonWriter.writeStringField("endTime",
             endTime() == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(endTime()));
         jsonWriter.writeJsonField("correlation", correlation());
-        jsonWriter.writeStringField("status", status() == null ? null : status().toString());
         jsonWriter.writeStringField("code", code());
         jsonWriter.writeUntypedField("error", error());
         jsonWriter.writeArrayField("retryHistory", this.retryHistory, (writer, element) -> writer.writeJson(element));
@@ -343,7 +349,7 @@ public class OperationResult extends OperationResultProperties {
                 } else if ("correlation".equals(fieldName)) {
                     deserializedOperationResult.withCorrelation(RunActionCorrelation.fromJson(reader));
                 } else if ("status".equals(fieldName)) {
-                    deserializedOperationResult.withStatus(WorkflowStatus.fromString(reader.getString()));
+                    deserializedOperationResult.status = WorkflowStatus.fromString(reader.getString());
                 } else if ("code".equals(fieldName)) {
                     deserializedOperationResult.withCode(reader.getString());
                 } else if ("error".equals(fieldName)) {
@@ -351,15 +357,18 @@ public class OperationResult extends OperationResultProperties {
                 } else if ("trackingId".equals(fieldName)) {
                     deserializedOperationResult.trackingId = reader.getString();
                 } else if ("inputs".equals(fieldName)) {
-                    deserializedOperationResult.inputs = reader.readUntyped();
+                    Map<String, Object> inputs = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedOperationResult.inputs = inputs;
                 } else if ("inputsLink".equals(fieldName)) {
                     deserializedOperationResult.inputsLink = ContentLink.fromJson(reader);
                 } else if ("outputs".equals(fieldName)) {
-                    deserializedOperationResult.outputs = reader.readUntyped();
+                    Map<String, Object> outputs = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedOperationResult.outputs = outputs;
                 } else if ("outputsLink".equals(fieldName)) {
                     deserializedOperationResult.outputsLink = ContentLink.fromJson(reader);
                 } else if ("trackedProperties".equals(fieldName)) {
-                    deserializedOperationResult.trackedProperties = reader.readUntyped();
+                    Map<String, Object> trackedProperties = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedOperationResult.trackedProperties = trackedProperties;
                 } else if ("retryHistory".equals(fieldName)) {
                     List<RetryHistory> retryHistory = reader.readArray(reader1 -> RetryHistory.fromJson(reader1));
                     deserializedOperationResult.retryHistory = retryHistory;

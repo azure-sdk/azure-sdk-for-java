@@ -10,6 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * A response.
@@ -19,7 +20,7 @@ public final class Response implements JsonSerializable<Response> {
     /*
      * A list of all the headers attached to the response.
      */
-    private Object headers;
+    private Map<String, Object> headers;
 
     /*
      * The status code of the response.
@@ -42,7 +43,7 @@ public final class Response implements JsonSerializable<Response> {
      * 
      * @return the headers value.
      */
-    public Object headers() {
+    public Map<String, Object> headers() {
         return this.headers;
     }
 
@@ -52,7 +53,7 @@ public final class Response implements JsonSerializable<Response> {
      * @param headers the headers value to set.
      * @return the Response object itself.
      */
-    public Response withHeaders(Object headers) {
+    public Response withHeaders(Map<String, Object> headers) {
         this.headers = headers;
         return this;
     }
@@ -114,7 +115,7 @@ public final class Response implements JsonSerializable<Response> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeUntypedField("headers", this.headers);
+        jsonWriter.writeMapField("headers", this.headers, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeNumberField("statusCode", this.statusCode);
         jsonWriter.writeJsonField("bodyLink", this.bodyLink);
         return jsonWriter.writeEndObject();
@@ -136,7 +137,8 @@ public final class Response implements JsonSerializable<Response> {
                 reader.nextToken();
 
                 if ("headers".equals(fieldName)) {
-                    deserializedResponse.headers = reader.readUntyped();
+                    Map<String, Object> headers = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedResponse.headers = headers;
                 } else if ("statusCode".equals(fieldName)) {
                     deserializedResponse.statusCode = reader.getNullable(JsonReader::getInt);
                 } else if ("bodyLink".equals(fieldName)) {

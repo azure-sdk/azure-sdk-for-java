@@ -4,78 +4,73 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.util.ExpandableStringEnum;
+import java.util.Collection;
+
 /**
  * The day of the week.
  */
-public enum DayOfWeek {
+public final class DayOfWeek extends ExpandableStringEnum<DayOfWeek> {
     /**
-     * Enum value Sunday.
+     * Static value Sunday for DayOfWeek.
      */
-    SUNDAY("Sunday"),
+    public static final DayOfWeek SUNDAY = fromString("Sunday");
 
     /**
-     * Enum value Monday.
+     * Static value Monday for DayOfWeek.
      */
-    MONDAY("Monday"),
+    public static final DayOfWeek MONDAY = fromString("Monday");
 
     /**
-     * Enum value Tuesday.
+     * Static value Tuesday for DayOfWeek.
      */
-    TUESDAY("Tuesday"),
+    public static final DayOfWeek TUESDAY = fromString("Tuesday");
 
     /**
-     * Enum value Wednesday.
+     * Static value Wednesday for DayOfWeek.
      */
-    WEDNESDAY("Wednesday"),
+    public static final DayOfWeek WEDNESDAY = fromString("Wednesday");
 
     /**
-     * Enum value Thursday.
+     * Static value Thursday for DayOfWeek.
      */
-    THURSDAY("Thursday"),
+    public static final DayOfWeek THURSDAY = fromString("Thursday");
 
     /**
-     * Enum value Friday.
+     * Static value Friday for DayOfWeek.
      */
-    FRIDAY("Friday"),
+    public static final DayOfWeek FRIDAY = fromString("Friday");
 
     /**
-     * Enum value Saturday.
+     * Static value Saturday for DayOfWeek.
      */
-    SATURDAY("Saturday");
+    public static final DayOfWeek SATURDAY = fromString("Saturday");
 
     /**
-     * The actual serialized value for a DayOfWeek instance.
-     */
-    private final String value;
-
-    DayOfWeek(String value) {
-        this.value = value;
-    }
-
-    /**
-     * Parses a serialized value to a DayOfWeek instance.
+     * Creates a new instance of DayOfWeek value.
      * 
-     * @param value the serialized value to parse.
-     * @return the parsed DayOfWeek object, or null if unable to parse.
+     * @deprecated Use the {@link #fromString(String)} factory method.
      */
-    public static DayOfWeek fromString(String value) {
-        if (value == null) {
-            return null;
-        }
-        DayOfWeek[] items = DayOfWeek.values();
-        for (DayOfWeek item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
+    @Deprecated
+    public DayOfWeek() {
     }
 
     /**
-     * {@inheritDoc}
+     * Creates or finds a DayOfWeek from its string representation.
+     * 
+     * @param name a name to look for.
+     * @return the corresponding DayOfWeek.
      */
-    @Override
-    public String toString() {
-        return this.value;
+    public static DayOfWeek fromString(String name) {
+        return fromString(name, DayOfWeek.class);
+    }
+
+    /**
+     * Gets known DayOfWeek values.
+     * 
+     * @return known DayOfWeek values.
+     */
+    public static Collection<DayOfWeek> values() {
+        return values(DayOfWeek.class);
     }
 }

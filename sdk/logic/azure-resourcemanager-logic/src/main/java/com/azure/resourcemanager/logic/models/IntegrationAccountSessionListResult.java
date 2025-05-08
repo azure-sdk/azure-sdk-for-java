@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,18 +15,18 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The list of integration account sessions.
+ * The response of a IntegrationAccountSession list operation.
  */
 @Fluent
 public final class IntegrationAccountSessionListResult
     implements JsonSerializable<IntegrationAccountSessionListResult> {
     /*
-     * The list of integration account sessions.
+     * The IntegrationAccountSession items on this page
      */
     private List<IntegrationAccountSessionInner> value;
 
     /*
-     * The URL to get the next set of results.
+     * The link to the next page of items
      */
     private String nextLink;
 
@@ -36,7 +37,7 @@ public final class IntegrationAccountSessionListResult
     }
 
     /**
-     * Get the value property: The list of integration account sessions.
+     * Get the value property: The IntegrationAccountSession items on this page.
      * 
      * @return the value value.
      */
@@ -45,7 +46,7 @@ public final class IntegrationAccountSessionListResult
     }
 
     /**
-     * Set the value property: The list of integration account sessions.
+     * Set the value property: The IntegrationAccountSession items on this page.
      * 
      * @param value the value value to set.
      * @return the IntegrationAccountSessionListResult object itself.
@@ -56,7 +57,7 @@ public final class IntegrationAccountSessionListResult
     }
 
     /**
-     * Get the nextLink property: The URL to get the next set of results.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -65,7 +66,7 @@ public final class IntegrationAccountSessionListResult
     }
 
     /**
-     * Set the nextLink property: The URL to get the next set of results.
+     * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
      * @return the IntegrationAccountSessionListResult object itself.
@@ -81,10 +82,16 @@ public final class IntegrationAccountSessionListResult
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model IntegrationAccountSessionListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(IntegrationAccountSessionListResult.class);
 
     /**
      * {@inheritDoc}
@@ -103,6 +110,7 @@ public final class IntegrationAccountSessionListResult
      * @param jsonReader The JsonReader being read.
      * @return An instance of IntegrationAccountSessionListResult if the JsonReader was pointing to an instance of it,
      * or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the IntegrationAccountSessionListResult.
      */
     public static IntegrationAccountSessionListResult fromJson(JsonReader jsonReader) throws IOException {

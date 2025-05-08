@@ -4,9 +4,6 @@
 
 package com.azure.resourcemanager.logic.generated;
 
-import com.azure.resourcemanager.logic.models.KeyVaultReference;
-import com.azure.resourcemanager.logic.models.ListKeyVaultKeysDefinition;
-
 /**
  * Samples for IntegrationAccounts ListKeyVaultKeys.
  */
@@ -22,10 +19,7 @@ public final class IntegrationAccountsListKeyVaultKeysSamples {
      */
     public static void getIntegrationAccountCallbackURL(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationAccounts()
-            .listKeyVaultKeys("testResourceGroup", "testIntegrationAccount",
-                new ListKeyVaultKeysDefinition().withKeyVault(new KeyVaultReference().withId(
-                    "subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testResourceGroup/providers/Microsoft.KeyVault/vaults/testKeyVault"))
-                    .withSkipToken("fakeTokenPlaceholder"),
+            .listKeyVaultKeysWithResponse("testResourceGroup", "testIntegrationAccount", null,
                 com.azure.core.util.Context.NONE);
     }
 }

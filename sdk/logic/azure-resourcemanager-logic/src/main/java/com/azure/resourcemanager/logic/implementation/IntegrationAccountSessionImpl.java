@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.logic.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountSessionInner;
 import com.azure.resourcemanager.logic.models.IntegrationAccountSession;
@@ -43,6 +44,10 @@ public final class IntegrationAccountSessionImpl
         }
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public OffsetDateTime createdTime() {
         return this.innerModel().createdTime();
     }
@@ -51,8 +56,13 @@ public final class IntegrationAccountSessionImpl
         return this.innerModel().changedTime();
     }
 
-    public Object content() {
-        return this.innerModel().content();
+    public Map<String, Object> content() {
+        Map<String, Object> inner = this.innerModel().content();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public Region region() {
@@ -175,7 +185,7 @@ public final class IntegrationAccountSessionImpl
         return this;
     }
 
-    public IntegrationAccountSessionImpl withContent(Object content) {
+    public IntegrationAccountSessionImpl withContent(Map<String, Object> content) {
         this.innerModel().withContent(content);
         return this;
     }

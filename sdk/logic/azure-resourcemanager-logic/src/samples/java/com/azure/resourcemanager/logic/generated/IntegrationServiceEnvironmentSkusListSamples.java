@@ -19,6 +19,6 @@ public final class IntegrationServiceEnvironmentSkusListSamples {
      */
     public static void listIntegrationServiceEnvironmentSkus(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationServiceEnvironmentSkus()
-            .list("testResourceGroup", "testIntegrationServiceEnvironment", com.azure.core.util.Context.NONE);
+            .list("testIntegrationServiceEnvironment", com.azure.core.util.Context.NONE);
     }
 }

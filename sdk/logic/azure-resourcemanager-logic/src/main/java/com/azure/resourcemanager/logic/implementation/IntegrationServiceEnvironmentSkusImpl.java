@@ -25,18 +25,17 @@ public final class IntegrationServiceEnvironmentSkusImpl implements IntegrationS
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<IntegrationServiceEnvironmentSkuDefinition> list(String resourceGroup,
-        String integrationServiceEnvironmentName) {
+    public PagedIterable<IntegrationServiceEnvironmentSkuDefinition> list(String integrationServiceEnvironmentName) {
         PagedIterable<IntegrationServiceEnvironmentSkuDefinitionInner> inner
-            = this.serviceClient().list(resourceGroup, integrationServiceEnvironmentName);
+            = this.serviceClient().list(integrationServiceEnvironmentName);
         return ResourceManagerUtils.mapPage(inner,
             inner1 -> new IntegrationServiceEnvironmentSkuDefinitionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<IntegrationServiceEnvironmentSkuDefinition> list(String resourceGroup,
-        String integrationServiceEnvironmentName, Context context) {
+    public PagedIterable<IntegrationServiceEnvironmentSkuDefinition> list(String integrationServiceEnvironmentName,
+        Context context) {
         PagedIterable<IntegrationServiceEnvironmentSkuDefinitionInner> inner
-            = this.serviceClient().list(resourceGroup, integrationServiceEnvironmentName, context);
+            = this.serviceClient().list(integrationServiceEnvironmentName, context);
         return ResourceManagerUtils.mapPage(inner,
             inner1 -> new IntegrationServiceEnvironmentSkuDefinitionImpl(inner1, this.manager()));
     }

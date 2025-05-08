@@ -20,7 +20,6 @@ public final class IntegrationServiceEnvironmentManagedApisDeleteSamples {
     public static void
         deletesTheIntegrationServiceEnvironmentManagedApis(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationServiceEnvironmentManagedApis()
-            .delete("testResourceGroup", "testIntegrationServiceEnvironment", "servicebus",
-                com.azure.core.util.Context.NONE);
+            .delete("testIntegrationServiceEnvironment", "servicebus", com.azure.core.util.Context.NONE);
     }
 }

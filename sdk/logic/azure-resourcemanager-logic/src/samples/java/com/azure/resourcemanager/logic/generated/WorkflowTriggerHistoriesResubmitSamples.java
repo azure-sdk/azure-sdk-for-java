@@ -21,7 +21,7 @@ public final class WorkflowTriggerHistoriesResubmitSamples {
     public static void
         resubmitAWorkflowRunBasedOnTheTriggerHistory(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.workflowTriggerHistories()
-            .resubmitWithResponse("testResourceGroup", "testWorkflowName", "testTriggerName", "testHistoryName",
+            .resubmit("testResourceGroup", "testWorkflowName", "testTriggerName", "testHistoryName",
                 com.azure.core.util.Context.NONE);
     }
 }

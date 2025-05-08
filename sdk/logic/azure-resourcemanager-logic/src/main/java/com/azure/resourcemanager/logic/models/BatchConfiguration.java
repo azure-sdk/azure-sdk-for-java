@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.BatchConfigurationInner;
+import java.time.OffsetDateTime;
 import java.util.Map;
 
 /**
@@ -49,11 +51,46 @@ public interface BatchConfiguration {
     Map<String, String> tags();
 
     /**
-     * Gets the properties property: The batch configuration properties.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the properties value.
+     * @return the systemData value.
      */
-    BatchConfigurationProperties properties();
+    SystemData systemData();
+
+    /**
+     * Gets the batchGroupName property: The name of the batch group.
+     * 
+     * @return the batchGroupName value.
+     */
+    String batchGroupName();
+
+    /**
+     * Gets the releaseCriteria property: The batch release criteria.
+     * 
+     * @return the releaseCriteria value.
+     */
+    BatchReleaseCriteria releaseCriteria();
+
+    /**
+     * Gets the createdTime property: The artifact creation time.
+     * 
+     * @return the createdTime value.
+     */
+    OffsetDateTime createdTime();
+
+    /**
+     * Gets the changedTime property: The artifact changed time.
+     * 
+     * @return the changedTime value.
+     */
+    OffsetDateTime changedTime();
+
+    /**
+     * Gets the metadata property: Anything.
+     * 
+     * @return the metadata value.
+     */
+    Object metadata();
 
     /**
      * Gets the region of the resource.
@@ -86,8 +123,9 @@ public interface BatchConfiguration {
     /**
      * The entirety of the BatchConfiguration definition.
      */
-    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
-        DefinitionStages.WithParentResource, DefinitionStages.WithProperties, DefinitionStages.WithCreate {
+    interface Definition
+        extends DefinitionStages.Blank, DefinitionStages.WithLocation, DefinitionStages.WithParentResource,
+        DefinitionStages.WithBatchGroupName, DefinitionStages.WithReleaseCriteria, DefinitionStages.WithCreate {
     }
 
     /**
@@ -128,31 +166,45 @@ public interface BatchConfiguration {
             /**
              * Specifies resourceGroupName, integrationAccountName.
              * 
-             * @param resourceGroupName The resource group name.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param integrationAccountName The integration account name.
              * @return the next definition stage.
              */
-            WithProperties withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
+            WithBatchGroupName withExistingIntegrationAccount(String resourceGroupName, String integrationAccountName);
         }
 
         /**
-         * The stage of the BatchConfiguration definition allowing to specify properties.
+         * The stage of the BatchConfiguration definition allowing to specify batchGroupName.
          */
-        interface WithProperties {
+        interface WithBatchGroupName {
             /**
-             * Specifies the properties property: The batch configuration properties..
+             * Specifies the batchGroupName property: The name of the batch group..
              * 
-             * @param properties The batch configuration properties.
+             * @param batchGroupName The name of the batch group.
              * @return the next definition stage.
              */
-            WithCreate withProperties(BatchConfigurationProperties properties);
+            WithReleaseCriteria withBatchGroupName(String batchGroupName);
+        }
+
+        /**
+         * The stage of the BatchConfiguration definition allowing to specify releaseCriteria.
+         */
+        interface WithReleaseCriteria {
+            /**
+             * Specifies the releaseCriteria property: The batch release criteria..
+             * 
+             * @param releaseCriteria The batch release criteria.
+             * @return the next definition stage.
+             */
+            WithCreate withReleaseCriteria(BatchReleaseCriteria releaseCriteria);
         }
 
         /**
          * The stage of the BatchConfiguration definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithCreatedTime,
+            DefinitionStages.WithChangedTime, DefinitionStages.WithMetadata {
             /**
              * Executes the create request.
              * 
@@ -181,6 +233,45 @@ public interface BatchConfiguration {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+
+        /**
+         * The stage of the BatchConfiguration definition allowing to specify createdTime.
+         */
+        interface WithCreatedTime {
+            /**
+             * Specifies the createdTime property: The artifact creation time..
+             * 
+             * @param createdTime The artifact creation time.
+             * @return the next definition stage.
+             */
+            WithCreate withCreatedTime(OffsetDateTime createdTime);
+        }
+
+        /**
+         * The stage of the BatchConfiguration definition allowing to specify changedTime.
+         */
+        interface WithChangedTime {
+            /**
+             * Specifies the changedTime property: The artifact changed time..
+             * 
+             * @param changedTime The artifact changed time.
+             * @return the next definition stage.
+             */
+            WithCreate withChangedTime(OffsetDateTime changedTime);
+        }
+
+        /**
+         * The stage of the BatchConfiguration definition allowing to specify metadata.
+         */
+        interface WithMetadata {
+            /**
+             * Specifies the metadata property: Anything.
+             * 
+             * @param metadata Anything.
+             * @return the next definition stage.
+             */
+            WithCreate withMetadata(Object metadata);
+        }
     }
 
     /**
@@ -193,7 +284,8 @@ public interface BatchConfiguration {
     /**
      * The template for BatchConfiguration update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithBatchGroupName, UpdateStages.WithReleaseCriteria,
+        UpdateStages.WithCreatedTime, UpdateStages.WithChangedTime, UpdateStages.WithMetadata {
         /**
          * Executes the update request.
          * 
@@ -228,16 +320,68 @@ public interface BatchConfiguration {
         }
 
         /**
-         * The stage of the BatchConfiguration update allowing to specify properties.
+         * The stage of the BatchConfiguration update allowing to specify batchGroupName.
          */
-        interface WithProperties {
+        interface WithBatchGroupName {
             /**
-             * Specifies the properties property: The batch configuration properties..
+             * Specifies the batchGroupName property: The name of the batch group..
              * 
-             * @param properties The batch configuration properties.
+             * @param batchGroupName The name of the batch group.
              * @return the next definition stage.
              */
-            Update withProperties(BatchConfigurationProperties properties);
+            Update withBatchGroupName(String batchGroupName);
+        }
+
+        /**
+         * The stage of the BatchConfiguration update allowing to specify releaseCriteria.
+         */
+        interface WithReleaseCriteria {
+            /**
+             * Specifies the releaseCriteria property: The batch release criteria..
+             * 
+             * @param releaseCriteria The batch release criteria.
+             * @return the next definition stage.
+             */
+            Update withReleaseCriteria(BatchReleaseCriteria releaseCriteria);
+        }
+
+        /**
+         * The stage of the BatchConfiguration update allowing to specify createdTime.
+         */
+        interface WithCreatedTime {
+            /**
+             * Specifies the createdTime property: The artifact creation time..
+             * 
+             * @param createdTime The artifact creation time.
+             * @return the next definition stage.
+             */
+            Update withCreatedTime(OffsetDateTime createdTime);
+        }
+
+        /**
+         * The stage of the BatchConfiguration update allowing to specify changedTime.
+         */
+        interface WithChangedTime {
+            /**
+             * Specifies the changedTime property: The artifact changed time..
+             * 
+             * @param changedTime The artifact changed time.
+             * @return the next definition stage.
+             */
+            Update withChangedTime(OffsetDateTime changedTime);
+        }
+
+        /**
+         * The stage of the BatchConfiguration update allowing to specify metadata.
+         */
+        interface WithMetadata {
+            /**
+             * Specifies the metadata property: Anything.
+             * 
+             * @param metadata Anything.
+             * @return the next definition stage.
+             */
+            Update withMetadata(Object metadata);
         }
     }
 

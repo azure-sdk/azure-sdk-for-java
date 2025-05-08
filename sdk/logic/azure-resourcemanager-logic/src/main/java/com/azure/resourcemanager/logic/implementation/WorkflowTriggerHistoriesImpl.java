@@ -64,14 +64,13 @@ public final class WorkflowTriggerHistoriesImpl implements WorkflowTriggerHistor
         }
     }
 
-    public Response<Void> resubmitWithResponse(String resourceGroupName, String workflowName, String triggerName,
-        String historyName, Context context) {
-        return this.serviceClient()
-            .resubmitWithResponse(resourceGroupName, workflowName, triggerName, historyName, context);
-    }
-
     public void resubmit(String resourceGroupName, String workflowName, String triggerName, String historyName) {
         this.serviceClient().resubmit(resourceGroupName, workflowName, triggerName, historyName);
+    }
+
+    public void resubmit(String resourceGroupName, String workflowName, String triggerName, String historyName,
+        Context context) {
+        this.serviceClient().resubmit(resourceGroupName, workflowName, triggerName, historyName, context);
     }
 
     private WorkflowTriggerHistoriesClient serviceClient() {

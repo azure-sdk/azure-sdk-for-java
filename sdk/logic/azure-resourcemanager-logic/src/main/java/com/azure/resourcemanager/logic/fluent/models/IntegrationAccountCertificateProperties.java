@@ -13,6 +13,7 @@ import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.logic.models.KeyVaultKeyReference;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 /**
  * The integration account certificate properties.
@@ -33,7 +34,7 @@ public final class IntegrationAccountCertificateProperties
     /*
      * The metadata.
      */
-    private Object metadata;
+    private Map<String, Object> metadata;
 
     /*
      * The key details in the key vault.
@@ -74,7 +75,7 @@ public final class IntegrationAccountCertificateProperties
      * 
      * @return the metadata value.
      */
-    public Object metadata() {
+    public Map<String, Object> metadata() {
         return this.metadata;
     }
 
@@ -84,7 +85,7 @@ public final class IntegrationAccountCertificateProperties
      * @param metadata the metadata value to set.
      * @return the IntegrationAccountCertificateProperties object itself.
      */
-    public IntegrationAccountCertificateProperties withMetadata(Object metadata) {
+    public IntegrationAccountCertificateProperties withMetadata(Map<String, Object> metadata) {
         this.metadata = metadata;
         return this;
     }
@@ -146,7 +147,7 @@ public final class IntegrationAccountCertificateProperties
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeUntypedField("metadata", this.metadata);
+        jsonWriter.writeMapField("metadata", this.metadata, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeJsonField("key", this.key);
         jsonWriter.writeStringField("publicCertificate", this.publicCertificate);
         return jsonWriter.writeEndObject();
@@ -175,7 +176,8 @@ public final class IntegrationAccountCertificateProperties
                     deserializedIntegrationAccountCertificateProperties.changedTime = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("metadata".equals(fieldName)) {
-                    deserializedIntegrationAccountCertificateProperties.metadata = reader.readUntyped();
+                    Map<String, Object> metadata = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedIntegrationAccountCertificateProperties.metadata = metadata;
                 } else if ("key".equals(fieldName)) {
                     deserializedIntegrationAccountCertificateProperties.key = KeyVaultKeyReference.fromJson(reader);
                 } else if ("publicCertificate".equals(fieldName)) {

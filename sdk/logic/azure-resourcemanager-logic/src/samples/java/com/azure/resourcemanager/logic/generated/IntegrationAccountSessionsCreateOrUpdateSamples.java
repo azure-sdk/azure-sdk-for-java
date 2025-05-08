@@ -4,10 +4,6 @@
 
 package com.azure.resourcemanager.logic.generated;
 
-import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.serializer.SerializerEncoding;
-import java.io.IOException;
-
 /**
  * Samples for IntegrationAccountSessions CreateOrUpdate.
  */
@@ -21,16 +17,11 @@ public final class IntegrationAccountSessionsCreateOrUpdateSamples {
      * 
      * @param manager Entry point to LogicManager.
      */
-    public static void createOrUpdateAnIntegrationAccountSession(com.azure.resourcemanager.logic.LogicManager manager)
-        throws IOException {
+    public static void createOrUpdateAnIntegrationAccountSession(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationAccountSessions()
             .define("testsession123-ICN")
             .withRegion((String) null)
             .withExistingIntegrationAccount("testrg123", "testia123")
-            .withContent(SerializerFactory.createDefaultManagementSerializerAdapter()
-                .deserialize(
-                    "{\"controlNumber\":\"1234\",\"controlNumberChangedTime\":\"2017-02-21T22:30:11.9923759Z\"}",
-                    Object.class, SerializerEncoding.JSON))
             .create();
     }
 }

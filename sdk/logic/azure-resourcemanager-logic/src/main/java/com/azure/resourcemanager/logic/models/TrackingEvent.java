@@ -14,6 +14,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 /**
  * The tracking event.
@@ -38,7 +39,7 @@ public final class TrackingEvent implements JsonSerializable<TrackingEvent> {
     /*
      * The record.
      */
-    private Object record;
+    private Map<String, Object> record;
 
     /*
      * The error.
@@ -116,7 +117,7 @@ public final class TrackingEvent implements JsonSerializable<TrackingEvent> {
      * 
      * @return the record value.
      */
-    public Object record() {
+    public Map<String, Object> record() {
         return this.record;
     }
 
@@ -126,7 +127,7 @@ public final class TrackingEvent implements JsonSerializable<TrackingEvent> {
      * @param record the record value to set.
      * @return the TrackingEvent object itself.
      */
-    public TrackingEvent withRecord(Object record) {
+    public TrackingEvent withRecord(Map<String, Object> record) {
         this.record = record;
         return this;
     }
@@ -186,7 +187,7 @@ public final class TrackingEvent implements JsonSerializable<TrackingEvent> {
         jsonWriter.writeStringField("eventTime",
             this.eventTime == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.eventTime));
         jsonWriter.writeStringField("recordType", this.recordType == null ? null : this.recordType.toString());
-        jsonWriter.writeUntypedField("record", this.record);
+        jsonWriter.writeMapField("record", this.record, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeJsonField("error", this.error);
         return jsonWriter.writeEndObject();
     }
@@ -215,7 +216,8 @@ public final class TrackingEvent implements JsonSerializable<TrackingEvent> {
                 } else if ("recordType".equals(fieldName)) {
                     deserializedTrackingEvent.recordType = TrackingRecordType.fromString(reader.getString());
                 } else if ("record".equals(fieldName)) {
-                    deserializedTrackingEvent.record = reader.readUntyped();
+                    Map<String, Object> record = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedTrackingEvent.record = record;
                 } else if ("error".equals(fieldName)) {
                     deserializedTrackingEvent.error = TrackingEventErrorInfo.fromJson(reader);
                 } else {

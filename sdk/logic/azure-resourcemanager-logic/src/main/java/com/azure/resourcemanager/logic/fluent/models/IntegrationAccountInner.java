@@ -6,6 +6,7 @@ package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -29,6 +30,11 @@ public final class IntegrationAccountInner extends Resource {
      * The sku.
      */
     private IntegrationAccountSku sku;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -78,6 +84,15 @@ public final class IntegrationAccountInner extends Resource {
     public IntegrationAccountInner withSku(IntegrationAccountSku sku) {
         this.sku = sku;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -232,6 +247,8 @@ public final class IntegrationAccountInner extends Resource {
                     deserializedIntegrationAccountInner.innerProperties = IntegrationAccountProperties.fromJson(reader);
                 } else if ("sku".equals(fieldName)) {
                     deserializedIntegrationAccountInner.sku = IntegrationAccountSku.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedIntegrationAccountInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

@@ -6,11 +6,13 @@ package com.azure.resourcemanager.logic.implementation;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.AssemblyDefinitionInner;
 import com.azure.resourcemanager.logic.models.AssemblyDefinition;
-import com.azure.resourcemanager.logic.models.AssemblyProperties;
+import com.azure.resourcemanager.logic.models.ContentLink;
 import com.azure.resourcemanager.logic.models.WorkflowTriggerCallbackUrl;
+import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.Map;
 
@@ -45,8 +47,48 @@ public final class AssemblyDefinitionImpl
         }
     }
 
-    public AssemblyProperties properties() {
-        return this.innerModel().properties();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public String assemblyName() {
+        return this.innerModel().assemblyName();
+    }
+
+    public String assemblyVersion() {
+        return this.innerModel().assemblyVersion();
+    }
+
+    public String assemblyCulture() {
+        return this.innerModel().assemblyCulture();
+    }
+
+    public String assemblyPublicKeyToken() {
+        return this.innerModel().assemblyPublicKeyToken();
+    }
+
+    public Object content() {
+        return this.innerModel().content();
+    }
+
+    public String contentType() {
+        return this.innerModel().contentType();
+    }
+
+    public ContentLink contentLink() {
+        return this.innerModel().contentLink();
+    }
+
+    public OffsetDateTime createdTime() {
+        return this.innerModel().createdTime();
+    }
+
+    public OffsetDateTime changedTime() {
+        return this.innerModel().changedTime();
+    }
+
+    public Object metadata() {
+        return this.innerModel().metadata();
     }
 
     public Region region() {
@@ -175,13 +217,58 @@ public final class AssemblyDefinitionImpl
         return this;
     }
 
-    public AssemblyDefinitionImpl withProperties(AssemblyProperties properties) {
-        this.innerModel().withProperties(properties);
+    public AssemblyDefinitionImpl withAssemblyName(String assemblyName) {
+        this.innerModel().withAssemblyName(assemblyName);
         return this;
     }
 
     public AssemblyDefinitionImpl withTags(Map<String, String> tags) {
         this.innerModel().withTags(tags);
+        return this;
+    }
+
+    public AssemblyDefinitionImpl withAssemblyVersion(String assemblyVersion) {
+        this.innerModel().withAssemblyVersion(assemblyVersion);
+        return this;
+    }
+
+    public AssemblyDefinitionImpl withAssemblyCulture(String assemblyCulture) {
+        this.innerModel().withAssemblyCulture(assemblyCulture);
+        return this;
+    }
+
+    public AssemblyDefinitionImpl withAssemblyPublicKeyToken(String assemblyPublicKeyToken) {
+        this.innerModel().withAssemblyPublicKeyToken(assemblyPublicKeyToken);
+        return this;
+    }
+
+    public AssemblyDefinitionImpl withContent(Object content) {
+        this.innerModel().withContent(content);
+        return this;
+    }
+
+    public AssemblyDefinitionImpl withContentType(String contentType) {
+        this.innerModel().withContentType(contentType);
+        return this;
+    }
+
+    public AssemblyDefinitionImpl withContentLink(ContentLink contentLink) {
+        this.innerModel().withContentLink(contentLink);
+        return this;
+    }
+
+    public AssemblyDefinitionImpl withCreatedTime(OffsetDateTime createdTime) {
+        this.innerModel().withCreatedTime(createdTime);
+        return this;
+    }
+
+    public AssemblyDefinitionImpl withChangedTime(OffsetDateTime changedTime) {
+        this.innerModel().withChangedTime(changedTime);
+        return this;
+    }
+
+    public AssemblyDefinitionImpl withMetadata(Object metadata) {
+        this.innerModel().withMetadata(metadata);
         return this;
     }
 }

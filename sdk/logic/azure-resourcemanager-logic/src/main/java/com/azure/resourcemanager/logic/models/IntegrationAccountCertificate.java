@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountCertificateInner;
 import java.time.OffsetDateTime;
@@ -50,6 +51,13 @@ public interface IntegrationAccountCertificate {
     Map<String, String> tags();
 
     /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the createdTime property: The created time.
      * 
      * @return the createdTime value.
@@ -68,7 +76,7 @@ public interface IntegrationAccountCertificate {
      * 
      * @return the metadata value.
      */
-    Object metadata();
+    Map<String, Object> metadata();
 
     /**
      * Gets the key property: The key details in the key vault.
@@ -157,7 +165,7 @@ public interface IntegrationAccountCertificate {
             /**
              * Specifies resourceGroupName, integrationAccountName.
              * 
-             * @param resourceGroupName The resource group name.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param integrationAccountName The integration account name.
              * @return the next definition stage.
              */
@@ -209,7 +217,7 @@ public interface IntegrationAccountCertificate {
              * @param metadata The metadata.
              * @return the next definition stage.
              */
-            WithCreate withMetadata(Object metadata);
+            WithCreate withMetadata(Map<String, Object> metadata);
         }
 
         /**
@@ -294,7 +302,7 @@ public interface IntegrationAccountCertificate {
              * @param metadata The metadata.
              * @return the next definition stage.
              */
-            Update withMetadata(Object metadata);
+            Update withMetadata(Map<String, Object> metadata);
         }
 
         /**

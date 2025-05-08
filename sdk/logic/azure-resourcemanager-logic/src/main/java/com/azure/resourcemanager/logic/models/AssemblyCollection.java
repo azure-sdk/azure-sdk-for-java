@@ -4,97 +4,24 @@
 
 package com.azure.resourcemanager.logic.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.logic.fluent.models.AssemblyDefinitionInner;
-import java.io.IOException;
+import com.azure.resourcemanager.logic.fluent.models.AssemblyCollectionInner;
 import java.util.List;
 
 /**
- * A collection of assembly definitions.
+ * An immutable client-side representation of AssemblyCollection.
  */
-@Fluent
-public final class AssemblyCollection implements JsonSerializable<AssemblyCollection> {
-    /*
-     * The value property.
-     */
-    private List<AssemblyDefinitionInner> value;
-
+public interface AssemblyCollection {
     /**
-     * Creates an instance of AssemblyCollection class.
-     */
-    public AssemblyCollection() {
-    }
-
-    /**
-     * Get the value property: The value property.
+     * Gets the value property: The value property.
      * 
      * @return the value value.
      */
-    public List<AssemblyDefinitionInner> value() {
-        return this.value;
-    }
+    List<AssemblyDefinition> value();
 
     /**
-     * Set the value property: The value property.
+     * Gets the inner com.azure.resourcemanager.logic.fluent.models.AssemblyCollectionInner object.
      * 
-     * @param value the value value to set.
-     * @return the AssemblyCollection object itself.
+     * @return the inner object.
      */
-    public AssemblyCollection withValue(List<AssemblyDefinitionInner> value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
-     * Validates the instance.
-     * 
-     * @throws IllegalArgumentException thrown if the instance is not valid.
-     */
-    public void validate() {
-        if (value() != null) {
-            value().forEach(e -> e.validate());
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of AssemblyCollection from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of AssemblyCollection if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IOException If an error occurs while reading the AssemblyCollection.
-     */
-    public static AssemblyCollection fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            AssemblyCollection deserializedAssemblyCollection = new AssemblyCollection();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("value".equals(fieldName)) {
-                    List<AssemblyDefinitionInner> value
-                        = reader.readArray(reader1 -> AssemblyDefinitionInner.fromJson(reader1));
-                    deserializedAssemblyCollection.value = value;
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedAssemblyCollection;
-        });
-    }
+    AssemblyCollectionInner innerModel();
 }

@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.logic.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,18 +14,18 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Result of the request to list Logic operations. It contains a list of operations and a URL link to get the next set
- * of results.
+ * A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of
+ * results.
  */
-@Fluent
+@Immutable
 public final class OperationListResult implements JsonSerializable<OperationListResult> {
     /*
-     * List of Logic operations supported by the Logic resource provider.
+     * List of operations supported by the resource provider
      */
     private List<OperationInner> value;
 
     /*
-     * URL to get the next set of operation list results if there are any.
+     * URL to get the next set of operation list results (if there are any).
      */
     private String nextLink;
 
@@ -36,7 +36,7 @@ public final class OperationListResult implements JsonSerializable<OperationList
     }
 
     /**
-     * Get the value property: List of Logic operations supported by the Logic resource provider.
+     * Get the value property: List of operations supported by the resource provider.
      * 
      * @return the value value.
      */
@@ -45,34 +45,12 @@ public final class OperationListResult implements JsonSerializable<OperationList
     }
 
     /**
-     * Set the value property: List of Logic operations supported by the Logic resource provider.
-     * 
-     * @param value the value value to set.
-     * @return the OperationListResult object itself.
-     */
-    public OperationListResult withValue(List<OperationInner> value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
-     * Get the nextLink property: URL to get the next set of operation list results if there are any.
+     * Get the nextLink property: URL to get the next set of operation list results (if there are any).
      * 
      * @return the nextLink value.
      */
     public String nextLink() {
         return this.nextLink;
-    }
-
-    /**
-     * Set the nextLink property: URL to get the next set of operation list results if there are any.
-     * 
-     * @param nextLink the nextLink value to set.
-     * @return the OperationListResult object itself.
-     */
-    public OperationListResult withNextLink(String nextLink) {
-        this.nextLink = nextLink;
-        return this;
     }
 
     /**
@@ -92,8 +70,6 @@ public final class OperationListResult implements JsonSerializable<OperationList
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
-        jsonWriter.writeStringField("nextLink", this.nextLink);
         return jsonWriter.writeEndObject();
     }
 

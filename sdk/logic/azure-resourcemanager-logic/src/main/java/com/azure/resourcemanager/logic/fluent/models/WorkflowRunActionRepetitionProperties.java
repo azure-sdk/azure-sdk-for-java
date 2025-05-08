@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The workflow run action repetition properties definition.
@@ -33,7 +34,7 @@ public final class WorkflowRunActionRepetitionProperties extends OperationResult
     /*
      * Gets the tracked properties.
      */
-    private Object trackedProperties;
+    private Map<String, Object> trackedProperties;
 
     /*
      * Gets the link to outputs.
@@ -43,7 +44,7 @@ public final class WorkflowRunActionRepetitionProperties extends OperationResult
     /*
      * Gets the outputs.
      */
-    private Object outputs;
+    private Map<String, Object> outputs;
 
     /*
      * Gets the link to inputs.
@@ -53,12 +54,17 @@ public final class WorkflowRunActionRepetitionProperties extends OperationResult
     /*
      * Gets the inputs.
      */
-    private Object inputs;
+    private Map<String, Object> inputs;
 
     /*
      * Gets the tracking id.
      */
     private String trackingId;
+
+    /*
+     * The status of the workflow scope repetition.
+     */
+    private WorkflowStatus status;
 
     /**
      * Creates an instance of WorkflowRunActionRepetitionProperties class.
@@ -92,7 +98,7 @@ public final class WorkflowRunActionRepetitionProperties extends OperationResult
      * @return the trackedProperties value.
      */
     @Override
-    public Object trackedProperties() {
+    public Map<String, Object> trackedProperties() {
         return this.trackedProperties;
     }
 
@@ -112,7 +118,7 @@ public final class WorkflowRunActionRepetitionProperties extends OperationResult
      * @return the outputs value.
      */
     @Override
-    public Object outputs() {
+    public Map<String, Object> outputs() {
         return this.outputs;
     }
 
@@ -132,7 +138,7 @@ public final class WorkflowRunActionRepetitionProperties extends OperationResult
      * @return the inputs value.
      */
     @Override
-    public Object inputs() {
+    public Map<String, Object> inputs() {
         return this.inputs;
     }
 
@@ -144,6 +150,16 @@ public final class WorkflowRunActionRepetitionProperties extends OperationResult
     @Override
     public String trackingId() {
         return this.trackingId;
+    }
+
+    /**
+     * Get the status property: The status of the workflow scope repetition.
+     * 
+     * @return the status value.
+     */
+    @Override
+    public WorkflowStatus status() {
+        return this.status;
     }
 
     /**
@@ -188,15 +204,6 @@ public final class WorkflowRunActionRepetitionProperties extends OperationResult
     @Override
     public WorkflowRunActionRepetitionProperties withCorrelation(RunActionCorrelation correlation) {
         super.withCorrelation(correlation);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public WorkflowRunActionRepetitionProperties withStatus(WorkflowStatus status) {
-        super.withStatus(status);
         return this;
     }
 
@@ -253,7 +260,6 @@ public final class WorkflowRunActionRepetitionProperties extends OperationResult
         jsonWriter.writeStringField("endTime",
             endTime() == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(endTime()));
         jsonWriter.writeJsonField("correlation", correlation());
-        jsonWriter.writeStringField("status", status() == null ? null : status().toString());
         jsonWriter.writeStringField("code", code());
         jsonWriter.writeUntypedField("error", error());
         jsonWriter.writeArrayField("retryHistory", retryHistory(), (writer, element) -> writer.writeJson(element));
@@ -289,8 +295,8 @@ public final class WorkflowRunActionRepetitionProperties extends OperationResult
                     deserializedWorkflowRunActionRepetitionProperties
                         .withCorrelation(RunActionCorrelation.fromJson(reader));
                 } else if ("status".equals(fieldName)) {
-                    deserializedWorkflowRunActionRepetitionProperties
-                        .withStatus(WorkflowStatus.fromString(reader.getString()));
+                    deserializedWorkflowRunActionRepetitionProperties.status
+                        = WorkflowStatus.fromString(reader.getString());
                 } else if ("code".equals(fieldName)) {
                     deserializedWorkflowRunActionRepetitionProperties.withCode(reader.getString());
                 } else if ("error".equals(fieldName)) {
@@ -298,15 +304,18 @@ public final class WorkflowRunActionRepetitionProperties extends OperationResult
                 } else if ("trackingId".equals(fieldName)) {
                     deserializedWorkflowRunActionRepetitionProperties.trackingId = reader.getString();
                 } else if ("inputs".equals(fieldName)) {
-                    deserializedWorkflowRunActionRepetitionProperties.inputs = reader.readUntyped();
+                    Map<String, Object> inputs = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowRunActionRepetitionProperties.inputs = inputs;
                 } else if ("inputsLink".equals(fieldName)) {
                     deserializedWorkflowRunActionRepetitionProperties.inputsLink = ContentLink.fromJson(reader);
                 } else if ("outputs".equals(fieldName)) {
-                    deserializedWorkflowRunActionRepetitionProperties.outputs = reader.readUntyped();
+                    Map<String, Object> outputs = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowRunActionRepetitionProperties.outputs = outputs;
                 } else if ("outputsLink".equals(fieldName)) {
                     deserializedWorkflowRunActionRepetitionProperties.outputsLink = ContentLink.fromJson(reader);
                 } else if ("trackedProperties".equals(fieldName)) {
-                    deserializedWorkflowRunActionRepetitionProperties.trackedProperties = reader.readUntyped();
+                    Map<String, Object> trackedProperties = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowRunActionRepetitionProperties.trackedProperties = trackedProperties;
                 } else if ("retryHistory".equals(fieldName)) {
                     List<RetryHistory> retryHistory = reader.readArray(reader1 -> RetryHistory.fromJson(reader1));
                     deserializedWorkflowRunActionRepetitionProperties.withRetryHistory(retryHistory);

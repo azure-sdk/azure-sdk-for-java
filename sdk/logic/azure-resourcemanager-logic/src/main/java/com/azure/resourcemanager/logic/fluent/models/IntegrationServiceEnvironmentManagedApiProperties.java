@@ -85,12 +85,7 @@ public final class IntegrationServiceEnvironmentManagedApiProperties extends Api
     /*
      * The connection parameters.
      */
-    private Map<String, Object> connectionParameters;
-
-    /*
-     * The name
-     */
-    private String name;
+    private Map<String, Map<String, Object>> connectionParameters;
 
     /**
      * Creates an instance of IntegrationServiceEnvironmentManagedApiProperties class.
@@ -225,18 +220,8 @@ public final class IntegrationServiceEnvironmentManagedApiProperties extends Api
      * @return the connectionParameters value.
      */
     @Override
-    public Map<String, Object> connectionParameters() {
+    public Map<String, Map<String, Object>> connectionParameters() {
         return this.connectionParameters;
-    }
-
-    /**
-     * Get the name property: The name.
-     * 
-     * @return the name value.
-     */
-    @Override
-    public String name() {
-        return this.name;
     }
 
     /**
@@ -306,10 +291,9 @@ public final class IntegrationServiceEnvironmentManagedApiProperties extends Api
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("name".equals(fieldName)) {
-                    deserializedIntegrationServiceEnvironmentManagedApiProperties.name = reader.getString();
-                } else if ("connectionParameters".equals(fieldName)) {
-                    Map<String, Object> connectionParameters = reader.readMap(reader1 -> reader1.readUntyped());
+                if ("connectionParameters".equals(fieldName)) {
+                    Map<String, Map<String, Object>> connectionParameters
+                        = reader.readMap(reader1 -> reader1.readMap(reader2 -> reader2.readUntyped()));
                     deserializedIntegrationServiceEnvironmentManagedApiProperties.connectionParameters
                         = connectionParameters;
                 } else if ("metadata".equals(fieldName)) {

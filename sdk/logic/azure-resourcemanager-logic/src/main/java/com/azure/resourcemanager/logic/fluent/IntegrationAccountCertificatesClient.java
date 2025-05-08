@@ -18,7 +18,7 @@ public interface IntegrationAccountCertificatesClient {
     /**
      * Gets a list of integration account certificates.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -31,7 +31,7 @@ public interface IntegrationAccountCertificatesClient {
     /**
      * Gets a list of integration account certificates.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param context The context to associate with this operation.
@@ -47,7 +47,7 @@ public interface IntegrationAccountCertificatesClient {
     /**
      * Gets an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @param context The context to associate with this operation.
@@ -63,7 +63,7 @@ public interface IntegrationAccountCertificatesClient {
     /**
      * Gets an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -78,10 +78,10 @@ public interface IntegrationAccountCertificatesClient {
     /**
      * Creates or updates an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
-     * @param certificate The integration account certificate.
+     * @param resource The integration account certificate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -90,16 +90,16 @@ public interface IntegrationAccountCertificatesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IntegrationAccountCertificateInner> createOrUpdateWithResponse(String resourceGroupName,
-        String integrationAccountName, String certificateName, IntegrationAccountCertificateInner certificate,
+        String integrationAccountName, String certificateName, IntegrationAccountCertificateInner resource,
         Context context);
 
     /**
      * Creates or updates an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
-     * @param certificate The integration account certificate.
+     * @param resource The integration account certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -107,12 +107,12 @@ public interface IntegrationAccountCertificatesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     IntegrationAccountCertificateInner createOrUpdate(String resourceGroupName, String integrationAccountName,
-        String certificateName, IntegrationAccountCertificateInner certificate);
+        String certificateName, IntegrationAccountCertificateInner resource);
 
     /**
      * Deletes an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @param context The context to associate with this operation.
@@ -128,7 +128,7 @@ public interface IntegrationAccountCertificatesClient {
     /**
      * Deletes an integration account certificate.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param certificateName The integration account certificate name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

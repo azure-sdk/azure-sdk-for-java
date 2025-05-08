@@ -17,7 +17,6 @@ public interface IntegrationServiceEnvironmentSkusClient {
     /**
      * Gets a list of integration service environment Skus.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -25,13 +24,11 @@ public interface IntegrationServiceEnvironmentSkusClient {
      * @return a list of integration service environment Skus as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<IntegrationServiceEnvironmentSkuDefinitionInner> list(String resourceGroup,
-        String integrationServiceEnvironmentName);
+    PagedIterable<IntegrationServiceEnvironmentSkuDefinitionInner> list(String integrationServiceEnvironmentName);
 
     /**
      * Gets a list of integration service environment Skus.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -40,6 +37,6 @@ public interface IntegrationServiceEnvironmentSkusClient {
      * @return a list of integration service environment Skus as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<IntegrationServiceEnvironmentSkuDefinitionInner> list(String resourceGroup,
-        String integrationServiceEnvironmentName, Context context);
+    PagedIterable<IntegrationServiceEnvironmentSkuDefinitionInner> list(String integrationServiceEnvironmentName,
+        Context context);
 }

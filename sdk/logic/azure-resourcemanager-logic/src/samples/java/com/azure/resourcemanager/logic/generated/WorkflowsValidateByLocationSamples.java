@@ -32,10 +32,19 @@ public final class WorkflowsValidateByLocationSamples {
                 .withTags(mapOf())
                 .withIntegrationAccount(new ResourceReference().withId(
                     "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/test-resource-group/providers/Microsoft.Logic/integrationAccounts/test-integration-account"))
-                .withDefinition(SerializerFactory.createDefaultManagementSerializerAdapter()
-                    .deserialize(
-                        "{\"$schema\":\"https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#\",\"actions\":{},\"contentVersion\":\"1.0.0.0\",\"outputs\":{},\"parameters\":{},\"triggers\":{}}",
-                        Object.class, SerializerEncoding.JSON)),
+                .withDefinition(mapOf("$schema",
+                    "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "actions",
+                    SerializerFactory.createDefaultManagementSerializerAdapter()
+                        .deserialize("{}", Object.class, SerializerEncoding.JSON),
+                    "contentVersion", "1.0.0.0", "outputs",
+                    SerializerFactory.createDefaultManagementSerializerAdapter()
+                        .deserialize("{}", Object.class, SerializerEncoding.JSON),
+                    "parameters",
+                    SerializerFactory.createDefaultManagementSerializerAdapter()
+                        .deserialize("{}", Object.class, SerializerEncoding.JSON),
+                    "triggers", SerializerFactory.createDefaultManagementSerializerAdapter()
+                        .deserialize("{}", Object.class, SerializerEncoding.JSON))),
                 com.azure.core.util.Context.NONE);
     }
 

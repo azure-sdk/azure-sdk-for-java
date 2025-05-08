@@ -30,7 +30,7 @@ public final class SwaggerExternalDocumentation implements JsonSerializable<Swag
     /*
      * The vendor extensions.
      */
-    private Map<String, Object> extensions;
+    private Map<String, Map<String, Object>> extensions;
 
     /**
      * Creates an instance of SwaggerExternalDocumentation class.
@@ -83,7 +83,7 @@ public final class SwaggerExternalDocumentation implements JsonSerializable<Swag
      * 
      * @return the extensions value.
      */
-    public Map<String, Object> extensions() {
+    public Map<String, Map<String, Object>> extensions() {
         return this.extensions;
     }
 
@@ -93,7 +93,7 @@ public final class SwaggerExternalDocumentation implements JsonSerializable<Swag
      * @param extensions the extensions value to set.
      * @return the SwaggerExternalDocumentation object itself.
      */
-    public SwaggerExternalDocumentation withExtensions(Map<String, Object> extensions) {
+    public SwaggerExternalDocumentation withExtensions(Map<String, Map<String, Object>> extensions) {
         this.extensions = extensions;
         return this;
     }
@@ -114,7 +114,8 @@ public final class SwaggerExternalDocumentation implements JsonSerializable<Swag
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("description", this.description);
         jsonWriter.writeStringField("uri", this.uri);
-        jsonWriter.writeMapField("extensions", this.extensions, (writer, element) -> writer.writeUntyped(element));
+        jsonWriter.writeMapField("extensions", this.extensions,
+            (writer, element) -> writer.writeMap(element, (writer1, element1) -> writer1.writeUntyped(element1)));
         return jsonWriter.writeEndObject();
     }
 
@@ -138,7 +139,8 @@ public final class SwaggerExternalDocumentation implements JsonSerializable<Swag
                 } else if ("uri".equals(fieldName)) {
                     deserializedSwaggerExternalDocumentation.uri = reader.getString();
                 } else if ("extensions".equals(fieldName)) {
-                    Map<String, Object> extensions = reader.readMap(reader1 -> reader1.readUntyped());
+                    Map<String, Map<String, Object>> extensions
+                        = reader.readMap(reader1 -> reader1.readMap(reader2 -> reader2.readUntyped()));
                     deserializedSwaggerExternalDocumentation.extensions = extensions;
                 } else {
                     reader.skipChildren();

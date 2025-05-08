@@ -15,7 +15,7 @@ public interface IntegrationAccountMaps {
     /**
      * Gets a list of integration account maps.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -27,7 +27,7 @@ public interface IntegrationAccountMaps {
     /**
      * Gets a list of integration account maps.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: MapType.
@@ -43,7 +43,7 @@ public interface IntegrationAccountMaps {
     /**
      * Gets an integration account map.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param mapName The integration account map name.
      * @param context The context to associate with this operation.
@@ -58,7 +58,7 @@ public interface IntegrationAccountMaps {
     /**
      * Gets an integration account map.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param mapName The integration account map name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -71,7 +71,7 @@ public interface IntegrationAccountMaps {
     /**
      * Deletes an integration account map.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param mapName The integration account map name.
      * @param context The context to associate with this operation.
@@ -86,7 +86,7 @@ public interface IntegrationAccountMaps {
     /**
      * Deletes an integration account map.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param mapName The integration account map name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -98,10 +98,10 @@ public interface IntegrationAccountMaps {
     /**
      * Get the content callback url.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param mapName The integration account map name.
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -109,23 +109,22 @@ public interface IntegrationAccountMaps {
      * @return the content callback url along with {@link Response}.
      */
     Response<WorkflowTriggerCallbackUrl> listContentCallbackUrlWithResponse(String resourceGroupName,
-        String integrationAccountName, String mapName, GetCallbackUrlParameters listContentCallbackUrl,
-        Context context);
+        String integrationAccountName, String mapName, GetCallbackUrlParameters body, Context context);
 
     /**
      * Get the content callback url.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param mapName The integration account map name.
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the content callback url.
      */
     WorkflowTriggerCallbackUrl listContentCallbackUrl(String resourceGroupName, String integrationAccountName,
-        String mapName, GetCallbackUrlParameters listContentCallbackUrl);
+        String mapName, GetCallbackUrlParameters body);
 
     /**
      * Gets an integration account map.

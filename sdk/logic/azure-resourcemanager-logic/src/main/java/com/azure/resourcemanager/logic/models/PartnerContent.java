@@ -17,7 +17,7 @@ import java.io.IOException;
 @Fluent
 public final class PartnerContent implements JsonSerializable<PartnerContent> {
     /*
-     * The B2B partner content.
+     * The B2b partner content.
      */
     private B2BPartnerContent b2B;
 
@@ -28,7 +28,7 @@ public final class PartnerContent implements JsonSerializable<PartnerContent> {
     }
 
     /**
-     * Get the b2B property: The B2B partner content.
+     * Get the b2B property: The B2b partner content.
      * 
      * @return the b2B value.
      */
@@ -37,7 +37,7 @@ public final class PartnerContent implements JsonSerializable<PartnerContent> {
     }
 
     /**
-     * Set the b2B property: The B2B partner content.
+     * Set the b2B property: The B2b partner content.
      * 
      * @param b2B the b2B value to set.
      * @return the PartnerContent object itself.

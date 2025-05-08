@@ -4,9 +4,12 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.ApiOperationInner;
 import com.azure.resourcemanager.logic.models.ApiOperation;
-import com.azure.resourcemanager.logic.models.ApiOperationPropertiesDefinition;
+import com.azure.resourcemanager.logic.models.ApiOperationAnnotation;
+import com.azure.resourcemanager.logic.models.ApiReference;
+import com.azure.resourcemanager.logic.models.SwaggerSchema;
 import java.util.Collections;
 import java.util.Map;
 
@@ -32,12 +35,48 @@ public final class ApiOperationImpl implements ApiOperation {
         return this.innerModel().type();
     }
 
-    public String location() {
-        return this.innerModel().location();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
+    public String summary() {
+        return this.innerModel().summary();
+    }
+
+    public String description() {
+        return this.innerModel().description();
+    }
+
+    public String visibility() {
+        return this.innerModel().visibility();
+    }
+
+    public String trigger() {
+        return this.innerModel().trigger();
+    }
+
+    public String triggerHint() {
+        return this.innerModel().triggerHint();
+    }
+
+    public Boolean pageable() {
+        return this.innerModel().pageable();
+    }
+
+    public ApiOperationAnnotation annotation() {
+        return this.innerModel().annotation();
+    }
+
+    public ApiReference api() {
+        return this.innerModel().api();
+    }
+
+    public SwaggerSchema inputsDefinition() {
+        return this.innerModel().inputsDefinition();
+    }
+
+    public Map<String, SwaggerSchema> responsesDefinition() {
+        Map<String, SwaggerSchema> inner = this.innerModel().responsesDefinition();
         if (inner != null) {
             return Collections.unmodifiableMap(inner);
         } else {
@@ -45,8 +84,12 @@ public final class ApiOperationImpl implements ApiOperation {
         }
     }
 
-    public ApiOperationPropertiesDefinition properties() {
-        return this.innerModel().properties();
+    public Boolean isWebhook() {
+        return this.innerModel().isWebhook();
+    }
+
+    public Boolean isNotification() {
+        return this.innerModel().isNotification();
     }
 
     public ApiOperationInner innerModel() {

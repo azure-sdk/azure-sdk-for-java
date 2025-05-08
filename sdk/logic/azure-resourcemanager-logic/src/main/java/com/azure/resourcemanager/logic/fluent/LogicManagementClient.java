@@ -12,7 +12,7 @@ import java.time.Duration;
  */
 public interface LogicManagementClient {
     /**
-     * Gets The subscription id.
+     * Gets The ID of the target subscription.
      * 
      * @return the subscriptionId value.
      */
@@ -47,6 +47,55 @@ public interface LogicManagementClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
+
+    /**
+     * Gets the IntegrationAccountsClient object to access its operations.
+     * 
+     * @return the IntegrationAccountsClient object.
+     */
+    IntegrationAccountsClient getIntegrationAccounts();
+
+    /**
+     * Gets the IntegrationServiceEnvironmentsClient object to access its operations.
+     * 
+     * @return the IntegrationServiceEnvironmentsClient object.
+     */
+    IntegrationServiceEnvironmentsClient getIntegrationServiceEnvironments();
+
+    /**
+     * Gets the IntegrationServiceEnvironmentManagedApisClient object to access its operations.
+     * 
+     * @return the IntegrationServiceEnvironmentManagedApisClient object.
+     */
+    IntegrationServiceEnvironmentManagedApisClient getIntegrationServiceEnvironmentManagedApis();
+
+    /**
+     * Gets the ApiOperationsClient object to access its operations.
+     * 
+     * @return the ApiOperationsClient object.
+     */
+    ApiOperationsClient getApiOperations();
+
+    /**
+     * Gets the IntegrationServiceEnvironmentNetworkHealthsClient object to access its operations.
+     * 
+     * @return the IntegrationServiceEnvironmentNetworkHealthsClient object.
+     */
+    IntegrationServiceEnvironmentNetworkHealthsClient getIntegrationServiceEnvironmentNetworkHealths();
+
+    /**
+     * Gets the IntegrationServiceEnvironmentSkusClient object to access its operations.
+     * 
+     * @return the IntegrationServiceEnvironmentSkusClient object.
+     */
+    IntegrationServiceEnvironmentSkusClient getIntegrationServiceEnvironmentSkus();
+
+    /**
      * Gets the WorkflowsClient object to access its operations.
      * 
      * @return the WorkflowsClient object.
@@ -54,32 +103,60 @@ public interface LogicManagementClient {
     WorkflowsClient getWorkflows();
 
     /**
-     * Gets the WorkflowVersionsClient object to access its operations.
+     * Gets the IntegrationAccountAgreementsClient object to access its operations.
      * 
-     * @return the WorkflowVersionsClient object.
+     * @return the IntegrationAccountAgreementsClient object.
      */
-    WorkflowVersionsClient getWorkflowVersions();
+    IntegrationAccountAgreementsClient getIntegrationAccountAgreements();
 
     /**
-     * Gets the WorkflowTriggersClient object to access its operations.
+     * Gets the IntegrationAccountAssembliesClient object to access its operations.
      * 
-     * @return the WorkflowTriggersClient object.
+     * @return the IntegrationAccountAssembliesClient object.
      */
-    WorkflowTriggersClient getWorkflowTriggers();
+    IntegrationAccountAssembliesClient getIntegrationAccountAssemblies();
 
     /**
-     * Gets the WorkflowVersionTriggersClient object to access its operations.
+     * Gets the IntegrationAccountBatchConfigurationsClient object to access its operations.
      * 
-     * @return the WorkflowVersionTriggersClient object.
+     * @return the IntegrationAccountBatchConfigurationsClient object.
      */
-    WorkflowVersionTriggersClient getWorkflowVersionTriggers();
+    IntegrationAccountBatchConfigurationsClient getIntegrationAccountBatchConfigurations();
 
     /**
-     * Gets the WorkflowTriggerHistoriesClient object to access its operations.
+     * Gets the IntegrationAccountCertificatesClient object to access its operations.
      * 
-     * @return the WorkflowTriggerHistoriesClient object.
+     * @return the IntegrationAccountCertificatesClient object.
      */
-    WorkflowTriggerHistoriesClient getWorkflowTriggerHistories();
+    IntegrationAccountCertificatesClient getIntegrationAccountCertificates();
+
+    /**
+     * Gets the IntegrationAccountMapsClient object to access its operations.
+     * 
+     * @return the IntegrationAccountMapsClient object.
+     */
+    IntegrationAccountMapsClient getIntegrationAccountMaps();
+
+    /**
+     * Gets the IntegrationAccountPartnersClient object to access its operations.
+     * 
+     * @return the IntegrationAccountPartnersClient object.
+     */
+    IntegrationAccountPartnersClient getIntegrationAccountPartners();
+
+    /**
+     * Gets the IntegrationAccountSchemasClient object to access its operations.
+     * 
+     * @return the IntegrationAccountSchemasClient object.
+     */
+    IntegrationAccountSchemasClient getIntegrationAccountSchemas();
+
+    /**
+     * Gets the IntegrationAccountSessionsClient object to access its operations.
+     * 
+     * @return the IntegrationAccountSessionsClient object.
+     */
+    IntegrationAccountSessionsClient getIntegrationAccountSessions();
 
     /**
      * Gets the WorkflowRunsClient object to access its operations.
@@ -94,6 +171,13 @@ public interface LogicManagementClient {
      * @return the WorkflowRunActionsClient object.
      */
     WorkflowRunActionsClient getWorkflowRunActions();
+
+    /**
+     * Gets the WorkflowRunActionScopeRepetitionsClient object to access its operations.
+     * 
+     * @return the WorkflowRunActionScopeRepetitionsClient object.
+     */
+    WorkflowRunActionScopeRepetitionsClient getWorkflowRunActionScopeRepetitions();
 
     /**
      * Gets the WorkflowRunActionRepetitionsClient object to access its operations.
@@ -117,13 +201,6 @@ public interface LogicManagementClient {
     WorkflowRunActionRequestHistoriesClient getWorkflowRunActionRequestHistories();
 
     /**
-     * Gets the WorkflowRunActionScopeRepetitionsClient object to access its operations.
-     * 
-     * @return the WorkflowRunActionScopeRepetitionsClient object.
-     */
-    WorkflowRunActionScopeRepetitionsClient getWorkflowRunActionScopeRepetitions();
-
-    /**
      * Gets the WorkflowRunOperationsClient object to access its operations.
      * 
      * @return the WorkflowRunOperationsClient object.
@@ -131,107 +208,30 @@ public interface LogicManagementClient {
     WorkflowRunOperationsClient getWorkflowRunOperations();
 
     /**
-     * Gets the IntegrationAccountsClient object to access its operations.
+     * Gets the WorkflowTriggersClient object to access its operations.
      * 
-     * @return the IntegrationAccountsClient object.
+     * @return the WorkflowTriggersClient object.
      */
-    IntegrationAccountsClient getIntegrationAccounts();
+    WorkflowTriggersClient getWorkflowTriggers();
 
     /**
-     * Gets the IntegrationAccountAssembliesClient object to access its operations.
+     * Gets the WorkflowTriggerHistoriesClient object to access its operations.
      * 
-     * @return the IntegrationAccountAssembliesClient object.
+     * @return the WorkflowTriggerHistoriesClient object.
      */
-    IntegrationAccountAssembliesClient getIntegrationAccountAssemblies();
+    WorkflowTriggerHistoriesClient getWorkflowTriggerHistories();
 
     /**
-     * Gets the IntegrationAccountBatchConfigurationsClient object to access its operations.
+     * Gets the WorkflowVersionsClient object to access its operations.
      * 
-     * @return the IntegrationAccountBatchConfigurationsClient object.
+     * @return the WorkflowVersionsClient object.
      */
-    IntegrationAccountBatchConfigurationsClient getIntegrationAccountBatchConfigurations();
+    WorkflowVersionsClient getWorkflowVersions();
 
     /**
-     * Gets the IntegrationAccountSchemasClient object to access its operations.
+     * Gets the WorkflowVersionTriggersClient object to access its operations.
      * 
-     * @return the IntegrationAccountSchemasClient object.
+     * @return the WorkflowVersionTriggersClient object.
      */
-    IntegrationAccountSchemasClient getIntegrationAccountSchemas();
-
-    /**
-     * Gets the IntegrationAccountMapsClient object to access its operations.
-     * 
-     * @return the IntegrationAccountMapsClient object.
-     */
-    IntegrationAccountMapsClient getIntegrationAccountMaps();
-
-    /**
-     * Gets the IntegrationAccountPartnersClient object to access its operations.
-     * 
-     * @return the IntegrationAccountPartnersClient object.
-     */
-    IntegrationAccountPartnersClient getIntegrationAccountPartners();
-
-    /**
-     * Gets the IntegrationAccountAgreementsClient object to access its operations.
-     * 
-     * @return the IntegrationAccountAgreementsClient object.
-     */
-    IntegrationAccountAgreementsClient getIntegrationAccountAgreements();
-
-    /**
-     * Gets the IntegrationAccountCertificatesClient object to access its operations.
-     * 
-     * @return the IntegrationAccountCertificatesClient object.
-     */
-    IntegrationAccountCertificatesClient getIntegrationAccountCertificates();
-
-    /**
-     * Gets the IntegrationAccountSessionsClient object to access its operations.
-     * 
-     * @return the IntegrationAccountSessionsClient object.
-     */
-    IntegrationAccountSessionsClient getIntegrationAccountSessions();
-
-    /**
-     * Gets the IntegrationServiceEnvironmentsClient object to access its operations.
-     * 
-     * @return the IntegrationServiceEnvironmentsClient object.
-     */
-    IntegrationServiceEnvironmentsClient getIntegrationServiceEnvironments();
-
-    /**
-     * Gets the IntegrationServiceEnvironmentSkusClient object to access its operations.
-     * 
-     * @return the IntegrationServiceEnvironmentSkusClient object.
-     */
-    IntegrationServiceEnvironmentSkusClient getIntegrationServiceEnvironmentSkus();
-
-    /**
-     * Gets the IntegrationServiceEnvironmentNetworkHealthsClient object to access its operations.
-     * 
-     * @return the IntegrationServiceEnvironmentNetworkHealthsClient object.
-     */
-    IntegrationServiceEnvironmentNetworkHealthsClient getIntegrationServiceEnvironmentNetworkHealths();
-
-    /**
-     * Gets the IntegrationServiceEnvironmentManagedApisClient object to access its operations.
-     * 
-     * @return the IntegrationServiceEnvironmentManagedApisClient object.
-     */
-    IntegrationServiceEnvironmentManagedApisClient getIntegrationServiceEnvironmentManagedApis();
-
-    /**
-     * Gets the IntegrationServiceEnvironmentManagedApiOperationsClient object to access its operations.
-     * 
-     * @return the IntegrationServiceEnvironmentManagedApiOperationsClient object.
-     */
-    IntegrationServiceEnvironmentManagedApiOperationsClient getIntegrationServiceEnvironmentManagedApiOperations();
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
+    WorkflowVersionTriggersClient getWorkflowVersionTriggers();
 }

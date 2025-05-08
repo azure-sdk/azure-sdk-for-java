@@ -60,14 +60,13 @@ public final class WorkflowVersionTriggersClientImpl implements WorkflowVersionT
     @ServiceInterface(name = "LogicManagementClien")
     public interface WorkflowVersionTriggersService {
         @Headers({ "Content-Type: application/json" })
-        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/versions/{versionId}/triggers/{triggerName}/listCallbackUrl")
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/versions/{versionId}/{triggerName}/listCallbackUrl")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkflowTriggerCallbackUrlInner>> listCallbackUrl(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
             @PathParam("versionId") String versionId, @PathParam("triggerName") String triggerName,
-            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") GetCallbackUrlParameters parameters, @HeaderParam("Accept") String accept,
             Context context);
     }
@@ -75,7 +74,7 @@ public final class WorkflowVersionTriggersClientImpl implements WorkflowVersionT
     /**
      * Get the callback url for a trigger of a workflow version.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param versionId The workflow versionId.
      * @param triggerName The workflow trigger name.
@@ -115,8 +114,8 @@ public final class WorkflowVersionTriggersClientImpl implements WorkflowVersionT
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listCallbackUrl(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, versionId, triggerName, this.client.getApiVersion(), parameters,
+            .withContext(context -> service.listCallbackUrl(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, versionId, triggerName, parameters,
                 accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -124,7 +123,7 @@ public final class WorkflowVersionTriggersClientImpl implements WorkflowVersionT
     /**
      * Get the callback url for a trigger of a workflow version.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param versionId The workflow versionId.
      * @param triggerName The workflow trigger name.
@@ -166,14 +165,15 @@ public final class WorkflowVersionTriggersClientImpl implements WorkflowVersionT
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listCallbackUrl(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workflowName, versionId, triggerName, this.client.getApiVersion(), parameters, accept, context);
+        return service.listCallbackUrl(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, workflowName, versionId, triggerName, parameters,
+            accept, context);
     }
 
     /**
      * Get the callback url for a trigger of a workflow version.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param versionId The workflow versionId.
      * @param triggerName The workflow trigger name.
@@ -193,7 +193,7 @@ public final class WorkflowVersionTriggersClientImpl implements WorkflowVersionT
     /**
      * Get the callback url for a trigger of a workflow version.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param versionId The workflow versionId.
      * @param triggerName The workflow trigger name.
@@ -215,7 +215,7 @@ public final class WorkflowVersionTriggersClientImpl implements WorkflowVersionT
     /**
      * Get the callback url for a trigger of a workflow version.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param versionId The workflow versionId.
      * @param triggerName The workflow trigger name.

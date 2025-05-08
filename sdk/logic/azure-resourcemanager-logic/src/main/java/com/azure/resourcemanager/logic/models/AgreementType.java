@@ -4,63 +4,58 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.util.ExpandableStringEnum;
+import java.util.Collection;
+
 /**
  * The agreement type.
  */
-public enum AgreementType {
+public final class AgreementType extends ExpandableStringEnum<AgreementType> {
     /**
-     * Enum value NotSpecified.
+     * Static value NotSpecified for AgreementType.
      */
-    NOT_SPECIFIED("NotSpecified"),
+    public static final AgreementType NOT_SPECIFIED = fromString("NotSpecified");
 
     /**
-     * Enum value AS2.
+     * Static value AS2 for AgreementType.
      */
-    AS2("AS2"),
+    public static final AgreementType AS2 = fromString("AS2");
 
     /**
-     * Enum value X12.
+     * Static value X12 for AgreementType.
      */
-    X12("X12"),
+    public static final AgreementType X12 = fromString("X12");
 
     /**
-     * Enum value Edifact.
+     * Static value Edifact for AgreementType.
      */
-    EDIFACT("Edifact");
+    public static final AgreementType EDIFACT = fromString("Edifact");
 
     /**
-     * The actual serialized value for a AgreementType instance.
-     */
-    private final String value;
-
-    AgreementType(String value) {
-        this.value = value;
-    }
-
-    /**
-     * Parses a serialized value to a AgreementType instance.
+     * Creates a new instance of AgreementType value.
      * 
-     * @param value the serialized value to parse.
-     * @return the parsed AgreementType object, or null if unable to parse.
+     * @deprecated Use the {@link #fromString(String)} factory method.
      */
-    public static AgreementType fromString(String value) {
-        if (value == null) {
-            return null;
-        }
-        AgreementType[] items = AgreementType.values();
-        for (AgreementType item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
+    @Deprecated
+    public AgreementType() {
     }
 
     /**
-     * {@inheritDoc}
+     * Creates or finds a AgreementType from its string representation.
+     * 
+     * @param name a name to look for.
+     * @return the corresponding AgreementType.
      */
-    @Override
-    public String toString() {
-        return this.value;
+    public static AgreementType fromString(String name) {
+        return fromString(name, AgreementType.class);
+    }
+
+    /**
+     * Gets known AgreementType values.
+     * 
+     * @return known AgreementType values.
+     */
+    public static Collection<AgreementType> values() {
+        return values(AgreementType.class);
     }
 }

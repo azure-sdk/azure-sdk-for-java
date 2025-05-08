@@ -42,6 +42,7 @@ import com.azure.resourcemanager.logic.models.RegenerateActionParameter;
 import com.azure.resourcemanager.logic.models.WorkflowListResult;
 import com.azure.resourcemanager.logic.models.WorkflowReference;
 import java.nio.ByteBuffer;
+import java.util.Map;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -82,84 +83,92 @@ public final class WorkflowsClientImpl implements WorkflowsClient {
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkflowListResult>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @QueryParam("$top") Integer top, @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept,
             Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/locations/{location}/workflows/{workflowName}/validate")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> validateByLocation(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("location") String location,
+            @PathParam("workflowName") String workflowName, @BodyParam("application/json") WorkflowInner validate,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkflowListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
-            @QueryParam("$top") Integer top, @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("$top") Integer top,
+            @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkflowInner>> getByResourceGroup(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkflowInner>> createOrUpdate(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
-            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") WorkflowInner workflow,
-            @HeaderParam("Accept") String accept, Context context);
+            @BodyParam("application/json") WorkflowInner resource, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkflowInner>> update(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @BodyParam("application/json") Object properties, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/disable")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> disable(@HostParam("$host") String endpoint,
+        Mono<Response<Void>> disable(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/enable")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> enable(@HostParam("$host") String endpoint,
+        Mono<Response<Void>> enable(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/generateUpgradedDefinition")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Object>> generateUpgradedDefinition(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Map<String, Object>>> generateUpgradedDefinition(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") GenerateUpgradedDefinitionParameters parameters,
+            @BodyParam("application/json") GenerateUpgradedDefinitionParameters body,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -167,40 +176,38 @@ public final class WorkflowsClientImpl implements WorkflowsClient {
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkflowTriggerCallbackUrlInner>> listCallbackUrl(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") GetCallbackUrlParameters listCallbackUrl,
-            @HeaderParam("Accept") String accept, Context context);
+            @BodyParam("application/json") GetCallbackUrlParameters body, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/listSwagger")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Object>> listSwagger(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Map<String, Object>>> listSwagger(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/move")
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> move(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
-            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") WorkflowReference move,
-            @HeaderParam("Accept") String accept, Context context);
+            @BodyParam("application/json") WorkflowReference body, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/regenerateAccessKey")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> regenerateAccessKey(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") RegenerateActionParameter keyType, @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") RegenerateActionParameter body, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -208,21 +215,9 @@ public final class WorkflowsClientImpl implements WorkflowsClient {
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> validateByResourceGroup(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
-            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") WorkflowInner validate,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/locations/{location}/workflows/{workflowName}/validate")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> validateByLocation(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("location") String location,
-            @PathParam("workflowName") String workflowName, @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") WorkflowInner validate, @HeaderParam("Accept") String accept,
-            Context context);
+            @BodyParam("application/json") WorkflowInner body, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -265,8 +260,8 @@ public final class WorkflowsClientImpl implements WorkflowsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                this.client.getApiVersion(), top, filter, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), top, filter, accept, context))
             .<PagedResponse<WorkflowInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -298,7 +293,7 @@ public final class WorkflowsClientImpl implements WorkflowsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), top, filter,
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), top, filter,
                 accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
@@ -386,1772 +381,10 @@ public final class WorkflowsClientImpl implements WorkflowsClient {
     }
 
     /**
-     * Gets a list of workflows by resource group.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param top The number of items to be included in the result.
-     * @param filter The filter to apply on the operation. Options for filters include: State, Trigger, and
-     * ReferencedResourceId.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of workflows by resource group along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkflowInner>> listByResourceGroupSinglePageAsync(String resourceGroupName, Integer top,
-        String filter) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                    resourceGroupName, this.client.getApiVersion(), top, filter, accept, context))
-            .<PagedResponse<WorkflowInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
-                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets a list of workflows by resource group.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param top The number of items to be included in the result.
-     * @param filter The filter to apply on the operation. Options for filters include: State, Trigger, and
-     * ReferencedResourceId.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of workflows by resource group along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<WorkflowInner>> listByResourceGroupSinglePageAsync(String resourceGroupName, Integer top,
-        String filter, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                this.client.getApiVersion(), top, filter, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Gets a list of workflows by resource group.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param top The number of items to be included in the result.
-     * @param filter The filter to apply on the operation. Options for filters include: State, Trigger, and
-     * ReferencedResourceId.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of workflows by resource group as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkflowInner> listByResourceGroupAsync(String resourceGroupName, Integer top, String filter) {
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, top, filter),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Gets a list of workflows by resource group.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of workflows by resource group as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkflowInner> listByResourceGroupAsync(String resourceGroupName) {
-        final Integer top = null;
-        final String filter = null;
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, top, filter),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Gets a list of workflows by resource group.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param top The number of items to be included in the result.
-     * @param filter The filter to apply on the operation. Options for filters include: State, Trigger, and
-     * ReferencedResourceId.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of workflows by resource group as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<WorkflowInner> listByResourceGroupAsync(String resourceGroupName, Integer top, String filter,
-        Context context) {
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, top, filter, context),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Gets a list of workflows by resource group.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of workflows by resource group as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkflowInner> listByResourceGroup(String resourceGroupName) {
-        final Integer top = null;
-        final String filter = null;
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, top, filter));
-    }
-
-    /**
-     * Gets a list of workflows by resource group.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param top The number of items to be included in the result.
-     * @param filter The filter to apply on the operation. Options for filters include: State, Trigger, and
-     * ReferencedResourceId.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of workflows by resource group as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<WorkflowInner> listByResourceGroup(String resourceGroupName, Integer top, String filter,
-        Context context) {
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, top, filter, context));
-    }
-
-    /**
-     * Gets a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workflow along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkflowInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
-        String workflowName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                    resourceGroupName, workflowName, this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workflow along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkflowInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
-        String workflowName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workflowName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Gets a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workflow on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkflowInner> getByResourceGroupAsync(String resourceGroupName, String workflowName) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, workflowName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workflow along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<WorkflowInner> getByResourceGroupWithResponse(String resourceGroupName, String workflowName,
-        Context context) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, workflowName, context).block();
-    }
-
-    /**
-     * Gets a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workflow.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkflowInner getByResourceGroup(String resourceGroupName, String workflowName) {
-        return getByResourceGroupWithResponse(resourceGroupName, workflowName, Context.NONE).getValue();
-    }
-
-    /**
-     * Creates or updates a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param workflow The workflow.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workflow type along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkflowInner>> createOrUpdateWithResponseAsync(String resourceGroupName, String workflowName,
-        WorkflowInner workflow) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        if (workflow == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflow is required and cannot be null."));
-        } else {
-            workflow.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, this.client.getApiVersion(), workflow, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Creates or updates a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param workflow The workflow.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workflow type along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkflowInner>> createOrUpdateWithResponseAsync(String resourceGroupName, String workflowName,
-        WorkflowInner workflow, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        if (workflow == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflow is required and cannot be null."));
-        } else {
-            workflow.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workflowName, this.client.getApiVersion(), workflow, accept, context);
-    }
-
-    /**
-     * Creates or updates a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param workflow The workflow.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workflow type on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkflowInner> createOrUpdateAsync(String resourceGroupName, String workflowName,
-        WorkflowInner workflow) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, workflowName, workflow)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Creates or updates a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param workflow The workflow.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workflow type along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<WorkflowInner> createOrUpdateWithResponse(String resourceGroupName, String workflowName,
-        WorkflowInner workflow, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, workflowName, workflow, context).block();
-    }
-
-    /**
-     * Creates or updates a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param workflow The workflow.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workflow type.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkflowInner createOrUpdate(String resourceGroupName, String workflowName, WorkflowInner workflow) {
-        return createOrUpdateWithResponse(resourceGroupName, workflowName, workflow, Context.NONE).getValue();
-    }
-
-    /**
-     * Updates a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workflow type along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkflowInner>> updateWithResponseAsync(String resourceGroupName, String workflowName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Updates a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workflow type along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkflowInner>> updateWithResponseAsync(String resourceGroupName, String workflowName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workflowName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Updates a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workflow type on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkflowInner> updateAsync(String resourceGroupName, String workflowName) {
-        return updateWithResponseAsync(resourceGroupName, workflowName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Updates a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workflow type along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<WorkflowInner> updateWithResponse(String resourceGroupName, String workflowName, Context context) {
-        return updateWithResponseAsync(resourceGroupName, workflowName, context).block();
-    }
-
-    /**
-     * Updates a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workflow type.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkflowInner update(String resourceGroupName, String workflowName) {
-        return updateWithResponse(resourceGroupName, workflowName, Context.NONE).getValue();
-    }
-
-    /**
-     * Deletes a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String workflowName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Deletes a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String workflowName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workflowName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Deletes a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String workflowName) {
-        return deleteWithResponseAsync(resourceGroupName, workflowName).flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Deletes a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(String resourceGroupName, String workflowName, Context context) {
-        return deleteWithResponseAsync(resourceGroupName, workflowName, context).block();
-    }
-
-    /**
-     * Deletes a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workflowName) {
-        deleteWithResponse(resourceGroupName, workflowName, Context.NONE);
-    }
-
-    /**
-     * Disables a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> disableWithResponseAsync(String resourceGroupName, String workflowName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.disable(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Disables a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> disableWithResponseAsync(String resourceGroupName, String workflowName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.disable(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workflowName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Disables a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> disableAsync(String resourceGroupName, String workflowName) {
-        return disableWithResponseAsync(resourceGroupName, workflowName).flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Disables a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> disableWithResponse(String resourceGroupName, String workflowName, Context context) {
-        return disableWithResponseAsync(resourceGroupName, workflowName, context).block();
-    }
-
-    /**
-     * Disables a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void disable(String resourceGroupName, String workflowName) {
-        disableWithResponse(resourceGroupName, workflowName, Context.NONE);
-    }
-
-    /**
-     * Enables a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> enableWithResponseAsync(String resourceGroupName, String workflowName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.enable(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Enables a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> enableWithResponseAsync(String resourceGroupName, String workflowName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.enable(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workflowName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Enables a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> enableAsync(String resourceGroupName, String workflowName) {
-        return enableWithResponseAsync(resourceGroupName, workflowName).flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Enables a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> enableWithResponse(String resourceGroupName, String workflowName, Context context) {
-        return enableWithResponseAsync(resourceGroupName, workflowName, context).block();
-    }
-
-    /**
-     * Enables a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void enable(String resourceGroupName, String workflowName) {
-        enableWithResponse(resourceGroupName, workflowName, Context.NONE);
-    }
-
-    /**
-     * Generates the upgraded definition for a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param parameters Parameters for generating an upgraded definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Object>> generateUpgradedDefinitionWithResponseAsync(String resourceGroupName,
-        String workflowName, GenerateUpgradedDefinitionParameters parameters) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.generateUpgradedDefinition(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, workflowName, this.client.getApiVersion(),
-                parameters, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Generates the upgraded definition for a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param parameters Parameters for generating an upgraded definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Object>> generateUpgradedDefinitionWithResponseAsync(String resourceGroupName,
-        String workflowName, GenerateUpgradedDefinitionParameters parameters, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.generateUpgradedDefinition(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, workflowName, this.client.getApiVersion(), parameters, accept, context);
-    }
-
-    /**
-     * Generates the upgraded definition for a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param parameters Parameters for generating an upgraded definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Object> generateUpgradedDefinitionAsync(String resourceGroupName, String workflowName,
-        GenerateUpgradedDefinitionParameters parameters) {
-        return generateUpgradedDefinitionWithResponseAsync(resourceGroupName, workflowName, parameters)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Generates the upgraded definition for a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param parameters Parameters for generating an upgraded definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Object> generateUpgradedDefinitionWithResponse(String resourceGroupName, String workflowName,
-        GenerateUpgradedDefinitionParameters parameters, Context context) {
-        return generateUpgradedDefinitionWithResponseAsync(resourceGroupName, workflowName, parameters, context)
-            .block();
-    }
-
-    /**
-     * Generates the upgraded definition for a workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param parameters Parameters for generating an upgraded definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object generateUpgradedDefinition(String resourceGroupName, String workflowName,
-        GenerateUpgradedDefinitionParameters parameters) {
-        return generateUpgradedDefinitionWithResponse(resourceGroupName, workflowName, parameters, Context.NONE)
-            .getValue();
-    }
-
-    /**
-     * Get the workflow callback Url.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param listCallbackUrl Which callback url to list.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workflow callback Url along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkflowTriggerCallbackUrlInner>> listCallbackUrlWithResponseAsync(String resourceGroupName,
-        String workflowName, GetCallbackUrlParameters listCallbackUrl) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        if (listCallbackUrl == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter listCallbackUrl is required and cannot be null."));
-        } else {
-            listCallbackUrl.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listCallbackUrl(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, this.client.getApiVersion(), listCallbackUrl, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the workflow callback Url.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param listCallbackUrl Which callback url to list.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workflow callback Url along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<WorkflowTriggerCallbackUrlInner>> listCallbackUrlWithResponseAsync(String resourceGroupName,
-        String workflowName, GetCallbackUrlParameters listCallbackUrl, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        if (listCallbackUrl == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter listCallbackUrl is required and cannot be null."));
-        } else {
-            listCallbackUrl.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listCallbackUrl(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workflowName, this.client.getApiVersion(), listCallbackUrl, accept, context);
-    }
-
-    /**
-     * Get the workflow callback Url.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param listCallbackUrl Which callback url to list.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workflow callback Url on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<WorkflowTriggerCallbackUrlInner> listCallbackUrlAsync(String resourceGroupName, String workflowName,
-        GetCallbackUrlParameters listCallbackUrl) {
-        return listCallbackUrlWithResponseAsync(resourceGroupName, workflowName, listCallbackUrl)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Get the workflow callback Url.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param listCallbackUrl Which callback url to list.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workflow callback Url along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<WorkflowTriggerCallbackUrlInner> listCallbackUrlWithResponse(String resourceGroupName,
-        String workflowName, GetCallbackUrlParameters listCallbackUrl, Context context) {
-        return listCallbackUrlWithResponseAsync(resourceGroupName, workflowName, listCallbackUrl, context).block();
-    }
-
-    /**
-     * Get the workflow callback Url.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param listCallbackUrl Which callback url to list.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the workflow callback Url.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkflowTriggerCallbackUrlInner listCallbackUrl(String resourceGroupName, String workflowName,
-        GetCallbackUrlParameters listCallbackUrl) {
-        return listCallbackUrlWithResponse(resourceGroupName, workflowName, listCallbackUrl, Context.NONE).getValue();
-    }
-
-    /**
-     * Gets an OpenAPI definition for the workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an OpenAPI definition for the workflow along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Object>> listSwaggerWithResponseAsync(String resourceGroupName, String workflowName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listSwagger(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets an OpenAPI definition for the workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an OpenAPI definition for the workflow along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Object>> listSwaggerWithResponseAsync(String resourceGroupName, String workflowName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listSwagger(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workflowName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Gets an OpenAPI definition for the workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an OpenAPI definition for the workflow on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Object> listSwaggerAsync(String resourceGroupName, String workflowName) {
-        return listSwaggerWithResponseAsync(resourceGroupName, workflowName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets an OpenAPI definition for the workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an OpenAPI definition for the workflow along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Object> listSwaggerWithResponse(String resourceGroupName, String workflowName, Context context) {
-        return listSwaggerWithResponseAsync(resourceGroupName, workflowName, context).block();
-    }
-
-    /**
-     * Gets an OpenAPI definition for the workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an OpenAPI definition for the workflow.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object listSwagger(String resourceGroupName, String workflowName) {
-        return listSwaggerWithResponse(resourceGroupName, workflowName, Context.NONE).getValue();
-    }
-
-    /**
-     * Moves an existing workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param move The workflow to move.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> moveWithResponseAsync(String resourceGroupName, String workflowName,
-        WorkflowReference move) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        if (move == null) {
-            return Mono.error(new IllegalArgumentException("Parameter move is required and cannot be null."));
-        } else {
-            move.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.move(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, this.client.getApiVersion(), move, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Moves an existing workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param move The workflow to move.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> moveWithResponseAsync(String resourceGroupName, String workflowName,
-        WorkflowReference move, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        if (move == null) {
-            return Mono.error(new IllegalArgumentException("Parameter move is required and cannot be null."));
-        } else {
-            move.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.move(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workflowName,
-            this.client.getApiVersion(), move, accept, context);
-    }
-
-    /**
-     * Moves an existing workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param move The workflow to move.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginMoveAsync(String resourceGroupName, String workflowName,
-        WorkflowReference move) {
-        Mono<Response<Flux<ByteBuffer>>> mono = moveWithResponseAsync(resourceGroupName, workflowName, move);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Moves an existing workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param move The workflow to move.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginMoveAsync(String resourceGroupName, String workflowName,
-        WorkflowReference move, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = moveWithResponseAsync(resourceGroupName, workflowName, move, context);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            context);
-    }
-
-    /**
-     * Moves an existing workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param move The workflow to move.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginMove(String resourceGroupName, String workflowName,
-        WorkflowReference move) {
-        return this.beginMoveAsync(resourceGroupName, workflowName, move).getSyncPoller();
-    }
-
-    /**
-     * Moves an existing workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param move The workflow to move.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginMove(String resourceGroupName, String workflowName,
-        WorkflowReference move, Context context) {
-        return this.beginMoveAsync(resourceGroupName, workflowName, move, context).getSyncPoller();
-    }
-
-    /**
-     * Moves an existing workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param move The workflow to move.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> moveAsync(String resourceGroupName, String workflowName, WorkflowReference move) {
-        return beginMoveAsync(resourceGroupName, workflowName, move).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Moves an existing workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param move The workflow to move.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> moveAsync(String resourceGroupName, String workflowName, WorkflowReference move,
-        Context context) {
-        return beginMoveAsync(resourceGroupName, workflowName, move, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Moves an existing workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param move The workflow to move.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void move(String resourceGroupName, String workflowName, WorkflowReference move) {
-        moveAsync(resourceGroupName, workflowName, move).block();
-    }
-
-    /**
-     * Moves an existing workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param move The workflow to move.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void move(String resourceGroupName, String workflowName, WorkflowReference move, Context context) {
-        moveAsync(resourceGroupName, workflowName, move, context).block();
-    }
-
-    /**
-     * Regenerates the callback URL access key for request triggers.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param keyType The access key type.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> regenerateAccessKeyWithResponseAsync(String resourceGroupName, String workflowName,
-        RegenerateActionParameter keyType) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        if (keyType == null) {
-            return Mono.error(new IllegalArgumentException("Parameter keyType is required and cannot be null."));
-        } else {
-            keyType.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.regenerateAccessKey(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                    resourceGroupName, workflowName, this.client.getApiVersion(), keyType, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Regenerates the callback URL access key for request triggers.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param keyType The access key type.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> regenerateAccessKeyWithResponseAsync(String resourceGroupName, String workflowName,
-        RegenerateActionParameter keyType, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        if (keyType == null) {
-            return Mono.error(new IllegalArgumentException("Parameter keyType is required and cannot be null."));
-        } else {
-            keyType.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.regenerateAccessKey(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, workflowName, this.client.getApiVersion(), keyType, accept, context);
-    }
-
-    /**
-     * Regenerates the callback URL access key for request triggers.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param keyType The access key type.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> regenerateAccessKeyAsync(String resourceGroupName, String workflowName,
-        RegenerateActionParameter keyType) {
-        return regenerateAccessKeyWithResponseAsync(resourceGroupName, workflowName, keyType)
-            .flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Regenerates the callback URL access key for request triggers.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param keyType The access key type.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> regenerateAccessKeyWithResponse(String resourceGroupName, String workflowName,
-        RegenerateActionParameter keyType, Context context) {
-        return regenerateAccessKeyWithResponseAsync(resourceGroupName, workflowName, keyType, context).block();
-    }
-
-    /**
-     * Regenerates the callback URL access key for request triggers.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param keyType The access key type.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void regenerateAccessKey(String resourceGroupName, String workflowName, RegenerateActionParameter keyType) {
-        regenerateAccessKeyWithResponse(resourceGroupName, workflowName, keyType, Context.NONE);
-    }
-
-    /**
-     * Validates the workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param validate The workflow.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> validateByResourceGroupWithResponseAsync(String resourceGroupName, String workflowName,
-        WorkflowInner validate) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        if (validate == null) {
-            return Mono.error(new IllegalArgumentException("Parameter validate is required and cannot be null."));
-        } else {
-            validate.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.validateByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                    resourceGroupName, workflowName, this.client.getApiVersion(), validate, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Validates the workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param validate The workflow.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> validateByResourceGroupWithResponseAsync(String resourceGroupName, String workflowName,
-        WorkflowInner validate, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workflowName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
-        }
-        if (validate == null) {
-            return Mono.error(new IllegalArgumentException("Parameter validate is required and cannot be null."));
-        } else {
-            validate.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.validateByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, workflowName, this.client.getApiVersion(), validate, accept, context);
-    }
-
-    /**
-     * Validates the workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param validate The workflow.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> validateByResourceGroupAsync(String resourceGroupName, String workflowName,
-        WorkflowInner validate) {
-        return validateByResourceGroupWithResponseAsync(resourceGroupName, workflowName, validate)
-            .flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Validates the workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param validate The workflow.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> validateByResourceGroupWithResponse(String resourceGroupName, String workflowName,
-        WorkflowInner validate, Context context) {
-        return validateByResourceGroupWithResponseAsync(resourceGroupName, workflowName, validate, context).block();
-    }
-
-    /**
-     * Validates the workflow.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param validate The workflow.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void validateByResourceGroup(String resourceGroupName, String workflowName, WorkflowInner validate) {
-        validateByResourceGroupWithResponse(resourceGroupName, workflowName, validate, Context.NONE);
-    }
-
-    /**
      * Validates the workflow definition.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param location The workflow location.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The name of Azure region.
      * @param workflowName The workflow name.
      * @param validate The workflow.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2187,17 +420,16 @@ public final class WorkflowsClientImpl implements WorkflowsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.validateByLocation(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                    resourceGroupName, location, workflowName, this.client.getApiVersion(), validate, accept, context))
+            .withContext(context -> service.validateByLocation(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, location, workflowName, validate, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Validates the workflow definition.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param location The workflow location.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The name of Azure region.
      * @param workflowName The workflow name.
      * @param validate The workflow.
      * @param context The context to associate with this operation.
@@ -2234,15 +466,15 @@ public final class WorkflowsClientImpl implements WorkflowsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.validateByLocation(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            location, workflowName, this.client.getApiVersion(), validate, accept, context);
+        return service.validateByLocation(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, location, workflowName, validate, accept, context);
     }
 
     /**
      * Validates the workflow definition.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param location The workflow location.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The name of Azure region.
      * @param workflowName The workflow name.
      * @param validate The workflow.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2260,8 +492,8 @@ public final class WorkflowsClientImpl implements WorkflowsClient {
     /**
      * Validates the workflow definition.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param location The workflow location.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The name of Azure region.
      * @param workflowName The workflow name.
      * @param validate The workflow.
      * @param context The context to associate with this operation.
@@ -2280,8 +512,8 @@ public final class WorkflowsClientImpl implements WorkflowsClient {
     /**
      * Validates the workflow definition.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param location The workflow location.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The name of Azure region.
      * @param workflowName The workflow name.
      * @param validate The workflow.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2295,13 +527,1783 @@ public final class WorkflowsClientImpl implements WorkflowsClient {
     }
 
     /**
+     * Gets a list of workflows by resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param top The number of items to be included in the result.
+     * @param filter The filter to apply on the operation. Options for filters include: State, Trigger, and
+     * ReferencedResourceId.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of workflows by resource group along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<WorkflowInner>> listByResourceGroupSinglePageAsync(String resourceGroupName, Integer top,
+        String filter) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, top, filter, accept, context))
+            .<PagedResponse<WorkflowInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets a list of workflows by resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param top The number of items to be included in the result.
+     * @param filter The filter to apply on the operation. Options for filters include: State, Trigger, and
+     * ReferencedResourceId.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of workflows by resource group along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<WorkflowInner>> listByResourceGroupSinglePageAsync(String resourceGroupName, Integer top,
+        String filter, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, top, filter, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Gets a list of workflows by resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param top The number of items to be included in the result.
+     * @param filter The filter to apply on the operation. Options for filters include: State, Trigger, and
+     * ReferencedResourceId.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of workflows by resource group as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<WorkflowInner> listByResourceGroupAsync(String resourceGroupName, Integer top, String filter) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, top, filter),
+            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Gets a list of workflows by resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of workflows by resource group as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<WorkflowInner> listByResourceGroupAsync(String resourceGroupName) {
+        final Integer top = null;
+        final String filter = null;
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, top, filter),
+            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Gets a list of workflows by resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param top The number of items to be included in the result.
+     * @param filter The filter to apply on the operation. Options for filters include: State, Trigger, and
+     * ReferencedResourceId.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of workflows by resource group as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<WorkflowInner> listByResourceGroupAsync(String resourceGroupName, Integer top, String filter,
+        Context context) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, top, filter, context),
+            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Gets a list of workflows by resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of workflows by resource group as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<WorkflowInner> listByResourceGroup(String resourceGroupName) {
+        final Integer top = null;
+        final String filter = null;
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, top, filter));
+    }
+
+    /**
+     * Gets a list of workflows by resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param top The number of items to be included in the result.
+     * @param filter The filter to apply on the operation. Options for filters include: State, Trigger, and
+     * ReferencedResourceId.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of workflows by resource group as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<WorkflowInner> listByResourceGroup(String resourceGroupName, Integer top, String filter,
+        Context context) {
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, top, filter, context));
+    }
+
+    /**
+     * Gets a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a workflow along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<WorkflowInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String workflowName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a workflow along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<WorkflowInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String workflowName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, workflowName, accept, context);
+    }
+
+    /**
+     * Gets a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a workflow on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<WorkflowInner> getByResourceGroupAsync(String resourceGroupName, String workflowName) {
+        return getByResourceGroupWithResponseAsync(resourceGroupName, workflowName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a workflow along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<WorkflowInner> getByResourceGroupWithResponse(String resourceGroupName, String workflowName,
+        Context context) {
+        return getByResourceGroupWithResponseAsync(resourceGroupName, workflowName, context).block();
+    }
+
+    /**
+     * Gets a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a workflow.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public WorkflowInner getByResourceGroup(String resourceGroupName, String workflowName) {
+        return getByResourceGroupWithResponse(resourceGroupName, workflowName, Context.NONE).getValue();
+    }
+
+    /**
+     * Creates or updates a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param resource The workflow.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the workflow type along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<WorkflowInner>> createOrUpdateWithResponseAsync(String resourceGroupName, String workflowName,
+        WorkflowInner resource) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, resource, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Creates or updates a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param resource The workflow.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the workflow type along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<WorkflowInner>> createOrUpdateWithResponseAsync(String resourceGroupName, String workflowName,
+        WorkflowInner resource, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, workflowName, resource, accept, context);
+    }
+
+    /**
+     * Creates or updates a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param resource The workflow.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the workflow type on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<WorkflowInner> createOrUpdateAsync(String resourceGroupName, String workflowName,
+        WorkflowInner resource) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, workflowName, resource)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Creates or updates a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param resource The workflow.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the workflow type along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<WorkflowInner> createOrUpdateWithResponse(String resourceGroupName, String workflowName,
+        WorkflowInner resource, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, workflowName, resource, context).block();
+    }
+
+    /**
+     * Creates or updates a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param resource The workflow.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the workflow type.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public WorkflowInner createOrUpdate(String resourceGroupName, String workflowName, WorkflowInner resource) {
+        return createOrUpdateWithResponse(resourceGroupName, workflowName, resource, Context.NONE).getValue();
+    }
+
+    /**
+     * Updates a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the workflow type along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<WorkflowInner>> updateWithResponseAsync(String resourceGroupName, String workflowName,
+        Object properties) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, properties, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Updates a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the workflow type along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<WorkflowInner>> updateWithResponseAsync(String resourceGroupName, String workflowName,
+        Object properties, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, workflowName, properties, accept, context);
+    }
+
+    /**
+     * Updates a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the workflow type on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<WorkflowInner> updateAsync(String resourceGroupName, String workflowName, Object properties) {
+        return updateWithResponseAsync(resourceGroupName, workflowName, properties)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Updates a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the workflow type along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<WorkflowInner> updateWithResponse(String resourceGroupName, String workflowName, Object properties,
+        Context context) {
+        return updateWithResponseAsync(resourceGroupName, workflowName, properties, context).block();
+    }
+
+    /**
+     * Updates a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the workflow type.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public WorkflowInner update(String resourceGroupName, String workflowName, Object properties) {
+        return updateWithResponse(resourceGroupName, workflowName, properties, Context.NONE).getValue();
+    }
+
+    /**
+     * Deletes a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String workflowName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Deletes a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String workflowName,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, workflowName, accept, context);
+    }
+
+    /**
+     * Deletes a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String workflowName) {
+        return deleteWithResponseAsync(resourceGroupName, workflowName).flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Deletes a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deleteWithResponse(String resourceGroupName, String workflowName, Context context) {
+        return deleteWithResponseAsync(resourceGroupName, workflowName, context).block();
+    }
+
+    /**
+     * Deletes a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String workflowName) {
+        deleteWithResponse(resourceGroupName, workflowName, Context.NONE);
+    }
+
+    /**
+     * Disables a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> disableWithResponseAsync(String resourceGroupName, String workflowName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.disable(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Disables a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> disableWithResponseAsync(String resourceGroupName, String workflowName,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.disable(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, workflowName, accept, context);
+    }
+
+    /**
+     * Disables a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> disableAsync(String resourceGroupName, String workflowName) {
+        return disableWithResponseAsync(resourceGroupName, workflowName).flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Disables a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> disableWithResponse(String resourceGroupName, String workflowName, Context context) {
+        return disableWithResponseAsync(resourceGroupName, workflowName, context).block();
+    }
+
+    /**
+     * Disables a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void disable(String resourceGroupName, String workflowName) {
+        disableWithResponse(resourceGroupName, workflowName, Context.NONE);
+    }
+
+    /**
+     * Enables a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> enableWithResponseAsync(String resourceGroupName, String workflowName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.enable(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Enables a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> enableWithResponseAsync(String resourceGroupName, String workflowName,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.enable(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, workflowName, accept, context);
+    }
+
+    /**
+     * Enables a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> enableAsync(String resourceGroupName, String workflowName) {
+        return enableWithResponseAsync(resourceGroupName, workflowName).flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Enables a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> enableWithResponse(String resourceGroupName, String workflowName, Context context) {
+        return enableWithResponseAsync(resourceGroupName, workflowName, context).block();
+    }
+
+    /**
+     * Enables a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void enable(String resourceGroupName, String workflowName) {
+        enableWithResponse(resourceGroupName, workflowName, Context.NONE);
+    }
+
+    /**
+     * Generates the upgraded definition for a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body Parameters for generating an upgraded definition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return dictionary of &lt;any&gt; along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Map<String, Object>>> generateUpgradedDefinitionWithResponseAsync(String resourceGroupName,
+        String workflowName, GenerateUpgradedDefinitionParameters body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.generateUpgradedDefinition(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), resourceGroupName, workflowName, body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Generates the upgraded definition for a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body Parameters for generating an upgraded definition.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return dictionary of &lt;any&gt; along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Map<String, Object>>> generateUpgradedDefinitionWithResponseAsync(String resourceGroupName,
+        String workflowName, GenerateUpgradedDefinitionParameters body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.generateUpgradedDefinition(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, workflowName, body, accept, context);
+    }
+
+    /**
+     * Generates the upgraded definition for a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body Parameters for generating an upgraded definition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return dictionary of &lt;any&gt; on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Map<String, Object>> generateUpgradedDefinitionAsync(String resourceGroupName, String workflowName,
+        GenerateUpgradedDefinitionParameters body) {
+        return generateUpgradedDefinitionWithResponseAsync(resourceGroupName, workflowName, body)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Generates the upgraded definition for a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body Parameters for generating an upgraded definition.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return dictionary of &lt;any&gt; along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Map<String, Object>> generateUpgradedDefinitionWithResponse(String resourceGroupName,
+        String workflowName, GenerateUpgradedDefinitionParameters body, Context context) {
+        return generateUpgradedDefinitionWithResponseAsync(resourceGroupName, workflowName, body, context).block();
+    }
+
+    /**
+     * Generates the upgraded definition for a workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body Parameters for generating an upgraded definition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return dictionary of &lt;any&gt;.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Map<String, Object> generateUpgradedDefinition(String resourceGroupName, String workflowName,
+        GenerateUpgradedDefinitionParameters body) {
+        return generateUpgradedDefinitionWithResponse(resourceGroupName, workflowName, body, Context.NONE).getValue();
+    }
+
+    /**
+     * Get the workflow callback Url.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body Which callback url to list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the workflow callback Url along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<WorkflowTriggerCallbackUrlInner>> listCallbackUrlWithResponseAsync(String resourceGroupName,
+        String workflowName, GetCallbackUrlParameters body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listCallbackUrl(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the workflow callback Url.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body Which callback url to list.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the workflow callback Url along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<WorkflowTriggerCallbackUrlInner>> listCallbackUrlWithResponseAsync(String resourceGroupName,
+        String workflowName, GetCallbackUrlParameters body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listCallbackUrl(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, workflowName, body, accept, context);
+    }
+
+    /**
+     * Get the workflow callback Url.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body Which callback url to list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the workflow callback Url on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<WorkflowTriggerCallbackUrlInner> listCallbackUrlAsync(String resourceGroupName, String workflowName,
+        GetCallbackUrlParameters body) {
+        return listCallbackUrlWithResponseAsync(resourceGroupName, workflowName, body)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get the workflow callback Url.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body Which callback url to list.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the workflow callback Url along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<WorkflowTriggerCallbackUrlInner> listCallbackUrlWithResponse(String resourceGroupName,
+        String workflowName, GetCallbackUrlParameters body, Context context) {
+        return listCallbackUrlWithResponseAsync(resourceGroupName, workflowName, body, context).block();
+    }
+
+    /**
+     * Get the workflow callback Url.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body Which callback url to list.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the workflow callback Url.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public WorkflowTriggerCallbackUrlInner listCallbackUrl(String resourceGroupName, String workflowName,
+        GetCallbackUrlParameters body) {
+        return listCallbackUrlWithResponse(resourceGroupName, workflowName, body, Context.NONE).getValue();
+    }
+
+    /**
+     * Gets an OpenAPI definition for the workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an OpenAPI definition for the workflow along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Map<String, Object>>> listSwaggerWithResponseAsync(String resourceGroupName,
+        String workflowName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listSwagger(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets an OpenAPI definition for the workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an OpenAPI definition for the workflow along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Map<String, Object>>> listSwaggerWithResponseAsync(String resourceGroupName,
+        String workflowName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listSwagger(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, workflowName, accept, context);
+    }
+
+    /**
+     * Gets an OpenAPI definition for the workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an OpenAPI definition for the workflow on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Map<String, Object>> listSwaggerAsync(String resourceGroupName, String workflowName) {
+        return listSwaggerWithResponseAsync(resourceGroupName, workflowName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets an OpenAPI definition for the workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an OpenAPI definition for the workflow along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Map<String, Object>> listSwaggerWithResponse(String resourceGroupName, String workflowName,
+        Context context) {
+        return listSwaggerWithResponseAsync(resourceGroupName, workflowName, context).block();
+    }
+
+    /**
+     * Gets an OpenAPI definition for the workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an OpenAPI definition for the workflow.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Map<String, Object> listSwagger(String resourceGroupName, String workflowName) {
+        return listSwaggerWithResponse(resourceGroupName, workflowName, Context.NONE).getValue();
+    }
+
+    /**
+     * Moves an existing workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The workflow to move.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> moveWithResponseAsync(String resourceGroupName, String workflowName,
+        WorkflowReference body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.move(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Moves an existing workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The workflow to move.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> moveWithResponseAsync(String resourceGroupName, String workflowName,
+        WorkflowReference body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.move(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, workflowName, body, accept, context);
+    }
+
+    /**
+     * Moves an existing workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The workflow to move.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginMoveAsync(String resourceGroupName, String workflowName,
+        WorkflowReference body) {
+        Mono<Response<Flux<ByteBuffer>>> mono = moveWithResponseAsync(resourceGroupName, workflowName, body);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Moves an existing workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The workflow to move.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginMoveAsync(String resourceGroupName, String workflowName,
+        WorkflowReference body, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = moveWithResponseAsync(resourceGroupName, workflowName, body, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
+    }
+
+    /**
+     * Moves an existing workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The workflow to move.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginMove(String resourceGroupName, String workflowName,
+        WorkflowReference body) {
+        return this.beginMoveAsync(resourceGroupName, workflowName, body).getSyncPoller();
+    }
+
+    /**
+     * Moves an existing workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The workflow to move.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginMove(String resourceGroupName, String workflowName,
+        WorkflowReference body, Context context) {
+        return this.beginMoveAsync(resourceGroupName, workflowName, body, context).getSyncPoller();
+    }
+
+    /**
+     * Moves an existing workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The workflow to move.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> moveAsync(String resourceGroupName, String workflowName, WorkflowReference body) {
+        return beginMoveAsync(resourceGroupName, workflowName, body).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Moves an existing workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The workflow to move.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> moveAsync(String resourceGroupName, String workflowName, WorkflowReference body,
+        Context context) {
+        return beginMoveAsync(resourceGroupName, workflowName, body, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Moves an existing workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The workflow to move.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void move(String resourceGroupName, String workflowName, WorkflowReference body) {
+        moveAsync(resourceGroupName, workflowName, body).block();
+    }
+
+    /**
+     * Moves an existing workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The workflow to move.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void move(String resourceGroupName, String workflowName, WorkflowReference body, Context context) {
+        moveAsync(resourceGroupName, workflowName, body, context).block();
+    }
+
+    /**
+     * Regenerates the callback URL access key for request triggers.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The access key type.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> regenerateAccessKeyWithResponseAsync(String resourceGroupName, String workflowName,
+        RegenerateActionParameter body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.regenerateAccessKey(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Regenerates the callback URL access key for request triggers.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The access key type.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> regenerateAccessKeyWithResponseAsync(String resourceGroupName, String workflowName,
+        RegenerateActionParameter body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.regenerateAccessKey(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, workflowName, body, accept, context);
+    }
+
+    /**
+     * Regenerates the callback URL access key for request triggers.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The access key type.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> regenerateAccessKeyAsync(String resourceGroupName, String workflowName,
+        RegenerateActionParameter body) {
+        return regenerateAccessKeyWithResponseAsync(resourceGroupName, workflowName, body)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Regenerates the callback URL access key for request triggers.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The access key type.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> regenerateAccessKeyWithResponse(String resourceGroupName, String workflowName,
+        RegenerateActionParameter body, Context context) {
+        return regenerateAccessKeyWithResponseAsync(resourceGroupName, workflowName, body, context).block();
+    }
+
+    /**
+     * Regenerates the callback URL access key for request triggers.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The access key type.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void regenerateAccessKey(String resourceGroupName, String workflowName, RegenerateActionParameter body) {
+        regenerateAccessKeyWithResponse(resourceGroupName, workflowName, body, Context.NONE);
+    }
+
+    /**
+     * Validates the workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The workflow.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> validateByResourceGroupWithResponseAsync(String resourceGroupName, String workflowName,
+        WorkflowInner body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.validateByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), resourceGroupName, workflowName, body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Validates the workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The workflow.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> validateByResourceGroupWithResponseAsync(String resourceGroupName, String workflowName,
+        WorkflowInner body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workflowName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workflowName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.validateByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, workflowName, body, accept, context);
+    }
+
+    /**
+     * Validates the workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The workflow.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> validateByResourceGroupAsync(String resourceGroupName, String workflowName, WorkflowInner body) {
+        return validateByResourceGroupWithResponseAsync(resourceGroupName, workflowName, body)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Validates the workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The workflow.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> validateByResourceGroupWithResponse(String resourceGroupName, String workflowName,
+        WorkflowInner body, Context context) {
+        return validateByResourceGroupWithResponseAsync(resourceGroupName, workflowName, body, context).block();
+    }
+
+    /**
+     * Validates the workflow.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The workflow name.
+     * @param body The workflow.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void validateByResourceGroup(String resourceGroupName, String workflowName, WorkflowInner body) {
+        validateByResourceGroupWithResponse(resourceGroupName, workflowName, body, Context.NONE);
+    }
+
+    /**
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflows along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Workflow list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkflowInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -2329,7 +2331,8 @@ public final class WorkflowsClientImpl implements WorkflowsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflows along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Workflow list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkflowInner>> listBySubscriptionNextSinglePageAsync(String nextLink, Context context) {
@@ -2354,7 +2357,8 @@ public final class WorkflowsClientImpl implements WorkflowsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflows along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Workflow list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkflowInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -2382,7 +2386,8 @@ public final class WorkflowsClientImpl implements WorkflowsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflows along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Workflow list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkflowInner>> listByResourceGroupNextSinglePageAsync(String nextLink,

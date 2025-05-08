@@ -19,7 +19,6 @@ public final class IntegrationServiceEnvironmentsListByResourceGroupSamples {
      */
     public static void
         listIntegrationServiceEnvironmentsByResourceGroupName(com.azure.resourcemanager.logic.LogicManager manager) {
-        manager.integrationServiceEnvironments()
-            .listByResourceGroup("testResourceGroup", null, com.azure.core.util.Context.NONE);
+        manager.integrationServiceEnvironments().listByResourceGroup(null, null, com.azure.core.util.Context.NONE);
     }
 }

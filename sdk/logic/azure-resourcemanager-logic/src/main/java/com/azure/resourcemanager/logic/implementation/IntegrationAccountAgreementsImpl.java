@@ -79,11 +79,10 @@ public final class IntegrationAccountAgreementsImpl implements IntegrationAccoun
     }
 
     public Response<WorkflowTriggerCallbackUrl> listContentCallbackUrlWithResponse(String resourceGroupName,
-        String integrationAccountName, String agreementName, GetCallbackUrlParameters listContentCallbackUrl,
-        Context context) {
+        String integrationAccountName, String agreementName, GetCallbackUrlParameters body, Context context) {
         Response<WorkflowTriggerCallbackUrlInner> inner = this.serviceClient()
-            .listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, agreementName,
-                listContentCallbackUrl, context);
+            .listContentCallbackUrlWithResponse(resourceGroupName, integrationAccountName, agreementName, body,
+                context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new WorkflowTriggerCallbackUrlImpl(inner.getValue(), this.manager()));
@@ -93,9 +92,9 @@ public final class IntegrationAccountAgreementsImpl implements IntegrationAccoun
     }
 
     public WorkflowTriggerCallbackUrl listContentCallbackUrl(String resourceGroupName, String integrationAccountName,
-        String agreementName, GetCallbackUrlParameters listContentCallbackUrl) {
+        String agreementName, GetCallbackUrlParameters body) {
         WorkflowTriggerCallbackUrlInner inner = this.serviceClient()
-            .listContentCallbackUrl(resourceGroupName, integrationAccountName, agreementName, listContentCallbackUrl);
+            .listContentCallbackUrl(resourceGroupName, integrationAccountName, agreementName, body);
         if (inner != null) {
             return new WorkflowTriggerCallbackUrlImpl(inner, this.manager());
         } else {

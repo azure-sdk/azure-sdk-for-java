@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.ApiOperationInner;
 import java.util.Map;
 
@@ -33,25 +34,95 @@ public interface ApiOperation {
     String type();
 
     /**
-     * Gets the location property: The geo-location where the resource lives.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the location value.
+     * @return the systemData value.
      */
-    String location();
+    SystemData systemData();
 
     /**
-     * Gets the tags property: Resource tags.
+     * Gets the summary property: The summary of the api operation.
      * 
-     * @return the tags value.
+     * @return the summary value.
      */
-    Map<String, String> tags();
+    String summary();
 
     /**
-     * Gets the properties property: The api operations properties.
+     * Gets the description property: The description of the api operation.
      * 
-     * @return the properties value.
+     * @return the description value.
      */
-    ApiOperationPropertiesDefinition properties();
+    String description();
+
+    /**
+     * Gets the visibility property: The visibility of the api operation.
+     * 
+     * @return the visibility value.
+     */
+    String visibility();
+
+    /**
+     * Gets the trigger property: The trigger type of api operation.
+     * 
+     * @return the trigger value.
+     */
+    String trigger();
+
+    /**
+     * Gets the triggerHint property: The trigger hint for the api operation.
+     * 
+     * @return the triggerHint value.
+     */
+    String triggerHint();
+
+    /**
+     * Gets the pageable property: Indicates whether the api operation is pageable.
+     * 
+     * @return the pageable value.
+     */
+    Boolean pageable();
+
+    /**
+     * Gets the annotation property: The annotation of api operation.
+     * 
+     * @return the annotation value.
+     */
+    ApiOperationAnnotation annotation();
+
+    /**
+     * Gets the api property: The api reference.
+     * 
+     * @return the api value.
+     */
+    ApiReference api();
+
+    /**
+     * Gets the inputsDefinition property: The operation inputs definition schema.
+     * 
+     * @return the inputsDefinition value.
+     */
+    SwaggerSchema inputsDefinition();
+
+    /**
+     * Gets the responsesDefinition property: The operation responses definition schemas.
+     * 
+     * @return the responsesDefinition value.
+     */
+    Map<String, SwaggerSchema> responsesDefinition();
+
+    /**
+     * Gets the isWebhook property: Indicates whether the API operation is webhook or not.
+     * 
+     * @return the isWebhook value.
+     */
+    Boolean isWebhook();
+
+    /**
+     * Gets the isNotification property: Indicates whether the API operation is notification or not.
+     * 
+     * @return the isNotification value.
+     */
+    Boolean isNotification();
 
     /**
      * Gets the inner com.azure.resourcemanager.logic.fluent.models.ApiOperationInner object.

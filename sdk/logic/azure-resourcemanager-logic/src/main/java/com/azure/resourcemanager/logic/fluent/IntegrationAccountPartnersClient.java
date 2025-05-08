@@ -20,7 +20,7 @@ public interface IntegrationAccountPartnersClient {
     /**
      * Gets a list of integration account partners.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -33,7 +33,7 @@ public interface IntegrationAccountPartnersClient {
     /**
      * Gets a list of integration account partners.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param top The number of items to be included in the result.
      * @param filter The filter to apply on the operation. Options for filters include: PartnerType.
@@ -50,7 +50,7 @@ public interface IntegrationAccountPartnersClient {
     /**
      * Gets an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
      * @param context The context to associate with this operation.
@@ -66,7 +66,7 @@ public interface IntegrationAccountPartnersClient {
     /**
      * Gets an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -80,10 +80,10 @@ public interface IntegrationAccountPartnersClient {
     /**
      * Creates or updates an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
-     * @param partner The integration account partner.
+     * @param resource The integration account partner.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -92,15 +92,15 @@ public interface IntegrationAccountPartnersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IntegrationAccountPartnerInner> createOrUpdateWithResponse(String resourceGroupName,
-        String integrationAccountName, String partnerName, IntegrationAccountPartnerInner partner, Context context);
+        String integrationAccountName, String partnerName, IntegrationAccountPartnerInner resource, Context context);
 
     /**
      * Creates or updates an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
-     * @param partner The integration account partner.
+     * @param resource The integration account partner.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -108,12 +108,12 @@ public interface IntegrationAccountPartnersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     IntegrationAccountPartnerInner createOrUpdate(String resourceGroupName, String integrationAccountName,
-        String partnerName, IntegrationAccountPartnerInner partner);
+        String partnerName, IntegrationAccountPartnerInner resource);
 
     /**
      * Deletes an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
      * @param context The context to associate with this operation.
@@ -129,7 +129,7 @@ public interface IntegrationAccountPartnersClient {
     /**
      * Deletes an integration account partner.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -142,10 +142,10 @@ public interface IntegrationAccountPartnersClient {
     /**
      * Get the content callback url.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -154,16 +154,15 @@ public interface IntegrationAccountPartnersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkflowTriggerCallbackUrlInner> listContentCallbackUrlWithResponse(String resourceGroupName,
-        String integrationAccountName, String partnerName, GetCallbackUrlParameters listContentCallbackUrl,
-        Context context);
+        String integrationAccountName, String partnerName, GetCallbackUrlParameters body, Context context);
 
     /**
      * Get the content callback url.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param partnerName The integration account partner name.
-     * @param listContentCallbackUrl The listContentCallbackUrl parameter.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -171,5 +170,5 @@ public interface IntegrationAccountPartnersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     WorkflowTriggerCallbackUrlInner listContentCallbackUrl(String resourceGroupName, String integrationAccountName,
-        String partnerName, GetCallbackUrlParameters listContentCallbackUrl);
+        String partnerName, GetCallbackUrlParameters body);
 }

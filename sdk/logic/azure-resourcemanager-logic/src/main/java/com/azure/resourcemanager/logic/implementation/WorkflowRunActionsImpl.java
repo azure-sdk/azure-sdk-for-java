@@ -10,8 +10,9 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.logic.fluent.WorkflowRunActionsClient;
+import com.azure.resourcemanager.logic.fluent.models.ExpressionTracesInner;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowRunActionInner;
-import com.azure.resourcemanager.logic.models.ExpressionRoot;
+import com.azure.resourcemanager.logic.models.ExpressionTraces;
 import com.azure.resourcemanager.logic.models.WorkflowRunAction;
 import com.azure.resourcemanager.logic.models.WorkflowRunActions;
 
@@ -62,14 +63,27 @@ public final class WorkflowRunActionsImpl implements WorkflowRunActions {
         }
     }
 
-    public PagedIterable<ExpressionRoot> listExpressionTraces(String resourceGroupName, String workflowName,
-        String runName, String actionName) {
-        return this.serviceClient().listExpressionTraces(resourceGroupName, workflowName, runName, actionName);
+    public Response<ExpressionTraces> listExpressionTracesWithResponse(String resourceGroupName, String workflowName,
+        String runName, String actionName, Context context) {
+        Response<ExpressionTracesInner> inner = this.serviceClient()
+            .listExpressionTracesWithResponse(resourceGroupName, workflowName, runName, actionName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new ExpressionTracesImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<ExpressionRoot> listExpressionTraces(String resourceGroupName, String workflowName,
-        String runName, String actionName, Context context) {
-        return this.serviceClient().listExpressionTraces(resourceGroupName, workflowName, runName, actionName, context);
+    public ExpressionTraces listExpressionTraces(String resourceGroupName, String workflowName, String runName,
+        String actionName) {
+        ExpressionTracesInner inner
+            = this.serviceClient().listExpressionTraces(resourceGroupName, workflowName, runName, actionName);
+        if (inner != null) {
+            return new ExpressionTracesImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     private WorkflowRunActionsClient serviceClient() {

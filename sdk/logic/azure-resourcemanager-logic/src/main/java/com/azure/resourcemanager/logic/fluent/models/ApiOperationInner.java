@@ -5,23 +5,31 @@
 package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.logic.models.ApiOperationPropertiesDefinition;
+import com.azure.resourcemanager.logic.models.ApiOperationAnnotation;
+import com.azure.resourcemanager.logic.models.ApiReference;
+import com.azure.resourcemanager.logic.models.SwaggerSchema;
 import java.io.IOException;
 import java.util.Map;
 
 /**
- * The api operation.
+ * The integration service environment managed api's api operations.
  */
 @Fluent
-public final class ApiOperationInner extends Resource {
+public final class ApiOperationInner extends ProxyResource {
     /*
-     * The api operations properties
+     * The resource-specific properties for this resource.
      */
-    private ApiOperationPropertiesDefinition properties;
+    private ApiOperationPropertiesDefinition innerProperties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -45,23 +53,21 @@ public final class ApiOperationInner extends Resource {
     }
 
     /**
-     * Get the properties property: The api operations properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public ApiOperationPropertiesDefinition properties() {
-        return this.properties;
+    private ApiOperationPropertiesDefinition innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the properties property: The api operations properties.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @param properties the properties value to set.
-     * @return the ApiOperationInner object itself.
+     * @return the systemData value.
      */
-    public ApiOperationInner withProperties(ApiOperationPropertiesDefinition properties) {
-        this.properties = properties;
-        return this;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -95,20 +101,278 @@ public final class ApiOperationInner extends Resource {
     }
 
     /**
-     * {@inheritDoc}
+     * Get the summary property: The summary of the api operation.
+     * 
+     * @return the summary value.
      */
-    @Override
-    public ApiOperationInner withLocation(String location) {
-        super.withLocation(location);
+    public String summary() {
+        return this.innerProperties() == null ? null : this.innerProperties().summary();
+    }
+
+    /**
+     * Set the summary property: The summary of the api operation.
+     * 
+     * @param summary the summary value to set.
+     * @return the ApiOperationInner object itself.
+     */
+    public ApiOperationInner withSummary(String summary) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiOperationPropertiesDefinition();
+        }
+        this.innerProperties().withSummary(summary);
         return this;
     }
 
     /**
-     * {@inheritDoc}
+     * Get the description property: The description of the api operation.
+     * 
+     * @return the description value.
      */
-    @Override
-    public ApiOperationInner withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public String description() {
+        return this.innerProperties() == null ? null : this.innerProperties().description();
+    }
+
+    /**
+     * Set the description property: The description of the api operation.
+     * 
+     * @param description the description value to set.
+     * @return the ApiOperationInner object itself.
+     */
+    public ApiOperationInner withDescription(String description) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiOperationPropertiesDefinition();
+        }
+        this.innerProperties().withDescription(description);
+        return this;
+    }
+
+    /**
+     * Get the visibility property: The visibility of the api operation.
+     * 
+     * @return the visibility value.
+     */
+    public String visibility() {
+        return this.innerProperties() == null ? null : this.innerProperties().visibility();
+    }
+
+    /**
+     * Set the visibility property: The visibility of the api operation.
+     * 
+     * @param visibility the visibility value to set.
+     * @return the ApiOperationInner object itself.
+     */
+    public ApiOperationInner withVisibility(String visibility) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiOperationPropertiesDefinition();
+        }
+        this.innerProperties().withVisibility(visibility);
+        return this;
+    }
+
+    /**
+     * Get the trigger property: The trigger type of api operation.
+     * 
+     * @return the trigger value.
+     */
+    public String trigger() {
+        return this.innerProperties() == null ? null : this.innerProperties().trigger();
+    }
+
+    /**
+     * Set the trigger property: The trigger type of api operation.
+     * 
+     * @param trigger the trigger value to set.
+     * @return the ApiOperationInner object itself.
+     */
+    public ApiOperationInner withTrigger(String trigger) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiOperationPropertiesDefinition();
+        }
+        this.innerProperties().withTrigger(trigger);
+        return this;
+    }
+
+    /**
+     * Get the triggerHint property: The trigger hint for the api operation.
+     * 
+     * @return the triggerHint value.
+     */
+    public String triggerHint() {
+        return this.innerProperties() == null ? null : this.innerProperties().triggerHint();
+    }
+
+    /**
+     * Set the triggerHint property: The trigger hint for the api operation.
+     * 
+     * @param triggerHint the triggerHint value to set.
+     * @return the ApiOperationInner object itself.
+     */
+    public ApiOperationInner withTriggerHint(String triggerHint) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiOperationPropertiesDefinition();
+        }
+        this.innerProperties().withTriggerHint(triggerHint);
+        return this;
+    }
+
+    /**
+     * Get the pageable property: Indicates whether the api operation is pageable.
+     * 
+     * @return the pageable value.
+     */
+    public Boolean pageable() {
+        return this.innerProperties() == null ? null : this.innerProperties().pageable();
+    }
+
+    /**
+     * Set the pageable property: Indicates whether the api operation is pageable.
+     * 
+     * @param pageable the pageable value to set.
+     * @return the ApiOperationInner object itself.
+     */
+    public ApiOperationInner withPageable(Boolean pageable) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiOperationPropertiesDefinition();
+        }
+        this.innerProperties().withPageable(pageable);
+        return this;
+    }
+
+    /**
+     * Get the annotation property: The annotation of api operation.
+     * 
+     * @return the annotation value.
+     */
+    public ApiOperationAnnotation annotation() {
+        return this.innerProperties() == null ? null : this.innerProperties().annotation();
+    }
+
+    /**
+     * Set the annotation property: The annotation of api operation.
+     * 
+     * @param annotation the annotation value to set.
+     * @return the ApiOperationInner object itself.
+     */
+    public ApiOperationInner withAnnotation(ApiOperationAnnotation annotation) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiOperationPropertiesDefinition();
+        }
+        this.innerProperties().withAnnotation(annotation);
+        return this;
+    }
+
+    /**
+     * Get the api property: The api reference.
+     * 
+     * @return the api value.
+     */
+    public ApiReference api() {
+        return this.innerProperties() == null ? null : this.innerProperties().api();
+    }
+
+    /**
+     * Set the api property: The api reference.
+     * 
+     * @param api the api value to set.
+     * @return the ApiOperationInner object itself.
+     */
+    public ApiOperationInner withApi(ApiReference api) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiOperationPropertiesDefinition();
+        }
+        this.innerProperties().withApi(api);
+        return this;
+    }
+
+    /**
+     * Get the inputsDefinition property: The operation inputs definition schema.
+     * 
+     * @return the inputsDefinition value.
+     */
+    public SwaggerSchema inputsDefinition() {
+        return this.innerProperties() == null ? null : this.innerProperties().inputsDefinition();
+    }
+
+    /**
+     * Set the inputsDefinition property: The operation inputs definition schema.
+     * 
+     * @param inputsDefinition the inputsDefinition value to set.
+     * @return the ApiOperationInner object itself.
+     */
+    public ApiOperationInner withInputsDefinition(SwaggerSchema inputsDefinition) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiOperationPropertiesDefinition();
+        }
+        this.innerProperties().withInputsDefinition(inputsDefinition);
+        return this;
+    }
+
+    /**
+     * Get the responsesDefinition property: The operation responses definition schemas.
+     * 
+     * @return the responsesDefinition value.
+     */
+    public Map<String, SwaggerSchema> responsesDefinition() {
+        return this.innerProperties() == null ? null : this.innerProperties().responsesDefinition();
+    }
+
+    /**
+     * Set the responsesDefinition property: The operation responses definition schemas.
+     * 
+     * @param responsesDefinition the responsesDefinition value to set.
+     * @return the ApiOperationInner object itself.
+     */
+    public ApiOperationInner withResponsesDefinition(Map<String, SwaggerSchema> responsesDefinition) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiOperationPropertiesDefinition();
+        }
+        this.innerProperties().withResponsesDefinition(responsesDefinition);
+        return this;
+    }
+
+    /**
+     * Get the isWebhook property: Indicates whether the API operation is webhook or not.
+     * 
+     * @return the isWebhook value.
+     */
+    public Boolean isWebhook() {
+        return this.innerProperties() == null ? null : this.innerProperties().isWebhook();
+    }
+
+    /**
+     * Set the isWebhook property: Indicates whether the API operation is webhook or not.
+     * 
+     * @param isWebhook the isWebhook value to set.
+     * @return the ApiOperationInner object itself.
+     */
+    public ApiOperationInner withIsWebhook(Boolean isWebhook) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiOperationPropertiesDefinition();
+        }
+        this.innerProperties().withIsWebhook(isWebhook);
+        return this;
+    }
+
+    /**
+     * Get the isNotification property: Indicates whether the API operation is notification or not.
+     * 
+     * @return the isNotification value.
+     */
+    public Boolean isNotification() {
+        return this.innerProperties() == null ? null : this.innerProperties().isNotification();
+    }
+
+    /**
+     * Set the isNotification property: Indicates whether the API operation is notification or not.
+     * 
+     * @param isNotification the isNotification value to set.
+     * @return the ApiOperationInner object itself.
+     */
+    public ApiOperationInner withIsNotification(Boolean isNotification) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiOperationPropertiesDefinition();
+        }
+        this.innerProperties().withIsNotification(isNotification);
         return this;
     }
 
@@ -118,8 +382,8 @@ public final class ApiOperationInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 
@@ -129,9 +393,7 @@ public final class ApiOperationInner extends Resource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("location", location());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("properties", this.properties);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
         return jsonWriter.writeEndObject();
     }
 
@@ -157,13 +419,10 @@ public final class ApiOperationInner extends Resource {
                     deserializedApiOperationInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedApiOperationInner.type = reader.getString();
-                } else if ("location".equals(fieldName)) {
-                    deserializedApiOperationInner.withLocation(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedApiOperationInner.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
-                    deserializedApiOperationInner.properties = ApiOperationPropertiesDefinition.fromJson(reader);
+                    deserializedApiOperationInner.innerProperties = ApiOperationPropertiesDefinition.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedApiOperationInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

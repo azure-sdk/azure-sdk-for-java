@@ -4,10 +4,6 @@
 
 package com.azure.resourcemanager.logic.generated;
 
-import com.azure.resourcemanager.logic.models.GetCallbackUrlParameters;
-import com.azure.resourcemanager.logic.models.KeyType;
-import java.time.OffsetDateTime;
-
 /**
  * Samples for Workflows ListCallbackUrl.
  */
@@ -23,9 +19,6 @@ public final class WorkflowsListCallbackUrlSamples {
      */
     public static void getCallbackUrl(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.workflows()
-            .listCallbackUrlWithResponse("testResourceGroup", "testWorkflow",
-                new GetCallbackUrlParameters().withNotAfter(OffsetDateTime.parse("2018-04-19T16:00:00Z"))
-                    .withKeyType(KeyType.PRIMARY),
-                com.azure.core.util.Context.NONE);
+            .listCallbackUrlWithResponse("testResourceGroup", "testWorkflow", null, com.azure.core.util.Context.NONE);
     }
 }

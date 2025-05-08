@@ -67,21 +67,21 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RequestHistoryListResult>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
             @PathParam("runName") String runName, @PathParam("actionName") String actionName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/runs/{runName}/actions/{actionName}/requestHistories/{requestHistoryName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RequestHistoryInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
             @PathParam("runName") String runName, @PathParam("actionName") String actionName,
-            @PathParam("requestHistoryName") String requestHistoryName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("requestHistoryName") String requestHistoryName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -95,15 +95,15 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
     /**
      * List a workflow run request history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflow request histories along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a RequestHistory list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RequestHistoryInner>> listSinglePageAsync(String resourceGroupName, String workflowName,
@@ -131,8 +131,8 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, runName, actionName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, runName, actionName, accept, context))
             .<PagedResponse<RequestHistoryInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -141,16 +141,16 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
     /**
      * List a workflow run request history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflow request histories along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a RequestHistory list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RequestHistoryInner>> listSinglePageAsync(String resourceGroupName, String workflowName,
@@ -179,8 +179,8 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workflowName, runName,
-                actionName, this.client.getApiVersion(), accept, context)
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, workflowName, runName, actionName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -188,14 +188,14 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
     /**
      * List a workflow run request history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflow request histories as paginated response with {@link PagedFlux}.
+     * @return the response of a RequestHistory list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RequestHistoryInner> listAsync(String resourceGroupName, String workflowName, String runName,
@@ -207,15 +207,15 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
     /**
      * List a workflow run request history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflow request histories as paginated response with {@link PagedFlux}.
+     * @return the response of a RequestHistory list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RequestHistoryInner> listAsync(String resourceGroupName, String workflowName, String runName,
@@ -227,14 +227,14 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
     /**
      * List a workflow run request history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflow request histories as paginated response with {@link PagedIterable}.
+     * @return the response of a RequestHistory list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RequestHistoryInner> list(String resourceGroupName, String workflowName, String runName,
@@ -245,15 +245,15 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
     /**
      * List a workflow run request history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflow request histories as paginated response with {@link PagedIterable}.
+     * @return the response of a RequestHistory list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RequestHistoryInner> list(String resourceGroupName, String workflowName, String runName,
@@ -264,11 +264,11 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
     /**
      * Gets a workflow run request history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
-     * @param requestHistoryName The request history name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
+     * @param requestHistoryName The name of the RequestHistory.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -304,20 +304,20 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, runName, actionName, requestHistoryName, this.client.getApiVersion(),
-                accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, runName, actionName,
+                requestHistoryName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a workflow run request history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
-     * @param requestHistoryName The request history name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
+     * @param requestHistoryName The name of the RequestHistory.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -354,18 +354,18 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workflowName,
-            runName, actionName, requestHistoryName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, workflowName, runName, actionName, requestHistoryName, accept, context);
     }
 
     /**
      * Gets a workflow run request history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
-     * @param requestHistoryName The request history name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
+     * @param requestHistoryName The name of the RequestHistory.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -381,11 +381,11 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
     /**
      * Gets a workflow run request history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
-     * @param requestHistoryName The request history name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
+     * @param requestHistoryName The name of the RequestHistory.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -402,11 +402,11 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
     /**
      * Gets a workflow run request history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
-     * @param requestHistoryName The request history name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
+     * @param requestHistoryName The name of the RequestHistory.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -426,8 +426,8 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflow request histories along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a RequestHistory list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RequestHistoryInner>> listNextSinglePageAsync(String nextLink) {
@@ -453,8 +453,8 @@ public final class WorkflowRunActionRequestHistoriesClientImpl implements Workfl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflow request histories along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a RequestHistory list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RequestHistoryInner>> listNextSinglePageAsync(String nextLink, Context context) {

@@ -18,14 +18,14 @@ public interface WorkflowRunActionRequestHistoriesClient {
     /**
      * List a workflow run request history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflow request histories as paginated response with {@link PagedIterable}.
+     * @return the response of a RequestHistory list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<RequestHistoryInner> list(String resourceGroupName, String workflowName, String runName,
@@ -34,15 +34,15 @@ public interface WorkflowRunActionRequestHistoriesClient {
     /**
      * List a workflow run request history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflow request histories as paginated response with {@link PagedIterable}.
+     * @return the response of a RequestHistory list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<RequestHistoryInner> list(String resourceGroupName, String workflowName, String runName,
@@ -51,11 +51,11 @@ public interface WorkflowRunActionRequestHistoriesClient {
     /**
      * Gets a workflow run request history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
-     * @param requestHistoryName The request history name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
+     * @param requestHistoryName The name of the RequestHistory.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -69,11 +69,11 @@ public interface WorkflowRunActionRequestHistoriesClient {
     /**
      * Gets a workflow run request history.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param workflowName The workflow name.
-     * @param runName The workflow run name.
-     * @param actionName The workflow action name.
-     * @param requestHistoryName The request history name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workflowName The name of the Workflow.
+     * @param runName The name of the WorkflowRun.
+     * @param actionName The name of the WorkflowRunAction.
+     * @param requestHistoryName The name of the RequestHistory.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.

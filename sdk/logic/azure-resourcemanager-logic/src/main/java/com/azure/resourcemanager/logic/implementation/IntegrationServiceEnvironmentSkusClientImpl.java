@@ -63,13 +63,13 @@ public final class IntegrationServiceEnvironmentSkusClientImpl implements Integr
     @ServiceInterface(name = "LogicManagementClien")
     public interface IntegrationServiceEnvironmentSkusService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Logic/integrationServiceEnvironments/{integrationServiceEnvironmentName}/skus")
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Logic/integrationServiceEnvironments/{integrationServiceEnvironmentName}/skus")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IntegrationServiceEnvironmentSkuList>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId, @PathParam("resourceGroup") String resourceGroup,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("integrationServiceEnvironmentName") String integrationServiceEnvironmentName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -83,7 +83,6 @@ public final class IntegrationServiceEnvironmentSkusClientImpl implements Integr
     /**
      * Gets a list of integration service environment Skus.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -93,7 +92,7 @@ public final class IntegrationServiceEnvironmentSkusClientImpl implements Integr
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<IntegrationServiceEnvironmentSkuDefinitionInner>>
-        listSinglePageAsync(String resourceGroup, String integrationServiceEnvironmentName) {
+        listSinglePageAsync(String integrationServiceEnvironmentName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -102,17 +101,14 @@ public final class IntegrationServiceEnvironmentSkusClientImpl implements Integr
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (resourceGroup == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
-        }
         if (integrationServiceEnvironmentName == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter integrationServiceEnvironmentName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroup, integrationServiceEnvironmentName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), integrationServiceEnvironmentName, accept, context))
             .<PagedResponse<IntegrationServiceEnvironmentSkuDefinitionInner>>map(
                 res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                     res.getValue().value(), res.getValue().nextLink(), null))
@@ -122,7 +118,6 @@ public final class IntegrationServiceEnvironmentSkusClientImpl implements Integr
     /**
      * Gets a list of integration service environment Skus.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -133,7 +128,7 @@ public final class IntegrationServiceEnvironmentSkusClientImpl implements Integr
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<IntegrationServiceEnvironmentSkuDefinitionInner>>
-        listSinglePageAsync(String resourceGroup, String integrationServiceEnvironmentName, Context context) {
+        listSinglePageAsync(String integrationServiceEnvironmentName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -142,9 +137,6 @@ public final class IntegrationServiceEnvironmentSkusClientImpl implements Integr
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (resourceGroup == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
-        }
         if (integrationServiceEnvironmentName == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter integrationServiceEnvironmentName is required and cannot be null."));
@@ -152,8 +144,8 @@ public final class IntegrationServiceEnvironmentSkusClientImpl implements Integr
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroup,
-                integrationServiceEnvironmentName, this.client.getApiVersion(), accept, context)
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                integrationServiceEnvironmentName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -161,7 +153,6 @@ public final class IntegrationServiceEnvironmentSkusClientImpl implements Integr
     /**
      * Gets a list of integration service environment Skus.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -169,16 +160,15 @@ public final class IntegrationServiceEnvironmentSkusClientImpl implements Integr
      * @return a list of integration service environment Skus as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<IntegrationServiceEnvironmentSkuDefinitionInner> listAsync(String resourceGroup,
-        String integrationServiceEnvironmentName) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroup, integrationServiceEnvironmentName),
+    private PagedFlux<IntegrationServiceEnvironmentSkuDefinitionInner>
+        listAsync(String integrationServiceEnvironmentName) {
+        return new PagedFlux<>(() -> listSinglePageAsync(integrationServiceEnvironmentName),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Gets a list of integration service environment Skus.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -187,16 +177,15 @@ public final class IntegrationServiceEnvironmentSkusClientImpl implements Integr
      * @return a list of integration service environment Skus as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<IntegrationServiceEnvironmentSkuDefinitionInner> listAsync(String resourceGroup,
-        String integrationServiceEnvironmentName, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroup, integrationServiceEnvironmentName, context),
+    private PagedFlux<IntegrationServiceEnvironmentSkuDefinitionInner>
+        listAsync(String integrationServiceEnvironmentName, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(integrationServiceEnvironmentName, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Gets a list of integration service environment Skus.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -204,15 +193,14 @@ public final class IntegrationServiceEnvironmentSkusClientImpl implements Integr
      * @return a list of integration service environment Skus as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<IntegrationServiceEnvironmentSkuDefinitionInner> list(String resourceGroup,
-        String integrationServiceEnvironmentName) {
-        return new PagedIterable<>(listAsync(resourceGroup, integrationServiceEnvironmentName));
+    public PagedIterable<IntegrationServiceEnvironmentSkuDefinitionInner>
+        list(String integrationServiceEnvironmentName) {
+        return new PagedIterable<>(listAsync(integrationServiceEnvironmentName));
     }
 
     /**
      * Gets a list of integration service environment Skus.
      * 
-     * @param resourceGroup The resource group.
      * @param integrationServiceEnvironmentName The integration service environment name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -221,9 +209,9 @@ public final class IntegrationServiceEnvironmentSkusClientImpl implements Integr
      * @return a list of integration service environment Skus as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<IntegrationServiceEnvironmentSkuDefinitionInner> list(String resourceGroup,
-        String integrationServiceEnvironmentName, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroup, integrationServiceEnvironmentName, context));
+    public PagedIterable<IntegrationServiceEnvironmentSkuDefinitionInner> list(String integrationServiceEnvironmentName,
+        Context context) {
+        return new PagedIterable<>(listAsync(integrationServiceEnvironmentName, context));
     }
 
     /**

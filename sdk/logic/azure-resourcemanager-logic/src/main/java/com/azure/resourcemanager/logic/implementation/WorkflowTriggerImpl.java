@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowTriggerInner;
 import com.azure.resourcemanager.logic.models.ResourceReference;
 import com.azure.resourcemanager.logic.models.WorkflowState;
@@ -33,6 +34,10 @@ public final class WorkflowTriggerImpl implements WorkflowTrigger {
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public WorkflowTriggerProvisioningState provisioningState() {

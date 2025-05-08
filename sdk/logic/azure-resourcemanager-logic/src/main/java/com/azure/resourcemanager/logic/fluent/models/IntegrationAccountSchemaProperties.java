@@ -15,6 +15,7 @@ import com.azure.resourcemanager.logic.models.ContentLink;
 import com.azure.resourcemanager.logic.models.SchemaType;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 /**
  * The integration account schema properties.
@@ -54,7 +55,7 @@ public final class IntegrationAccountSchemaProperties implements JsonSerializabl
     /*
      * The metadata.
      */
-    private Object metadata;
+    private Map<String, Object> metadata;
 
     /*
      * The content.
@@ -180,7 +181,7 @@ public final class IntegrationAccountSchemaProperties implements JsonSerializabl
      * 
      * @return the metadata value.
      */
-    public Object metadata() {
+    public Map<String, Object> metadata() {
         return this.metadata;
     }
 
@@ -190,7 +191,7 @@ public final class IntegrationAccountSchemaProperties implements JsonSerializabl
      * @param metadata the metadata value to set.
      * @return the IntegrationAccountSchemaProperties object itself.
      */
-    public IntegrationAccountSchemaProperties withMetadata(Object metadata) {
+    public IntegrationAccountSchemaProperties withMetadata(Map<String, Object> metadata) {
         this.metadata = metadata;
         return this;
     }
@@ -272,7 +273,7 @@ public final class IntegrationAccountSchemaProperties implements JsonSerializabl
         jsonWriter.writeStringField("targetNamespace", this.targetNamespace);
         jsonWriter.writeStringField("documentName", this.documentName);
         jsonWriter.writeStringField("fileName", this.fileName);
-        jsonWriter.writeUntypedField("metadata", this.metadata);
+        jsonWriter.writeMapField("metadata", this.metadata, (writer, element) -> writer.writeUntyped(element));
         jsonWriter.writeStringField("content", this.content);
         jsonWriter.writeStringField("contentType", this.contentType);
         return jsonWriter.writeEndObject();
@@ -311,7 +312,8 @@ public final class IntegrationAccountSchemaProperties implements JsonSerializabl
                     deserializedIntegrationAccountSchemaProperties.changedTime = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("metadata".equals(fieldName)) {
-                    deserializedIntegrationAccountSchemaProperties.metadata = reader.readUntyped();
+                    Map<String, Object> metadata = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedIntegrationAccountSchemaProperties.metadata = metadata;
                 } else if ("content".equals(fieldName)) {
                     deserializedIntegrationAccountSchemaProperties.content = reader.getString();
                 } else if ("contentType".equals(fieldName)) {

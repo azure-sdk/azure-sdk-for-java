@@ -9,12 +9,9 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.logic.fluent.IntegrationServiceEnvironmentNetworkHealthsClient;
-import com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentSubnetNetworkHealthInner;
+import com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentNetworkHealthInner;
+import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentNetworkHealth;
 import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentNetworkHealths;
-import com.azure.resourcemanager.logic.models.IntegrationServiceEnvironmentSubnetNetworkHealth;
-import java.util.Collections;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public final class IntegrationServiceEnvironmentNetworkHealthsImpl
     implements IntegrationServiceEnvironmentNetworkHealths {
@@ -31,35 +28,25 @@ public final class IntegrationServiceEnvironmentNetworkHealthsImpl
         this.serviceManager = serviceManager;
     }
 
-    public Response<Map<String, IntegrationServiceEnvironmentSubnetNetworkHealth>> getWithResponse(String resourceGroup,
-        String integrationServiceEnvironmentName, Context context) {
-        Response<Map<String, IntegrationServiceEnvironmentSubnetNetworkHealthInner>> inner
-            = this.serviceClient().getWithResponse(resourceGroup, integrationServiceEnvironmentName, context);
+    public Response<IntegrationServiceEnvironmentNetworkHealth>
+        getWithResponse(String integrationServiceEnvironmentName, Context context) {
+        Response<IntegrationServiceEnvironmentNetworkHealthInner> inner
+            = this.serviceClient().getWithResponse(integrationServiceEnvironmentName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                inner.getValue()
-                    .entrySet()
-                    .stream()
-                    .collect(Collectors.toMap(Map.Entry::getKey,
-                        inner1 -> new IntegrationServiceEnvironmentSubnetNetworkHealthImpl(inner1.getValue(),
-                            this.manager()))));
+                new IntegrationServiceEnvironmentNetworkHealthImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public Map<String, IntegrationServiceEnvironmentSubnetNetworkHealth> get(String resourceGroup,
-        String integrationServiceEnvironmentName) {
-        Map<String, IntegrationServiceEnvironmentSubnetNetworkHealthInner> inner
-            = this.serviceClient().get(resourceGroup, integrationServiceEnvironmentName);
+    public IntegrationServiceEnvironmentNetworkHealth get(String integrationServiceEnvironmentName) {
+        IntegrationServiceEnvironmentNetworkHealthInner inner
+            = this.serviceClient().get(integrationServiceEnvironmentName);
         if (inner != null) {
-            return Collections.unmodifiableMap(inner.entrySet()
-                .stream()
-                .collect(Collectors.toMap(Map.Entry::getKey,
-                    inner1 -> new IntegrationServiceEnvironmentSubnetNetworkHealthImpl(inner1.getValue(),
-                        this.manager()))));
+            return new IntegrationServiceEnvironmentNetworkHealthImpl(inner, this.manager());
         } else {
-            return Collections.emptyMap();
+            return null;
         }
     }
 

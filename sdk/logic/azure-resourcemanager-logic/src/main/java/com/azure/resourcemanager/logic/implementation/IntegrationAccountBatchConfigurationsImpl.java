@@ -4,14 +4,15 @@
 
 package com.azure.resourcemanager.logic.implementation;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.logic.fluent.IntegrationAccountBatchConfigurationsClient;
+import com.azure.resourcemanager.logic.fluent.models.BatchConfigurationCollectionInner;
 import com.azure.resourcemanager.logic.fluent.models.BatchConfigurationInner;
 import com.azure.resourcemanager.logic.models.BatchConfiguration;
+import com.azure.resourcemanager.logic.models.BatchConfigurationCollection;
 import com.azure.resourcemanager.logic.models.IntegrationAccountBatchConfigurations;
 
 public final class IntegrationAccountBatchConfigurationsImpl implements IntegrationAccountBatchConfigurations {
@@ -27,17 +28,25 @@ public final class IntegrationAccountBatchConfigurationsImpl implements Integrat
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<BatchConfiguration> list(String resourceGroupName, String integrationAccountName) {
-        PagedIterable<BatchConfigurationInner> inner
-            = this.serviceClient().list(resourceGroupName, integrationAccountName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new BatchConfigurationImpl(inner1, this.manager()));
+    public Response<BatchConfigurationCollection> listWithResponse(String resourceGroupName,
+        String integrationAccountName, Context context) {
+        Response<BatchConfigurationCollectionInner> inner
+            = this.serviceClient().listWithResponse(resourceGroupName, integrationAccountName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new BatchConfigurationCollectionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<BatchConfiguration> list(String resourceGroupName, String integrationAccountName,
-        Context context) {
-        PagedIterable<BatchConfigurationInner> inner
-            = this.serviceClient().list(resourceGroupName, integrationAccountName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new BatchConfigurationImpl(inner1, this.manager()));
+    public BatchConfigurationCollection list(String resourceGroupName, String integrationAccountName) {
+        BatchConfigurationCollectionInner inner = this.serviceClient().list(resourceGroupName, integrationAccountName);
+        if (inner != null) {
+            return new BatchConfigurationCollectionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<BatchConfiguration> getWithResponse(String resourceGroupName, String integrationAccountName,

@@ -6,6 +6,7 @@ package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -35,6 +36,11 @@ public final class WorkflowInner extends Resource {
      * Managed service identity properties.
      */
     private ManagedServiceIdentity identity;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -84,6 +90,15 @@ public final class WorkflowInner extends Resource {
     public WorkflowInner withIdentity(ManagedServiceIdentity identity) {
         this.identity = identity;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -308,7 +323,7 @@ public final class WorkflowInner extends Resource {
      * 
      * @return the definition value.
      */
-    public Object definition() {
+    public Map<String, Object> definition() {
         return this.innerProperties() == null ? null : this.innerProperties().definition();
     }
 
@@ -318,7 +333,7 @@ public final class WorkflowInner extends Resource {
      * @param definition the definition value to set.
      * @return the WorkflowInner object itself.
      */
-    public WorkflowInner withDefinition(Object definition) {
+    public WorkflowInner withDefinition(Map<String, Object> definition) {
         if (this.innerProperties() == null) {
             this.innerProperties = new WorkflowProperties();
         }
@@ -407,6 +422,8 @@ public final class WorkflowInner extends Resource {
                     deserializedWorkflowInner.innerProperties = WorkflowProperties.fromJson(reader);
                 } else if ("identity".equals(fieldName)) {
                     deserializedWorkflowInner.identity = ManagedServiceIdentity.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedWorkflowInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

@@ -52,7 +52,7 @@ public final class WorkflowRunProperties implements JsonSerializable<WorkflowRun
     /*
      * Gets the error.
      */
-    private Object error;
+    private Map<String, Object> error;
 
     /*
      * Gets the correlation id.
@@ -140,7 +140,7 @@ public final class WorkflowRunProperties implements JsonSerializable<WorkflowRun
      * 
      * @return the error value.
      */
-    public Object error() {
+    public Map<String, Object> error() {
         return this.error;
     }
 
@@ -275,7 +275,8 @@ public final class WorkflowRunProperties implements JsonSerializable<WorkflowRun
                 } else if ("code".equals(fieldName)) {
                     deserializedWorkflowRunProperties.code = reader.getString();
                 } else if ("error".equals(fieldName)) {
-                    deserializedWorkflowRunProperties.error = reader.readUntyped();
+                    Map<String, Object> error = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowRunProperties.error = error;
                 } else if ("correlationId".equals(fieldName)) {
                     deserializedWorkflowRunProperties.correlationId = reader.getString();
                 } else if ("correlation".equals(fieldName)) {

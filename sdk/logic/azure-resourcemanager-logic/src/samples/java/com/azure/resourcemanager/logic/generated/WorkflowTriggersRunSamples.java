@@ -19,6 +19,6 @@ public final class WorkflowTriggersRunSamples {
      */
     public static void runAWorkflowTrigger(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.workflowTriggers()
-            .runWithResponse("test-resource-group", "test-workflow", "manual", com.azure.core.util.Context.NONE);
+            .run("test-resource-group", "test-workflow", "manual", com.azure.core.util.Context.NONE);
     }
 }

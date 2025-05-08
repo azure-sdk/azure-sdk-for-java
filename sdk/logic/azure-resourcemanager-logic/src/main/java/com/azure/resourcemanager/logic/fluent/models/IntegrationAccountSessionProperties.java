@@ -12,6 +12,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 /**
  * The integration account session properties.
@@ -32,7 +33,7 @@ public final class IntegrationAccountSessionProperties
     /*
      * The session content.
      */
-    private Object content;
+    private Map<String, Object> content;
 
     /**
      * Creates an instance of IntegrationAccountSessionProperties class.
@@ -63,7 +64,7 @@ public final class IntegrationAccountSessionProperties
      * 
      * @return the content value.
      */
-    public Object content() {
+    public Map<String, Object> content() {
         return this.content;
     }
 
@@ -73,7 +74,7 @@ public final class IntegrationAccountSessionProperties
      * @param content the content value to set.
      * @return the IntegrationAccountSessionProperties object itself.
      */
-    public IntegrationAccountSessionProperties withContent(Object content) {
+    public IntegrationAccountSessionProperties withContent(Map<String, Object> content) {
         this.content = content;
         return this;
     }
@@ -92,7 +93,7 @@ public final class IntegrationAccountSessionProperties
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeUntypedField("content", this.content);
+        jsonWriter.writeMapField("content", this.content, (writer, element) -> writer.writeUntyped(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -119,7 +120,8 @@ public final class IntegrationAccountSessionProperties
                     deserializedIntegrationAccountSessionProperties.changedTime = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("content".equals(fieldName)) {
-                    deserializedIntegrationAccountSessionProperties.content = reader.readUntyped();
+                    Map<String, Object> content = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedIntegrationAccountSessionProperties.content = content;
                 } else {
                     reader.skipChildren();
                 }

@@ -6,11 +6,14 @@ package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.logic.models.RequestHistoryProperties;
+import com.azure.resourcemanager.logic.models.Request;
+import com.azure.resourcemanager.logic.models.Response;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.Map;
 
 /**
@@ -21,7 +24,12 @@ public final class RequestHistoryInner extends Resource {
     /*
      * The request history properties.
      */
-    private RequestHistoryProperties properties;
+    private RequestHistoryProperties innerProperties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -45,23 +53,21 @@ public final class RequestHistoryInner extends Resource {
     }
 
     /**
-     * Get the properties property: The request history properties.
+     * Get the innerProperties property: The request history properties.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public RequestHistoryProperties properties() {
-        return this.properties;
+    private RequestHistoryProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the properties property: The request history properties.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @param properties the properties value to set.
-     * @return the RequestHistoryInner object itself.
+     * @return the systemData value.
      */
-    public RequestHistoryInner withProperties(RequestHistoryProperties properties) {
-        this.properties = properties;
-        return this;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -113,13 +119,105 @@ public final class RequestHistoryInner extends Resource {
     }
 
     /**
+     * Get the startTime property: The time the request started.
+     * 
+     * @return the startTime value.
+     */
+    public OffsetDateTime startTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().startTime();
+    }
+
+    /**
+     * Set the startTime property: The time the request started.
+     * 
+     * @param startTime the startTime value to set.
+     * @return the RequestHistoryInner object itself.
+     */
+    public RequestHistoryInner withStartTime(OffsetDateTime startTime) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RequestHistoryProperties();
+        }
+        this.innerProperties().withStartTime(startTime);
+        return this;
+    }
+
+    /**
+     * Get the endTime property: The time the request ended.
+     * 
+     * @return the endTime value.
+     */
+    public OffsetDateTime endTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().endTime();
+    }
+
+    /**
+     * Set the endTime property: The time the request ended.
+     * 
+     * @param endTime the endTime value to set.
+     * @return the RequestHistoryInner object itself.
+     */
+    public RequestHistoryInner withEndTime(OffsetDateTime endTime) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RequestHistoryProperties();
+        }
+        this.innerProperties().withEndTime(endTime);
+        return this;
+    }
+
+    /**
+     * Get the request property: The request.
+     * 
+     * @return the request value.
+     */
+    public Request request() {
+        return this.innerProperties() == null ? null : this.innerProperties().request();
+    }
+
+    /**
+     * Set the request property: The request.
+     * 
+     * @param request the request value to set.
+     * @return the RequestHistoryInner object itself.
+     */
+    public RequestHistoryInner withRequest(Request request) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RequestHistoryProperties();
+        }
+        this.innerProperties().withRequest(request);
+        return this;
+    }
+
+    /**
+     * Get the response property: The response.
+     * 
+     * @return the response value.
+     */
+    public Response response() {
+        return this.innerProperties() == null ? null : this.innerProperties().response();
+    }
+
+    /**
+     * Set the response property: The response.
+     * 
+     * @param response the response value to set.
+     * @return the RequestHistoryInner object itself.
+     */
+    public RequestHistoryInner withResponse(Response response) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RequestHistoryProperties();
+        }
+        this.innerProperties().withResponse(response);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 
@@ -131,7 +229,7 @@ public final class RequestHistoryInner extends Resource {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("properties", this.properties);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
         return jsonWriter.writeEndObject();
     }
 
@@ -163,7 +261,9 @@ public final class RequestHistoryInner extends Resource {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedRequestHistoryInner.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
-                    deserializedRequestHistoryInner.properties = RequestHistoryProperties.fromJson(reader);
+                    deserializedRequestHistoryInner.innerProperties = RequestHistoryProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedRequestHistoryInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

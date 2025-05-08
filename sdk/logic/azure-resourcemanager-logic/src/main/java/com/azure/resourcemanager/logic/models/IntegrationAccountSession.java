@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationAccountSessionInner;
 import java.time.OffsetDateTime;
@@ -50,6 +51,13 @@ public interface IntegrationAccountSession {
     Map<String, String> tags();
 
     /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the createdTime property: The created time.
      * 
      * @return the createdTime value.
@@ -68,7 +76,7 @@ public interface IntegrationAccountSession {
      * 
      * @return the content value.
      */
-    Object content();
+    Map<String, Object> content();
 
     /**
      * Gets the region of the resource.
@@ -143,7 +151,7 @@ public interface IntegrationAccountSession {
             /**
              * Specifies resourceGroupName, integrationAccountName.
              * 
-             * @param resourceGroupName The resource group name.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @param integrationAccountName The integration account name.
              * @return the next definition stage.
              */
@@ -194,7 +202,7 @@ public interface IntegrationAccountSession {
              * @param content The session content.
              * @return the next definition stage.
              */
-            WithCreate withContent(Object content);
+            WithCreate withContent(Map<String, Object> content);
         }
     }
 
@@ -252,7 +260,7 @@ public interface IntegrationAccountSession {
              * @param content The session content.
              * @return the next definition stage.
              */
-            Update withContent(Object content);
+            Update withContent(Map<String, Object> content);
         }
     }
 

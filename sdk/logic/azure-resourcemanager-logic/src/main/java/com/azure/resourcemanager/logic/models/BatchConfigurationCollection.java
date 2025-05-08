@@ -4,97 +4,24 @@
 
 package com.azure.resourcemanager.logic.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.logic.fluent.models.BatchConfigurationInner;
-import java.io.IOException;
+import com.azure.resourcemanager.logic.fluent.models.BatchConfigurationCollectionInner;
 import java.util.List;
 
 /**
- * A collection of batch configurations.
+ * An immutable client-side representation of BatchConfigurationCollection.
  */
-@Fluent
-public final class BatchConfigurationCollection implements JsonSerializable<BatchConfigurationCollection> {
-    /*
-     * The value property.
-     */
-    private List<BatchConfigurationInner> value;
-
+public interface BatchConfigurationCollection {
     /**
-     * Creates an instance of BatchConfigurationCollection class.
-     */
-    public BatchConfigurationCollection() {
-    }
-
-    /**
-     * Get the value property: The value property.
+     * Gets the value property: The value property.
      * 
      * @return the value value.
      */
-    public List<BatchConfigurationInner> value() {
-        return this.value;
-    }
+    List<BatchConfiguration> value();
 
     /**
-     * Set the value property: The value property.
+     * Gets the inner com.azure.resourcemanager.logic.fluent.models.BatchConfigurationCollectionInner object.
      * 
-     * @param value the value value to set.
-     * @return the BatchConfigurationCollection object itself.
+     * @return the inner object.
      */
-    public BatchConfigurationCollection withValue(List<BatchConfigurationInner> value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
-     * Validates the instance.
-     * 
-     * @throws IllegalArgumentException thrown if the instance is not valid.
-     */
-    public void validate() {
-        if (value() != null) {
-            value().forEach(e -> e.validate());
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of BatchConfigurationCollection from the JsonReader.
-     * 
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of BatchConfigurationCollection if the JsonReader was pointing to an instance of it, or null
-     * if it was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the BatchConfigurationCollection.
-     */
-    public static BatchConfigurationCollection fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            BatchConfigurationCollection deserializedBatchConfigurationCollection = new BatchConfigurationCollection();
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-
-                if ("value".equals(fieldName)) {
-                    List<BatchConfigurationInner> value
-                        = reader.readArray(reader1 -> BatchConfigurationInner.fromJson(reader1));
-                    deserializedBatchConfigurationCollection.value = value;
-                } else {
-                    reader.skipChildren();
-                }
-            }
-
-            return deserializedBatchConfigurationCollection;
-        });
-    }
+    BatchConfigurationCollectionInner innerModel();
 }

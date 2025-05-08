@@ -243,17 +243,6 @@ public final class ApiResourceMetadata implements JsonSerializable<ApiResourceMe
     }
 
     /**
-     * Set the provisioningState property: The provisioning state.
-     * 
-     * @param provisioningState the provisioningState value to set.
-     * @return the ApiResourceMetadata object itself.
-     */
-    public ApiResourceMetadata withProvisioningState(WorkflowProvisioningState provisioningState) {
-        this.provisioningState = provisioningState;
-        return this;
-    }
-
-    /**
      * Get the deploymentParameters property: The connector deployment parameters metadata.
      * 
      * @return the deploymentParameters value.
@@ -297,13 +286,11 @@ public final class ApiResourceMetadata implements JsonSerializable<ApiResourceMe
         jsonWriter.writeStringField("brandColor", this.brandColor);
         jsonWriter.writeStringField("hideKey", this.hideKey);
         jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
-        jsonWriter.writeStringField("ApiType", this.apiType == null ? null : this.apiType.toString());
+        jsonWriter.writeStringField("apiType", this.apiType == null ? null : this.apiType.toString());
         jsonWriter.writeJsonField("wsdlService", this.wsdlService);
         jsonWriter.writeStringField("wsdlImportMethod",
             this.wsdlImportMethod == null ? null : this.wsdlImportMethod.toString());
         jsonWriter.writeStringField("connectionType", this.connectionType);
-        jsonWriter.writeStringField("provisioningState",
-            this.provisioningState == null ? null : this.provisioningState.toString());
         jsonWriter.writeJsonField("deploymentParameters", this.deploymentParameters);
         return jsonWriter.writeEndObject();
     }
@@ -332,7 +319,7 @@ public final class ApiResourceMetadata implements JsonSerializable<ApiResourceMe
                 } else if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedApiResourceMetadata.tags = tags;
-                } else if ("ApiType".equals(fieldName)) {
+                } else if ("apiType".equals(fieldName)) {
                     deserializedApiResourceMetadata.apiType = ApiType.fromString(reader.getString());
                 } else if ("wsdlService".equals(fieldName)) {
                     deserializedApiResourceMetadata.wsdlService = WsdlService.fromJson(reader);

@@ -19,6 +19,8 @@ import com.azure.resourcemanager.logic.models.Workflow;
 import com.azure.resourcemanager.logic.models.WorkflowReference;
 import com.azure.resourcemanager.logic.models.WorkflowTriggerCallbackUrl;
 import com.azure.resourcemanager.logic.models.Workflows;
+import java.util.Collections;
+import java.util.Map;
 
 public final class WorkflowsImpl implements Workflows {
     private static final ClientLogger LOGGER = new ClientLogger(WorkflowsImpl.class);
@@ -40,6 +42,17 @@ public final class WorkflowsImpl implements Workflows {
     public PagedIterable<Workflow> list(Integer top, String filter, Context context) {
         PagedIterable<WorkflowInner> inner = this.serviceClient().list(top, filter, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new WorkflowImpl(inner1, this.manager()));
+    }
+
+    public Response<Void> validateByLocationWithResponse(String resourceGroupName, String location, String workflowName,
+        WorkflowInner validate, Context context) {
+        return this.serviceClient()
+            .validateByLocationWithResponse(resourceGroupName, location, workflowName, validate, context);
+    }
+
+    public void validateByLocation(String resourceGroupName, String location, String workflowName,
+        WorkflowInner validate) {
+        this.serviceClient().validateByLocation(resourceGroupName, location, workflowName, validate);
     }
 
     public PagedIterable<Workflow> listByResourceGroup(String resourceGroupName) {
@@ -75,9 +88,10 @@ public final class WorkflowsImpl implements Workflows {
         }
     }
 
-    public Response<Workflow> updateWithResponse(String resourceGroupName, String workflowName, Context context) {
+    public Response<Workflow> updateWithResponse(String resourceGroupName, String workflowName, Object properties,
+        Context context) {
         Response<WorkflowInner> inner
-            = this.serviceClient().updateWithResponse(resourceGroupName, workflowName, context);
+            = this.serviceClient().updateWithResponse(resourceGroupName, workflowName, properties, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new WorkflowImpl(inner.getValue(), this.manager()));
@@ -86,8 +100,8 @@ public final class WorkflowsImpl implements Workflows {
         }
     }
 
-    public Workflow update(String resourceGroupName, String workflowName) {
-        WorkflowInner inner = this.serviceClient().update(resourceGroupName, workflowName);
+    public Workflow update(String resourceGroupName, String workflowName, Object properties) {
+        WorkflowInner inner = this.serviceClient().update(resourceGroupName, workflowName, properties);
         if (inner != null) {
             return new WorkflowImpl(inner, this.manager());
         } else {
@@ -120,21 +134,27 @@ public final class WorkflowsImpl implements Workflows {
         this.serviceClient().enable(resourceGroupName, workflowName);
     }
 
-    public Response<Object> generateUpgradedDefinitionWithResponse(String resourceGroupName, String workflowName,
-        GenerateUpgradedDefinitionParameters parameters, Context context) {
+    public Response<Map<String, Object>> generateUpgradedDefinitionWithResponse(String resourceGroupName,
+        String workflowName, GenerateUpgradedDefinitionParameters body, Context context) {
         return this.serviceClient()
-            .generateUpgradedDefinitionWithResponse(resourceGroupName, workflowName, parameters, context);
+            .generateUpgradedDefinitionWithResponse(resourceGroupName, workflowName, body, context);
     }
 
-    public Object generateUpgradedDefinition(String resourceGroupName, String workflowName,
-        GenerateUpgradedDefinitionParameters parameters) {
-        return this.serviceClient().generateUpgradedDefinition(resourceGroupName, workflowName, parameters);
+    public Map<String, Object> generateUpgradedDefinition(String resourceGroupName, String workflowName,
+        GenerateUpgradedDefinitionParameters body) {
+        Map<String, Object> inner
+            = this.serviceClient().generateUpgradedDefinition(resourceGroupName, workflowName, body);
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public Response<WorkflowTriggerCallbackUrl> listCallbackUrlWithResponse(String resourceGroupName,
-        String workflowName, GetCallbackUrlParameters listCallbackUrl, Context context) {
-        Response<WorkflowTriggerCallbackUrlInner> inner = this.serviceClient()
-            .listCallbackUrlWithResponse(resourceGroupName, workflowName, listCallbackUrl, context);
+        String workflowName, GetCallbackUrlParameters body, Context context) {
+        Response<WorkflowTriggerCallbackUrlInner> inner
+            = this.serviceClient().listCallbackUrlWithResponse(resourceGroupName, workflowName, body, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new WorkflowTriggerCallbackUrlImpl(inner.getValue(), this.manager()));
@@ -144,9 +164,9 @@ public final class WorkflowsImpl implements Workflows {
     }
 
     public WorkflowTriggerCallbackUrl listCallbackUrl(String resourceGroupName, String workflowName,
-        GetCallbackUrlParameters listCallbackUrl) {
+        GetCallbackUrlParameters body) {
         WorkflowTriggerCallbackUrlInner inner
-            = this.serviceClient().listCallbackUrl(resourceGroupName, workflowName, listCallbackUrl);
+            = this.serviceClient().listCallbackUrl(resourceGroupName, workflowName, body);
         if (inner != null) {
             return new WorkflowTriggerCallbackUrlImpl(inner, this.manager());
         } else {
@@ -154,50 +174,44 @@ public final class WorkflowsImpl implements Workflows {
         }
     }
 
-    public Response<Object> listSwaggerWithResponse(String resourceGroupName, String workflowName, Context context) {
+    public Response<Map<String, Object>> listSwaggerWithResponse(String resourceGroupName, String workflowName,
+        Context context) {
         return this.serviceClient().listSwaggerWithResponse(resourceGroupName, workflowName, context);
     }
 
-    public Object listSwagger(String resourceGroupName, String workflowName) {
-        return this.serviceClient().listSwagger(resourceGroupName, workflowName);
+    public Map<String, Object> listSwagger(String resourceGroupName, String workflowName) {
+        Map<String, Object> inner = this.serviceClient().listSwagger(resourceGroupName, workflowName);
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
-    public void move(String resourceGroupName, String workflowName, WorkflowReference move) {
-        this.serviceClient().move(resourceGroupName, workflowName, move);
+    public void move(String resourceGroupName, String workflowName, WorkflowReference body) {
+        this.serviceClient().move(resourceGroupName, workflowName, body);
     }
 
-    public void move(String resourceGroupName, String workflowName, WorkflowReference move, Context context) {
-        this.serviceClient().move(resourceGroupName, workflowName, move, context);
+    public void move(String resourceGroupName, String workflowName, WorkflowReference body, Context context) {
+        this.serviceClient().move(resourceGroupName, workflowName, body, context);
     }
 
     public Response<Void> regenerateAccessKeyWithResponse(String resourceGroupName, String workflowName,
-        RegenerateActionParameter keyType, Context context) {
-        return this.serviceClient().regenerateAccessKeyWithResponse(resourceGroupName, workflowName, keyType, context);
+        RegenerateActionParameter body, Context context) {
+        return this.serviceClient().regenerateAccessKeyWithResponse(resourceGroupName, workflowName, body, context);
     }
 
-    public void regenerateAccessKey(String resourceGroupName, String workflowName, RegenerateActionParameter keyType) {
-        this.serviceClient().regenerateAccessKey(resourceGroupName, workflowName, keyType);
+    public void regenerateAccessKey(String resourceGroupName, String workflowName, RegenerateActionParameter body) {
+        this.serviceClient().regenerateAccessKey(resourceGroupName, workflowName, body);
     }
 
     public Response<Void> validateByResourceGroupWithResponse(String resourceGroupName, String workflowName,
-        WorkflowInner validate, Context context) {
-        return this.serviceClient()
-            .validateByResourceGroupWithResponse(resourceGroupName, workflowName, validate, context);
+        WorkflowInner body, Context context) {
+        return this.serviceClient().validateByResourceGroupWithResponse(resourceGroupName, workflowName, body, context);
     }
 
-    public void validateByResourceGroup(String resourceGroupName, String workflowName, WorkflowInner validate) {
-        this.serviceClient().validateByResourceGroup(resourceGroupName, workflowName, validate);
-    }
-
-    public Response<Void> validateByLocationWithResponse(String resourceGroupName, String location, String workflowName,
-        WorkflowInner validate, Context context) {
-        return this.serviceClient()
-            .validateByLocationWithResponse(resourceGroupName, location, workflowName, validate, context);
-    }
-
-    public void validateByLocation(String resourceGroupName, String location, String workflowName,
-        WorkflowInner validate) {
-        this.serviceClient().validateByLocation(resourceGroupName, location, workflowName, validate);
+    public void validateByResourceGroup(String resourceGroupName, String workflowName, WorkflowInner body) {
+        this.serviceClient().validateByResourceGroup(resourceGroupName, workflowName, body);
     }
 
     public Workflow getById(String id) {

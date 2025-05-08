@@ -4,68 +4,63 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.util.ExpandableStringEnum;
+import java.util.Collection;
+
 /**
  * The segment terminator suffix.
  */
-public enum SegmentTerminatorSuffix {
+public final class SegmentTerminatorSuffix extends ExpandableStringEnum<SegmentTerminatorSuffix> {
     /**
-     * Enum value NotSpecified.
+     * Static value NotSpecified for SegmentTerminatorSuffix.
      */
-    NOT_SPECIFIED("NotSpecified"),
+    public static final SegmentTerminatorSuffix NOT_SPECIFIED = fromString("NotSpecified");
 
     /**
-     * Enum value None.
+     * Static value None for SegmentTerminatorSuffix.
      */
-    NONE("None"),
+    public static final SegmentTerminatorSuffix NONE = fromString("None");
 
     /**
-     * Enum value CR.
+     * Static value CR for SegmentTerminatorSuffix.
      */
-    CR("CR"),
+    public static final SegmentTerminatorSuffix CR = fromString("CR");
 
     /**
-     * Enum value LF.
+     * Static value LF for SegmentTerminatorSuffix.
      */
-    LF("LF"),
+    public static final SegmentTerminatorSuffix LF = fromString("LF");
 
     /**
-     * Enum value CRLF.
+     * Static value CRLF for SegmentTerminatorSuffix.
      */
-    CRLF("CRLF");
+    public static final SegmentTerminatorSuffix CRLF = fromString("CRLF");
 
     /**
-     * The actual serialized value for a SegmentTerminatorSuffix instance.
-     */
-    private final String value;
-
-    SegmentTerminatorSuffix(String value) {
-        this.value = value;
-    }
-
-    /**
-     * Parses a serialized value to a SegmentTerminatorSuffix instance.
+     * Creates a new instance of SegmentTerminatorSuffix value.
      * 
-     * @param value the serialized value to parse.
-     * @return the parsed SegmentTerminatorSuffix object, or null if unable to parse.
+     * @deprecated Use the {@link #fromString(String)} factory method.
      */
-    public static SegmentTerminatorSuffix fromString(String value) {
-        if (value == null) {
-            return null;
-        }
-        SegmentTerminatorSuffix[] items = SegmentTerminatorSuffix.values();
-        for (SegmentTerminatorSuffix item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
+    @Deprecated
+    public SegmentTerminatorSuffix() {
     }
 
     /**
-     * {@inheritDoc}
+     * Creates or finds a SegmentTerminatorSuffix from its string representation.
+     * 
+     * @param name a name to look for.
+     * @return the corresponding SegmentTerminatorSuffix.
      */
-    @Override
-    public String toString() {
-        return this.value;
+    public static SegmentTerminatorSuffix fromString(String name) {
+        return fromString(name, SegmentTerminatorSuffix.class);
+    }
+
+    /**
+     * Gets known SegmentTerminatorSuffix values.
+     * 
+     * @return known SegmentTerminatorSuffix values.
+     */
+    public static Collection<SegmentTerminatorSuffix> values() {
+        return values(SegmentTerminatorSuffix.class);
     }
 }

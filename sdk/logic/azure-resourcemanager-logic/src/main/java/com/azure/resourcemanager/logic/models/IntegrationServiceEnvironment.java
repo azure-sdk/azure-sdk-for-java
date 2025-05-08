@@ -6,6 +6,7 @@ package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentInner;
 import java.util.Map;
@@ -50,13 +51,6 @@ public interface IntegrationServiceEnvironment {
     Map<String, String> tags();
 
     /**
-     * Gets the properties property: The integration service environment properties.
-     * 
-     * @return the properties value.
-     */
-    IntegrationServiceEnvironmentProperties properties();
-
-    /**
      * Gets the sku property: The sku.
      * 
      * @return the sku value.
@@ -69,6 +63,55 @@ public interface IntegrationServiceEnvironment {
      * @return the identity value.
      */
     ManagedServiceIdentity identity();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
+     * Gets the provisioningState property: Gets the provisioning state.
+     * 
+     * @return the provisioningState value.
+     */
+    WorkflowProvisioningState provisioningState();
+
+    /**
+     * Gets the state property: The integration service environment state.
+     * 
+     * @return the state value.
+     */
+    WorkflowState state();
+
+    /**
+     * Gets the integrationServiceEnvironmentId property: Gets the tracking id.
+     * 
+     * @return the integrationServiceEnvironmentId value.
+     */
+    String integrationServiceEnvironmentId();
+
+    /**
+     * Gets the endpointsConfiguration property: The endpoints configuration.
+     * 
+     * @return the endpointsConfiguration value.
+     */
+    FlowEndpointsConfiguration endpointsConfiguration();
+
+    /**
+     * Gets the networkConfiguration property: The network configuration.
+     * 
+     * @return the networkConfiguration value.
+     */
+    NetworkConfiguration networkConfiguration();
+
+    /**
+     * Gets the encryptionConfiguration property: The encryption configuration.
+     * 
+     * @return the encryptionConfiguration value.
+     */
+    IntegrationServiceEnvironmenEncryptionConfiguration encryptionConfiguration();
 
     /**
      * Gets the region of the resource.
@@ -85,13 +128,6 @@ public interface IntegrationServiceEnvironment {
     String regionName();
 
     /**
-     * Gets the name of the resource group.
-     * 
-     * @return the name of the resource group.
-     */
-    String resourceGroupName();
-
-    /**
      * Gets the inner com.azure.resourcemanager.logic.fluent.models.IntegrationServiceEnvironmentInner object.
      * 
      * @return the inner object.
@@ -101,8 +137,7 @@ public interface IntegrationServiceEnvironment {
     /**
      * The entirety of the IntegrationServiceEnvironment definition.
      */
-    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
-        DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation, DefinitionStages.WithCreate {
     }
 
     /**
@@ -125,7 +160,7 @@ public interface IntegrationServiceEnvironment {
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
-            WithResourceGroup withRegion(Region location);
+            WithCreate withRegion(Region location);
 
             /**
              * Specifies the region for the resource.
@@ -133,28 +168,17 @@ public interface IntegrationServiceEnvironment {
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
-            WithResourceGroup withRegion(String location);
-        }
-
-        /**
-         * The stage of the IntegrationServiceEnvironment definition allowing to specify parent resource.
-         */
-        interface WithResourceGroup {
-            /**
-             * Specifies resourceGroup.
-             * 
-             * @param resourceGroup The resource group.
-             * @return the next definition stage.
-             */
-            WithCreate withExistingResourceGroup(String resourceGroup);
+            WithCreate withRegion(String location);
         }
 
         /**
          * The stage of the IntegrationServiceEnvironment definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithProperties,
-            DefinitionStages.WithSku, DefinitionStages.WithIdentity {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithSku, DefinitionStages.WithIdentity,
+            DefinitionStages.WithState, DefinitionStages.WithIntegrationServiceEnvironmentId,
+            DefinitionStages.WithEndpointsConfiguration, DefinitionStages.WithNetworkConfiguration,
+            DefinitionStages.WithEncryptionConfiguration {
             /**
              * Executes the create request.
              * 
@@ -185,19 +209,6 @@ public interface IntegrationServiceEnvironment {
         }
 
         /**
-         * The stage of the IntegrationServiceEnvironment definition allowing to specify properties.
-         */
-        interface WithProperties {
-            /**
-             * Specifies the properties property: The integration service environment properties..
-             * 
-             * @param properties The integration service environment properties.
-             * @return the next definition stage.
-             */
-            WithCreate withProperties(IntegrationServiceEnvironmentProperties properties);
-        }
-
-        /**
          * The stage of the IntegrationServiceEnvironment definition allowing to specify sku.
          */
         interface WithSku {
@@ -222,6 +233,73 @@ public interface IntegrationServiceEnvironment {
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
         }
+
+        /**
+         * The stage of the IntegrationServiceEnvironment definition allowing to specify state.
+         */
+        interface WithState {
+            /**
+             * Specifies the state property: The integration service environment state..
+             * 
+             * @param state The integration service environment state.
+             * @return the next definition stage.
+             */
+            WithCreate withState(WorkflowState state);
+        }
+
+        /**
+         * The stage of the IntegrationServiceEnvironment definition allowing to specify
+         * integrationServiceEnvironmentId.
+         */
+        interface WithIntegrationServiceEnvironmentId {
+            /**
+             * Specifies the integrationServiceEnvironmentId property: Gets the tracking id..
+             * 
+             * @param integrationServiceEnvironmentId Gets the tracking id.
+             * @return the next definition stage.
+             */
+            WithCreate withIntegrationServiceEnvironmentId(String integrationServiceEnvironmentId);
+        }
+
+        /**
+         * The stage of the IntegrationServiceEnvironment definition allowing to specify endpointsConfiguration.
+         */
+        interface WithEndpointsConfiguration {
+            /**
+             * Specifies the endpointsConfiguration property: The endpoints configuration..
+             * 
+             * @param endpointsConfiguration The endpoints configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withEndpointsConfiguration(FlowEndpointsConfiguration endpointsConfiguration);
+        }
+
+        /**
+         * The stage of the IntegrationServiceEnvironment definition allowing to specify networkConfiguration.
+         */
+        interface WithNetworkConfiguration {
+            /**
+             * Specifies the networkConfiguration property: The network configuration..
+             * 
+             * @param networkConfiguration The network configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withNetworkConfiguration(NetworkConfiguration networkConfiguration);
+        }
+
+        /**
+         * The stage of the IntegrationServiceEnvironment definition allowing to specify encryptionConfiguration.
+         */
+        interface WithEncryptionConfiguration {
+            /**
+             * Specifies the encryptionConfiguration property: The encryption configuration..
+             * 
+             * @param encryptionConfiguration The encryption configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withEncryptionConfiguration(
+                IntegrationServiceEnvironmenEncryptionConfiguration encryptionConfiguration);
+        }
     }
 
     /**
@@ -235,7 +313,9 @@ public interface IntegrationServiceEnvironment {
      * The template for IntegrationServiceEnvironment update.
      */
     interface Update
-        extends UpdateStages.WithTags, UpdateStages.WithProperties, UpdateStages.WithSku, UpdateStages.WithIdentity {
+        extends UpdateStages.WithTags, UpdateStages.WithSku, UpdateStages.WithIdentity, UpdateStages.WithState,
+        UpdateStages.WithIntegrationServiceEnvironmentId, UpdateStages.WithEndpointsConfiguration,
+        UpdateStages.WithNetworkConfiguration, UpdateStages.WithEncryptionConfiguration {
         /**
          * Executes the update request.
          * 
@@ -270,19 +350,6 @@ public interface IntegrationServiceEnvironment {
         }
 
         /**
-         * The stage of the IntegrationServiceEnvironment update allowing to specify properties.
-         */
-        interface WithProperties {
-            /**
-             * Specifies the properties property: The integration service environment properties..
-             * 
-             * @param properties The integration service environment properties.
-             * @return the next definition stage.
-             */
-            Update withProperties(IntegrationServiceEnvironmentProperties properties);
-        }
-
-        /**
          * The stage of the IntegrationServiceEnvironment update allowing to specify sku.
          */
         interface WithSku {
@@ -306,6 +373,72 @@ public interface IntegrationServiceEnvironment {
              * @return the next definition stage.
              */
             Update withIdentity(ManagedServiceIdentity identity);
+        }
+
+        /**
+         * The stage of the IntegrationServiceEnvironment update allowing to specify state.
+         */
+        interface WithState {
+            /**
+             * Specifies the state property: The integration service environment state..
+             * 
+             * @param state The integration service environment state.
+             * @return the next definition stage.
+             */
+            Update withState(WorkflowState state);
+        }
+
+        /**
+         * The stage of the IntegrationServiceEnvironment update allowing to specify integrationServiceEnvironmentId.
+         */
+        interface WithIntegrationServiceEnvironmentId {
+            /**
+             * Specifies the integrationServiceEnvironmentId property: Gets the tracking id..
+             * 
+             * @param integrationServiceEnvironmentId Gets the tracking id.
+             * @return the next definition stage.
+             */
+            Update withIntegrationServiceEnvironmentId(String integrationServiceEnvironmentId);
+        }
+
+        /**
+         * The stage of the IntegrationServiceEnvironment update allowing to specify endpointsConfiguration.
+         */
+        interface WithEndpointsConfiguration {
+            /**
+             * Specifies the endpointsConfiguration property: The endpoints configuration..
+             * 
+             * @param endpointsConfiguration The endpoints configuration.
+             * @return the next definition stage.
+             */
+            Update withEndpointsConfiguration(FlowEndpointsConfiguration endpointsConfiguration);
+        }
+
+        /**
+         * The stage of the IntegrationServiceEnvironment update allowing to specify networkConfiguration.
+         */
+        interface WithNetworkConfiguration {
+            /**
+             * Specifies the networkConfiguration property: The network configuration..
+             * 
+             * @param networkConfiguration The network configuration.
+             * @return the next definition stage.
+             */
+            Update withNetworkConfiguration(NetworkConfiguration networkConfiguration);
+        }
+
+        /**
+         * The stage of the IntegrationServiceEnvironment update allowing to specify encryptionConfiguration.
+         */
+        interface WithEncryptionConfiguration {
+            /**
+             * Specifies the encryptionConfiguration property: The encryption configuration..
+             * 
+             * @param encryptionConfiguration The encryption configuration.
+             * @return the next definition stage.
+             */
+            Update withEncryptionConfiguration(
+                IntegrationServiceEnvironmenEncryptionConfiguration encryptionConfiguration);
         }
     }
 

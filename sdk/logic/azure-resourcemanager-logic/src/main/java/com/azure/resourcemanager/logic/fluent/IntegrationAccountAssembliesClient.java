@@ -6,9 +6,9 @@ package com.azure.resourcemanager.logic.fluent;
 
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.logic.fluent.models.AssemblyCollectionInner;
 import com.azure.resourcemanager.logic.fluent.models.AssemblyDefinitionInner;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowTriggerCallbackUrlInner;
 
@@ -19,35 +19,35 @@ public interface IntegrationAccountAssembliesClient {
     /**
      * List the assemblies for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
-     * @param integrationAccountName The integration account name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of assembly definitions as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<AssemblyDefinitionInner> list(String resourceGroupName, String integrationAccountName);
-
-    /**
-     * List the assemblies for an integration account.
-     * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of assembly definitions as paginated response with {@link PagedIterable}.
+     * @return a collection of assembly definitions along with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<AssemblyDefinitionInner> list(String resourceGroupName, String integrationAccountName,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<AssemblyCollectionInner> listWithResponse(String resourceGroupName, String integrationAccountName,
         Context context);
+
+    /**
+     * List the assemblies for an integration account.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param integrationAccountName The integration account name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a collection of assembly definitions.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    AssemblyCollectionInner list(String resourceGroupName, String integrationAccountName);
 
     /**
      * Get an assembly for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param assemblyArtifactName The assembly artifact name.
      * @param context The context to associate with this operation.
@@ -63,7 +63,7 @@ public interface IntegrationAccountAssembliesClient {
     /**
      * Get an assembly for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param assemblyArtifactName The assembly artifact name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -77,10 +77,10 @@ public interface IntegrationAccountAssembliesClient {
     /**
      * Create or update an assembly for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param assemblyArtifactName The assembly artifact name.
-     * @param assemblyArtifact The assembly artifact.
+     * @param resource The assembly artifact.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -89,16 +89,15 @@ public interface IntegrationAccountAssembliesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AssemblyDefinitionInner> createOrUpdateWithResponse(String resourceGroupName,
-        String integrationAccountName, String assemblyArtifactName, AssemblyDefinitionInner assemblyArtifact,
-        Context context);
+        String integrationAccountName, String assemblyArtifactName, AssemblyDefinitionInner resource, Context context);
 
     /**
      * Create or update an assembly for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param assemblyArtifactName The assembly artifact name.
-     * @param assemblyArtifact The assembly artifact.
+     * @param resource The assembly artifact.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -106,12 +105,12 @@ public interface IntegrationAccountAssembliesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     AssemblyDefinitionInner createOrUpdate(String resourceGroupName, String integrationAccountName,
-        String assemblyArtifactName, AssemblyDefinitionInner assemblyArtifact);
+        String assemblyArtifactName, AssemblyDefinitionInner resource);
 
     /**
      * Delete an assembly for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param assemblyArtifactName The assembly artifact name.
      * @param context The context to associate with this operation.
@@ -127,7 +126,7 @@ public interface IntegrationAccountAssembliesClient {
     /**
      * Delete an assembly for an integration account.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param assemblyArtifactName The assembly artifact name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -140,7 +139,7 @@ public interface IntegrationAccountAssembliesClient {
     /**
      * Get the content callback url for an integration account assembly.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param assemblyArtifactName The assembly artifact name.
      * @param context The context to associate with this operation.
@@ -156,7 +155,7 @@ public interface IntegrationAccountAssembliesClient {
     /**
      * Get the content callback url for an integration account assembly.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param integrationAccountName The integration account name.
      * @param assemblyArtifactName The assembly artifact name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

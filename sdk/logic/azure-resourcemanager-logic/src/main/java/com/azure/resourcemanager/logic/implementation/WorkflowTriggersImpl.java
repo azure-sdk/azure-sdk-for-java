@@ -65,24 +65,6 @@ public final class WorkflowTriggersImpl implements WorkflowTriggers {
         }
     }
 
-    public Response<Void> resetWithResponse(String resourceGroupName, String workflowName, String triggerName,
-        Context context) {
-        return this.serviceClient().resetWithResponse(resourceGroupName, workflowName, triggerName, context);
-    }
-
-    public void reset(String resourceGroupName, String workflowName, String triggerName) {
-        this.serviceClient().reset(resourceGroupName, workflowName, triggerName);
-    }
-
-    public Response<Void> runWithResponse(String resourceGroupName, String workflowName, String triggerName,
-        Context context) {
-        return this.serviceClient().runWithResponse(resourceGroupName, workflowName, triggerName, context);
-    }
-
-    public void run(String resourceGroupName, String workflowName, String triggerName) {
-        this.serviceClient().run(resourceGroupName, workflowName, triggerName);
-    }
-
     public Response<JsonSchema> getSchemaJsonWithResponse(String resourceGroupName, String workflowName,
         String triggerName, Context context) {
         Response<JsonSchemaInner> inner
@@ -102,17 +84,6 @@ public final class WorkflowTriggersImpl implements WorkflowTriggers {
         } else {
             return null;
         }
-    }
-
-    public Response<Void> setStateWithResponse(String resourceGroupName, String workflowName, String triggerName,
-        SetTriggerStateActionDefinition setState, Context context) {
-        return this.serviceClient()
-            .setStateWithResponse(resourceGroupName, workflowName, triggerName, setState, context);
-    }
-
-    public void setState(String resourceGroupName, String workflowName, String triggerName,
-        SetTriggerStateActionDefinition setState) {
-        this.serviceClient().setState(resourceGroupName, workflowName, triggerName, setState);
     }
 
     public Response<WorkflowTriggerCallbackUrl> listCallbackUrlWithResponse(String resourceGroupName,
@@ -136,6 +107,33 @@ public final class WorkflowTriggersImpl implements WorkflowTriggers {
         } else {
             return null;
         }
+    }
+
+    public Response<Void> resetWithResponse(String resourceGroupName, String workflowName, String triggerName,
+        Context context) {
+        return this.serviceClient().resetWithResponse(resourceGroupName, workflowName, triggerName, context);
+    }
+
+    public void reset(String resourceGroupName, String workflowName, String triggerName) {
+        this.serviceClient().reset(resourceGroupName, workflowName, triggerName);
+    }
+
+    public void run(String resourceGroupName, String workflowName, String triggerName) {
+        this.serviceClient().run(resourceGroupName, workflowName, triggerName);
+    }
+
+    public void run(String resourceGroupName, String workflowName, String triggerName, Context context) {
+        this.serviceClient().run(resourceGroupName, workflowName, triggerName, context);
+    }
+
+    public Response<Void> setStateWithResponse(String resourceGroupName, String workflowName, String triggerName,
+        SetTriggerStateActionDefinition body, Context context) {
+        return this.serviceClient().setStateWithResponse(resourceGroupName, workflowName, triggerName, body, context);
+    }
+
+    public void setState(String resourceGroupName, String workflowName, String triggerName,
+        SetTriggerStateActionDefinition body) {
+        this.serviceClient().setState(resourceGroupName, workflowName, triggerName, body);
     }
 
     private WorkflowTriggersClient serviceClient() {

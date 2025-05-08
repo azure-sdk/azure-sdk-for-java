@@ -17,6 +17,7 @@ import com.azure.resourcemanager.logic.models.WorkflowStatus;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The workflow run action properties.
@@ -46,7 +47,7 @@ public final class WorkflowRunActionProperties implements JsonSerializable<Workf
     /*
      * Gets the error.
      */
-    private Object error;
+    private Map<String, Object> error;
 
     /*
      * Gets the tracking id.
@@ -71,7 +72,7 @@ public final class WorkflowRunActionProperties implements JsonSerializable<Workf
     /*
      * Gets the tracked properties.
      */
-    private Object trackedProperties;
+    private Map<String, Object> trackedProperties;
 
     /*
      * Gets the retry histories.
@@ -125,7 +126,7 @@ public final class WorkflowRunActionProperties implements JsonSerializable<Workf
      * 
      * @return the error value.
      */
-    public Object error() {
+    public Map<String, Object> error() {
         return this.error;
     }
 
@@ -181,7 +182,7 @@ public final class WorkflowRunActionProperties implements JsonSerializable<Workf
      * 
      * @return the trackedProperties value.
      */
-    public Object trackedProperties() {
+    public Map<String, Object> trackedProperties() {
         return this.trackedProperties;
     }
 
@@ -262,7 +263,8 @@ public final class WorkflowRunActionProperties implements JsonSerializable<Workf
                 } else if ("code".equals(fieldName)) {
                     deserializedWorkflowRunActionProperties.code = reader.getString();
                 } else if ("error".equals(fieldName)) {
-                    deserializedWorkflowRunActionProperties.error = reader.readUntyped();
+                    Map<String, Object> error = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowRunActionProperties.error = error;
                 } else if ("trackingId".equals(fieldName)) {
                     deserializedWorkflowRunActionProperties.trackingId = reader.getString();
                 } else if ("correlation".equals(fieldName)) {
@@ -272,7 +274,8 @@ public final class WorkflowRunActionProperties implements JsonSerializable<Workf
                 } else if ("outputsLink".equals(fieldName)) {
                     deserializedWorkflowRunActionProperties.outputsLink = ContentLink.fromJson(reader);
                 } else if ("trackedProperties".equals(fieldName)) {
-                    deserializedWorkflowRunActionProperties.trackedProperties = reader.readUntyped();
+                    Map<String, Object> trackedProperties = reader.readMap(reader1 -> reader1.readUntyped());
+                    deserializedWorkflowRunActionProperties.trackedProperties = trackedProperties;
                 } else if ("retryHistory".equals(fieldName)) {
                     List<RetryHistory> retryHistory = reader.readArray(reader1 -> RetryHistory.fromJson(reader1));
                     deserializedWorkflowRunActionProperties.retryHistory = retryHistory;

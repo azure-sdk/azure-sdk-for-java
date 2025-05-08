@@ -11,32 +11,43 @@ import com.azure.resourcemanager.logic.fluent.models.OperationInner;
  */
 public interface Operation {
     /**
-     * Gets the origin property: Operation: origin.
-     * 
-     * @return the origin value.
-     */
-    String origin();
-
-    /**
-     * Gets the name property: Operation name: {provider}/{resource}/{operation}.
+     * Gets the name property: The name of the operation, as per Resource-Based Access Control (RBAC). Examples:
+     * "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action".
      * 
      * @return the name value.
      */
     String name();
 
     /**
-     * Gets the display property: The object that represents the operation.
+     * Gets the isDataAction property: Whether the operation applies to data-plane. This is "true" for data-plane
+     * operations and "false" for ARM/control-plane operations.
+     * 
+     * @return the isDataAction value.
+     */
+    Boolean isDataAction();
+
+    /**
+     * Gets the display property: Localized display information for this particular operation.
      * 
      * @return the display value.
      */
     OperationDisplay display();
 
     /**
-     * Gets the properties property: The properties.
+     * Gets the origin property: The intended executor of the operation; as in Resource Based Access Control (RBAC) and
+     * audit logs UX. Default value is "user,system".
      * 
-     * @return the properties value.
+     * @return the origin value.
      */
-    Object properties();
+    Origin origin();
+
+    /**
+     * Gets the actionType property: Enum. Indicates the action type. "Internal" refers to actions that are for internal
+     * only APIs.
+     * 
+     * @return the actionType value.
+     */
+    ActionType actionType();
 
     /**
      * Gets the inner com.azure.resourcemanager.logic.fluent.models.OperationInner object.

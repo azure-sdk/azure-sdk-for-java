@@ -6,6 +6,7 @@ package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowInner;
 import java.time.OffsetDateTime;
@@ -56,6 +57,13 @@ public interface Workflow {
      * @return the identity value.
      */
     ManagedServiceIdentity identity();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the provisioningState property: Gets the provisioning state.
@@ -139,7 +147,7 @@ public interface Workflow {
      * 
      * @return the definition value.
      */
-    Object definition();
+    Map<String, Object> definition();
 
     /**
      * Gets the parameters property: The parameters.
@@ -221,7 +229,7 @@ public interface Workflow {
             /**
              * Specifies resourceGroupName.
              * 
-             * @param resourceGroupName The resource group name.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
@@ -352,7 +360,7 @@ public interface Workflow {
              * @param definition The definition.
              * @return the next definition stage.
              */
-            WithCreate withDefinition(Object definition);
+            WithCreate withDefinition(Map<String, Object> definition);
         }
 
         /**
@@ -503,7 +511,7 @@ public interface Workflow {
              * @param definition The definition.
              * @return the next definition stage.
              */
-            Update withDefinition(Object definition);
+            Update withDefinition(Map<String, Object> definition);
         }
 
         /**
@@ -576,50 +584,49 @@ public interface Workflow {
     /**
      * Generates the upgraded definition for a workflow.
      * 
-     * @param parameters Parameters for generating an upgraded definition.
+     * @param body Parameters for generating an upgraded definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response}.
+     * @return dictionary of &lt;any&gt; along with {@link Response}.
      */
-    Response<Object> generateUpgradedDefinitionWithResponse(GenerateUpgradedDefinitionParameters parameters,
+    Response<Map<String, Object>> generateUpgradedDefinitionWithResponse(GenerateUpgradedDefinitionParameters body,
         Context context);
 
     /**
      * Generates the upgraded definition for a workflow.
      * 
-     * @param parameters Parameters for generating an upgraded definition.
+     * @param body Parameters for generating an upgraded definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
+     * @return dictionary of &lt;any&gt;.
      */
-    Object generateUpgradedDefinition(GenerateUpgradedDefinitionParameters parameters);
+    Map<String, Object> generateUpgradedDefinition(GenerateUpgradedDefinitionParameters body);
 
     /**
      * Get the workflow callback Url.
      * 
-     * @param listCallbackUrl Which callback url to list.
+     * @param body Which callback url to list.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the workflow callback Url along with {@link Response}.
      */
-    Response<WorkflowTriggerCallbackUrl> listCallbackUrlWithResponse(GetCallbackUrlParameters listCallbackUrl,
-        Context context);
+    Response<WorkflowTriggerCallbackUrl> listCallbackUrlWithResponse(GetCallbackUrlParameters body, Context context);
 
     /**
      * Get the workflow callback Url.
      * 
-     * @param listCallbackUrl Which callback url to list.
+     * @param body Which callback url to list.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the workflow callback Url.
      */
-    WorkflowTriggerCallbackUrl listCallbackUrl(GetCallbackUrlParameters listCallbackUrl);
+    WorkflowTriggerCallbackUrl listCallbackUrl(GetCallbackUrlParameters body);
 
     /**
      * Gets an OpenAPI definition for the workflow.
@@ -630,7 +637,7 @@ public interface Workflow {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an OpenAPI definition for the workflow along with {@link Response}.
      */
-    Response<Object> listSwaggerWithResponse(Context context);
+    Response<Map<String, Object>> listSwaggerWithResponse(Context context);
 
     /**
      * Gets an OpenAPI definition for the workflow.
@@ -639,70 +646,70 @@ public interface Workflow {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an OpenAPI definition for the workflow.
      */
-    Object listSwagger();
+    Map<String, Object> listSwagger();
 
     /**
      * Moves an existing workflow.
      * 
-     * @param move The workflow to move.
+     * @param body The workflow to move.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void move(WorkflowReference move);
+    void move(WorkflowReference body);
 
     /**
      * Moves an existing workflow.
      * 
-     * @param move The workflow to move.
+     * @param body The workflow to move.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void move(WorkflowReference move, Context context);
+    void move(WorkflowReference body, Context context);
 
     /**
      * Regenerates the callback URL access key for request triggers.
      * 
-     * @param keyType The access key type.
+     * @param body The access key type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response}.
      */
-    Response<Void> regenerateAccessKeyWithResponse(RegenerateActionParameter keyType, Context context);
+    Response<Void> regenerateAccessKeyWithResponse(RegenerateActionParameter body, Context context);
 
     /**
      * Regenerates the callback URL access key for request triggers.
      * 
-     * @param keyType The access key type.
+     * @param body The access key type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void regenerateAccessKey(RegenerateActionParameter keyType);
+    void regenerateAccessKey(RegenerateActionParameter body);
 
     /**
      * Validates the workflow.
      * 
-     * @param validate The workflow.
+     * @param body The workflow.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response}.
      */
-    Response<Void> validateByResourceGroupWithResponse(WorkflowInner validate, Context context);
+    Response<Void> validateByResourceGroupWithResponse(WorkflowInner body, Context context);
 
     /**
      * Validates the workflow.
      * 
-     * @param validate The workflow.
+     * @param body The workflow.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void validateByResourceGroup(WorkflowInner validate);
+    void validateByResourceGroup(WorkflowInner body);
 }

@@ -67,20 +67,18 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkflowVersionListResult>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
-            @QueryParam("api-version") String apiVersion, @QueryParam("$top") Integer top,
-            @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("$top") Integer top, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/versions/{versionId}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<WorkflowVersionInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workflowName") String workflowName,
-            @PathParam("versionId") String versionId, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("versionId") String versionId, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -94,7 +92,7 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
     /**
      * Gets a list of workflow versions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param top The number of items to be included in the result.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -122,8 +120,8 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, this.client.getApiVersion(), top, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, top, accept, context))
             .<PagedResponse<WorkflowVersionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -132,7 +130,7 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
     /**
      * Gets a list of workflow versions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param top The number of items to be included in the result.
      * @param context The context to associate with this operation.
@@ -162,8 +160,8 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workflowName,
-                this.client.getApiVersion(), top, accept, context)
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, workflowName, top, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -171,7 +169,7 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
     /**
      * Gets a list of workflow versions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param top The number of items to be included in the result.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -188,7 +186,7 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
     /**
      * Gets a list of workflow versions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -205,7 +203,7 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
     /**
      * Gets a list of workflow versions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param top The number of items to be included in the result.
      * @param context The context to associate with this operation.
@@ -224,7 +222,7 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
     /**
      * Gets a list of workflow versions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -240,7 +238,7 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
     /**
      * Gets a list of workflow versions.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param top The number of items to be included in the result.
      * @param context The context to associate with this operation.
@@ -258,7 +256,7 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
     /**
      * Gets a workflow version.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param versionId The workflow versionId.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -289,15 +287,15 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workflowName, versionId, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workflowName, versionId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a workflow version.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param versionId The workflow versionId.
      * @param context The context to associate with this operation.
@@ -329,14 +327,14 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workflowName,
-            versionId, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, workflowName, versionId, accept, context);
     }
 
     /**
      * Gets a workflow version.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param versionId The workflow versionId.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -353,7 +351,7 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
     /**
      * Gets a workflow version.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param versionId The workflow versionId.
      * @param context The context to associate with this operation.
@@ -371,7 +369,7 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
     /**
      * Gets a workflow version.
      * 
-     * @param resourceGroupName The resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workflowName The workflow name.
      * @param versionId The workflow versionId.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -391,7 +389,8 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflow versions along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a WorkflowVersion list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkflowVersionInner>> listNextSinglePageAsync(String nextLink) {
@@ -417,7 +416,8 @@ public final class WorkflowVersionsClientImpl implements WorkflowVersionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of workflow versions along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a WorkflowVersion list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkflowVersionInner>> listNextSinglePageAsync(String nextLink, Context context) {

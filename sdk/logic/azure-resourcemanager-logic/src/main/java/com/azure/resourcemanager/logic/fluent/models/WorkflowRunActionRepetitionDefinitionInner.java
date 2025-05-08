@@ -6,6 +6,7 @@ package com.azure.resourcemanager.logic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
@@ -29,6 +30,11 @@ public final class WorkflowRunActionRepetitionDefinitionInner extends Resource {
      * The workflow run action repetition properties definition.
      */
     private WorkflowRunActionRepetitionProperties innerProperties = new WorkflowRunActionRepetitionProperties();
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -58,6 +64,15 @@ public final class WorkflowRunActionRepetitionDefinitionInner extends Resource {
      */
     private WorkflowRunActionRepetitionProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -145,7 +160,7 @@ public final class WorkflowRunActionRepetitionDefinitionInner extends Resource {
      * 
      * @return the inputs value.
      */
-    public Object inputs() {
+    public Map<String, Object> inputs() {
         return this.innerProperties() == null ? null : this.innerProperties().inputs();
     }
 
@@ -163,7 +178,7 @@ public final class WorkflowRunActionRepetitionDefinitionInner extends Resource {
      * 
      * @return the outputs value.
      */
-    public Object outputs() {
+    public Map<String, Object> outputs() {
         return this.innerProperties() == null ? null : this.innerProperties().outputs();
     }
 
@@ -181,7 +196,7 @@ public final class WorkflowRunActionRepetitionDefinitionInner extends Resource {
      * 
      * @return the trackedProperties value.
      */
-    public Object trackedProperties() {
+    public Map<String, Object> trackedProperties() {
         return this.innerProperties() == null ? null : this.innerProperties().trackedProperties();
     }
 
@@ -310,20 +325,6 @@ public final class WorkflowRunActionRepetitionDefinitionInner extends Resource {
     }
 
     /**
-     * Set the status property: The status of the workflow scope repetition.
-     * 
-     * @param status the status value to set.
-     * @return the WorkflowRunActionRepetitionDefinitionInner object itself.
-     */
-    public WorkflowRunActionRepetitionDefinitionInner withStatus(WorkflowStatus status) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new WorkflowRunActionRepetitionProperties();
-        }
-        this.innerProperties().withStatus(status);
-        return this;
-    }
-
-    /**
      * Get the code property: The workflow scope repetition code.
      * 
      * @return the code value.
@@ -429,6 +430,8 @@ public final class WorkflowRunActionRepetitionDefinitionInner extends Resource {
                 } else if ("properties".equals(fieldName)) {
                     deserializedWorkflowRunActionRepetitionDefinitionInner.innerProperties
                         = WorkflowRunActionRepetitionProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedWorkflowRunActionRepetitionDefinitionInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

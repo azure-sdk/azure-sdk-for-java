@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.logic.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.logic.fluent.models.WorkflowTriggerInner;
 import java.time.OffsetDateTime;
 
@@ -19,18 +20,25 @@ public interface WorkflowTrigger {
     String id();
 
     /**
-     * Gets the name property: Gets the workflow trigger name.
+     * Gets the name property: The name of the resource.
      * 
      * @return the name value.
      */
     String name();
 
     /**
-     * Gets the type property: Gets the workflow trigger type.
+     * Gets the type property: The type of the resource.
      * 
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the provisioningState property: Gets the provisioning state.

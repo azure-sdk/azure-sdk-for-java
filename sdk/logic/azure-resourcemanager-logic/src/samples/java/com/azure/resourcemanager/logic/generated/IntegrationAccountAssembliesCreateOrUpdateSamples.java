@@ -4,11 +4,6 @@
 
 package com.azure.resourcemanager.logic.generated;
 
-import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.logic.models.AssemblyProperties;
-import java.io.IOException;
-
 /**
  * Samples for IntegrationAccountAssemblies CreateOrUpdate.
  */
@@ -22,17 +17,12 @@ public final class IntegrationAccountAssembliesCreateOrUpdateSamples {
      * 
      * @param manager Entry point to LogicManager.
      */
-    public static void createOrUpdateAnAccountAssembly(com.azure.resourcemanager.logic.LogicManager manager)
-        throws IOException {
+    public static void createOrUpdateAnAccountAssembly(com.azure.resourcemanager.logic.LogicManager manager) {
         manager.integrationAccountAssemblies()
             .define("testAssembly")
-            .withRegion("westus")
+            .withRegion((String) null)
             .withExistingIntegrationAccount("testResourceGroup", "testIntegrationAccount")
-            .withProperties(new AssemblyProperties()
-                .withMetadata(SerializerFactory.createDefaultManagementSerializerAdapter()
-                    .deserialize("{}", Object.class, SerializerEncoding.JSON))
-                .withContent("Base64 encoded Assembly Content")
-                .withAssemblyName("System.IdentityModel.Tokens.Jwt"))
+            .withAssemblyName((String) null)
             .create();
     }
 }
