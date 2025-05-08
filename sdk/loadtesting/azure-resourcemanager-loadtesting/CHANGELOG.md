@@ -1,14 +1,112 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.2.0-beta.1 (2025-04-29)
 
-### Features Added
+- Azure Resource Manager Load Test client library for Java. This package contains Microsoft Azure SDK for Load Test Management SDK. LoadTest client provides access to LoadTest Resource and it's status operations. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.Origin` was removed
 
-### Other Changes
+#### `models.LoadTestResourceListResult` was removed
+
+#### `models.LoadTestResourcePatchRequestBody` was removed
+
+#### `models.PagedOutboundEnvironmentEndpoint` was removed
+
+#### `models.Operations` was removed
+
+#### `models.ActionType` was removed
+
+#### `models.Quotas` was removed
+
+#### `models.OperationDisplay` was removed
+
+#### `models.OperationListResult` was removed
+
+#### `models.QuotaResourceListResult` was removed
+
+#### `models.Operation` was removed
+
+#### `models.LoadTests` was removed
+
+#### `LoadTestManager` was modified
+
+* `loadTests()` was removed
+* `fluent.LoadTestClient serviceClient()` -> `fluent.LoadTestMgmtClient serviceClient()`
+* `operations()` was removed
+* `quotas()` was removed
+
+#### `models.ManagedServiceIdentity` was modified
+
+* `java.util.UUID principalId()` -> `java.lang.String principalId()`
+* `java.util.UUID tenantId()` -> `java.lang.String tenantId()`
+
+#### `models.LoadTestResource$Definition` was modified
+
+* `withDescription(java.lang.String)` was removed
+* `withEncryption(models.EncryptionProperties)` was removed
+
+#### `models.LoadTestResource$Update` was modified
+
+* `withEncryption(models.EncryptionProperties)` was removed
+* `withDescription(java.lang.String)` was removed
+
+#### `models.UserAssignedIdentity` was modified
+
+* `java.util.UUID principalId()` -> `java.lang.String principalId()`
+* `java.util.UUID clientId()` -> `java.lang.String clientId()`
+
+#### `models.LoadTestResource` was modified
+
+* `description()` was removed
+* `encryption()` was removed
+* `provisioningState()` was removed
+* `dataPlaneUri()` was removed
+
+#### `models.QuotaResource` was modified
+
+* `limit()` was removed
+* `provisioningState()` was removed
+* `usage()` was removed
+
+### Features Added
+
+* `implementation.models.PagedOutboundEnvironmentEndpoint` was added
+
+* `models.ResourceProviders` was added
+
+* `implementation.models.LoadTestResourceListResult` was added
+
+* `implementation.models.QuotaResourceListResult` was added
+
+* `models.LoadTestResourceUpdateProperties` was added
+
+* `models.LoadTestResourceUpdate` was added
+
+* `models.LoadTestProperties` was added
+
+* `models.QuotaResourceProperties` was added
+
+#### `LoadTestManager` was modified
+
+* `resourceProviders()` was added
+
+#### `models.LoadTestResource$Definition` was modified
+
+* `withProperties(models.LoadTestProperties)` was added
+
+#### `models.LoadTestResource$Update` was modified
+
+* `withProperties(models.LoadTestResourceUpdateProperties)` was added
+
+#### `models.LoadTestResource` was modified
+
+* `properties()` was added
+
+#### `models.QuotaResource` was modified
+
+* `properties()` was added
 
 ## 1.1.0 (2024-12-12)
 
