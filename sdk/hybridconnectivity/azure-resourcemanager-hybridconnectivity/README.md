@@ -1,8 +1,8 @@
-# Azure Resource Manager Hybrid Connectivity client library for Java
+# Azure Resource Manager HybridConnectivity client library for Java
 
-Azure Resource Manager Hybrid Connectivity client library for Java.
+Azure Resource Manager HybridConnectivity client library for Java.
 
-This package contains Microsoft Azure SDK for Hybrid Connectivity Management SDK. REST API for public clouds. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for HybridConnectivity Management SDK. REST API for Hybrid Connectivity. Package tag package-2024-12. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
