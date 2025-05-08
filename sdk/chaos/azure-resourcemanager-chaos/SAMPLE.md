@@ -31,6 +31,10 @@
 
 - [Get](#operationstatuses_get)
 
+## Operations
+
+- [ListAll](#operations_listall)
+
 ## TargetTypes
 
 - [Get](#targettypes_get)
@@ -45,6 +49,116 @@
 ### Capabilities_CreateOrUpdate
 
 ```java
+/**
+ * Samples for TargetTypes List.
+ */
+public final class TargetTypesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/TargetTypes_List.json
+     */
+    /**
+     * Sample code: List all Target Types for westus2 location.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void listAllTargetTypesForWestus2Location(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.targetTypes().list("westus2", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Capabilities_Delete
+
+```java
+/**
+ * Samples for Experiments Delete.
+ */
+public final class ExperimentsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Experiments_Delete.json
+     */
+    /**
+     * Sample code: Delete a Experiment in a resource group.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void deleteAExperimentInAResourceGroup(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.experiments().delete("exampleRG", "exampleExperiment", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Capabilities_Get
+
+```java
+/**
+ * Samples for TargetTypes Get.
+ */
+public final class TargetTypesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/TargetTypes_Get.json
+     */
+    /**
+     * Sample code: Get a Target Type for westus2 location.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void getATargetTypeForWestus2Location(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.targetTypes().getWithResponse("westus2", "Microsoft-Agent", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Capabilities_List
+
+```java
+/**
+ * Samples for Experiments ListByResourceGroup.
+ */
+public final class ExperimentsListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Experiments_List.json
+     */
+    /**
+     * Sample code: List all Experiments in a resource group.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void listAllExperimentsInAResourceGroup(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.experiments().listByResourceGroup("exampleRG", null, null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CapabilityTypes_Get
+
+```java
+/**
+ * Samples for Experiments Cancel.
+ */
+public final class ExperimentsCancelSamples {
+    /*
+     * x-ms-original-file:
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Experiments_Cancel.json
+     */
+    /**
+     * Sample code: Cancel a running Experiment.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void cancelARunningExperiment(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.experiments().cancel("exampleRG", "exampleExperiment", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CapabilityTypes_List
+
+```java
 import com.azure.resourcemanager.chaos.fluent.models.CapabilityInner;
 
 /**
@@ -53,7 +167,7 @@ import com.azure.resourcemanager.chaos.fluent.models.CapabilityInner;
 public final class CapabilitiesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/CreateUpdateCapability.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Capabilities_CreateOrUpdate.json
      */
     /**
      * Sample code: Create/update a Capability that extends a virtual machine Target resource.
@@ -69,7 +183,7 @@ public final class CapabilitiesCreateOrUpdateSamples {
 }
 ```
 
-### Capabilities_Delete
+### Experiments_Cancel
 
 ```java
 /**
@@ -78,7 +192,7 @@ public final class CapabilitiesCreateOrUpdateSamples {
 public final class CapabilitiesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/DeleteCapability.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Capabilities_Delete.json
      */
     /**
      * Sample code: Delete a Capability that extends a virtual machine Target resource.
@@ -94,125 +208,6 @@ public final class CapabilitiesDeleteSamples {
 }
 ```
 
-### Capabilities_Get
-
-```java
-/**
- * Samples for Capabilities Get.
- */
-public final class CapabilitiesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetCapability.json
-     */
-    /**
-     * Sample code: Get a Capability that extends a virtual machine Target resource.
-     * 
-     * @param manager Entry point to ChaosManager.
-     */
-    public static void
-        getACapabilityThatExtendsAVirtualMachineTargetResource(com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.capabilities()
-            .getWithResponse("exampleRG", "Microsoft.Compute", "virtualMachines", "exampleVM",
-                "Microsoft-VirtualMachine", "Shutdown-1.0", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Capabilities_List
-
-```java
-/**
- * Samples for Capabilities List.
- */
-public final class CapabilitiesListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListCapabilities.json
-     */
-    /**
-     * Sample code: List all Capabilities that extend a virtual machine Target resource.
-     * 
-     * @param manager Entry point to ChaosManager.
-     */
-    public static void listAllCapabilitiesThatExtendAVirtualMachineTargetResource(
-        com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.capabilities()
-            .list("exampleRG", "Microsoft.Compute", "virtualMachines", "exampleVM", "Microsoft-VirtualMachine", null,
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### CapabilityTypes_Get
-
-```java
-/**
- * Samples for CapabilityTypes Get.
- */
-public final class CapabilityTypesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetCapabilityType.json
-     */
-    /**
-     * Sample code: Get a Capability Type for a virtual machine Target resource on westus2 location.
-     * 
-     * @param manager Entry point to ChaosManager.
-     */
-    public static void getACapabilityTypeForAVirtualMachineTargetResourceOnWestus2Location(
-        com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.capabilityTypes()
-            .getWithResponse("westus2", "Microsoft-VirtualMachine", "Shutdown-1.0", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### CapabilityTypes_List
-
-```java
-/**
- * Samples for CapabilityTypes List.
- */
-public final class CapabilityTypesListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListCapabilityTypes.json
-     */
-    /**
-     * Sample code: List all Capability Types for a virtual machine Target resource on westus2 location.
-     * 
-     * @param manager Entry point to ChaosManager.
-     */
-    public static void listAllCapabilityTypesForAVirtualMachineTargetResourceOnWestus2Location(
-        com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.capabilityTypes().list("westus2", "Microsoft-VirtualMachine", null, com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Experiments_Cancel
-
-```java
-/**
- * Samples for Experiments Cancel.
- */
-public final class ExperimentsCancelSamples {
-    /*
-     * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/CancelExperiment.json
-     */
-    /**
-     * Sample code: Cancel a running Experiment.
-     * 
-     * @param manager Entry point to ChaosManager.
-     */
-    public static void cancelARunningExperiment(com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.experiments().cancel("exampleRG", "exampleExperiment", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Experiments_CreateOrUpdate
 
 ```java
@@ -221,12 +216,14 @@ import com.azure.resourcemanager.chaos.models.ChaosExperimentStep;
 import com.azure.resourcemanager.chaos.models.ChaosTargetListSelector;
 import com.azure.resourcemanager.chaos.models.ContinuousAction;
 import com.azure.resourcemanager.chaos.models.KeyValuePair;
-import com.azure.resourcemanager.chaos.models.ResourceIdentity;
-import com.azure.resourcemanager.chaos.models.ResourceIdentityType;
+import com.azure.resourcemanager.chaos.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.chaos.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.chaos.models.TargetReference;
 import com.azure.resourcemanager.chaos.models.TargetReferenceType;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Samples for Experiments CreateOrUpdate.
@@ -234,7 +231,7 @@ import java.util.Arrays;
 public final class ExperimentsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/CreateUpdateExperiment.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Experiments_CreateOrUpdate.json
      */
     /**
      * Sample code: Create/update a Experiment in a resource group.
@@ -259,8 +256,21 @@ public final class ExperimentsCreateOrUpdateSamples {
                 .withTargets(Arrays.asList(new TargetReference().withType(TargetReferenceType.CHAOS_TARGET)
                     .withId(
                         "/subscriptions/6b052e15-03d3-4f17-b2e1-be7f07588291/resourceGroups/exampleRG/providers/Microsoft.Compute/virtualMachines/exampleVM/providers/Microsoft.Chaos/targets/Microsoft-VirtualMachine")))))
-            .withIdentity(new ResourceIdentity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
+            .withTags(mapOf("key2138", "fakeTokenPlaceholder", "key7131", "fakeTokenPlaceholder"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
             .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
@@ -269,20 +279,22 @@ public final class ExperimentsCreateOrUpdateSamples {
 
 ```java
 /**
- * Samples for Experiments Delete.
+ * Samples for CapabilityTypes Get.
  */
-public final class ExperimentsDeleteSamples {
+public final class CapabilityTypesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/DeleteExperiment.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/CapabilityTypes_Get.json
      */
     /**
-     * Sample code: Delete a Experiment in a resource group.
+     * Sample code: Get a Capability Type for a virtual machine Target resource on westus2 location.
      * 
      * @param manager Entry point to ChaosManager.
      */
-    public static void deleteAExperimentInAResourceGroup(com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.experiments().delete("exampleRG", "exampleExperiment", com.azure.core.util.Context.NONE);
+    public static void getACapabilityTypeForAVirtualMachineTargetResourceOnWestus2Location(
+        com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.capabilityTypes()
+            .getWithResponse("westus2", "Microsoft-VirtualMachine", "Shutdown-1.0", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -291,22 +303,20 @@ public final class ExperimentsDeleteSamples {
 
 ```java
 /**
- * Samples for Experiments ExecutionDetails.
+ * Samples for Experiments Start.
  */
-public final class ExperimentsExecutionDetailsSamples {
+public final class ExperimentsStartSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/DetailsExperiment.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Experiments_Start.json
      */
     /**
-     * Sample code: Get experiment execution details.
+     * Sample code: Start a Experiment.
      * 
      * @param manager Entry point to ChaosManager.
      */
-    public static void getExperimentExecutionDetails(com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.experiments()
-            .executionDetailsWithResponse("exampleRG", "exampleExperiment", "f24500ad-744e-4a26-864b-b76199eac333",
-                com.azure.core.util.Context.NONE);
+    public static void startAExperiment(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.experiments().start("exampleRG", "exampleExperiment", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -315,21 +325,21 @@ public final class ExperimentsExecutionDetailsSamples {
 
 ```java
 /**
- * Samples for Experiments GetByResourceGroup.
+ * Samples for OperationStatuses Get.
  */
-public final class ExperimentsGetByResourceGroupSamples {
+public final class OperationStatusesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetExperiment.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/OperationStatuses_Get.json
      */
     /**
-     * Sample code: Get a Experiment in a resource group.
+     * Sample code: Gets Chaos Studio async operation status.
      * 
      * @param manager Entry point to ChaosManager.
      */
-    public static void getAExperimentInAResourceGroup(com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.experiments()
-            .getByResourceGroupWithResponse("exampleRG", "exampleExperiment", com.azure.core.util.Context.NONE);
+    public static void getsChaosStudioAsyncOperationStatus(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.operationStatuses()
+            .getWithResponse("westus2", "4bdadd97-207c-4de8-9bba-08339ae099c7", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -343,7 +353,7 @@ public final class ExperimentsGetByResourceGroupSamples {
 public final class ExperimentsGetExecutionSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetExperimentExecution.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Experiments_GetExecution.json
      */
     /**
      * Sample code: Get the execution of a Experiment.
@@ -361,14 +371,55 @@ public final class ExperimentsGetExecutionSamples {
 ### Experiments_List
 
 ```java
+import com.azure.resourcemanager.chaos.fluent.models.TargetInner;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for Targets CreateOrUpdate.
+ */
+public final class TargetsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Targets_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: Create/update a Target that extends a virtual machine resource.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void
+        createUpdateATargetThatExtendsAVirtualMachineResource(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.targets()
+            .createOrUpdateWithResponse("exampleRG", "Microsoft.Compute", "virtualMachines", "exampleVM",
+                "Microsoft-VirtualMachine", new TargetInner().withProperties(mapOf()),
+                com.azure.core.util.Context.NONE);
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### Experiments_ListAllExecutions
+
+```java
 /**
  * Samples for Experiments List.
  */
 public final class ExperimentsListSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListExperimentsInASubscription.
-     * json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Experiments_ListAll.json
      */
     /**
      * Sample code: List all Experiments in a subscription.
@@ -381,47 +432,24 @@ public final class ExperimentsListSamples {
 }
 ```
 
-### Experiments_ListAllExecutions
-
-```java
-/**
- * Samples for Experiments ListAllExecutions.
- */
-public final class ExperimentsListAllExecutionsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListExperimentExecutions.json
-     */
-    /**
-     * Sample code: List all executions of an Experiment.
-     * 
-     * @param manager Entry point to ChaosManager.
-     */
-    public static void listAllExecutionsOfAnExperiment(com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.experiments().listAllExecutions("exampleRG", "exampleExperiment", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Experiments_ListByResourceGroup
 
 ```java
 /**
- * Samples for Experiments ListByResourceGroup.
+ * Samples for Operations ListAll.
  */
-public final class ExperimentsListByResourceGroupSamples {
+public final class OperationsListAllSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListExperimentsInAResourceGroup.
-     * json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Operations_List.json
      */
     /**
-     * Sample code: List all Experiments in a resource group.
+     * Sample code: Lists all Chaos Studio operations.
      * 
      * @param manager Entry point to ChaosManager.
      */
-    public static void listAllExperimentsInAResourceGroup(com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.experiments().listByResourceGroup("exampleRG", null, null, com.azure.core.util.Context.NONE);
+    public static void listsAllChaosStudioOperations(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.operations().listAll(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -430,20 +458,22 @@ public final class ExperimentsListByResourceGroupSamples {
 
 ```java
 /**
- * Samples for Experiments Start.
+ * Samples for Experiments ExecutionDetails.
  */
-public final class ExperimentsStartSamples {
+public final class ExperimentsExecutionDetailsSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/StartExperiment.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Experiments_ExecutionDetails.json
      */
     /**
-     * Sample code: Start a Experiment.
+     * Sample code: Get experiment execution details.
      * 
      * @param manager Entry point to ChaosManager.
      */
-    public static void startAExperiment(com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.experiments().start("exampleRG", "exampleExperiment", com.azure.core.util.Context.NONE);
+    public static void getExperimentExecutionDetails(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.experiments()
+            .executionDetailsWithResponse("exampleRG", "exampleExperiment", "f24500ad-744e-4a26-864b-b76199eac333",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -451,9 +481,32 @@ public final class ExperimentsStartSamples {
 ### Experiments_Update
 
 ```java
+/**
+ * Samples for CapabilityTypes List.
+ */
+public final class CapabilityTypesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/CapabilityTypes_List.json
+     */
+    /**
+     * Sample code: List all Capability Types for a virtual machine Target resource on westus2 location.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void listAllCapabilityTypesForAVirtualMachineTargetResourceOnWestus2Location(
+        com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.capabilityTypes().list("westus2", "Microsoft-VirtualMachine", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### OperationStatuses_Get
+
+```java
 import com.azure.resourcemanager.chaos.models.Experiment;
-import com.azure.resourcemanager.chaos.models.ResourceIdentity;
-import com.azure.resourcemanager.chaos.models.ResourceIdentityType;
+import com.azure.resourcemanager.chaos.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.chaos.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.chaos.models.UserAssignedIdentity;
 import java.util.HashMap;
 import java.util.Map;
@@ -464,7 +517,7 @@ import java.util.Map;
 public final class ExperimentsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/UpdateExperiment.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Experiments_Update.json
      */
     /**
      * Sample code: Update an Experiment in a resource group.
@@ -477,7 +530,7 @@ public final class ExperimentsUpdateSamples {
             .getValue();
         resource.update()
             .withTags(mapOf("key1", "fakeTokenPlaceholder", "key2", "fakeTokenPlaceholder"))
-            .withIdentity(new ResourceIdentity().withType(ResourceIdentityType.USER_ASSIGNED)
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
                 .withUserAssignedIdentities(mapOf(
                     "/subscriptions/6b052e15-03d3-4f17-b2e1-be7f07588291/resourceGroups/exampleRG/providers/Microsoft.ManagedIdentity/userAssignedIdentity/exampleUMI",
                     new UserAssignedIdentity())))
@@ -498,25 +551,27 @@ public final class ExperimentsUpdateSamples {
 }
 ```
 
-### OperationStatuses_Get
+### Operations_ListAll
 
 ```java
 /**
- * Samples for OperationStatuses Get.
+ * Samples for Capabilities Get.
  */
-public final class OperationStatusesGetSamples {
+public final class CapabilitiesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetOperationStatus.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Capabilities_Get.json
      */
     /**
-     * Sample code: Get specific operation status.
+     * Sample code: Get a Capability that extends a virtual machine Target resource.
      * 
      * @param manager Entry point to ChaosManager.
      */
-    public static void getSpecificOperationStatus(com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.operationStatuses()
-            .getWithResponse("West US", "713192d7-503f-477a-9cfe-4efc3ee2bd11", com.azure.core.util.Context.NONE);
+    public static void
+        getACapabilityThatExtendsAVirtualMachineTargetResource(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.capabilities()
+            .getWithResponse("exampleRG", "Microsoft.Compute", "virtualMachines", "exampleVM",
+                "Microsoft-VirtualMachine", "Shutdown-1.0", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -525,20 +580,21 @@ public final class OperationStatusesGetSamples {
 
 ```java
 /**
- * Samples for TargetTypes Get.
+ * Samples for Experiments ListAllExecutions.
  */
-public final class TargetTypesGetSamples {
+public final class ExperimentsListAllExecutionsSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetTargetType.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Experiments_ListAllExecutions.
+     * json
      */
     /**
-     * Sample code: Get a Target Type for westus2 location.
+     * Sample code: List all executions of an Experiment.
      * 
      * @param manager Entry point to ChaosManager.
      */
-    public static void getATargetTypeForWestus2Location(com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.targetTypes().getWithResponse("westus2", "Microsoft-Agent", com.azure.core.util.Context.NONE);
+    public static void listAllExecutionsOfAnExperiment(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.experiments().listAllExecutions("exampleRG", "exampleExperiment", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -547,74 +603,28 @@ public final class TargetTypesGetSamples {
 
 ```java
 /**
- * Samples for TargetTypes List.
+ * Samples for Capabilities List.
  */
-public final class TargetTypesListSamples {
+public final class CapabilitiesListSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListTargetTypes.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Capabilities_List.json
      */
     /**
-     * Sample code: List all Target Types for westus2 location.
+     * Sample code: List all Capabilities that extend a virtual machine Target resource.
      * 
      * @param manager Entry point to ChaosManager.
      */
-    public static void listAllTargetTypesForWestus2Location(com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.targetTypes().list("westus2", null, com.azure.core.util.Context.NONE);
+    public static void listAllCapabilitiesThatExtendAVirtualMachineTargetResource(
+        com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.capabilities()
+            .list("exampleRG", "Microsoft.Compute", "virtualMachines", "exampleVM", "Microsoft-VirtualMachine", null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### Targets_CreateOrUpdate
-
-```java
-import com.azure.core.management.serializer.SerializerFactory;
-import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.chaos.fluent.models.TargetInner;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for Targets CreateOrUpdate.
- */
-public final class TargetsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/CreateUpdateTarget.json
-     */
-    /**
-     * Sample code: Create/update a Target that extends a virtual machine resource.
-     * 
-     * @param manager Entry point to ChaosManager.
-     */
-    public static void createUpdateATargetThatExtendsAVirtualMachineResource(
-        com.azure.resourcemanager.chaos.ChaosManager manager) throws IOException {
-        manager.targets()
-            .createOrUpdateWithResponse("exampleRG", "Microsoft.Compute", "virtualMachines", "exampleVM",
-                "Microsoft-Agent",
-                new TargetInner().withProperties(mapOf("identities",
-                    SerializerFactory.createDefaultManagementSerializerAdapter()
-                        .deserialize("[{\"type\":\"CertificateSubjectIssuer\",\"subject\":\"CN=example.subject\"}]",
-                            Object.class, SerializerEncoding.JSON))),
-                com.azure.core.util.Context.NONE);
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### Targets_Delete
 
 ```java
 /**
@@ -623,7 +633,7 @@ public final class TargetsCreateOrUpdateSamples {
 public final class TargetsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/DeleteTarget.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Targets_Delete.json
      */
     /**
      * Sample code: Delete a Target that extends a virtual machine resource.
@@ -639,6 +649,29 @@ public final class TargetsDeleteSamples {
 }
 ```
 
+### Targets_Delete
+
+```java
+/**
+ * Samples for Experiments GetByResourceGroup.
+ */
+public final class ExperimentsGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Experiments_Get.json
+     */
+    /**
+     * Sample code: Get a Experiment in a resource group.
+     * 
+     * @param manager Entry point to ChaosManager.
+     */
+    public static void getAExperimentInAResourceGroup(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.experiments()
+            .getByResourceGroupWithResponse("exampleRG", "exampleExperiment", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Targets_Get
 
 ```java
@@ -648,7 +681,7 @@ public final class TargetsDeleteSamples {
 public final class TargetsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetTarget.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Targets_Get.json
      */
     /**
      * Sample code: Get a Target that extends a virtual machine resource.
@@ -673,7 +706,7 @@ public final class TargetsGetSamples {
 public final class TargetsListSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListTargets.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/Targets_List.json
      */
     /**
      * Sample code: List all Targets that extend a virtual machine resource.

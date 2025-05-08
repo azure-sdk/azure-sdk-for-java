@@ -18,7 +18,7 @@ public interface CapabilityTypesClient {
     /**
      * Get a list of Capability Type resources for given Target Type and location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -27,12 +27,12 @@ public interface CapabilityTypesClient {
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<CapabilityTypeInner> list(String locationName, String targetTypeName);
+    PagedIterable<CapabilityTypeInner> list(String location, String targetTypeName);
 
     /**
      * Get a list of Capability Type resources for given Target Type and location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
@@ -43,13 +43,13 @@ public interface CapabilityTypesClient {
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<CapabilityTypeInner> list(String locationName, String targetTypeName, String continuationToken,
+    PagedIterable<CapabilityTypeInner> list(String location, String targetTypeName, String continuationToken,
         Context context);
 
     /**
      * Get a Capability Type resource for given Target Type and location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param capabilityTypeName String that represents a Capability Type resource name.
      * @param context The context to associate with this operation.
@@ -59,13 +59,13 @@ public interface CapabilityTypesClient {
      * @return a Capability Type resource for given Target Type and location along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<CapabilityTypeInner> getWithResponse(String locationName, String targetTypeName, String capabilityTypeName,
+    Response<CapabilityTypeInner> getWithResponse(String location, String targetTypeName, String capabilityTypeName,
         Context context);
 
     /**
      * Get a Capability Type resource for given Target Type and location.
      * 
-     * @param locationName String that represents a Location resource name.
+     * @param location The name of the Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param capabilityTypeName String that represents a Capability Type resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -74,5 +74,5 @@ public interface CapabilityTypesClient {
      * @return a Capability Type resource for given Target Type and location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    CapabilityTypeInner get(String locationName, String targetTypeName, String capabilityTypeName);
+    CapabilityTypeInner get(String location, String targetTypeName, String capabilityTypeName);
 }
