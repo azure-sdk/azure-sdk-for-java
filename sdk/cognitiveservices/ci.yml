@@ -13,6 +13,7 @@ trigger:
     exclude:
       - sdk/cognitiveservices/pom.xml
       - sdk/cognitiveservices/azure-resourcemanager-cognitiveservices/pom.xml
+
 pr:
   branches:
     include:
@@ -36,3 +37,6 @@ extends:
       - name: azure-resourcemanager-cognitiveservices
         groupId: com.azure.resourcemanager
         safeName: azureresourcemanagercognitiveservices
+      - name: azure-ai-speech-transcription
+        groupId: com.azure
+        safeName: azureaispeechtranscription
