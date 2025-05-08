@@ -207,6 +207,15 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PublicIpAddressResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -223,6 +232,7 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("targetResourceName", targetResourceName());
         jsonWriter.writeStringField("targetResourceGroupName", targetResourceGroupName());
+        jsonWriter.writeStringField("targetSubscriptionId", targetSubscriptionId());
         jsonWriter.writeStringField("resourceType", this.resourceType);
         jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField("domainNameLabel", this.domainNameLabel);
@@ -253,6 +263,8 @@ public final class PublicIpAddressResourceSettings extends ResourceSettings {
                     deserializedPublicIpAddressResourceSettings.withTargetResourceName(reader.getString());
                 } else if ("targetResourceGroupName".equals(fieldName)) {
                     deserializedPublicIpAddressResourceSettings.withTargetResourceGroupName(reader.getString());
+                } else if ("targetSubscriptionId".equals(fieldName)) {
+                    deserializedPublicIpAddressResourceSettings.withTargetSubscriptionId(reader.getString());
                 } else if ("resourceType".equals(fieldName)) {
                     deserializedPublicIpAddressResourceSettings.resourceType = reader.getString();
                 } else if ("tags".equals(fieldName)) {

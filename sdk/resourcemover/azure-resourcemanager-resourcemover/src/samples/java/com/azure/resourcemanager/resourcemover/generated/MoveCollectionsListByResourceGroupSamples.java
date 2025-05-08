@@ -9,7 +9,7 @@ package com.azure.resourcemanager.resourcemover.generated;
  */
 public final class MoveCollectionsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/
+     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/
      * MoveCollections_ListMoveCollectionsByResourceGroup.json
      */
     /**

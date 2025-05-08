@@ -9,7 +9,7 @@ package com.azure.resourcemanager.resourcemover.generated;
  */
 public final class MoveCollectionsResolveDependenciesSamples {
     /*
-     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/
+     * x-ms-original-file: specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2024-08-01/examples/
      * MoveCollections_ResolveDependencies.json
      */
     /**
@@ -19,6 +19,6 @@ public final class MoveCollectionsResolveDependenciesSamples {
      */
     public static void
         moveCollectionsResolveDependencies(com.azure.resourcemanager.resourcemover.ResourceMoverManager manager) {
-        manager.moveCollections().resolveDependencies("rg1", "movecollection1", com.azure.core.util.Context.NONE);
+        manager.moveCollections().resolveDependencies("rg1", "movecollection_1", com.azure.core.util.Context.NONE);
     }
 }

@@ -189,6 +189,15 @@ public final class VirtualNetworkResourceSettings extends ResourceSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public VirtualNetworkResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -208,6 +217,7 @@ public final class VirtualNetworkResourceSettings extends ResourceSettings {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("targetResourceName", targetResourceName());
         jsonWriter.writeStringField("targetResourceGroupName", targetResourceGroupName());
+        jsonWriter.writeStringField("targetSubscriptionId", targetSubscriptionId());
         jsonWriter.writeStringField("resourceType", this.resourceType);
         jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("enableDdosProtection", this.enableDdosProtection);
@@ -237,6 +247,8 @@ public final class VirtualNetworkResourceSettings extends ResourceSettings {
                     deserializedVirtualNetworkResourceSettings.withTargetResourceName(reader.getString());
                 } else if ("targetResourceGroupName".equals(fieldName)) {
                     deserializedVirtualNetworkResourceSettings.withTargetResourceGroupName(reader.getString());
+                } else if ("targetSubscriptionId".equals(fieldName)) {
+                    deserializedVirtualNetworkResourceSettings.withTargetSubscriptionId(reader.getString());
                 } else if ("resourceType".equals(fieldName)) {
                     deserializedVirtualNetworkResourceSettings.resourceType = reader.getString();
                 } else if ("tags".equals(fieldName)) {

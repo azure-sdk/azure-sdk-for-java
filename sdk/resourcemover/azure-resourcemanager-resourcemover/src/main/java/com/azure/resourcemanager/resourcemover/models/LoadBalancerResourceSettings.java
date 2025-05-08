@@ -190,6 +190,15 @@ public final class LoadBalancerResourceSettings extends ResourceSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public LoadBalancerResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -212,6 +221,7 @@ public final class LoadBalancerResourceSettings extends ResourceSettings {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("targetResourceName", targetResourceName());
         jsonWriter.writeStringField("targetResourceGroupName", targetResourceGroupName());
+        jsonWriter.writeStringField("targetSubscriptionId", targetSubscriptionId());
         jsonWriter.writeStringField("resourceType", this.resourceType);
         jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField("sku", this.sku);
@@ -242,6 +252,8 @@ public final class LoadBalancerResourceSettings extends ResourceSettings {
                     deserializedLoadBalancerResourceSettings.withTargetResourceName(reader.getString());
                 } else if ("targetResourceGroupName".equals(fieldName)) {
                     deserializedLoadBalancerResourceSettings.withTargetResourceGroupName(reader.getString());
+                } else if ("targetSubscriptionId".equals(fieldName)) {
+                    deserializedLoadBalancerResourceSettings.withTargetSubscriptionId(reader.getString());
                 } else if ("resourceType".equals(fieldName)) {
                     deserializedLoadBalancerResourceSettings.resourceType = reader.getString();
                 } else if ("tags".equals(fieldName)) {

@@ -56,6 +56,15 @@ public final class KeyVaultResourceSettings extends ResourceSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public KeyVaultResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -72,6 +81,7 @@ public final class KeyVaultResourceSettings extends ResourceSettings {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("targetResourceName", targetResourceName());
         jsonWriter.writeStringField("targetResourceGroupName", targetResourceGroupName());
+        jsonWriter.writeStringField("targetSubscriptionId", targetSubscriptionId());
         jsonWriter.writeStringField("resourceType", this.resourceType);
         return jsonWriter.writeEndObject();
     }
@@ -95,6 +105,8 @@ public final class KeyVaultResourceSettings extends ResourceSettings {
                     deserializedKeyVaultResourceSettings.withTargetResourceName(reader.getString());
                 } else if ("targetResourceGroupName".equals(fieldName)) {
                     deserializedKeyVaultResourceSettings.withTargetResourceGroupName(reader.getString());
+                } else if ("targetSubscriptionId".equals(fieldName)) {
+                    deserializedKeyVaultResourceSettings.withTargetSubscriptionId(reader.getString());
                 } else if ("resourceType".equals(fieldName)) {
                     deserializedKeyVaultResourceSettings.resourceType = reader.getString();
                 } else {

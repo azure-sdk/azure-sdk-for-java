@@ -132,6 +132,15 @@ public final class AvailabilitySetResourceSettings extends ResourceSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AvailabilitySetResourceSettings withTargetSubscriptionId(String targetSubscriptionId) {
+        super.withTargetSubscriptionId(targetSubscriptionId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -148,6 +157,7 @@ public final class AvailabilitySetResourceSettings extends ResourceSettings {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("targetResourceName", targetResourceName());
         jsonWriter.writeStringField("targetResourceGroupName", targetResourceGroupName());
+        jsonWriter.writeStringField("targetSubscriptionId", targetSubscriptionId());
         jsonWriter.writeStringField("resourceType", this.resourceType);
         jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
         jsonWriter.writeNumberField("faultDomain", this.faultDomain);
@@ -175,6 +185,8 @@ public final class AvailabilitySetResourceSettings extends ResourceSettings {
                     deserializedAvailabilitySetResourceSettings.withTargetResourceName(reader.getString());
                 } else if ("targetResourceGroupName".equals(fieldName)) {
                     deserializedAvailabilitySetResourceSettings.withTargetResourceGroupName(reader.getString());
+                } else if ("targetSubscriptionId".equals(fieldName)) {
+                    deserializedAvailabilitySetResourceSettings.withTargetSubscriptionId(reader.getString());
                 } else if ("resourceType".equals(fieldName)) {
                     deserializedAvailabilitySetResourceSettings.resourceType = reader.getString();
                 } else if ("tags".equals(fieldName)) {
