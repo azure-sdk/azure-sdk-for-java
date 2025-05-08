@@ -11,6 +11,7 @@
 - [ListByResourceGroup](#fabriccapacities_listbyresourcegroup)
 - [ListSkus](#fabriccapacities_listskus)
 - [ListSkusForCapacity](#fabriccapacities_listskusforcapacity)
+- [ListUsages](#fabriccapacities_listusages)
 - [Resume](#fabriccapacities_resume)
 - [Suspend](#fabriccapacities_suspend)
 - [Update](#fabriccapacities_update)
@@ -21,30 +22,89 @@
 ### FabricCapacities_CheckNameAvailability
 
 ```java
-import com.azure.resourcemanager.fabric.models.CheckNameAvailabilityRequest;
-
 /**
- * Samples for FabricCapacities CheckNameAvailability.
+ * Samples for FabricCapacities ListSkus.
  */
-public final class FabricCapacitiesCheckNameAvailabilitySamples {
+public final class FabricCapacitiesListSkusSamples {
     /*
-     * x-ms-original-file: 2023-11-01/FabricCapacities_CheckNameAvailability.json
+     * x-ms-original-file: 2025-01-15-preview/FabricCapacities_ListSkus.json
      */
     /**
-     * Sample code: Check name availability of a capacity.
+     * Sample code: List eligible SKUs for a new capacity.
      * 
      * @param manager Entry point to FabricManager.
      */
-    public static void checkNameAvailabilityOfACapacity(com.azure.resourcemanager.fabric.FabricManager manager) {
-        manager.fabricCapacities()
-            .checkNameAvailabilityWithResponse("westcentralus",
-                new CheckNameAvailabilityRequest().withName("azsdktest").withType("Microsoft.Fabric/capacities"),
-                com.azure.core.util.Context.NONE);
+    public static void listEligibleSKUsForANewCapacity(com.azure.resourcemanager.fabric.FabricManager manager) {
+        manager.fabricCapacities().listSkus(com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### FabricCapacities_CreateOrUpdate
+
+```java
+/**
+ * Samples for FabricCapacities Resume.
+ */
+public final class FabricCapacitiesResumeSamples {
+    /*
+     * x-ms-original-file: 2025-01-15-preview/FabricCapacities_Resume.json
+     */
+    /**
+     * Sample code: Resume capacity.
+     * 
+     * @param manager Entry point to FabricManager.
+     */
+    public static void resumeCapacity(com.azure.resourcemanager.fabric.FabricManager manager) {
+        manager.fabricCapacities().resume("TestRG", "azsdktest", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FabricCapacities_Delete
+
+```java
+/**
+ * Samples for FabricCapacities ListByResourceGroup.
+ */
+public final class FabricCapacitiesListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: 2025-01-15-preview/FabricCapacities_ListByResourceGroup.json
+     */
+    /**
+     * Sample code: List capacities by resource group.
+     * 
+     * @param manager Entry point to FabricManager.
+     */
+    public static void listCapacitiesByResourceGroup(com.azure.resourcemanager.fabric.FabricManager manager) {
+        manager.fabricCapacities().listByResourceGroup("TestRG", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FabricCapacities_GetByResourceGroup
+
+```java
+/**
+ * Samples for FabricCapacities GetByResourceGroup.
+ */
+public final class FabricCapacitiesGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file: 2025-01-15-preview/FabricCapacities_Get.json
+     */
+    /**
+     * Sample code: Get a capacity.
+     * 
+     * @param manager Entry point to FabricManager.
+     */
+    public static void getACapacity(com.azure.resourcemanager.fabric.FabricManager manager) {
+        manager.fabricCapacities()
+            .getByResourceGroupWithResponse("TestRG", "azsdktest", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FabricCapacities_List
 
 ```java
 import com.azure.resourcemanager.fabric.models.CapacityAdministration;
@@ -58,7 +118,7 @@ import java.util.Arrays;
  */
 public final class FabricCapacitiesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2023-11-01/FabricCapacities_CreateOrUpdate.json
+     * x-ms-original-file: 2025-01-15-preview/FabricCapacities_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update a capacity.
@@ -78,176 +138,7 @@ public final class FabricCapacitiesCreateOrUpdateSamples {
 }
 ```
 
-### FabricCapacities_Delete
-
-```java
-/**
- * Samples for FabricCapacities Delete.
- */
-public final class FabricCapacitiesDeleteSamples {
-    /*
-     * x-ms-original-file: 2023-11-01/FabricCapacities_Delete.json
-     */
-    /**
-     * Sample code: Delete a capacity.
-     * 
-     * @param manager Entry point to FabricManager.
-     */
-    public static void deleteACapacity(com.azure.resourcemanager.fabric.FabricManager manager) {
-        manager.fabricCapacities().delete("TestRG", "azsdktest", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FabricCapacities_GetByResourceGroup
-
-```java
-/**
- * Samples for FabricCapacities GetByResourceGroup.
- */
-public final class FabricCapacitiesGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file: 2023-11-01/FabricCapacities_Get.json
-     */
-    /**
-     * Sample code: Get a capacity.
-     * 
-     * @param manager Entry point to FabricManager.
-     */
-    public static void getACapacity(com.azure.resourcemanager.fabric.FabricManager manager) {
-        manager.fabricCapacities()
-            .getByResourceGroupWithResponse("TestRG", "azsdktest", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FabricCapacities_List
-
-```java
-/**
- * Samples for FabricCapacities List.
- */
-public final class FabricCapacitiesListSamples {
-    /*
-     * x-ms-original-file: 2023-11-01/FabricCapacities_ListBySubscription.json
-     */
-    /**
-     * Sample code: List capacities by subscription.
-     * 
-     * @param manager Entry point to FabricManager.
-     */
-    public static void listCapacitiesBySubscription(com.azure.resourcemanager.fabric.FabricManager manager) {
-        manager.fabricCapacities().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### FabricCapacities_ListByResourceGroup
-
-```java
-/**
- * Samples for FabricCapacities ListByResourceGroup.
- */
-public final class FabricCapacitiesListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: 2023-11-01/FabricCapacities_ListByResourceGroup.json
-     */
-    /**
-     * Sample code: List capacities by resource group.
-     * 
-     * @param manager Entry point to FabricManager.
-     */
-    public static void listCapacitiesByResourceGroup(com.azure.resourcemanager.fabric.FabricManager manager) {
-        manager.fabricCapacities().listByResourceGroup("TestRG", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FabricCapacities_ListSkus
-
-```java
-/**
- * Samples for FabricCapacities ListSkus.
- */
-public final class FabricCapacitiesListSkusSamples {
-    /*
-     * x-ms-original-file: 2023-11-01/FabricCapacities_ListSkus.json
-     */
-    /**
-     * Sample code: List eligible SKUs for a new capacity.
-     * 
-     * @param manager Entry point to FabricManager.
-     */
-    public static void listEligibleSKUsForANewCapacity(com.azure.resourcemanager.fabric.FabricManager manager) {
-        manager.fabricCapacities().listSkus(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FabricCapacities_ListSkusForCapacity
-
-```java
-/**
- * Samples for FabricCapacities ListSkusForCapacity.
- */
-public final class FabricCapacitiesListSkusForCapacitySamples {
-    /*
-     * x-ms-original-file: 2023-11-01/FabricCapacities_ListSkusForCapacity.json
-     */
-    /**
-     * Sample code: List eligible SKUs for an existing capacity.
-     * 
-     * @param manager Entry point to FabricManager.
-     */
-    public static void listEligibleSKUsForAnExistingCapacity(com.azure.resourcemanager.fabric.FabricManager manager) {
-        manager.fabricCapacities().listSkusForCapacity("TestRG", "azsdktest", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FabricCapacities_Resume
-
-```java
-/**
- * Samples for FabricCapacities Resume.
- */
-public final class FabricCapacitiesResumeSamples {
-    /*
-     * x-ms-original-file: 2023-11-01/FabricCapacities_Resume.json
-     */
-    /**
-     * Sample code: Resume capacity.
-     * 
-     * @param manager Entry point to FabricManager.
-     */
-    public static void resumeCapacity(com.azure.resourcemanager.fabric.FabricManager manager) {
-        manager.fabricCapacities().resume("TestRG", "azsdktest", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FabricCapacities_Suspend
-
-```java
-/**
- * Samples for FabricCapacities Suspend.
- */
-public final class FabricCapacitiesSuspendSamples {
-    /*
-     * x-ms-original-file: 2023-11-01/FabricCapacities_Suspend.json
-     */
-    /**
-     * Sample code: Suspend capacity.
-     * 
-     * @param manager Entry point to FabricManager.
-     */
-    public static void suspendCapacity(com.azure.resourcemanager.fabric.FabricManager manager) {
-        manager.fabricCapacities().suspend("TestRG", "azsdktest", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FabricCapacities_Update
 
 ```java
 import com.azure.resourcemanager.fabric.models.CapacityAdministration;
@@ -264,7 +155,7 @@ import java.util.Map;
  */
 public final class FabricCapacitiesUpdateSamples {
     /*
-     * x-ms-original-file: 2023-11-01/FabricCapacities_Update.json
+     * x-ms-original-file: 2025-01-15-preview/FabricCapacities_Update.json
      */
     /**
      * Sample code: Update capacity properties.
@@ -297,6 +188,137 @@ public final class FabricCapacitiesUpdateSamples {
 }
 ```
 
+### FabricCapacities_ListSkus
+
+```java
+/**
+ * Samples for FabricCapacities Delete.
+ */
+public final class FabricCapacitiesDeleteSamples {
+    /*
+     * x-ms-original-file: 2025-01-15-preview/FabricCapacities_Delete.json
+     */
+    /**
+     * Sample code: Delete a capacity.
+     * 
+     * @param manager Entry point to FabricManager.
+     */
+    public static void deleteACapacity(com.azure.resourcemanager.fabric.FabricManager manager) {
+        manager.fabricCapacities().delete("TestRG", "azsdktest", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FabricCapacities_ListSkusForCapacity
+
+```java
+import com.azure.resourcemanager.fabric.models.CheckNameAvailabilityRequest;
+
+/**
+ * Samples for FabricCapacities CheckNameAvailability.
+ */
+public final class FabricCapacitiesCheckNameAvailabilitySamples {
+    /*
+     * x-ms-original-file: 2025-01-15-preview/FabricCapacities_CheckNameAvailability.json
+     */
+    /**
+     * Sample code: Check name availability of a capacity.
+     * 
+     * @param manager Entry point to FabricManager.
+     */
+    public static void checkNameAvailabilityOfACapacity(com.azure.resourcemanager.fabric.FabricManager manager) {
+        manager.fabricCapacities()
+            .checkNameAvailabilityWithResponse("westcentralus",
+                new CheckNameAvailabilityRequest().withName("azsdktest").withType("Microsoft.Fabric/capacities"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FabricCapacities_ListUsages
+
+```java
+/**
+ * Samples for FabricCapacities Suspend.
+ */
+public final class FabricCapacitiesSuspendSamples {
+    /*
+     * x-ms-original-file: 2025-01-15-preview/FabricCapacities_Suspend.json
+     */
+    /**
+     * Sample code: Suspend capacity.
+     * 
+     * @param manager Entry point to FabricManager.
+     */
+    public static void suspendCapacity(com.azure.resourcemanager.fabric.FabricManager manager) {
+        manager.fabricCapacities().suspend("TestRG", "azsdktest", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FabricCapacities_Resume
+
+```java
+/**
+ * Samples for FabricCapacities ListSkusForCapacity.
+ */
+public final class FabricCapacitiesListSkusForCapacitySamples {
+    /*
+     * x-ms-original-file: 2025-01-15-preview/FabricCapacities_ListSkusForCapacity.json
+     */
+    /**
+     * Sample code: List eligible SKUs for an existing capacity.
+     * 
+     * @param manager Entry point to FabricManager.
+     */
+    public static void listEligibleSKUsForAnExistingCapacity(com.azure.resourcemanager.fabric.FabricManager manager) {
+        manager.fabricCapacities().listSkusForCapacity("TestRG", "azsdktest", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FabricCapacities_Suspend
+
+```java
+/**
+ * Samples for FabricCapacities List.
+ */
+public final class FabricCapacitiesListSamples {
+    /*
+     * x-ms-original-file: 2025-01-15-preview/FabricCapacities_ListBySubscription.json
+     */
+    /**
+     * Sample code: List capacities by subscription.
+     * 
+     * @param manager Entry point to FabricManager.
+     */
+    public static void listCapacitiesBySubscription(com.azure.resourcemanager.fabric.FabricManager manager) {
+        manager.fabricCapacities().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FabricCapacities_Update
+
+```java
+/**
+ * Samples for FabricCapacities ListUsages.
+ */
+public final class FabricCapacitiesListUsagesSamples {
+    /*
+     * x-ms-original-file: 2025-01-15-preview/FabricCapacities_ListUsagesBySubscription.json
+     */
+    /**
+     * Sample code: List quota usages for a subscription.
+     * 
+     * @param manager Entry point to FabricManager.
+     */
+    public static void listQuotaUsagesForASubscription(com.azure.resourcemanager.fabric.FabricManager manager) {
+        manager.fabricCapacities().listUsages("centraluseuap", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Operations_List
 
 ```java
@@ -305,7 +327,7 @@ public final class FabricCapacitiesUpdateSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: 2023-11-01/Operations_List.json
+     * x-ms-original-file: 2025-01-15-preview/Operations_List.json
      */
     /**
      * Sample code: List operations.
