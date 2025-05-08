@@ -26,11 +26,6 @@ public final class AddonHcxProperties extends AddonProperties {
      */
     private String offer;
 
-    /*
-     * The state of the addon provisioning
-     */
-    private AddonProvisioningState provisioningState;
-
     /**
      * Creates an instance of AddonHcxProperties class.
      */
@@ -65,16 +60,6 @@ public final class AddonHcxProperties extends AddonProperties {
     public AddonHcxProperties withOffer(String offer) {
         this.offer = offer;
         return this;
-    }
-
-    /**
-     * Get the provisioningState property: The state of the addon provisioning.
-     * 
-     * @return the provisioningState value.
-     */
-    @Override
-    public AddonProvisioningState provisioningState() {
-        return this.provisioningState;
     }
 
     /**
@@ -120,8 +105,8 @@ public final class AddonHcxProperties extends AddonProperties {
                 reader.nextToken();
 
                 if ("provisioningState".equals(fieldName)) {
-                    deserializedAddonHcxProperties.provisioningState
-                        = AddonProvisioningState.fromString(reader.getString());
+                    deserializedAddonHcxProperties
+                        .withProvisioningState(AddonProvisioningState.fromString(reader.getString()));
                 } else if ("offer".equals(fieldName)) {
                     deserializedAddonHcxProperties.offer = reader.getString();
                 } else if ("addonType".equals(fieldName)) {
