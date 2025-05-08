@@ -103,33 +103,33 @@ public final class FileSystemsCreateOrUpdateSamples {
 
 ```java
 /**
- * Samples for FileSystems Delete.
+ * Samples for Operations List.
  */
-public final class FileSystemsDeleteSamples {
+public final class OperationsListSamples {
     /*
      * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2024-06-19/examples/
-     * FileSystems_Delete_MaximumSet_Gen.json
+     * Operations_List_MinimumSet_Gen.json
      */
     /**
-     * Sample code: FileSystems_Delete.
+     * Sample code: Operations_List_MinimumSet_Gen.
      * 
      * @param manager Entry point to QumuloManager.
      */
-    public static void fileSystemsDelete(com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        manager.fileSystems().delete("rgQumulo", "xoschzkccroahrykedlvbbnsddq", com.azure.core.util.Context.NONE);
+    public static void operationsListMinimumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2024-06-19/examples/
-     * FileSystems_Delete_MinimumSet_Gen.json
+     * Operations_List_MaximumSet_Gen.json
      */
     /**
-     * Sample code: FileSystems_Delete_MinimumSet_Gen.
+     * Sample code: Operations_List.
      * 
      * @param manager Entry point to QumuloManager.
      */
-    public static void fileSystemsDeleteMinimumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        manager.fileSystems().delete("rgQumulo", "jgtskkiplquyrlkaxvhdg", com.azure.core.util.Context.NONE);
+    public static void operationsList(com.azure.resourcemanager.qumulo.QumuloManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -175,42 +175,6 @@ public final class FileSystemsGetByResourceGroupSamples {
 
 ```java
 /**
- * Samples for FileSystems List.
- */
-public final class FileSystemsListSamples {
-    /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2024-06-19/examples/
-     * FileSystems_ListBySubscription_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: FileSystems_ListBySubscription.
-     * 
-     * @param manager Entry point to QumuloManager.
-     */
-    public static void fileSystemsListBySubscription(com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        manager.fileSystems().list(com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2024-06-19/examples/
-     * FileSystems_ListBySubscription_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: FileSystems_ListBySubscription_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to QumuloManager.
-     */
-    public static void
-        fileSystemsListBySubscriptionMinimumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        manager.fileSystems().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FileSystems_ListByResourceGroup
-
-```java
-/**
  * Samples for FileSystems ListByResourceGroup.
  */
 public final class FileSystemsListByResourceGroupSamples {
@@ -243,7 +207,7 @@ public final class FileSystemsListByResourceGroupSamples {
 }
 ```
 
-### FileSystems_Update
+### FileSystems_ListByResourceGroup
 
 ```java
 import com.azure.resourcemanager.qumulo.models.FileSystemResource;
@@ -318,37 +282,73 @@ public final class FileSystemsUpdateSamples {
 }
 ```
 
-### Operations_List
+### FileSystems_Update
 
 ```java
 /**
- * Samples for Operations List.
+ * Samples for FileSystems List.
  */
-public final class OperationsListSamples {
+public final class FileSystemsListSamples {
     /*
      * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2024-06-19/examples/
-     * Operations_List_MinimumSet_Gen.json
+     * FileSystems_ListBySubscription_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Operations_List_MinimumSet_Gen.
+     * Sample code: FileSystems_ListBySubscription.
      * 
      * @param manager Entry point to QumuloManager.
      */
-    public static void operationsListMinimumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
+    public static void fileSystemsListBySubscription(com.azure.resourcemanager.qumulo.QumuloManager manager) {
+        manager.fileSystems().list(com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2024-06-19/examples/
-     * Operations_List_MaximumSet_Gen.json
+     * FileSystems_ListBySubscription_MinimumSet_Gen.json
      */
     /**
-     * Sample code: Operations_List.
+     * Sample code: FileSystems_ListBySubscription_MinimumSet_Gen.
      * 
      * @param manager Entry point to QumuloManager.
      */
-    public static void operationsList(com.azure.resourcemanager.qumulo.QumuloManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
+    public static void
+        fileSystemsListBySubscriptionMinimumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
+        manager.fileSystems().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+/**
+ * Samples for FileSystems Delete.
+ */
+public final class FileSystemsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2024-06-19/examples/
+     * FileSystems_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: FileSystems_Delete.
+     * 
+     * @param manager Entry point to QumuloManager.
+     */
+    public static void fileSystemsDelete(com.azure.resourcemanager.qumulo.QumuloManager manager) {
+        manager.fileSystems().delete("rgQumulo", "xoschzkccroahrykedlvbbnsddq", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/liftrqumulo/resource-manager/Qumulo.Storage/stable/2024-06-19/examples/
+     * FileSystems_Delete_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: FileSystems_Delete_MinimumSet_Gen.
+     * 
+     * @param manager Entry point to QumuloManager.
+     */
+    public static void fileSystemsDeleteMinimumSetGen(com.azure.resourcemanager.qumulo.QumuloManager manager) {
+        manager.fileSystems().delete("rgQumulo", "jgtskkiplquyrlkaxvhdg", com.azure.core.util.Context.NONE);
     }
 }
 ```
