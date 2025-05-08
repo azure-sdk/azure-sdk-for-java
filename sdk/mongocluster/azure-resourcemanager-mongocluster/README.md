@@ -52,7 +52,7 @@ Azure subscription ID can be configured via `AZURE_SUBSCRIPTION_ID` environment 
 Assuming the use of the `DefaultAzureCredential` credential class, the client can be authenticated using the following code:
 
 ```java
-AzureProfile profile = new AzureProfile(AzureEnvironment.AZURE);
+AzureProfile profile = new AzureProfile(AzureCloud.AZURE_PUBLIC_CLOUD);
 TokenCredential credential = new DefaultAzureCredentialBuilder()
     .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())
     .build();
@@ -60,7 +60,7 @@ MongoClusterManager manager = MongoClusterManager
     .authenticate(credential, profile);
 ```
 
-The sample code assumes global Azure. Please change `AzureEnvironment.AZURE` variable if otherwise.
+The sample code assumes global Azure. Please change the `AzureCloud.AZURE_PUBLIC_CLOUD` variable if otherwise.
 
 See [Authentication][authenticate] for more options.
 
@@ -75,16 +75,15 @@ mongoCluster = mongoClusterManager.mongoClusters()
     .define(clusterName)
     .withRegion(REGION)
     .withExistingResourceGroup(resourceGroupName)
-    .withProperties(
-        new MongoClusterProperties()
-            .withAdministrator(new AdministratorProperties().withUserName(loginUser).withPassword(loginPwd))
-            .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
-            .withStorage(new StorageProperties().withSizeGb(128L))
-            .withCompute(new ComputeProperties().withTier("M30"))
-            .withHighAvailability(new HighAvailabilityProperties().withTargetMode(HighAvailabilityMode.DISABLED))
-            .withSharding(new ShardingProperties().withShardCount(1))
-            .withServerVersion("7.0")
-        )
+    .withProperties(new MongoClusterProperties()
+        .withAdministrator(new AdministratorProperties().withUserName(loginUser).withPassword(loginPwd))
+        .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
+        .withStorage(new StorageProperties().withSizeGb(128L))
+        .withCompute(new ComputeProperties().withTier("M30"))
+        .withHighAvailability(
+            new HighAvailabilityProperties().withTargetMode(HighAvailabilityMode.DISABLED))
+        .withSharding(new ShardingProperties().withShardCount(1))
+        .withServerVersion("7.0"))
     .create();
 ```
 [Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/mongocluster/azure-resourcemanager-mongocluster/SAMPLE.md)
@@ -117,5 +116,3 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [cg]: https://github.com/Azure/azure-sdk-for-java/blob/main/CONTRIBUTING.md
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
-
-
