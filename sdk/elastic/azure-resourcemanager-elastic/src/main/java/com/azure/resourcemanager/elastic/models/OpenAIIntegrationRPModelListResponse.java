@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.elastic.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -20,12 +21,12 @@ import java.util.List;
 public final class OpenAIIntegrationRPModelListResponse
     implements JsonSerializable<OpenAIIntegrationRPModelListResponse> {
     /*
-     * Results of a list operation.
+     * The OpenAIIntegrationRPModel items on this page
      */
     private List<OpenAIIntegrationRPModelInner> value;
 
     /*
-     * Link to the next set of results, if any.
+     * The link to the next page of items
      */
     private String nextLink;
 
@@ -36,7 +37,7 @@ public final class OpenAIIntegrationRPModelListResponse
     }
 
     /**
-     * Get the value property: Results of a list operation.
+     * Get the value property: The OpenAIIntegrationRPModel items on this page.
      * 
      * @return the value value.
      */
@@ -45,7 +46,7 @@ public final class OpenAIIntegrationRPModelListResponse
     }
 
     /**
-     * Set the value property: Results of a list operation.
+     * Set the value property: The OpenAIIntegrationRPModel items on this page.
      * 
      * @param value the value value to set.
      * @return the OpenAIIntegrationRPModelListResponse object itself.
@@ -56,7 +57,7 @@ public final class OpenAIIntegrationRPModelListResponse
     }
 
     /**
-     * Get the nextLink property: Link to the next set of results, if any.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -65,7 +66,7 @@ public final class OpenAIIntegrationRPModelListResponse
     }
 
     /**
-     * Set the nextLink property: Link to the next set of results, if any.
+     * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
      * @return the OpenAIIntegrationRPModelListResponse object itself.
@@ -81,10 +82,16 @@ public final class OpenAIIntegrationRPModelListResponse
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model OpenAIIntegrationRPModelListResponse"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(OpenAIIntegrationRPModelListResponse.class);
 
     /**
      * {@inheritDoc}
@@ -103,6 +110,7 @@ public final class OpenAIIntegrationRPModelListResponse
      * @param jsonReader The JsonReader being read.
      * @return An instance of OpenAIIntegrationRPModelListResponse if the JsonReader was pointing to an instance of it,
      * or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the OpenAIIntegrationRPModelListResponse.
      */
     public static OpenAIIntegrationRPModelListResponse fromJson(JsonReader jsonReader) throws IOException {

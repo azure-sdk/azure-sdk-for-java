@@ -8,8 +8,6 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * ProvisioningState
- * 
  * Provisioning state of Elastic resource.
  */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {

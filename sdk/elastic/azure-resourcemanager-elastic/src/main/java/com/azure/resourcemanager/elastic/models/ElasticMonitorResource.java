@@ -50,18 +50,18 @@ public interface ElasticMonitorResource {
     Map<String, String> tags();
 
     /**
+     * Gets the kind property: The kind of the Elastic resource - observability, security, search etc.
+     * 
+     * @return the kind value.
+     */
+    String kind();
+
+    /**
      * Gets the sku property: SKU of the monitor resource.
      * 
      * @return the sku value.
      */
-    ResourceSku sku();
-
-    /**
-     * Gets the properties property: Properties of the monitor resource.
-     * 
-     * @return the properties value.
-     */
-    MonitorProperties properties();
+    AzureResourceManagerResourceSkuProperty sku();
 
     /**
      * Gets the identity property: Identity properties of the monitor resource.
@@ -71,11 +71,117 @@ public interface ElasticMonitorResource {
     IdentityProperties identity();
 
     /**
-     * Gets the systemData property: The system metadata relating to this resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the provisioningState property: Provisioning state of the monitor resource.
+     * 
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
+     * Gets the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
+     * 
+     * @return the monitoringStatus value.
+     */
+    MonitoringStatus monitoringStatus();
+
+    /**
+     * Gets the elasticProperties property: Elastic cloud properties.
+     * 
+     * @return the elasticProperties value.
+     */
+    ElasticProperties elasticProperties();
+
+    /**
+     * Gets the userInfo property: User information.
+     * 
+     * @return the userInfo value.
+     */
+    UserInfo userInfo();
+
+    /**
+     * Gets the planDetails property: Plan details of the monitor resource.
+     * 
+     * @return the planDetails value.
+     */
+    PlanDetails planDetails();
+
+    /**
+     * Gets the version property: Version of elastic of the monitor resource.
+     * 
+     * @return the version value.
+     */
+    String version();
+
+    /**
+     * Gets the subscriptionState property: State of the Azure Subscription containing the monitor resource.
+     * 
+     * @return the subscriptionState value.
+     */
+    String subscriptionState();
+
+    /**
+     * Gets the saaSAzureSubscriptionStatus property: Status of Azure Subscription where Marketplace SaaS is located.
+     * 
+     * @return the saaSAzureSubscriptionStatus value.
+     */
+    String saaSAzureSubscriptionStatus();
+
+    /**
+     * Gets the sourceCampaignName property: Name of the marketing campaign.
+     * 
+     * @return the sourceCampaignName value.
+     */
+    String sourceCampaignName();
+
+    /**
+     * Gets the sourceCampaignId property: A unique identifier associated with the campaign.
+     * 
+     * @return the sourceCampaignId value.
+     */
+    String sourceCampaignId();
+
+    /**
+     * Gets the liftrResourceCategory property: The liftrResourceCategory property.
+     * 
+     * @return the liftrResourceCategory value.
+     */
+    LiftrResourceCategories liftrResourceCategory();
+
+    /**
+     * Gets the liftrResourcePreference property: The priority of the resource.
+     * 
+     * @return the liftrResourcePreference value.
+     */
+    Integer liftrResourcePreference();
+
+    /**
+     * Gets the generateApiKey property: Flag to determine if User API Key has to be generated and shared.
+     * 
+     * @return the generateApiKey value.
+     */
+    Boolean generateApiKey();
+
+    /**
+     * Gets the hostingType property: Hosting type of the monitor resource - either Hosted deployments OR Serverless
+     * Projects.
+     * 
+     * @return the hostingType value.
+     */
+    HostingType hostingType();
+
+    /**
+     * Gets the projectDetails property: Project details of the monitor resource IF it belongs to Serverless offer kind.
+     * 
+     * @return the projectDetails value.
+     */
+    ProjectDetails projectDetails();
 
     /**
      * Gets the region of the resource.
@@ -160,8 +266,13 @@ public interface ElasticMonitorResource {
          * The stage of the ElasticMonitorResource definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithSku,
-            DefinitionStages.WithProperties, DefinitionStages.WithIdentity {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithKind, DefinitionStages.WithSku,
+            DefinitionStages.WithIdentity, DefinitionStages.WithMonitoringStatus,
+            DefinitionStages.WithElasticProperties, DefinitionStages.WithUserInfo, DefinitionStages.WithPlanDetails,
+            DefinitionStages.WithVersion, DefinitionStages.WithSubscriptionState,
+            DefinitionStages.WithSaaSAzureSubscriptionStatus, DefinitionStages.WithSourceCampaignName,
+            DefinitionStages.WithSourceCampaignId, DefinitionStages.WithGenerateApiKey,
+            DefinitionStages.WithHostingType, DefinitionStages.WithProjectDetails {
             /**
              * Executes the create request.
              * 
@@ -192,6 +303,19 @@ public interface ElasticMonitorResource {
         }
 
         /**
+         * The stage of the ElasticMonitorResource definition allowing to specify kind.
+         */
+        interface WithKind {
+            /**
+             * Specifies the kind property: The kind of the Elastic resource - observability, security, search etc..
+             * 
+             * @param kind The kind of the Elastic resource - observability, security, search etc.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(String kind);
+        }
+
+        /**
          * The stage of the ElasticMonitorResource definition allowing to specify sku.
          */
         interface WithSku {
@@ -201,20 +325,7 @@ public interface ElasticMonitorResource {
              * @param sku SKU of the monitor resource.
              * @return the next definition stage.
              */
-            WithCreate withSku(ResourceSku sku);
-        }
-
-        /**
-         * The stage of the ElasticMonitorResource definition allowing to specify properties.
-         */
-        interface WithProperties {
-            /**
-             * Specifies the properties property: Properties of the monitor resource..
-             * 
-             * @param properties Properties of the monitor resource.
-             * @return the next definition stage.
-             */
-            WithCreate withProperties(MonitorProperties properties);
+            WithCreate withSku(AzureResourceManagerResourceSkuProperty sku);
         }
 
         /**
@@ -228,6 +339,168 @@ public interface ElasticMonitorResource {
              * @return the next definition stage.
              */
             WithCreate withIdentity(IdentityProperties identity);
+        }
+
+        /**
+         * The stage of the ElasticMonitorResource definition allowing to specify monitoringStatus.
+         */
+        interface WithMonitoringStatus {
+            /**
+             * Specifies the monitoringStatus property: Flag specifying if the resource monitoring is enabled or
+             * disabled..
+             * 
+             * @param monitoringStatus Flag specifying if the resource monitoring is enabled or disabled.
+             * @return the next definition stage.
+             */
+            WithCreate withMonitoringStatus(MonitoringStatus monitoringStatus);
+        }
+
+        /**
+         * The stage of the ElasticMonitorResource definition allowing to specify elasticProperties.
+         */
+        interface WithElasticProperties {
+            /**
+             * Specifies the elasticProperties property: Elastic cloud properties..
+             * 
+             * @param elasticProperties Elastic cloud properties.
+             * @return the next definition stage.
+             */
+            WithCreate withElasticProperties(ElasticProperties elasticProperties);
+        }
+
+        /**
+         * The stage of the ElasticMonitorResource definition allowing to specify userInfo.
+         */
+        interface WithUserInfo {
+            /**
+             * Specifies the userInfo property: User information..
+             * 
+             * @param userInfo User information.
+             * @return the next definition stage.
+             */
+            WithCreate withUserInfo(UserInfo userInfo);
+        }
+
+        /**
+         * The stage of the ElasticMonitorResource definition allowing to specify planDetails.
+         */
+        interface WithPlanDetails {
+            /**
+             * Specifies the planDetails property: Plan details of the monitor resource..
+             * 
+             * @param planDetails Plan details of the monitor resource.
+             * @return the next definition stage.
+             */
+            WithCreate withPlanDetails(PlanDetails planDetails);
+        }
+
+        /**
+         * The stage of the ElasticMonitorResource definition allowing to specify version.
+         */
+        interface WithVersion {
+            /**
+             * Specifies the version property: Version of elastic of the monitor resource.
+             * 
+             * @param version Version of elastic of the monitor resource.
+             * @return the next definition stage.
+             */
+            WithCreate withVersion(String version);
+        }
+
+        /**
+         * The stage of the ElasticMonitorResource definition allowing to specify subscriptionState.
+         */
+        interface WithSubscriptionState {
+            /**
+             * Specifies the subscriptionState property: State of the Azure Subscription containing the monitor
+             * resource.
+             * 
+             * @param subscriptionState State of the Azure Subscription containing the monitor resource.
+             * @return the next definition stage.
+             */
+            WithCreate withSubscriptionState(String subscriptionState);
+        }
+
+        /**
+         * The stage of the ElasticMonitorResource definition allowing to specify saaSAzureSubscriptionStatus.
+         */
+        interface WithSaaSAzureSubscriptionStatus {
+            /**
+             * Specifies the saaSAzureSubscriptionStatus property: Status of Azure Subscription where Marketplace SaaS
+             * is located..
+             * 
+             * @param saaSAzureSubscriptionStatus Status of Azure Subscription where Marketplace SaaS is located.
+             * @return the next definition stage.
+             */
+            WithCreate withSaaSAzureSubscriptionStatus(String saaSAzureSubscriptionStatus);
+        }
+
+        /**
+         * The stage of the ElasticMonitorResource definition allowing to specify sourceCampaignName.
+         */
+        interface WithSourceCampaignName {
+            /**
+             * Specifies the sourceCampaignName property: Name of the marketing campaign..
+             * 
+             * @param sourceCampaignName Name of the marketing campaign.
+             * @return the next definition stage.
+             */
+            WithCreate withSourceCampaignName(String sourceCampaignName);
+        }
+
+        /**
+         * The stage of the ElasticMonitorResource definition allowing to specify sourceCampaignId.
+         */
+        interface WithSourceCampaignId {
+            /**
+             * Specifies the sourceCampaignId property: A unique identifier associated with the campaign..
+             * 
+             * @param sourceCampaignId A unique identifier associated with the campaign.
+             * @return the next definition stage.
+             */
+            WithCreate withSourceCampaignId(String sourceCampaignId);
+        }
+
+        /**
+         * The stage of the ElasticMonitorResource definition allowing to specify generateApiKey.
+         */
+        interface WithGenerateApiKey {
+            /**
+             * Specifies the generateApiKey property: Flag to determine if User API Key has to be generated and shared..
+             * 
+             * @param generateApiKey Flag to determine if User API Key has to be generated and shared.
+             * @return the next definition stage.
+             */
+            WithCreate withGenerateApiKey(Boolean generateApiKey);
+        }
+
+        /**
+         * The stage of the ElasticMonitorResource definition allowing to specify hostingType.
+         */
+        interface WithHostingType {
+            /**
+             * Specifies the hostingType property: Hosting type of the monitor resource - either Hosted deployments OR
+             * Serverless Projects..
+             * 
+             * @param hostingType Hosting type of the monitor resource - either Hosted deployments OR Serverless
+             * Projects.
+             * @return the next definition stage.
+             */
+            WithCreate withHostingType(HostingType hostingType);
+        }
+
+        /**
+         * The stage of the ElasticMonitorResource definition allowing to specify projectDetails.
+         */
+        interface WithProjectDetails {
+            /**
+             * Specifies the projectDetails property: Project details of the monitor resource IF it belongs to
+             * Serverless offer kind..
+             * 
+             * @param projectDetails Project details of the monitor resource IF it belongs to Serverless offer kind.
+             * @return the next definition stage.
+             */
+            WithCreate withProjectDetails(ProjectDetails projectDetails);
         }
     }
 

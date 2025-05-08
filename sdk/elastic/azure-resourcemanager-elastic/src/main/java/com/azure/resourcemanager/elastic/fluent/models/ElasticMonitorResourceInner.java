@@ -10,9 +10,16 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.elastic.models.AzureResourceManagerResourceSkuProperty;
+import com.azure.resourcemanager.elastic.models.ElasticProperties;
+import com.azure.resourcemanager.elastic.models.HostingType;
 import com.azure.resourcemanager.elastic.models.IdentityProperties;
-import com.azure.resourcemanager.elastic.models.MonitorProperties;
-import com.azure.resourcemanager.elastic.models.ResourceSku;
+import com.azure.resourcemanager.elastic.models.LiftrResourceCategories;
+import com.azure.resourcemanager.elastic.models.MonitoringStatus;
+import com.azure.resourcemanager.elastic.models.PlanDetails;
+import com.azure.resourcemanager.elastic.models.ProjectDetails;
+import com.azure.resourcemanager.elastic.models.ProvisioningState;
+import com.azure.resourcemanager.elastic.models.UserInfo;
 import java.io.IOException;
 import java.util.Map;
 
@@ -22,14 +29,19 @@ import java.util.Map;
 @Fluent
 public final class ElasticMonitorResourceInner extends Resource {
     /*
-     * SKU of the monitor resource.
-     */
-    private ResourceSku sku;
-
-    /*
      * Properties of the monitor resource.
      */
-    private MonitorProperties properties;
+    private MonitorProperties innerProperties;
+
+    /*
+     * The kind of the Elastic resource - observability, security, search etc.
+     */
+    private String kind;
+
+    /*
+     * SKU of the monitor resource.
+     */
+    private AzureResourceManagerResourceSkuProperty sku;
 
     /*
      * Identity properties of the monitor resource.
@@ -37,7 +49,7 @@ public final class ElasticMonitorResourceInner extends Resource {
     private IdentityProperties identity;
 
     /*
-     * The system metadata relating to this resource
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
 
@@ -63,11 +75,40 @@ public final class ElasticMonitorResourceInner extends Resource {
     }
 
     /**
+     * Get the innerProperties property: Properties of the monitor resource.
+     * 
+     * @return the innerProperties value.
+     */
+    private MonitorProperties innerProperties() {
+        return this.innerProperties;
+    }
+
+    /**
+     * Get the kind property: The kind of the Elastic resource - observability, security, search etc.
+     * 
+     * @return the kind value.
+     */
+    public String kind() {
+        return this.kind;
+    }
+
+    /**
+     * Set the kind property: The kind of the Elastic resource - observability, security, search etc.
+     * 
+     * @param kind the kind value to set.
+     * @return the ElasticMonitorResourceInner object itself.
+     */
+    public ElasticMonitorResourceInner withKind(String kind) {
+        this.kind = kind;
+        return this;
+    }
+
+    /**
      * Get the sku property: SKU of the monitor resource.
      * 
      * @return the sku value.
      */
-    public ResourceSku sku() {
+    public AzureResourceManagerResourceSkuProperty sku() {
         return this.sku;
     }
 
@@ -77,28 +118,8 @@ public final class ElasticMonitorResourceInner extends Resource {
      * @param sku the sku value to set.
      * @return the ElasticMonitorResourceInner object itself.
      */
-    public ElasticMonitorResourceInner withSku(ResourceSku sku) {
+    public ElasticMonitorResourceInner withSku(AzureResourceManagerResourceSkuProperty sku) {
         this.sku = sku;
-        return this;
-    }
-
-    /**
-     * Get the properties property: Properties of the monitor resource.
-     * 
-     * @return the properties value.
-     */
-    public MonitorProperties properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: Properties of the monitor resource.
-     * 
-     * @param properties the properties value to set.
-     * @return the ElasticMonitorResourceInner object itself.
-     */
-    public ElasticMonitorResourceInner withProperties(MonitorProperties properties) {
-        this.properties = properties;
         return this;
     }
 
@@ -123,7 +144,7 @@ public final class ElasticMonitorResourceInner extends Resource {
     }
 
     /**
-     * Get the systemData property: The system metadata relating to this resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -180,16 +201,321 @@ public final class ElasticMonitorResourceInner extends Resource {
     }
 
     /**
+     * Get the provisioningState property: Provisioning state of the monitor resource.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
+     * 
+     * @return the monitoringStatus value.
+     */
+    public MonitoringStatus monitoringStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().monitoringStatus();
+    }
+
+    /**
+     * Set the monitoringStatus property: Flag specifying if the resource monitoring is enabled or disabled.
+     * 
+     * @param monitoringStatus the monitoringStatus value to set.
+     * @return the ElasticMonitorResourceInner object itself.
+     */
+    public ElasticMonitorResourceInner withMonitoringStatus(MonitoringStatus monitoringStatus) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitorProperties();
+        }
+        this.innerProperties().withMonitoringStatus(monitoringStatus);
+        return this;
+    }
+
+    /**
+     * Get the elasticProperties property: Elastic cloud properties.
+     * 
+     * @return the elasticProperties value.
+     */
+    public ElasticProperties elasticProperties() {
+        return this.innerProperties() == null ? null : this.innerProperties().elasticProperties();
+    }
+
+    /**
+     * Set the elasticProperties property: Elastic cloud properties.
+     * 
+     * @param elasticProperties the elasticProperties value to set.
+     * @return the ElasticMonitorResourceInner object itself.
+     */
+    public ElasticMonitorResourceInner withElasticProperties(ElasticProperties elasticProperties) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitorProperties();
+        }
+        this.innerProperties().withElasticProperties(elasticProperties);
+        return this;
+    }
+
+    /**
+     * Get the userInfo property: User information.
+     * 
+     * @return the userInfo value.
+     */
+    public UserInfo userInfo() {
+        return this.innerProperties() == null ? null : this.innerProperties().userInfo();
+    }
+
+    /**
+     * Set the userInfo property: User information.
+     * 
+     * @param userInfo the userInfo value to set.
+     * @return the ElasticMonitorResourceInner object itself.
+     */
+    public ElasticMonitorResourceInner withUserInfo(UserInfo userInfo) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitorProperties();
+        }
+        this.innerProperties().withUserInfo(userInfo);
+        return this;
+    }
+
+    /**
+     * Get the planDetails property: Plan details of the monitor resource.
+     * 
+     * @return the planDetails value.
+     */
+    public PlanDetails planDetails() {
+        return this.innerProperties() == null ? null : this.innerProperties().planDetails();
+    }
+
+    /**
+     * Set the planDetails property: Plan details of the monitor resource.
+     * 
+     * @param planDetails the planDetails value to set.
+     * @return the ElasticMonitorResourceInner object itself.
+     */
+    public ElasticMonitorResourceInner withPlanDetails(PlanDetails planDetails) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitorProperties();
+        }
+        this.innerProperties().withPlanDetails(planDetails);
+        return this;
+    }
+
+    /**
+     * Get the version property: Version of elastic of the monitor resource.
+     * 
+     * @return the version value.
+     */
+    public String version() {
+        return this.innerProperties() == null ? null : this.innerProperties().version();
+    }
+
+    /**
+     * Set the version property: Version of elastic of the monitor resource.
+     * 
+     * @param version the version value to set.
+     * @return the ElasticMonitorResourceInner object itself.
+     */
+    public ElasticMonitorResourceInner withVersion(String version) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitorProperties();
+        }
+        this.innerProperties().withVersion(version);
+        return this;
+    }
+
+    /**
+     * Get the subscriptionState property: State of the Azure Subscription containing the monitor resource.
+     * 
+     * @return the subscriptionState value.
+     */
+    public String subscriptionState() {
+        return this.innerProperties() == null ? null : this.innerProperties().subscriptionState();
+    }
+
+    /**
+     * Set the subscriptionState property: State of the Azure Subscription containing the monitor resource.
+     * 
+     * @param subscriptionState the subscriptionState value to set.
+     * @return the ElasticMonitorResourceInner object itself.
+     */
+    public ElasticMonitorResourceInner withSubscriptionState(String subscriptionState) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitorProperties();
+        }
+        this.innerProperties().withSubscriptionState(subscriptionState);
+        return this;
+    }
+
+    /**
+     * Get the saaSAzureSubscriptionStatus property: Status of Azure Subscription where Marketplace SaaS is located.
+     * 
+     * @return the saaSAzureSubscriptionStatus value.
+     */
+    public String saaSAzureSubscriptionStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().saaSAzureSubscriptionStatus();
+    }
+
+    /**
+     * Set the saaSAzureSubscriptionStatus property: Status of Azure Subscription where Marketplace SaaS is located.
+     * 
+     * @param saaSAzureSubscriptionStatus the saaSAzureSubscriptionStatus value to set.
+     * @return the ElasticMonitorResourceInner object itself.
+     */
+    public ElasticMonitorResourceInner withSaaSAzureSubscriptionStatus(String saaSAzureSubscriptionStatus) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitorProperties();
+        }
+        this.innerProperties().withSaaSAzureSubscriptionStatus(saaSAzureSubscriptionStatus);
+        return this;
+    }
+
+    /**
+     * Get the sourceCampaignName property: Name of the marketing campaign.
+     * 
+     * @return the sourceCampaignName value.
+     */
+    public String sourceCampaignName() {
+        return this.innerProperties() == null ? null : this.innerProperties().sourceCampaignName();
+    }
+
+    /**
+     * Set the sourceCampaignName property: Name of the marketing campaign.
+     * 
+     * @param sourceCampaignName the sourceCampaignName value to set.
+     * @return the ElasticMonitorResourceInner object itself.
+     */
+    public ElasticMonitorResourceInner withSourceCampaignName(String sourceCampaignName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitorProperties();
+        }
+        this.innerProperties().withSourceCampaignName(sourceCampaignName);
+        return this;
+    }
+
+    /**
+     * Get the sourceCampaignId property: A unique identifier associated with the campaign.
+     * 
+     * @return the sourceCampaignId value.
+     */
+    public String sourceCampaignId() {
+        return this.innerProperties() == null ? null : this.innerProperties().sourceCampaignId();
+    }
+
+    /**
+     * Set the sourceCampaignId property: A unique identifier associated with the campaign.
+     * 
+     * @param sourceCampaignId the sourceCampaignId value to set.
+     * @return the ElasticMonitorResourceInner object itself.
+     */
+    public ElasticMonitorResourceInner withSourceCampaignId(String sourceCampaignId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitorProperties();
+        }
+        this.innerProperties().withSourceCampaignId(sourceCampaignId);
+        return this;
+    }
+
+    /**
+     * Get the liftrResourceCategory property: The liftrResourceCategory property.
+     * 
+     * @return the liftrResourceCategory value.
+     */
+    public LiftrResourceCategories liftrResourceCategory() {
+        return this.innerProperties() == null ? null : this.innerProperties().liftrResourceCategory();
+    }
+
+    /**
+     * Get the liftrResourcePreference property: The priority of the resource.
+     * 
+     * @return the liftrResourcePreference value.
+     */
+    public Integer liftrResourcePreference() {
+        return this.innerProperties() == null ? null : this.innerProperties().liftrResourcePreference();
+    }
+
+    /**
+     * Get the generateApiKey property: Flag to determine if User API Key has to be generated and shared.
+     * 
+     * @return the generateApiKey value.
+     */
+    public Boolean generateApiKey() {
+        return this.innerProperties() == null ? null : this.innerProperties().generateApiKey();
+    }
+
+    /**
+     * Set the generateApiKey property: Flag to determine if User API Key has to be generated and shared.
+     * 
+     * @param generateApiKey the generateApiKey value to set.
+     * @return the ElasticMonitorResourceInner object itself.
+     */
+    public ElasticMonitorResourceInner withGenerateApiKey(Boolean generateApiKey) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitorProperties();
+        }
+        this.innerProperties().withGenerateApiKey(generateApiKey);
+        return this;
+    }
+
+    /**
+     * Get the hostingType property: Hosting type of the monitor resource - either Hosted deployments OR Serverless
+     * Projects.
+     * 
+     * @return the hostingType value.
+     */
+    public HostingType hostingType() {
+        return this.innerProperties() == null ? null : this.innerProperties().hostingType();
+    }
+
+    /**
+     * Set the hostingType property: Hosting type of the monitor resource - either Hosted deployments OR Serverless
+     * Projects.
+     * 
+     * @param hostingType the hostingType value to set.
+     * @return the ElasticMonitorResourceInner object itself.
+     */
+    public ElasticMonitorResourceInner withHostingType(HostingType hostingType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitorProperties();
+        }
+        this.innerProperties().withHostingType(hostingType);
+        return this;
+    }
+
+    /**
+     * Get the projectDetails property: Project details of the monitor resource IF it belongs to Serverless offer kind.
+     * 
+     * @return the projectDetails value.
+     */
+    public ProjectDetails projectDetails() {
+        return this.innerProperties() == null ? null : this.innerProperties().projectDetails();
+    }
+
+    /**
+     * Set the projectDetails property: Project details of the monitor resource IF it belongs to Serverless offer kind.
+     * 
+     * @param projectDetails the projectDetails value to set.
+     * @return the ElasticMonitorResourceInner object itself.
+     */
+    public ElasticMonitorResourceInner withProjectDetails(ProjectDetails projectDetails) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitorProperties();
+        }
+        this.innerProperties().withProjectDetails(projectDetails);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (innerProperties() != null) {
+            innerProperties().validate();
+        }
         if (sku() != null) {
             sku().validate();
-        }
-        if (properties() != null) {
-            properties().validate();
         }
         if (identity() != null) {
             identity().validate();
@@ -204,8 +530,9 @@ public final class ElasticMonitorResourceInner extends Resource {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeStringField("kind", this.kind);
         jsonWriter.writeJsonField("sku", this.sku);
-        jsonWriter.writeJsonField("properties", this.properties);
         jsonWriter.writeJsonField("identity", this.identity);
         return jsonWriter.writeEndObject();
     }
@@ -237,10 +564,13 @@ public final class ElasticMonitorResourceInner extends Resource {
                 } else if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedElasticMonitorResourceInner.withTags(tags);
-                } else if ("sku".equals(fieldName)) {
-                    deserializedElasticMonitorResourceInner.sku = ResourceSku.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
-                    deserializedElasticMonitorResourceInner.properties = MonitorProperties.fromJson(reader);
+                    deserializedElasticMonitorResourceInner.innerProperties = MonitorProperties.fromJson(reader);
+                } else if ("kind".equals(fieldName)) {
+                    deserializedElasticMonitorResourceInner.kind = reader.getString();
+                } else if ("sku".equals(fieldName)) {
+                    deserializedElasticMonitorResourceInner.sku
+                        = AzureResourceManagerResourceSkuProperty.fromJson(reader);
                 } else if ("identity".equals(fieldName)) {
                     deserializedElasticMonitorResourceInner.identity = IdentityProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {

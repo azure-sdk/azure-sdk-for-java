@@ -6,11 +6,12 @@ package com.azure.resourcemanager.elastic.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.elastic.models.OpenAIIntegrationProperties;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 
 /**
  * Capture properties of Open AI resource Integration.
@@ -20,7 +21,12 @@ public final class OpenAIIntegrationRPModelInner extends ProxyResource {
     /*
      * Open AI Integration details.
      */
-    private OpenAIIntegrationProperties properties;
+    private OpenAIIntegrationProperties innerProperties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -44,23 +50,21 @@ public final class OpenAIIntegrationRPModelInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: Open AI Integration details.
+     * Get the innerProperties property: Open AI Integration details.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public OpenAIIntegrationProperties properties() {
-        return this.properties;
+    private OpenAIIntegrationProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the properties property: Open AI Integration details.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @param properties the properties value to set.
-     * @return the OpenAIIntegrationRPModelInner object itself.
+     * @return the systemData value.
      */
-    public OpenAIIntegrationRPModelInner withProperties(OpenAIIntegrationProperties properties) {
-        this.properties = properties;
-        return this;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -94,13 +98,114 @@ public final class OpenAIIntegrationRPModelInner extends ProxyResource {
     }
 
     /**
+     * Get the openAIResourceId property: The resource name of Open AI resource.
+     * 
+     * @return the openAIResourceId value.
+     */
+    public String openAIResourceId() {
+        return this.innerProperties() == null ? null : this.innerProperties().openAIResourceId();
+    }
+
+    /**
+     * Set the openAIResourceId property: The resource name of Open AI resource.
+     * 
+     * @param openAIResourceId the openAIResourceId value to set.
+     * @return the OpenAIIntegrationRPModelInner object itself.
+     */
+    public OpenAIIntegrationRPModelInner withOpenAIResourceId(String openAIResourceId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new OpenAIIntegrationProperties();
+        }
+        this.innerProperties().withOpenAIResourceId(openAIResourceId);
+        return this;
+    }
+
+    /**
+     * Get the openAIResourceEndpoint property: The API endpoint for Open AI resource.
+     * 
+     * @return the openAIResourceEndpoint value.
+     */
+    public String openAIResourceEndpoint() {
+        return this.innerProperties() == null ? null : this.innerProperties().openAIResourceEndpoint();
+    }
+
+    /**
+     * Set the openAIResourceEndpoint property: The API endpoint for Open AI resource.
+     * 
+     * @param openAIResourceEndpoint the openAIResourceEndpoint value to set.
+     * @return the OpenAIIntegrationRPModelInner object itself.
+     */
+    public OpenAIIntegrationRPModelInner withOpenAIResourceEndpoint(String openAIResourceEndpoint) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new OpenAIIntegrationProperties();
+        }
+        this.innerProperties().withOpenAIResourceEndpoint(openAIResourceEndpoint);
+        return this;
+    }
+
+    /**
+     * Get the openAIConnectorId property: The connector id of Open AI resource.
+     * 
+     * @return the openAIConnectorId value.
+     */
+    public String openAIConnectorId() {
+        return this.innerProperties() == null ? null : this.innerProperties().openAIConnectorId();
+    }
+
+    /**
+     * Set the openAIConnectorId property: The connector id of Open AI resource.
+     * 
+     * @param openAIConnectorId the openAIConnectorId value to set.
+     * @return the OpenAIIntegrationRPModelInner object itself.
+     */
+    public OpenAIIntegrationRPModelInner withOpenAIConnectorId(String openAIConnectorId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new OpenAIIntegrationProperties();
+        }
+        this.innerProperties().withOpenAIConnectorId(openAIConnectorId);
+        return this;
+    }
+
+    /**
+     * Get the key property: Value of API key for Open AI resource.
+     * 
+     * @return the key value.
+     */
+    public String key() {
+        return this.innerProperties() == null ? null : this.innerProperties().key();
+    }
+
+    /**
+     * Set the key property: Value of API key for Open AI resource.
+     * 
+     * @param key the key value to set.
+     * @return the OpenAIIntegrationRPModelInner object itself.
+     */
+    public OpenAIIntegrationRPModelInner withKey(String key) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new OpenAIIntegrationProperties();
+        }
+        this.innerProperties().withKey(key);
+        return this;
+    }
+
+    /**
+     * Get the lastRefreshAt property: Last Update Timestamp for key updation.
+     * 
+     * @return the lastRefreshAt value.
+     */
+    public OffsetDateTime lastRefreshAt() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastRefreshAt();
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 
@@ -110,7 +215,7 @@ public final class OpenAIIntegrationRPModelInner extends ProxyResource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("properties", this.properties);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
         return jsonWriter.writeEndObject();
     }
 
@@ -138,7 +243,10 @@ public final class OpenAIIntegrationRPModelInner extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedOpenAIIntegrationRPModelInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedOpenAIIntegrationRPModelInner.properties = OpenAIIntegrationProperties.fromJson(reader);
+                    deserializedOpenAIIntegrationRPModelInner.innerProperties
+                        = OpenAIIntegrationProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedOpenAIIntegrationRPModelInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

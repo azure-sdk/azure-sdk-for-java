@@ -10,7 +10,8 @@ package com.azure.resourcemanager.elastic.generated;
 public final class OpenAIGetStatusSamples {
     /*
      * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/OpenAI_GetStatus.json
+     * specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/OpenAI_GetStatus.
+     * json
      */
     /**
      * Sample code: OpenAI_GetStatus.

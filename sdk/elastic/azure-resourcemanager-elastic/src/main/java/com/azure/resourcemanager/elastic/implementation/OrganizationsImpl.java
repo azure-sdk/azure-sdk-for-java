@@ -9,10 +9,13 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.elastic.fluent.OrganizationsClient;
+import com.azure.resourcemanager.elastic.fluent.models.ElasticMonitorResourceInner;
 import com.azure.resourcemanager.elastic.fluent.models.ElasticOrganizationToAzureSubscriptionMappingResponseInner;
 import com.azure.resourcemanager.elastic.fluent.models.UserApiKeyResponseInner;
+import com.azure.resourcemanager.elastic.models.ElasticMonitorResource;
 import com.azure.resourcemanager.elastic.models.ElasticOrganizationToAzureSubscriptionMappingResponse;
 import com.azure.resourcemanager.elastic.models.Organizations;
+import com.azure.resourcemanager.elastic.models.ResubscribeProperties;
 import com.azure.resourcemanager.elastic.models.UserApiKeyResponse;
 import com.azure.resourcemanager.elastic.models.UserEmailId;
 
@@ -27,25 +30,6 @@ public final class OrganizationsImpl implements Organizations {
         com.azure.resourcemanager.elastic.ElasticManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public Response<UserApiKeyResponse> getApiKeyWithResponse(UserEmailId body, Context context) {
-        Response<UserApiKeyResponseInner> inner = this.serviceClient().getApiKeyWithResponse(body, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new UserApiKeyResponseImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public UserApiKeyResponse getApiKey() {
-        UserApiKeyResponseInner inner = this.serviceClient().getApiKey();
-        if (inner != null) {
-            return new UserApiKeyResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<ElasticOrganizationToAzureSubscriptionMappingResponse>
@@ -65,6 +49,45 @@ public final class OrganizationsImpl implements Organizations {
             = this.serviceClient().getElasticToAzureSubscriptionMapping();
         if (inner != null) {
             return new ElasticOrganizationToAzureSubscriptionMappingResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<UserApiKeyResponse> getApiKeyWithResponse(UserEmailId body, Context context) {
+        Response<UserApiKeyResponseInner> inner = this.serviceClient().getApiKeyWithResponse(body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new UserApiKeyResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public UserApiKeyResponse getApiKey(UserEmailId body) {
+        UserApiKeyResponseInner inner = this.serviceClient().getApiKey(body);
+        if (inner != null) {
+            return new UserApiKeyResponseImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ElasticMonitorResource resubscribe(String resourceGroupName, String monitorName) {
+        ElasticMonitorResourceInner inner = this.serviceClient().resubscribe(resourceGroupName, monitorName);
+        if (inner != null) {
+            return new ElasticMonitorResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public ElasticMonitorResource resubscribe(String resourceGroupName, String monitorName, ResubscribeProperties body,
+        Context context) {
+        ElasticMonitorResourceInner inner
+            = this.serviceClient().resubscribe(resourceGroupName, monitorName, body, context);
+        if (inner != null) {
+            return new ElasticMonitorResourceImpl(inner, this.manager());
         } else {
             return null;
         }

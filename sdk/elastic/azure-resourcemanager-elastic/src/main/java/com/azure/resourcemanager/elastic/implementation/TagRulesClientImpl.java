@@ -79,6 +79,15 @@ public final class TagRulesClientImpl implements TagRulesClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/tagRules/{ruleSetName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<MonitoringTagRulesInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
+            @PathParam("ruleSetName") String ruleSetName, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/tagRules/{ruleSetName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -87,15 +96,6 @@ public final class TagRulesClientImpl implements TagRulesClient {
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
             @PathParam("ruleSetName") String ruleSetName, @BodyParam("application/json") MonitoringTagRulesInner body,
             @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/tagRules/{ruleSetName}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<MonitoringTagRulesInner>> get(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
-            @PathParam("ruleSetName") String ruleSetName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/tagRules/{ruleSetName}")
@@ -256,149 +256,6 @@ public final class TagRulesClientImpl implements TagRulesClient {
     }
 
     /**
-     * Create or update a tag rule set for a given monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param ruleSetName Tag Rule Set resource name.
-     * @param body request body of MonitoringTagRules.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return capture logs and metrics of Azure resources based on ARM tags along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<MonitoringTagRulesInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String monitorName, String ruleSetName, MonitoringTagRulesInner body) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (monitorName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
-        }
-        if (ruleSetName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ruleSetName is required and cannot be null."));
-        }
-        if (body != null) {
-            body.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, monitorName, ruleSetName, body, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Create or update a tag rule set for a given monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param ruleSetName Tag Rule Set resource name.
-     * @param body request body of MonitoringTagRules.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return capture logs and metrics of Azure resources based on ARM tags along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<MonitoringTagRulesInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String monitorName, String ruleSetName, MonitoringTagRulesInner body, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (monitorName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
-        }
-        if (ruleSetName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ruleSetName is required and cannot be null."));
-        }
-        if (body != null) {
-            body.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, monitorName, ruleSetName, body, accept, context);
-    }
-
-    /**
-     * Create or update a tag rule set for a given monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param ruleSetName Tag Rule Set resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return capture logs and metrics of Azure resources based on ARM tags on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<MonitoringTagRulesInner> createOrUpdateAsync(String resourceGroupName, String monitorName,
-        String ruleSetName) {
-        final MonitoringTagRulesInner body = null;
-        return createOrUpdateWithResponseAsync(resourceGroupName, monitorName, ruleSetName, body)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Create or update a tag rule set for a given monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param ruleSetName Tag Rule Set resource name.
-     * @param body request body of MonitoringTagRules.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return capture logs and metrics of Azure resources based on ARM tags along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<MonitoringTagRulesInner> createOrUpdateWithResponse(String resourceGroupName, String monitorName,
-        String ruleSetName, MonitoringTagRulesInner body, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, monitorName, ruleSetName, body, context).block();
-    }
-
-    /**
-     * Create or update a tag rule set for a given monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param ruleSetName Tag Rule Set resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return capture logs and metrics of Azure resources based on ARM tags.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public MonitoringTagRulesInner createOrUpdate(String resourceGroupName, String monitorName, String ruleSetName) {
-        final MonitoringTagRulesInner body = null;
-        return createOrUpdateWithResponse(resourceGroupName, monitorName, ruleSetName, body, Context.NONE).getValue();
-    }
-
-    /**
      * Get a tag rule set for a given monitor resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -527,6 +384,154 @@ public final class TagRulesClientImpl implements TagRulesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public MonitoringTagRulesInner get(String resourceGroupName, String monitorName, String ruleSetName) {
         return getWithResponse(resourceGroupName, monitorName, ruleSetName, Context.NONE).getValue();
+    }
+
+    /**
+     * Create or update a tag rule set for a given monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param ruleSetName Tag Rule Set resource name.
+     * @param body request body of MonitoringTagRules.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return capture logs and metrics of Azure resources based on ARM tags along with {@link Response} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<MonitoringTagRulesInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String monitorName, String ruleSetName, MonitoringTagRulesInner body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (monitorName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
+        }
+        if (ruleSetName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter ruleSetName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, monitorName, ruleSetName, body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Create or update a tag rule set for a given monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param ruleSetName Tag Rule Set resource name.
+     * @param body request body of MonitoringTagRules.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return capture logs and metrics of Azure resources based on ARM tags along with {@link Response} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<MonitoringTagRulesInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String monitorName, String ruleSetName, MonitoringTagRulesInner body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (monitorName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
+        }
+        if (ruleSetName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter ruleSetName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, monitorName, ruleSetName, body, accept, context);
+    }
+
+    /**
+     * Create or update a tag rule set for a given monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param ruleSetName Tag Rule Set resource name.
+     * @param body request body of MonitoringTagRules.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return capture logs and metrics of Azure resources based on ARM tags on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<MonitoringTagRulesInner> createOrUpdateAsync(String resourceGroupName, String monitorName,
+        String ruleSetName, MonitoringTagRulesInner body) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, monitorName, ruleSetName, body)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Create or update a tag rule set for a given monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param ruleSetName Tag Rule Set resource name.
+     * @param body request body of MonitoringTagRules.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return capture logs and metrics of Azure resources based on ARM tags along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<MonitoringTagRulesInner> createOrUpdateWithResponse(String resourceGroupName, String monitorName,
+        String ruleSetName, MonitoringTagRulesInner body, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, monitorName, ruleSetName, body, context).block();
+    }
+
+    /**
+     * Create or update a tag rule set for a given monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param ruleSetName Tag Rule Set resource name.
+     * @param body request body of MonitoringTagRules.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return capture logs and metrics of Azure resources based on ARM tags.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MonitoringTagRulesInner createOrUpdate(String resourceGroupName, String monitorName, String ruleSetName,
+        MonitoringTagRulesInner body) {
+        return createOrUpdateWithResponse(resourceGroupName, monitorName, ruleSetName, body, Context.NONE).getValue();
     }
 
     /**

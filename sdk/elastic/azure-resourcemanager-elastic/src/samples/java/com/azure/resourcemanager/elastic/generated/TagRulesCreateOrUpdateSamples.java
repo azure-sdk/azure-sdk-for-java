@@ -9,8 +9,8 @@ package com.azure.resourcemanager.elastic.generated;
  */
 public final class TagRulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elastic/resource-manager/Microsoft.Elastic/stable/2024-03-01/examples/TagRules_CreateOrUpdate.json
+     * x-ms-original-file: specification/elastic/resource-manager/Microsoft.Elastic/preview/2025-01-15-preview/examples/
+     * TagRules_CreateOrUpdate.json
      */
     /**
      * Sample code: TagRules_CreateOrUpdate.
