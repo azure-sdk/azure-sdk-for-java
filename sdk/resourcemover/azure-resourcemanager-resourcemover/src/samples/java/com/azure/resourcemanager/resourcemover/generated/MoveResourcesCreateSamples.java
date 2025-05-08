@@ -16,8 +16,8 @@ import java.util.Arrays;
 public final class MoveResourcesCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveResources_Create.
-     * json
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/preview/2025-01-01-privatepreview/examples/
+     * MoveResources_Create.json
      */
     /**
      * Sample code: MoveResources_Create.

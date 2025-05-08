@@ -22,6 +22,11 @@ public final class MoveType extends ExpandableStringEnum<MoveType> {
     public static final MoveType REGION_TO_ZONE = fromString("RegionToZone");
 
     /**
+     * Static value AvailabilitySetToVMSSFlex for MoveType.
+     */
+    public static final MoveType AVAILABILITY_SET_TO_VMSSFLEX = fromString("AvailabilitySetToVMSSFlex");
+
+    /**
      * Creates a new instance of MoveType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

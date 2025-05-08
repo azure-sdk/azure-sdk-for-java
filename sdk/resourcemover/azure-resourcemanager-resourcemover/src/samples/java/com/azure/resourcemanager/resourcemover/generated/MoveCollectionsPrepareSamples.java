@@ -13,8 +13,8 @@ import java.util.Arrays;
 public final class MoveCollectionsPrepareSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveCollections_Prepare
-     * .json
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/preview/2025-01-01-privatepreview/examples/
+     * MoveCollections_Prepare.json
      */
     /**
      * Sample code: MoveCollections_Prepare.

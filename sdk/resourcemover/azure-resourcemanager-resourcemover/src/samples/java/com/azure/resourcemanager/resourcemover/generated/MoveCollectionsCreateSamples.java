@@ -15,8 +15,8 @@ import com.azure.resourcemanager.resourcemover.models.ResourceIdentityType;
 public final class MoveCollectionsCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcemover/resource-manager/Microsoft.Migrate/stable/2023-08-01/examples/MoveCollections_Create.
-     * json
+     * specification/resourcemover/resource-manager/Microsoft.Migrate/preview/2025-01-01-privatepreview/examples/
+     * MoveCollections_Create.json
      */
     /**
      * Sample code: MoveCollections_Create.
