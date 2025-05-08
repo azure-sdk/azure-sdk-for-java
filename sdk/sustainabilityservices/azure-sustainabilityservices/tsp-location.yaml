@@ -1,0 +1,4 @@
+directory: specification/sustainabilityservices/Microsoft.SustainabilityServices
+commit: 470f275e3655cab49496496b7306910402caafee
+repo: Azure/azure-rest-api-specs
+additionalDirectories: 
