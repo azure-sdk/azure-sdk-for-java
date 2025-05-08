@@ -24,7 +24,7 @@ public final class EncryptionPropertiesIdentity implements JsonSerializable<Encr
 
     /*
      * User assigned identity to use for accessing key encryption key Url. Ex:
-     * /subscriptions/fa5fc227-a624-475e-b696-cdd604c735bc/resourceGroups/<resource
+     * /subscriptions/a0a0a0a0-bbbb-cccd-dddd-e1e1e1e1e1e1/resourceGroups/<resource
      * group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId.
      */
     private String resourceId;
@@ -57,7 +57,7 @@ public final class EncryptionPropertiesIdentity implements JsonSerializable<Encr
 
     /**
      * Get the resourceId property: User assigned identity to use for accessing key encryption key Url. Ex:
-     * /subscriptions/fa5fc227-a624-475e-b696-cdd604c735bc/resourceGroups/&lt;resource
+     * /subscriptions/a0a0a0a0-bbbb-cccd-dddd-e1e1e1e1e1e1/resourceGroups/&lt;resource
      * group&gt;/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId.
      * 
      * @return the resourceId value.
@@ -68,7 +68,7 @@ public final class EncryptionPropertiesIdentity implements JsonSerializable<Encr
 
     /**
      * Set the resourceId property: User assigned identity to use for accessing key encryption key Url. Ex:
-     * /subscriptions/fa5fc227-a624-475e-b696-cdd604c735bc/resourceGroups/&lt;resource
+     * /subscriptions/a0a0a0a0-bbbb-cccd-dddd-e1e1e1e1e1e1/resourceGroups/&lt;resource
      * group&gt;/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId.
      * 
      * @param resourceId the resourceId value to set.
