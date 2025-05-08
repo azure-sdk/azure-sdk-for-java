@@ -12,21 +12,20 @@ import org.junit.jupiter.api.Assertions;
 public final class GetOperationStatusRequestTests {
     @org.junit.jupiter.api.Test
     public void testDeserialize() throws Exception {
-        GetOperationStatusRequest model = BinaryData
-            .fromString(
-                "{\"operationIds\":[\"datqxhocdgeabl\",\"phut\",\"cndvkaozwyiftyhx\"],\"correlationid\":\"urokft\"}")
-            .toObject(GetOperationStatusRequest.class);
-        Assertions.assertEquals("datqxhocdgeabl", model.operationIds().get(0));
-        Assertions.assertEquals("urokft", model.correlationid());
+        GetOperationStatusRequest model
+            = BinaryData.fromString("{\"operationIds\":[\"guhmuouqfpr\",\"zw\"],\"correlationid\":\"nguitnwuizgazxu\"}")
+                .toObject(GetOperationStatusRequest.class);
+        Assertions.assertEquals("guhmuouqfpr", model.operationIds().get(0));
+        Assertions.assertEquals("nguitnwuizgazxu", model.correlationid());
     }
 
     @org.junit.jupiter.api.Test
     public void testSerialize() throws Exception {
-        GetOperationStatusRequest model = new GetOperationStatusRequest()
-            .withOperationIds(Arrays.asList("datqxhocdgeabl", "phut", "cndvkaozwyiftyhx"))
-            .withCorrelationid("urokft");
+        GetOperationStatusRequest model
+            = new GetOperationStatusRequest().withOperationIds(Arrays.asList("guhmuouqfpr", "zw"))
+                .withCorrelationid("nguitnwuizgazxu");
         model = BinaryData.fromObject(model).toObject(GetOperationStatusRequest.class);
-        Assertions.assertEquals("datqxhocdgeabl", model.operationIds().get(0));
-        Assertions.assertEquals("urokft", model.correlationid());
+        Assertions.assertEquals("guhmuouqfpr", model.operationIds().get(0));
+        Assertions.assertEquals("nguitnwuizgazxu", model.correlationid());
     }
 }
