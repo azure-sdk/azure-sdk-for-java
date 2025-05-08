@@ -10,6 +10,7 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.desktopvirtualization.models.StartMenuItemProperties;
 import java.io.IOException;
 
 /**
@@ -20,7 +21,7 @@ public final class StartMenuItemInner extends ProxyResource {
     /*
      * Detailed properties for StartMenuItem
      */
-    private StartMenuItemProperties innerProperties;
+    private StartMenuItemProperties properties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -49,12 +50,23 @@ public final class StartMenuItemInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: Detailed properties for StartMenuItem.
+     * Get the properties property: Detailed properties for StartMenuItem.
      * 
-     * @return the innerProperties value.
+     * @return the properties value.
      */
-    private StartMenuItemProperties innerProperties() {
-        return this.innerProperties;
+    public StartMenuItemProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Detailed properties for StartMenuItem.
+     * 
+     * @param properties the properties value to set.
+     * @return the StartMenuItemInner object itself.
+     */
+    public StartMenuItemInner withProperties(StartMenuItemProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
@@ -97,128 +109,13 @@ public final class StartMenuItemInner extends ProxyResource {
     }
 
     /**
-     * Get the appAlias property: Alias of StartMenuItem.
-     * 
-     * @return the appAlias value.
-     */
-    public String appAlias() {
-        return this.innerProperties() == null ? null : this.innerProperties().appAlias();
-    }
-
-    /**
-     * Set the appAlias property: Alias of StartMenuItem.
-     * 
-     * @param appAlias the appAlias value to set.
-     * @return the StartMenuItemInner object itself.
-     */
-    public StartMenuItemInner withAppAlias(String appAlias) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StartMenuItemProperties();
-        }
-        this.innerProperties().withAppAlias(appAlias);
-        return this;
-    }
-
-    /**
-     * Get the filePath property: Path to the file of StartMenuItem.
-     * 
-     * @return the filePath value.
-     */
-    public String filePath() {
-        return this.innerProperties() == null ? null : this.innerProperties().filePath();
-    }
-
-    /**
-     * Set the filePath property: Path to the file of StartMenuItem.
-     * 
-     * @param filePath the filePath value to set.
-     * @return the StartMenuItemInner object itself.
-     */
-    public StartMenuItemInner withFilePath(String filePath) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StartMenuItemProperties();
-        }
-        this.innerProperties().withFilePath(filePath);
-        return this;
-    }
-
-    /**
-     * Get the commandLineArguments property: Command line arguments for StartMenuItem.
-     * 
-     * @return the commandLineArguments value.
-     */
-    public String commandLineArguments() {
-        return this.innerProperties() == null ? null : this.innerProperties().commandLineArguments();
-    }
-
-    /**
-     * Set the commandLineArguments property: Command line arguments for StartMenuItem.
-     * 
-     * @param commandLineArguments the commandLineArguments value to set.
-     * @return the StartMenuItemInner object itself.
-     */
-    public StartMenuItemInner withCommandLineArguments(String commandLineArguments) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StartMenuItemProperties();
-        }
-        this.innerProperties().withCommandLineArguments(commandLineArguments);
-        return this;
-    }
-
-    /**
-     * Get the iconPath property: Path to the icon.
-     * 
-     * @return the iconPath value.
-     */
-    public String iconPath() {
-        return this.innerProperties() == null ? null : this.innerProperties().iconPath();
-    }
-
-    /**
-     * Set the iconPath property: Path to the icon.
-     * 
-     * @param iconPath the iconPath value to set.
-     * @return the StartMenuItemInner object itself.
-     */
-    public StartMenuItemInner withIconPath(String iconPath) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StartMenuItemProperties();
-        }
-        this.innerProperties().withIconPath(iconPath);
-        return this;
-    }
-
-    /**
-     * Get the iconIndex property: Index of the icon.
-     * 
-     * @return the iconIndex value.
-     */
-    public Integer iconIndex() {
-        return this.innerProperties() == null ? null : this.innerProperties().iconIndex();
-    }
-
-    /**
-     * Set the iconIndex property: Index of the icon.
-     * 
-     * @param iconIndex the iconIndex value to set.
-     * @return the StartMenuItemInner object itself.
-     */
-    public StartMenuItemInner withIconIndex(Integer iconIndex) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StartMenuItemProperties();
-        }
-        this.innerProperties().withIconIndex(iconIndex);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
     }
 
@@ -228,7 +125,7 @@ public final class StartMenuItemInner extends ProxyResource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
 
@@ -255,7 +152,7 @@ public final class StartMenuItemInner extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedStartMenuItemInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedStartMenuItemInner.innerProperties = StartMenuItemProperties.fromJson(reader);
+                    deserializedStartMenuItemInner.properties = StartMenuItemProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedStartMenuItemInner.systemData = SystemData.fromJson(reader);
                 } else {

@@ -28,15 +28,16 @@ public final class UserSessionsImpl implements UserSessions {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<UserSession> listByHostPool(String resourceGroupName, String hostPoolName) {
-        PagedIterable<UserSessionInner> inner = this.serviceClient().listByHostPool(resourceGroupName, hostPoolName);
+    public PagedIterable<UserSession> list(String resourceGroupName, String hostPoolName, String sessionHostname) {
+        PagedIterable<UserSessionInner> inner
+            = this.serviceClient().list(resourceGroupName, hostPoolName, sessionHostname);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new UserSessionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<UserSession> listByHostPool(String resourceGroupName, String hostPoolName, String filter,
+    public PagedIterable<UserSession> list(String resourceGroupName, String hostPoolName, String sessionHostname,
         Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
         PagedIterable<UserSessionInner> inner = this.serviceClient()
-            .listByHostPool(resourceGroupName, hostPoolName, filter, pageSize, isDescending, initialSkip, context);
+            .list(resourceGroupName, hostPoolName, sessionHostname, pageSize, isDescending, initialSkip, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new UserSessionImpl(inner1, this.manager()));
     }
 
@@ -73,19 +74,6 @@ public final class UserSessionsImpl implements UserSessions {
         this.serviceClient().delete(resourceGroupName, hostPoolName, sessionHostname, userSessionId);
     }
 
-    public PagedIterable<UserSession> list(String resourceGroupName, String hostPoolName, String sessionHostname) {
-        PagedIterable<UserSessionInner> inner
-            = this.serviceClient().list(resourceGroupName, hostPoolName, sessionHostname);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new UserSessionImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<UserSession> list(String resourceGroupName, String hostPoolName, String sessionHostname,
-        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
-        PagedIterable<UserSessionInner> inner = this.serviceClient()
-            .list(resourceGroupName, hostPoolName, sessionHostname, pageSize, isDescending, initialSkip, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new UserSessionImpl(inner1, this.manager()));
-    }
-
     public Response<Void> disconnectWithResponse(String resourceGroupName, String hostPoolName, String sessionHostname,
         String userSessionId, Context context) {
         return this.serviceClient()
@@ -107,6 +95,18 @@ public final class UserSessionsImpl implements UserSessions {
     public void sendMessage(String resourceGroupName, String hostPoolName, String sessionHostname,
         String userSessionId) {
         this.serviceClient().sendMessage(resourceGroupName, hostPoolName, sessionHostname, userSessionId);
+    }
+
+    public PagedIterable<UserSession> listByHostPool(String resourceGroupName, String hostPoolName) {
+        PagedIterable<UserSessionInner> inner = this.serviceClient().listByHostPool(resourceGroupName, hostPoolName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new UserSessionImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<UserSession> listByHostPool(String resourceGroupName, String hostPoolName, String filter,
+        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
+        PagedIterable<UserSessionInner> inner = this.serviceClient()
+            .listByHostPool(resourceGroupName, hostPoolName, filter, pageSize, isDescending, initialSkip, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new UserSessionImpl(inner1, this.manager()));
     }
 
     private UserSessionsClient serviceClient() {

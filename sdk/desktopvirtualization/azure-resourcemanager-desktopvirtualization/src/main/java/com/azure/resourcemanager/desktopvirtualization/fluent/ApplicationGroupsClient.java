@@ -19,6 +19,110 @@ import reactor.core.publisher.Mono;
  */
 public interface ApplicationGroupsClient {
     /**
+     * List applicationGroups in subscription.
+     * 
+     * @param filter OData filter expression. Valid properties for filtering are applicationGroupType.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ApplicationGroup definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedFlux<ApplicationGroupInner> listAsync(String filter);
+
+    /**
+     * List applicationGroups in subscription.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ApplicationGroup definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedFlux<ApplicationGroupInner> listAsync();
+
+    /**
+     * List applicationGroups in subscription.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ApplicationGroup definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ApplicationGroupInner> list();
+
+    /**
+     * List applicationGroups in subscription.
+     * 
+     * @param filter OData filter expression. Valid properties for filtering are applicationGroupType.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ApplicationGroup definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ApplicationGroupInner> list(String filter, Context context);
+
+    /**
+     * List applicationGroups.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param filter OData filter expression. Valid properties for filtering are applicationGroupType.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ApplicationGroup definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedFlux<ApplicationGroupInner> listByResourceGroupAsync(String resourceGroupName, String filter, Integer pageSize,
+        Boolean isDescending, Integer initialSkip);
+
+    /**
+     * List applicationGroups.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ApplicationGroup definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedFlux<ApplicationGroupInner> listByResourceGroupAsync(String resourceGroupName);
+
+    /**
+     * List applicationGroups.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ApplicationGroup definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ApplicationGroupInner> listByResourceGroup(String resourceGroupName);
+
+    /**
+     * List applicationGroups.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param filter OData filter expression. Valid properties for filtering are applicationGroupType.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of ApplicationGroup definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ApplicationGroupInner> listByResourceGroup(String resourceGroupName, String filter, Integer pageSize,
+        Boolean isDescending, Integer initialSkip, Context context);
+
+    /**
      * Get an application group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -136,6 +240,64 @@ public interface ApplicationGroupsClient {
         ApplicationGroupInner applicationGroup);
 
     /**
+     * Update an applicationGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param applicationGroupName The name of the application group.
+     * @param applicationGroup The AppGroup properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a ApplicationGroup definition along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<Response<ApplicationGroupInner>> updateWithResponseAsync(String resourceGroupName, String applicationGroupName,
+        ApplicationGroupPatch applicationGroup);
+
+    /**
+     * Update an applicationGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param applicationGroupName The name of the application group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a ApplicationGroup definition on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<ApplicationGroupInner> updateAsync(String resourceGroupName, String applicationGroupName);
+
+    /**
+     * Update an applicationGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param applicationGroupName The name of the application group.
+     * @param applicationGroup The AppGroup properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a ApplicationGroup definition along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ApplicationGroupInner> updateWithResponse(String resourceGroupName, String applicationGroupName,
+        ApplicationGroupPatch applicationGroup, Context context);
+
+    /**
+     * Update an applicationGroup.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param applicationGroupName The name of the application group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a ApplicationGroup definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ApplicationGroupInner update(String resourceGroupName, String applicationGroupName);
+
+    /**
      * Remove an applicationGroup.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -186,166 +348,4 @@ public interface ApplicationGroupsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String applicationGroupName);
-
-    /**
-     * Update an applicationGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @param applicationGroup Object containing ApplicationGroup definitions.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a ApplicationGroup definition along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<ApplicationGroupInner>> updateWithResponseAsync(String resourceGroupName, String applicationGroupName,
-        ApplicationGroupPatch applicationGroup);
-
-    /**
-     * Update an applicationGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a ApplicationGroup definition on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<ApplicationGroupInner> updateAsync(String resourceGroupName, String applicationGroupName);
-
-    /**
-     * Update an applicationGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @param applicationGroup Object containing ApplicationGroup definitions.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a ApplicationGroup definition along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ApplicationGroupInner> updateWithResponse(String resourceGroupName, String applicationGroupName,
-        ApplicationGroupPatch applicationGroup, Context context);
-
-    /**
-     * Update an applicationGroup.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a ApplicationGroup definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ApplicationGroupInner update(String resourceGroupName, String applicationGroupName);
-
-    /**
-     * List applicationGroups.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are applicationGroupType.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return applicationGroupList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<ApplicationGroupInner> listByResourceGroupAsync(String resourceGroupName, String filter, Integer pageSize,
-        Boolean isDescending, Integer initialSkip);
-
-    /**
-     * List applicationGroups.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return applicationGroupList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<ApplicationGroupInner> listByResourceGroupAsync(String resourceGroupName);
-
-    /**
-     * List applicationGroups.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return applicationGroupList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ApplicationGroupInner> listByResourceGroup(String resourceGroupName);
-
-    /**
-     * List applicationGroups.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are applicationGroupType.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return applicationGroupList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ApplicationGroupInner> listByResourceGroup(String resourceGroupName, String filter, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context);
-
-    /**
-     * List applicationGroups in subscription.
-     * 
-     * @param filter OData filter expression. Valid properties for filtering are applicationGroupType.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return applicationGroupList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<ApplicationGroupInner> listAsync(String filter);
-
-    /**
-     * List applicationGroups in subscription.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return applicationGroupList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<ApplicationGroupInner> listAsync();
-
-    /**
-     * List applicationGroups in subscription.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return applicationGroupList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ApplicationGroupInner> list();
-
-    /**
-     * List applicationGroups in subscription.
-     * 
-     * @param filter OData filter expression. Valid properties for filtering are applicationGroupType.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return applicationGroupList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ApplicationGroupInner> list(String filter, Context context);
 }

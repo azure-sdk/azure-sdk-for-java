@@ -27,6 +27,28 @@ public final class ApplicationGroupsImpl implements ApplicationGroups {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<ApplicationGroup> list() {
+        PagedIterable<ApplicationGroupInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ApplicationGroup> list(String filter, Context context) {
+        PagedIterable<ApplicationGroupInner> inner = this.serviceClient().list(filter, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ApplicationGroup> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<ApplicationGroupInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ApplicationGroup> listByResourceGroup(String resourceGroupName, String filter,
+        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
+        PagedIterable<ApplicationGroupInner> inner = this.serviceClient()
+            .listByResourceGroup(resourceGroupName, filter, pageSize, isDescending, initialSkip, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
+    }
+
     public Response<ApplicationGroup> getByResourceGroupWithResponse(String resourceGroupName,
         String applicationGroupName, Context context) {
         Response<ApplicationGroupInner> inner
@@ -55,28 +77,6 @@ public final class ApplicationGroupsImpl implements ApplicationGroups {
 
     public void deleteByResourceGroup(String resourceGroupName, String applicationGroupName) {
         this.serviceClient().delete(resourceGroupName, applicationGroupName);
-    }
-
-    public PagedIterable<ApplicationGroup> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<ApplicationGroupInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<ApplicationGroup> listByResourceGroup(String resourceGroupName, String filter,
-        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
-        PagedIterable<ApplicationGroupInner> inner = this.serviceClient()
-            .listByResourceGroup(resourceGroupName, filter, pageSize, isDescending, initialSkip, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<ApplicationGroup> list() {
-        PagedIterable<ApplicationGroupInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<ApplicationGroup> list(String filter, Context context) {
-        PagedIterable<ApplicationGroupInner> inner = this.serviceClient().list(filter, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ApplicationGroupImpl(inner1, this.manager()));
     }
 
     public ApplicationGroup getById(String id) {

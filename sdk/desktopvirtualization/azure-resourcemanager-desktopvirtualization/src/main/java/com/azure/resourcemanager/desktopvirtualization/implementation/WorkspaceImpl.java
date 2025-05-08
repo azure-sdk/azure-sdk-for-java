@@ -8,13 +8,14 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.WorkspaceInner;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.desktopvirtualization.models.Plan;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAccess;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
+import com.azure.resourcemanager.desktopvirtualization.models.Sku;
 import com.azure.resourcemanager.desktopvirtualization.models.Workspace;
 import com.azure.resourcemanager.desktopvirtualization.models.WorkspacePatch;
+import com.azure.resourcemanager.desktopvirtualization.models.WorkspacePatchProperties;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -49,28 +50,28 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         }
     }
 
-    public String managedBy() {
-        return this.innerModel().managedBy();
-    }
-
-    public String kind() {
-        return this.innerModel().kind();
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
     }
 
     public String etag() {
         return this.innerModel().etag();
     }
 
-    public ResourceModelWithAllowedPropertySetIdentity identity() {
-        return this.innerModel().identity();
+    public String kind() {
+        return this.innerModel().kind();
     }
 
-    public ResourceModelWithAllowedPropertySetSku sku() {
-        return this.innerModel().sku();
+    public String managedBy() {
+        return this.innerModel().managedBy();
     }
 
-    public ResourceModelWithAllowedPropertySetPlan plan() {
+    public Plan plan() {
         return this.innerModel().plan();
+    }
+
+    public Sku sku() {
+        return this.innerModel().sku();
     }
 
     public SystemData systemData() {
@@ -234,8 +235,8 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         }
     }
 
-    public WorkspaceImpl withManagedBy(String managedBy) {
-        this.innerModel().withManagedBy(managedBy);
+    public WorkspaceImpl withIdentity(ManagedServiceIdentity identity) {
+        this.innerModel().withIdentity(identity);
         return this;
     }
 
@@ -244,59 +245,44 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return this;
     }
 
-    public WorkspaceImpl withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
-        this.innerModel().withIdentity(identity);
+    public WorkspaceImpl withManagedBy(String managedBy) {
+        this.innerModel().withManagedBy(managedBy);
         return this;
     }
 
-    public WorkspaceImpl withSku(ResourceModelWithAllowedPropertySetSku sku) {
-        this.innerModel().withSku(sku);
-        return this;
-    }
-
-    public WorkspaceImpl withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
+    public WorkspaceImpl withPlan(Plan plan) {
         this.innerModel().withPlan(plan);
         return this;
     }
 
+    public WorkspaceImpl withSku(Sku sku) {
+        this.innerModel().withSku(sku);
+        return this;
+    }
+
     public WorkspaceImpl withDescription(String description) {
-        if (isInCreateMode()) {
-            this.innerModel().withDescription(description);
-            return this;
-        } else {
-            this.updateWorkspace.withDescription(description);
-            return this;
-        }
+        this.innerModel().withDescription(description);
+        return this;
     }
 
     public WorkspaceImpl withFriendlyName(String friendlyName) {
-        if (isInCreateMode()) {
-            this.innerModel().withFriendlyName(friendlyName);
-            return this;
-        } else {
-            this.updateWorkspace.withFriendlyName(friendlyName);
-            return this;
-        }
+        this.innerModel().withFriendlyName(friendlyName);
+        return this;
     }
 
     public WorkspaceImpl withApplicationGroupReferences(List<String> applicationGroupReferences) {
-        if (isInCreateMode()) {
-            this.innerModel().withApplicationGroupReferences(applicationGroupReferences);
-            return this;
-        } else {
-            this.updateWorkspace.withApplicationGroupReferences(applicationGroupReferences);
-            return this;
-        }
+        this.innerModel().withApplicationGroupReferences(applicationGroupReferences);
+        return this;
     }
 
     public WorkspaceImpl withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
-        if (isInCreateMode()) {
-            this.innerModel().withPublicNetworkAccess(publicNetworkAccess);
-            return this;
-        } else {
-            this.updateWorkspace.withPublicNetworkAccess(publicNetworkAccess);
-            return this;
-        }
+        this.innerModel().withPublicNetworkAccess(publicNetworkAccess);
+        return this;
+    }
+
+    public WorkspaceImpl withProperties(WorkspacePatchProperties properties) {
+        this.updateWorkspace.withProperties(properties);
+        return this;
     }
 
     private boolean isInCreateMode() {

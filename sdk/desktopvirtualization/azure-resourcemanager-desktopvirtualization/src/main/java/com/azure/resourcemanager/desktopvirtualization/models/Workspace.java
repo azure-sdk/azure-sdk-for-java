@@ -51,6 +51,32 @@ public interface Workspace {
     Map<String, String> tags();
 
     /**
+     * Gets the identity property: The managed service identities assigned to this resource.
+     * 
+     * @return the identity value.
+     */
+    ManagedServiceIdentity identity();
+
+    /**
+     * Gets the etag property: If etag is provided in the response body, it may also be provided as a header per the
+     * normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource.
+     * HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26),
+     * and If-Range (section 14.27) header fields.
+     * 
+     * @return the etag value.
+     */
+    String etag();
+
+    /**
+     * Gets the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
+     * the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
+     * validate and persist this value.
+     * 
+     * @return the kind value.
+     */
+    String kind();
+
+    /**
      * Gets the managedBy property: The fully qualified resource ID of the resource that manages this resource.
      * Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment
      * will not delete the resource if it is removed from the template since it is managed by another resource.
@@ -60,44 +86,18 @@ public interface Workspace {
     String managedBy();
 
     /**
-     * Gets the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
-     * the same type. E.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
-     * validate and persist this value.
-     * 
-     * @return the kind value.
-     */
-    String kind();
-
-    /**
-     * Gets the etag property: The etag field is *not* required. If it is provided in the response body, it must also be
-     * provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from
-     * the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24),
-     * If-None-Match (section 14.26), and If-Range (section 14.27) header fields.
-     * 
-     * @return the etag value.
-     */
-    String etag();
-
-    /**
-     * Gets the identity property: The identity property.
-     * 
-     * @return the identity value.
-     */
-    ResourceModelWithAllowedPropertySetIdentity identity();
-
-    /**
-     * Gets the sku property: The sku property.
-     * 
-     * @return the sku value.
-     */
-    ResourceModelWithAllowedPropertySetSku sku();
-
-    /**
-     * Gets the plan property: The plan property.
+     * Gets the plan property: Details of the resource plan.
      * 
      * @return the plan value.
      */
-    ResourceModelWithAllowedPropertySetPlan plan();
+    Plan plan();
+
+    /**
+     * Gets the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
+     * 
+     * @return the sku value.
+     */
+    Sku sku();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -240,9 +240,9 @@ public interface Workspace {
          * The stage of the Workspace definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithManagedBy,
-            DefinitionStages.WithKind, DefinitionStages.WithIdentity, DefinitionStages.WithSku,
-            DefinitionStages.WithPlan, DefinitionStages.WithDescription, DefinitionStages.WithFriendlyName,
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
+            DefinitionStages.WithKind, DefinitionStages.WithManagedBy, DefinitionStages.WithPlan,
+            DefinitionStages.WithSku, DefinitionStages.WithDescription, DefinitionStages.WithFriendlyName,
             DefinitionStages.WithApplicationGroupReferences, DefinitionStages.WithPublicNetworkAccess {
             /**
              * Executes the create request.
@@ -274,6 +274,36 @@ public interface Workspace {
         }
 
         /**
+         * The stage of the Workspace definition allowing to specify identity.
+         */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The managed service identities assigned to this resource..
+             * 
+             * @param identity The managed service identities assigned to this resource.
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(ManagedServiceIdentity identity);
+        }
+
+        /**
+         * The stage of the Workspace definition allowing to specify kind.
+         */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Metadata used by portal/tooling/etc to render different UX experiences for
+             * resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the
+             * resource provider must validate and persist this value..
+             * 
+             * @param kind Metadata used by portal/tooling/etc to render different UX experiences for resources of the
+             * same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
+             * validate and persist this value.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(String kind);
+        }
+
+        /**
          * The stage of the Workspace definition allowing to specify managedBy.
          */
         interface WithManagedBy {
@@ -292,33 +322,16 @@ public interface Workspace {
         }
 
         /**
-         * The stage of the Workspace definition allowing to specify kind.
+         * The stage of the Workspace definition allowing to specify plan.
          */
-        interface WithKind {
+        interface WithPlan {
             /**
-             * Specifies the kind property: Metadata used by portal/tooling/etc to render different UX experiences for
-             * resources of the same type. E.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the
-             * resource provider must validate and persist this value..
+             * Specifies the plan property: Details of the resource plan..
              * 
-             * @param kind Metadata used by portal/tooling/etc to render different UX experiences for resources of the
-             * same type. E.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
-             * validate and persist this value.
+             * @param plan Details of the resource plan.
              * @return the next definition stage.
              */
-            WithCreate withKind(String kind);
-        }
-
-        /**
-         * The stage of the Workspace definition allowing to specify identity.
-         */
-        interface WithIdentity {
-            /**
-             * Specifies the identity property: The identity property..
-             * 
-             * @param identity The identity property.
-             * @return the next definition stage.
-             */
-            WithCreate withIdentity(ResourceModelWithAllowedPropertySetIdentity identity);
+            WithCreate withPlan(Plan plan);
         }
 
         /**
@@ -326,25 +339,12 @@ public interface Workspace {
          */
         interface WithSku {
             /**
-             * Specifies the sku property: The sku property..
+             * Specifies the sku property: The SKU (Stock Keeping Unit) assigned to this resource..
              * 
-             * @param sku The sku property.
+             * @param sku The SKU (Stock Keeping Unit) assigned to this resource.
              * @return the next definition stage.
              */
-            WithCreate withSku(ResourceModelWithAllowedPropertySetSku sku);
-        }
-
-        /**
-         * The stage of the Workspace definition allowing to specify plan.
-         */
-        interface WithPlan {
-            /**
-             * Specifies the plan property: The plan property..
-             * 
-             * @param plan The plan property.
-             * @return the next definition stage.
-             */
-            WithCreate withPlan(ResourceModelWithAllowedPropertySetPlan plan);
+            WithCreate withSku(Sku sku);
         }
 
         /**
@@ -412,8 +412,7 @@ public interface Workspace {
     /**
      * The template for Workspace update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithDescription, UpdateStages.WithFriendlyName,
-        UpdateStages.WithApplicationGroupReferences, UpdateStages.WithPublicNetworkAccess {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -448,56 +447,16 @@ public interface Workspace {
         }
 
         /**
-         * The stage of the Workspace update allowing to specify description.
+         * The stage of the Workspace update allowing to specify properties.
          */
-        interface WithDescription {
+        interface WithProperties {
             /**
-             * Specifies the description property: Description of Workspace..
+             * Specifies the properties property: Detailed properties for Workspace.
              * 
-             * @param description Description of Workspace.
+             * @param properties Detailed properties for Workspace.
              * @return the next definition stage.
              */
-            Update withDescription(String description);
-        }
-
-        /**
-         * The stage of the Workspace update allowing to specify friendlyName.
-         */
-        interface WithFriendlyName {
-            /**
-             * Specifies the friendlyName property: Friendly name of Workspace..
-             * 
-             * @param friendlyName Friendly name of Workspace.
-             * @return the next definition stage.
-             */
-            Update withFriendlyName(String friendlyName);
-        }
-
-        /**
-         * The stage of the Workspace update allowing to specify applicationGroupReferences.
-         */
-        interface WithApplicationGroupReferences {
-            /**
-             * Specifies the applicationGroupReferences property: List of applicationGroup links..
-             * 
-             * @param applicationGroupReferences List of applicationGroup links.
-             * @return the next definition stage.
-             */
-            Update withApplicationGroupReferences(List<String> applicationGroupReferences);
-        }
-
-        /**
-         * The stage of the Workspace update allowing to specify publicNetworkAccess.
-         */
-        interface WithPublicNetworkAccess {
-            /**
-             * Specifies the publicNetworkAccess property: Enabled to allow this resource to be access from the public
-             * network.
-             * 
-             * @param publicNetworkAccess Enabled to allow this resource to be access from the public network.
-             * @return the next definition stage.
-             */
-            Update withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
+            Update withProperties(WorkspacePatchProperties properties);
         }
     }
 

@@ -13,6 +13,35 @@ import com.azure.core.util.Context;
  */
 public interface MsixPackages {
     /**
+     * List MSIX packages in hostpool.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of MSIX Package definitions as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<MsixPackage> list(String resourceGroupName, String hostPoolName);
+
+    /**
+     * List MSIX packages in hostpool.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of MSIX Package definitions as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<MsixPackage> list(String resourceGroupName, String hostPoolName, Integer pageSize,
+        Boolean isDescending, Integer initialSkip, Context context);
+
+    /**
      * Get a msixpackage.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -66,35 +95,6 @@ public interface MsixPackages {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void delete(String resourceGroupName, String hostPoolName, String msixPackageFullName);
-
-    /**
-     * List MSIX packages in hostpool.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return msixPackageList as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<MsixPackage> list(String resourceGroupName, String hostPoolName);
-
-    /**
-     * List MSIX packages in hostpool.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return msixPackageList as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<MsixPackage> list(String resourceGroupName, String hostPoolName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context);
 
     /**
      * Get a msixpackage.

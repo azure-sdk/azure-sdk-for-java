@@ -11,9 +11,8 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.PrivateEndpointConnectionWithSystemDataInner;
-import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
-import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnectionWithSystemData;
+import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnections;
 
 public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConnections {
     private static final ClientLogger LOGGER = new ClientLogger(PrivateEndpointConnectionsImpl.class);
@@ -26,81 +25,6 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public PagedIterable<PrivateEndpointConnectionWithSystemData> listByWorkspace(String resourceGroupName,
-        String workspaceName) {
-        PagedIterable<PrivateEndpointConnectionWithSystemDataInner> inner
-            = this.serviceClient().listByWorkspace(resourceGroupName, workspaceName);
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new PrivateEndpointConnectionWithSystemDataImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<PrivateEndpointConnectionWithSystemData> listByWorkspace(String resourceGroupName,
-        String workspaceName, Context context) {
-        PagedIterable<PrivateEndpointConnectionWithSystemDataInner> inner
-            = this.serviceClient().listByWorkspace(resourceGroupName, workspaceName, context);
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new PrivateEndpointConnectionWithSystemDataImpl(inner1, this.manager()));
-    }
-
-    public Response<PrivateEndpointConnectionWithSystemData> getByWorkspaceWithResponse(String resourceGroupName,
-        String workspaceName, String privateEndpointConnectionName, Context context) {
-        Response<PrivateEndpointConnectionWithSystemDataInner> inner = this.serviceClient()
-            .getByWorkspaceWithResponse(resourceGroupName, workspaceName, privateEndpointConnectionName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new PrivateEndpointConnectionWithSystemDataImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public PrivateEndpointConnectionWithSystemData getByWorkspace(String resourceGroupName, String workspaceName,
-        String privateEndpointConnectionName) {
-        PrivateEndpointConnectionWithSystemDataInner inner
-            = this.serviceClient().getByWorkspace(resourceGroupName, workspaceName, privateEndpointConnectionName);
-        if (inner != null) {
-            return new PrivateEndpointConnectionWithSystemDataImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<Void> deleteByWorkspaceWithResponse(String resourceGroupName, String workspaceName,
-        String privateEndpointConnectionName, Context context) {
-        return this.serviceClient()
-            .deleteByWorkspaceWithResponse(resourceGroupName, workspaceName, privateEndpointConnectionName, context);
-    }
-
-    public void deleteByWorkspace(String resourceGroupName, String workspaceName,
-        String privateEndpointConnectionName) {
-        this.serviceClient().deleteByWorkspace(resourceGroupName, workspaceName, privateEndpointConnectionName);
-    }
-
-    public Response<PrivateEndpointConnectionWithSystemData> updateByWorkspaceWithResponse(String resourceGroupName,
-        String workspaceName, String privateEndpointConnectionName, PrivateEndpointConnection connection,
-        Context context) {
-        Response<PrivateEndpointConnectionWithSystemDataInner> inner = this.serviceClient()
-            .updateByWorkspaceWithResponse(resourceGroupName, workspaceName, privateEndpointConnectionName, connection,
-                context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new PrivateEndpointConnectionWithSystemDataImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public PrivateEndpointConnectionWithSystemData updateByWorkspace(String resourceGroupName, String workspaceName,
-        String privateEndpointConnectionName, PrivateEndpointConnection connection) {
-        PrivateEndpointConnectionWithSystemDataInner inner = this.serviceClient()
-            .updateByWorkspace(resourceGroupName, workspaceName, privateEndpointConnectionName, connection);
-        if (inner != null) {
-            return new PrivateEndpointConnectionWithSystemDataImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public PagedIterable<PrivateEndpointConnectionWithSystemData> listByHostPool(String resourceGroupName,
@@ -142,19 +66,9 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
         }
     }
 
-    public Response<Void> deleteByHostPoolWithResponse(String resourceGroupName, String hostPoolName,
-        String privateEndpointConnectionName, Context context) {
-        return this.serviceClient()
-            .deleteByHostPoolWithResponse(resourceGroupName, hostPoolName, privateEndpointConnectionName, context);
-    }
-
-    public void deleteByHostPool(String resourceGroupName, String hostPoolName, String privateEndpointConnectionName) {
-        this.serviceClient().deleteByHostPool(resourceGroupName, hostPoolName, privateEndpointConnectionName);
-    }
-
     public Response<PrivateEndpointConnectionWithSystemData> updateByHostPoolWithResponse(String resourceGroupName,
-        String hostPoolName, String privateEndpointConnectionName, PrivateEndpointConnection connection,
-        Context context) {
+        String hostPoolName, String privateEndpointConnectionName,
+        PrivateEndpointConnectionWithSystemDataInner connection, Context context) {
         Response<PrivateEndpointConnectionWithSystemDataInner> inner = this.serviceClient()
             .updateByHostPoolWithResponse(resourceGroupName, hostPoolName, privateEndpointConnectionName, connection,
                 context);
@@ -167,7 +81,7 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
     }
 
     public PrivateEndpointConnectionWithSystemData updateByHostPool(String resourceGroupName, String hostPoolName,
-        String privateEndpointConnectionName, PrivateEndpointConnection connection) {
+        String privateEndpointConnectionName, PrivateEndpointConnectionWithSystemDataInner connection) {
         PrivateEndpointConnectionWithSystemDataInner inner = this.serviceClient()
             .updateByHostPool(resourceGroupName, hostPoolName, privateEndpointConnectionName, connection);
         if (inner != null) {
@@ -175,6 +89,91 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
         } else {
             return null;
         }
+    }
+
+    public Response<Void> deleteByHostPoolWithResponse(String resourceGroupName, String hostPoolName,
+        String privateEndpointConnectionName, Context context) {
+        return this.serviceClient()
+            .deleteByHostPoolWithResponse(resourceGroupName, hostPoolName, privateEndpointConnectionName, context);
+    }
+
+    public void deleteByHostPool(String resourceGroupName, String hostPoolName, String privateEndpointConnectionName) {
+        this.serviceClient().deleteByHostPool(resourceGroupName, hostPoolName, privateEndpointConnectionName);
+    }
+
+    public PagedIterable<PrivateEndpointConnectionWithSystemData> listByWorkspace(String resourceGroupName,
+        String workspaceName) {
+        PagedIterable<PrivateEndpointConnectionWithSystemDataInner> inner
+            = this.serviceClient().listByWorkspace(resourceGroupName, workspaceName);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new PrivateEndpointConnectionWithSystemDataImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<PrivateEndpointConnectionWithSystemData> listByWorkspace(String resourceGroupName,
+        String workspaceName, Context context) {
+        PagedIterable<PrivateEndpointConnectionWithSystemDataInner> inner
+            = this.serviceClient().listByWorkspace(resourceGroupName, workspaceName, context);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new PrivateEndpointConnectionWithSystemDataImpl(inner1, this.manager()));
+    }
+
+    public Response<PrivateEndpointConnectionWithSystemData> getByWorkspaceWithResponse(String resourceGroupName,
+        String workspaceName, String privateEndpointConnectionName, Context context) {
+        Response<PrivateEndpointConnectionWithSystemDataInner> inner = this.serviceClient()
+            .getByWorkspaceWithResponse(resourceGroupName, workspaceName, privateEndpointConnectionName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new PrivateEndpointConnectionWithSystemDataImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PrivateEndpointConnectionWithSystemData getByWorkspace(String resourceGroupName, String workspaceName,
+        String privateEndpointConnectionName) {
+        PrivateEndpointConnectionWithSystemDataInner inner
+            = this.serviceClient().getByWorkspace(resourceGroupName, workspaceName, privateEndpointConnectionName);
+        if (inner != null) {
+            return new PrivateEndpointConnectionWithSystemDataImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<PrivateEndpointConnectionWithSystemData> updateByWorkspaceWithResponse(String resourceGroupName,
+        String workspaceName, String privateEndpointConnectionName,
+        PrivateEndpointConnectionWithSystemDataInner connection, Context context) {
+        Response<PrivateEndpointConnectionWithSystemDataInner> inner = this.serviceClient()
+            .updateByWorkspaceWithResponse(resourceGroupName, workspaceName, privateEndpointConnectionName, connection,
+                context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new PrivateEndpointConnectionWithSystemDataImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PrivateEndpointConnectionWithSystemData updateByWorkspace(String resourceGroupName, String workspaceName,
+        String privateEndpointConnectionName, PrivateEndpointConnectionWithSystemDataInner connection) {
+        PrivateEndpointConnectionWithSystemDataInner inner = this.serviceClient()
+            .updateByWorkspace(resourceGroupName, workspaceName, privateEndpointConnectionName, connection);
+        if (inner != null) {
+            return new PrivateEndpointConnectionWithSystemDataImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<Void> deleteByWorkspaceWithResponse(String resourceGroupName, String workspaceName,
+        String privateEndpointConnectionName, Context context) {
+        return this.serviceClient()
+            .deleteByWorkspaceWithResponse(resourceGroupName, workspaceName, privateEndpointConnectionName, context);
+    }
+
+    public void deleteByWorkspace(String resourceGroupName, String workspaceName,
+        String privateEndpointConnectionName) {
+        this.serviceClient().deleteByWorkspace(resourceGroupName, workspaceName, privateEndpointConnectionName);
     }
 
     private PrivateEndpointConnectionsClient serviceClient() {

@@ -27,7 +27,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.desktopvirtualization.fluent.OperationsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.ResourceProviderOperationInner;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceProviderOperationList;
+import com.azure.resourcemanager.desktopvirtualization.models.ResourceProviderOperationListResult;
 import reactor.core.publisher.Mono;
 
 /**
@@ -66,25 +66,25 @@ public final class OperationsClientImpl implements OperationsClient {
         @Get("/providers/Microsoft.DesktopVirtualization/operations")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ResourceProviderOperationList>> list(@HostParam("$host") String endpoint,
+        Mono<Response<ResourceProviderOperationListResult>> list(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ResourceProviderOperationList>> listNext(
+        Mono<Response<ResourceProviderOperationListResult>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * List all of the available operations the Desktop Virtualization resource provider supports.
+     * List the operations for the provider.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list operations along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a list of REST API operations supported by an Azure Resource Provider along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceProviderOperationInner>> listSinglePageAsync() {
@@ -102,14 +102,14 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all of the available operations the Desktop Virtualization resource provider supports.
+     * List the operations for the provider.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list operations along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a list of REST API operations supported by an Azure Resource Provider along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceProviderOperationInner>> listSinglePageAsync(Context context) {
@@ -125,11 +125,12 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all of the available operations the Desktop Virtualization resource provider supports.
+     * List the operations for the provider.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list operations as paginated response with {@link PagedFlux}.
+     * @return a list of REST API operations supported by an Azure Resource Provider as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<ResourceProviderOperationInner> listAsync() {
@@ -137,13 +138,14 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all of the available operations the Desktop Virtualization resource provider supports.
+     * List the operations for the provider.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list operations as paginated response with {@link PagedFlux}.
+     * @return a list of REST API operations supported by an Azure Resource Provider as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ResourceProviderOperationInner> listAsync(Context context) {
@@ -152,11 +154,12 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all of the available operations the Desktop Virtualization resource provider supports.
+     * List the operations for the provider.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list operations as paginated response with {@link PagedIterable}.
+     * @return a list of REST API operations supported by an Azure Resource Provider as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ResourceProviderOperationInner> list() {
@@ -164,13 +167,14 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * List all of the available operations the Desktop Virtualization resource provider supports.
+     * List the operations for the provider.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list operations as paginated response with {@link PagedIterable}.
+     * @return a list of REST API operations supported by an Azure Resource Provider as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ResourceProviderOperationInner> list(Context context) {
@@ -184,8 +188,8 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list operations along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a list of REST API operations supported by an Azure Resource Provider along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceProviderOperationInner>> listNextSinglePageAsync(String nextLink) {
@@ -211,8 +215,8 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list operations along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a list of REST API operations supported by an Azure Resource Provider along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceProviderOperationInner>> listNextSinglePageAsync(String nextLink,

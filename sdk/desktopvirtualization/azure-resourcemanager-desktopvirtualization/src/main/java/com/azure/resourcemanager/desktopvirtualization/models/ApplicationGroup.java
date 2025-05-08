@@ -50,6 +50,32 @@ public interface ApplicationGroup {
     Map<String, String> tags();
 
     /**
+     * Gets the identity property: The managed service identities assigned to this resource.
+     * 
+     * @return the identity value.
+     */
+    ManagedServiceIdentity identity();
+
+    /**
+     * Gets the etag property: If etag is provided in the response body, it may also be provided as a header per the
+     * normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource.
+     * HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26),
+     * and If-Range (section 14.27) header fields.
+     * 
+     * @return the etag value.
+     */
+    String etag();
+
+    /**
+     * Gets the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
+     * the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
+     * validate and persist this value.
+     * 
+     * @return the kind value.
+     */
+    String kind();
+
+    /**
      * Gets the managedBy property: The fully qualified resource ID of the resource that manages this resource.
      * Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment
      * will not delete the resource if it is removed from the template since it is managed by another resource.
@@ -59,44 +85,18 @@ public interface ApplicationGroup {
     String managedBy();
 
     /**
-     * Gets the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
-     * the same type. E.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
-     * validate and persist this value.
-     * 
-     * @return the kind value.
-     */
-    String kind();
-
-    /**
-     * Gets the etag property: The etag field is *not* required. If it is provided in the response body, it must also be
-     * provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from
-     * the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24),
-     * If-None-Match (section 14.26), and If-Range (section 14.27) header fields.
-     * 
-     * @return the etag value.
-     */
-    String etag();
-
-    /**
-     * Gets the identity property: The identity property.
-     * 
-     * @return the identity value.
-     */
-    ResourceModelWithAllowedPropertySetIdentity identity();
-
-    /**
-     * Gets the sku property: The sku property.
-     * 
-     * @return the sku value.
-     */
-    ResourceModelWithAllowedPropertySetSku sku();
-
-    /**
-     * Gets the plan property: The plan property.
+     * Gets the plan property: Details of the resource plan.
      * 
      * @return the plan value.
      */
-    ResourceModelWithAllowedPropertySetPlan plan();
+    Plan plan();
+
+    /**
+     * Gets the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
+     * 
+     * @return the sku value.
+     */
+    Sku sku();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -272,8 +272,8 @@ public interface ApplicationGroup {
          * resource to be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithManagedBy, DefinitionStages.WithKind,
-            DefinitionStages.WithIdentity, DefinitionStages.WithSku, DefinitionStages.WithPlan,
+            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithKind,
+            DefinitionStages.WithManagedBy, DefinitionStages.WithPlan, DefinitionStages.WithSku,
             DefinitionStages.WithDescription, DefinitionStages.WithFriendlyName, DefinitionStages.WithShowInFeed {
             /**
              * Executes the create request.
@@ -305,6 +305,36 @@ public interface ApplicationGroup {
         }
 
         /**
+         * The stage of the ApplicationGroup definition allowing to specify identity.
+         */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The managed service identities assigned to this resource..
+             * 
+             * @param identity The managed service identities assigned to this resource.
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(ManagedServiceIdentity identity);
+        }
+
+        /**
+         * The stage of the ApplicationGroup definition allowing to specify kind.
+         */
+        interface WithKind {
+            /**
+             * Specifies the kind property: Metadata used by portal/tooling/etc to render different UX experiences for
+             * resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the
+             * resource provider must validate and persist this value..
+             * 
+             * @param kind Metadata used by portal/tooling/etc to render different UX experiences for resources of the
+             * same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
+             * validate and persist this value.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(String kind);
+        }
+
+        /**
          * The stage of the ApplicationGroup definition allowing to specify managedBy.
          */
         interface WithManagedBy {
@@ -323,33 +353,16 @@ public interface ApplicationGroup {
         }
 
         /**
-         * The stage of the ApplicationGroup definition allowing to specify kind.
+         * The stage of the ApplicationGroup definition allowing to specify plan.
          */
-        interface WithKind {
+        interface WithPlan {
             /**
-             * Specifies the kind property: Metadata used by portal/tooling/etc to render different UX experiences for
-             * resources of the same type. E.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the
-             * resource provider must validate and persist this value..
+             * Specifies the plan property: Details of the resource plan..
              * 
-             * @param kind Metadata used by portal/tooling/etc to render different UX experiences for resources of the
-             * same type. E.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
-             * validate and persist this value.
+             * @param plan Details of the resource plan.
              * @return the next definition stage.
              */
-            WithCreate withKind(String kind);
-        }
-
-        /**
-         * The stage of the ApplicationGroup definition allowing to specify identity.
-         */
-        interface WithIdentity {
-            /**
-             * Specifies the identity property: The identity property..
-             * 
-             * @param identity The identity property.
-             * @return the next definition stage.
-             */
-            WithCreate withIdentity(ResourceModelWithAllowedPropertySetIdentity identity);
+            WithCreate withPlan(Plan plan);
         }
 
         /**
@@ -357,25 +370,12 @@ public interface ApplicationGroup {
          */
         interface WithSku {
             /**
-             * Specifies the sku property: The sku property..
+             * Specifies the sku property: The SKU (Stock Keeping Unit) assigned to this resource..
              * 
-             * @param sku The sku property.
+             * @param sku The SKU (Stock Keeping Unit) assigned to this resource.
              * @return the next definition stage.
              */
-            WithCreate withSku(ResourceModelWithAllowedPropertySetSku sku);
-        }
-
-        /**
-         * The stage of the ApplicationGroup definition allowing to specify plan.
-         */
-        interface WithPlan {
-            /**
-             * Specifies the plan property: The plan property..
-             * 
-             * @param plan The plan property.
-             * @return the next definition stage.
-             */
-            WithCreate withPlan(ResourceModelWithAllowedPropertySetPlan plan);
+            WithCreate withSku(Sku sku);
         }
 
         /**
@@ -429,8 +429,7 @@ public interface ApplicationGroup {
     /**
      * The template for ApplicationGroup update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithDescription, UpdateStages.WithFriendlyName,
-        UpdateStages.WithShowInFeed {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -465,43 +464,16 @@ public interface ApplicationGroup {
         }
 
         /**
-         * The stage of the ApplicationGroup update allowing to specify description.
+         * The stage of the ApplicationGroup update allowing to specify properties.
          */
-        interface WithDescription {
+        interface WithProperties {
             /**
-             * Specifies the description property: Description of ApplicationGroup..
+             * Specifies the properties property: ApplicationGroup properties that can be patched..
              * 
-             * @param description Description of ApplicationGroup.
+             * @param properties ApplicationGroup properties that can be patched.
              * @return the next definition stage.
              */
-            Update withDescription(String description);
-        }
-
-        /**
-         * The stage of the ApplicationGroup update allowing to specify friendlyName.
-         */
-        interface WithFriendlyName {
-            /**
-             * Specifies the friendlyName property: Friendly name of ApplicationGroup..
-             * 
-             * @param friendlyName Friendly name of ApplicationGroup.
-             * @return the next definition stage.
-             */
-            Update withFriendlyName(String friendlyName);
-        }
-
-        /**
-         * The stage of the ApplicationGroup update allowing to specify showInFeed.
-         */
-        interface WithShowInFeed {
-            /**
-             * Specifies the showInFeed property: Boolean representing whether the applicationGroup is show in the
-             * feed..
-             * 
-             * @param showInFeed Boolean representing whether the applicationGroup is show in the feed.
-             * @return the next definition stage.
-             */
-            Update withShowInFeed(Boolean showInFeed);
+            Update withProperties(ApplicationGroupPatchProperties properties);
         }
     }
 

@@ -92,7 +92,8 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return startMenuItemList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of StartMenuItem definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StartMenuItemInner>> listSinglePageAsync(String resourceGroupName,
@@ -135,7 +136,8 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return startMenuItemList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of StartMenuItem definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StartMenuItemInner>> listSinglePageAsync(String resourceGroupName,
@@ -176,7 +178,7 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return startMenuItemList as paginated response with {@link PagedFlux}.
+     * @return list of StartMenuItem definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<StartMenuItemInner> listAsync(String resourceGroupName, String applicationGroupName,
@@ -194,7 +196,7 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return startMenuItemList as paginated response with {@link PagedFlux}.
+     * @return list of StartMenuItem definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<StartMenuItemInner> listAsync(String resourceGroupName, String applicationGroupName) {
@@ -218,7 +220,7 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return startMenuItemList as paginated response with {@link PagedFlux}.
+     * @return list of StartMenuItem definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<StartMenuItemInner> listAsync(String resourceGroupName, String applicationGroupName,
@@ -235,7 +237,7 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return startMenuItemList as paginated response with {@link PagedIterable}.
+     * @return list of StartMenuItem definitions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<StartMenuItemInner> list(String resourceGroupName, String applicationGroupName) {
@@ -258,7 +260,7 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return startMenuItemList as paginated response with {@link PagedIterable}.
+     * @return list of StartMenuItem definitions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<StartMenuItemInner> list(String resourceGroupName, String applicationGroupName,
@@ -274,7 +276,8 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return startMenuItemList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of StartMenuItem definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StartMenuItemInner>> listNextSinglePageAsync(String nextLink) {
@@ -300,7 +303,8 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return startMenuItemList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of StartMenuItem definitions along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StartMenuItemInner>> listNextSinglePageAsync(String nextLink, Context context) {

@@ -19,6 +19,104 @@ import reactor.core.publisher.Mono;
  */
 public interface AppAttachPackagesClient {
     /**
+     * List App Attach packages in subscription.
+     * 
+     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
+     * group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedFlux<AppAttachPackageInner> listAsync(String filter);
+
+    /**
+     * List App Attach packages in subscription.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedFlux<AppAttachPackageInner> listAsync();
+
+    /**
+     * List App Attach packages in subscription.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<AppAttachPackageInner> list();
+
+    /**
+     * List App Attach packages in subscription.
+     * 
+     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
+     * group.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<AppAttachPackageInner> list(String filter, Context context);
+
+    /**
+     * List App Attach packages in resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedFlux<AppAttachPackageInner> listByResourceGroupAsync(String resourceGroupName, String filter);
+
+    /**
+     * List App Attach packages in resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedFlux<AppAttachPackageInner> listByResourceGroupAsync(String resourceGroupName);
+
+    /**
+     * List App Attach packages in resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<AppAttachPackageInner> listByResourceGroup(String resourceGroupName);
+
+    /**
+     * List App Attach packages in resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of App Attach Package definitions as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<AppAttachPackageInner> listByResourceGroup(String resourceGroupName, String filter, Context context);
+
+    /**
      * Get an app attach package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -136,63 +234,11 @@ public interface AppAttachPackagesClient {
         AppAttachPackageInner appAttachPackage);
 
     /**
-     * Remove an App Attach Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String appAttachPackageName);
-
-    /**
-     * Remove an App Attach Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Void> deleteAsync(String resourceGroupName, String appAttachPackageName);
-
-    /**
-     * Remove an App Attach Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(String resourceGroupName, String appAttachPackageName, Context context);
-
-    /**
-     * Remove an App Attach Package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param appAttachPackageName The name of the App Attach package.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String appAttachPackageName);
-
-    /**
      * Update an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param appAttachPackageName The name of the App Attach package.
-     * @param appAttachPackagePatch Object containing App Attach Package definition.
+     * @param appAttachPackagePatch The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -221,7 +267,7 @@ public interface AppAttachPackagesClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param appAttachPackageName The name of the App Attach package.
-     * @param appAttachPackagePatch Object containing App Attach Package definition.
+     * @param appAttachPackagePatch The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -246,100 +292,57 @@ public interface AppAttachPackagesClient {
     AppAttachPackageInner update(String resourceGroupName, String appAttachPackageName);
 
     /**
-     * List App Attach packages in resource group.
+     * Remove an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @param appAttachPackageName The name of the App Attach package.
+     * @param force Allows force delete.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedFlux}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<AppAttachPackageInner> listByResourceGroupAsync(String resourceGroupName, String filter);
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String appAttachPackageName, Boolean force);
 
     /**
-     * List App Attach packages in resource group.
+     * Remove an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appAttachPackageName The name of the App Attach package.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedFlux}.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<AppAttachPackageInner> listByResourceGroupAsync(String resourceGroupName);
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<Void> deleteAsync(String resourceGroupName, String appAttachPackageName);
 
     /**
-     * List App Attach packages in resource group.
+     * Remove an App Attach Package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<AppAttachPackageInner> listByResourceGroup(String resourceGroupName);
-
-    /**
-     * List App Attach packages in resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param filter OData filter expression. Valid properties for filtering are package name and host pool.
+     * @param appAttachPackageName The name of the App Attach package.
+     * @param force Allows force delete.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedIterable}.
+     * @return the {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<AppAttachPackageInner> listByResourceGroup(String resourceGroupName, String filter, Context context);
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> deleteWithResponse(String resourceGroupName, String appAttachPackageName, Boolean force,
+        Context context);
 
     /**
-     * List App Attach packages in subscription.
+     * Remove an App Attach Package.
      * 
-     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
-     * group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param appAttachPackageName The name of the App Attach package.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedFlux}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<AppAttachPackageInner> listAsync(String filter);
-
-    /**
-     * List App Attach packages in subscription.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<AppAttachPackageInner> listAsync();
-
-    /**
-     * List App Attach packages in subscription.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<AppAttachPackageInner> list();
-
-    /**
-     * List App Attach packages in subscription.
-     * 
-     * @param filter OData filter expression. Valid properties for filtering are package name, host pool, and resource
-     * group.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<AppAttachPackageInner> list(String filter, Context context);
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String appAttachPackageName);
 }
