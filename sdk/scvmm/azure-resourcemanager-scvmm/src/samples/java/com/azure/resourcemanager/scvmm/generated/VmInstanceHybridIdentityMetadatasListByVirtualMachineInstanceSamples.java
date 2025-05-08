@@ -9,7 +9,7 @@ package com.azure.resourcemanager.scvmm.generated;
  */
 public final class VmInstanceHybridIdentityMetadatasListByVirtualMachineInstanceSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VmInstanceHybridIdentityMetadatas_ListByVirtualMachineInstance_MaximumSet_Gen.json
      */
     /**
@@ -24,7 +24,7 @@ public final class VmInstanceHybridIdentityMetadatasListByVirtualMachineInstance
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VmInstanceHybridIdentityMetadatas_ListByVirtualMachineInstance_MinimumSet_Gen.json
      */
     /**

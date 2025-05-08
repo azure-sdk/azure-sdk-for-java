@@ -11,7 +11,7 @@ import com.azure.resourcemanager.scvmm.models.InventoryItemProperties;
  */
 public final class InventoryItemsCreateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * InventoryItems_Create_MinimumSet_Gen.json
      */
     /**
@@ -27,7 +27,7 @@ public final class InventoryItemsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * InventoryItems_Create_MaximumSet_Gen.json
      */
     /**

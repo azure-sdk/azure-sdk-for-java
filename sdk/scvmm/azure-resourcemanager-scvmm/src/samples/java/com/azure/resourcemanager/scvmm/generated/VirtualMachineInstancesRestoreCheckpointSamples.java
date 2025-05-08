@@ -11,7 +11,7 @@ import com.azure.resourcemanager.scvmm.models.VirtualMachineRestoreCheckpoint;
  */
 public final class VirtualMachineInstancesRestoreCheckpointSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_RestoreCheckpoint_MinimumSet_Gen.json
      */
     /**
@@ -27,7 +27,7 @@ public final class VirtualMachineInstancesRestoreCheckpointSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VirtualMachineInstances_RestoreCheckpoint_MaximumSet_Gen.json
      */
     /**
