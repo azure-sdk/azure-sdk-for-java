@@ -26,6 +26,11 @@ public final class StorageConfiguration implements JsonSerializable<StorageConfi
      */
     private String fileSystemName;
 
+    /*
+     * The configuration for indexing the connected storage.
+     */
+    private StorageIndexingConfiguration storageIndexingConfiguration;
+
     /**
      * Creates an instance of StorageConfiguration class.
      */
@@ -73,11 +78,35 @@ public final class StorageConfiguration implements JsonSerializable<StorageConfi
     }
 
     /**
+     * Get the storageIndexingConfiguration property: The configuration for indexing the connected storage.
+     * 
+     * @return the storageIndexingConfiguration value.
+     */
+    public StorageIndexingConfiguration storageIndexingConfiguration() {
+        return this.storageIndexingConfiguration;
+    }
+
+    /**
+     * Set the storageIndexingConfiguration property: The configuration for indexing the connected storage.
+     * 
+     * @param storageIndexingConfiguration the storageIndexingConfiguration value to set.
+     * @return the StorageConfiguration object itself.
+     */
+    public StorageConfiguration
+        withStorageIndexingConfiguration(StorageIndexingConfiguration storageIndexingConfiguration) {
+        this.storageIndexingConfiguration = storageIndexingConfiguration;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (storageIndexingConfiguration() != null) {
+            storageIndexingConfiguration().validate();
+        }
     }
 
     /**
@@ -88,6 +117,7 @@ public final class StorageConfiguration implements JsonSerializable<StorageConfi
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("storageResourceId", this.storageResourceId);
         jsonWriter.writeStringField("fileSystemName", this.fileSystemName);
+        jsonWriter.writeJsonField("storageIndexingConfiguration", this.storageIndexingConfiguration);
         return jsonWriter.writeEndObject();
     }
 
@@ -110,6 +140,9 @@ public final class StorageConfiguration implements JsonSerializable<StorageConfi
                     deserializedStorageConfiguration.storageResourceId = reader.getString();
                 } else if ("fileSystemName".equals(fieldName)) {
                     deserializedStorageConfiguration.fileSystemName = reader.getString();
+                } else if ("storageIndexingConfiguration".equals(fieldName)) {
+                    deserializedStorageConfiguration.storageIndexingConfiguration
+                        = StorageIndexingConfiguration.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
