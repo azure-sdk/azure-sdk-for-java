@@ -8,6 +8,7 @@ import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.FluxConfi
 import com.azure.resourcemanager.kubernetesconfiguration.models.BucketDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.GitRepositoryDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.KustomizationDefinition;
+import com.azure.resourcemanager.kubernetesconfiguration.models.OciRepositoryDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.PostBuildDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.RepositoryRefDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ScopeType;
@@ -23,8 +24,46 @@ import java.util.Map;
 public final class FluxConfigurationsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/CreateFluxConfiguration.json
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/CreateFluxConfigurationWithOCIRepository.json
+     */
+    /**
+     * Sample code: Create Flux Configuration with OCIRepository Source Kind.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void createFluxConfigurationWithOCIRepositorySourceKind(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.fluxConfigurations()
+            .createOrUpdate("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "srs-fluxconfig",
+                new FluxConfigurationInner().withScope(ScopeType.CLUSTER)
+                    .withNamespace("srs-namespace")
+                    .withSourceKind(SourceKindType.OCIREPOSITORY)
+                    .withSuspend(false)
+                    .withOciRepository(
+                        new OciRepositoryDefinition().withUrl("oci://ghcr.io/stefanprodan/manifests/podinfo")
+                            .withTimeoutInSeconds(1000L)
+                            .withSyncIntervalInSeconds(1000L)
+                            .withServiceAccountName("testserviceaccount"))
+                    .withKustomizations(mapOf("srs-kustomization1",
+                        new KustomizationDefinition().withPath("./test/path")
+                            .withDependsOn(Arrays.asList())
+                            .withTimeoutInSeconds(600L)
+                            .withSyncIntervalInSeconds(600L),
+                        "srs-kustomization2",
+                        new KustomizationDefinition().withPath("./other/test/path")
+                            .withDependsOn(Arrays.asList("srs-kustomization1"))
+                            .withTimeoutInSeconds(600L)
+                            .withSyncIntervalInSeconds(600L)
+                            .withRetryIntervalInSeconds(600L)
+                            .withPrune(false))),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/CreateFluxConfiguration.json
      */
     /**
      * Sample code: Create Flux Configuration.
@@ -77,8 +116,8 @@ public final class FluxConfigurationsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/CreateFluxConfigurationWithBucket.json
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/CreateFluxConfigurationWithBucket.json
      */
     /**
      * Sample code: Create Flux Configuration with Bucket Source Kind.

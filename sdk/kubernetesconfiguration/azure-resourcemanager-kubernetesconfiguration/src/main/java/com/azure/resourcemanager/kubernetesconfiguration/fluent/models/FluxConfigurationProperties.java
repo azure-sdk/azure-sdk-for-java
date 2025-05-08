@@ -16,6 +16,7 @@ import com.azure.resourcemanager.kubernetesconfiguration.models.FluxComplianceSt
 import com.azure.resourcemanager.kubernetesconfiguration.models.GitRepositoryDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.KustomizationDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ObjectStatusDefinition;
+import com.azure.resourcemanager.kubernetesconfiguration.models.OciRepositoryDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ProvisioningState;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ScopeType;
 import com.azure.resourcemanager.kubernetesconfiguration.models.SourceKindType;
@@ -64,6 +65,11 @@ public final class FluxConfigurationProperties implements JsonSerializable<FluxC
      * Parameters to reconcile to the AzureBlob source kind type.
      */
     private AzureBlobDefinition azureBlob;
+
+    /*
+     * Parameters to reconcile to the OCIRepository source kind type.
+     */
+    private OciRepositoryDefinition ociRepository;
 
     /*
      * Array of kustomizations used to reconcile the artifact pulled by the source type on the cluster.
@@ -278,6 +284,26 @@ public final class FluxConfigurationProperties implements JsonSerializable<FluxC
     }
 
     /**
+     * Get the ociRepository property: Parameters to reconcile to the OCIRepository source kind type.
+     * 
+     * @return the ociRepository value.
+     */
+    public OciRepositoryDefinition ociRepository() {
+        return this.ociRepository;
+    }
+
+    /**
+     * Set the ociRepository property: Parameters to reconcile to the OCIRepository source kind type.
+     * 
+     * @param ociRepository the ociRepository value to set.
+     * @return the FluxConfigurationProperties object itself.
+     */
+    public FluxConfigurationProperties withOciRepository(OciRepositoryDefinition ociRepository) {
+        this.ociRepository = ociRepository;
+        return this;
+    }
+
+    /**
      * Get the kustomizations property: Array of kustomizations used to reconcile the artifact pulled by the source type
      * on the cluster.
      * 
@@ -456,6 +482,9 @@ public final class FluxConfigurationProperties implements JsonSerializable<FluxC
         if (azureBlob() != null) {
             azureBlob().validate();
         }
+        if (ociRepository() != null) {
+            ociRepository().validate();
+        }
         if (kustomizations() != null) {
             kustomizations().values().forEach(e -> {
                 if (e != null) {
@@ -481,6 +510,7 @@ public final class FluxConfigurationProperties implements JsonSerializable<FluxC
         jsonWriter.writeJsonField("gitRepository", this.gitRepository);
         jsonWriter.writeJsonField("bucket", this.bucket);
         jsonWriter.writeJsonField("azureBlob", this.azureBlob);
+        jsonWriter.writeJsonField("ociRepository", this.ociRepository);
         jsonWriter.writeMapField("kustomizations", this.kustomizations, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeMapField("configurationProtectedSettings", this.configurationProtectedSettings,
             (writer, element) -> writer.writeString(element));
@@ -518,6 +548,8 @@ public final class FluxConfigurationProperties implements JsonSerializable<FluxC
                     deserializedFluxConfigurationProperties.bucket = BucketDefinition.fromJson(reader);
                 } else if ("azureBlob".equals(fieldName)) {
                     deserializedFluxConfigurationProperties.azureBlob = AzureBlobDefinition.fromJson(reader);
+                } else if ("ociRepository".equals(fieldName)) {
+                    deserializedFluxConfigurationProperties.ociRepository = OciRepositoryDefinition.fromJson(reader);
                 } else if ("kustomizations".equals(fieldName)) {
                     Map<String, KustomizationDefinition> kustomizations
                         = reader.readMap(reader1 -> KustomizationDefinition.fromJson(reader1));

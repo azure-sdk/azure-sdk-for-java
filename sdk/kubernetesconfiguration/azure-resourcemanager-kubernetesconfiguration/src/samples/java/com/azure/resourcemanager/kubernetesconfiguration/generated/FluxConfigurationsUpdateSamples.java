@@ -16,8 +16,8 @@ import java.util.Map;
 public final class FluxConfigurationsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/PatchFluxConfiguration.json
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/PatchFluxConfiguration.json
      */
     /**
      * Sample code: Patch Flux Configuration.

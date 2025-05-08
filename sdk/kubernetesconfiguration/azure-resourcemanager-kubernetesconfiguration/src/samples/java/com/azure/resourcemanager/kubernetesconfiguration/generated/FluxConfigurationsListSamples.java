@@ -10,8 +10,8 @@ package com.azure.resourcemanager.kubernetesconfiguration.generated;
 public final class FluxConfigurationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/ListFluxConfigurations.json
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/ListFluxConfigurations.json
      */
     /**
      * Sample code: List Flux Configuration.

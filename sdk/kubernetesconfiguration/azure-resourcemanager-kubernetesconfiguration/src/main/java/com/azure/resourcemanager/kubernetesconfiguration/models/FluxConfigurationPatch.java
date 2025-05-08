@@ -156,6 +156,29 @@ public final class FluxConfigurationPatch implements JsonSerializable<FluxConfig
     }
 
     /**
+     * Get the ociRepository property: Parameters to reconcile to the OCIRepository source kind type.
+     * 
+     * @return the ociRepository value.
+     */
+    public OciRepositoryPatchDefinition ociRepository() {
+        return this.innerProperties() == null ? null : this.innerProperties().ociRepository();
+    }
+
+    /**
+     * Set the ociRepository property: Parameters to reconcile to the OCIRepository source kind type.
+     * 
+     * @param ociRepository the ociRepository value to set.
+     * @return the FluxConfigurationPatch object itself.
+     */
+    public FluxConfigurationPatch withOciRepository(OciRepositoryPatchDefinition ociRepository) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FluxConfigurationPatchProperties();
+        }
+        this.innerProperties().withOciRepository(ociRepository);
+        return this;
+    }
+
+    /**
      * Get the kustomizations property: Array of kustomizations used to reconcile the artifact pulled by the source type
      * on the cluster.
      * 
