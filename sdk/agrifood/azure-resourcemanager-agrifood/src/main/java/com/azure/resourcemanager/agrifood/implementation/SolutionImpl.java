@@ -8,7 +8,6 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.agrifood.fluent.models.SolutionInner;
 import com.azure.resourcemanager.agrifood.models.Solution;
-import com.azure.resourcemanager.agrifood.models.SolutionInstallationRequest;
 import com.azure.resourcemanager.agrifood.models.SolutionProperties;
 
 public final class SolutionImpl implements Solution, Solution.Definition, Solution.Update {
@@ -54,24 +53,21 @@ public final class SolutionImpl implements Solution, Solution.Definition, Soluti
 
     private String resourceGroupName;
 
-    private String farmBeatsResourceName;
+    private String dataManagerForAgricultureResourceName;
 
     private String solutionId;
 
-    private SolutionInstallationRequest createBody;
-
-    private SolutionInstallationRequest updateBody;
-
-    public SolutionImpl withExistingFarmBeat(String resourceGroupName, String farmBeatsResourceName) {
+    public SolutionImpl withExistingFarmBeat(String resourceGroupName, String dataManagerForAgricultureResourceName) {
         this.resourceGroupName = resourceGroupName;
-        this.farmBeatsResourceName = farmBeatsResourceName;
+        this.dataManagerForAgricultureResourceName = dataManagerForAgricultureResourceName;
         return this;
     }
 
     public Solution create() {
         this.innerObject = serviceManager.serviceClient()
             .getSolutions()
-            .createOrUpdateWithResponse(resourceGroupName, farmBeatsResourceName, solutionId, createBody, Context.NONE)
+            .createOrUpdateWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, solutionId,
+                this.innerModel(), Context.NONE)
             .getValue();
         return this;
     }
@@ -79,7 +75,8 @@ public final class SolutionImpl implements Solution, Solution.Definition, Soluti
     public Solution create(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getSolutions()
-            .createOrUpdateWithResponse(resourceGroupName, farmBeatsResourceName, solutionId, createBody, context)
+            .createOrUpdateWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, solutionId,
+                this.innerModel(), context)
             .getValue();
         return this;
     }
@@ -88,18 +85,17 @@ public final class SolutionImpl implements Solution, Solution.Definition, Soluti
         this.innerObject = new SolutionInner();
         this.serviceManager = serviceManager;
         this.solutionId = name;
-        this.createBody = new SolutionInstallationRequest();
     }
 
     public SolutionImpl update() {
-        this.updateBody = new SolutionInstallationRequest();
         return this;
     }
 
     public Solution apply() {
         this.innerObject = serviceManager.serviceClient()
             .getSolutions()
-            .createOrUpdateWithResponse(resourceGroupName, farmBeatsResourceName, solutionId, updateBody, Context.NONE)
+            .createOrUpdateWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, solutionId,
+                this.innerModel(), Context.NONE)
             .getValue();
         return this;
     }
@@ -107,7 +103,8 @@ public final class SolutionImpl implements Solution, Solution.Definition, Soluti
     public Solution apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getSolutions()
-            .createOrUpdateWithResponse(resourceGroupName, farmBeatsResourceName, solutionId, updateBody, context)
+            .createOrUpdateWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, solutionId,
+                this.innerModel(), context)
             .getValue();
         return this;
     }
@@ -116,14 +113,15 @@ public final class SolutionImpl implements Solution, Solution.Definition, Soluti
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.farmBeatsResourceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "farmBeats");
+        this.dataManagerForAgricultureResourceName
+            = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "farmBeats");
         this.solutionId = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "solutions");
     }
 
     public Solution refresh() {
         this.innerObject = serviceManager.serviceClient()
             .getSolutions()
-            .getWithResponse(resourceGroupName, farmBeatsResourceName, solutionId, Context.NONE)
+            .getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, solutionId, Context.NONE)
             .getValue();
         return this;
     }
@@ -131,22 +129,13 @@ public final class SolutionImpl implements Solution, Solution.Definition, Soluti
     public Solution refresh(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getSolutions()
-            .getWithResponse(resourceGroupName, farmBeatsResourceName, solutionId, context)
+            .getWithResponse(resourceGroupName, dataManagerForAgricultureResourceName, solutionId, context)
             .getValue();
         return this;
     }
 
     public SolutionImpl withProperties(SolutionProperties properties) {
-        if (isInCreateMode()) {
-            this.createBody.withProperties(properties);
-            return this;
-        } else {
-            this.updateBody.withProperties(properties);
-            return this;
-        }
-    }
-
-    private boolean isInCreateMode() {
-        return this.innerModel().id() == null;
+        this.innerModel().withProperties(properties);
+        return this;
     }
 }

@@ -44,7 +44,7 @@ public final class ExtensionProperties implements JsonSerializable<ExtensionProp
     private String extensionApiDocsLink;
 
     /*
-     * Additional api properties.
+     * Additional Api Properties.
      */
     private Map<String, ApiProperties> additionalApiProperties;
 
@@ -100,7 +100,7 @@ public final class ExtensionProperties implements JsonSerializable<ExtensionProp
     }
 
     /**
-     * Get the additionalApiProperties property: Additional api properties.
+     * Get the additionalApiProperties property: Additional Api Properties.
      * 
      * @return the additionalApiProperties value.
      */

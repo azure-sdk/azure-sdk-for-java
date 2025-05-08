@@ -10,7 +10,6 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.agrifood.fluent.models.SolutionInner;
-import com.azure.resourcemanager.agrifood.models.SolutionInstallationRequest;
 import java.time.OffsetDateTime;
 import java.util.List;
 
@@ -22,9 +21,9 @@ public interface SolutionsClient {
      * Install Or Update Solution.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
-     * @param body Solution resource request body.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
+     * @param requestBody Solution resource request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -32,29 +31,30 @@ public interface SolutionsClient {
      * @return solution resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<SolutionInner> createOrUpdateWithResponse(String resourceGroupName, String farmBeatsResourceName,
-        String solutionId, SolutionInstallationRequest body, Context context);
+    Response<SolutionInner> createOrUpdateWithResponse(String resourceGroupName,
+        String dataManagerForAgricultureResourceName, String solutionId, SolutionInner requestBody, Context context);
 
     /**
      * Install Or Update Solution.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return solution resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    SolutionInner createOrUpdate(String resourceGroupName, String farmBeatsResourceName, String solutionId);
+    SolutionInner createOrUpdate(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String solutionId);
 
     /**
      * Get installed Solution details by Solution id.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -62,29 +62,29 @@ public interface SolutionsClient {
      * @return installed Solution details by Solution id along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<SolutionInner> getWithResponse(String resourceGroupName, String farmBeatsResourceName, String solutionId,
-        Context context);
+    Response<SolutionInner> getWithResponse(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String solutionId, Context context);
 
     /**
      * Get installed Solution details by Solution id.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return installed Solution details by Solution id.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    SolutionInner get(String resourceGroupName, String farmBeatsResourceName, String solutionId);
+    SolutionInner get(String resourceGroupName, String dataManagerForAgricultureResourceName, String solutionId);
 
     /**
      * Uninstall Solution.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -92,40 +92,40 @@ public interface SolutionsClient {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(String resourceGroupName, String farmBeatsResourceName, String solutionId,
-        Context context);
+    Response<Void> deleteWithResponse(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        String solutionId, Context context);
 
     /**
      * Uninstall Solution.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param solutionId Solution Id of the solution.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
+     * @param solutionId SolutionId for Data Manager For Agriculture Resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String farmBeatsResourceName, String solutionId);
+    void delete(String resourceGroupName, String dataManagerForAgricultureResourceName, String solutionId);
 
     /**
      * Get installed Solutions details.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return installed Solutions details as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SolutionInner> list(String resourceGroupName, String farmBeatsResourceName);
+    PagedIterable<SolutionInner> list(String resourceGroupName, String dataManagerForAgricultureResourceName);
 
     /**
      * Get installed Solutions details.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param dataManagerForAgricultureResourceName DataManagerForAgriculture resource name.
      * @param solutionIds Installed Solution ids.
      * @param ids Ids of the resource.
      * @param names Names of the resource.
@@ -146,8 +146,9 @@ public interface SolutionsClient {
      * @return installed Solutions details as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<SolutionInner> list(String resourceGroupName, String farmBeatsResourceName, List<String> solutionIds,
-        List<String> ids, List<String> names, List<String> propertyFilters, List<String> statuses,
-        OffsetDateTime minCreatedDateTime, OffsetDateTime maxCreatedDateTime, OffsetDateTime minLastModifiedDateTime,
-        OffsetDateTime maxLastModifiedDateTime, Integer maxPageSize, String skipToken, Context context);
+    PagedIterable<SolutionInner> list(String resourceGroupName, String dataManagerForAgricultureResourceName,
+        List<String> solutionIds, List<String> ids, List<String> names, List<String> propertyFilters,
+        List<String> statuses, OffsetDateTime minCreatedDateTime, OffsetDateTime maxCreatedDateTime,
+        OffsetDateTime minLastModifiedDateTime, OffsetDateTime maxLastModifiedDateTime, Integer maxPageSize,
+        String skipToken, Context context);
 }

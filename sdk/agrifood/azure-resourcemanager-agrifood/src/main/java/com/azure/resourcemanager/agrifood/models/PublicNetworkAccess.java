@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Property to allow or block public traffic for an Azure FarmBeats resource.
+ * Property to allow or block public traffic for an Azure Data Manager For Agriculture resource.
  */
 public final class PublicNetworkAccess extends ExpandableStringEnum<PublicNetworkAccess> {
     /**
@@ -17,9 +17,9 @@ public final class PublicNetworkAccess extends ExpandableStringEnum<PublicNetwor
     public static final PublicNetworkAccess ENABLED = fromString("Enabled");
 
     /**
-     * Static value Hybrid for PublicNetworkAccess.
+     * Static value Disabled for PublicNetworkAccess.
      */
-    public static final PublicNetworkAccess HYBRID = fromString("Hybrid");
+    public static final PublicNetworkAccess DISABLED = fromString("Disabled");
 
     /**
      * Creates a new instance of PublicNetworkAccess value.
