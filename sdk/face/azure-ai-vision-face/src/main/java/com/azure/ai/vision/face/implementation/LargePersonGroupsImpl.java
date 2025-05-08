@@ -89,7 +89,7 @@ public final class LargePersonGroupsImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<Void>> create(@HostParam("endpoint") String endpoint, @HostParam("apiVersion") String apiVersion,
             @PathParam("largePersonGroupId") String largePersonGroupId, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData createRequest,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData createRequest1,
             RequestOptions requestOptions, Context context);
 
         @Put("/largepersongroups/{largePersonGroupId}")
@@ -100,7 +100,7 @@ public final class LargePersonGroupsImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<Void> createSync(@HostParam("endpoint") String endpoint, @HostParam("apiVersion") String apiVersion,
             @PathParam("largePersonGroupId") String largePersonGroupId, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData createRequest,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData createRequest1,
             RequestOptions requestOptions, Context context);
 
         @Delete("/largepersongroups/{largePersonGroupId}")
@@ -151,7 +151,7 @@ public final class LargePersonGroupsImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<Void>> update(@HostParam("endpoint") String endpoint, @HostParam("apiVersion") String apiVersion,
             @PathParam("largePersonGroupId") String largePersonGroupId, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData updateRequest,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData updateRequest1,
             RequestOptions requestOptions, Context context);
 
         @Patch("/largepersongroups/{largePersonGroupId}")
@@ -162,7 +162,7 @@ public final class LargePersonGroupsImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Response<Void> updateSync(@HostParam("endpoint") String endpoint, @HostParam("apiVersion") String apiVersion,
             @PathParam("largePersonGroupId") String largePersonGroupId, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData updateRequest,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData updateRequest1,
             RequestOptions requestOptions, Context context);
 
         @Get("/largepersongroups")
@@ -346,7 +346,7 @@ public final class LargePersonGroupsImpl {
         Mono<Response<BinaryData>> addFaceFromUrlImpl(@HostParam("endpoint") String endpoint,
             @HostParam("apiVersion") String apiVersion, @PathParam("largePersonGroupId") String largePersonGroupId,
             @PathParam("personId") String personId, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData addFaceFromUrlRequest,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData addFaceFromUrlRequest1,
             RequestOptions requestOptions, Context context);
 
         @Post("/largepersongroups/{largePersonGroupId}/persons/{personId}/persistedfaces")
@@ -358,7 +358,7 @@ public final class LargePersonGroupsImpl {
         Response<BinaryData> addFaceFromUrlImplSync(@HostParam("endpoint") String endpoint,
             @HostParam("apiVersion") String apiVersion, @PathParam("largePersonGroupId") String largePersonGroupId,
             @PathParam("personId") String personId, @HeaderParam("Content-Type") String contentType,
-            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData addFaceFromUrlRequest,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") BinaryData addFaceFromUrlRequest1,
             RequestOptions requestOptions, Context context);
 
         @Post("/largepersongroups/{largePersonGroupId}/persons/{personId}/persistedfaces")
@@ -439,7 +439,7 @@ public final class LargePersonGroupsImpl {
             @HostParam("apiVersion") String apiVersion, @PathParam("largePersonGroupId") String largePersonGroupId,
             @PathParam("personId") String personId, @PathParam("persistedFaceId") String persistedFaceId,
             @HeaderParam("Content-Type") String contentType, @HeaderParam("Accept") String accept,
-            @BodyParam("application/json") BinaryData updateFaceRequest, RequestOptions requestOptions,
+            @BodyParam("application/json") BinaryData updateFaceRequest1, RequestOptions requestOptions,
             Context context);
 
         @Patch("/largepersongroups/{largePersonGroupId}/persons/{personId}/persistedfaces/{persistedFaceId}")
@@ -452,7 +452,7 @@ public final class LargePersonGroupsImpl {
             @HostParam("apiVersion") String apiVersion, @PathParam("largePersonGroupId") String largePersonGroupId,
             @PathParam("personId") String personId, @PathParam("persistedFaceId") String persistedFaceId,
             @HeaderParam("Content-Type") String contentType, @HeaderParam("Accept") String accept,
-            @BodyParam("application/json") BinaryData updateFaceRequest, RequestOptions requestOptions,
+            @BodyParam("application/json") BinaryData updateFaceRequest1, RequestOptions requestOptions,
             Context context);
     }
 
@@ -474,7 +474,7 @@ public final class LargePersonGroupsImpl {
      * }
      * </pre>
      * 
-     * @param createRequest The createRequest parameter.
+     * @param createRequest1 The createRequest1 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -483,12 +483,12 @@ public final class LargePersonGroupsImpl {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> createWithResponseAsync(BinaryData createRequest, RequestOptions requestOptions) {
+    public Mono<Response<Void>> createWithResponseAsync(BinaryData createRequest1, RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return FluxUtil.withContext(
             context -> service.create(this.client.getEndpoint(), this.client.getServiceVersion().getVersion(),
-                this.client.getLargePersonGroupId(), contentType, accept, createRequest, requestOptions, context));
+                this.client.getLargePersonGroupId(), contentType, accept, createRequest1, requestOptions, context));
     }
 
     /**
@@ -509,7 +509,7 @@ public final class LargePersonGroupsImpl {
      * }
      * </pre>
      * 
-     * @param createRequest The createRequest parameter.
+     * @param createRequest1 The createRequest1 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -518,11 +518,11 @@ public final class LargePersonGroupsImpl {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> createWithResponse(BinaryData createRequest, RequestOptions requestOptions) {
+    public Response<Void> createWithResponse(BinaryData createRequest1, RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return service.createSync(this.client.getEndpoint(), this.client.getServiceVersion().getVersion(),
-            this.client.getLargePersonGroupId(), contentType, accept, createRequest, requestOptions, Context.NONE);
+            this.client.getLargePersonGroupId(), contentType, accept, createRequest1, requestOptions, Context.NONE);
     }
 
     /**
@@ -655,7 +655,7 @@ public final class LargePersonGroupsImpl {
      * }
      * </pre>
      * 
-     * @param updateRequest The updateRequest parameter.
+     * @param updateRequest1 The updateRequest1 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -664,12 +664,12 @@ public final class LargePersonGroupsImpl {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> updateWithResponseAsync(BinaryData updateRequest, RequestOptions requestOptions) {
+    public Mono<Response<Void>> updateWithResponseAsync(BinaryData updateRequest1, RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return FluxUtil.withContext(
             context -> service.update(this.client.getEndpoint(), this.client.getServiceVersion().getVersion(),
-                this.client.getLargePersonGroupId(), contentType, accept, updateRequest, requestOptions, context));
+                this.client.getLargePersonGroupId(), contentType, accept, updateRequest1, requestOptions, context));
     }
 
     /**
@@ -686,7 +686,7 @@ public final class LargePersonGroupsImpl {
      * }
      * </pre>
      * 
-     * @param updateRequest The updateRequest parameter.
+     * @param updateRequest1 The updateRequest1 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -695,11 +695,11 @@ public final class LargePersonGroupsImpl {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> updateWithResponse(BinaryData updateRequest, RequestOptions requestOptions) {
+    public Response<Void> updateWithResponse(BinaryData updateRequest1, RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return service.updateSync(this.client.getEndpoint(), this.client.getServiceVersion().getVersion(),
-            this.client.getLargePersonGroupId(), contentType, accept, updateRequest, requestOptions, Context.NONE);
+            this.client.getLargePersonGroupId(), contentType, accept, updateRequest1, requestOptions, Context.NONE);
     }
 
     /**
@@ -1421,7 +1421,7 @@ public final class LargePersonGroupsImpl {
      * </pre>
      * 
      * @param personId ID of the person.
-     * @param addFaceFromUrlRequest The addFaceFromUrlRequest parameter.
+     * @param addFaceFromUrlRequest1 The addFaceFromUrlRequest1 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1431,12 +1431,12 @@ public final class LargePersonGroupsImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> addFaceFromUrlImplWithResponseAsync(String personId,
-        BinaryData addFaceFromUrlRequest, RequestOptions requestOptions) {
+        BinaryData addFaceFromUrlRequest1, RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return FluxUtil.withContext(context -> service.addFaceFromUrlImpl(this.client.getEndpoint(),
             this.client.getServiceVersion().getVersion(), this.client.getLargePersonGroupId(), personId, contentType,
-            accept, addFaceFromUrlRequest, requestOptions, context));
+            accept, addFaceFromUrlRequest1, requestOptions, context));
     }
 
     /**
@@ -1480,7 +1480,7 @@ public final class LargePersonGroupsImpl {
      * </pre>
      * 
      * @param personId ID of the person.
-     * @param addFaceFromUrlRequest The addFaceFromUrlRequest parameter.
+     * @param addFaceFromUrlRequest1 The addFaceFromUrlRequest1 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1489,12 +1489,12 @@ public final class LargePersonGroupsImpl {
      * @return response body for adding face along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> addFaceFromUrlImplWithResponse(String personId, BinaryData addFaceFromUrlRequest,
+    public Response<BinaryData> addFaceFromUrlImplWithResponse(String personId, BinaryData addFaceFromUrlRequest1,
         RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return service.addFaceFromUrlImplSync(this.client.getEndpoint(), this.client.getServiceVersion().getVersion(),
-            this.client.getLargePersonGroupId(), personId, contentType, accept, addFaceFromUrlRequest, requestOptions,
+            this.client.getLargePersonGroupId(), personId, contentType, accept, addFaceFromUrlRequest1, requestOptions,
             Context.NONE);
     }
 
@@ -1745,7 +1745,7 @@ public final class LargePersonGroupsImpl {
      * 
      * @param personId ID of the person.
      * @param persistedFaceId Face ID of the face.
-     * @param updateFaceRequest The updateFaceRequest parameter.
+     * @param updateFaceRequest1 The updateFaceRequest1 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1755,12 +1755,12 @@ public final class LargePersonGroupsImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> updateFaceWithResponseAsync(String personId, String persistedFaceId,
-        BinaryData updateFaceRequest, RequestOptions requestOptions) {
+        BinaryData updateFaceRequest1, RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return FluxUtil.withContext(context -> service.updateFace(this.client.getEndpoint(),
             this.client.getServiceVersion().getVersion(), this.client.getLargePersonGroupId(), personId,
-            persistedFaceId, contentType, accept, updateFaceRequest, requestOptions, context));
+            persistedFaceId, contentType, accept, updateFaceRequest1, requestOptions, context));
     }
 
     /**
@@ -1779,7 +1779,7 @@ public final class LargePersonGroupsImpl {
      * 
      * @param personId ID of the person.
      * @param persistedFaceId Face ID of the face.
-     * @param updateFaceRequest The updateFaceRequest parameter.
+     * @param updateFaceRequest1 The updateFaceRequest1 parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1788,12 +1788,12 @@ public final class LargePersonGroupsImpl {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> updateFaceWithResponse(String personId, String persistedFaceId, BinaryData updateFaceRequest,
+    public Response<Void> updateFaceWithResponse(String personId, String persistedFaceId, BinaryData updateFaceRequest1,
         RequestOptions requestOptions) {
         final String contentType = "application/json";
         final String accept = "application/json";
         return service.updateFaceSync(this.client.getEndpoint(), this.client.getServiceVersion().getVersion(),
-            this.client.getLargePersonGroupId(), personId, persistedFaceId, contentType, accept, updateFaceRequest,
+            this.client.getLargePersonGroupId(), personId, persistedFaceId, contentType, accept, updateFaceRequest1,
             requestOptions, Context.NONE);
     }
 }
