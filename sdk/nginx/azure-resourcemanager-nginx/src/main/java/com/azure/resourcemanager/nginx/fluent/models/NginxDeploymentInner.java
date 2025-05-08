@@ -10,34 +10,40 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.nginx.models.AutoUpgradeProfile;
+import com.azure.resourcemanager.nginx.models.AzureResourceManagerResourceSkuProperty;
 import com.azure.resourcemanager.nginx.models.IdentityProperties;
-import com.azure.resourcemanager.nginx.models.NginxDeploymentProperties;
-import com.azure.resourcemanager.nginx.models.ResourceSku;
+import com.azure.resourcemanager.nginx.models.NginxDeploymentPropertiesNginxAppProtect;
+import com.azure.resourcemanager.nginx.models.NginxDeploymentScalingProperties;
+import com.azure.resourcemanager.nginx.models.NginxDeploymentUserProfile;
+import com.azure.resourcemanager.nginx.models.NginxLogging;
+import com.azure.resourcemanager.nginx.models.NginxNetworkProfile;
+import com.azure.resourcemanager.nginx.models.ProvisioningState;
 import java.io.IOException;
 import java.util.Map;
 
 /**
- * The NginxDeployment model.
+ * Concrete tracked resource types can be created by aliasing this type using a specific property type.
  */
 @Fluent
 public final class NginxDeploymentInner extends Resource {
+    /*
+     * The properties property.
+     */
+    private NginxDeploymentProperties innerProperties;
+
     /*
      * The identity property.
      */
     private IdentityProperties identity;
 
     /*
-     * The properties property.
+     * The SKU (Stock Keeping Unit) assigned to this resource.
      */
-    private NginxDeploymentProperties properties;
+    private AzureResourceManagerResourceSkuProperty sku;
 
     /*
-     * The sku property.
-     */
-    private ResourceSku sku;
-
-    /*
-     * Metadata pertaining to creation and last modification of the resource.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
 
@@ -63,6 +69,15 @@ public final class NginxDeploymentInner extends Resource {
     }
 
     /**
+     * Get the innerProperties property: The properties property.
+     * 
+     * @return the innerProperties value.
+     */
+    private NginxDeploymentProperties innerProperties() {
+        return this.innerProperties;
+    }
+
+    /**
      * Get the identity property: The identity property.
      * 
      * @return the identity value.
@@ -83,47 +98,27 @@ public final class NginxDeploymentInner extends Resource {
     }
 
     /**
-     * Get the properties property: The properties property.
-     * 
-     * @return the properties value.
-     */
-    public NginxDeploymentProperties properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: The properties property.
-     * 
-     * @param properties the properties value to set.
-     * @return the NginxDeploymentInner object itself.
-     */
-    public NginxDeploymentInner withProperties(NginxDeploymentProperties properties) {
-        this.properties = properties;
-        return this;
-    }
-
-    /**
-     * Get the sku property: The sku property.
+     * Get the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
      * 
      * @return the sku value.
      */
-    public ResourceSku sku() {
+    public AzureResourceManagerResourceSkuProperty sku() {
         return this.sku;
     }
 
     /**
-     * Set the sku property: The sku property.
+     * Set the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
      * 
      * @param sku the sku value to set.
      * @return the NginxDeploymentInner object itself.
      */
-    public NginxDeploymentInner withSku(ResourceSku sku) {
+    public NginxDeploymentInner withSku(AzureResourceManagerResourceSkuProperty sku) {
         this.sku = sku;
         return this;
     }
 
     /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -180,16 +175,214 @@ public final class NginxDeploymentInner extends Resource {
     }
 
     /**
+     * Get the provisioningState property: The provisioningState property.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the nginxVersion property: The nginxVersion property.
+     * 
+     * @return the nginxVersion value.
+     */
+    public String nginxVersion() {
+        return this.innerProperties() == null ? null : this.innerProperties().nginxVersion();
+    }
+
+    /**
+     * Get the networkProfile property: The networkProfile property.
+     * 
+     * @return the networkProfile value.
+     */
+    public NginxNetworkProfile networkProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().networkProfile();
+    }
+
+    /**
+     * Set the networkProfile property: The networkProfile property.
+     * 
+     * @param networkProfile the networkProfile value to set.
+     * @return the NginxDeploymentInner object itself.
+     */
+    public NginxDeploymentInner withNetworkProfile(NginxNetworkProfile networkProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxDeploymentProperties();
+        }
+        this.innerProperties().withNetworkProfile(networkProfile);
+        return this;
+    }
+
+    /**
+     * Get the ipAddress property: The IP address of the deployment.
+     * 
+     * @return the ipAddress value.
+     */
+    public String ipAddress() {
+        return this.innerProperties() == null ? null : this.innerProperties().ipAddress();
+    }
+
+    /**
+     * Get the enableDiagnosticsSupport property: The enableDiagnosticsSupport property.
+     * 
+     * @return the enableDiagnosticsSupport value.
+     */
+    public Boolean enableDiagnosticsSupport() {
+        return this.innerProperties() == null ? null : this.innerProperties().enableDiagnosticsSupport();
+    }
+
+    /**
+     * Set the enableDiagnosticsSupport property: The enableDiagnosticsSupport property.
+     * 
+     * @param enableDiagnosticsSupport the enableDiagnosticsSupport value to set.
+     * @return the NginxDeploymentInner object itself.
+     */
+    public NginxDeploymentInner withEnableDiagnosticsSupport(Boolean enableDiagnosticsSupport) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxDeploymentProperties();
+        }
+        this.innerProperties().withEnableDiagnosticsSupport(enableDiagnosticsSupport);
+        return this;
+    }
+
+    /**
+     * Get the logging property: The logging property.
+     * 
+     * @return the logging value.
+     */
+    public NginxLogging logging() {
+        return this.innerProperties() == null ? null : this.innerProperties().logging();
+    }
+
+    /**
+     * Set the logging property: The logging property.
+     * 
+     * @param logging the logging value to set.
+     * @return the NginxDeploymentInner object itself.
+     */
+    public NginxDeploymentInner withLogging(NginxLogging logging) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxDeploymentProperties();
+        }
+        this.innerProperties().withLogging(logging);
+        return this;
+    }
+
+    /**
+     * Get the scalingProperties property: Information on how the deployment will be scaled.
+     * 
+     * @return the scalingProperties value.
+     */
+    public NginxDeploymentScalingProperties scalingProperties() {
+        return this.innerProperties() == null ? null : this.innerProperties().scalingProperties();
+    }
+
+    /**
+     * Set the scalingProperties property: Information on how the deployment will be scaled.
+     * 
+     * @param scalingProperties the scalingProperties value to set.
+     * @return the NginxDeploymentInner object itself.
+     */
+    public NginxDeploymentInner withScalingProperties(NginxDeploymentScalingProperties scalingProperties) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxDeploymentProperties();
+        }
+        this.innerProperties().withScalingProperties(scalingProperties);
+        return this;
+    }
+
+    /**
+     * Get the autoUpgradeProfile property: Autoupgrade settings of a deployment.
+     * 
+     * @return the autoUpgradeProfile value.
+     */
+    public AutoUpgradeProfile autoUpgradeProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().autoUpgradeProfile();
+    }
+
+    /**
+     * Set the autoUpgradeProfile property: Autoupgrade settings of a deployment.
+     * 
+     * @param autoUpgradeProfile the autoUpgradeProfile value to set.
+     * @return the NginxDeploymentInner object itself.
+     */
+    public NginxDeploymentInner withAutoUpgradeProfile(AutoUpgradeProfile autoUpgradeProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxDeploymentProperties();
+        }
+        this.innerProperties().withAutoUpgradeProfile(autoUpgradeProfile);
+        return this;
+    }
+
+    /**
+     * Get the userProfile property: The userProfile property.
+     * 
+     * @return the userProfile value.
+     */
+    public NginxDeploymentUserProfile userProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().userProfile();
+    }
+
+    /**
+     * Set the userProfile property: The userProfile property.
+     * 
+     * @param userProfile the userProfile value to set.
+     * @return the NginxDeploymentInner object itself.
+     */
+    public NginxDeploymentInner withUserProfile(NginxDeploymentUserProfile userProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxDeploymentProperties();
+        }
+        this.innerProperties().withUserProfile(userProfile);
+        return this;
+    }
+
+    /**
+     * Get the nginxAppProtect property: Settings for NGINX App Protect (NAP).
+     * 
+     * @return the nginxAppProtect value.
+     */
+    public NginxDeploymentPropertiesNginxAppProtect nginxAppProtect() {
+        return this.innerProperties() == null ? null : this.innerProperties().nginxAppProtect();
+    }
+
+    /**
+     * Set the nginxAppProtect property: Settings for NGINX App Protect (NAP).
+     * 
+     * @param nginxAppProtect the nginxAppProtect value to set.
+     * @return the NginxDeploymentInner object itself.
+     */
+    public NginxDeploymentInner withNginxAppProtect(NginxDeploymentPropertiesNginxAppProtect nginxAppProtect) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxDeploymentProperties();
+        }
+        this.innerProperties().withNginxAppProtect(nginxAppProtect);
+        return this;
+    }
+
+    /**
+     * Get the dataplaneApiEndpoint property: Dataplane API endpoint for the caller to update the NGINX state of the
+     * deployment.
+     * 
+     * @return the dataplaneApiEndpoint value.
+     */
+    public String dataplaneApiEndpoint() {
+        return this.innerProperties() == null ? null : this.innerProperties().dataplaneApiEndpoint();
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (innerProperties() != null) {
+            innerProperties().validate();
+        }
         if (identity() != null) {
             identity().validate();
-        }
-        if (properties() != null) {
-            properties().validate();
         }
         if (sku() != null) {
             sku().validate();
@@ -204,8 +397,8 @@ public final class NginxDeploymentInner extends Resource {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("properties", this.innerProperties);
         jsonWriter.writeJsonField("identity", this.identity);
-        jsonWriter.writeJsonField("properties", this.properties);
         jsonWriter.writeJsonField("sku", this.sku);
         return jsonWriter.writeEndObject();
     }
@@ -237,12 +430,12 @@ public final class NginxDeploymentInner extends Resource {
                 } else if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedNginxDeploymentInner.withTags(tags);
+                } else if ("properties".equals(fieldName)) {
+                    deserializedNginxDeploymentInner.innerProperties = NginxDeploymentProperties.fromJson(reader);
                 } else if ("identity".equals(fieldName)) {
                     deserializedNginxDeploymentInner.identity = IdentityProperties.fromJson(reader);
-                } else if ("properties".equals(fieldName)) {
-                    deserializedNginxDeploymentInner.properties = NginxDeploymentProperties.fromJson(reader);
                 } else if ("sku".equals(fieldName)) {
-                    deserializedNginxDeploymentInner.sku = ResourceSku.fromJson(reader);
+                    deserializedNginxDeploymentInner.sku = AzureResourceManagerResourceSkuProperty.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedNginxDeploymentInner.systemData = SystemData.fromJson(reader);
                 } else {

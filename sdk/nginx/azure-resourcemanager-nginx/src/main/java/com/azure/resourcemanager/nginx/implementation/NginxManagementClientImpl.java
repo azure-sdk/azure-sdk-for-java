@@ -128,6 +128,34 @@ public final class NginxManagementClientImpl implements NginxManagementClient {
     }
 
     /**
+     * The OperationsClient object to access its operations.
+     */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
+    }
+
+    /**
+     * The DeploymentsClient object to access its operations.
+     */
+    private final DeploymentsClient deployments;
+
+    /**
+     * Gets the DeploymentsClient object to access its operations.
+     * 
+     * @return the DeploymentsClient object.
+     */
+    public DeploymentsClient getDeployments() {
+        return this.deployments;
+    }
+
+    /**
      * The ApiKeysClient object to access its operations.
      */
     private final ApiKeysClient apiKeys;
@@ -170,34 +198,6 @@ public final class NginxManagementClientImpl implements NginxManagementClient {
     }
 
     /**
-     * The DeploymentsClient object to access its operations.
-     */
-    private final DeploymentsClient deployments;
-
-    /**
-     * Gets the DeploymentsClient object to access its operations.
-     * 
-     * @return the DeploymentsClient object.
-     */
-    public DeploymentsClient getDeployments() {
-        return this.deployments;
-    }
-
-    /**
-     * The OperationsClient object to access its operations.
-     */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
-    }
-
-    /**
      * Initializes an instance of NginxManagementClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -215,11 +215,11 @@ public final class NginxManagementClientImpl implements NginxManagementClient {
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
         this.apiVersion = "2024-11-01-preview";
+        this.operations = new OperationsClientImpl(this);
+        this.deployments = new DeploymentsClientImpl(this);
         this.apiKeys = new ApiKeysClientImpl(this);
         this.certificates = new CertificatesClientImpl(this);
         this.configurations = new ConfigurationsClientImpl(this);
-        this.deployments = new DeploymentsClientImpl(this);
-        this.operations = new OperationsClientImpl(this);
     }
 
     /**

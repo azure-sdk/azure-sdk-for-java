@@ -4,12 +4,11 @@
 
 package com.azure.resourcemanager.nginx.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.fluent.models.NginxDeploymentApiKeyResponseInner;
-import com.azure.resourcemanager.nginx.models.NginxDeploymentApiKeyRequest;
-import com.azure.resourcemanager.nginx.models.NginxDeploymentApiKeyRequestProperties;
 import com.azure.resourcemanager.nginx.models.NginxDeploymentApiKeyResponse;
-import com.azure.resourcemanager.nginx.models.NginxDeploymentApiKeyResponseProperties;
+import java.time.OffsetDateTime;
 
 public final class NginxDeploymentApiKeyResponseImpl implements NginxDeploymentApiKeyResponse,
     NginxDeploymentApiKeyResponse.Definition, NginxDeploymentApiKeyResponse.Update {
@@ -29,8 +28,16 @@ public final class NginxDeploymentApiKeyResponseImpl implements NginxDeploymentA
         return this.innerModel().type();
     }
 
-    public NginxDeploymentApiKeyResponseProperties properties() {
-        return this.innerModel().properties();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public String hint() {
+        return this.innerModel().hint();
+    }
+
+    public OffsetDateTime endDateTime() {
+        return this.innerModel().endDateTime();
     }
 
     public String resourceGroupName() {
@@ -51,10 +58,6 @@ public final class NginxDeploymentApiKeyResponseImpl implements NginxDeploymentA
 
     private String apiKeyName;
 
-    private NginxDeploymentApiKeyRequest createBody;
-
-    private NginxDeploymentApiKeyRequest updateBody;
-
     public NginxDeploymentApiKeyResponseImpl withExistingNginxDeployment(String resourceGroupName,
         String deploymentName) {
         this.resourceGroupName = resourceGroupName;
@@ -65,7 +68,7 @@ public final class NginxDeploymentApiKeyResponseImpl implements NginxDeploymentA
     public NginxDeploymentApiKeyResponse create() {
         this.innerObject = serviceManager.serviceClient()
             .getApiKeys()
-            .createOrUpdateWithResponse(resourceGroupName, deploymentName, apiKeyName, createBody, Context.NONE)
+            .createOrUpdateWithResponse(resourceGroupName, deploymentName, apiKeyName, this.innerModel(), Context.NONE)
             .getValue();
         return this;
     }
@@ -73,7 +76,7 @@ public final class NginxDeploymentApiKeyResponseImpl implements NginxDeploymentA
     public NginxDeploymentApiKeyResponse create(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getApiKeys()
-            .createOrUpdateWithResponse(resourceGroupName, deploymentName, apiKeyName, createBody, context)
+            .createOrUpdateWithResponse(resourceGroupName, deploymentName, apiKeyName, this.innerModel(), context)
             .getValue();
         return this;
     }
@@ -82,18 +85,16 @@ public final class NginxDeploymentApiKeyResponseImpl implements NginxDeploymentA
         this.innerObject = new NginxDeploymentApiKeyResponseInner();
         this.serviceManager = serviceManager;
         this.apiKeyName = name;
-        this.createBody = new NginxDeploymentApiKeyRequest();
     }
 
     public NginxDeploymentApiKeyResponseImpl update() {
-        this.updateBody = new NginxDeploymentApiKeyRequest();
         return this;
     }
 
     public NginxDeploymentApiKeyResponse apply() {
         this.innerObject = serviceManager.serviceClient()
             .getApiKeys()
-            .createOrUpdateWithResponse(resourceGroupName, deploymentName, apiKeyName, updateBody, Context.NONE)
+            .createOrUpdateWithResponse(resourceGroupName, deploymentName, apiKeyName, this.innerModel(), Context.NONE)
             .getValue();
         return this;
     }
@@ -101,7 +102,7 @@ public final class NginxDeploymentApiKeyResponseImpl implements NginxDeploymentA
     public NginxDeploymentApiKeyResponse apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getApiKeys()
-            .createOrUpdateWithResponse(resourceGroupName, deploymentName, apiKeyName, updateBody, context)
+            .createOrUpdateWithResponse(resourceGroupName, deploymentName, apiKeyName, this.innerModel(), context)
             .getValue();
         return this;
     }
@@ -131,17 +132,8 @@ public final class NginxDeploymentApiKeyResponseImpl implements NginxDeploymentA
         return this;
     }
 
-    public NginxDeploymentApiKeyResponseImpl withProperties(NginxDeploymentApiKeyRequestProperties properties) {
-        if (isInCreateMode()) {
-            this.createBody.withProperties(properties);
-            return this;
-        } else {
-            this.updateBody.withProperties(properties);
-            return this;
-        }
-    }
-
-    private boolean isInCreateMode() {
-        return this.innerModel().id() == null;
+    public NginxDeploymentApiKeyResponseImpl withEndDateTime(OffsetDateTime endDateTime) {
+        this.innerModel().withEndDateTime(endDateTime);
+        return this;
     }
 }

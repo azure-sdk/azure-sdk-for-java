@@ -4,8 +4,10 @@
 
 package com.azure.resourcemanager.nginx.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.fluent.models.NginxDeploymentApiKeyResponseInner;
+import java.time.OffsetDateTime;
 
 /**
  * An immutable client-side representation of NginxDeploymentApiKeyResponse.
@@ -33,11 +35,26 @@ public interface NginxDeploymentApiKeyResponse {
     String type();
 
     /**
-     * Gets the properties property: The properties property.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the properties value.
+     * @return the systemData value.
      */
-    NginxDeploymentApiKeyResponseProperties properties();
+    SystemData systemData();
+
+    /**
+     * Gets the hint property: The first three characters of the secret text to help identify it in use. This property
+     * is read-only.
+     * 
+     * @return the hint value.
+     */
+    String hint();
+
+    /**
+     * Gets the endDateTime property: The time after which this Dataplane API Key is no longer valid.
+     * 
+     * @return the endDateTime value.
+     */
+    OffsetDateTime endDateTime();
 
     /**
      * Gets the name of the resource group.
@@ -88,7 +105,7 @@ public interface NginxDeploymentApiKeyResponse {
          * The stage of the NginxDeploymentApiKeyResponse definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithEndDateTime {
             /**
              * Executes the create request.
              * 
@@ -106,16 +123,16 @@ public interface NginxDeploymentApiKeyResponse {
         }
 
         /**
-         * The stage of the NginxDeploymentApiKeyResponse definition allowing to specify properties.
+         * The stage of the NginxDeploymentApiKeyResponse definition allowing to specify endDateTime.
          */
-        interface WithProperties {
+        interface WithEndDateTime {
             /**
-             * Specifies the properties property: The properties property..
+             * Specifies the endDateTime property: The time after which this Dataplane API Key is no longer valid..
              * 
-             * @param properties The properties property.
+             * @param endDateTime The time after which this Dataplane API Key is no longer valid.
              * @return the next definition stage.
              */
-            WithCreate withProperties(NginxDeploymentApiKeyRequestProperties properties);
+            WithCreate withEndDateTime(OffsetDateTime endDateTime);
         }
     }
 
@@ -129,7 +146,7 @@ public interface NginxDeploymentApiKeyResponse {
     /**
      * The template for NginxDeploymentApiKeyResponse update.
      */
-    interface Update extends UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithEndDateTime {
         /**
          * Executes the update request.
          * 
@@ -151,16 +168,16 @@ public interface NginxDeploymentApiKeyResponse {
      */
     interface UpdateStages {
         /**
-         * The stage of the NginxDeploymentApiKeyResponse update allowing to specify properties.
+         * The stage of the NginxDeploymentApiKeyResponse update allowing to specify endDateTime.
          */
-        interface WithProperties {
+        interface WithEndDateTime {
             /**
-             * Specifies the properties property: The properties property..
+             * Specifies the endDateTime property: The time after which this Dataplane API Key is no longer valid..
              * 
-             * @param properties The properties property.
+             * @param endDateTime The time after which this Dataplane API Key is no longer valid.
              * @return the next definition stage.
              */
-            Update withProperties(NginxDeploymentApiKeyRequestProperties properties);
+            Update withEndDateTime(OffsetDateTime endDateTime);
         }
     }
 

@@ -10,18 +10,20 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.nginx.models.NginxCertificateProperties;
+import com.azure.resourcemanager.nginx.models.NginxCertificateErrorResponseBody;
+import com.azure.resourcemanager.nginx.models.ProvisioningState;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 
 /**
- * The NginxCertificate model.
+ * Concrete proxy resource types can be created by aliasing this type using a specific property type.
  */
 @Fluent
 public final class NginxCertificateInner extends ProxyResource {
     /*
      * The properties property.
      */
-    private NginxCertificateProperties properties;
+    private NginxCertificateProperties innerProperties;
 
     /*
      * The location property.
@@ -29,7 +31,7 @@ public final class NginxCertificateInner extends ProxyResource {
     private String location;
 
     /*
-     * Metadata pertaining to creation and last modification of the resource.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
 
@@ -55,23 +57,12 @@ public final class NginxCertificateInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The properties property.
+     * Get the innerProperties property: The properties property.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public NginxCertificateProperties properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: The properties property.
-     * 
-     * @param properties the properties value to set.
-     * @return the NginxCertificateInner object itself.
-     */
-    public NginxCertificateInner withProperties(NginxCertificateProperties properties) {
-        this.properties = properties;
-        return this;
+    private NginxCertificateProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -95,7 +86,7 @@ public final class NginxCertificateInner extends ProxyResource {
     }
 
     /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -134,13 +125,141 @@ public final class NginxCertificateInner extends ProxyResource {
     }
 
     /**
+     * Get the provisioningState property: The provisioningState property.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the keyVirtualPath property: The keyVirtualPath property.
+     * 
+     * @return the keyVirtualPath value.
+     */
+    public String keyVirtualPath() {
+        return this.innerProperties() == null ? null : this.innerProperties().keyVirtualPath();
+    }
+
+    /**
+     * Set the keyVirtualPath property: The keyVirtualPath property.
+     * 
+     * @param keyVirtualPath the keyVirtualPath value to set.
+     * @return the NginxCertificateInner object itself.
+     */
+    public NginxCertificateInner withKeyVirtualPath(String keyVirtualPath) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxCertificateProperties();
+        }
+        this.innerProperties().withKeyVirtualPath(keyVirtualPath);
+        return this;
+    }
+
+    /**
+     * Get the certificateVirtualPath property: The certificateVirtualPath property.
+     * 
+     * @return the certificateVirtualPath value.
+     */
+    public String certificateVirtualPath() {
+        return this.innerProperties() == null ? null : this.innerProperties().certificateVirtualPath();
+    }
+
+    /**
+     * Set the certificateVirtualPath property: The certificateVirtualPath property.
+     * 
+     * @param certificateVirtualPath the certificateVirtualPath value to set.
+     * @return the NginxCertificateInner object itself.
+     */
+    public NginxCertificateInner withCertificateVirtualPath(String certificateVirtualPath) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxCertificateProperties();
+        }
+        this.innerProperties().withCertificateVirtualPath(certificateVirtualPath);
+        return this;
+    }
+
+    /**
+     * Get the keyVaultSecretId property: The keyVaultSecretId property.
+     * 
+     * @return the keyVaultSecretId value.
+     */
+    public String keyVaultSecretId() {
+        return this.innerProperties() == null ? null : this.innerProperties().keyVaultSecretId();
+    }
+
+    /**
+     * Set the keyVaultSecretId property: The keyVaultSecretId property.
+     * 
+     * @param keyVaultSecretId the keyVaultSecretId value to set.
+     * @return the NginxCertificateInner object itself.
+     */
+    public NginxCertificateInner withKeyVaultSecretId(String keyVaultSecretId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxCertificateProperties();
+        }
+        this.innerProperties().withKeyVaultSecretId(keyVaultSecretId);
+        return this;
+    }
+
+    /**
+     * Get the sha1Thumbprint property: The sha1Thumbprint property.
+     * 
+     * @return the sha1Thumbprint value.
+     */
+    public String sha1Thumbprint() {
+        return this.innerProperties() == null ? null : this.innerProperties().sha1Thumbprint();
+    }
+
+    /**
+     * Get the keyVaultSecretVersion property: The keyVaultSecretVersion property.
+     * 
+     * @return the keyVaultSecretVersion value.
+     */
+    public String keyVaultSecretVersion() {
+        return this.innerProperties() == null ? null : this.innerProperties().keyVaultSecretVersion();
+    }
+
+    /**
+     * Get the keyVaultSecretCreated property: The keyVaultSecretCreated property.
+     * 
+     * @return the keyVaultSecretCreated value.
+     */
+    public OffsetDateTime keyVaultSecretCreated() {
+        return this.innerProperties() == null ? null : this.innerProperties().keyVaultSecretCreated();
+    }
+
+    /**
+     * Get the certificateError property: The certificateError property.
+     * 
+     * @return the certificateError value.
+     */
+    public NginxCertificateErrorResponseBody certificateError() {
+        return this.innerProperties() == null ? null : this.innerProperties().certificateError();
+    }
+
+    /**
+     * Set the certificateError property: The certificateError property.
+     * 
+     * @param certificateError the certificateError value to set.
+     * @return the NginxCertificateInner object itself.
+     */
+    public NginxCertificateInner withCertificateError(NginxCertificateErrorResponseBody certificateError) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxCertificateProperties();
+        }
+        this.innerProperties().withCertificateError(certificateError);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 
@@ -150,7 +269,7 @@ public final class NginxCertificateInner extends ProxyResource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("properties", this.properties);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
         jsonWriter.writeStringField("location", this.location);
         return jsonWriter.writeEndObject();
     }
@@ -178,7 +297,7 @@ public final class NginxCertificateInner extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedNginxCertificateInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedNginxCertificateInner.properties = NginxCertificateProperties.fromJson(reader);
+                    deserializedNginxCertificateInner.innerProperties = NginxCertificateProperties.fromJson(reader);
                 } else if ("location".equals(fieldName)) {
                     deserializedNginxCertificateInner.location = reader.getString();
                 } else if ("systemData".equals(fieldName)) {

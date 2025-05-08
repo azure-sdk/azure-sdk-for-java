@@ -31,7 +31,6 @@ import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.nginx.fluent.ApiKeysClient;
 import com.azure.resourcemanager.nginx.fluent.models.NginxDeploymentApiKeyResponseInner;
 import com.azure.resourcemanager.nginx.models.NginxDeploymentApiKeyListResponse;
-import com.azure.resourcemanager.nginx.models.NginxDeploymentApiKeyRequest;
 import reactor.core.publisher.Mono;
 
 /**
@@ -66,45 +65,43 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
     @ServiceInterface(name = "NginxManagementClien")
     public interface ApiKeysService {
         @Headers({ "Content-Type: application/json" })
-        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/apiKeys/{apiKeyName}")
-        @ExpectedResponses({ 200, 201 })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/apiKeys")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<NginxDeploymentApiKeyResponseInner>> createOrUpdate(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<NginxDeploymentApiKeyListResponse>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("deploymentName") String deploymentName, @PathParam("apiKeyName") String apiKeyName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") NginxDeploymentApiKeyRequest body, @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/apiKeys/{apiKeyName}")
-        @ExpectedResponses({ 200, 204 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("deploymentName") String deploymentName, @PathParam("apiKeyName") String apiKeyName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("deploymentName") String deploymentName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/apiKeys/{apiKeyName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NginxDeploymentApiKeyResponseInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("deploymentName") String deploymentName, @PathParam("apiKeyName") String apiKeyName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/apiKeys/{apiKeyName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<NginxDeploymentApiKeyResponseInner>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("deploymentName") String deploymentName, @PathParam("apiKeyName") String apiKeyName,
+            @BodyParam("application/json") NginxDeploymentApiKeyResponseInner body,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/apiKeys/{apiKeyName}")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("deploymentName") String deploymentName, @PathParam("apiKeyName") String apiKeyName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/apiKeys")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<NginxDeploymentApiKeyListResponse>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("deploymentName") String deploymentName, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -117,20 +114,19 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
     }
 
     /**
-     * Create or update an API Key for the Nginx deployment in order to access the dataplane API endpoint.
+     * List all API Keys of the given Nginx deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
-     * @param body The API Key object containing fields (e.g. secret text, expiration date) to upsert the key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return paged collection of NginxDeploymentApiKeyResponse items along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NginxDeploymentApiKeyResponseInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String deploymentName, String apiKeyName, NginxDeploymentApiKeyRequest body) {
+    private Mono<PagedResponse<NginxDeploymentApiKeyResponseInner>> listSinglePageAsync(String resourceGroupName,
+        String deploymentName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -146,35 +142,30 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
         if (deploymentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
         }
-        if (apiKeyName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter apiKeyName is required and cannot be null."));
-        }
-        if (body != null) {
-            body.validate();
-        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, deploymentName, apiKeyName, this.client.getApiVersion(), body, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, deploymentName, accept, context))
+            .<PagedResponse<NginxDeploymentApiKeyResponseInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Create or update an API Key for the Nginx deployment in order to access the dataplane API endpoint.
+     * List all API Keys of the given Nginx deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
-     * @param body The API Key object containing fields (e.g. secret text, expiration date) to upsert the key.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return paged collection of NginxDeploymentApiKeyResponse items along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NginxDeploymentApiKeyResponseInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String deploymentName, String apiKeyName, NginxDeploymentApiKeyRequest body, Context context) {
+    private Mono<PagedResponse<NginxDeploymentApiKeyResponseInner>> listSinglePageAsync(String resourceGroupName,
+        String deploymentName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -189,200 +180,80 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
         }
         if (deploymentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
-        }
-        if (apiKeyName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter apiKeyName is required and cannot be null."));
-        }
-        if (body != null) {
-            body.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            deploymentName, apiKeyName, this.client.getApiVersion(), body, accept, context);
+        return service
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, deploymentName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * Create or update an API Key for the Nginx deployment in order to access the dataplane API endpoint.
+     * List all API Keys of the given Nginx deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return paged collection of NginxDeploymentApiKeyResponse items as paginated response with {@link PagedFlux}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NginxDeploymentApiKeyResponseInner> createOrUpdateAsync(String resourceGroupName,
-        String deploymentName, String apiKeyName) {
-        final NginxDeploymentApiKeyRequest body = null;
-        return createOrUpdateWithResponseAsync(resourceGroupName, deploymentName, apiKeyName, body)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<NginxDeploymentApiKeyResponseInner> listAsync(String resourceGroupName, String deploymentName) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, deploymentName),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Create or update an API Key for the Nginx deployment in order to access the dataplane API endpoint.
+     * List all API Keys of the given Nginx deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
-     * @param body The API Key object containing fields (e.g. secret text, expiration date) to upsert the key.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return paged collection of NginxDeploymentApiKeyResponse items as paginated response with {@link PagedFlux}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<NginxDeploymentApiKeyResponseInner> createOrUpdateWithResponse(String resourceGroupName,
-        String deploymentName, String apiKeyName, NginxDeploymentApiKeyRequest body, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, deploymentName, apiKeyName, body, context).block();
-    }
-
-    /**
-     * Create or update an API Key for the Nginx deployment in order to access the dataplane API endpoint.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public NginxDeploymentApiKeyResponseInner createOrUpdate(String resourceGroupName, String deploymentName,
-        String apiKeyName) {
-        final NginxDeploymentApiKeyRequest body = null;
-        return createOrUpdateWithResponse(resourceGroupName, deploymentName, apiKeyName, body, Context.NONE).getValue();
-    }
-
-    /**
-     * Delete API key for Nginx deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String deploymentName,
-        String apiKeyName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (deploymentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
-        }
-        if (apiKeyName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter apiKeyName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, deploymentName, apiKeyName, this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Delete API key for Nginx deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String deploymentName,
-        String apiKeyName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (deploymentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
-        }
-        if (apiKeyName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter apiKeyName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            deploymentName, apiKeyName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Delete API key for Nginx deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String deploymentName, String apiKeyName) {
-        return deleteWithResponseAsync(resourceGroupName, deploymentName, apiKeyName).flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Delete API key for Nginx deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(String resourceGroupName, String deploymentName, String apiKeyName,
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<NginxDeploymentApiKeyResponseInner> listAsync(String resourceGroupName, String deploymentName,
         Context context) {
-        return deleteWithResponseAsync(resourceGroupName, deploymentName, apiKeyName, context).block();
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, deploymentName, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * Delete API key for Nginx deployment.
+     * List all API Keys of the given Nginx deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return paged collection of NginxDeploymentApiKeyResponse items as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String deploymentName, String apiKeyName) {
-        deleteWithResponse(resourceGroupName, deploymentName, apiKeyName, Context.NONE);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<NginxDeploymentApiKeyResponseInner> list(String resourceGroupName, String deploymentName) {
+        return new PagedIterable<>(listAsync(resourceGroupName, deploymentName));
+    }
+
+    /**
+     * List all API Keys of the given Nginx deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param deploymentName The name of targeted NGINX deployment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return paged collection of NginxDeploymentApiKeyResponse items as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<NginxDeploymentApiKeyResponseInner> list(String resourceGroupName, String deploymentName,
+        Context context) {
+        return new PagedIterable<>(listAsync(resourceGroupName, deploymentName, context));
     }
 
     /**
@@ -420,8 +291,8 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, deploymentName, apiKeyName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, deploymentName, apiKeyName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -461,8 +332,8 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            deploymentName, apiKeyName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, deploymentName, apiKeyName, accept, context);
     }
 
     /**
@@ -518,18 +389,21 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
     }
 
     /**
-     * List all API Keys of the given Nginx deployment.
+     * Create or update an API Key for the Nginx deployment in order to access the dataplane API endpoint.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
+     * @param body The API Key object containing fields (e.g. secret text, expiration date) to upsert the key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return concrete proxy resource types can be created by aliasing this type using a specific property type along
+     * with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<NginxDeploymentApiKeyResponseInner>> listSinglePageAsync(String resourceGroupName,
-        String deploymentName) {
+    private Mono<Response<NginxDeploymentApiKeyResponseInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String deploymentName, String apiKeyName, NginxDeploymentApiKeyResponseInner body) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -545,29 +419,38 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
         if (deploymentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
         }
+        if (apiKeyName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter apiKeyName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, deploymentName, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<NginxDeploymentApiKeyResponseInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, deploymentName, apiKeyName, body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * List all API Keys of the given Nginx deployment.
+     * Create or update an API Key for the Nginx deployment in order to access the dataplane API endpoint.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
+     * @param body The API Key object containing fields (e.g. secret text, expiration date) to upsert the key.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return concrete proxy resource types can be created by aliasing this type using a specific property type along
+     * with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<NginxDeploymentApiKeyResponseInner>> listSinglePageAsync(String resourceGroupName,
-        String deploymentName, Context context) {
+    private Mono<Response<NginxDeploymentApiKeyResponseInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String deploymentName, String apiKeyName, NginxDeploymentApiKeyResponseInner body, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -583,79 +466,203 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
         if (deploymentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
         }
+        if (apiKeyName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter apiKeyName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, deploymentName,
-                this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, deploymentName, apiKeyName, body, accept, context);
     }
 
     /**
-     * List all API Keys of the given Nginx deployment.
+     * Create or update an API Key for the Nginx deployment in order to access the dataplane API endpoint.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
+     * @param body The API Key object containing fields (e.g. secret text, expiration date) to upsert the key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return concrete proxy resource types can be created by aliasing this type using a specific property type on
+     * successful completion of {@link Mono}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<NginxDeploymentApiKeyResponseInner> listAsync(String resourceGroupName, String deploymentName) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, deploymentName),
-            nextLink -> listNextSinglePageAsync(nextLink));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<NginxDeploymentApiKeyResponseInner> createOrUpdateAsync(String resourceGroupName,
+        String deploymentName, String apiKeyName, NginxDeploymentApiKeyResponseInner body) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, deploymentName, apiKeyName, body)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * List all API Keys of the given Nginx deployment.
+     * Create or update an API Key for the Nginx deployment in order to access the dataplane API endpoint.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
+     * @param body The API Key object containing fields (e.g. secret text, expiration date) to upsert the key.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return concrete proxy resource types can be created by aliasing this type using a specific property type along
+     * with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<NginxDeploymentApiKeyResponseInner> listAsync(String resourceGroupName, String deploymentName,
-        Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, deploymentName, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<NginxDeploymentApiKeyResponseInner> createOrUpdateWithResponse(String resourceGroupName,
+        String deploymentName, String apiKeyName, NginxDeploymentApiKeyResponseInner body, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, deploymentName, apiKeyName, body, context).block();
     }
 
     /**
-     * List all API Keys of the given Nginx deployment.
+     * Create or update an API Key for the Nginx deployment in order to access the dataplane API endpoint.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
+     * @param body The API Key object containing fields (e.g. secret text, expiration date) to upsert the key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return concrete proxy resource types can be created by aliasing this type using a specific property type.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<NginxDeploymentApiKeyResponseInner> list(String resourceGroupName, String deploymentName) {
-        return new PagedIterable<>(listAsync(resourceGroupName, deploymentName));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public NginxDeploymentApiKeyResponseInner createOrUpdate(String resourceGroupName, String deploymentName,
+        String apiKeyName, NginxDeploymentApiKeyResponseInner body) {
+        return createOrUpdateWithResponse(resourceGroupName, deploymentName, apiKeyName, body, Context.NONE).getValue();
     }
 
     /**
-     * List all API Keys of the given Nginx deployment.
+     * Delete API key for Nginx deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String deploymentName,
+        String apiKeyName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (deploymentName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
+        }
+        if (apiKeyName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter apiKeyName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, deploymentName, apiKeyName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Delete API key for Nginx deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<NginxDeploymentApiKeyResponseInner> list(String resourceGroupName, String deploymentName,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String deploymentName,
+        String apiKeyName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (deploymentName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
+        }
+        if (apiKeyName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter apiKeyName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, deploymentName, apiKeyName, accept, context);
+    }
+
+    /**
+     * Delete API key for Nginx deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String deploymentName, String apiKeyName) {
+        return deleteWithResponseAsync(resourceGroupName, deploymentName, apiKeyName).flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Delete API key for Nginx deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> deleteWithResponse(String resourceGroupName, String deploymentName, String apiKeyName,
         Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, deploymentName, context));
+        return deleteWithResponseAsync(resourceGroupName, deploymentName, apiKeyName, context).block();
+    }
+
+    /**
+     * Delete API key for Nginx deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String deploymentName, String apiKeyName) {
+        deleteWithResponse(resourceGroupName, deploymentName, apiKeyName, Context.NONE);
     }
 
     /**
@@ -665,7 +672,8 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged collection of NginxDeploymentApiKeyResponse items along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NginxDeploymentApiKeyResponseInner>> listNextSinglePageAsync(String nextLink) {
@@ -691,7 +699,8 @@ public final class ApiKeysClientImpl implements ApiKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged collection of NginxDeploymentApiKeyResponse items along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NginxDeploymentApiKeyResponseInner>> listNextSinglePageAsync(String nextLink,

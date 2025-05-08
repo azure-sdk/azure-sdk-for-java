@@ -10,72 +10,38 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.fluent.models.NginxDeploymentApiKeyResponseInner;
-import com.azure.resourcemanager.nginx.models.NginxDeploymentApiKeyRequest;
 
 /**
  * An instance of this class provides access to all the operations defined in ApiKeysClient.
  */
 public interface ApiKeysClient {
     /**
-     * Create or update an API Key for the Nginx deployment in order to access the dataplane API endpoint.
+     * List all API Keys of the given Nginx deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
-     * @param body The API Key object containing fields (e.g. secret text, expiration date) to upsert the key.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return paged collection of NginxDeploymentApiKeyResponse items as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<NginxDeploymentApiKeyResponseInner> list(String resourceGroupName, String deploymentName);
+
+    /**
+     * List all API Keys of the given Nginx deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return paged collection of NginxDeploymentApiKeyResponse items as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<NginxDeploymentApiKeyResponseInner> createOrUpdateWithResponse(String resourceGroupName,
-        String deploymentName, String apiKeyName, NginxDeploymentApiKeyRequest body, Context context);
-
-    /**
-     * Create or update an API Key for the Nginx deployment in order to access the dataplane API endpoint.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    NginxDeploymentApiKeyResponseInner createOrUpdate(String resourceGroupName, String deploymentName,
-        String apiKeyName);
-
-    /**
-     * Delete API key for Nginx deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(String resourceGroupName, String deploymentName, String apiKeyName,
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<NginxDeploymentApiKeyResponseInner> list(String resourceGroupName, String deploymentName,
         Context context);
-
-    /**
-     * Delete API key for Nginx deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String deploymentName, String apiKeyName);
 
     /**
      * Get the specified API Key of the given Nginx deployment.
@@ -108,30 +74,65 @@ public interface ApiKeysClient {
     NginxDeploymentApiKeyResponseInner get(String resourceGroupName, String deploymentName, String apiKeyName);
 
     /**
-     * List all API Keys of the given Nginx deployment.
+     * Create or update an API Key for the Nginx deployment in order to access the dataplane API endpoint.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<NginxDeploymentApiKeyResponseInner> list(String resourceGroupName, String deploymentName);
-
-    /**
-     * List all API Keys of the given Nginx deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
+     * @param body The API Key object containing fields (e.g. secret text, expiration date) to upsert the key.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return concrete proxy resource types can be created by aliasing this type using a specific property type along
+     * with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<NginxDeploymentApiKeyResponseInner> list(String resourceGroupName, String deploymentName,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<NginxDeploymentApiKeyResponseInner> createOrUpdateWithResponse(String resourceGroupName,
+        String deploymentName, String apiKeyName, NginxDeploymentApiKeyResponseInner body, Context context);
+
+    /**
+     * Create or update an API Key for the Nginx deployment in order to access the dataplane API endpoint.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
+     * @param body The API Key object containing fields (e.g. secret text, expiration date) to upsert the key.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return concrete proxy resource types can be created by aliasing this type using a specific property type.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    NginxDeploymentApiKeyResponseInner createOrUpdate(String resourceGroupName, String deploymentName,
+        String apiKeyName, NginxDeploymentApiKeyResponseInner body);
+
+    /**
+     * Delete API key for Nginx deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> deleteWithResponse(String resourceGroupName, String deploymentName, String apiKeyName,
         Context context);
+
+    /**
+     * Delete API key for Nginx deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String deploymentName, String apiKeyName);
 }

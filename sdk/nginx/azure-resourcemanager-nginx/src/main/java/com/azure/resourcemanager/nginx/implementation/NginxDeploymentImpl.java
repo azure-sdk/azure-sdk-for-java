@@ -8,12 +8,18 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.fluent.models.NginxDeploymentInner;
+import com.azure.resourcemanager.nginx.models.AutoUpgradeProfile;
+import com.azure.resourcemanager.nginx.models.AzureResourceManagerResourceSkuProperty;
 import com.azure.resourcemanager.nginx.models.IdentityProperties;
 import com.azure.resourcemanager.nginx.models.NginxDeployment;
-import com.azure.resourcemanager.nginx.models.NginxDeploymentProperties;
+import com.azure.resourcemanager.nginx.models.NginxDeploymentPropertiesNginxAppProtect;
+import com.azure.resourcemanager.nginx.models.NginxDeploymentScalingProperties;
 import com.azure.resourcemanager.nginx.models.NginxDeploymentUpdateParameters;
 import com.azure.resourcemanager.nginx.models.NginxDeploymentUpdateProperties;
-import com.azure.resourcemanager.nginx.models.ResourceSku;
+import com.azure.resourcemanager.nginx.models.NginxDeploymentUserProfile;
+import com.azure.resourcemanager.nginx.models.NginxLogging;
+import com.azure.resourcemanager.nginx.models.NginxNetworkProfile;
+import com.azure.resourcemanager.nginx.models.ProvisioningState;
 import java.util.Collections;
 import java.util.Map;
 
@@ -51,16 +57,56 @@ public final class NginxDeploymentImpl implements NginxDeployment, NginxDeployme
         return this.innerModel().identity();
     }
 
-    public NginxDeploymentProperties properties() {
-        return this.innerModel().properties();
-    }
-
-    public ResourceSku sku() {
+    public AzureResourceManagerResourceSkuProperty sku() {
         return this.innerModel().sku();
     }
 
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public String nginxVersion() {
+        return this.innerModel().nginxVersion();
+    }
+
+    public NginxNetworkProfile networkProfile() {
+        return this.innerModel().networkProfile();
+    }
+
+    public String ipAddress() {
+        return this.innerModel().ipAddress();
+    }
+
+    public Boolean enableDiagnosticsSupport() {
+        return this.innerModel().enableDiagnosticsSupport();
+    }
+
+    public NginxLogging logging() {
+        return this.innerModel().logging();
+    }
+
+    public NginxDeploymentScalingProperties scalingProperties() {
+        return this.innerModel().scalingProperties();
+    }
+
+    public AutoUpgradeProfile autoUpgradeProfile() {
+        return this.innerModel().autoUpgradeProfile();
+    }
+
+    public NginxDeploymentUserProfile userProfile() {
+        return this.innerModel().userProfile();
+    }
+
+    public NginxDeploymentPropertiesNginxAppProtect nginxAppProtect() {
+        return this.innerModel().nginxAppProtect();
+    }
+
+    public String dataplaneApiEndpoint() {
+        return this.innerModel().dataplaneApiEndpoint();
     }
 
     public Region region() {
@@ -186,12 +232,7 @@ public final class NginxDeploymentImpl implements NginxDeployment, NginxDeployme
         }
     }
 
-    public NginxDeploymentImpl withProperties(NginxDeploymentProperties properties) {
-        this.innerModel().withProperties(properties);
-        return this;
-    }
-
-    public NginxDeploymentImpl withSku(ResourceSku sku) {
+    public NginxDeploymentImpl withSku(AzureResourceManagerResourceSkuProperty sku) {
         if (isInCreateMode()) {
             this.innerModel().withSku(sku);
             return this;
@@ -199,6 +240,41 @@ public final class NginxDeploymentImpl implements NginxDeployment, NginxDeployme
             this.updateBody.withSku(sku);
             return this;
         }
+    }
+
+    public NginxDeploymentImpl withNetworkProfile(NginxNetworkProfile networkProfile) {
+        this.innerModel().withNetworkProfile(networkProfile);
+        return this;
+    }
+
+    public NginxDeploymentImpl withEnableDiagnosticsSupport(Boolean enableDiagnosticsSupport) {
+        this.innerModel().withEnableDiagnosticsSupport(enableDiagnosticsSupport);
+        return this;
+    }
+
+    public NginxDeploymentImpl withLogging(NginxLogging logging) {
+        this.innerModel().withLogging(logging);
+        return this;
+    }
+
+    public NginxDeploymentImpl withScalingProperties(NginxDeploymentScalingProperties scalingProperties) {
+        this.innerModel().withScalingProperties(scalingProperties);
+        return this;
+    }
+
+    public NginxDeploymentImpl withAutoUpgradeProfile(AutoUpgradeProfile autoUpgradeProfile) {
+        this.innerModel().withAutoUpgradeProfile(autoUpgradeProfile);
+        return this;
+    }
+
+    public NginxDeploymentImpl withUserProfile(NginxDeploymentUserProfile userProfile) {
+        this.innerModel().withUserProfile(userProfile);
+        return this;
+    }
+
+    public NginxDeploymentImpl withNginxAppProtect(NginxDeploymentPropertiesNginxAppProtect nginxAppProtect) {
+        this.innerModel().withNginxAppProtect(nginxAppProtect);
+        return this;
     }
 
     public NginxDeploymentImpl withProperties(NginxDeploymentUpdateProperties properties) {

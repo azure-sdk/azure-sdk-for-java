@@ -13,6 +13,49 @@ import com.azure.core.util.Context;
  */
 public interface Deployments {
     /**
+     * List the NGINX deployments resources.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return paged collection of NginxDeployment items as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<NginxDeployment> list();
+
+    /**
+     * List the NGINX deployments resources.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return paged collection of NginxDeployment items as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<NginxDeployment> list(Context context);
+
+    /**
+     * List all NGINX deployments under the specified resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return paged collection of NginxDeployment items as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<NginxDeployment> listByResourceGroup(String resourceGroupName);
+
+    /**
+     * List all NGINX deployments under the specified resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return paged collection of NginxDeployment items as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<NginxDeployment> listByResourceGroup(String resourceGroupName, Context context);
+
+    /**
      * Get the NGINX deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -60,49 +103,6 @@ public interface Deployments {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void delete(String resourceGroupName, String deploymentName, Context context);
-
-    /**
-     * List the NGINX deployments resources.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<NginxDeployment> list();
-
-    /**
-     * List the NGINX deployments resources.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<NginxDeployment> list(Context context);
-
-    /**
-     * List all NGINX deployments under the specified resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<NginxDeployment> listByResourceGroup(String resourceGroupName);
-
-    /**
-     * List all NGINX deployments under the specified resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<NginxDeployment> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
      * Get the NGINX deployment.

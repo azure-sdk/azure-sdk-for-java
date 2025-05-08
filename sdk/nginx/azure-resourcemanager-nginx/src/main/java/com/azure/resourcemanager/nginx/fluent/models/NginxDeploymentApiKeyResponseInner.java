@@ -6,21 +6,27 @@ package com.azure.resourcemanager.nginx.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.nginx.models.NginxDeploymentApiKeyResponseProperties;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 
 /**
- * The NginxDeploymentApiKeyResponse model.
+ * Concrete proxy resource types can be created by aliasing this type using a specific property type.
  */
 @Fluent
 public final class NginxDeploymentApiKeyResponseInner extends ProxyResource {
     /*
      * The properties property.
      */
-    private NginxDeploymentApiKeyResponseProperties properties;
+    private NginxDeploymentApiKeyResponseProperties innerProperties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -44,23 +50,21 @@ public final class NginxDeploymentApiKeyResponseInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The properties property.
+     * Get the innerProperties property: The properties property.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public NginxDeploymentApiKeyResponseProperties properties() {
-        return this.properties;
+    private NginxDeploymentApiKeyResponseProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the properties property: The properties property.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @param properties the properties value to set.
-     * @return the NginxDeploymentApiKeyResponseInner object itself.
+     * @return the systemData value.
      */
-    public NginxDeploymentApiKeyResponseInner withProperties(NginxDeploymentApiKeyResponseProperties properties) {
-        this.properties = properties;
-        return this;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -94,13 +98,46 @@ public final class NginxDeploymentApiKeyResponseInner extends ProxyResource {
     }
 
     /**
+     * Get the hint property: The first three characters of the secret text to help identify it in use. This property is
+     * read-only.
+     * 
+     * @return the hint value.
+     */
+    public String hint() {
+        return this.innerProperties() == null ? null : this.innerProperties().hint();
+    }
+
+    /**
+     * Get the endDateTime property: The time after which this Dataplane API Key is no longer valid.
+     * 
+     * @return the endDateTime value.
+     */
+    public OffsetDateTime endDateTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().endDateTime();
+    }
+
+    /**
+     * Set the endDateTime property: The time after which this Dataplane API Key is no longer valid.
+     * 
+     * @param endDateTime the endDateTime value to set.
+     * @return the NginxDeploymentApiKeyResponseInner object itself.
+     */
+    public NginxDeploymentApiKeyResponseInner withEndDateTime(OffsetDateTime endDateTime) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxDeploymentApiKeyResponseProperties();
+        }
+        this.innerProperties().withEndDateTime(endDateTime);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 
@@ -110,7 +147,7 @@ public final class NginxDeploymentApiKeyResponseInner extends ProxyResource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("properties", this.properties);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
         return jsonWriter.writeEndObject();
     }
 
@@ -138,8 +175,10 @@ public final class NginxDeploymentApiKeyResponseInner extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedNginxDeploymentApiKeyResponseInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedNginxDeploymentApiKeyResponseInner.properties
+                    deserializedNginxDeploymentApiKeyResponseInner.innerProperties
                         = NginxDeploymentApiKeyResponseProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedNginxDeploymentApiKeyResponseInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

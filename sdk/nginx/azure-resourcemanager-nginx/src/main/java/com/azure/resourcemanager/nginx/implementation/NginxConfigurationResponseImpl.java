@@ -10,10 +10,13 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.fluent.models.NginxConfigurationResponseInner;
 import com.azure.resourcemanager.nginx.models.AnalysisCreate;
 import com.azure.resourcemanager.nginx.models.AnalysisResult;
-import com.azure.resourcemanager.nginx.models.NginxConfigurationRequest;
-import com.azure.resourcemanager.nginx.models.NginxConfigurationRequestProperties;
+import com.azure.resourcemanager.nginx.models.NginxConfigurationFile;
+import com.azure.resourcemanager.nginx.models.NginxConfigurationPackage;
+import com.azure.resourcemanager.nginx.models.NginxConfigurationProtectedFileResponse;
 import com.azure.resourcemanager.nginx.models.NginxConfigurationResponse;
-import com.azure.resourcemanager.nginx.models.NginxConfigurationResponseProperties;
+import com.azure.resourcemanager.nginx.models.ProvisioningState;
+import java.util.Collections;
+import java.util.List;
 
 public final class NginxConfigurationResponseImpl
     implements NginxConfigurationResponse, NginxConfigurationResponse.Definition, NginxConfigurationResponse.Update {
@@ -33,12 +36,38 @@ public final class NginxConfigurationResponseImpl
         return this.innerModel().type();
     }
 
-    public NginxConfigurationResponseProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public List<NginxConfigurationFile> files() {
+        List<NginxConfigurationFile> inner = this.innerModel().files();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<NginxConfigurationProtectedFileResponse> protectedFiles() {
+        List<NginxConfigurationProtectedFileResponse> inner = this.innerModel().protectedFiles();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public NginxConfigurationPackage packageProperty() {
+        return this.innerModel().packageProperty();
+    }
+
+    public String rootFile() {
+        return this.innerModel().rootFile();
     }
 
     public String resourceGroupName() {
@@ -59,10 +88,6 @@ public final class NginxConfigurationResponseImpl
 
     private String configurationName;
 
-    private NginxConfigurationRequest createBody;
-
-    private NginxConfigurationRequest updateBody;
-
     public NginxConfigurationResponseImpl withExistingNginxDeployment(String resourceGroupName, String deploymentName) {
         this.resourceGroupName = resourceGroupName;
         this.deploymentName = deploymentName;
@@ -72,14 +97,14 @@ public final class NginxConfigurationResponseImpl
     public NginxConfigurationResponse create() {
         this.innerObject = serviceManager.serviceClient()
             .getConfigurations()
-            .createOrUpdate(resourceGroupName, deploymentName, configurationName, createBody, Context.NONE);
+            .createOrUpdate(resourceGroupName, deploymentName, configurationName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public NginxConfigurationResponse create(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getConfigurations()
-            .createOrUpdate(resourceGroupName, deploymentName, configurationName, createBody, context);
+            .createOrUpdate(resourceGroupName, deploymentName, configurationName, this.innerModel(), context);
         return this;
     }
 
@@ -87,25 +112,23 @@ public final class NginxConfigurationResponseImpl
         this.innerObject = new NginxConfigurationResponseInner();
         this.serviceManager = serviceManager;
         this.configurationName = name;
-        this.createBody = new NginxConfigurationRequest();
     }
 
     public NginxConfigurationResponseImpl update() {
-        this.updateBody = new NginxConfigurationRequest();
         return this;
     }
 
     public NginxConfigurationResponse apply() {
         this.innerObject = serviceManager.serviceClient()
             .getConfigurations()
-            .createOrUpdate(resourceGroupName, deploymentName, configurationName, updateBody, Context.NONE);
+            .createOrUpdate(resourceGroupName, deploymentName, configurationName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public NginxConfigurationResponse apply(Context context) {
         this.innerObject = serviceManager.serviceClient()
             .getConfigurations()
-            .createOrUpdate(resourceGroupName, deploymentName, configurationName, updateBody, context);
+            .createOrUpdate(resourceGroupName, deploymentName, configurationName, this.innerModel(), context);
         return this;
     }
 
@@ -143,17 +166,24 @@ public final class NginxConfigurationResponseImpl
         return serviceManager.configurations().analysis(resourceGroupName, deploymentName, configurationName);
     }
 
-    public NginxConfigurationResponseImpl withProperties(NginxConfigurationRequestProperties properties) {
-        if (isInCreateMode()) {
-            this.createBody.withProperties(properties);
-            return this;
-        } else {
-            this.updateBody.withProperties(properties);
-            return this;
-        }
+    public NginxConfigurationResponseImpl withFiles(List<NginxConfigurationFile> files) {
+        this.innerModel().withFiles(files);
+        return this;
     }
 
-    private boolean isInCreateMode() {
-        return this.innerModel().id() == null;
+    public NginxConfigurationResponseImpl
+        withProtectedFiles(List<NginxConfigurationProtectedFileResponse> protectedFiles) {
+        this.innerModel().withProtectedFiles(protectedFiles);
+        return this;
+    }
+
+    public NginxConfigurationResponseImpl withPackageProperty(NginxConfigurationPackage packageProperty) {
+        this.innerModel().withPackageProperty(packageProperty);
+        return this;
+    }
+
+    public NginxConfigurationResponseImpl withRootFile(String rootFile) {
+        this.innerModel().withRootFile(rootFile);
+        return this;
     }
 }

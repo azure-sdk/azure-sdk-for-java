@@ -14,7 +14,6 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.nginx.fluent.models.AnalysisResultInner;
 import com.azure.resourcemanager.nginx.fluent.models.NginxConfigurationResponseInner;
 import com.azure.resourcemanager.nginx.models.AnalysisCreate;
-import com.azure.resourcemanager.nginx.models.NginxConfigurationRequest;
 
 /**
  * An instance of this class provides access to all the operations defined in ConfigurationsClient.
@@ -87,14 +86,17 @@ public interface ConfigurationsClient {
      * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
      * NGINX conf.
+     * @param body The NGINX configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of concrete proxy resource types can be created by aliasing this type
+     * using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<NginxConfigurationResponseInner>, NginxConfigurationResponseInner>
-        beginCreateOrUpdate(String resourceGroupName, String deploymentName, String configurationName);
+    SyncPoller<PollResult<NginxConfigurationResponseInner>, NginxConfigurationResponseInner> beginCreateOrUpdate(
+        String resourceGroupName, String deploymentName, String configurationName,
+        NginxConfigurationResponseInner body);
 
     /**
      * Create or update the NGINX configuration for given NGINX deployment.
@@ -108,11 +110,12 @@ public interface ConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of concrete proxy resource types can be created by aliasing this type
+     * using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<NginxConfigurationResponseInner>, NginxConfigurationResponseInner> beginCreateOrUpdate(
-        String resourceGroupName, String deploymentName, String configurationName, NginxConfigurationRequest body,
+        String resourceGroupName, String deploymentName, String configurationName, NginxConfigurationResponseInner body,
         Context context);
 
     /**
@@ -122,14 +125,15 @@ public interface ConfigurationsClient {
      * @param deploymentName The name of targeted NGINX deployment.
      * @param configurationName The name of configuration, only 'default' is supported value due to the singleton of
      * NGINX conf.
+     * @param body The NGINX configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return concrete proxy resource types can be created by aliasing this type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     NginxConfigurationResponseInner createOrUpdate(String resourceGroupName, String deploymentName,
-        String configurationName);
+        String configurationName, NginxConfigurationResponseInner body);
 
     /**
      * Create or update the NGINX configuration for given NGINX deployment.
@@ -143,11 +147,11 @@ public interface ConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return concrete proxy resource types can be created by aliasing this type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     NginxConfigurationResponseInner createOrUpdate(String resourceGroupName, String deploymentName,
-        String configurationName, NginxConfigurationRequest body, Context context);
+        String configurationName, NginxConfigurationResponseInner body, Context context);
 
     /**
      * Reset the NGINX configuration of given NGINX deployment to default.

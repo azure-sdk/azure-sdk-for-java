@@ -26,13 +26,19 @@ public final class ApiKeysImpl implements ApiKeys {
         this.serviceManager = serviceManager;
     }
 
-    public Response<Void> deleteWithResponse(String resourceGroupName, String deploymentName, String apiKeyName,
-        Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, deploymentName, apiKeyName, context);
+    public PagedIterable<NginxDeploymentApiKeyResponse> list(String resourceGroupName, String deploymentName) {
+        PagedIterable<NginxDeploymentApiKeyResponseInner> inner
+            = this.serviceClient().list(resourceGroupName, deploymentName);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new NginxDeploymentApiKeyResponseImpl(inner1, this.manager()));
     }
 
-    public void delete(String resourceGroupName, String deploymentName, String apiKeyName) {
-        this.serviceClient().delete(resourceGroupName, deploymentName, apiKeyName);
+    public PagedIterable<NginxDeploymentApiKeyResponse> list(String resourceGroupName, String deploymentName,
+        Context context) {
+        PagedIterable<NginxDeploymentApiKeyResponseInner> inner
+            = this.serviceClient().list(resourceGroupName, deploymentName, context);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new NginxDeploymentApiKeyResponseImpl(inner1, this.manager()));
     }
 
     public Response<NginxDeploymentApiKeyResponse> getWithResponse(String resourceGroupName, String deploymentName,
@@ -57,19 +63,13 @@ public final class ApiKeysImpl implements ApiKeys {
         }
     }
 
-    public PagedIterable<NginxDeploymentApiKeyResponse> list(String resourceGroupName, String deploymentName) {
-        PagedIterable<NginxDeploymentApiKeyResponseInner> inner
-            = this.serviceClient().list(resourceGroupName, deploymentName);
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new NginxDeploymentApiKeyResponseImpl(inner1, this.manager()));
+    public Response<Void> deleteWithResponse(String resourceGroupName, String deploymentName, String apiKeyName,
+        Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, deploymentName, apiKeyName, context);
     }
 
-    public PagedIterable<NginxDeploymentApiKeyResponse> list(String resourceGroupName, String deploymentName,
-        Context context) {
-        PagedIterable<NginxDeploymentApiKeyResponseInner> inner
-            = this.serviceClient().list(resourceGroupName, deploymentName, context);
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new NginxDeploymentApiKeyResponseImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String deploymentName, String apiKeyName) {
+        this.serviceClient().delete(resourceGroupName, deploymentName, apiKeyName);
     }
 
     public NginxDeploymentApiKeyResponse getById(String id) {

@@ -4,6 +4,6 @@
 
 /**
  * Package containing the data models for NginxManagementClient.
- * null.
+ * // FIXME: (missing-service-description) Add service description.
  */
 package com.azure.resourcemanager.nginx.models;

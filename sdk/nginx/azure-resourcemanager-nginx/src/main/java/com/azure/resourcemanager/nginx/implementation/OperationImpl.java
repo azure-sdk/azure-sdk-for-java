@@ -4,16 +4,18 @@
 
 package com.azure.resourcemanager.nginx.implementation;
 
-import com.azure.resourcemanager.nginx.fluent.models.OperationResultInner;
+import com.azure.resourcemanager.nginx.fluent.models.OperationInner;
+import com.azure.resourcemanager.nginx.models.ActionType;
+import com.azure.resourcemanager.nginx.models.Operation;
 import com.azure.resourcemanager.nginx.models.OperationDisplay;
-import com.azure.resourcemanager.nginx.models.OperationResult;
+import com.azure.resourcemanager.nginx.models.Origin;
 
-public final class OperationResultImpl implements OperationResult {
-    private OperationResultInner innerObject;
+public final class OperationImpl implements Operation {
+    private OperationInner innerObject;
 
     private final com.azure.resourcemanager.nginx.NginxManager serviceManager;
 
-    OperationResultImpl(OperationResultInner innerObject, com.azure.resourcemanager.nginx.NginxManager serviceManager) {
+    OperationImpl(OperationInner innerObject, com.azure.resourcemanager.nginx.NginxManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -22,15 +24,23 @@ public final class OperationResultImpl implements OperationResult {
         return this.innerModel().name();
     }
 
-    public OperationDisplay display() {
-        return this.innerModel().display();
-    }
-
     public Boolean isDataAction() {
         return this.innerModel().isDataAction();
     }
 
-    public OperationResultInner innerModel() {
+    public OperationDisplay display() {
+        return this.innerModel().display();
+    }
+
+    public Origin origin() {
+        return this.innerModel().origin();
+    }
+
+    public ActionType actionType() {
+        return this.innerModel().actionType();
+    }
+
+    public OperationInner innerModel() {
         return this.innerObject;
     }
 

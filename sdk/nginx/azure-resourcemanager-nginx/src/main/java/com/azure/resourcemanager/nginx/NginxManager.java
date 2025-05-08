@@ -46,17 +46,18 @@ import java.util.stream.Collectors;
 
 /**
  * Entry point to NginxManager.
+ * // FIXME: (missing-service-description) Add service description.
  */
 public final class NginxManager {
+    private Operations operations;
+
+    private Deployments deployments;
+
     private ApiKeys apiKeys;
 
     private Certificates certificates;
 
     private Configurations configurations;
-
-    private Deployments deployments;
-
-    private Operations operations;
 
     private final NginxManagementClient clientObject;
 
@@ -274,6 +275,30 @@ public final class NginxManager {
     }
 
     /**
+     * Gets the resource collection API of Operations.
+     * 
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
+    }
+
+    /**
+     * Gets the resource collection API of Deployments. It manages NginxDeployment.
+     * 
+     * @return Resource collection API of Deployments.
+     */
+    public Deployments deployments() {
+        if (this.deployments == null) {
+            this.deployments = new DeploymentsImpl(clientObject.getDeployments(), this);
+        }
+        return deployments;
+    }
+
+    /**
      * Gets the resource collection API of ApiKeys. It manages NginxDeploymentApiKeyResponse.
      * 
      * @return Resource collection API of ApiKeys.
@@ -307,30 +332,6 @@ public final class NginxManager {
             this.configurations = new ConfigurationsImpl(clientObject.getConfigurations(), this);
         }
         return configurations;
-    }
-
-    /**
-     * Gets the resource collection API of Deployments. It manages NginxDeployment.
-     * 
-     * @return Resource collection API of Deployments.
-     */
-    public Deployments deployments() {
-        if (this.deployments == null) {
-            this.deployments = new DeploymentsImpl(clientObject.getDeployments(), this);
-        }
-        return deployments;
-    }
-
-    /**
-     * Gets the resource collection API of Operations.
-     * 
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
     }
 
     /**

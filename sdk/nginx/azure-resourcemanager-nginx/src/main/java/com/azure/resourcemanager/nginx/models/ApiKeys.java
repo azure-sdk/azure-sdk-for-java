@@ -13,31 +13,29 @@ import com.azure.core.util.Context;
  */
 public interface ApiKeys {
     /**
-     * Delete API key for Nginx deployment.
+     * List all API Keys of the given Nginx deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return paged collection of NginxDeploymentApiKeyResponse items as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<NginxDeploymentApiKeyResponse> list(String resourceGroupName, String deploymentName);
+
+    /**
+     * List all API Keys of the given Nginx deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param deploymentName The name of targeted NGINX deployment.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return paged collection of NginxDeploymentApiKeyResponse items as paginated response with {@link PagedIterable}.
      */
-    Response<Void> deleteWithResponse(String resourceGroupName, String deploymentName, String apiKeyName,
-        Context context);
-
-    /**
-     * Delete API key for Nginx deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted NGINX deployment.
-     * @param apiKeyName The resource name of the API key.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void delete(String resourceGroupName, String deploymentName, String apiKeyName);
+    PagedIterable<NginxDeploymentApiKeyResponse> list(String resourceGroupName, String deploymentName, Context context);
 
     /**
      * Get the specified API Key of the given Nginx deployment.
@@ -68,29 +66,31 @@ public interface ApiKeys {
     NginxDeploymentApiKeyResponse get(String resourceGroupName, String deploymentName, String apiKeyName);
 
     /**
-     * List all API Keys of the given Nginx deployment.
+     * Delete API key for Nginx deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<NginxDeploymentApiKeyResponse> list(String resourceGroupName, String deploymentName);
-
-    /**
-     * List all API Keys of the given Nginx deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the {@link Response}.
      */
-    PagedIterable<NginxDeploymentApiKeyResponse> list(String resourceGroupName, String deploymentName, Context context);
+    Response<Void> deleteWithResponse(String resourceGroupName, String deploymentName, String apiKeyName,
+        Context context);
+
+    /**
+     * Delete API key for Nginx deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param deploymentName The name of targeted NGINX deployment.
+     * @param apiKeyName The resource name of the API key.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String deploymentName, String apiKeyName);
 
     /**
      * Get the specified API Key of the given Nginx deployment.

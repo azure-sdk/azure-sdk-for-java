@@ -57,25 +57,96 @@ public interface NginxDeployment {
     IdentityProperties identity();
 
     /**
-     * Gets the properties property: The properties property.
-     * 
-     * @return the properties value.
-     */
-    NginxDeploymentProperties properties();
-
-    /**
-     * Gets the sku property: The sku property.
+     * Gets the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
      * 
      * @return the sku value.
      */
-    ResourceSku sku();
+    AzureResourceManagerResourceSkuProperty sku();
 
     /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the provisioningState property: The provisioningState property.
+     * 
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
+     * Gets the nginxVersion property: The nginxVersion property.
+     * 
+     * @return the nginxVersion value.
+     */
+    String nginxVersion();
+
+    /**
+     * Gets the networkProfile property: The networkProfile property.
+     * 
+     * @return the networkProfile value.
+     */
+    NginxNetworkProfile networkProfile();
+
+    /**
+     * Gets the ipAddress property: The IP address of the deployment.
+     * 
+     * @return the ipAddress value.
+     */
+    String ipAddress();
+
+    /**
+     * Gets the enableDiagnosticsSupport property: The enableDiagnosticsSupport property.
+     * 
+     * @return the enableDiagnosticsSupport value.
+     */
+    Boolean enableDiagnosticsSupport();
+
+    /**
+     * Gets the logging property: The logging property.
+     * 
+     * @return the logging value.
+     */
+    NginxLogging logging();
+
+    /**
+     * Gets the scalingProperties property: Information on how the deployment will be scaled.
+     * 
+     * @return the scalingProperties value.
+     */
+    NginxDeploymentScalingProperties scalingProperties();
+
+    /**
+     * Gets the autoUpgradeProfile property: Autoupgrade settings of a deployment.
+     * 
+     * @return the autoUpgradeProfile value.
+     */
+    AutoUpgradeProfile autoUpgradeProfile();
+
+    /**
+     * Gets the userProfile property: The userProfile property.
+     * 
+     * @return the userProfile value.
+     */
+    NginxDeploymentUserProfile userProfile();
+
+    /**
+     * Gets the nginxAppProtect property: Settings for NGINX App Protect (NAP).
+     * 
+     * @return the nginxAppProtect value.
+     */
+    NginxDeploymentPropertiesNginxAppProtect nginxAppProtect();
+
+    /**
+     * Gets the dataplaneApiEndpoint property: Dataplane API endpoint for the caller to update the NGINX state of the
+     * deployment.
+     * 
+     * @return the dataplaneApiEndpoint value.
+     */
+    String dataplaneApiEndpoint();
 
     /**
      * Gets the region of the resource.
@@ -160,8 +231,11 @@ public interface NginxDeployment {
          * The stage of the NginxDeployment definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
-            DefinitionStages.WithProperties, DefinitionStages.WithSku {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithSku,
+            DefinitionStages.WithNetworkProfile, DefinitionStages.WithEnableDiagnosticsSupport,
+            DefinitionStages.WithLogging, DefinitionStages.WithScalingProperties,
+            DefinitionStages.WithAutoUpgradeProfile, DefinitionStages.WithUserProfile,
+            DefinitionStages.WithNginxAppProtect {
             /**
              * Executes the create request.
              * 
@@ -205,29 +279,107 @@ public interface NginxDeployment {
         }
 
         /**
-         * The stage of the NginxDeployment definition allowing to specify properties.
-         */
-        interface WithProperties {
-            /**
-             * Specifies the properties property: The properties property..
-             * 
-             * @param properties The properties property.
-             * @return the next definition stage.
-             */
-            WithCreate withProperties(NginxDeploymentProperties properties);
-        }
-
-        /**
          * The stage of the NginxDeployment definition allowing to specify sku.
          */
         interface WithSku {
             /**
-             * Specifies the sku property: The sku property..
+             * Specifies the sku property: The SKU (Stock Keeping Unit) assigned to this resource..
              * 
-             * @param sku The sku property.
+             * @param sku The SKU (Stock Keeping Unit) assigned to this resource.
              * @return the next definition stage.
              */
-            WithCreate withSku(ResourceSku sku);
+            WithCreate withSku(AzureResourceManagerResourceSkuProperty sku);
+        }
+
+        /**
+         * The stage of the NginxDeployment definition allowing to specify networkProfile.
+         */
+        interface WithNetworkProfile {
+            /**
+             * Specifies the networkProfile property: The networkProfile property..
+             * 
+             * @param networkProfile The networkProfile property.
+             * @return the next definition stage.
+             */
+            WithCreate withNetworkProfile(NginxNetworkProfile networkProfile);
+        }
+
+        /**
+         * The stage of the NginxDeployment definition allowing to specify enableDiagnosticsSupport.
+         */
+        interface WithEnableDiagnosticsSupport {
+            /**
+             * Specifies the enableDiagnosticsSupport property: The enableDiagnosticsSupport property..
+             * 
+             * @param enableDiagnosticsSupport The enableDiagnosticsSupport property.
+             * @return the next definition stage.
+             */
+            WithCreate withEnableDiagnosticsSupport(Boolean enableDiagnosticsSupport);
+        }
+
+        /**
+         * The stage of the NginxDeployment definition allowing to specify logging.
+         */
+        interface WithLogging {
+            /**
+             * Specifies the logging property: The logging property..
+             * 
+             * @param logging The logging property.
+             * @return the next definition stage.
+             */
+            WithCreate withLogging(NginxLogging logging);
+        }
+
+        /**
+         * The stage of the NginxDeployment definition allowing to specify scalingProperties.
+         */
+        interface WithScalingProperties {
+            /**
+             * Specifies the scalingProperties property: Information on how the deployment will be scaled..
+             * 
+             * @param scalingProperties Information on how the deployment will be scaled.
+             * @return the next definition stage.
+             */
+            WithCreate withScalingProperties(NginxDeploymentScalingProperties scalingProperties);
+        }
+
+        /**
+         * The stage of the NginxDeployment definition allowing to specify autoUpgradeProfile.
+         */
+        interface WithAutoUpgradeProfile {
+            /**
+             * Specifies the autoUpgradeProfile property: Autoupgrade settings of a deployment..
+             * 
+             * @param autoUpgradeProfile Autoupgrade settings of a deployment.
+             * @return the next definition stage.
+             */
+            WithCreate withAutoUpgradeProfile(AutoUpgradeProfile autoUpgradeProfile);
+        }
+
+        /**
+         * The stage of the NginxDeployment definition allowing to specify userProfile.
+         */
+        interface WithUserProfile {
+            /**
+             * Specifies the userProfile property: The userProfile property..
+             * 
+             * @param userProfile The userProfile property.
+             * @return the next definition stage.
+             */
+            WithCreate withUserProfile(NginxDeploymentUserProfile userProfile);
+        }
+
+        /**
+         * The stage of the NginxDeployment definition allowing to specify nginxAppProtect.
+         */
+        interface WithNginxAppProtect {
+            /**
+             * Specifies the nginxAppProtect property: Settings for NGINX App Protect (NAP).
+             * 
+             * @param nginxAppProtect Settings for NGINX App Protect (NAP).
+             * @return the next definition stage.
+             */
+            WithCreate withNginxAppProtect(NginxDeploymentPropertiesNginxAppProtect nginxAppProtect);
         }
     }
 
@@ -294,12 +446,12 @@ public interface NginxDeployment {
          */
         interface WithSku {
             /**
-             * Specifies the sku property: The sku property..
+             * Specifies the sku property: The SKU (Stock Keeping Unit) assigned to this resource..
              * 
-             * @param sku The sku property.
+             * @param sku The SKU (Stock Keeping Unit) assigned to this resource.
              * @return the next definition stage.
              */
-            Update withSku(ResourceSku sku);
+            Update withSku(AzureResourceManagerResourceSkuProperty sku);
         }
 
         /**

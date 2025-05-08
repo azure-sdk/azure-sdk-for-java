@@ -28,9 +28,9 @@ public final class NginxDeploymentUpdateParameters implements JsonSerializable<N
     private Map<String, String> tags;
 
     /*
-     * The sku property.
+     * The SKU (Stock Keeping Unit) assigned to this resource.
      */
-    private ResourceSku sku;
+    private AzureResourceManagerResourceSkuProperty sku;
 
     /*
      * The location property.
@@ -89,21 +89,21 @@ public final class NginxDeploymentUpdateParameters implements JsonSerializable<N
     }
 
     /**
-     * Get the sku property: The sku property.
+     * Get the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
      * 
      * @return the sku value.
      */
-    public ResourceSku sku() {
+    public AzureResourceManagerResourceSkuProperty sku() {
         return this.sku;
     }
 
     /**
-     * Set the sku property: The sku property.
+     * Set the sku property: The SKU (Stock Keeping Unit) assigned to this resource.
      * 
      * @param sku the sku value to set.
      * @return the NginxDeploymentUpdateParameters object itself.
      */
-    public NginxDeploymentUpdateParameters withSku(ResourceSku sku) {
+    public NginxDeploymentUpdateParameters withSku(AzureResourceManagerResourceSkuProperty sku) {
         this.sku = sku;
         return this;
     }
@@ -201,7 +201,8 @@ public final class NginxDeploymentUpdateParameters implements JsonSerializable<N
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedNginxDeploymentUpdateParameters.tags = tags;
                 } else if ("sku".equals(fieldName)) {
-                    deserializedNginxDeploymentUpdateParameters.sku = ResourceSku.fromJson(reader);
+                    deserializedNginxDeploymentUpdateParameters.sku
+                        = AzureResourceManagerResourceSkuProperty.fromJson(reader);
                 } else if ("location".equals(fieldName)) {
                     deserializedNginxDeploymentUpdateParameters.location = reader.getString();
                 } else if ("properties".equals(fieldName)) {

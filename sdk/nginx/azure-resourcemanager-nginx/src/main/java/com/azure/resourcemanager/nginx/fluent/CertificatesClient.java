@@ -18,6 +18,33 @@ import com.azure.resourcemanager.nginx.fluent.models.NginxCertificateInner;
  */
 public interface CertificatesClient {
     /**
+     * List all certificates of given NGINX deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param deploymentName The name of targeted NGINX deployment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return paged collection of NginxCertificate items as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<NginxCertificateInner> list(String resourceGroupName, String deploymentName);
+
+    /**
+     * List all certificates of given NGINX deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param deploymentName The name of targeted NGINX deployment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return paged collection of NginxCertificate items as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<NginxCertificateInner> list(String resourceGroupName, String deploymentName, Context context);
+
+    /**
      * Get a certificate of given NGINX deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -53,14 +80,16 @@ public interface CertificatesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
+     * @param body The certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of concrete proxy resource types can be created by aliasing this type
+     * using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<NginxCertificateInner>, NginxCertificateInner> beginCreateOrUpdate(String resourceGroupName,
-        String deploymentName, String certificateName);
+        String deploymentName, String certificateName, NginxCertificateInner body);
 
     /**
      * Create or update the NGINX certificates for given NGINX deployment.
@@ -73,7 +102,8 @@ public interface CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of concrete proxy resource types can be created by aliasing this type
+     * using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<NginxCertificateInner>, NginxCertificateInner> beginCreateOrUpdate(String resourceGroupName,
@@ -85,13 +115,15 @@ public interface CertificatesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted NGINX deployment.
      * @param certificateName The name of certificate.
+     * @param body The certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return concrete proxy resource types can be created by aliasing this type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NginxCertificateInner createOrUpdate(String resourceGroupName, String deploymentName, String certificateName);
+    NginxCertificateInner createOrUpdate(String resourceGroupName, String deploymentName, String certificateName,
+        NginxCertificateInner body);
 
     /**
      * Create or update the NGINX certificates for given NGINX deployment.
@@ -104,7 +136,7 @@ public interface CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return concrete proxy resource types can be created by aliasing this type using a specific property type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     NginxCertificateInner createOrUpdate(String resourceGroupName, String deploymentName, String certificateName,
@@ -167,31 +199,4 @@ public interface CertificatesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String deploymentName, String certificateName, Context context);
-
-    /**
-     * List all certificates of given NGINX deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted NGINX deployment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<NginxCertificateInner> list(String resourceGroupName, String deploymentName);
-
-    /**
-     * List all certificates of given NGINX deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted NGINX deployment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<NginxCertificateInner> list(String resourceGroupName, String deploymentName, Context context);
 }

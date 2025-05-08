@@ -8,6 +8,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.fluent.models.NginxConfigurationResponseInner;
+import java.util.List;
 
 /**
  * An immutable client-side representation of NginxConfigurationResponse.
@@ -35,18 +36,46 @@ public interface NginxConfigurationResponse {
     String type();
 
     /**
-     * Gets the properties property: The properties property.
-     * 
-     * @return the properties value.
-     */
-    NginxConfigurationResponseProperties properties();
-
-    /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the provisioningState property: The provisioningState property.
+     * 
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
+     * Gets the files property: The files property.
+     * 
+     * @return the files value.
+     */
+    List<NginxConfigurationFile> files();
+
+    /**
+     * Gets the protectedFiles property: The protectedFiles property.
+     * 
+     * @return the protectedFiles value.
+     */
+    List<NginxConfigurationProtectedFileResponse> protectedFiles();
+
+    /**
+     * Gets the packageProperty property: The package property.
+     * 
+     * @return the packageProperty value.
+     */
+    NginxConfigurationPackage packageProperty();
+
+    /**
+     * Gets the rootFile property: The rootFile property.
+     * 
+     * @return the rootFile value.
+     */
+    String rootFile();
 
     /**
      * Gets the name of the resource group.
@@ -97,7 +126,8 @@ public interface NginxConfigurationResponse {
          * The stage of the NginxConfigurationResponse definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithFiles, DefinitionStages.WithProtectedFiles,
+            DefinitionStages.WithPackageProperty, DefinitionStages.WithRootFile {
             /**
              * Executes the create request.
              * 
@@ -115,16 +145,55 @@ public interface NginxConfigurationResponse {
         }
 
         /**
-         * The stage of the NginxConfigurationResponse definition allowing to specify properties.
+         * The stage of the NginxConfigurationResponse definition allowing to specify files.
          */
-        interface WithProperties {
+        interface WithFiles {
             /**
-             * Specifies the properties property: The properties property..
+             * Specifies the files property: The files property..
              * 
-             * @param properties The properties property.
+             * @param files The files property.
              * @return the next definition stage.
              */
-            WithCreate withProperties(NginxConfigurationRequestProperties properties);
+            WithCreate withFiles(List<NginxConfigurationFile> files);
+        }
+
+        /**
+         * The stage of the NginxConfigurationResponse definition allowing to specify protectedFiles.
+         */
+        interface WithProtectedFiles {
+            /**
+             * Specifies the protectedFiles property: The protectedFiles property..
+             * 
+             * @param protectedFiles The protectedFiles property.
+             * @return the next definition stage.
+             */
+            WithCreate withProtectedFiles(List<NginxConfigurationProtectedFileResponse> protectedFiles);
+        }
+
+        /**
+         * The stage of the NginxConfigurationResponse definition allowing to specify packageProperty.
+         */
+        interface WithPackageProperty {
+            /**
+             * Specifies the packageProperty property: The package property..
+             * 
+             * @param packageProperty The package property.
+             * @return the next definition stage.
+             */
+            WithCreate withPackageProperty(NginxConfigurationPackage packageProperty);
+        }
+
+        /**
+         * The stage of the NginxConfigurationResponse definition allowing to specify rootFile.
+         */
+        interface WithRootFile {
+            /**
+             * Specifies the rootFile property: The rootFile property..
+             * 
+             * @param rootFile The rootFile property.
+             * @return the next definition stage.
+             */
+            WithCreate withRootFile(String rootFile);
         }
     }
 
@@ -138,7 +207,8 @@ public interface NginxConfigurationResponse {
     /**
      * The template for NginxConfigurationResponse update.
      */
-    interface Update extends UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithFiles, UpdateStages.WithProtectedFiles, UpdateStages.WithPackageProperty,
+        UpdateStages.WithRootFile {
         /**
          * Executes the update request.
          * 
@@ -160,16 +230,55 @@ public interface NginxConfigurationResponse {
      */
     interface UpdateStages {
         /**
-         * The stage of the NginxConfigurationResponse update allowing to specify properties.
+         * The stage of the NginxConfigurationResponse update allowing to specify files.
          */
-        interface WithProperties {
+        interface WithFiles {
             /**
-             * Specifies the properties property: The properties property..
+             * Specifies the files property: The files property..
              * 
-             * @param properties The properties property.
+             * @param files The files property.
              * @return the next definition stage.
              */
-            Update withProperties(NginxConfigurationRequestProperties properties);
+            Update withFiles(List<NginxConfigurationFile> files);
+        }
+
+        /**
+         * The stage of the NginxConfigurationResponse update allowing to specify protectedFiles.
+         */
+        interface WithProtectedFiles {
+            /**
+             * Specifies the protectedFiles property: The protectedFiles property..
+             * 
+             * @param protectedFiles The protectedFiles property.
+             * @return the next definition stage.
+             */
+            Update withProtectedFiles(List<NginxConfigurationProtectedFileResponse> protectedFiles);
+        }
+
+        /**
+         * The stage of the NginxConfigurationResponse update allowing to specify packageProperty.
+         */
+        interface WithPackageProperty {
+            /**
+             * Specifies the packageProperty property: The package property..
+             * 
+             * @param packageProperty The package property.
+             * @return the next definition stage.
+             */
+            Update withPackageProperty(NginxConfigurationPackage packageProperty);
+        }
+
+        /**
+         * The stage of the NginxConfigurationResponse update allowing to specify rootFile.
+         */
+        interface WithRootFile {
+            /**
+             * Specifies the rootFile property: The rootFile property..
+             * 
+             * @param rootFile The rootFile property.
+             * @return the next definition stage.
+             */
+            Update withRootFile(String rootFile);
         }
     }
 

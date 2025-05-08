@@ -47,6 +47,20 @@ public interface NginxManagementClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
+
+    /**
+     * Gets the DeploymentsClient object to access its operations.
+     * 
+     * @return the DeploymentsClient object.
+     */
+    DeploymentsClient getDeployments();
+
+    /**
      * Gets the ApiKeysClient object to access its operations.
      * 
      * @return the ApiKeysClient object.
@@ -66,18 +80,4 @@ public interface NginxManagementClient {
      * @return the ConfigurationsClient object.
      */
     ConfigurationsClient getConfigurations();
-
-    /**
-     * Gets the DeploymentsClient object to access its operations.
-     * 
-     * @return the DeploymentsClient object.
-     */
-    DeploymentsClient getDeployments();
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
 }

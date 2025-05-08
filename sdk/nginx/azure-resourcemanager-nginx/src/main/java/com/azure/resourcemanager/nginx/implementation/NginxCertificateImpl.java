@@ -9,7 +9,9 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.fluent.models.NginxCertificateInner;
 import com.azure.resourcemanager.nginx.models.NginxCertificate;
-import com.azure.resourcemanager.nginx.models.NginxCertificateProperties;
+import com.azure.resourcemanager.nginx.models.NginxCertificateErrorResponseBody;
+import com.azure.resourcemanager.nginx.models.ProvisioningState;
+import java.time.OffsetDateTime;
 
 public final class NginxCertificateImpl
     implements NginxCertificate, NginxCertificate.Definition, NginxCertificate.Update {
@@ -29,16 +31,44 @@ public final class NginxCertificateImpl
         return this.innerModel().type();
     }
 
-    public NginxCertificateProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public String location() {
         return this.innerModel().location();
     }
 
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public ProvisioningState provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public String keyVirtualPath() {
+        return this.innerModel().keyVirtualPath();
+    }
+
+    public String certificateVirtualPath() {
+        return this.innerModel().certificateVirtualPath();
+    }
+
+    public String keyVaultSecretId() {
+        return this.innerModel().keyVaultSecretId();
+    }
+
+    public String sha1Thumbprint() {
+        return this.innerModel().sha1Thumbprint();
+    }
+
+    public String keyVaultSecretVersion() {
+        return this.innerModel().keyVaultSecretVersion();
+    }
+
+    public OffsetDateTime keyVaultSecretCreated() {
+        return this.innerModel().keyVaultSecretCreated();
+    }
+
+    public NginxCertificateErrorResponseBody certificateError() {
+        return this.innerModel().certificateError();
     }
 
     public Region region() {
@@ -146,8 +176,23 @@ public final class NginxCertificateImpl
         return this;
     }
 
-    public NginxCertificateImpl withProperties(NginxCertificateProperties properties) {
-        this.innerModel().withProperties(properties);
+    public NginxCertificateImpl withKeyVirtualPath(String keyVirtualPath) {
+        this.innerModel().withKeyVirtualPath(keyVirtualPath);
+        return this;
+    }
+
+    public NginxCertificateImpl withCertificateVirtualPath(String certificateVirtualPath) {
+        this.innerModel().withCertificateVirtualPath(certificateVirtualPath);
+        return this;
+    }
+
+    public NginxCertificateImpl withKeyVaultSecretId(String keyVaultSecretId) {
+        this.innerModel().withKeyVaultSecretId(keyVaultSecretId);
+        return this;
+    }
+
+    public NginxCertificateImpl withCertificateError(NginxCertificateErrorResponseBody certificateError) {
+        this.innerModel().withCertificateError(certificateError);
         return this;
     }
 }

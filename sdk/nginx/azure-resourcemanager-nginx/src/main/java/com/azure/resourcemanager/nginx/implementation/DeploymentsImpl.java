@@ -26,6 +26,27 @@ public final class DeploymentsImpl implements Deployments {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<NginxDeployment> list() {
+        PagedIterable<NginxDeploymentInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new NginxDeploymentImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<NginxDeployment> list(Context context) {
+        PagedIterable<NginxDeploymentInner> inner = this.serviceClient().list(context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new NginxDeploymentImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<NginxDeployment> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<NginxDeploymentInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new NginxDeploymentImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<NginxDeployment> listByResourceGroup(String resourceGroupName, Context context) {
+        PagedIterable<NginxDeploymentInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new NginxDeploymentImpl(inner1, this.manager()));
+    }
+
     public Response<NginxDeployment> getByResourceGroupWithResponse(String resourceGroupName, String deploymentName,
         Context context) {
         Response<NginxDeploymentInner> inner
@@ -53,27 +74,6 @@ public final class DeploymentsImpl implements Deployments {
 
     public void delete(String resourceGroupName, String deploymentName, Context context) {
         this.serviceClient().delete(resourceGroupName, deploymentName, context);
-    }
-
-    public PagedIterable<NginxDeployment> list() {
-        PagedIterable<NginxDeploymentInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new NginxDeploymentImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<NginxDeployment> list(Context context) {
-        PagedIterable<NginxDeploymentInner> inner = this.serviceClient().list(context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new NginxDeploymentImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<NginxDeployment> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<NginxDeploymentInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new NginxDeploymentImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<NginxDeployment> listByResourceGroup(String resourceGroupName, Context context) {
-        PagedIterable<NginxDeploymentInner> inner
-            = this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new NginxDeploymentImpl(inner1, this.manager()));
     }
 
     public NginxDeployment getById(String id) {

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.nginx.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,17 +15,17 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The NginxCertificateListResponse model.
+ * Paged collection of NginxCertificate items.
  */
 @Fluent
 public final class NginxCertificateListResponse implements JsonSerializable<NginxCertificateListResponse> {
     /*
-     * The value property.
+     * The NginxCertificate items on this page
      */
     private List<NginxCertificateInner> value;
 
     /*
-     * The nextLink property.
+     * The link to the next page of items
      */
     private String nextLink;
 
@@ -35,7 +36,7 @@ public final class NginxCertificateListResponse implements JsonSerializable<Ngin
     }
 
     /**
-     * Get the value property: The value property.
+     * Get the value property: The NginxCertificate items on this page.
      * 
      * @return the value value.
      */
@@ -44,7 +45,7 @@ public final class NginxCertificateListResponse implements JsonSerializable<Ngin
     }
 
     /**
-     * Set the value property: The value property.
+     * Set the value property: The NginxCertificate items on this page.
      * 
      * @param value the value value to set.
      * @return the NginxCertificateListResponse object itself.
@@ -55,7 +56,7 @@ public final class NginxCertificateListResponse implements JsonSerializable<Ngin
     }
 
     /**
-     * Get the nextLink property: The nextLink property.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -64,7 +65,7 @@ public final class NginxCertificateListResponse implements JsonSerializable<Ngin
     }
 
     /**
-     * Set the nextLink property: The nextLink property.
+     * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
      * @return the NginxCertificateListResponse object itself.
@@ -80,10 +81,16 @@ public final class NginxCertificateListResponse implements JsonSerializable<Ngin
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model NginxCertificateListResponse"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(NginxCertificateListResponse.class);
 
     /**
      * {@inheritDoc}
@@ -102,6 +109,7 @@ public final class NginxCertificateListResponse implements JsonSerializable<Ngin
      * @param jsonReader The JsonReader being read.
      * @return An instance of NginxCertificateListResponse if the JsonReader was pointing to an instance of it, or null
      * if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the NginxCertificateListResponse.
      */
     public static NginxCertificateListResponse fromJson(JsonReader jsonReader) throws IOException {

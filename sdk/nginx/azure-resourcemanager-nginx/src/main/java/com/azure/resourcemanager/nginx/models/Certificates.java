@@ -13,6 +13,31 @@ import com.azure.core.util.Context;
  */
 public interface Certificates {
     /**
+     * List all certificates of given NGINX deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param deploymentName The name of targeted NGINX deployment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return paged collection of NginxCertificate items as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<NginxCertificate> list(String resourceGroupName, String deploymentName);
+
+    /**
+     * List all certificates of given NGINX deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param deploymentName The name of targeted NGINX deployment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return paged collection of NginxCertificate items as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<NginxCertificate> list(String resourceGroupName, String deploymentName, Context context);
+
+    /**
      * Get a certificate of given NGINX deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -64,31 +89,6 @@ public interface Certificates {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void delete(String resourceGroupName, String deploymentName, String certificateName, Context context);
-
-    /**
-     * List all certificates of given NGINX deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted NGINX deployment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<NginxCertificate> list(String resourceGroupName, String deploymentName);
-
-    /**
-     * List all certificates of given NGINX deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param deploymentName The name of targeted NGINX deployment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<NginxCertificate> list(String resourceGroupName, String deploymentName, Context context);
 
     /**
      * Get a certificate of given NGINX deployment.

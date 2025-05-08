@@ -27,6 +27,17 @@ public final class CertificatesImpl implements Certificates {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<NginxCertificate> list(String resourceGroupName, String deploymentName) {
+        PagedIterable<NginxCertificateInner> inner = this.serviceClient().list(resourceGroupName, deploymentName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new NginxCertificateImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<NginxCertificate> list(String resourceGroupName, String deploymentName, Context context) {
+        PagedIterable<NginxCertificateInner> inner
+            = this.serviceClient().list(resourceGroupName, deploymentName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new NginxCertificateImpl(inner1, this.manager()));
+    }
+
     public Response<NginxCertificate> getWithResponse(String resourceGroupName, String deploymentName,
         String certificateName, Context context) {
         Response<NginxCertificateInner> inner
@@ -54,17 +65,6 @@ public final class CertificatesImpl implements Certificates {
 
     public void delete(String resourceGroupName, String deploymentName, String certificateName, Context context) {
         this.serviceClient().delete(resourceGroupName, deploymentName, certificateName, context);
-    }
-
-    public PagedIterable<NginxCertificate> list(String resourceGroupName, String deploymentName) {
-        PagedIterable<NginxCertificateInner> inner = this.serviceClient().list(resourceGroupName, deploymentName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new NginxCertificateImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<NginxCertificate> list(String resourceGroupName, String deploymentName, Context context) {
-        PagedIterable<NginxCertificateInner> inner
-            = this.serviceClient().list(resourceGroupName, deploymentName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new NginxCertificateImpl(inner1, this.manager()));
     }
 
     public NginxCertificate getById(String id) {

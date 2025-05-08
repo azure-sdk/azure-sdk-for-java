@@ -8,6 +8,7 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.fluent.models.NginxCertificateInner;
+import java.time.OffsetDateTime;
 
 /**
  * An immutable client-side representation of NginxCertificate.
@@ -35,13 +36,6 @@ public interface NginxCertificate {
     String type();
 
     /**
-     * Gets the properties property: The properties property.
-     * 
-     * @return the properties value.
-     */
-    NginxCertificateProperties properties();
-
-    /**
      * Gets the location property: The location property.
      * 
      * @return the location value.
@@ -49,11 +43,67 @@ public interface NginxCertificate {
     String location();
 
     /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the provisioningState property: The provisioningState property.
+     * 
+     * @return the provisioningState value.
+     */
+    ProvisioningState provisioningState();
+
+    /**
+     * Gets the keyVirtualPath property: The keyVirtualPath property.
+     * 
+     * @return the keyVirtualPath value.
+     */
+    String keyVirtualPath();
+
+    /**
+     * Gets the certificateVirtualPath property: The certificateVirtualPath property.
+     * 
+     * @return the certificateVirtualPath value.
+     */
+    String certificateVirtualPath();
+
+    /**
+     * Gets the keyVaultSecretId property: The keyVaultSecretId property.
+     * 
+     * @return the keyVaultSecretId value.
+     */
+    String keyVaultSecretId();
+
+    /**
+     * Gets the sha1Thumbprint property: The sha1Thumbprint property.
+     * 
+     * @return the sha1Thumbprint value.
+     */
+    String sha1Thumbprint();
+
+    /**
+     * Gets the keyVaultSecretVersion property: The keyVaultSecretVersion property.
+     * 
+     * @return the keyVaultSecretVersion value.
+     */
+    String keyVaultSecretVersion();
+
+    /**
+     * Gets the keyVaultSecretCreated property: The keyVaultSecretCreated property.
+     * 
+     * @return the keyVaultSecretCreated value.
+     */
+    OffsetDateTime keyVaultSecretCreated();
+
+    /**
+     * Gets the certificateError property: The certificateError property.
+     * 
+     * @return the certificateError value.
+     */
+    NginxCertificateErrorResponseBody certificateError();
 
     /**
      * Gets the region of the resource.
@@ -118,7 +168,9 @@ public interface NginxCertificate {
          * The stage of the NginxCertificate definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithLocation, DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithLocation, DefinitionStages.WithKeyVirtualPath,
+            DefinitionStages.WithCertificateVirtualPath, DefinitionStages.WithKeyVaultSecretId,
+            DefinitionStages.WithCertificateError {
             /**
              * Executes the create request.
              * 
@@ -157,16 +209,55 @@ public interface NginxCertificate {
         }
 
         /**
-         * The stage of the NginxCertificate definition allowing to specify properties.
+         * The stage of the NginxCertificate definition allowing to specify keyVirtualPath.
          */
-        interface WithProperties {
+        interface WithKeyVirtualPath {
             /**
-             * Specifies the properties property: The properties property..
+             * Specifies the keyVirtualPath property: The keyVirtualPath property..
              * 
-             * @param properties The properties property.
+             * @param keyVirtualPath The keyVirtualPath property.
              * @return the next definition stage.
              */
-            WithCreate withProperties(NginxCertificateProperties properties);
+            WithCreate withKeyVirtualPath(String keyVirtualPath);
+        }
+
+        /**
+         * The stage of the NginxCertificate definition allowing to specify certificateVirtualPath.
+         */
+        interface WithCertificateVirtualPath {
+            /**
+             * Specifies the certificateVirtualPath property: The certificateVirtualPath property..
+             * 
+             * @param certificateVirtualPath The certificateVirtualPath property.
+             * @return the next definition stage.
+             */
+            WithCreate withCertificateVirtualPath(String certificateVirtualPath);
+        }
+
+        /**
+         * The stage of the NginxCertificate definition allowing to specify keyVaultSecretId.
+         */
+        interface WithKeyVaultSecretId {
+            /**
+             * Specifies the keyVaultSecretId property: The keyVaultSecretId property..
+             * 
+             * @param keyVaultSecretId The keyVaultSecretId property.
+             * @return the next definition stage.
+             */
+            WithCreate withKeyVaultSecretId(String keyVaultSecretId);
+        }
+
+        /**
+         * The stage of the NginxCertificate definition allowing to specify certificateError.
+         */
+        interface WithCertificateError {
+            /**
+             * Specifies the certificateError property: The certificateError property..
+             * 
+             * @param certificateError The certificateError property.
+             * @return the next definition stage.
+             */
+            WithCreate withCertificateError(NginxCertificateErrorResponseBody certificateError);
         }
     }
 
@@ -180,7 +271,8 @@ public interface NginxCertificate {
     /**
      * The template for NginxCertificate update.
      */
-    interface Update extends UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithKeyVirtualPath, UpdateStages.WithCertificateVirtualPath,
+        UpdateStages.WithKeyVaultSecretId, UpdateStages.WithCertificateError {
         /**
          * Executes the update request.
          * 
@@ -202,16 +294,55 @@ public interface NginxCertificate {
      */
     interface UpdateStages {
         /**
-         * The stage of the NginxCertificate update allowing to specify properties.
+         * The stage of the NginxCertificate update allowing to specify keyVirtualPath.
          */
-        interface WithProperties {
+        interface WithKeyVirtualPath {
             /**
-             * Specifies the properties property: The properties property..
+             * Specifies the keyVirtualPath property: The keyVirtualPath property..
              * 
-             * @param properties The properties property.
+             * @param keyVirtualPath The keyVirtualPath property.
              * @return the next definition stage.
              */
-            Update withProperties(NginxCertificateProperties properties);
+            Update withKeyVirtualPath(String keyVirtualPath);
+        }
+
+        /**
+         * The stage of the NginxCertificate update allowing to specify certificateVirtualPath.
+         */
+        interface WithCertificateVirtualPath {
+            /**
+             * Specifies the certificateVirtualPath property: The certificateVirtualPath property..
+             * 
+             * @param certificateVirtualPath The certificateVirtualPath property.
+             * @return the next definition stage.
+             */
+            Update withCertificateVirtualPath(String certificateVirtualPath);
+        }
+
+        /**
+         * The stage of the NginxCertificate update allowing to specify keyVaultSecretId.
+         */
+        interface WithKeyVaultSecretId {
+            /**
+             * Specifies the keyVaultSecretId property: The keyVaultSecretId property..
+             * 
+             * @param keyVaultSecretId The keyVaultSecretId property.
+             * @return the next definition stage.
+             */
+            Update withKeyVaultSecretId(String keyVaultSecretId);
+        }
+
+        /**
+         * The stage of the NginxCertificate update allowing to specify certificateError.
+         */
+        interface WithCertificateError {
+            /**
+             * Specifies the certificateError property: The certificateError property..
+             * 
+             * @param certificateError The certificateError property.
+             * @return the next definition stage.
+             */
+            Update withCertificateError(NginxCertificateErrorResponseBody certificateError);
         }
     }
 

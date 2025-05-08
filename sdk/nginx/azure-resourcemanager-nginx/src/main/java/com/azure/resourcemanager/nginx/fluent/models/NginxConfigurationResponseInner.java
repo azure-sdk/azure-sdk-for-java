@@ -10,21 +10,25 @@ import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.nginx.models.NginxConfigurationResponseProperties;
+import com.azure.resourcemanager.nginx.models.NginxConfigurationFile;
+import com.azure.resourcemanager.nginx.models.NginxConfigurationPackage;
+import com.azure.resourcemanager.nginx.models.NginxConfigurationProtectedFileResponse;
+import com.azure.resourcemanager.nginx.models.ProvisioningState;
 import java.io.IOException;
+import java.util.List;
 
 /**
- * The NginxConfigurationResponse model.
+ * Concrete proxy resource types can be created by aliasing this type using a specific property type.
  */
 @Fluent
 public final class NginxConfigurationResponseInner extends ProxyResource {
     /*
      * The properties property.
      */
-    private NginxConfigurationResponseProperties properties;
+    private NginxConfigurationResponseProperties innerProperties;
 
     /*
-     * Metadata pertaining to creation and last modification of the resource.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
 
@@ -50,27 +54,16 @@ public final class NginxConfigurationResponseInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The properties property.
+     * Get the innerProperties property: The properties property.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public NginxConfigurationResponseProperties properties() {
-        return this.properties;
+    private NginxConfigurationResponseProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the properties property: The properties property.
-     * 
-     * @param properties the properties value to set.
-     * @return the NginxConfigurationResponseInner object itself.
-     */
-    public NginxConfigurationResponseInner withProperties(NginxConfigurationResponseProperties properties) {
-        this.properties = properties;
-        return this;
-    }
-
-    /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -109,13 +102,115 @@ public final class NginxConfigurationResponseInner extends ProxyResource {
     }
 
     /**
+     * Get the provisioningState property: The provisioningState property.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the files property: The files property.
+     * 
+     * @return the files value.
+     */
+    public List<NginxConfigurationFile> files() {
+        return this.innerProperties() == null ? null : this.innerProperties().files();
+    }
+
+    /**
+     * Set the files property: The files property.
+     * 
+     * @param files the files value to set.
+     * @return the NginxConfigurationResponseInner object itself.
+     */
+    public NginxConfigurationResponseInner withFiles(List<NginxConfigurationFile> files) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxConfigurationResponseProperties();
+        }
+        this.innerProperties().withFiles(files);
+        return this;
+    }
+
+    /**
+     * Get the protectedFiles property: The protectedFiles property.
+     * 
+     * @return the protectedFiles value.
+     */
+    public List<NginxConfigurationProtectedFileResponse> protectedFiles() {
+        return this.innerProperties() == null ? null : this.innerProperties().protectedFiles();
+    }
+
+    /**
+     * Set the protectedFiles property: The protectedFiles property.
+     * 
+     * @param protectedFiles the protectedFiles value to set.
+     * @return the NginxConfigurationResponseInner object itself.
+     */
+    public NginxConfigurationResponseInner
+        withProtectedFiles(List<NginxConfigurationProtectedFileResponse> protectedFiles) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxConfigurationResponseProperties();
+        }
+        this.innerProperties().withProtectedFiles(protectedFiles);
+        return this;
+    }
+
+    /**
+     * Get the packageProperty property: The package property.
+     * 
+     * @return the packageProperty value.
+     */
+    public NginxConfigurationPackage packageProperty() {
+        return this.innerProperties() == null ? null : this.innerProperties().packageProperty();
+    }
+
+    /**
+     * Set the packageProperty property: The package property.
+     * 
+     * @param packageProperty the packageProperty value to set.
+     * @return the NginxConfigurationResponseInner object itself.
+     */
+    public NginxConfigurationResponseInner withPackageProperty(NginxConfigurationPackage packageProperty) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxConfigurationResponseProperties();
+        }
+        this.innerProperties().withPackageProperty(packageProperty);
+        return this;
+    }
+
+    /**
+     * Get the rootFile property: The rootFile property.
+     * 
+     * @return the rootFile value.
+     */
+    public String rootFile() {
+        return this.innerProperties() == null ? null : this.innerProperties().rootFile();
+    }
+
+    /**
+     * Set the rootFile property: The rootFile property.
+     * 
+     * @param rootFile the rootFile value to set.
+     * @return the NginxConfigurationResponseInner object itself.
+     */
+    public NginxConfigurationResponseInner withRootFile(String rootFile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NginxConfigurationResponseProperties();
+        }
+        this.innerProperties().withRootFile(rootFile);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 
@@ -125,7 +220,7 @@ public final class NginxConfigurationResponseInner extends ProxyResource {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("properties", this.properties);
+        jsonWriter.writeJsonField("properties", this.innerProperties);
         return jsonWriter.writeEndObject();
     }
 
@@ -153,7 +248,7 @@ public final class NginxConfigurationResponseInner extends ProxyResource {
                 } else if ("type".equals(fieldName)) {
                     deserializedNginxConfigurationResponseInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
-                    deserializedNginxConfigurationResponseInner.properties
+                    deserializedNginxConfigurationResponseInner.innerProperties
                         = NginxConfigurationResponseProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedNginxConfigurationResponseInner.systemData = SystemData.fromJson(reader);
