@@ -6,7 +6,6 @@ package com.azure.messaging.eventgrid.systemevents;
 
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.BinaryData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -48,13 +47,13 @@ public final class MachineLearningServicesRunCompletedEventData
      * The tags of the completed Run.
      */
     @Generated
-    private Map<String, BinaryData> runTags;
+    private Map<String, MachineLearningServicesRunCompletedEventDataRunTag> runTags;
 
     /*
      * The properties of the completed Run.
      */
     @Generated
-    private Map<String, BinaryData> runProperties;
+    private Map<String, MachineLearningServicesRunCompletedEventDataRunProperty> runProperties;
 
     /**
      * Creates an instance of MachineLearningServicesRunCompletedEventData class.
@@ -119,7 +118,7 @@ public final class MachineLearningServicesRunCompletedEventData
      * @return the runTags value.
      */
     @Generated
-    public Map<String, BinaryData> getRunTags() {
+    public Map<String, MachineLearningServicesRunCompletedEventDataRunTag> getRunTags() {
         return this.runTags;
     }
 
@@ -129,7 +128,7 @@ public final class MachineLearningServicesRunCompletedEventData
      * @return the runProperties value.
      */
     @Generated
-    public Map<String, BinaryData> getRunProperties() {
+    public Map<String, MachineLearningServicesRunCompletedEventDataRunProperty> getRunProperties() {
         return this.runProperties;
     }
 
@@ -144,10 +143,8 @@ public final class MachineLearningServicesRunCompletedEventData
         jsonWriter.writeStringField("experimentName", this.experimentName);
         jsonWriter.writeStringField("runId", this.runId);
         jsonWriter.writeStringField("runType", this.runType);
-        jsonWriter.writeMapField("runTags", this.runTags,
-            (writer, element) -> writer.writeUntyped(element == null ? null : element.toObject(Object.class)));
-        jsonWriter.writeMapField("runProperties", this.runProperties,
-            (writer, element) -> writer.writeUntyped(element == null ? null : element.toObject(Object.class)));
+        jsonWriter.writeMapField("runTags", this.runTags, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeMapField("runProperties", this.runProperties, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -167,8 +164,8 @@ public final class MachineLearningServicesRunCompletedEventData
             String experimentName = null;
             String runId = null;
             String runType = null;
-            Map<String, BinaryData> runTags = null;
-            Map<String, BinaryData> runProperties = null;
+            Map<String, MachineLearningServicesRunCompletedEventDataRunTag> runTags = null;
+            Map<String, MachineLearningServicesRunCompletedEventDataRunProperty> runProperties = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
@@ -182,11 +179,11 @@ public final class MachineLearningServicesRunCompletedEventData
                 } else if ("runType".equals(fieldName)) {
                     runType = reader.getString();
                 } else if ("runTags".equals(fieldName)) {
-                    runTags = reader.readMap(reader1 -> reader1
-                        .getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped())));
+                    runTags = reader
+                        .readMap(reader1 -> MachineLearningServicesRunCompletedEventDataRunTag.fromJson(reader1));
                 } else if ("runProperties".equals(fieldName)) {
-                    runProperties = reader.readMap(reader1 -> reader1
-                        .getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped())));
+                    runProperties = reader
+                        .readMap(reader1 -> MachineLearningServicesRunCompletedEventDataRunProperty.fromJson(reader1));
                 } else {
                     reader.skipChildren();
                 }

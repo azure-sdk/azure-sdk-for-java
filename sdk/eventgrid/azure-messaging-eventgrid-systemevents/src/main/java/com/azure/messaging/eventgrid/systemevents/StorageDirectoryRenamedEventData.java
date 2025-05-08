@@ -6,7 +6,6 @@ package com.azure.messaging.eventgrid.systemevents;
 
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.BinaryData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -67,7 +66,7 @@ public final class StorageDirectoryRenamedEventData implements JsonSerializable<
      * ignored by event consumers.
      */
     @Generated
-    private final Map<String, BinaryData> storageDiagnostics;
+    private final Map<String, StorageBlobCreatedEventDataStorageDiagnostic> storageDiagnostics;
 
     /**
      * Creates an instance of StorageDirectoryRenamedEventData class.
@@ -75,7 +74,8 @@ public final class StorageDirectoryRenamedEventData implements JsonSerializable<
      * @param storageDiagnostics the storageDiagnostics value to set.
      */
     @Generated
-    private StorageDirectoryRenamedEventData(Map<String, BinaryData> storageDiagnostics) {
+    private StorageDirectoryRenamedEventData(
+        Map<String, StorageBlobCreatedEventDataStorageDiagnostic> storageDiagnostics) {
         this.storageDiagnostics = storageDiagnostics;
     }
 
@@ -160,7 +160,7 @@ public final class StorageDirectoryRenamedEventData implements JsonSerializable<
      * @return the storageDiagnostics value.
      */
     @Generated
-    public Map<String, BinaryData> getStorageDiagnostics() {
+    public Map<String, StorageBlobCreatedEventDataStorageDiagnostic> getStorageDiagnostics() {
         return this.storageDiagnostics;
     }
 
@@ -172,7 +172,7 @@ public final class StorageDirectoryRenamedEventData implements JsonSerializable<
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeMapField("storageDiagnostics", this.storageDiagnostics,
-            (writer, element) -> writer.writeUntyped(element == null ? null : element.toObject(Object.class)));
+            (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("api", this.api);
         jsonWriter.writeStringField("clientRequestId", this.clientRequestId);
         jsonWriter.writeStringField("requestId", this.requestId);
@@ -195,7 +195,7 @@ public final class StorageDirectoryRenamedEventData implements JsonSerializable<
     @Generated
     public static StorageDirectoryRenamedEventData fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            Map<String, BinaryData> storageDiagnostics = null;
+            Map<String, StorageBlobCreatedEventDataStorageDiagnostic> storageDiagnostics = null;
             String api = null;
             String clientRequestId = null;
             String requestId = null;
@@ -208,8 +208,8 @@ public final class StorageDirectoryRenamedEventData implements JsonSerializable<
                 reader.nextToken();
 
                 if ("storageDiagnostics".equals(fieldName)) {
-                    storageDiagnostics = reader.readMap(reader1 -> reader1
-                        .getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped())));
+                    storageDiagnostics
+                        = reader.readMap(reader1 -> StorageBlobCreatedEventDataStorageDiagnostic.fromJson(reader1));
                 } else if ("api".equals(fieldName)) {
                     api = reader.getString();
                 } else if ("clientRequestId".equals(fieldName)) {

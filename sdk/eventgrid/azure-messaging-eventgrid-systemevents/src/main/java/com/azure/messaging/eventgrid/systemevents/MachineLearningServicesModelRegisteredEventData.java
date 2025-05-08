@@ -6,7 +6,6 @@ package com.azure.messaging.eventgrid.systemevents;
 
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.BinaryData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -36,13 +35,13 @@ public final class MachineLearningServicesModelRegisteredEventData
      * The tags of the model that was registered.
      */
     @Generated
-    private Map<String, BinaryData> modelTags;
+    private Map<String, MachineLearningServicesModelRegisteredEventDataModelTag> modelTags;
 
     /*
      * The properties of the model that was registered.
      */
     @Generated
-    private Map<String, BinaryData> modelProperties;
+    private Map<String, MachineLearningServicesModelRegisteredEventDataModelProperty> modelProperties;
 
     /**
      * Creates an instance of MachineLearningServicesModelRegisteredEventData class.
@@ -82,7 +81,7 @@ public final class MachineLearningServicesModelRegisteredEventData
      * @return the modelTags value.
      */
     @Generated
-    public Map<String, BinaryData> getModelTags() {
+    public Map<String, MachineLearningServicesModelRegisteredEventDataModelTag> getModelTags() {
         return this.modelTags;
     }
 
@@ -92,7 +91,7 @@ public final class MachineLearningServicesModelRegisteredEventData
      * @return the modelProperties value.
      */
     @Generated
-    public Map<String, BinaryData> getModelProperties() {
+    public Map<String, MachineLearningServicesModelRegisteredEventDataModelProperty> getModelProperties() {
         return this.modelProperties;
     }
 
@@ -105,10 +104,9 @@ public final class MachineLearningServicesModelRegisteredEventData
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("modelName", this.modelName);
         jsonWriter.writeStringField("modelVersion", this.modelVersion);
-        jsonWriter.writeMapField("modelTags", this.modelTags,
-            (writer, element) -> writer.writeUntyped(element == null ? null : element.toObject(Object.class)));
+        jsonWriter.writeMapField("modelTags", this.modelTags, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeMapField("modelProperties", this.modelProperties,
-            (writer, element) -> writer.writeUntyped(element == null ? null : element.toObject(Object.class)));
+            (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -126,8 +124,8 @@ public final class MachineLearningServicesModelRegisteredEventData
         return jsonReader.readObject(reader -> {
             String modelName = null;
             String modelVersion = null;
-            Map<String, BinaryData> modelTags = null;
-            Map<String, BinaryData> modelProperties = null;
+            Map<String, MachineLearningServicesModelRegisteredEventDataModelTag> modelTags = null;
+            Map<String, MachineLearningServicesModelRegisteredEventDataModelProperty> modelProperties = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
@@ -137,11 +135,11 @@ public final class MachineLearningServicesModelRegisteredEventData
                 } else if ("modelVersion".equals(fieldName)) {
                     modelVersion = reader.getString();
                 } else if ("modelTags".equals(fieldName)) {
-                    modelTags = reader.readMap(reader1 -> reader1
-                        .getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped())));
+                    modelTags = reader
+                        .readMap(reader1 -> MachineLearningServicesModelRegisteredEventDataModelTag.fromJson(reader1));
                 } else if ("modelProperties".equals(fieldName)) {
-                    modelProperties = reader.readMap(reader1 -> reader1
-                        .getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped())));
+                    modelProperties = reader.readMap(
+                        reader1 -> MachineLearningServicesModelRegisteredEventDataModelProperty.fromJson(reader1));
                 } else {
                     reader.skipChildren();
                 }

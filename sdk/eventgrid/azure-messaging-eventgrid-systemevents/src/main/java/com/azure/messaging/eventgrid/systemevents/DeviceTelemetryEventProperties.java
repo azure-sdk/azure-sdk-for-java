@@ -6,7 +6,6 @@ package com.azure.messaging.eventgrid.systemevents;
 
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.BinaryData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -23,7 +22,7 @@ public class DeviceTelemetryEventProperties implements JsonSerializable<DeviceTe
      * The content of the message from the device.
      */
     @Generated
-    private final Map<String, BinaryData> body;
+    private final Map<String, DeviceTelemetryEventPropertiesBody> body;
 
     /*
      * Application properties are user-defined strings that can be added to the message. These fields are optional.
@@ -45,8 +44,8 @@ public class DeviceTelemetryEventProperties implements JsonSerializable<DeviceTe
      * @param systemProperties the systemProperties value to set.
      */
     @Generated
-    protected DeviceTelemetryEventProperties(Map<String, BinaryData> body, Map<String, String> properties,
-        Map<String, String> systemProperties) {
+    protected DeviceTelemetryEventProperties(Map<String, DeviceTelemetryEventPropertiesBody> body,
+        Map<String, String> properties, Map<String, String> systemProperties) {
         this.body = body;
         this.properties = properties;
         this.systemProperties = systemProperties;
@@ -58,7 +57,7 @@ public class DeviceTelemetryEventProperties implements JsonSerializable<DeviceTe
      * @return the body value.
      */
     @Generated
-    public Map<String, BinaryData> getBody() {
+    public Map<String, DeviceTelemetryEventPropertiesBody> getBody() {
         return this.body;
     }
 
@@ -90,8 +89,7 @@ public class DeviceTelemetryEventProperties implements JsonSerializable<DeviceTe
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeMapField("body", this.body,
-            (writer, element) -> writer.writeUntyped(element == null ? null : element.toObject(Object.class)));
+        jsonWriter.writeMapField("body", this.body, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeMapField("properties", this.properties, (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("systemProperties", this.systemProperties,
             (writer, element) -> writer.writeString(element));
@@ -110,7 +108,7 @@ public class DeviceTelemetryEventProperties implements JsonSerializable<DeviceTe
     @Generated
     public static DeviceTelemetryEventProperties fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            Map<String, BinaryData> body = null;
+            Map<String, DeviceTelemetryEventPropertiesBody> body = null;
             Map<String, String> properties = null;
             Map<String, String> systemProperties = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
@@ -118,8 +116,7 @@ public class DeviceTelemetryEventProperties implements JsonSerializable<DeviceTe
                 reader.nextToken();
 
                 if ("body".equals(fieldName)) {
-                    body = reader.readMap(reader1 -> reader1
-                        .getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped())));
+                    body = reader.readMap(reader1 -> DeviceTelemetryEventPropertiesBody.fromJson(reader1));
                 } else if ("properties".equals(fieldName)) {
                     properties = reader.readMap(reader1 -> reader1.getString());
                 } else if ("systemProperties".equals(fieldName)) {

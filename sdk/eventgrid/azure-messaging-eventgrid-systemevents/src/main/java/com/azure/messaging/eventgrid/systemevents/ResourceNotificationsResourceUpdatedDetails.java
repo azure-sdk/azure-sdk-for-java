@@ -6,7 +6,6 @@ package com.azure.messaging.eventgrid.systemevents;
 
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.BinaryData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -55,7 +54,7 @@ public final class ResourceNotificationsResourceUpdatedDetails
      * properties in the payload of the resource for which the event is being emitted
      */
     @Generated
-    private Map<String, BinaryData> properties;
+    private Map<String, ResourceNotificationsResourceUpdatedDetailsProperty> properties;
 
     /**
      * Creates an instance of ResourceNotificationsResourceUpdatedDetails class.
@@ -127,7 +126,7 @@ public final class ResourceNotificationsResourceUpdatedDetails
      * @return the properties value.
      */
     @Generated
-    public Map<String, BinaryData> getProperties() {
+    public Map<String, ResourceNotificationsResourceUpdatedDetailsProperty> getProperties() {
         return this.properties;
     }
 
@@ -143,8 +142,7 @@ public final class ResourceNotificationsResourceUpdatedDetails
         jsonWriter.writeStringField("type", this.type);
         jsonWriter.writeStringField("location", this.location);
         jsonWriter.writeMapField("tags", this.tags, (writer, element) -> writer.writeString(element));
-        jsonWriter.writeMapField("properties", this.properties,
-            (writer, element) -> writer.writeUntyped(element == null ? null : element.toObject(Object.class)));
+        jsonWriter.writeMapField("properties", this.properties, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -165,7 +163,7 @@ public final class ResourceNotificationsResourceUpdatedDetails
             String type = null;
             String location = null;
             Map<String, String> tags = null;
-            Map<String, BinaryData> properties = null;
+            Map<String, ResourceNotificationsResourceUpdatedDetailsProperty> properties = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
@@ -181,8 +179,8 @@ public final class ResourceNotificationsResourceUpdatedDetails
                 } else if ("tags".equals(fieldName)) {
                     tags = reader.readMap(reader1 -> reader1.getString());
                 } else if ("properties".equals(fieldName)) {
-                    properties = reader.readMap(reader1 -> reader1
-                        .getNullable(nonNullReader -> BinaryData.fromObject(nonNullReader.readUntyped())));
+                    properties = reader
+                        .readMap(reader1 -> ResourceNotificationsResourceUpdatedDetailsProperty.fromJson(reader1));
                 } else {
                     reader.skipChildren();
                 }
