@@ -15,7 +15,7 @@ import java.io.IOException;
  * Identity for the resource.
  */
 @Fluent
-public final class Identity implements JsonSerializable<Identity> {
+public class Identity implements JsonSerializable<Identity> {
     /*
      * The principal ID of resource identity.
      */
@@ -47,12 +47,34 @@ public final class Identity implements JsonSerializable<Identity> {
     }
 
     /**
+     * Set the principalId property: The principal ID of resource identity.
+     * 
+     * @param principalId the principalId value to set.
+     * @return the Identity object itself.
+     */
+    Identity withPrincipalId(String principalId) {
+        this.principalId = principalId;
+        return this;
+    }
+
+    /**
      * Get the tenantId property: The tenant ID of resource.
      * 
      * @return the tenantId value.
      */
     public String tenantId() {
         return this.tenantId;
+    }
+
+    /**
+     * Set the tenantId property: The tenant ID of resource.
+     * 
+     * @param tenantId the tenantId value to set.
+     * @return the Identity object itself.
+     */
+    Identity withTenantId(String tenantId) {
+        this.tenantId = tenantId;
+        return this;
     }
 
     /**

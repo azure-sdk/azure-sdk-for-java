@@ -5,7 +5,7 @@
 package com.azure.resourcemanager.mixedreality.models;
 
 /**
- * serial of key to be regenerated.
+ * Serial of key to be regenerated.
  */
 public enum Serial {
     /**

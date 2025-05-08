@@ -30,21 +30,21 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.resourcemanager.mixedreality.fluent.RemoteRenderingAccountsClient;
+import com.azure.resourcemanager.mixedreality.fluent.ObjectAnchorsAccountsClient;
 import com.azure.resourcemanager.mixedreality.fluent.models.AccountKeysInner;
-import com.azure.resourcemanager.mixedreality.fluent.models.RemoteRenderingAccountInner;
+import com.azure.resourcemanager.mixedreality.fluent.models.ObjectAnchorsAccountInner;
 import com.azure.resourcemanager.mixedreality.models.AccountKeyRegenerateRequest;
-import com.azure.resourcemanager.mixedreality.models.RemoteRenderingAccountPage;
+import com.azure.resourcemanager.mixedreality.models.ObjectAnchorsAccountPage;
 import reactor.core.publisher.Mono;
 
 /**
- * An instance of this class provides access to all the operations defined in RemoteRenderingAccountsClient.
+ * An instance of this class provides access to all the operations defined in ObjectAnchorsAccountsClient.
  */
-public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingAccountsClient {
+public final class ObjectAnchorsAccountsClientImpl implements ObjectAnchorsAccountsClient {
     /**
      * The proxy service used to perform REST calls.
      */
-    private final RemoteRenderingAccountsService service;
+    private final ObjectAnchorsAccountsService service;
 
     /**
      * The service client containing this operation class.
@@ -52,42 +52,42 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
     private final MixedRealityClientImpl client;
 
     /**
-     * Initializes an instance of RemoteRenderingAccountsClientImpl.
+     * Initializes an instance of ObjectAnchorsAccountsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    RemoteRenderingAccountsClientImpl(MixedRealityClientImpl client) {
-        this.service = RestProxy.create(RemoteRenderingAccountsService.class, client.getHttpPipeline(),
+    ObjectAnchorsAccountsClientImpl(MixedRealityClientImpl client) {
+        this.service = RestProxy.create(ObjectAnchorsAccountsService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for MixedRealityClientRemoteRenderingAccounts to be used by the proxy
+     * The interface defining all the services for MixedRealityClientObjectAnchorsAccounts to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "MixedRealityClientRe")
-    public interface RemoteRenderingAccountsService {
+    @ServiceInterface(name = "MixedRealityClientOb")
+    public interface ObjectAnchorsAccountsService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.MixedReality/remoteRenderingAccounts")
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.MixedReality/objectAnchorsAccounts")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemoteRenderingAccountPage>> list(@HostParam("$host") String endpoint,
+        Mono<Response<ObjectAnchorsAccountPage>> list(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/remoteRenderingAccounts")
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/objectAnchorsAccounts")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemoteRenderingAccountPage>> listByResourceGroup(@HostParam("$host") String endpoint,
+        Mono<Response<ObjectAnchorsAccountPage>> listByResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/remoteRenderingAccounts/{accountName}")
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/objectAnchorsAccounts/{accountName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
@@ -96,38 +96,38 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/remoteRenderingAccounts/{accountName}")
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/objectAnchorsAccounts/{accountName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemoteRenderingAccountInner>> getByResourceGroup(@HostParam("$host") String endpoint,
+        Mono<Response<ObjectAnchorsAccountInner>> getByResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("accountName") String accountName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/remoteRenderingAccounts/{accountName}")
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/objectAnchorsAccounts/{accountName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemoteRenderingAccountInner>> update(@HostParam("$host") String endpoint,
+        Mono<Response<ObjectAnchorsAccountInner>> update(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("accountName") String accountName,
             @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") RemoteRenderingAccountInner remoteRenderingAccount,
+            @BodyParam("application/json") ObjectAnchorsAccountInner objectAnchorsAccount,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/remoteRenderingAccounts/{accountName}")
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/objectAnchorsAccounts/{accountName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemoteRenderingAccountInner>> create(@HostParam("$host") String endpoint,
+        Mono<Response<ObjectAnchorsAccountInner>> create(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("accountName") String accountName,
             @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") RemoteRenderingAccountInner remoteRenderingAccount,
+            @BodyParam("application/json") ObjectAnchorsAccountInner objectAnchorsAccount,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/remoteRenderingAccounts/{accountName}/listKeys")
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/objectAnchorsAccounts/{accountName}/listKeys")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AccountKeysInner>> listKeys(@HostParam("$host") String endpoint,
@@ -136,7 +136,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/remoteRenderingAccounts/{accountName}/regenerateKeys")
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MixedReality/objectAnchorsAccounts/{accountName}/regenerateKeys")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AccountKeysInner>> regenerateKeys(@HostParam("$host") String endpoint,
@@ -150,7 +150,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemoteRenderingAccountPage>> listBySubscriptionNext(
+        Mono<Response<ObjectAnchorsAccountPage>> listBySubscriptionNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -158,7 +158,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<RemoteRenderingAccountPage>> listByResourceGroupNext(
+        Mono<Response<ObjectAnchorsAccountPage>> listByResourceGroupNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -170,7 +170,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Remote Rendering Accounts by Subscription.
+     * List Object Anchors Accounts by Subscription.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -178,7 +178,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemoteRenderingAccountInner>> listSinglePageAsync() {
+    private Mono<PagedResponse<ObjectAnchorsAccountInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -191,7 +191,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
                 this.client.getApiVersion(), accept, context))
-            .<PagedResponse<RemoteRenderingAccountInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+            .<PagedResponse<ObjectAnchorsAccountInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -203,7 +203,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Remote Rendering Accounts by Subscription.
+     * List Object Anchors Accounts by Subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -213,7 +213,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemoteRenderingAccountInner>> listSinglePageAsync(Context context) {
+    private Mono<PagedResponse<ObjectAnchorsAccountInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -238,14 +238,14 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Remote Rendering Accounts by Subscription.
+     * List Object Anchors Accounts by Subscription.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return result of the request to get resource collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemoteRenderingAccountInner> listAsync() {
+    private PagedFlux<ObjectAnchorsAccountInner> listAsync() {
         return new PagedFlux<>(() -> listSinglePageAsync(),
             nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
@@ -257,7 +257,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Remote Rendering Accounts by Subscription.
+     * List Object Anchors Accounts by Subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -266,7 +266,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * @return result of the request to get resource collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemoteRenderingAccountInner> listAsync(Context context) {
+    private PagedFlux<ObjectAnchorsAccountInner> listAsync(Context context) {
         return new PagedFlux<>(() -> listSinglePageAsync(context),
             nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
     }
@@ -278,14 +278,14 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Remote Rendering Accounts by Subscription.
+     * List Object Anchors Accounts by Subscription.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return result of the request to get resource collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RemoteRenderingAccountInner> list() {
+    public PagedIterable<ObjectAnchorsAccountInner> list() {
         return new PagedIterable<>(listAsync());
     }
 
@@ -296,7 +296,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Remote Rendering Accounts by Subscription.
+     * List Object Anchors Accounts by Subscription.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -305,7 +305,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * @return result of the request to get resource collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RemoteRenderingAccountInner> list(Context context) {
+    public PagedIterable<ObjectAnchorsAccountInner> list(Context context) {
         return new PagedIterable<>(listAsync(context));
     }
 
@@ -326,7 +326,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemoteRenderingAccountInner>>
+    private Mono<PagedResponse<ObjectAnchorsAccountInner>>
         listByResourceGroupSinglePageAsync(String resourceGroupName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -344,7 +344,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
         return FluxUtil
             .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
                 this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<RemoteRenderingAccountInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+            .<PagedResponse<ObjectAnchorsAccountInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -367,8 +367,8 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemoteRenderingAccountInner>>
-        listByResourceGroupSinglePageAsync(String resourceGroupName, Context context) {
+    private Mono<PagedResponse<ObjectAnchorsAccountInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -406,7 +406,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * @return result of the request to get resource collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemoteRenderingAccountInner> listByResourceGroupAsync(String resourceGroupName) {
+    private PagedFlux<ObjectAnchorsAccountInner> listByResourceGroupAsync(String resourceGroupName) {
         return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
@@ -428,7 +428,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * @return result of the request to get resource collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RemoteRenderingAccountInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
+    private PagedFlux<ObjectAnchorsAccountInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
         return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
     }
@@ -449,7 +449,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * @return result of the request to get resource collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RemoteRenderingAccountInner> listByResourceGroup(String resourceGroupName) {
+    public PagedIterable<ObjectAnchorsAccountInner> listByResourceGroup(String resourceGroupName) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName));
     }
 
@@ -470,7 +470,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * @return result of the request to get resource collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<RemoteRenderingAccountInner> listByResourceGroup(String resourceGroupName, Context context) {
+    public PagedIterable<ObjectAnchorsAccountInner> listByResourceGroup(String resourceGroupName, Context context) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, context));
     }
 
@@ -481,7 +481,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Delete a Remote Rendering Account.
+     * Delete an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -521,7 +521,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Delete a Remote Rendering Account.
+     * Delete an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -562,7 +562,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Delete a Remote Rendering Account.
+     * Delete an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -583,7 +583,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Delete a Remote Rendering Account.
+     * Delete an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -605,7 +605,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Delete a Remote Rendering Account.
+     * Delete an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -625,17 +625,17 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Retrieve a Remote Rendering Account.
+     * Retrieve an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remoteRenderingAccount Response along with {@link Response} on successful completion of {@link Mono}.
+     * @return objectAnchorsAccount Response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemoteRenderingAccountInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+    private Mono<Response<ObjectAnchorsAccountInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
         String accountName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -667,7 +667,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Retrieve a Remote Rendering Account.
+     * Retrieve an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -675,10 +675,10 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remoteRenderingAccount Response along with {@link Response} on successful completion of {@link Mono}.
+     * @return objectAnchorsAccount Response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemoteRenderingAccountInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+    private Mono<Response<ObjectAnchorsAccountInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
         String accountName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -708,17 +708,17 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Retrieve a Remote Rendering Account.
+     * Retrieve an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remoteRenderingAccount Response on successful completion of {@link Mono}.
+     * @return objectAnchorsAccount Response on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<RemoteRenderingAccountInner> getByResourceGroupAsync(String resourceGroupName, String accountName) {
+    private Mono<ObjectAnchorsAccountInner> getByResourceGroupAsync(String resourceGroupName, String accountName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, accountName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -730,7 +730,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Retrieve a Remote Rendering Account.
+     * Retrieve an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -738,10 +738,10 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remoteRenderingAccount Response along with {@link Response}.
+     * @return objectAnchorsAccount Response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemoteRenderingAccountInner> getByResourceGroupWithResponse(String resourceGroupName,
+    public Response<ObjectAnchorsAccountInner> getByResourceGroupWithResponse(String resourceGroupName,
         String accountName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, accountName, context).block();
     }
@@ -753,17 +753,17 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Retrieve a Remote Rendering Account.
+     * Retrieve an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remoteRenderingAccount Response.
+     * @return objectAnchorsAccount Response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public RemoteRenderingAccountInner getByResourceGroup(String resourceGroupName, String accountName) {
+    public ObjectAnchorsAccountInner getByResourceGroup(String resourceGroupName, String accountName) {
         return getByResourceGroupWithResponse(resourceGroupName, accountName, Context.NONE).getValue();
     }
 
@@ -774,19 +774,19 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Updating a Remote Rendering Account.
+     * Updating an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
-     * @param remoteRenderingAccount Remote Rendering Account parameter.
+     * @param objectAnchorsAccount Object Anchors Account parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remoteRenderingAccount Response along with {@link Response} on successful completion of {@link Mono}.
+     * @return objectAnchorsAccount Response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemoteRenderingAccountInner>> updateWithResponseAsync(String resourceGroupName,
-        String accountName, RemoteRenderingAccountInner remoteRenderingAccount) {
+    private Mono<Response<ObjectAnchorsAccountInner>> updateWithResponseAsync(String resourceGroupName,
+        String accountName, ObjectAnchorsAccountInner objectAnchorsAccount) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -802,16 +802,16 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
         if (accountName == null) {
             return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
-        if (remoteRenderingAccount == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter remoteRenderingAccount is required and cannot be null."));
+        if (objectAnchorsAccount == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter objectAnchorsAccount is required and cannot be null."));
         } else {
-            remoteRenderingAccount.validate();
+            objectAnchorsAccount.validate();
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, accountName, this.client.getApiVersion(), remoteRenderingAccount, accept, context))
+                resourceGroupName, accountName, this.client.getApiVersion(), objectAnchorsAccount, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -822,20 +822,20 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Updating a Remote Rendering Account.
+     * Updating an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
-     * @param remoteRenderingAccount Remote Rendering Account parameter.
+     * @param objectAnchorsAccount Object Anchors Account parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remoteRenderingAccount Response along with {@link Response} on successful completion of {@link Mono}.
+     * @return objectAnchorsAccount Response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemoteRenderingAccountInner>> updateWithResponseAsync(String resourceGroupName,
-        String accountName, RemoteRenderingAccountInner remoteRenderingAccount, Context context) {
+    private Mono<Response<ObjectAnchorsAccountInner>> updateWithResponseAsync(String resourceGroupName,
+        String accountName, ObjectAnchorsAccountInner objectAnchorsAccount, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -851,16 +851,16 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
         if (accountName == null) {
             return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
-        if (remoteRenderingAccount == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter remoteRenderingAccount is required and cannot be null."));
+        if (objectAnchorsAccount == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter objectAnchorsAccount is required and cannot be null."));
         } else {
-            remoteRenderingAccount.validate();
+            objectAnchorsAccount.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            accountName, this.client.getApiVersion(), remoteRenderingAccount, accept, context);
+            accountName, this.client.getApiVersion(), objectAnchorsAccount, accept, context);
     }
 
     /**
@@ -870,20 +870,20 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Updating a Remote Rendering Account.
+     * Updating an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
-     * @param remoteRenderingAccount Remote Rendering Account parameter.
+     * @param objectAnchorsAccount Object Anchors Account parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remoteRenderingAccount Response on successful completion of {@link Mono}.
+     * @return objectAnchorsAccount Response on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<RemoteRenderingAccountInner> updateAsync(String resourceGroupName, String accountName,
-        RemoteRenderingAccountInner remoteRenderingAccount) {
-        return updateWithResponseAsync(resourceGroupName, accountName, remoteRenderingAccount)
+    private Mono<ObjectAnchorsAccountInner> updateAsync(String resourceGroupName, String accountName,
+        ObjectAnchorsAccountInner objectAnchorsAccount) {
+        return updateWithResponseAsync(resourceGroupName, accountName, objectAnchorsAccount)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -894,21 +894,21 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Updating a Remote Rendering Account.
+     * Updating an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
-     * @param remoteRenderingAccount Remote Rendering Account parameter.
+     * @param objectAnchorsAccount Object Anchors Account parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remoteRenderingAccount Response along with {@link Response}.
+     * @return objectAnchorsAccount Response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemoteRenderingAccountInner> updateWithResponse(String resourceGroupName, String accountName,
-        RemoteRenderingAccountInner remoteRenderingAccount, Context context) {
-        return updateWithResponseAsync(resourceGroupName, accountName, remoteRenderingAccount, context).block();
+    public Response<ObjectAnchorsAccountInner> updateWithResponse(String resourceGroupName, String accountName,
+        ObjectAnchorsAccountInner objectAnchorsAccount, Context context) {
+        return updateWithResponseAsync(resourceGroupName, accountName, objectAnchorsAccount, context).block();
     }
 
     /**
@@ -918,20 +918,20 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Updating a Remote Rendering Account.
+     * Updating an Object Anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
-     * @param remoteRenderingAccount Remote Rendering Account parameter.
+     * @param objectAnchorsAccount Object Anchors Account parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remoteRenderingAccount Response.
+     * @return objectAnchorsAccount Response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public RemoteRenderingAccountInner update(String resourceGroupName, String accountName,
-        RemoteRenderingAccountInner remoteRenderingAccount) {
-        return updateWithResponse(resourceGroupName, accountName, remoteRenderingAccount, Context.NONE).getValue();
+    public ObjectAnchorsAccountInner update(String resourceGroupName, String accountName,
+        ObjectAnchorsAccountInner objectAnchorsAccount) {
+        return updateWithResponse(resourceGroupName, accountName, objectAnchorsAccount, Context.NONE).getValue();
     }
 
     /**
@@ -941,19 +941,19 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Creating or Updating a Remote Rendering Account.
+     * Creating or Updating an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
-     * @param remoteRenderingAccount Remote Rendering Account parameter.
+     * @param objectAnchorsAccount Object Anchors Account parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remoteRenderingAccount Response along with {@link Response} on successful completion of {@link Mono}.
+     * @return objectAnchorsAccount Response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemoteRenderingAccountInner>> createWithResponseAsync(String resourceGroupName,
-        String accountName, RemoteRenderingAccountInner remoteRenderingAccount) {
+    private Mono<Response<ObjectAnchorsAccountInner>> createWithResponseAsync(String resourceGroupName,
+        String accountName, ObjectAnchorsAccountInner objectAnchorsAccount) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -969,16 +969,16 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
         if (accountName == null) {
             return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
-        if (remoteRenderingAccount == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter remoteRenderingAccount is required and cannot be null."));
+        if (objectAnchorsAccount == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter objectAnchorsAccount is required and cannot be null."));
         } else {
-            remoteRenderingAccount.validate();
+            objectAnchorsAccount.validate();
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.create(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, accountName, this.client.getApiVersion(), remoteRenderingAccount, accept, context))
+                resourceGroupName, accountName, this.client.getApiVersion(), objectAnchorsAccount, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -989,20 +989,20 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Creating or Updating a Remote Rendering Account.
+     * Creating or Updating an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
-     * @param remoteRenderingAccount Remote Rendering Account parameter.
+     * @param objectAnchorsAccount Object Anchors Account parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remoteRenderingAccount Response along with {@link Response} on successful completion of {@link Mono}.
+     * @return objectAnchorsAccount Response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RemoteRenderingAccountInner>> createWithResponseAsync(String resourceGroupName,
-        String accountName, RemoteRenderingAccountInner remoteRenderingAccount, Context context) {
+    private Mono<Response<ObjectAnchorsAccountInner>> createWithResponseAsync(String resourceGroupName,
+        String accountName, ObjectAnchorsAccountInner objectAnchorsAccount, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -1018,16 +1018,16 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
         if (accountName == null) {
             return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
-        if (remoteRenderingAccount == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter remoteRenderingAccount is required and cannot be null."));
+        if (objectAnchorsAccount == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter objectAnchorsAccount is required and cannot be null."));
         } else {
-            remoteRenderingAccount.validate();
+            objectAnchorsAccount.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.create(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            accountName, this.client.getApiVersion(), remoteRenderingAccount, accept, context);
+            accountName, this.client.getApiVersion(), objectAnchorsAccount, accept, context);
     }
 
     /**
@@ -1037,20 +1037,20 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Creating or Updating a Remote Rendering Account.
+     * Creating or Updating an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
-     * @param remoteRenderingAccount Remote Rendering Account parameter.
+     * @param objectAnchorsAccount Object Anchors Account parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remoteRenderingAccount Response on successful completion of {@link Mono}.
+     * @return objectAnchorsAccount Response on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<RemoteRenderingAccountInner> createAsync(String resourceGroupName, String accountName,
-        RemoteRenderingAccountInner remoteRenderingAccount) {
-        return createWithResponseAsync(resourceGroupName, accountName, remoteRenderingAccount)
+    private Mono<ObjectAnchorsAccountInner> createAsync(String resourceGroupName, String accountName,
+        ObjectAnchorsAccountInner objectAnchorsAccount) {
+        return createWithResponseAsync(resourceGroupName, accountName, objectAnchorsAccount)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -1061,21 +1061,21 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Creating or Updating a Remote Rendering Account.
+     * Creating or Updating an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
-     * @param remoteRenderingAccount Remote Rendering Account parameter.
+     * @param objectAnchorsAccount Object Anchors Account parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remoteRenderingAccount Response along with {@link Response}.
+     * @return objectAnchorsAccount Response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<RemoteRenderingAccountInner> createWithResponse(String resourceGroupName, String accountName,
-        RemoteRenderingAccountInner remoteRenderingAccount, Context context) {
-        return createWithResponseAsync(resourceGroupName, accountName, remoteRenderingAccount, context).block();
+    public Response<ObjectAnchorsAccountInner> createWithResponse(String resourceGroupName, String accountName,
+        ObjectAnchorsAccountInner objectAnchorsAccount, Context context) {
+        return createWithResponseAsync(resourceGroupName, accountName, objectAnchorsAccount, context).block();
     }
 
     /**
@@ -1085,20 +1085,20 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Creating or Updating a Remote Rendering Account.
+     * Creating or Updating an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
-     * @param remoteRenderingAccount Remote Rendering Account parameter.
+     * @param objectAnchorsAccount Object Anchors Account parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remoteRenderingAccount Response.
+     * @return objectAnchorsAccount Response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public RemoteRenderingAccountInner create(String resourceGroupName, String accountName,
-        RemoteRenderingAccountInner remoteRenderingAccount) {
-        return createWithResponse(resourceGroupName, accountName, remoteRenderingAccount, Context.NONE).getValue();
+    public ObjectAnchorsAccountInner create(String resourceGroupName, String accountName,
+        ObjectAnchorsAccountInner objectAnchorsAccount) {
+        return createWithResponse(resourceGroupName, accountName, objectAnchorsAccount, Context.NONE).getValue();
     }
 
     /**
@@ -1108,7 +1108,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Both of the 2 Keys of a Remote Rendering Account.
+     * List Both of the 2 Keys of an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -1148,7 +1148,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Both of the 2 Keys of a Remote Rendering Account.
+     * List Both of the 2 Keys of an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -1189,7 +1189,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Both of the 2 Keys of a Remote Rendering Account.
+     * List Both of the 2 Keys of an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -1211,7 +1211,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Both of the 2 Keys of a Remote Rendering Account.
+     * List Both of the 2 Keys of an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -1234,7 +1234,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * List Both of the 2 Keys of a Remote Rendering Account.
+     * List Both of the 2 Keys of an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -1255,7 +1255,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Regenerate specified Key of a Remote Rendering Account.
+     * Regenerate specified Key of an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -1302,7 +1302,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Regenerate specified Key of a Remote Rendering Account.
+     * Regenerate specified Key of an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -1349,7 +1349,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Regenerate specified Key of a Remote Rendering Account.
+     * Regenerate specified Key of an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -1373,7 +1373,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Regenerate specified Key of a Remote Rendering Account.
+     * Regenerate specified Key of an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -1397,7 +1397,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * &gt;
      * &gt; The Mixed Reality service is now deprecated and will be retired.
      * 
-     * Regenerate specified Key of a Remote Rendering Account.
+     * Regenerate specified Key of an object anchors Account.
      * 
      * @param resourceGroupName Name of an Azure resource group.
      * @param accountName Name of an Mixed Reality Account.
@@ -1424,7 +1424,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemoteRenderingAccountInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<ObjectAnchorsAccountInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1436,7 +1436,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
         return FluxUtil
             .withContext(
                 context -> service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<RemoteRenderingAccountInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+            .<PagedResponse<ObjectAnchorsAccountInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -1453,7 +1453,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemoteRenderingAccountInner>> listBySubscriptionNextSinglePageAsync(String nextLink,
+    private Mono<PagedResponse<ObjectAnchorsAccountInner>> listBySubscriptionNextSinglePageAsync(String nextLink,
         Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
@@ -1480,7 +1480,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemoteRenderingAccountInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<ObjectAnchorsAccountInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1492,7 +1492,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
         return FluxUtil
             .withContext(
                 context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<RemoteRenderingAccountInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+            .<PagedResponse<ObjectAnchorsAccountInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -1509,7 +1509,7 @@ public final class RemoteRenderingAccountsClientImpl implements RemoteRenderingA
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RemoteRenderingAccountInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
+    private Mono<PagedResponse<ObjectAnchorsAccountInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
         Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
