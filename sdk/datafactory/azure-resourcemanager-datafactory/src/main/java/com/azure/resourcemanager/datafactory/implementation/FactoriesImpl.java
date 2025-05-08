@@ -34,16 +34,6 @@ public final class FactoriesImpl implements Factories {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<Factory> list() {
-        PagedIterable<FactoryInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new FactoryImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Factory> list(Context context) {
-        PagedIterable<FactoryInner> inner = this.serviceClient().list(context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new FactoryImpl(inner1, this.manager()));
-    }
-
     public Response<Factory> configureFactoryRepoWithResponse(String locationId, FactoryRepoUpdate factoryRepoUpdate,
         Context context) {
         Response<FactoryInner> inner
