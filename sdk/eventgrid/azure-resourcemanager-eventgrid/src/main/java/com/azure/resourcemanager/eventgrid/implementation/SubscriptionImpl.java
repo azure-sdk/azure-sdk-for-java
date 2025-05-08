@@ -17,6 +17,8 @@ import com.azure.resourcemanager.eventgrid.models.SubscriptionFullUrl;
 import com.azure.resourcemanager.eventgrid.models.SubscriptionProvisioningState;
 import com.azure.resourcemanager.eventgrid.models.SubscriptionUpdateParameters;
 import java.time.OffsetDateTime;
+import java.util.Collections;
+import java.util.Map;
 
 public final class SubscriptionImpl implements Subscription, Subscription.Definition, Subscription.Update {
     private SubscriptionInner innerObject;
@@ -57,6 +59,15 @@ public final class SubscriptionImpl implements Subscription, Subscription.Defini
 
     public OffsetDateTime expirationTimeUtc() {
         return this.innerModel().expirationTimeUtc();
+    }
+
+    public Map<String, String> tags() {
+        Map<String, String> inner = this.innerModel().tags();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public String resourceGroupName() {
@@ -176,6 +187,16 @@ public final class SubscriptionImpl implements Subscription, Subscription.Defini
     public SubscriptionFullUrl getFullUrl() {
         return serviceManager.namespaceTopicEventSubscriptions()
             .getFullUrl(resourceGroupName, namespaceName, topicName, eventSubscriptionName);
+    }
+
+    public SubscriptionImpl withTags(Map<String, String> tags) {
+        if (isInCreateMode()) {
+            this.innerModel().withTags(tags);
+            return this;
+        } else {
+            this.updateEventSubscriptionUpdateParameters.withTags(tags);
+            return this;
+        }
     }
 
     public SubscriptionImpl withDeliveryConfiguration(DeliveryConfiguration deliveryConfiguration) {
