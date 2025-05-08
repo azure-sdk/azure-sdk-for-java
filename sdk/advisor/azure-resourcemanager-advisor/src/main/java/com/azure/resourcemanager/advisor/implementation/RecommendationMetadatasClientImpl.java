@@ -63,19 +63,19 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
     @ServiceInterface(name = "AdvisorManagementCli")
     public interface RecommendationMetadatasService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/providers/Microsoft.Advisor/metadata/{name}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ManagementException.class, code = { 404 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<MetadataEntityInner>> get(@HostParam("$host") String endpoint, @PathParam("name") String name,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Advisor/metadata")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MetadataEntityListResult>> list(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Advisor/metadata/{name}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<MetadataEntityInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("name") String name,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -84,103 +84,6 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
         Mono<Response<MetadataEntityListResult>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
-    }
-
-    /**
-     * Gets the metadata entity.
-     * 
-     * @param name Name of metadata entity.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata entity along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<MetadataEntityInner>> getWithResponseAsync(String name) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.get(this.client.getEndpoint(), name, this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets the metadata entity.
-     * 
-     * @param name Name of metadata entity.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata entity along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<MetadataEntityInner>> getWithResponseAsync(String name, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), name, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Gets the metadata entity.
-     * 
-     * @param name Name of metadata entity.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata entity on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<MetadataEntityInner> getAsync(String name) {
-        return getWithResponseAsync(name).flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets the metadata entity.
-     * 
-     * @param name Name of metadata entity.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata entity along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<MetadataEntityInner> getWithResponse(String name, Context context) {
-        return getWithResponseAsync(name, context).block();
-    }
-
-    /**
-     * Gets the metadata entity.
-     * 
-     * @param name Name of metadata entity.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata entity.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public MetadataEntityInner get(String name) {
-        return getWithResponse(name, Context.NONE).getValue();
     }
 
     /**
@@ -281,13 +184,106 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
     }
 
     /**
+     * Gets the metadata entity.
+     * 
+     * @param name Name of metadata entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata entity along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<MetadataEntityInner>> getWithResponseAsync(String name) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), name, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets the metadata entity.
+     * 
+     * @param name Name of metadata entity.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata entity along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<MetadataEntityInner>> getWithResponseAsync(String name, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), name, accept, context);
+    }
+
+    /**
+     * Gets the metadata entity.
+     * 
+     * @param name Name of metadata entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata entity on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<MetadataEntityInner> getAsync(String name) {
+        return getWithResponseAsync(name).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets the metadata entity.
+     * 
+     * @param name Name of metadata entity.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata entity along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<MetadataEntityInner> getWithResponse(String name, Context context) {
+        return getWithResponseAsync(name, context).block();
+    }
+
+    /**
+     * Gets the metadata entity.
+     * 
+     * @param name Name of metadata entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata entity.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MetadataEntityInner get(String name) {
+        return getWithResponse(name, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of metadata entities along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a MetadataEntity list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MetadataEntityInner>> listNextSinglePageAsync(String nextLink) {
@@ -313,7 +309,8 @@ public final class RecommendationMetadatasClientImpl implements RecommendationMe
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of metadata entities along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a MetadataEntity list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MetadataEntityInner>> listNextSinglePageAsync(String nextLink, Context context) {

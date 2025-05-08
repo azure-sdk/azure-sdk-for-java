@@ -12,22 +12,24 @@ import com.azure.core.util.Context;
  */
 public interface Operations {
     /**
-     * Lists all the available Advisor REST API operations.
+     * List the operations for the provider.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor operations as paginated response with {@link PagedIterable}.
+     * @return a list of REST API operations supported by an Azure Resource Provider as paginated response with
+     * {@link PagedIterable}.
      */
-    PagedIterable<OperationEntity> list();
+    PagedIterable<Operation> list();
 
     /**
-     * Lists all the available Advisor REST API operations.
+     * List the operations for the provider.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor operations as paginated response with {@link PagedIterable}.
+     * @return a list of REST API operations supported by an Azure Resource Provider as paginated response with
+     * {@link PagedIterable}.
      */
-    PagedIterable<OperationEntity> list(Context context);
+    PagedIterable<Operation> list(Context context);
 }

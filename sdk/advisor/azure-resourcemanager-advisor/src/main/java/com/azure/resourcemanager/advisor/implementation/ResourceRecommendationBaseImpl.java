@@ -4,17 +4,21 @@
 
 package com.azure.resourcemanager.advisor.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.advisor.fluent.models.ResourceRecommendationBaseInner;
 import com.azure.resourcemanager.advisor.models.Category;
 import com.azure.resourcemanager.advisor.models.Impact;
+import com.azure.resourcemanager.advisor.models.RecommendationPropertiesResourceWorkload;
+import com.azure.resourcemanager.advisor.models.RecommendationPropertiesReview;
 import com.azure.resourcemanager.advisor.models.ResourceMetadata;
 import com.azure.resourcemanager.advisor.models.ResourceRecommendationBase;
+import com.azure.resourcemanager.advisor.models.Risk;
 import com.azure.resourcemanager.advisor.models.ShortDescription;
+import com.azure.resourcemanager.advisor.models.TrackedRecommendationProperties;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public final class ResourceRecommendationBaseImpl implements ResourceRecommendationBase {
     private ResourceRecommendationBaseInner innerObject;
@@ -39,6 +43,10 @@ public final class ResourceRecommendationBaseImpl implements ResourceRecommendat
         return this.innerModel().type();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public Category category() {
         return this.innerModel().category();
     }
@@ -59,8 +67,8 @@ public final class ResourceRecommendationBaseImpl implements ResourceRecommendat
         return this.innerModel().lastUpdated();
     }
 
-    public Map<String, Object> metadata() {
-        Map<String, Object> inner = this.innerModel().metadata();
+    public Map<String, Map<String, Object>> metadata() {
+        Map<String, Map<String, Object>> inner = this.innerModel().metadata();
         if (inner != null) {
             return Collections.unmodifiableMap(inner);
         } else {
@@ -72,12 +80,16 @@ public final class ResourceRecommendationBaseImpl implements ResourceRecommendat
         return this.innerModel().recommendationTypeId();
     }
 
+    public Risk risk() {
+        return this.innerModel().risk();
+    }
+
     public ShortDescription shortDescription() {
         return this.innerModel().shortDescription();
     }
 
-    public List<UUID> suppressionIds() {
-        List<UUID> inner = this.innerModel().suppressionIds();
+    public List<String> suppressionIds() {
+        List<String> inner = this.innerModel().suppressionIds();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {
@@ -114,8 +126,8 @@ public final class ResourceRecommendationBaseImpl implements ResourceRecommendat
         return this.innerModel().potentialBenefits();
     }
 
-    public List<Map<String, Object>> actions() {
-        List<Map<String, Object>> inner = this.innerModel().actions();
+    public List<Map<String, Map<String, Object>>> actions() {
+        List<Map<String, Map<String, Object>>> inner = this.innerModel().actions();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {
@@ -123,8 +135,8 @@ public final class ResourceRecommendationBaseImpl implements ResourceRecommendat
         }
     }
 
-    public Map<String, Object> remediation() {
-        Map<String, Object> inner = this.innerModel().remediation();
+    public Map<String, Map<String, Object>> remediation() {
+        Map<String, Map<String, Object>> inner = this.innerModel().remediation();
         if (inner != null) {
             return Collections.unmodifiableMap(inner);
         } else {
@@ -132,13 +144,37 @@ public final class ResourceRecommendationBaseImpl implements ResourceRecommendat
         }
     }
 
-    public Map<String, Object> exposedMetadataProperties() {
-        Map<String, Object> inner = this.innerModel().exposedMetadataProperties();
+    public Map<String, Map<String, Object>> exposedMetadataProperties() {
+        Map<String, Map<String, Object>> inner = this.innerModel().exposedMetadataProperties();
         if (inner != null) {
             return Collections.unmodifiableMap(inner);
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public Boolean tracked() {
+        return this.innerModel().tracked();
+    }
+
+    public TrackedRecommendationProperties trackedProperties() {
+        return this.innerModel().trackedProperties();
+    }
+
+    public RecommendationPropertiesReview review() {
+        return this.innerModel().review();
+    }
+
+    public RecommendationPropertiesResourceWorkload resourceWorkload() {
+        return this.innerModel().resourceWorkload();
+    }
+
+    public String sourceSystem() {
+        return this.innerModel().sourceSystem();
+    }
+
+    public String notes() {
+        return this.innerModel().notes();
     }
 
     public ResourceRecommendationBaseInner innerModel() {

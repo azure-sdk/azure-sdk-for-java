@@ -12,7 +12,7 @@ import java.time.Duration;
  */
 public interface AdvisorManagementClient {
     /**
-     * Gets The Azure subscription ID.
+     * Gets The ID of the target subscription. The value must be an UUID.
      * 
      * @return the subscriptionId value.
      */
@@ -47,25 +47,25 @@ public interface AdvisorManagementClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the RecommendationMetadatasClient object to access its operations.
-     * 
-     * @return the RecommendationMetadatasClient object.
-     */
-    RecommendationMetadatasClient getRecommendationMetadatas();
-
-    /**
-     * Gets the ConfigurationsClient object to access its operations.
-     * 
-     * @return the ConfigurationsClient object.
-     */
-    ConfigurationsClient getConfigurations();
-
-    /**
      * Gets the RecommendationsClient object to access its operations.
      * 
      * @return the RecommendationsClient object.
      */
     RecommendationsClient getRecommendations();
+
+    /**
+     * Gets the SuppressionsClient object to access its operations.
+     * 
+     * @return the SuppressionsClient object.
+     */
+    SuppressionsClient getSuppressions();
+
+    /**
+     * Gets the RecommendationMetadatasClient object to access its operations.
+     * 
+     * @return the RecommendationMetadatasClient object.
+     */
+    RecommendationMetadatasClient getRecommendationMetadatas();
 
     /**
      * Gets the OperationsClient object to access its operations.
@@ -75,9 +75,65 @@ public interface AdvisorManagementClient {
     OperationsClient getOperations();
 
     /**
-     * Gets the SuppressionsClient object to access its operations.
+     * Gets the AdvisorScoresClient object to access its operations.
      * 
-     * @return the SuppressionsClient object.
+     * @return the AdvisorScoresClient object.
      */
-    SuppressionsClient getSuppressions();
+    AdvisorScoresClient getAdvisorScores();
+
+    /**
+     * Gets the AssessmentTypesClient object to access its operations.
+     * 
+     * @return the AssessmentTypesClient object.
+     */
+    AssessmentTypesClient getAssessmentTypes();
+
+    /**
+     * Gets the AssessmentsClient object to access its operations.
+     * 
+     * @return the AssessmentsClient object.
+     */
+    AssessmentsClient getAssessments();
+
+    /**
+     * Gets the ConfigurationsClient object to access its operations.
+     * 
+     * @return the ConfigurationsClient object.
+     */
+    ConfigurationsClient getConfigurations();
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     * 
+     * @return the ResourceProvidersClient object.
+     */
+    ResourceProvidersClient getResourceProviders();
+
+    /**
+     * Gets the ResiliencyReviewsClient object to access its operations.
+     * 
+     * @return the ResiliencyReviewsClient object.
+     */
+    ResiliencyReviewsClient getResiliencyReviews();
+
+    /**
+     * Gets the TriageRecommendationsClient object to access its operations.
+     * 
+     * @return the TriageRecommendationsClient object.
+     */
+    TriageRecommendationsClient getTriageRecommendations();
+
+    /**
+     * Gets the TriageResourcesClient object to access its operations.
+     * 
+     * @return the TriageResourcesClient object.
+     */
+    TriageResourcesClient getTriageResources();
+
+    /**
+     * Gets the WorkloadsClient object to access its operations.
+     * 
+     * @return the WorkloadsClient object.
+     */
+    WorkloadsClient getWorkloads();
 }

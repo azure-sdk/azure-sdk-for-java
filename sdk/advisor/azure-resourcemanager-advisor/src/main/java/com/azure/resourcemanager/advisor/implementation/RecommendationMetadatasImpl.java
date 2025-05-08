@@ -27,6 +27,16 @@ public final class RecommendationMetadatasImpl implements RecommendationMetadata
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<MetadataEntity> list() {
+        PagedIterable<MetadataEntityInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new MetadataEntityImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<MetadataEntity> list(Context context) {
+        PagedIterable<MetadataEntityInner> inner = this.serviceClient().list(context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new MetadataEntityImpl(inner1, this.manager()));
+    }
+
     public Response<MetadataEntity> getWithResponse(String name, Context context) {
         Response<MetadataEntityInner> inner = this.serviceClient().getWithResponse(name, context);
         if (inner != null) {
@@ -44,16 +54,6 @@ public final class RecommendationMetadatasImpl implements RecommendationMetadata
         } else {
             return null;
         }
-    }
-
-    public PagedIterable<MetadataEntity> list() {
-        PagedIterable<MetadataEntityInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new MetadataEntityImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<MetadataEntity> list(Context context) {
-        PagedIterable<MetadataEntityInner> inner = this.serviceClient().list(context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new MetadataEntityImpl(inner1, this.manager()));
     }
 
     private RecommendationMetadatasClient serviceClient() {
