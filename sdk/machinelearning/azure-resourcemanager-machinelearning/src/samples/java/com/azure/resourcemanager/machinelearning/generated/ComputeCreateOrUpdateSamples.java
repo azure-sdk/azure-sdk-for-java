@@ -54,7 +54,7 @@ import java.util.Map;
 public final class ComputeCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Compute/createOrUpdate/BasicAKSCompute.json
      */
     /**
@@ -73,7 +73,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Compute/createOrUpdate/AKSCompute.json
      */
     /**
@@ -95,7 +95,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Compute/createOrUpdate/KubernetesCompute.json
      */
     /**
@@ -123,7 +123,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Compute/createOrUpdate/ComputeInstanceWithSchedules.json
      */
     /**
@@ -157,7 +157,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Compute/createOrUpdate/BasicAmlCompute.json
      */
     /**
@@ -186,7 +186,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Compute/createOrUpdate/ComputeInstance.json
      */
     /**
@@ -232,7 +232,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Compute/createOrUpdate/ComputeInstanceMinimal.json
      */
     /**
@@ -253,7 +253,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Compute/createOrUpdate/AmlCompute.json
      */
     /**
@@ -275,7 +275,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Compute/createOrUpdate/BasicDataFactoryCompute.json
      */
     /**

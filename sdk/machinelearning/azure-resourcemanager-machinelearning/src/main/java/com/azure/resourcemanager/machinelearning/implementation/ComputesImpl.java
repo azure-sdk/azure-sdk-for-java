@@ -14,8 +14,8 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ComputeResourceIn
 import com.azure.resourcemanager.machinelearning.fluent.models.ComputeSecretsInner;
 import com.azure.resourcemanager.machinelearning.models.AmlComputeNodeInformation;
 import com.azure.resourcemanager.machinelearning.models.ComputeResource;
-import com.azure.resourcemanager.machinelearning.models.Computes;
 import com.azure.resourcemanager.machinelearning.models.ComputeSecrets;
+import com.azure.resourcemanager.machinelearning.models.Computes;
 import com.azure.resourcemanager.machinelearning.models.UnderlyingResourceAction;
 
 public final class ComputesImpl implements Computes {

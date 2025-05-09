@@ -12,7 +12,7 @@ import com.azure.resourcemanager.machinelearning.models.DestinationAsset;
 public final class EnvironmentVersionsPublishSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Workspace/EnvironmentVersion/publish.json
      */
     /**
@@ -24,9 +24,9 @@ public final class EnvironmentVersionsPublishSamples {
         publishWorkspaceEnvironmentVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.environmentVersions()
             .publish("test-rg", "my-aml-workspace", "string", "string",
-                new DestinationAsset().withRegistryName("string")
-                    .withDestinationName("string")
-                    .withDestinationVersion("string"),
+                new DestinationAsset().withDestinationName("string")
+                    .withDestinationVersion("string")
+                    .withRegistryName("string"),
                 com.azure.core.util.Context.NONE);
     }
 }

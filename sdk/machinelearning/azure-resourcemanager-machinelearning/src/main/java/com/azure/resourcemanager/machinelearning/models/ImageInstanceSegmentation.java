@@ -237,8 +237,8 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public ImageInstanceSegmentation withTrainingData(MLTableJobInput trainingData) {
-        super.withTrainingData(trainingData);
+    public ImageInstanceSegmentation withTargetColumnName(String targetColumnName) {
+        super.withTargetColumnName(targetColumnName);
         return this;
     }
 
@@ -246,8 +246,8 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public ImageInstanceSegmentation withTargetColumnName(String targetColumnName) {
-        super.withTargetColumnName(targetColumnName);
+    public ImageInstanceSegmentation withTrainingData(MLTableJobInput trainingData) {
+        super.withTrainingData(trainingData);
         return this;
     }
 
@@ -258,7 +258,6 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
      */
     @Override
     public void validate() {
-        super.validate();
         if (modelSettings() != null) {
             modelSettings().validate();
         }
@@ -277,6 +276,13 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
         }
         if (validationData() != null) {
             validationData().validate();
+        }
+        if (trainingData() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property trainingData in model ImageInstanceSegmentation"));
+        } else {
+            trainingData().validate();
         }
     }
 

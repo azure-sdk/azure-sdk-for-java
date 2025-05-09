@@ -23,7 +23,7 @@ import java.util.Map;
 public final class ServerlessEndpointsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Workspace/ServerlessEndpoint/createOrUpdate.json
      */
     /**
@@ -37,14 +37,13 @@ public final class ServerlessEndpointsCreateOrUpdateSamples {
             .define("string")
             .withRegion("string")
             .withExistingWorkspace("test-rg", "my-aml-workspace")
-            .withProperties(
-                new ServerlessEndpointProperties().withModelSettings(new ModelSettings().withModelId("string"))
-                    .withAuthMode(ServerlessInferenceEndpointAuthMode.KEY)
-                    .withContentSafety(new ContentSafety().withContentSafetyStatus(ContentSafetyStatus.ENABLED)))
+            .withProperties(new ServerlessEndpointProperties().withAuthMode(ServerlessInferenceEndpointAuthMode.KEY)
+                .withContentSafety(new ContentSafety().withContentSafetyStatus(ContentSafetyStatus.ENABLED))
+                .withModelSettings(new ModelSettings().withModelId("string")))
             .withTags(mapOf())
-            .withKind("string")
             .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED)
                 .withUserAssignedIdentities(mapOf("string", new UserAssignedIdentity())))
+            .withKind("string")
             .withSku(new Sku().withName("string")
                 .withTier(SkuTier.STANDARD)
                 .withSize("string")
