@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/elestcisan/ci.yml
+      - sdk/elestcisan/azure-resourcemanager-elasticsan/
+    exclude:
+      - sdk/elestcisan/pom.xml
+      - sdk/elestcisan/azure-resourcemanager-elasticsan/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/elestcisan/ci.yml
+      - sdk/elestcisan/azure-resourcemanager-elasticsan/
+    exclude:
+      - sdk/elestcisan/pom.xml
+      - sdk/elestcisan/azure-resourcemanager-elasticsan/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerelasticsan
+    displayName: azure-resourcemanager-elasticsan
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: elestcisan
+    Artifacts:
+      - name: azure-resourcemanager-elasticsan
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerelasticsan
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerelasticsan }}
