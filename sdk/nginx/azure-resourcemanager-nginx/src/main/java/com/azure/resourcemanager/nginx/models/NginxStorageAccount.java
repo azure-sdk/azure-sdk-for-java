@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The NginxStorageAccount model.
+ * Nginx Storage Account.
  */
 @Fluent
 public final class NginxStorageAccount implements JsonSerializable<NginxStorageAccount> {

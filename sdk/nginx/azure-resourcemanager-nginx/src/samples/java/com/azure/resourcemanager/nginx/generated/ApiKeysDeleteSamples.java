@@ -10,7 +10,7 @@ package com.azure.resourcemanager.nginx.generated;
 public final class ApiKeysDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/nginx/resource-manager/NGINX.NGINXPLUS/preview/2024-11-01-preview/examples/ApiKeys_Delete.json
+     * specification/nginx/resource-manager/NGINX.NGINXPLUS/preview/2025-03-01-preview/examples/ApiKeys_Delete.json
      */
     /**
      * Sample code: ApiKeys_Delete.

@@ -14,12 +14,12 @@ import com.azure.resourcemanager.nginx.models.NginxConfigurationResponseProperti
 import java.io.IOException;
 
 /**
- * The NginxConfigurationResponse model.
+ * Nginx Configuration Response.
  */
 @Fluent
 public final class NginxConfigurationResponseInner extends ProxyResource {
     /*
-     * The properties property.
+     * Nginx Configuration Response Properties
      */
     private NginxConfigurationResponseProperties properties;
 
@@ -50,7 +50,7 @@ public final class NginxConfigurationResponseInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The properties property.
+     * Get the properties property: Nginx Configuration Response Properties.
      * 
      * @return the properties value.
      */
@@ -59,7 +59,7 @@ public final class NginxConfigurationResponseInner extends ProxyResource {
     }
 
     /**
-     * Set the properties property: The properties property.
+     * Set the properties property: Nginx Configuration Response Properties.
      * 
      * @param properties the properties value to set.
      * @return the NginxConfigurationResponseInner object itself.

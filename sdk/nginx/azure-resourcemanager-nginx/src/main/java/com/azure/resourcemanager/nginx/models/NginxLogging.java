@@ -12,12 +12,12 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The NginxLogging model.
+ * Nginx Logging.
  */
 @Fluent
 public final class NginxLogging implements JsonSerializable<NginxLogging> {
     /*
-     * The storageAccount property.
+     * Nginx Storage Account
      */
     private NginxStorageAccount storageAccount;
 
@@ -28,7 +28,7 @@ public final class NginxLogging implements JsonSerializable<NginxLogging> {
     }
 
     /**
-     * Get the storageAccount property: The storageAccount property.
+     * Get the storageAccount property: Nginx Storage Account.
      * 
      * @return the storageAccount value.
      */
@@ -37,7 +37,7 @@ public final class NginxLogging implements JsonSerializable<NginxLogging> {
     }
 
     /**
-     * Set the storageAccount property: The storageAccount property.
+     * Set the storageAccount property: Nginx Storage Account.
      * 
      * @param storageAccount the storageAccount value to set.
      * @return the NginxLogging object itself.

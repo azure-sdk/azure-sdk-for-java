@@ -6,20 +6,26 @@ package com.azure.resourcemanager.nginx.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The NginxDeploymentApiKeyRequest model.
+ * Nginx Deployment Api Key Request.
  */
 @Fluent
 public final class NginxDeploymentApiKeyRequest extends ProxyResource {
     /*
-     * The properties property.
+     * Nginx Deployment Api Key Request Properties
      */
     private NginxDeploymentApiKeyRequestProperties properties;
+
+    /*
+     * Metadata pertaining to creation and last modification of the resource.
+     */
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -43,7 +49,7 @@ public final class NginxDeploymentApiKeyRequest extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The properties property.
+     * Get the properties property: Nginx Deployment Api Key Request Properties.
      * 
      * @return the properties value.
      */
@@ -52,7 +58,7 @@ public final class NginxDeploymentApiKeyRequest extends ProxyResource {
     }
 
     /**
-     * Set the properties property: The properties property.
+     * Set the properties property: Nginx Deployment Api Key Request Properties.
      * 
      * @param properties the properties value to set.
      * @return the NginxDeploymentApiKeyRequest object itself.
@@ -60,6 +66,15 @@ public final class NginxDeploymentApiKeyRequest extends ProxyResource {
     public NginxDeploymentApiKeyRequest withProperties(NginxDeploymentApiKeyRequestProperties properties) {
         this.properties = properties;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -138,6 +153,8 @@ public final class NginxDeploymentApiKeyRequest extends ProxyResource {
                 } else if ("properties".equals(fieldName)) {
                     deserializedNginxDeploymentApiKeyRequest.properties
                         = NginxDeploymentApiKeyRequestProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedNginxDeploymentApiKeyRequest.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

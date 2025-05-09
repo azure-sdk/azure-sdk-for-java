@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.nginx.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.fluent.models.NginxDeploymentApiKeyResponseInner;
 import com.azure.resourcemanager.nginx.models.NginxDeploymentApiKeyRequest;
@@ -31,6 +32,10 @@ public final class NginxDeploymentApiKeyResponseImpl implements NginxDeploymentA
 
     public NginxDeploymentApiKeyResponseProperties properties() {
         return this.innerModel().properties();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String resourceGroupName() {

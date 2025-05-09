@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.nginx.models;
 
 import com.azure.resourcemanager.nginx.fluent.models.AnalysisResultInner;
+import java.util.List;
 
 /**
  * An immutable client-side representation of AnalysisResult.
@@ -18,11 +19,18 @@ public interface AnalysisResult {
     String status();
 
     /**
-     * Gets the data property: The data property.
+     * Gets the errors property: The errors property.
      * 
-     * @return the data value.
+     * @return the errors value.
      */
-    AnalysisResultData data();
+    List<AnalysisDiagnostic> errors();
+
+    /**
+     * Gets the diagnostics property: The diagnostics property.
+     * 
+     * @return the diagnostics value.
+     */
+    List<DiagnosticItem> diagnostics();
 
     /**
      * Gets the inner com.azure.resourcemanager.nginx.fluent.models.AnalysisResultInner object.

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.nginx.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.fluent.models.NginxDeploymentApiKeyResponseInner;
 
@@ -33,11 +34,18 @@ public interface NginxDeploymentApiKeyResponse {
     String type();
 
     /**
-     * Gets the properties property: The properties property.
+     * Gets the properties property: Nginx Deployment Api Key Response Properties.
      * 
      * @return the properties value.
      */
     NginxDeploymentApiKeyResponseProperties properties();
+
+    /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the name of the resource group.
@@ -110,9 +118,9 @@ public interface NginxDeploymentApiKeyResponse {
          */
         interface WithProperties {
             /**
-             * Specifies the properties property: The properties property..
+             * Specifies the properties property: Nginx Deployment Api Key Request Properties.
              * 
-             * @param properties The properties property.
+             * @param properties Nginx Deployment Api Key Request Properties.
              * @return the next definition stage.
              */
             WithCreate withProperties(NginxDeploymentApiKeyRequestProperties properties);
@@ -155,9 +163,9 @@ public interface NginxDeploymentApiKeyResponse {
          */
         interface WithProperties {
             /**
-             * Specifies the properties property: The properties property..
+             * Specifies the properties property: Nginx Deployment Api Key Request Properties.
              * 
-             * @param properties The properties property.
+             * @param properties Nginx Deployment Api Key Request Properties.
              * @return the next definition stage.
              */
             Update withProperties(NginxDeploymentApiKeyRequestProperties properties);

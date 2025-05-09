@@ -16,10 +16,10 @@ public interface Operations {
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of GET request to list Nginx.NginxPlus operations as paginated response with
+     * @return a list of REST API operations supported by an Azure Resource Provider as paginated response with
      * {@link PagedIterable}.
      */
-    PagedIterable<OperationResult> list();
+    PagedIterable<Operation> list();
 
     /**
      * List all operations provided by Nginx.NginxPlus for the 2024-11-01-preview api version.
@@ -28,8 +28,8 @@ public interface Operations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of GET request to list Nginx.NginxPlus operations as paginated response with
+     * @return a list of REST API operations supported by an Azure Resource Provider as paginated response with
      * {@link PagedIterable}.
      */
-    PagedIterable<OperationResult> list(Context context);
+    PagedIterable<Operation> list(Context context);
 }

@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The NginxPrivateIpAddress model.
+ * Nginx Private IP Address.
  */
 @Fluent
 public final class NginxPrivateIpAddress implements JsonSerializable<NginxPrivateIpAddress> {
@@ -22,7 +22,7 @@ public final class NginxPrivateIpAddress implements JsonSerializable<NginxPrivat
     private String privateIpAddress;
 
     /*
-     * The privateIPAllocationMethod property.
+     * Nginx Private IP Allocation Method
      */
     private NginxPrivateIpAllocationMethod privateIpAllocationMethod;
 
@@ -58,7 +58,7 @@ public final class NginxPrivateIpAddress implements JsonSerializable<NginxPrivat
     }
 
     /**
-     * Get the privateIpAllocationMethod property: The privateIPAllocationMethod property.
+     * Get the privateIpAllocationMethod property: Nginx Private IP Allocation Method.
      * 
      * @return the privateIpAllocationMethod value.
      */
@@ -67,7 +67,7 @@ public final class NginxPrivateIpAddress implements JsonSerializable<NginxPrivat
     }
 
     /**
-     * Set the privateIpAllocationMethod property: The privateIPAllocationMethod property.
+     * Set the privateIpAllocationMethod property: Nginx Private IP Allocation Method.
      * 
      * @param privateIpAllocationMethod the privateIpAllocationMethod value to set.
      * @return the NginxPrivateIpAddress object itself.

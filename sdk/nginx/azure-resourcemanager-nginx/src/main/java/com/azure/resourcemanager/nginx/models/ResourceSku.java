@@ -13,7 +13,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The ResourceSku model.
+ * Resource Sku.
  */
 @Fluent
 public final class ResourceSku implements JsonSerializable<ResourceSku> {

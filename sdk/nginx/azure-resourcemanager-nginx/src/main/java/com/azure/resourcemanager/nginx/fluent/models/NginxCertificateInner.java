@@ -14,19 +14,14 @@ import com.azure.resourcemanager.nginx.models.NginxCertificateProperties;
 import java.io.IOException;
 
 /**
- * The NginxCertificate model.
+ * Nginx Certificate.
  */
 @Fluent
 public final class NginxCertificateInner extends ProxyResource {
     /*
-     * The properties property.
+     * Nginx Certificate Properties
      */
     private NginxCertificateProperties properties;
-
-    /*
-     * The location property.
-     */
-    private String location;
 
     /*
      * Metadata pertaining to creation and last modification of the resource.
@@ -55,7 +50,7 @@ public final class NginxCertificateInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The properties property.
+     * Get the properties property: Nginx Certificate Properties.
      * 
      * @return the properties value.
      */
@@ -64,33 +59,13 @@ public final class NginxCertificateInner extends ProxyResource {
     }
 
     /**
-     * Set the properties property: The properties property.
+     * Set the properties property: Nginx Certificate Properties.
      * 
      * @param properties the properties value to set.
      * @return the NginxCertificateInner object itself.
      */
     public NginxCertificateInner withProperties(NginxCertificateProperties properties) {
         this.properties = properties;
-        return this;
-    }
-
-    /**
-     * Get the location property: The location property.
-     * 
-     * @return the location value.
-     */
-    public String location() {
-        return this.location;
-    }
-
-    /**
-     * Set the location property: The location property.
-     * 
-     * @param location the location value to set.
-     * @return the NginxCertificateInner object itself.
-     */
-    public NginxCertificateInner withLocation(String location) {
-        this.location = location;
         return this;
     }
 
@@ -151,7 +126,6 @@ public final class NginxCertificateInner extends ProxyResource {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("properties", this.properties);
-        jsonWriter.writeStringField("location", this.location);
         return jsonWriter.writeEndObject();
     }
 
@@ -179,8 +153,6 @@ public final class NginxCertificateInner extends ProxyResource {
                     deserializedNginxCertificateInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedNginxCertificateInner.properties = NginxCertificateProperties.fromJson(reader);
-                } else if ("location".equals(fieldName)) {
-                    deserializedNginxCertificateInner.location = reader.getString();
                 } else if ("systemData".equals(fieldName)) {
                     deserializedNginxCertificateInner.systemData = SystemData.fromJson(reader);
                 } else {
