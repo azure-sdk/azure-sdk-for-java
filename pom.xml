@@ -54,6 +54,7 @@
     <module>sdk/consumption</module>
     <module>sdk/containerorchestratorruntime</module>
     <module>sdk/containerregistry</module>
+    <module>sdk/containerserviceaks</module>
     <module>sdk/containerservicefleet</module>
     <module>sdk/contentsafety</module>
     <module>sdk/core</module>
