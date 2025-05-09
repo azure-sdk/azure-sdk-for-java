@@ -25,11 +25,6 @@ public final class AutoMLJob extends JobBaseProperties {
     private JobType jobType = JobType.AUTO_ML;
 
     /*
-     * Compute Resource configuration for the job.
-     */
-    private JobResourceConfiguration resources;
-
-    /*
      * The ARM resource ID of the Environment specification for the job.
      * This is optional value to provide, if not provided, AutoML will default this to Production AutoML curated
      * environment version when running the job.
@@ -42,11 +37,6 @@ public final class AutoMLJob extends JobBaseProperties {
     private Map<String, String> environmentVariables;
 
     /*
-     * [Required] This represents scenario which can be one of Tables/NLP/Image
-     */
-    private AutoMLVertical taskDetails;
-
-    /*
      * Mapping of output data bindings used in the job.
      */
     private Map<String, JobOutput> outputs;
@@ -57,9 +47,14 @@ public final class AutoMLJob extends JobBaseProperties {
     private QueueSettings queueSettings;
 
     /*
-     * Status of the job.
+     * Compute Resource configuration for the job.
      */
-    private JobStatus status;
+    private JobResourceConfiguration resources;
+
+    /*
+     * [Required] This represents scenario which can be one of Tables/NLP/Image
+     */
+    private AutoMLVertical taskDetails;
 
     /**
      * Creates an instance of AutoMLJob class.
@@ -75,26 +70,6 @@ public final class AutoMLJob extends JobBaseProperties {
     @Override
     public JobType jobType() {
         return this.jobType;
-    }
-
-    /**
-     * Get the resources property: Compute Resource configuration for the job.
-     * 
-     * @return the resources value.
-     */
-    public JobResourceConfiguration resources() {
-        return this.resources;
-    }
-
-    /**
-     * Set the resources property: Compute Resource configuration for the job.
-     * 
-     * @param resources the resources value to set.
-     * @return the AutoMLJob object itself.
-     */
-    public AutoMLJob withResources(JobResourceConfiguration resources) {
-        this.resources = resources;
-        return this;
     }
 
     /**
@@ -142,26 +117,6 @@ public final class AutoMLJob extends JobBaseProperties {
     }
 
     /**
-     * Get the taskDetails property: [Required] This represents scenario which can be one of Tables/NLP/Image.
-     * 
-     * @return the taskDetails value.
-     */
-    public AutoMLVertical taskDetails() {
-        return this.taskDetails;
-    }
-
-    /**
-     * Set the taskDetails property: [Required] This represents scenario which can be one of Tables/NLP/Image.
-     * 
-     * @param taskDetails the taskDetails value to set.
-     * @return the AutoMLJob object itself.
-     */
-    public AutoMLJob withTaskDetails(AutoMLVertical taskDetails) {
-        this.taskDetails = taskDetails;
-        return this;
-    }
-
-    /**
      * Get the outputs property: Mapping of output data bindings used in the job.
      * 
      * @return the outputs value.
@@ -202,13 +157,61 @@ public final class AutoMLJob extends JobBaseProperties {
     }
 
     /**
-     * Get the status property: Status of the job.
+     * Get the resources property: Compute Resource configuration for the job.
      * 
-     * @return the status value.
+     * @return the resources value.
+     */
+    public JobResourceConfiguration resources() {
+        return this.resources;
+    }
+
+    /**
+     * Set the resources property: Compute Resource configuration for the job.
+     * 
+     * @param resources the resources value to set.
+     * @return the AutoMLJob object itself.
+     */
+    public AutoMLJob withResources(JobResourceConfiguration resources) {
+        this.resources = resources;
+        return this;
+    }
+
+    /**
+     * Get the taskDetails property: [Required] This represents scenario which can be one of Tables/NLP/Image.
+     * 
+     * @return the taskDetails value.
+     */
+    public AutoMLVertical taskDetails() {
+        return this.taskDetails;
+    }
+
+    /**
+     * Set the taskDetails property: [Required] This represents scenario which can be one of Tables/NLP/Image.
+     * 
+     * @param taskDetails the taskDetails value to set.
+     * @return the AutoMLJob object itself.
+     */
+    public AutoMLJob withTaskDetails(AutoMLVertical taskDetails) {
+        this.taskDetails = taskDetails;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     @Override
-    public JobStatus status() {
-        return this.status;
+    public AutoMLJob withComponentId(String componentId) {
+        super.withComponentId(componentId);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AutoMLJob withComputeId(String computeId) {
+        super.withComputeId(computeId);
+        return this;
     }
 
     /**
@@ -233,17 +236,8 @@ public final class AutoMLJob extends JobBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public AutoMLJob withServices(Map<String, JobService> services) {
-        super.withServices(services);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AutoMLJob withComputeId(String computeId) {
-        super.withComputeId(computeId);
+    public AutoMLJob withIdentity(IdentityConfiguration identity) {
+        super.withIdentity(identity);
         return this;
     }
 
@@ -260,26 +254,17 @@ public final class AutoMLJob extends JobBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public AutoMLJob withIdentity(IdentityConfiguration identity) {
-        super.withIdentity(identity);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public AutoMLJob withComponentId(String componentId) {
-        super.withComponentId(componentId);
-        return this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public AutoMLJob withNotificationSetting(NotificationSetting notificationSetting) {
         super.withNotificationSetting(notificationSetting);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AutoMLJob withServices(Map<String, JobService> services) {
+        super.withServices(services);
         return this;
     }
 
@@ -296,8 +281,8 @@ public final class AutoMLJob extends JobBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public AutoMLJob withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    public AutoMLJob withProperties(Map<String, String> properties) {
+        super.withProperties(properties);
         return this;
     }
 
@@ -305,8 +290,8 @@ public final class AutoMLJob extends JobBaseProperties {
      * {@inheritDoc}
      */
     @Override
-    public AutoMLJob withProperties(Map<String, String> properties) {
-        super.withProperties(properties);
+    public AutoMLJob withTags(Map<String, String> tags) {
+        super.withTags(tags);
         return this;
     }
 
@@ -317,16 +302,6 @@ public final class AutoMLJob extends JobBaseProperties {
      */
     @Override
     public void validate() {
-        super.validate();
-        if (resources() != null) {
-            resources().validate();
-        }
-        if (taskDetails() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property taskDetails in model AutoMLJob"));
-        } else {
-            taskDetails().validate();
-        }
         if (outputs() != null) {
             outputs().values().forEach(e -> {
                 if (e != null) {
@@ -336,6 +311,28 @@ public final class AutoMLJob extends JobBaseProperties {
         }
         if (queueSettings() != null) {
             queueSettings().validate();
+        }
+        if (resources() != null) {
+            resources().validate();
+        }
+        if (taskDetails() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property taskDetails in model AutoMLJob"));
+        } else {
+            taskDetails().validate();
+        }
+        if (identity() != null) {
+            identity().validate();
+        }
+        if (notificationSetting() != null) {
+            notificationSetting().validate();
+        }
+        if (services() != null) {
+            services().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 
@@ -348,24 +345,24 @@ public final class AutoMLJob extends JobBaseProperties {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("description", description());
-        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("componentId", componentId());
+        jsonWriter.writeStringField("computeId", computeId());
         jsonWriter.writeStringField("displayName", displayName());
         jsonWriter.writeStringField("experimentName", experimentName());
-        jsonWriter.writeMapField("services", services(), (writer, element) -> writer.writeJson(element));
-        jsonWriter.writeStringField("computeId", computeId());
-        jsonWriter.writeBooleanField("isArchived", isArchived());
         jsonWriter.writeJsonField("identity", identity());
-        jsonWriter.writeStringField("componentId", componentId());
+        jsonWriter.writeBooleanField("isArchived", isArchived());
         jsonWriter.writeJsonField("notificationSetting", notificationSetting());
+        jsonWriter.writeMapField("services", services(), (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("taskDetails", this.taskDetails);
         jsonWriter.writeStringField("jobType", this.jobType == null ? null : this.jobType.toString());
-        jsonWriter.writeJsonField("resources", this.resources);
         jsonWriter.writeStringField("environmentId", this.environmentId);
         jsonWriter.writeMapField("environmentVariables", this.environmentVariables,
             (writer, element) -> writer.writeString(element));
         jsonWriter.writeMapField("outputs", this.outputs, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("queueSettings", this.queueSettings);
+        jsonWriter.writeJsonField("resources", this.resources);
         return jsonWriter.writeEndObject();
     }
 
@@ -387,37 +384,35 @@ public final class AutoMLJob extends JobBaseProperties {
 
                 if ("description".equals(fieldName)) {
                     deserializedAutoMLJob.withDescription(reader.getString());
-                } else if ("tags".equals(fieldName)) {
-                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
-                    deserializedAutoMLJob.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedAutoMLJob.withProperties(properties);
+                } else if ("tags".equals(fieldName)) {
+                    Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
+                    deserializedAutoMLJob.withTags(tags);
+                } else if ("componentId".equals(fieldName)) {
+                    deserializedAutoMLJob.withComponentId(reader.getString());
+                } else if ("computeId".equals(fieldName)) {
+                    deserializedAutoMLJob.withComputeId(reader.getString());
                 } else if ("displayName".equals(fieldName)) {
                     deserializedAutoMLJob.withDisplayName(reader.getString());
-                } else if ("status".equals(fieldName)) {
-                    deserializedAutoMLJob.status = JobStatus.fromString(reader.getString());
                 } else if ("experimentName".equals(fieldName)) {
                     deserializedAutoMLJob.withExperimentName(reader.getString());
+                } else if ("identity".equals(fieldName)) {
+                    deserializedAutoMLJob.withIdentity(IdentityConfiguration.fromJson(reader));
+                } else if ("isArchived".equals(fieldName)) {
+                    deserializedAutoMLJob.withIsArchived(reader.getNullable(JsonReader::getBoolean));
+                } else if ("notificationSetting".equals(fieldName)) {
+                    deserializedAutoMLJob.withNotificationSetting(NotificationSetting.fromJson(reader));
                 } else if ("services".equals(fieldName)) {
                     Map<String, JobService> services = reader.readMap(reader1 -> JobService.fromJson(reader1));
                     deserializedAutoMLJob.withServices(services);
-                } else if ("computeId".equals(fieldName)) {
-                    deserializedAutoMLJob.withComputeId(reader.getString());
-                } else if ("isArchived".equals(fieldName)) {
-                    deserializedAutoMLJob.withIsArchived(reader.getNullable(JsonReader::getBoolean));
-                } else if ("identity".equals(fieldName)) {
-                    deserializedAutoMLJob.withIdentity(IdentityConfiguration.fromJson(reader));
-                } else if ("componentId".equals(fieldName)) {
-                    deserializedAutoMLJob.withComponentId(reader.getString());
-                } else if ("notificationSetting".equals(fieldName)) {
-                    deserializedAutoMLJob.withNotificationSetting(NotificationSetting.fromJson(reader));
+                } else if ("status".equals(fieldName)) {
+                    deserializedAutoMLJob.withStatus(JobStatus.fromString(reader.getString()));
                 } else if ("taskDetails".equals(fieldName)) {
                     deserializedAutoMLJob.taskDetails = AutoMLVertical.fromJson(reader);
                 } else if ("jobType".equals(fieldName)) {
                     deserializedAutoMLJob.jobType = JobType.fromString(reader.getString());
-                } else if ("resources".equals(fieldName)) {
-                    deserializedAutoMLJob.resources = JobResourceConfiguration.fromJson(reader);
                 } else if ("environmentId".equals(fieldName)) {
                     deserializedAutoMLJob.environmentId = reader.getString();
                 } else if ("environmentVariables".equals(fieldName)) {
@@ -428,6 +423,8 @@ public final class AutoMLJob extends JobBaseProperties {
                     deserializedAutoMLJob.outputs = outputs;
                 } else if ("queueSettings".equals(fieldName)) {
                     deserializedAutoMLJob.queueSettings = QueueSettings.fromJson(reader);
+                } else if ("resources".equals(fieldName)) {
+                    deserializedAutoMLJob.resources = JobResourceConfiguration.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

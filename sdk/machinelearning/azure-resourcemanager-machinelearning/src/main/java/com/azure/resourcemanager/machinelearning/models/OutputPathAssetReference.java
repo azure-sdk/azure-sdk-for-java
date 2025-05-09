@@ -21,14 +21,14 @@ public final class OutputPathAssetReference extends AssetReferenceBase {
     private ReferenceType referenceType = ReferenceType.OUTPUT_PATH;
 
     /*
-     * The path of the file/directory in the job output.
-     */
-    private String path;
-
-    /*
      * ARM resource ID of the job.
      */
     private String jobId;
+
+    /*
+     * The path of the file/directory in the job output.
+     */
+    private String path;
 
     /**
      * Creates an instance of OutputPathAssetReference class.
@@ -44,26 +44,6 @@ public final class OutputPathAssetReference extends AssetReferenceBase {
     @Override
     public ReferenceType referenceType() {
         return this.referenceType;
-    }
-
-    /**
-     * Get the path property: The path of the file/directory in the job output.
-     * 
-     * @return the path value.
-     */
-    public String path() {
-        return this.path;
-    }
-
-    /**
-     * Set the path property: The path of the file/directory in the job output.
-     * 
-     * @param path the path value to set.
-     * @return the OutputPathAssetReference object itself.
-     */
-    public OutputPathAssetReference withPath(String path) {
-        this.path = path;
-        return this;
     }
 
     /**
@@ -87,13 +67,32 @@ public final class OutputPathAssetReference extends AssetReferenceBase {
     }
 
     /**
+     * Get the path property: The path of the file/directory in the job output.
+     * 
+     * @return the path value.
+     */
+    public String path() {
+        return this.path;
+    }
+
+    /**
+     * Set the path property: The path of the file/directory in the job output.
+     * 
+     * @param path the path value to set.
+     * @return the OutputPathAssetReference object itself.
+     */
+    public OutputPathAssetReference withPath(String path) {
+        this.path = path;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -103,8 +102,8 @@ public final class OutputPathAssetReference extends AssetReferenceBase {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("referenceType", this.referenceType == null ? null : this.referenceType.toString());
-        jsonWriter.writeStringField("path", this.path);
         jsonWriter.writeStringField("jobId", this.jobId);
+        jsonWriter.writeStringField("path", this.path);
         return jsonWriter.writeEndObject();
     }
 
@@ -125,10 +124,10 @@ public final class OutputPathAssetReference extends AssetReferenceBase {
 
                 if ("referenceType".equals(fieldName)) {
                     deserializedOutputPathAssetReference.referenceType = ReferenceType.fromString(reader.getString());
-                } else if ("path".equals(fieldName)) {
-                    deserializedOutputPathAssetReference.path = reader.getString();
                 } else if ("jobId".equals(fieldName)) {
                     deserializedOutputPathAssetReference.jobId = reader.getString();
+                } else if ("path".equals(fieldName)) {
+                    deserializedOutputPathAssetReference.path = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

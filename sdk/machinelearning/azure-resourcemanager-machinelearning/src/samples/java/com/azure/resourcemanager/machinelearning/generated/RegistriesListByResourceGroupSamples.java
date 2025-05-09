@@ -10,23 +10,8 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class RegistriesListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registries/list-UserCreated.json
-     */
-    /**
-     * Sample code: List registries with user created accounts.
-     * 
-     * @param manager Entry point to MachineLearningManager.
-     */
-    public static void listRegistriesWithUserCreatedAccounts(
-        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager.registries().listByResourceGroup("test-rg", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registries/list-SystemCreated.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
+     * examples/Registries/list.json
      */
     /**
      * Sample code: List registries with system created accounts.
