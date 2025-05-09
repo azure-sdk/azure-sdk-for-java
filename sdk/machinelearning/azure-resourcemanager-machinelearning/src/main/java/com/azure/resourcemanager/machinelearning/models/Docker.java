@@ -14,7 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Docker container configuration.
+ * The Docker model.
  */
 @Fluent
 public final class Docker implements JsonSerializable<Docker> {
@@ -24,7 +24,7 @@ public final class Docker implements JsonSerializable<Docker> {
     private Boolean privileged;
 
     /*
-     * Docker container configuration
+     * Dictionary of <any>
      */
     private Map<String, Object> additionalProperties;
 
@@ -55,7 +55,7 @@ public final class Docker implements JsonSerializable<Docker> {
     }
 
     /**
-     * Get the additionalProperties property: Docker container configuration.
+     * Get the additionalProperties property: Dictionary of &lt;any&gt;.
      * 
      * @return the additionalProperties value.
      */
@@ -64,7 +64,7 @@ public final class Docker implements JsonSerializable<Docker> {
     }
 
     /**
-     * Set the additionalProperties property: Docker container configuration.
+     * Set the additionalProperties property: Dictionary of &lt;any&gt;.
      * 
      * @param additionalProperties the additionalProperties value to set.
      * @return the Docker object itself.

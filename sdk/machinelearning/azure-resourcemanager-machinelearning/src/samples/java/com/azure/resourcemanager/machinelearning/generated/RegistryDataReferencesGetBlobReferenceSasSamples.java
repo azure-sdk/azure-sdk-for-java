@@ -12,8 +12,8 @@ import com.azure.resourcemanager.machinelearning.models.GetBlobReferenceSasReque
 public final class RegistryDataReferencesGetBlobReferenceSasSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/DataReference/getBlobReferenceSAS.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/DataReference/getBlobReferenceSAS.json
      */
     /**
      * Sample code: GetBlobReferenceSAS Data Reference.

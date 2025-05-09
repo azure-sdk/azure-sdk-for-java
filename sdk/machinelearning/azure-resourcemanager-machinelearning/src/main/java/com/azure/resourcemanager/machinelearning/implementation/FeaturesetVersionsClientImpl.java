@@ -28,8 +28,10 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.machinelearning.fluent.FeaturesetVersionsClient;
@@ -89,10 +91,34 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
             @QueryParam("stage") String stage, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/featuresets/{name}/versions")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<FeaturesetVersionResourceArmPaginatedResult> listSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("name") String name, @QueryParam("api-version") String apiVersion,
+            @QueryParam("$skip") String skip, @QueryParam("tags") String tags,
+            @QueryParam("listViewType") ListViewType listViewType, @QueryParam("pageSize") Integer pageSize,
+            @QueryParam("versionName") String versionName, @QueryParam("version") String version,
+            @QueryParam("description") String description, @QueryParam("createdBy") String createdBy,
+            @QueryParam("stage") String stage, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/featuresets/{name}/versions/{version}")
         @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("name") String name, @PathParam("version") String version,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/featuresets/{name}/versions/{version}")
+        @ExpectedResponses({ 200, 202, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> deleteSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @PathParam("name") String name, @PathParam("version") String version,
@@ -109,10 +135,31 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/featuresets/{name}/versions/{version}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<FeaturesetVersionInner> getSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("name") String name, @PathParam("version") String version,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/featuresets/{name}/versions/{version}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("name") String name, @PathParam("version") String version,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") FeaturesetVersionInner body,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/featuresets/{name}/versions/{version}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> createOrUpdateSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @PathParam("name") String name, @PathParam("version") String version,
@@ -132,10 +179,30 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/featuresets/{name}/versions/{version}/backfill")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> backfillSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("name") String name, @PathParam("version") String version,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") FeaturesetVersionBackfillRequest body, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FeaturesetVersionResourceArmPaginatedResult>> listNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<FeaturesetVersionResourceArmPaginatedResult> listNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -192,61 +259,6 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
             .<PagedResponse<FeaturesetVersionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * List versions.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param name Featureset name. This is case-sensitive.
-     * @param skip Continuation token for pagination.
-     * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
-     * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
-     * including/excluding (for example) archived entities.
-     * @param pageSize page size.
-     * @param versionName name for the featureset version.
-     * @param version featureset version.
-     * @param description description for the feature set version.
-     * @param createdBy createdBy user name.
-     * @param stage Specifies the featurestore stage.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paginated list of FeaturesetVersion entities along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FeaturesetVersionInner>> listSinglePageAsync(String resourceGroupName,
-        String workspaceName, String name, String skip, String tags, ListViewType listViewType, Integer pageSize,
-        String versionName, String version, String description, String createdBy, String stage, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workspaceName, name,
-                this.client.getApiVersion(), skip, tags, listViewType, pageSize, versionName, version, description,
-                createdBy, stage, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -322,20 +334,97 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
      * @param description description for the feature set version.
      * @param createdBy createdBy user name.
      * @param stage Specifies the featurestore stage.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a paginated list of FeaturesetVersion entities along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<FeaturesetVersionInner> listSinglePage(String resourceGroupName, String workspaceName,
+        String name, String skip, String tags, ListViewType listViewType, Integer pageSize, String versionName,
+        String version, String description, String createdBy, String stage) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<FeaturesetVersionResourceArmPaginatedResult> res = service.listSync(this.client.getEndpoint(),
+            this.client.getSubscriptionId(), resourceGroupName, workspaceName, name, this.client.getApiVersion(), skip,
+            tags, listViewType, pageSize, versionName, version, description, createdBy, stage, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * List versions.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Featureset name. This is case-sensitive.
+     * @param skip Continuation token for pagination.
+     * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
+     * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
+     * including/excluding (for example) archived entities.
+     * @param pageSize page size.
+     * @param versionName name for the featureset version.
+     * @param version featureset version.
+     * @param description description for the feature set version.
+     * @param createdBy createdBy user name.
+     * @param stage Specifies the featurestore stage.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paginated list of FeaturesetVersion entities as paginated response with {@link PagedFlux}.
+     * @return a paginated list of FeaturesetVersion entities along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FeaturesetVersionInner> listAsync(String resourceGroupName, String workspaceName, String name,
-        String skip, String tags, ListViewType listViewType, Integer pageSize, String versionName, String version,
-        String description, String createdBy, String stage, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, name, skip, tags, listViewType, pageSize,
-                versionName, version, description, createdBy, stage, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<FeaturesetVersionInner> listSinglePage(String resourceGroupName, String workspaceName,
+        String name, String skip, String tags, ListViewType listViewType, Integer pageSize, String versionName,
+        String version, String description, String createdBy, String stage, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<FeaturesetVersionResourceArmPaginatedResult> res = service.listSync(this.client.getEndpoint(),
+            this.client.getSubscriptionId(), resourceGroupName, workspaceName, name, this.client.getApiVersion(), skip,
+            tags, listViewType, pageSize, versionName, version, description, createdBy, stage, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -360,8 +449,9 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
         final String description = null;
         final String createdBy = null;
         final String stage = null;
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, name, skip, tags, listViewType, pageSize,
-            versionName, version, description, createdBy, stage));
+        return new PagedIterable<>(() -> listSinglePage(resourceGroupName, workspaceName, name, skip, tags,
+            listViewType, pageSize, versionName, version, description, createdBy, stage),
+            nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -390,8 +480,10 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
     public PagedIterable<FeaturesetVersionInner> list(String resourceGroupName, String workspaceName, String name,
         String skip, String tags, ListViewType listViewType, Integer pageSize, String versionName, String version,
         String description, String createdBy, String stage, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, name, skip, tags, listViewType, pageSize,
-            versionName, version, description, createdBy, stage, context));
+        return new PagedIterable<>(
+            () -> listSinglePage(resourceGroupName, workspaceName, name, skip, tags, listViewType, pageSize,
+                versionName, version, description, createdBy, stage, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -444,39 +536,87 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
      * @param version Version identifier. This is case-sensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> deleteWithResponse(String resourceGroupName, String workspaceName, String name,
+        String version) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (version == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter version is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.deleteSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, name, version, this.client.getApiVersion(), accept, Context.NONE);
+    }
+
+    /**
+     * Delete version.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String workspaceName,
-        String name, String version, Context context) {
+    private Response<BinaryData> deleteWithResponse(String resourceGroupName, String workspaceName, String name,
+        String version, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
         if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         if (version == null) {
-            return Mono.error(new IllegalArgumentException("Parameter version is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter version is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+        return service.deleteSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
             workspaceName, name, version, this.client.getApiVersion(), accept, context);
     }
 
@@ -508,29 +648,6 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
      * @param version Version identifier. This is case-sensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String workspaceName,
-        String name, String version, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, workspaceName, name, version, context);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            context);
-    }
-
-    /**
-     * Delete version.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param name Container name. This is case-sensitive.
-     * @param version Version identifier. This is case-sensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -539,7 +656,8 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String workspaceName, String name,
         String version) {
-        return this.beginDeleteAsync(resourceGroupName, workspaceName, name, version).getSyncPoller();
+        Response<BinaryData> response = deleteWithResponse(resourceGroupName, workspaceName, name, version);
+        return this.client.<Void, Void>getLroResult(response, Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -558,7 +676,8 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String workspaceName, String name,
         String version, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, workspaceName, name, version, context).getSyncPoller();
+        Response<BinaryData> response = deleteWithResponse(resourceGroupName, workspaceName, name, version, context);
+        return this.client.<Void, Void>getLroResult(response, Void.class, Void.class, context);
     }
 
     /**
@@ -586,33 +705,13 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
      * @param version Version identifier. This is case-sensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String workspaceName, String name, String version,
-        Context context) {
-        return beginDeleteAsync(resourceGroupName, workspaceName, name, version, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Delete version.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param name Container name. This is case-sensitive.
-     * @param version Version identifier. This is case-sensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String workspaceName, String name, String version) {
-        deleteAsync(resourceGroupName, workspaceName, name, version).block();
+        beginDelete(resourceGroupName, workspaceName, name, version).getFinalResult();
     }
 
     /**
@@ -629,7 +728,7 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String workspaceName, String name, String version, Context context) {
-        deleteAsync(resourceGroupName, workspaceName, name, version, context).block();
+        beginDelete(resourceGroupName, workspaceName, name, version, context).getFinalResult();
     }
 
     /**
@@ -682,49 +781,6 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Container name. This is case-sensitive.
      * @param version Version identifier. This is case-sensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return version along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FeaturesetVersionInner>> getWithResponseAsync(String resourceGroupName, String workspaceName,
-        String name, String version, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
-        }
-        if (version == null) {
-            return Mono.error(new IllegalArgumentException("Parameter version is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workspaceName,
-            name, version, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Get version.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param name Container name. This is case-sensitive.
-     * @param version Version identifier. This is case-sensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -753,7 +809,34 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<FeaturesetVersionInner> getWithResponse(String resourceGroupName, String workspaceName, String name,
         String version, Context context) {
-        return getWithResponseAsync(resourceGroupName, workspaceName, name, version, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (version == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter version is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, name, version, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -831,45 +914,98 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
      * @param name Container name. This is case-sensitive.
      * @param version Version identifier. This is case-sensitive.
      * @param body Version entity to create or update.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Resource Manager resource envelope along with {@link Response} on successful completion of
-     * {@link Mono}.
+     * @return azure Resource Manager resource envelope along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String workspaceName, String name, String version, FeaturesetVersionInner body, Context context) {
+    private Response<BinaryData> createOrUpdateWithResponse(String resourceGroupName, String workspaceName, String name,
+        String version, FeaturesetVersionInner body) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
         if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         if (version == null) {
-            return Mono.error(new IllegalArgumentException("Parameter version is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter version is required and cannot be null."));
         }
         if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
         } else {
             body.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+        return service.createOrUpdateSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, name, version, this.client.getApiVersion(), body, accept, Context.NONE);
+    }
+
+    /**
+     * Create or update version.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Version entity to create or update.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azure Resource Manager resource envelope along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> createOrUpdateWithResponse(String resourceGroupName, String workspaceName, String name,
+        String version, FeaturesetVersionInner body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (version == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter version is required and cannot be null."));
+        }
+        if (body == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return service.createOrUpdateSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
             workspaceName, name, version, this.client.getApiVersion(), body, accept, context);
     }
 
@@ -904,31 +1040,6 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
      * @param name Container name. This is case-sensitive.
      * @param version Version identifier. This is case-sensitive.
      * @param body Version entity to create or update.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of azure Resource Manager resource envelope.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<FeaturesetVersionInner>, FeaturesetVersionInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String workspaceName, String name, String version, FeaturesetVersionInner body,
-        Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, name, version, body, context);
-        return this.client.<FeaturesetVersionInner, FeaturesetVersionInner>getLroResult(mono,
-            this.client.getHttpPipeline(), FeaturesetVersionInner.class, FeaturesetVersionInner.class, context);
-    }
-
-    /**
-     * Create or update version.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param name Container name. This is case-sensitive.
-     * @param version Version identifier. This is case-sensitive.
-     * @param body Version entity to create or update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -937,7 +1048,10 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<FeaturesetVersionInner>, FeaturesetVersionInner> beginCreateOrUpdate(
         String resourceGroupName, String workspaceName, String name, String version, FeaturesetVersionInner body) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, workspaceName, name, version, body).getSyncPoller();
+        Response<BinaryData> response
+            = createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, body);
+        return this.client.<FeaturesetVersionInner, FeaturesetVersionInner>getLroResult(response,
+            FeaturesetVersionInner.class, FeaturesetVersionInner.class, Context.NONE);
     }
 
     /**
@@ -958,8 +1072,10 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
     public SyncPoller<PollResult<FeaturesetVersionInner>, FeaturesetVersionInner> beginCreateOrUpdate(
         String resourceGroupName, String workspaceName, String name, String version, FeaturesetVersionInner body,
         Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, workspaceName, name, version, body, context)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, body, context);
+        return this.client.<FeaturesetVersionInner, FeaturesetVersionInner>getLroResult(response,
+            FeaturesetVersionInner.class, FeaturesetVersionInner.class, context);
     }
 
     /**
@@ -990,27 +1106,6 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
      * @param name Container name. This is case-sensitive.
      * @param version Version identifier. This is case-sensitive.
      * @param body Version entity to create or update.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Resource Manager resource envelope on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<FeaturesetVersionInner> createOrUpdateAsync(String resourceGroupName, String workspaceName,
-        String name, String version, FeaturesetVersionInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, workspaceName, name, version, body, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Create or update version.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param name Container name. This is case-sensitive.
-     * @param version Version identifier. This is case-sensitive.
-     * @param body Version entity to create or update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1019,7 +1114,7 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public FeaturesetVersionInner createOrUpdate(String resourceGroupName, String workspaceName, String name,
         String version, FeaturesetVersionInner body) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, name, version, body).block();
+        return beginCreateOrUpdate(resourceGroupName, workspaceName, name, version, body).getFinalResult();
     }
 
     /**
@@ -1039,7 +1134,7 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public FeaturesetVersionInner createOrUpdate(String resourceGroupName, String workspaceName, String name,
         String version, FeaturesetVersionInner body, Context context) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, name, version, body, context).block();
+        return beginCreateOrUpdate(resourceGroupName, workspaceName, name, version, body, context).getFinalResult();
     }
 
     /**
@@ -1100,45 +1195,100 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
      * @param name Container name. This is case-sensitive.
      * @param version Version identifier. This is case-sensitive.
      * @param body Feature set version backfill request entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response payload for creating a backfill request for a given feature set version along with
+     * {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> backfillWithResponse(String resourceGroupName, String workspaceName, String name,
+        String version, FeaturesetVersionBackfillRequest body) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (version == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter version is required and cannot be null."));
+        }
+        if (body == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return service.backfillSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, name, version, this.client.getApiVersion(), body, accept, Context.NONE);
+    }
+
+    /**
+     * Backfill.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name. This is case-sensitive.
+     * @param version Version identifier. This is case-sensitive.
+     * @param body Feature set version backfill request entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return response payload for creating a backfill request for a given feature set version along with
-     * {@link Response} on successful completion of {@link Mono}.
+     * {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> backfillWithResponseAsync(String resourceGroupName, String workspaceName,
-        String name, String version, FeaturesetVersionBackfillRequest body, Context context) {
+    private Response<BinaryData> backfillWithResponse(String resourceGroupName, String workspaceName, String name,
+        String version, FeaturesetVersionBackfillRequest body, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
         if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         if (version == null) {
-            return Mono.error(new IllegalArgumentException("Parameter version is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter version is required and cannot be null."));
         }
         if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
         } else {
             body.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.backfill(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+        return service.backfillSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
             workspaceName, name, version, this.client.getApiVersion(), body, accept, context);
     }
 
@@ -1175,33 +1325,6 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
      * @param name Container name. This is case-sensitive.
      * @param version Version identifier. This is case-sensitive.
      * @param body Feature set version backfill request entity.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of response payload for creating a backfill request for a given
-     * feature set version.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<FeaturesetVersionBackfillResponseInner>, FeaturesetVersionBackfillResponseInner>
-        beginBackfillAsync(String resourceGroupName, String workspaceName, String name, String version,
-            FeaturesetVersionBackfillRequest body, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = backfillWithResponseAsync(resourceGroupName, workspaceName, name, version, body, context);
-        return this.client.<FeaturesetVersionBackfillResponseInner, FeaturesetVersionBackfillResponseInner>getLroResult(
-            mono, this.client.getHttpPipeline(), FeaturesetVersionBackfillResponseInner.class,
-            FeaturesetVersionBackfillResponseInner.class, context);
-    }
-
-    /**
-     * Backfill.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param name Container name. This is case-sensitive.
-     * @param version Version identifier. This is case-sensitive.
-     * @param body Feature set version backfill request entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1212,7 +1335,10 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
     public SyncPoller<PollResult<FeaturesetVersionBackfillResponseInner>, FeaturesetVersionBackfillResponseInner>
         beginBackfill(String resourceGroupName, String workspaceName, String name, String version,
             FeaturesetVersionBackfillRequest body) {
-        return this.beginBackfillAsync(resourceGroupName, workspaceName, name, version, body).getSyncPoller();
+        Response<BinaryData> response = backfillWithResponse(resourceGroupName, workspaceName, name, version, body);
+        return this.client.<FeaturesetVersionBackfillResponseInner, FeaturesetVersionBackfillResponseInner>getLroResult(
+            response, FeaturesetVersionBackfillResponseInner.class, FeaturesetVersionBackfillResponseInner.class,
+            Context.NONE);
     }
 
     /**
@@ -1234,7 +1360,11 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
     public SyncPoller<PollResult<FeaturesetVersionBackfillResponseInner>, FeaturesetVersionBackfillResponseInner>
         beginBackfill(String resourceGroupName, String workspaceName, String name, String version,
             FeaturesetVersionBackfillRequest body, Context context) {
-        return this.beginBackfillAsync(resourceGroupName, workspaceName, name, version, body, context).getSyncPoller();
+        Response<BinaryData> response
+            = backfillWithResponse(resourceGroupName, workspaceName, name, version, body, context);
+        return this.client.<FeaturesetVersionBackfillResponseInner, FeaturesetVersionBackfillResponseInner>getLroResult(
+            response, FeaturesetVersionBackfillResponseInner.class, FeaturesetVersionBackfillResponseInner.class,
+            context);
     }
 
     /**
@@ -1266,28 +1396,6 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
      * @param name Container name. This is case-sensitive.
      * @param version Version identifier. This is case-sensitive.
      * @param body Feature set version backfill request entity.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response payload for creating a backfill request for a given feature set version on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<FeaturesetVersionBackfillResponseInner> backfillAsync(String resourceGroupName, String workspaceName,
-        String name, String version, FeaturesetVersionBackfillRequest body, Context context) {
-        return beginBackfillAsync(resourceGroupName, workspaceName, name, version, body, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Backfill.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param name Container name. This is case-sensitive.
-     * @param version Version identifier. This is case-sensitive.
-     * @param body Feature set version backfill request entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1296,7 +1404,7 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public FeaturesetVersionBackfillResponseInner backfill(String resourceGroupName, String workspaceName, String name,
         String version, FeaturesetVersionBackfillRequest body) {
-        return backfillAsync(resourceGroupName, workspaceName, name, version, body).block();
+        return beginBackfill(resourceGroupName, workspaceName, name, version, body).getFinalResult();
     }
 
     /**
@@ -1316,7 +1424,7 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public FeaturesetVersionBackfillResponseInner backfill(String resourceGroupName, String workspaceName, String name,
         String version, FeaturesetVersionBackfillRequest body, Context context) {
-        return backfillAsync(resourceGroupName, workspaceName, name, version, body, context).block();
+        return beginBackfill(resourceGroupName, workspaceName, name, version, body, context).getFinalResult();
     }
 
     /**
@@ -1349,26 +1457,56 @@ public final class FeaturesetVersionsClientImpl implements FeaturesetVersionsCli
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a paginated list of FeaturesetVersion entities along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<FeaturesetVersionInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<FeaturesetVersionResourceArmPaginatedResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paginated list of FeaturesetVersion entities along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return a paginated list of FeaturesetVersion entities along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FeaturesetVersionInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<FeaturesetVersionInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<FeaturesetVersionResourceArmPaginatedResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(FeaturesetVersionsClientImpl.class);
 }

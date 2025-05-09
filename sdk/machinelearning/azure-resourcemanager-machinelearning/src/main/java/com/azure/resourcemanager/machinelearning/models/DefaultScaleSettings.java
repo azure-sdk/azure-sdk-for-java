@@ -43,7 +43,6 @@ public final class DefaultScaleSettings extends OnlineScaleSettings {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

@@ -20,19 +20,39 @@ import java.util.List;
 public final class WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult
     implements JsonSerializable<WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult> {
     /*
-     * The value property.
-     */
-    private List<WorkspaceConnectionPropertiesV2BasicResourceInner> value;
-
-    /*
      * The nextLink property.
      */
     private String nextLink;
+
+    /*
+     * The value property.
+     */
+    private List<WorkspaceConnectionPropertiesV2BasicResourceInner> value;
 
     /**
      * Creates an instance of WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult class.
      */
     public WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult() {
+    }
+
+    /**
+     * Get the nextLink property: The nextLink property.
+     * 
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
+    }
+
+    /**
+     * Set the nextLink property: The nextLink property.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult object itself.
+     */
+    public WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
     }
 
     /**
@@ -57,15 +77,6 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResul
     }
 
     /**
-     * Get the nextLink property: The nextLink property.
-     * 
-     * @return the nextLink value.
-     */
-    public String nextLink() {
-        return this.nextLink;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -82,6 +93,7 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResul
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("nextLink", this.nextLink);
         jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
@@ -104,13 +116,13 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResul
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedWorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult.nextLink
+                        = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<WorkspaceConnectionPropertiesV2BasicResourceInner> value = reader
                         .readArray(reader1 -> WorkspaceConnectionPropertiesV2BasicResourceInner.fromJson(reader1));
                     deserializedWorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedWorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult.nextLink
-                        = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

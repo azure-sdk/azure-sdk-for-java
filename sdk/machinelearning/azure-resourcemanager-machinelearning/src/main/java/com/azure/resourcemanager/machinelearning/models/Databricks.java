@@ -11,7 +11,6 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 import java.util.List;
 
 /**
@@ -28,32 +27,6 @@ public final class Databricks extends Compute {
      * Properties of Databricks
      */
     private DatabricksProperties properties;
-
-    /*
-     * The provision state of the cluster. Valid values are Unknown, Updating, Provisioning, Succeeded, and Failed.
-     */
-    private ProvisioningState provisioningState;
-
-    /*
-     * The time at which the compute was created.
-     */
-    private OffsetDateTime createdOn;
-
-    /*
-     * The time at which the compute was last modified.
-     */
-    private OffsetDateTime modifiedOn;
-
-    /*
-     * Errors during provisioning
-     */
-    private List<ManagementError> provisioningErrors;
-
-    /*
-     * Indicating whether the compute was provisioned by user and brought from outside if true, or machine learning
-     * service provisioned it if false.
-     */
-    private Boolean isAttachedCompute;
 
     /**
      * Creates an instance of Databricks class.
@@ -89,58 +62,6 @@ public final class Databricks extends Compute {
     public Databricks withProperties(DatabricksProperties properties) {
         this.properties = properties;
         return this;
-    }
-
-    /**
-     * Get the provisioningState property: The provision state of the cluster. Valid values are Unknown, Updating,
-     * Provisioning, Succeeded, and Failed.
-     * 
-     * @return the provisioningState value.
-     */
-    @Override
-    public ProvisioningState provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
-     * Get the createdOn property: The time at which the compute was created.
-     * 
-     * @return the createdOn value.
-     */
-    @Override
-    public OffsetDateTime createdOn() {
-        return this.createdOn;
-    }
-
-    /**
-     * Get the modifiedOn property: The time at which the compute was last modified.
-     * 
-     * @return the modifiedOn value.
-     */
-    @Override
-    public OffsetDateTime modifiedOn() {
-        return this.modifiedOn;
-    }
-
-    /**
-     * Get the provisioningErrors property: Errors during provisioning.
-     * 
-     * @return the provisioningErrors value.
-     */
-    @Override
-    public List<ManagementError> provisioningErrors() {
-        return this.provisioningErrors;
-    }
-
-    /**
-     * Get the isAttachedCompute property: Indicating whether the compute was provisioned by user and brought from
-     * outside if true, or machine learning service provisioned it if false.
-     * 
-     * @return the isAttachedCompute value.
-     */
-    @Override
-    public Boolean isAttachedCompute() {
-        return this.isAttachedCompute;
     }
 
     /**
@@ -186,7 +107,6 @@ public final class Databricks extends Compute {
      */
     @Override
     public void validate() {
-        super.validate();
         if (properties() != null) {
             properties().validate();
         }
@@ -225,23 +145,23 @@ public final class Databricks extends Compute {
                 if ("computeLocation".equals(fieldName)) {
                     deserializedDatabricks.withComputeLocation(reader.getString());
                 } else if ("provisioningState".equals(fieldName)) {
-                    deserializedDatabricks.provisioningState = ProvisioningState.fromString(reader.getString());
+                    deserializedDatabricks.withProvisioningState(ProvisioningState.fromString(reader.getString()));
                 } else if ("description".equals(fieldName)) {
                     deserializedDatabricks.withDescription(reader.getString());
                 } else if ("createdOn".equals(fieldName)) {
-                    deserializedDatabricks.createdOn = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                    deserializedDatabricks.withCreatedOn(reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("modifiedOn".equals(fieldName)) {
-                    deserializedDatabricks.modifiedOn = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                    deserializedDatabricks.withModifiedOn(reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("resourceId".equals(fieldName)) {
                     deserializedDatabricks.withResourceId(reader.getString());
                 } else if ("provisioningErrors".equals(fieldName)) {
                     List<ManagementError> provisioningErrors
                         = reader.readArray(reader1 -> ManagementError.fromJson(reader1));
-                    deserializedDatabricks.provisioningErrors = provisioningErrors;
+                    deserializedDatabricks.withProvisioningErrors(provisioningErrors);
                 } else if ("isAttachedCompute".equals(fieldName)) {
-                    deserializedDatabricks.isAttachedCompute = reader.getNullable(JsonReader::getBoolean);
+                    deserializedDatabricks.withIsAttachedCompute(reader.getNullable(JsonReader::getBoolean));
                 } else if ("disableLocalAuth".equals(fieldName)) {
                     deserializedDatabricks.withDisableLocalAuth(reader.getNullable(JsonReader::getBoolean));
                 } else if ("computeType".equals(fieldName)) {

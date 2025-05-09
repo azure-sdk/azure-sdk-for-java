@@ -27,8 +27,10 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.machinelearning.fluent.ManagedNetworkSettingsRulesClient;
@@ -80,6 +82,15 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/outboundRules")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<OutboundRuleListResult> listSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/outboundRules/{ruleName}")
         @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -90,10 +101,30 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/outboundRules/{ruleName}")
+        @ExpectedResponses({ 200, 202, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> deleteSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("ruleName") String ruleName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/outboundRules/{ruleName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<OutboundRuleBasicResourceInner>> get(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("ruleName") String ruleName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/outboundRules/{ruleName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<OutboundRuleBasicResourceInner> getSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @PathParam("ruleName") String ruleName, @QueryParam("api-version") String apiVersion,
@@ -111,10 +142,28 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/outboundRules/{ruleName}")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> createOrUpdateSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("ruleName") String ruleName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") OutboundRuleBasicResourceInner body, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<OutboundRuleListResult>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<OutboundRuleListResult> listNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
@@ -122,7 +171,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Lists the managed network outbound rules for a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -160,46 +209,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Lists the managed network outbound rules for a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of outbound rules for the managed network of a machine learning workspace along with
-     * {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<OutboundRuleBasicResourceInner>> listSinglePageAsync(String resourceGroupName,
-        String workspaceName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workspaceName,
-                this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the managed network outbound rules for a machine learning workspace.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -216,26 +226,88 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Lists the managed network outbound rules for a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param context The context to associate with this operation.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of outbound rules for the managed network of a machine learning workspace as paginated response with
-     * {@link PagedFlux}.
+     * @return list of outbound rules for the managed network of a machine learning workspace along with
+     * {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<OutboundRuleBasicResourceInner> listAsync(String resourceGroupName, String workspaceName,
-        Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, workspaceName, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<OutboundRuleBasicResourceInner> listSinglePage(String resourceGroupName,
+        String workspaceName) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<OutboundRuleListResult> res
+            = service.listSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                workspaceName, this.client.getApiVersion(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
      * Lists the managed network outbound rules for a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of outbound rules for the managed network of a machine learning workspace along with
+     * {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<OutboundRuleBasicResourceInner> listSinglePage(String resourceGroupName, String workspaceName,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<OutboundRuleListResult> res
+            = service.listSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                workspaceName, this.client.getApiVersion(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the managed network outbound rules for a machine learning workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -244,14 +316,15 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<OutboundRuleBasicResourceInner> list(String resourceGroupName, String workspaceName) {
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName));
+        return new PagedIterable<>(() -> listSinglePage(resourceGroupName, workspaceName),
+            nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
      * Lists the managed network outbound rules for a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -262,14 +335,15 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<OutboundRuleBasicResourceInner> list(String resourceGroupName, String workspaceName,
         Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, context));
+        return new PagedIterable<>(() -> listSinglePage(resourceGroupName, workspaceName, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -308,38 +382,81 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
+     * @param ruleName Name of the workspace managed network outbound rule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> deleteWithResponse(String resourceGroupName, String workspaceName, String ruleName) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (ruleName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter ruleName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.deleteSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, ruleName, this.client.getApiVersion(), accept, Context.NONE);
+    }
+
+    /**
+     * Deletes an outbound rule from the managed network of a machine learning workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String workspaceName,
-        String ruleName, Context context) {
+    private Response<BinaryData> deleteWithResponse(String resourceGroupName, String workspaceName, String ruleName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
         if (ruleName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ruleName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter ruleName is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+        return service.deleteSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
             workspaceName, ruleName, this.client.getApiVersion(), accept, context);
     }
 
@@ -347,7 +464,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -366,29 +483,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param ruleName Name of the workspace managed network outbound rule.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String workspaceName,
-        String ruleName, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, workspaceName, ruleName, context);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            context);
-    }
-
-    /**
-     * Deletes an outbound rule from the managed network of a machine learning workspace.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -398,14 +493,15 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String workspaceName,
         String ruleName) {
-        return this.beginDeleteAsync(resourceGroupName, workspaceName, ruleName).getSyncPoller();
+        Response<BinaryData> response = deleteWithResponse(resourceGroupName, workspaceName, ruleName);
+        return this.client.<Void, Void>getLroResult(response, Void.class, Void.class, Context.NONE);
     }
 
     /**
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -416,14 +512,15 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String workspaceName,
         String ruleName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, workspaceName, ruleName, context).getSyncPoller();
+        Response<BinaryData> response = deleteWithResponse(resourceGroupName, workspaceName, ruleName, context);
+        return this.client.<Void, Void>getLroResult(response, Void.class, Void.class, context);
     }
 
     /**
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -440,25 +537,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param ruleName Name of the workspace managed network outbound rule.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String workspaceName, String ruleName, Context context) {
-        return beginDeleteAsync(resourceGroupName, workspaceName, ruleName, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Deletes an outbound rule from the managed network of a machine learning workspace.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -466,14 +545,14 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String workspaceName, String ruleName) {
-        deleteAsync(resourceGroupName, workspaceName, ruleName).block();
+        beginDelete(resourceGroupName, workspaceName, ruleName).getFinalResult();
     }
 
     /**
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -482,14 +561,14 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String workspaceName, String ruleName, Context context) {
-        deleteAsync(resourceGroupName, workspaceName, ruleName, context).block();
+        beginDelete(resourceGroupName, workspaceName, ruleName, context).getFinalResult();
     }
 
     /**
      * Gets an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -529,47 +608,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Gets an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param ruleName Name of the workspace managed network outbound rule.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an outbound rule from the managed network of a machine learning workspace along with {@link Response} on
-     * successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<OutboundRuleBasicResourceInner>> getWithResponseAsync(String resourceGroupName,
-        String workspaceName, String ruleName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (ruleName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ruleName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workspaceName,
-            ruleName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Gets an outbound rule from the managed network of a machine learning workspace.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -588,7 +627,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Gets an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -599,14 +638,38 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<OutboundRuleBasicResourceInner> getWithResponse(String resourceGroupName, String workspaceName,
         String ruleName, Context context) {
-        return getWithResponseAsync(resourceGroupName, workspaceName, ruleName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (ruleName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter ruleName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, ruleName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Gets an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -622,14 +685,13 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return outbound Rule Basic Resource for the managed network of a machine learning workspace along with
-     * {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
@@ -668,45 +730,94 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
+     * @param ruleName Name of the workspace managed network outbound rule.
+     * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> createOrUpdateWithResponse(String resourceGroupName, String workspaceName,
+        String ruleName, OutboundRuleBasicResourceInner body) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (ruleName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter ruleName is required and cannot be null."));
+        }
+        if (body == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return service.createOrUpdateSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, ruleName, this.client.getApiVersion(), body, accept, Context.NONE);
+    }
+
+    /**
+     * Creates or updates an outbound rule in the managed network of a machine learning workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return outbound Rule Basic Resource for the managed network of a machine learning workspace along with
-     * {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String workspaceName, String ruleName, OutboundRuleBasicResourceInner body, Context context) {
+    private Response<BinaryData> createOrUpdateWithResponse(String resourceGroupName, String workspaceName,
+        String ruleName, OutboundRuleBasicResourceInner body, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
         if (ruleName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ruleName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter ruleName is required and cannot be null."));
         }
         if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
         } else {
             body.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+        return service.createOrUpdateSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
             workspaceName, ruleName, this.client.getApiVersion(), body, accept, context);
     }
 
@@ -714,14 +825,13 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of outbound Rule Basic Resource for the managed network of a machine
-     * learning workspace.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OutboundRuleBasicResourceInner>, OutboundRuleBasicResourceInner>
@@ -738,80 +848,56 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param ruleName Name of the workspace managed network outbound rule.
-     * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of outbound Rule Basic Resource for the managed network of a machine
-     * learning workspace.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<OutboundRuleBasicResourceInner>, OutboundRuleBasicResourceInner>
-        beginCreateOrUpdateAsync(String resourceGroupName, String workspaceName, String ruleName,
-            OutboundRuleBasicResourceInner body, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, ruleName, body, context);
-        return this.client.<OutboundRuleBasicResourceInner, OutboundRuleBasicResourceInner>getLroResult(mono,
-            this.client.getHttpPipeline(), OutboundRuleBasicResourceInner.class, OutboundRuleBasicResourceInner.class,
-            context);
-    }
-
-    /**
-     * Creates or updates an outbound rule in the managed network of a machine learning workspace.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of outbound Rule Basic Resource for the managed network of a machine
-     * learning workspace.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OutboundRuleBasicResourceInner>, OutboundRuleBasicResourceInner> beginCreateOrUpdate(
         String resourceGroupName, String workspaceName, String ruleName, OutboundRuleBasicResourceInner body) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, workspaceName, ruleName, body).getSyncPoller();
+        Response<BinaryData> response = createOrUpdateWithResponse(resourceGroupName, workspaceName, ruleName, body);
+        return this.client.<OutboundRuleBasicResourceInner, OutboundRuleBasicResourceInner>getLroResult(response,
+            OutboundRuleBasicResourceInner.class, OutboundRuleBasicResourceInner.class, Context.NONE);
     }
 
     /**
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of outbound Rule Basic Resource for the managed network of a machine
-     * learning workspace.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OutboundRuleBasicResourceInner>, OutboundRuleBasicResourceInner> beginCreateOrUpdate(
         String resourceGroupName, String workspaceName, String ruleName, OutboundRuleBasicResourceInner body,
         Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, workspaceName, ruleName, body, context).getSyncPoller();
+        Response<BinaryData> response
+            = createOrUpdateWithResponse(resourceGroupName, workspaceName, ruleName, body, context);
+        return this.client.<OutboundRuleBasicResourceInner, OutboundRuleBasicResourceInner>getLroResult(response,
+            OutboundRuleBasicResourceInner.class, OutboundRuleBasicResourceInner.class, context);
     }
 
     /**
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return outbound Rule Basic Resource for the managed network of a machine learning workspace on successful
-     * completion of {@link Mono}.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OutboundRuleBasicResourceInner> createOrUpdateAsync(String resourceGroupName, String workspaceName,
@@ -824,58 +910,37 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param ruleName Name of the workspace managed network outbound rule.
-     * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return outbound Rule Basic Resource for the managed network of a machine learning workspace on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<OutboundRuleBasicResourceInner> createOrUpdateAsync(String resourceGroupName, String workspaceName,
-        String ruleName, OutboundRuleBasicResourceInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, workspaceName, ruleName, body, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Creates or updates an outbound rule in the managed network of a machine learning workspace.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return outbound Rule Basic Resource for the managed network of a machine learning workspace.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OutboundRuleBasicResourceInner createOrUpdate(String resourceGroupName, String workspaceName,
         String ruleName, OutboundRuleBasicResourceInner body) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, ruleName, body).block();
+        return beginCreateOrUpdate(resourceGroupName, workspaceName, ruleName, body).getFinalResult();
     }
 
     /**
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return outbound Rule Basic Resource for the managed network of a machine learning workspace.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OutboundRuleBasicResourceInner createOrUpdate(String resourceGroupName, String workspaceName,
         String ruleName, OutboundRuleBasicResourceInner body, Context context) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, ruleName, body, context).block();
+        return beginCreateOrUpdate(resourceGroupName, workspaceName, ruleName, body, context).getFinalResult();
     }
 
     /**
@@ -908,27 +973,58 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of outbound rules for the managed network of a machine learning workspace along with
+     * {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<OutboundRuleBasicResourceInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<OutboundRuleListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of outbound rules for the managed network of a machine learning workspace along with
-     * {@link PagedResponse} on successful completion of {@link Mono}.
+     * {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<OutboundRuleBasicResourceInner>> listNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<OutboundRuleBasicResourceInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<OutboundRuleListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ManagedNetworkSettingsRulesClientImpl.class);
 }

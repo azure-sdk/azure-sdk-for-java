@@ -20,40 +20,19 @@ import java.util.List;
 public final class FeaturestoreEntityContainerResourceArmPaginatedResult
     implements JsonSerializable<FeaturestoreEntityContainerResourceArmPaginatedResult> {
     /*
-     * An array of objects of type FeaturestoreEntityContainer.
-     */
-    private List<FeaturestoreEntityContainerInner> value;
-
-    /*
      * The link to the next page of FeaturestoreEntityContainer objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type FeaturestoreEntityContainer.
+     */
+    private List<FeaturestoreEntityContainerInner> value;
 
     /**
      * Creates an instance of FeaturestoreEntityContainerResourceArmPaginatedResult class.
      */
     public FeaturestoreEntityContainerResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type FeaturestoreEntityContainer.
-     * 
-     * @return the value value.
-     */
-    public List<FeaturestoreEntityContainerInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type FeaturestoreEntityContainer.
-     * 
-     * @param value the value value to set.
-     * @return the FeaturestoreEntityContainerResourceArmPaginatedResult object itself.
-     */
-    public FeaturestoreEntityContainerResourceArmPaginatedResult
-        withValue(List<FeaturestoreEntityContainerInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -79,6 +58,27 @@ public final class FeaturestoreEntityContainerResourceArmPaginatedResult
     }
 
     /**
+     * Get the value property: An array of objects of type FeaturestoreEntityContainer.
+     * 
+     * @return the value value.
+     */
+    public List<FeaturestoreEntityContainerInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type FeaturestoreEntityContainer.
+     * 
+     * @param value the value value to set.
+     * @return the FeaturestoreEntityContainerResourceArmPaginatedResult object itself.
+     */
+    public FeaturestoreEntityContainerResourceArmPaginatedResult
+        withValue(List<FeaturestoreEntityContainerInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -95,8 +95,8 @@ public final class FeaturestoreEntityContainerResourceArmPaginatedResult
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -117,12 +117,12 @@ public final class FeaturestoreEntityContainerResourceArmPaginatedResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedFeaturestoreEntityContainerResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<FeaturestoreEntityContainerInner> value
                         = reader.readArray(reader1 -> FeaturestoreEntityContainerInner.fromJson(reader1));
                     deserializedFeaturestoreEntityContainerResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedFeaturestoreEntityContainerResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

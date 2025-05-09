@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Compute runtime config for feature store type workspace.
+ * The ComputeRuntimeDto model.
  */
 @Fluent
 public final class ComputeRuntimeDto implements JsonSerializable<ComputeRuntimeDto> {

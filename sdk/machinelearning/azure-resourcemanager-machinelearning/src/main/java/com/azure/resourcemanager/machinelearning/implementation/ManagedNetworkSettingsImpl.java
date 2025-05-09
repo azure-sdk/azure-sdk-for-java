@@ -6,7 +6,9 @@ package com.azure.resourcemanager.machinelearning.implementation;
 
 import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkProvisionStatusInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkSettingsInner;
+import com.azure.resourcemanager.machinelearning.models.FirewallSku;
 import com.azure.resourcemanager.machinelearning.models.IsolationMode;
+import com.azure.resourcemanager.machinelearning.models.ManagedNetworkKind;
 import com.azure.resourcemanager.machinelearning.models.ManagedNetworkProvisionStatus;
 import com.azure.resourcemanager.machinelearning.models.ManagedNetworkSettings;
 import com.azure.resourcemanager.machinelearning.models.OutboundRule;
@@ -22,6 +24,10 @@ public final class ManagedNetworkSettingsImpl implements ManagedNetworkSettings 
         com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
+    }
+
+    public Boolean enableNetworkMonitor() {
+        return this.innerModel().enableNetworkMonitor();
     }
 
     public IsolationMode isolationMode() {
@@ -48,6 +54,18 @@ public final class ManagedNetworkSettingsImpl implements ManagedNetworkSettings 
         } else {
             return null;
         }
+    }
+
+    public FirewallSku firewallSku() {
+        return this.innerModel().firewallSku();
+    }
+
+    public ManagedNetworkKind managedNetworkKind() {
+        return this.innerModel().managedNetworkKind();
+    }
+
+    public String firewallPublicIpAddress() {
+        return this.innerModel().firewallPublicIpAddress();
     }
 
     public ManagedNetworkSettingsInner innerModel() {

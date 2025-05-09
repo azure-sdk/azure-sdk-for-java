@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The WorkspaceConnectionAccountKey model.
+ * Account key object for workspace connection credential.
  */
 @Fluent
 public final class WorkspaceConnectionAccountKey implements JsonSerializable<WorkspaceConnectionAccountKey> {
