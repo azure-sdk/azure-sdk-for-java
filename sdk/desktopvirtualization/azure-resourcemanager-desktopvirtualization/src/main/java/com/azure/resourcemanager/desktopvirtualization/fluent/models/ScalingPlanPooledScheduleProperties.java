@@ -5,11 +5,14 @@
 package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.desktopvirtualization.models.CreateDeleteProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.DayOfWeek;
+import com.azure.resourcemanager.desktopvirtualization.models.ScalingMethod;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHostLoadBalancingAlgorithm;
 import com.azure.resourcemanager.desktopvirtualization.models.StopHostsWhen;
 import com.azure.resourcemanager.desktopvirtualization.models.Time;
@@ -23,9 +26,24 @@ import java.util.List;
 public final class ScalingPlanPooledScheduleProperties
     implements JsonSerializable<ScalingPlanPooledScheduleProperties> {
     /*
+     * Name of the ScalingPlanPooledSchedule.
+     */
+    private String name;
+
+    /*
      * Set of days of the week on which this schedule is active.
      */
     private List<DayOfWeek> daysOfWeek;
+
+    /*
+     * The desired scaling method to be used to scale the hosts in the assigned host pool.
+     */
+    private ScalingMethod scalingMethod;
+
+    /*
+     * The properties that control how Scaling will manage the size of the hostpool by creating and deleting hosts.
+     */
+    private CreateDeleteProperties createDelete;
 
     /*
      * Starting time for ramp up period.
@@ -45,7 +63,7 @@ public final class ScalingPlanPooledScheduleProperties
     /*
      * Capacity threshold for ramp up period.
      */
-    private Integer rampUpCapacityThresholdPct;
+    private int rampUpCapacityThresholdPct;
 
     /*
      * Starting time for peak period.
@@ -75,7 +93,7 @@ public final class ScalingPlanPooledScheduleProperties
     /*
      * Capacity threshold for ramp down period.
      */
-    private Integer rampDownCapacityThresholdPct;
+    private int rampDownCapacityThresholdPct;
 
     /*
      * Should users be logged off forcefully from hosts.
@@ -114,6 +132,15 @@ public final class ScalingPlanPooledScheduleProperties
     }
 
     /**
+     * Get the name property: Name of the ScalingPlanPooledSchedule.
+     * 
+     * @return the name value.
+     */
+    public String name() {
+        return this.name;
+    }
+
+    /**
      * Get the daysOfWeek property: Set of days of the week on which this schedule is active.
      * 
      * @return the daysOfWeek value.
@@ -130,6 +157,50 @@ public final class ScalingPlanPooledScheduleProperties
      */
     public ScalingPlanPooledScheduleProperties withDaysOfWeek(List<DayOfWeek> daysOfWeek) {
         this.daysOfWeek = daysOfWeek;
+        return this;
+    }
+
+    /**
+     * Get the scalingMethod property: The desired scaling method to be used to scale the hosts in the assigned host
+     * pool.
+     * 
+     * @return the scalingMethod value.
+     */
+    public ScalingMethod scalingMethod() {
+        return this.scalingMethod;
+    }
+
+    /**
+     * Set the scalingMethod property: The desired scaling method to be used to scale the hosts in the assigned host
+     * pool.
+     * 
+     * @param scalingMethod the scalingMethod value to set.
+     * @return the ScalingPlanPooledScheduleProperties object itself.
+     */
+    public ScalingPlanPooledScheduleProperties withScalingMethod(ScalingMethod scalingMethod) {
+        this.scalingMethod = scalingMethod;
+        return this;
+    }
+
+    /**
+     * Get the createDelete property: The properties that control how Scaling will manage the size of the hostpool by
+     * creating and deleting hosts.
+     * 
+     * @return the createDelete value.
+     */
+    public CreateDeleteProperties createDelete() {
+        return this.createDelete;
+    }
+
+    /**
+     * Set the createDelete property: The properties that control how Scaling will manage the size of the hostpool by
+     * creating and deleting hosts.
+     * 
+     * @param createDelete the createDelete value to set.
+     * @return the ScalingPlanPooledScheduleProperties object itself.
+     */
+    public ScalingPlanPooledScheduleProperties withCreateDelete(CreateDeleteProperties createDelete) {
+        this.createDelete = createDelete;
         return this;
     }
 
@@ -199,7 +270,7 @@ public final class ScalingPlanPooledScheduleProperties
      * 
      * @return the rampUpCapacityThresholdPct value.
      */
-    public Integer rampUpCapacityThresholdPct() {
+    public int rampUpCapacityThresholdPct() {
         return this.rampUpCapacityThresholdPct;
     }
 
@@ -209,7 +280,7 @@ public final class ScalingPlanPooledScheduleProperties
      * @param rampUpCapacityThresholdPct the rampUpCapacityThresholdPct value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
-    public ScalingPlanPooledScheduleProperties withRampUpCapacityThresholdPct(Integer rampUpCapacityThresholdPct) {
+    public ScalingPlanPooledScheduleProperties withRampUpCapacityThresholdPct(int rampUpCapacityThresholdPct) {
         this.rampUpCapacityThresholdPct = rampUpCapacityThresholdPct;
         return this;
     }
@@ -321,7 +392,7 @@ public final class ScalingPlanPooledScheduleProperties
      * 
      * @return the rampDownCapacityThresholdPct value.
      */
-    public Integer rampDownCapacityThresholdPct() {
+    public int rampDownCapacityThresholdPct() {
         return this.rampDownCapacityThresholdPct;
     }
 
@@ -331,7 +402,7 @@ public final class ScalingPlanPooledScheduleProperties
      * @param rampDownCapacityThresholdPct the rampDownCapacityThresholdPct value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
-    public ScalingPlanPooledScheduleProperties withRampDownCapacityThresholdPct(Integer rampDownCapacityThresholdPct) {
+    public ScalingPlanPooledScheduleProperties withRampDownCapacityThresholdPct(int rampDownCapacityThresholdPct) {
         this.rampDownCapacityThresholdPct = rampDownCapacityThresholdPct;
         return this;
     }
@@ -463,19 +534,45 @@ public final class ScalingPlanPooledScheduleProperties
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (rampUpStartTime() != null) {
+        if (daysOfWeek() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property daysOfWeek in model ScalingPlanPooledScheduleProperties"));
+        }
+        if (createDelete() != null) {
+            createDelete().validate();
+        }
+        if (rampUpStartTime() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property rampUpStartTime in model ScalingPlanPooledScheduleProperties"));
+        } else {
             rampUpStartTime().validate();
         }
-        if (peakStartTime() != null) {
+        if (peakStartTime() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property peakStartTime in model ScalingPlanPooledScheduleProperties"));
+        } else {
             peakStartTime().validate();
         }
-        if (rampDownStartTime() != null) {
+        if (rampDownStartTime() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property rampDownStartTime in model ScalingPlanPooledScheduleProperties"));
+        } else {
             rampDownStartTime().validate();
         }
-        if (offPeakStartTime() != null) {
+        if (offPeakStartTime() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property offPeakStartTime in model ScalingPlanPooledScheduleProperties"));
+        } else {
             offPeakStartTime().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ScalingPlanPooledScheduleProperties.class);
 
     /**
      * {@inheritDoc}
@@ -486,24 +583,26 @@ public final class ScalingPlanPooledScheduleProperties
         jsonWriter.writeArrayField("daysOfWeek", this.daysOfWeek,
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeJsonField("rampUpStartTime", this.rampUpStartTime);
+        jsonWriter.writeIntField("rampUpCapacityThresholdPct", this.rampUpCapacityThresholdPct);
+        jsonWriter.writeJsonField("peakStartTime", this.peakStartTime);
+        jsonWriter.writeJsonField("rampDownStartTime", this.rampDownStartTime);
+        jsonWriter.writeIntField("rampDownCapacityThresholdPct", this.rampDownCapacityThresholdPct);
+        jsonWriter.writeJsonField("offPeakStartTime", this.offPeakStartTime);
+        jsonWriter.writeStringField("scalingMethod", this.scalingMethod == null ? null : this.scalingMethod.toString());
+        jsonWriter.writeJsonField("createDelete", this.createDelete);
         jsonWriter.writeStringField("rampUpLoadBalancingAlgorithm",
             this.rampUpLoadBalancingAlgorithm == null ? null : this.rampUpLoadBalancingAlgorithm.toString());
         jsonWriter.writeNumberField("rampUpMinimumHostsPct", this.rampUpMinimumHostsPct);
-        jsonWriter.writeNumberField("rampUpCapacityThresholdPct", this.rampUpCapacityThresholdPct);
-        jsonWriter.writeJsonField("peakStartTime", this.peakStartTime);
         jsonWriter.writeStringField("peakLoadBalancingAlgorithm",
             this.peakLoadBalancingAlgorithm == null ? null : this.peakLoadBalancingAlgorithm.toString());
-        jsonWriter.writeJsonField("rampDownStartTime", this.rampDownStartTime);
         jsonWriter.writeStringField("rampDownLoadBalancingAlgorithm",
             this.rampDownLoadBalancingAlgorithm == null ? null : this.rampDownLoadBalancingAlgorithm.toString());
         jsonWriter.writeNumberField("rampDownMinimumHostsPct", this.rampDownMinimumHostsPct);
-        jsonWriter.writeNumberField("rampDownCapacityThresholdPct", this.rampDownCapacityThresholdPct);
         jsonWriter.writeBooleanField("rampDownForceLogoffUsers", this.rampDownForceLogoffUsers);
         jsonWriter.writeStringField("rampDownStopHostsWhen",
             this.rampDownStopHostsWhen == null ? null : this.rampDownStopHostsWhen.toString());
         jsonWriter.writeNumberField("rampDownWaitTimeMinutes", this.rampDownWaitTimeMinutes);
         jsonWriter.writeStringField("rampDownNotificationMessage", this.rampDownNotificationMessage);
-        jsonWriter.writeJsonField("offPeakStartTime", this.offPeakStartTime);
         jsonWriter.writeStringField("offPeakLoadBalancingAlgorithm",
             this.offPeakLoadBalancingAlgorithm == null ? null : this.offPeakLoadBalancingAlgorithm.toString());
         return jsonWriter.writeEndObject();
@@ -515,6 +614,7 @@ public final class ScalingPlanPooledScheduleProperties
      * @param jsonReader The JsonReader being read.
      * @return An instance of ScalingPlanPooledScheduleProperties if the JsonReader was pointing to an instance of it,
      * or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the ScalingPlanPooledScheduleProperties.
      */
     public static ScalingPlanPooledScheduleProperties fromJson(JsonReader jsonReader) throws IOException {
@@ -530,30 +630,38 @@ public final class ScalingPlanPooledScheduleProperties
                     deserializedScalingPlanPooledScheduleProperties.daysOfWeek = daysOfWeek;
                 } else if ("rampUpStartTime".equals(fieldName)) {
                     deserializedScalingPlanPooledScheduleProperties.rampUpStartTime = Time.fromJson(reader);
+                } else if ("rampUpCapacityThresholdPct".equals(fieldName)) {
+                    deserializedScalingPlanPooledScheduleProperties.rampUpCapacityThresholdPct = reader.getInt();
+                } else if ("peakStartTime".equals(fieldName)) {
+                    deserializedScalingPlanPooledScheduleProperties.peakStartTime = Time.fromJson(reader);
+                } else if ("rampDownStartTime".equals(fieldName)) {
+                    deserializedScalingPlanPooledScheduleProperties.rampDownStartTime = Time.fromJson(reader);
+                } else if ("rampDownCapacityThresholdPct".equals(fieldName)) {
+                    deserializedScalingPlanPooledScheduleProperties.rampDownCapacityThresholdPct = reader.getInt();
+                } else if ("offPeakStartTime".equals(fieldName)) {
+                    deserializedScalingPlanPooledScheduleProperties.offPeakStartTime = Time.fromJson(reader);
+                } else if ("name".equals(fieldName)) {
+                    deserializedScalingPlanPooledScheduleProperties.name = reader.getString();
+                } else if ("scalingMethod".equals(fieldName)) {
+                    deserializedScalingPlanPooledScheduleProperties.scalingMethod
+                        = ScalingMethod.fromString(reader.getString());
+                } else if ("createDelete".equals(fieldName)) {
+                    deserializedScalingPlanPooledScheduleProperties.createDelete
+                        = CreateDeleteProperties.fromJson(reader);
                 } else if ("rampUpLoadBalancingAlgorithm".equals(fieldName)) {
                     deserializedScalingPlanPooledScheduleProperties.rampUpLoadBalancingAlgorithm
                         = SessionHostLoadBalancingAlgorithm.fromString(reader.getString());
                 } else if ("rampUpMinimumHostsPct".equals(fieldName)) {
                     deserializedScalingPlanPooledScheduleProperties.rampUpMinimumHostsPct
                         = reader.getNullable(JsonReader::getInt);
-                } else if ("rampUpCapacityThresholdPct".equals(fieldName)) {
-                    deserializedScalingPlanPooledScheduleProperties.rampUpCapacityThresholdPct
-                        = reader.getNullable(JsonReader::getInt);
-                } else if ("peakStartTime".equals(fieldName)) {
-                    deserializedScalingPlanPooledScheduleProperties.peakStartTime = Time.fromJson(reader);
                 } else if ("peakLoadBalancingAlgorithm".equals(fieldName)) {
                     deserializedScalingPlanPooledScheduleProperties.peakLoadBalancingAlgorithm
                         = SessionHostLoadBalancingAlgorithm.fromString(reader.getString());
-                } else if ("rampDownStartTime".equals(fieldName)) {
-                    deserializedScalingPlanPooledScheduleProperties.rampDownStartTime = Time.fromJson(reader);
                 } else if ("rampDownLoadBalancingAlgorithm".equals(fieldName)) {
                     deserializedScalingPlanPooledScheduleProperties.rampDownLoadBalancingAlgorithm
                         = SessionHostLoadBalancingAlgorithm.fromString(reader.getString());
                 } else if ("rampDownMinimumHostsPct".equals(fieldName)) {
                     deserializedScalingPlanPooledScheduleProperties.rampDownMinimumHostsPct
-                        = reader.getNullable(JsonReader::getInt);
-                } else if ("rampDownCapacityThresholdPct".equals(fieldName)) {
-                    deserializedScalingPlanPooledScheduleProperties.rampDownCapacityThresholdPct
                         = reader.getNullable(JsonReader::getInt);
                 } else if ("rampDownForceLogoffUsers".equals(fieldName)) {
                     deserializedScalingPlanPooledScheduleProperties.rampDownForceLogoffUsers
@@ -566,8 +674,6 @@ public final class ScalingPlanPooledScheduleProperties
                         = reader.getNullable(JsonReader::getInt);
                 } else if ("rampDownNotificationMessage".equals(fieldName)) {
                     deserializedScalingPlanPooledScheduleProperties.rampDownNotificationMessage = reader.getString();
-                } else if ("offPeakStartTime".equals(fieldName)) {
-                    deserializedScalingPlanPooledScheduleProperties.offPeakStartTime = Time.fromJson(reader);
                 } else if ("offPeakLoadBalancingAlgorithm".equals(fieldName)) {
                     deserializedScalingPlanPooledScheduleProperties.offPeakLoadBalancingAlgorithm
                         = SessionHostLoadBalancingAlgorithm.fromString(reader.getString());

@@ -157,7 +157,7 @@ public final class ScalingPlanPatch implements JsonSerializable<ScalingPlanPatch
     }
 
     /**
-     * Get the schedules property: List of ScalingSchedule definitions.
+     * Get the schedules property: List Pooled ScalingSchedule definitions.
      * 
      * @return the schedules value.
      */
@@ -166,7 +166,7 @@ public final class ScalingPlanPatch implements JsonSerializable<ScalingPlanPatch
     }
 
     /**
-     * Set the schedules property: List of ScalingSchedule definitions.
+     * Set the schedules property: List Pooled ScalingSchedule definitions.
      * 
      * @param schedules the schedules value to set.
      * @return the ScalingPlanPatch object itself.

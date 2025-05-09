@@ -27,6 +27,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.AppAttachPackageInfoesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.AppAttachPackageInner;
 import com.azure.resourcemanager.desktopvirtualization.models.AppAttachPackageList;
@@ -76,10 +77,28 @@ public final class AppAttachPackageInfoesClientImpl implements AppAttachPackageI
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/importAppAttachPackageInfo")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<AppAttachPackageList> importMethodSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("hostPoolName") String hostPoolName,
+            @BodyParam("application/json") ImportPackageInfoRequest importPackageInfoRequest,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AppAttachPackageList>> importMethodNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<AppAttachPackageList> importMethodNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -136,52 +155,6 @@ public final class AppAttachPackageInfoesClientImpl implements AppAttachPackageI
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param importPackageInfoRequest Object containing URI to package image and other optional properties.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information from a package given the path to the package along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AppAttachPackageInner>> importMethodSinglePageAsync(String resourceGroupName,
-        String hostPoolName, ImportPackageInfoRequest importPackageInfoRequest, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (hostPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
-        }
-        if (importPackageInfoRequest == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter importPackageInfoRequest is required and cannot be null."));
-        } else {
-            importPackageInfoRequest.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .importMethod(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, hostPoolName, importPackageInfoRequest, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Gets information from a package given the path to the package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param importPackageInfoRequest Object containing URI to package image and other optional properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -201,18 +174,93 @@ public final class AppAttachPackageInfoesClientImpl implements AppAttachPackageI
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param importPackageInfoRequest Object containing URI to package image and other optional properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information from a package given the path to the package along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<AppAttachPackageInner> importMethodSinglePage(String resourceGroupName, String hostPoolName,
+        ImportPackageInfoRequest importPackageInfoRequest) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (hostPoolName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
+        }
+        if (importPackageInfoRequest == null) {
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Parameter importPackageInfoRequest is required and cannot be null."));
+        } else {
+            importPackageInfoRequest.validate();
+        }
+        final String accept = "application/json";
+        Response<AppAttachPackageList> res = service.importMethodSync(this.client.getEndpoint(),
+            this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, hostPoolName,
+            importPackageInfoRequest, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Gets information from a package given the path to the package.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param importPackageInfoRequest Object containing URI to package image and other optional properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information from a package given the path to the package as paginated response with {@link PagedFlux}.
+     * @return information from a package given the path to the package along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<AppAttachPackageInner> importMethodAsync(String resourceGroupName, String hostPoolName,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<AppAttachPackageInner> importMethodSinglePage(String resourceGroupName, String hostPoolName,
         ImportPackageInfoRequest importPackageInfoRequest, Context context) {
-        return new PagedFlux<>(
-            () -> importMethodSinglePageAsync(resourceGroupName, hostPoolName, importPackageInfoRequest, context),
-            nextLink -> importMethodNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (hostPoolName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
+        }
+        if (importPackageInfoRequest == null) {
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Parameter importPackageInfoRequest is required and cannot be null."));
+        } else {
+            importPackageInfoRequest.validate();
+        }
+        final String accept = "application/json";
+        Response<AppAttachPackageList> res = service.importMethodSync(this.client.getEndpoint(),
+            this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, hostPoolName,
+            importPackageInfoRequest, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -230,7 +278,9 @@ public final class AppAttachPackageInfoesClientImpl implements AppAttachPackageI
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AppAttachPackageInner> importMethod(String resourceGroupName, String hostPoolName,
         ImportPackageInfoRequest importPackageInfoRequest) {
-        return new PagedIterable<>(importMethodAsync(resourceGroupName, hostPoolName, importPackageInfoRequest));
+        return new PagedIterable<>(
+            () -> importMethodSinglePage(resourceGroupName, hostPoolName, importPackageInfoRequest),
+            nextLink -> importMethodNextSinglePage(nextLink));
     }
 
     /**
@@ -250,7 +300,8 @@ public final class AppAttachPackageInfoesClientImpl implements AppAttachPackageI
     public PagedIterable<AppAttachPackageInner> importMethod(String resourceGroupName, String hostPoolName,
         ImportPackageInfoRequest importPackageInfoRequest, Context context) {
         return new PagedIterable<>(
-            importMethodAsync(resourceGroupName, hostPoolName, importPackageInfoRequest, context));
+            () -> importMethodSinglePage(resourceGroupName, hostPoolName, importPackageInfoRequest, context),
+            nextLink -> importMethodNextSinglePage(nextLink, context));
     }
 
     /**
@@ -283,26 +334,56 @@ public final class AppAttachPackageInfoesClientImpl implements AppAttachPackageI
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return appAttachPackageList along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<AppAttachPackageInner> importMethodNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<AppAttachPackageList> res
+            = service.importMethodNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appAttachPackageList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return appAttachPackageList along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AppAttachPackageInner>> importMethodNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<AppAttachPackageInner> importMethodNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.importMethodNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<AppAttachPackageList> res
+            = service.importMethodNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AppAttachPackageInfoesClientImpl.class);
 }
