@@ -105,6 +105,7 @@ public interface Datastores {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Datastore name.
+     * @param body Secret expiry information.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -112,7 +113,7 @@ public interface Datastores {
      * @return datastore secrets along with {@link Response}.
      */
     Response<DatastoreSecrets> listSecretsWithResponse(String resourceGroupName, String workspaceName, String name,
-        Context context);
+        SecretExpiry body, Context context);
 
     /**
      * Get datastore secrets.

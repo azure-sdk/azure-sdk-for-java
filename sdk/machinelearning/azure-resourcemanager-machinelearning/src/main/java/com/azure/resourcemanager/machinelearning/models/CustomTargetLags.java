@@ -70,7 +70,6 @@ public final class CustomTargetLags extends TargetLags {
      */
     @Override
     public void validate() {
-        super.validate();
         if (values() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property values in model CustomTargetLags"));

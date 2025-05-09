@@ -27,8 +27,8 @@ import java.util.Map;
 public final class OnlineDeploymentsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/OnlineDeployment/KubernetesOnlineDeployment/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/OnlineDeployment/KubernetesOnlineDeployment/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Kubernetes Online Deployment.
@@ -41,34 +41,35 @@ public final class OnlineDeploymentsCreateOrUpdateSamples {
             .define("testDeploymentName")
             .withRegion("string")
             .withExistingOnlineEndpoint("test-rg", "my-aml-workspace", "testEndpointName")
-            .withProperties(new KubernetesOnlineDeployment().withDescription("string")
-                .withProperties(mapOf("string", "string"))
+            .withProperties(new KubernetesOnlineDeployment()
                 .withCodeConfiguration(
                     new CodeConfiguration().withCodeId("fakeTokenPlaceholder").withScoringScript("string"))
+                .withDescription("string")
                 .withEnvironmentId("string")
                 .withEnvironmentVariables(mapOf("string", "string"))
-                .withScaleSettings(new DefaultScaleSettings())
-                .withRequestSettings(new OnlineRequestSettings().withMaxQueueWait(Duration.parse("PT5M"))
-                    .withRequestTimeout(Duration.parse("PT5M"))
-                    .withMaxConcurrentRequestsPerInstance(1))
-                .withModelMountPath("string")
+                .withProperties(mapOf("string", "string"))
                 .withAppInsightsEnabled(false)
-                .withLivenessProbe(new ProbeSettings().withFailureThreshold(1)
-                    .withSuccessThreshold(1)
-                    .withTimeout(Duration.parse("PT5M"))
-                    .withPeriod(Duration.parse("PT5M"))
-                    .withInitialDelay(Duration.parse("PT5M")))
                 .withInstanceType("string")
+                .withLivenessProbe(new ProbeSettings().withFailureThreshold(1)
+                    .withInitialDelay(Duration.parse("PT5M"))
+                    .withPeriod(Duration.parse("PT5M"))
+                    .withSuccessThreshold(1)
+                    .withTimeout(Duration.parse("PT5M")))
                 .withModel("string")
+                .withModelMountPath("string")
+                .withRequestSettings(new OnlineRequestSettings().withMaxConcurrentRequestsPerInstance(1)
+                    .withMaxQueueWait(Duration.parse("PT5M"))
+                    .withRequestTimeout(Duration.parse("PT5M")))
+                .withScaleSettings(new DefaultScaleSettings())
                 .withContainerResourceRequirements(new ContainerResourceRequirements()
-                    .withContainerResourceRequests(
-                        new ContainerResourceSettings().withCpu("\"1\"").withMemory("\"2Gi\"").withGpu("\"1\""))
                     .withContainerResourceLimits(
-                        new ContainerResourceSettings().withCpu("\"1\"").withMemory("\"2Gi\"").withGpu("\"1\""))))
+                        new ContainerResourceSettings().withCpu("\"1\"").withGpu("\"1\"").withMemory("\"2Gi\""))
+                    .withContainerResourceRequests(
+                        new ContainerResourceSettings().withCpu("\"1\"").withGpu("\"1\"").withMemory("\"2Gi\""))))
             .withTags(mapOf())
-            .withKind("string")
             .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED)
                 .withUserAssignedIdentities(mapOf("string", new UserAssignedIdentity())))
+            .withKind("string")
             .withSku(new Sku().withName("string")
                 .withTier(SkuTier.FREE)
                 .withSize("string")
@@ -79,8 +80,8 @@ public final class OnlineDeploymentsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/OnlineDeployment/ManagedOnlineDeployment/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/OnlineDeployment/ManagedOnlineDeployment/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Managed Online Deployment.
@@ -93,34 +94,35 @@ public final class OnlineDeploymentsCreateOrUpdateSamples {
             .define("testDeploymentName")
             .withRegion("string")
             .withExistingOnlineEndpoint("test-rg", "my-aml-workspace", "testEndpointName")
-            .withProperties(new ManagedOnlineDeployment().withDescription("string")
-                .withProperties(mapOf("string", "string"))
+            .withProperties(new ManagedOnlineDeployment()
                 .withCodeConfiguration(
                     new CodeConfiguration().withCodeId("fakeTokenPlaceholder").withScoringScript("string"))
+                .withDescription("string")
                 .withEnvironmentId("string")
                 .withEnvironmentVariables(mapOf("string", "string"))
-                .withScaleSettings(new DefaultScaleSettings())
-                .withRequestSettings(new OnlineRequestSettings().withMaxQueueWait(Duration.parse("PT5M"))
-                    .withRequestTimeout(Duration.parse("PT5M"))
-                    .withMaxConcurrentRequestsPerInstance(1))
-                .withModelMountPath("string")
+                .withProperties(mapOf("string", "string"))
                 .withAppInsightsEnabled(false)
-                .withLivenessProbe(new ProbeSettings().withFailureThreshold(1)
-                    .withSuccessThreshold(1)
-                    .withTimeout(Duration.parse("PT5M"))
-                    .withPeriod(Duration.parse("PT5M"))
-                    .withInitialDelay(Duration.parse("PT5M")))
-                .withReadinessProbe(new ProbeSettings().withFailureThreshold(30)
-                    .withSuccessThreshold(1)
-                    .withTimeout(Duration.parse("PT2S"))
-                    .withPeriod(Duration.parse("PT10S"))
-                    .withInitialDelay(Duration.parse("PT1S")))
                 .withInstanceType("string")
-                .withModel("string"))
+                .withLivenessProbe(new ProbeSettings().withFailureThreshold(1)
+                    .withInitialDelay(Duration.parse("PT5M"))
+                    .withPeriod(Duration.parse("PT5M"))
+                    .withSuccessThreshold(1)
+                    .withTimeout(Duration.parse("PT5M")))
+                .withModel("string")
+                .withModelMountPath("string")
+                .withReadinessProbe(new ProbeSettings().withFailureThreshold(30)
+                    .withInitialDelay(Duration.parse("PT1S"))
+                    .withPeriod(Duration.parse("PT10S"))
+                    .withSuccessThreshold(1)
+                    .withTimeout(Duration.parse("PT2S")))
+                .withRequestSettings(new OnlineRequestSettings().withMaxConcurrentRequestsPerInstance(1)
+                    .withMaxQueueWait(Duration.parse("PT5M"))
+                    .withRequestTimeout(Duration.parse("PT5M")))
+                .withScaleSettings(new DefaultScaleSettings()))
             .withTags(mapOf())
-            .withKind("string")
             .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED)
                 .withUserAssignedIdentities(mapOf("string", new UserAssignedIdentity())))
+            .withKind("string")
             .withSku(new Sku().withName("string")
                 .withTier(SkuTier.FREE)
                 .withSize("string")

@@ -11,14 +11,14 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ListNotebookKeysR
  */
 public interface ListNotebookKeysResult {
     /**
-     * Gets the primaryAccessKey property: The primaryAccessKey property.
+     * Gets the primaryAccessKey property: The primary access key of the Notebook.
      * 
      * @return the primaryAccessKey value.
      */
     String primaryAccessKey();
 
     /**
-     * Gets the secondaryAccessKey property: The secondaryAccessKey property.
+     * Gets the secondaryAccessKey property: The secondary access key of the Notebook.
      * 
      * @return the secondaryAccessKey value.
      */

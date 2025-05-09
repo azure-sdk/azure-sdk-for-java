@@ -24,6 +24,11 @@ public class MonitoringInputDataBase implements JsonSerializable<MonitoringInput
     private MonitoringInputDataType inputDataType = MonitoringInputDataType.fromString("MonitoringInputDataBase");
 
     /*
+     * Mapping of column names to special uses.
+     */
+    private Map<String, String> columns;
+
+    /*
      * The context metadata of the data source.
      */
     private String dataContext;
@@ -38,11 +43,6 @@ public class MonitoringInputDataBase implements JsonSerializable<MonitoringInput
      */
     private String uri;
 
-    /*
-     * Mapping of column names to special uses.
-     */
-    private Map<String, String> columns;
-
     /**
      * Creates an instance of MonitoringInputDataBase class.
      */
@@ -56,6 +56,26 @@ public class MonitoringInputDataBase implements JsonSerializable<MonitoringInput
      */
     public MonitoringInputDataType inputDataType() {
         return this.inputDataType;
+    }
+
+    /**
+     * Get the columns property: Mapping of column names to special uses.
+     * 
+     * @return the columns value.
+     */
+    public Map<String, String> columns() {
+        return this.columns;
+    }
+
+    /**
+     * Set the columns property: Mapping of column names to special uses.
+     * 
+     * @param columns the columns value to set.
+     * @return the MonitoringInputDataBase object itself.
+     */
+    public MonitoringInputDataBase withColumns(Map<String, String> columns) {
+        this.columns = columns;
+        return this;
     }
 
     /**
@@ -119,26 +139,6 @@ public class MonitoringInputDataBase implements JsonSerializable<MonitoringInput
     }
 
     /**
-     * Get the columns property: Mapping of column names to special uses.
-     * 
-     * @return the columns value.
-     */
-    public Map<String, String> columns() {
-        return this.columns;
-    }
-
-    /**
-     * Set the columns property: Mapping of column names to special uses.
-     * 
-     * @param columns the columns value to set.
-     * @return the MonitoringInputDataBase object itself.
-     */
-    public MonitoringInputDataBase withColumns(Map<String, String> columns) {
-        this.columns = columns;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -166,8 +166,8 @@ public class MonitoringInputDataBase implements JsonSerializable<MonitoringInput
         jsonWriter.writeStringField("jobInputType", this.jobInputType == null ? null : this.jobInputType.toString());
         jsonWriter.writeStringField("uri", this.uri);
         jsonWriter.writeStringField("inputDataType", this.inputDataType == null ? null : this.inputDataType.toString());
-        jsonWriter.writeStringField("dataContext", this.dataContext);
         jsonWriter.writeMapField("columns", this.columns, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("dataContext", this.dataContext);
         return jsonWriter.writeEndObject();
     }
 
@@ -223,11 +223,11 @@ public class MonitoringInputDataBase implements JsonSerializable<MonitoringInput
                 } else if ("inputDataType".equals(fieldName)) {
                     deserializedMonitoringInputDataBase.inputDataType
                         = MonitoringInputDataType.fromString(reader.getString());
-                } else if ("dataContext".equals(fieldName)) {
-                    deserializedMonitoringInputDataBase.dataContext = reader.getString();
                 } else if ("columns".equals(fieldName)) {
                     Map<String, String> columns = reader.readMap(reader1 -> reader1.getString());
                     deserializedMonitoringInputDataBase.columns = columns;
+                } else if ("dataContext".equals(fieldName)) {
+                    deserializedMonitoringInputDataBase.dataContext = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

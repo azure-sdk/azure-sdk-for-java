@@ -20,39 +20,19 @@ import java.util.List;
 public final class MarketplaceSubscriptionResourceArmPaginatedResult
     implements JsonSerializable<MarketplaceSubscriptionResourceArmPaginatedResult> {
     /*
-     * An array of objects of type MarketplaceSubscription.
-     */
-    private List<MarketplaceSubscriptionInner> value;
-
-    /*
      * The link to the next page of MarketplaceSubscription objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type MarketplaceSubscription.
+     */
+    private List<MarketplaceSubscriptionInner> value;
 
     /**
      * Creates an instance of MarketplaceSubscriptionResourceArmPaginatedResult class.
      */
     public MarketplaceSubscriptionResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type MarketplaceSubscription.
-     * 
-     * @return the value value.
-     */
-    public List<MarketplaceSubscriptionInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type MarketplaceSubscription.
-     * 
-     * @param value the value value to set.
-     * @return the MarketplaceSubscriptionResourceArmPaginatedResult object itself.
-     */
-    public MarketplaceSubscriptionResourceArmPaginatedResult withValue(List<MarketplaceSubscriptionInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -78,6 +58,26 @@ public final class MarketplaceSubscriptionResourceArmPaginatedResult
     }
 
     /**
+     * Get the value property: An array of objects of type MarketplaceSubscription.
+     * 
+     * @return the value value.
+     */
+    public List<MarketplaceSubscriptionInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type MarketplaceSubscription.
+     * 
+     * @param value the value value to set.
+     * @return the MarketplaceSubscriptionResourceArmPaginatedResult object itself.
+     */
+    public MarketplaceSubscriptionResourceArmPaginatedResult withValue(List<MarketplaceSubscriptionInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -94,8 +94,8 @@ public final class MarketplaceSubscriptionResourceArmPaginatedResult
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -115,12 +115,12 @@ public final class MarketplaceSubscriptionResourceArmPaginatedResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedMarketplaceSubscriptionResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<MarketplaceSubscriptionInner> value
                         = reader.readArray(reader1 -> MarketplaceSubscriptionInner.fromJson(reader1));
                     deserializedMarketplaceSubscriptionResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedMarketplaceSubscriptionResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

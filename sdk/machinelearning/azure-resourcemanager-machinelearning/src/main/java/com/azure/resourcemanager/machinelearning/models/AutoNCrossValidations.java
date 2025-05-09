@@ -43,7 +43,6 @@ public final class AutoNCrossValidations extends NCrossValidations {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

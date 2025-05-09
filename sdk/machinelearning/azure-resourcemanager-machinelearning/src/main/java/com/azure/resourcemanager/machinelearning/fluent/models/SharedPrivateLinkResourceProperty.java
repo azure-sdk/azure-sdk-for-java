@@ -9,7 +9,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.machinelearning.models.PrivateEndpointServiceConnectionStatus;
+import com.azure.resourcemanager.machinelearning.models.EndpointServiceConnectionStatus;
 import java.io.IOException;
 
 /**
@@ -18,24 +18,24 @@ import java.io.IOException;
 @Fluent
 public final class SharedPrivateLinkResourceProperty implements JsonSerializable<SharedPrivateLinkResourceProperty> {
     /*
-     * The resource id that private link links to.
-     */
-    private String privateLinkResourceId;
-
-    /*
-     * The private link resource group id.
+     * group id of the private link
      */
     private String groupId;
 
     /*
-     * Request message.
+     * the resource id that private link links to
+     */
+    private String privateLinkResourceId;
+
+    /*
+     * Request message
      */
     private String requestMessage;
 
     /*
-     * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
+     * Connection status of the service consumer with the service provider
      */
-    private PrivateEndpointServiceConnectionStatus status;
+    private EndpointServiceConnectionStatus status;
 
     /**
      * Creates an instance of SharedPrivateLinkResourceProperty class.
@@ -44,27 +44,7 @@ public final class SharedPrivateLinkResourceProperty implements JsonSerializable
     }
 
     /**
-     * Get the privateLinkResourceId property: The resource id that private link links to.
-     * 
-     * @return the privateLinkResourceId value.
-     */
-    public String privateLinkResourceId() {
-        return this.privateLinkResourceId;
-    }
-
-    /**
-     * Set the privateLinkResourceId property: The resource id that private link links to.
-     * 
-     * @param privateLinkResourceId the privateLinkResourceId value to set.
-     * @return the SharedPrivateLinkResourceProperty object itself.
-     */
-    public SharedPrivateLinkResourceProperty withPrivateLinkResourceId(String privateLinkResourceId) {
-        this.privateLinkResourceId = privateLinkResourceId;
-        return this;
-    }
-
-    /**
-     * Get the groupId property: The private link resource group id.
+     * Get the groupId property: group id of the private link.
      * 
      * @return the groupId value.
      */
@@ -73,13 +53,33 @@ public final class SharedPrivateLinkResourceProperty implements JsonSerializable
     }
 
     /**
-     * Set the groupId property: The private link resource group id.
+     * Set the groupId property: group id of the private link.
      * 
      * @param groupId the groupId value to set.
      * @return the SharedPrivateLinkResourceProperty object itself.
      */
     public SharedPrivateLinkResourceProperty withGroupId(String groupId) {
         this.groupId = groupId;
+        return this;
+    }
+
+    /**
+     * Get the privateLinkResourceId property: the resource id that private link links to.
+     * 
+     * @return the privateLinkResourceId value.
+     */
+    public String privateLinkResourceId() {
+        return this.privateLinkResourceId;
+    }
+
+    /**
+     * Set the privateLinkResourceId property: the resource id that private link links to.
+     * 
+     * @param privateLinkResourceId the privateLinkResourceId value to set.
+     * @return the SharedPrivateLinkResourceProperty object itself.
+     */
+    public SharedPrivateLinkResourceProperty withPrivateLinkResourceId(String privateLinkResourceId) {
+        this.privateLinkResourceId = privateLinkResourceId;
         return this;
     }
 
@@ -104,23 +104,21 @@ public final class SharedPrivateLinkResourceProperty implements JsonSerializable
     }
 
     /**
-     * Get the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
-     * service.
+     * Get the status property: Connection status of the service consumer with the service provider.
      * 
      * @return the status value.
      */
-    public PrivateEndpointServiceConnectionStatus status() {
+    public EndpointServiceConnectionStatus status() {
         return this.status;
     }
 
     /**
-     * Set the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
-     * service.
+     * Set the status property: Connection status of the service consumer with the service provider.
      * 
      * @param status the status value to set.
      * @return the SharedPrivateLinkResourceProperty object itself.
      */
-    public SharedPrivateLinkResourceProperty withStatus(PrivateEndpointServiceConnectionStatus status) {
+    public SharedPrivateLinkResourceProperty withStatus(EndpointServiceConnectionStatus status) {
         this.status = status;
         return this;
     }
@@ -139,8 +137,8 @@ public final class SharedPrivateLinkResourceProperty implements JsonSerializable
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("privateLinkResourceId", this.privateLinkResourceId);
         jsonWriter.writeStringField("groupId", this.groupId);
+        jsonWriter.writeStringField("privateLinkResourceId", this.privateLinkResourceId);
         jsonWriter.writeStringField("requestMessage", this.requestMessage);
         jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
         return jsonWriter.writeEndObject();
@@ -162,15 +160,15 @@ public final class SharedPrivateLinkResourceProperty implements JsonSerializable
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("privateLinkResourceId".equals(fieldName)) {
-                    deserializedSharedPrivateLinkResourceProperty.privateLinkResourceId = reader.getString();
-                } else if ("groupId".equals(fieldName)) {
+                if ("groupId".equals(fieldName)) {
                     deserializedSharedPrivateLinkResourceProperty.groupId = reader.getString();
+                } else if ("privateLinkResourceId".equals(fieldName)) {
+                    deserializedSharedPrivateLinkResourceProperty.privateLinkResourceId = reader.getString();
                 } else if ("requestMessage".equals(fieldName)) {
                     deserializedSharedPrivateLinkResourceProperty.requestMessage = reader.getString();
                 } else if ("status".equals(fieldName)) {
                     deserializedSharedPrivateLinkResourceProperty.status
-                        = PrivateEndpointServiceConnectionStatus.fromString(reader.getString());
+                        = EndpointServiceConnectionStatus.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

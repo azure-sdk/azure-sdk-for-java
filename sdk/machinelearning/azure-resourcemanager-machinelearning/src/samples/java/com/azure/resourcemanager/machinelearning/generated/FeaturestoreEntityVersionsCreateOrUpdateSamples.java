@@ -17,8 +17,8 @@ import java.util.Map;
 public final class FeaturestoreEntityVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/FeaturestoreEntityVersion/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/Workspace/FeaturestoreEntityVersion/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Workspace Featurestore Entity Version.
@@ -32,12 +32,12 @@ public final class FeaturestoreEntityVersionsCreateOrUpdateSamples {
             .withExistingFeaturestoreEntity("test-rg", "my-aml-workspace", "string")
             .withProperties(
                 new FeaturestoreEntityVersionProperties().withDescription("string")
-                    .withTags(mapOf("string", "string"))
                     .withProperties(mapOf("string", "string"))
-                    .withIsArchived(false)
+                    .withTags(mapOf("string", "string"))
                     .withIsAnonymous(false)
+                    .withIsArchived(false)
                     .withIndexColumns(Arrays
-                        .asList(new IndexColumn().withDataType(FeatureDataType.DATETIME).withColumnName("string"))))
+                        .asList(new IndexColumn().withColumnName("string").withDataType(FeatureDataType.DATETIME))))
             .create();
     }
 

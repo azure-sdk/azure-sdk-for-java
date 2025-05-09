@@ -15,8 +15,8 @@ import java.util.Map;
 public final class BatchDeploymentsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/BatchDeployment/update.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/Workspace/BatchDeployment/update.json
      */
     /**
      * Sample code: Update Workspace Batch Deployment.
