@@ -17,9 +17,9 @@ import com.azure.resourcemanager.hybridkubernetes.models.ConnectedCluster;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterIdentity;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterKind;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterPatch;
+import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterPropertiesGateway;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectivityStatus;
 import com.azure.resourcemanager.hybridkubernetes.models.CredentialResults;
-import com.azure.resourcemanager.hybridkubernetes.models.Gateway;
 import com.azure.resourcemanager.hybridkubernetes.models.ListClusterUserCredentialProperties;
 import com.azure.resourcemanager.hybridkubernetes.models.OidcIssuerProfile;
 import com.azure.resourcemanager.hybridkubernetes.models.PrivateLinkState;
@@ -153,7 +153,7 @@ public final class ConnectedClusterImpl
         return this.innerModel().oidcIssuerProfile();
     }
 
-    public Gateway gateway() {
+    public ConnectedClusterPropertiesGateway gateway() {
         return this.innerModel().gateway();
     }
 
@@ -252,7 +252,7 @@ public final class ConnectedClusterImpl
         com.azure.resourcemanager.hybridkubernetes.HybridKubernetesManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourcegroups");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
         this.clusterName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "connectedClusters");
     }
 
@@ -387,7 +387,7 @@ public final class ConnectedClusterImpl
         return this;
     }
 
-    public ConnectedClusterImpl withGateway(Gateway gateway) {
+    public ConnectedClusterImpl withGateway(ConnectedClusterPropertiesGateway gateway) {
         this.innerModel().withGateway(gateway);
         return this;
     }

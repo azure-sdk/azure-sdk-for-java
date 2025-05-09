@@ -47,16 +47,16 @@ public interface HybridKubernetesManagementClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the ConnectedClustersClient object to access its operations.
-     * 
-     * @return the ConnectedClustersClient object.
-     */
-    ConnectedClustersClient getConnectedClusters();
-
-    /**
      * Gets the OperationsClient object to access its operations.
      * 
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
+
+    /**
+     * Gets the ConnectedClustersClient object to access its operations.
+     * 
+     * @return the ConnectedClustersClient object.
+     */
+    ConnectedClustersClient getConnectedClusters();
 }

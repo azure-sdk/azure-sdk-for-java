@@ -15,7 +15,7 @@ import java.io.IOException;
  * The Gateway model.
  */
 @Fluent
-public final class Gateway implements JsonSerializable<Gateway> {
+public class Gateway implements JsonSerializable<Gateway> {
     /*
      * Indicates whether the gateway for arc router connectivity is enabled.
      */

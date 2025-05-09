@@ -21,6 +21,95 @@ import com.azure.resourcemanager.hybridkubernetes.models.ListClusterUserCredenti
  */
 public interface ConnectedClustersClient {
     /**
+     * Lists all connected clusters in the given Subscription
+     * 
+     * API to enumerate registered connected K8s clusters under a Subscription.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ConnectedCluster list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ConnectedClusterInner> list();
+
+    /**
+     * Lists all connected clusters in the given Subscription
+     * 
+     * API to enumerate registered connected K8s clusters under a Subscription.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ConnectedCluster list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ConnectedClusterInner> list(Context context);
+
+    /**
+     * Lists all connected clusters in the given Resource Group
+     * 
+     * API to enumerate registered connected K8s clusters under a Resource Group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ConnectedCluster list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ConnectedClusterInner> listByResourceGroup(String resourceGroupName);
+
+    /**
+     * Lists all connected clusters in the given Resource Group
+     * 
+     * API to enumerate registered connected K8s clusters under a Resource Group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ConnectedCluster list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ConnectedClusterInner> listByResourceGroup(String resourceGroupName, Context context);
+
+    /**
+     * Get the properties of the specified connected cluster.
+     * 
+     * Returns the properties of the specified connected cluster, including name, identity, properties, and additional
+     * cluster details.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the Kubernetes cluster on which get is called.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a connected cluster along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ConnectedClusterInner> getByResourceGroupWithResponse(String resourceGroupName, String clusterName,
+        Context context);
+
+    /**
+     * Get the properties of the specified connected cluster.
+     * 
+     * Returns the properties of the specified connected cluster, including name, identity, properties, and additional
+     * cluster details.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the Kubernetes cluster on which get is called.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a connected cluster.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ConnectedClusterInner getByResourceGroup(String resourceGroupName, String clusterName);
+
+    /**
      * Register a new Kubernetes cluster with Azure Resource Manager.
      * 
      * API to register a new Kubernetes cluster and create or replace a connected cluster tracked resource in Azure
@@ -130,40 +219,6 @@ public interface ConnectedClustersClient {
         ConnectedClusterPatch connectedClusterPatch);
 
     /**
-     * Get the properties of the specified connected cluster.
-     * 
-     * Returns the properties of the specified connected cluster, including name, identity, properties, and additional
-     * cluster details.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Kubernetes cluster on which get is called.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a connected cluster along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ConnectedClusterInner> getByResourceGroupWithResponse(String resourceGroupName, String clusterName,
-        Context context);
-
-    /**
-     * Get the properties of the specified connected cluster.
-     * 
-     * Returns the properties of the specified connected cluster, including name, identity, properties, and additional
-     * cluster details.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the Kubernetes cluster on which get is called.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a connected cluster.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ConnectedClusterInner getByResourceGroup(String resourceGroupName, String clusterName);
-
-    /**
      * Delete a connected cluster.
      * 
      * Delete a connected cluster, removing the tracked resource in Azure Resource Manager (ARM).
@@ -258,59 +313,4 @@ public interface ConnectedClustersClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     CredentialResultsInner listClusterUserCredential(String resourceGroupName, String clusterName,
         ListClusterUserCredentialProperties properties);
-
-    /**
-     * Lists all connected clusters in the given ResourceGroup
-     * 
-     * API to enumerate registered connected K8s clusters under a Resource Group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated list of connected Clusters as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ConnectedClusterInner> listByResourceGroup(String resourceGroupName);
-
-    /**
-     * Lists all connected clusters in the given ResourceGroup
-     * 
-     * API to enumerate registered connected K8s clusters under a Resource Group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated list of connected Clusters as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ConnectedClusterInner> listByResourceGroup(String resourceGroupName, Context context);
-
-    /**
-     * Lists all connected clusters in the given Subscription
-     * 
-     * API to enumerate registered connected K8s clusters under a Subscription.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated list of connected Clusters as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ConnectedClusterInner> list();
-
-    /**
-     * Lists all connected clusters in the given Subscription
-     * 
-     * API to enumerate registered connected K8s clusters under a Subscription.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated list of connected Clusters as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ConnectedClusterInner> list(Context context);
 }

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.hybridkubernetes.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,28 +15,28 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The paginated list of connected Clusters.
+ * The response of a ConnectedCluster list operation.
  */
 @Fluent
-public final class ConnectedClusterList implements JsonSerializable<ConnectedClusterList> {
+public final class ConnectedClusterListResult implements JsonSerializable<ConnectedClusterListResult> {
     /*
-     * The list of connected clusters
+     * The ConnectedCluster items on this page
      */
     private List<ConnectedClusterInner> value;
 
     /*
-     * The link to fetch the next page of connected clusters
+     * The link to the next page of items
      */
     private String nextLink;
 
     /**
-     * Creates an instance of ConnectedClusterList class.
+     * Creates an instance of ConnectedClusterListResult class.
      */
-    public ConnectedClusterList() {
+    public ConnectedClusterListResult() {
     }
 
     /**
-     * Get the value property: The list of connected clusters.
+     * Get the value property: The ConnectedCluster items on this page.
      * 
      * @return the value value.
      */
@@ -44,18 +45,18 @@ public final class ConnectedClusterList implements JsonSerializable<ConnectedClu
     }
 
     /**
-     * Set the value property: The list of connected clusters.
+     * Set the value property: The ConnectedCluster items on this page.
      * 
      * @param value the value value to set.
-     * @return the ConnectedClusterList object itself.
+     * @return the ConnectedClusterListResult object itself.
      */
-    public ConnectedClusterList withValue(List<ConnectedClusterInner> value) {
+    public ConnectedClusterListResult withValue(List<ConnectedClusterInner> value) {
         this.value = value;
         return this;
     }
 
     /**
-     * Get the nextLink property: The link to fetch the next page of connected clusters.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -64,12 +65,12 @@ public final class ConnectedClusterList implements JsonSerializable<ConnectedClu
     }
 
     /**
-     * Set the nextLink property: The link to fetch the next page of connected clusters.
+     * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
-     * @return the ConnectedClusterList object itself.
+     * @return the ConnectedClusterListResult object itself.
      */
-    public ConnectedClusterList withNextLink(String nextLink) {
+    public ConnectedClusterListResult withNextLink(String nextLink) {
         this.nextLink = nextLink;
         return this;
     }
@@ -80,10 +81,16 @@ public final class ConnectedClusterList implements JsonSerializable<ConnectedClu
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model ConnectedClusterListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ConnectedClusterListResult.class);
 
     /**
      * {@inheritDoc}
@@ -97,16 +104,17 @@ public final class ConnectedClusterList implements JsonSerializable<ConnectedClu
     }
 
     /**
-     * Reads an instance of ConnectedClusterList from the JsonReader.
+     * Reads an instance of ConnectedClusterListResult from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of ConnectedClusterList if the JsonReader was pointing to an instance of it, or null if it
-     * was pointing to JSON null.
-     * @throws IOException If an error occurs while reading the ConnectedClusterList.
+     * @return An instance of ConnectedClusterListResult if the JsonReader was pointing to an instance of it, or null if
+     * it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
+     * @throws IOException If an error occurs while reading the ConnectedClusterListResult.
      */
-    public static ConnectedClusterList fromJson(JsonReader jsonReader) throws IOException {
+    public static ConnectedClusterListResult fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            ConnectedClusterList deserializedConnectedClusterList = new ConnectedClusterList();
+            ConnectedClusterListResult deserializedConnectedClusterListResult = new ConnectedClusterListResult();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
@@ -114,15 +122,15 @@ public final class ConnectedClusterList implements JsonSerializable<ConnectedClu
                 if ("value".equals(fieldName)) {
                     List<ConnectedClusterInner> value
                         = reader.readArray(reader1 -> ConnectedClusterInner.fromJson(reader1));
-                    deserializedConnectedClusterList.value = value;
+                    deserializedConnectedClusterListResult.value = value;
                 } else if ("nextLink".equals(fieldName)) {
-                    deserializedConnectedClusterList.nextLink = reader.getString();
+                    deserializedConnectedClusterListResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedConnectedClusterList;
+            return deserializedConnectedClusterListResult;
         });
     }
 }

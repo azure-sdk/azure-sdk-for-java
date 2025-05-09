@@ -15,12 +15,15 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.SyncPollerFactory;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.hybridkubernetes.fluent.ConnectedClustersClient;
@@ -125,20 +128,6 @@ public final class HybridKubernetesManagementClientImpl implements HybridKuberne
     }
 
     /**
-     * The ConnectedClustersClient object to access its operations.
-     */
-    private final ConnectedClustersClient connectedClusters;
-
-    /**
-     * Gets the ConnectedClustersClient object to access its operations.
-     * 
-     * @return the ConnectedClustersClient object.
-     */
-    public ConnectedClustersClient getConnectedClusters() {
-        return this.connectedClusters;
-    }
-
-    /**
      * The OperationsClient object to access its operations.
      */
     private final OperationsClient operations;
@@ -150,6 +139,20 @@ public final class HybridKubernetesManagementClientImpl implements HybridKuberne
      */
     public OperationsClient getOperations() {
         return this.operations;
+    }
+
+    /**
+     * The ConnectedClustersClient object to access its operations.
+     */
+    private final ConnectedClustersClient connectedClusters;
+
+    /**
+     * Gets the ConnectedClustersClient object to access its operations.
+     * 
+     * @return the ConnectedClustersClient object.
+     */
+    public ConnectedClustersClient getConnectedClusters() {
+        return this.connectedClusters;
     }
 
     /**
@@ -170,8 +173,8 @@ public final class HybridKubernetesManagementClientImpl implements HybridKuberne
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
         this.apiVersion = "2024-12-01-preview";
-        this.connectedClusters = new ConnectedClustersClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.connectedClusters = new ConnectedClustersClientImpl(this);
     }
 
     /**
@@ -209,6 +212,23 @@ public final class HybridKubernetesManagementClientImpl implements HybridKuberne
         HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
         return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
             defaultPollInterval, activationResponse, context);
+    }
+
+    /**
+     * Gets long running operation result.
+     * 
+     * @param activationResponse the response of activation operation.
+     * @param pollResultType type of poll result.
+     * @param finalResultType type of final result.
+     * @param context the context shared by all requests.
+     * @param <T> type of poll result.
+     * @param <U> type of final result.
+     * @return SyncPoller for poll result and final result.
+     */
+    public <T, U> SyncPoller<PollResult<T>, U> getLroResult(Response<BinaryData> activationResponse,
+        Type pollResultType, Type finalResultType, Context context) {
+        return SyncPollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, () -> activationResponse, context);
     }
 
     /**

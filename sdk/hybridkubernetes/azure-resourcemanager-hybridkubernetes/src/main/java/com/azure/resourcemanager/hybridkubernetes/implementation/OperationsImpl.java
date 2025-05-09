@@ -25,13 +25,13 @@ public final class OperationsImpl implements Operations {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<Operation> get() {
-        PagedIterable<OperationInner> inner = this.serviceClient().get();
+    public PagedIterable<Operation> list() {
+        PagedIterable<OperationInner> inner = this.serviceClient().list();
         return ResourceManagerUtils.mapPage(inner, inner1 -> new OperationImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Operation> get(Context context) {
-        PagedIterable<OperationInner> inner = this.serviceClient().get(context);
+    public PagedIterable<Operation> list(Context context) {
+        PagedIterable<OperationInner> inner = this.serviceClient().list(context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new OperationImpl(inner1, this.manager()));
     }
 
