@@ -77,6 +77,11 @@ public final class ConnectionCategory extends ExpandableStringEnum<ConnectionCat
     public static final ConnectionCategory AZURE_OPEN_AI = fromString("AzureOpenAI");
 
     /**
+     * Static value AIServices for ConnectionCategory.
+     */
+    public static final ConnectionCategory AISERVICES = fromString("AIServices");
+
+    /**
      * Static value CognitiveSearch for ConnectionCategory.
      */
     public static final ConnectionCategory COGNITIVE_SEARCH = fromString("CognitiveSearch");
@@ -275,6 +280,11 @@ public final class ConnectionCategory extends ExpandableStringEnum<ConnectionCat
      * Static value Vertica for ConnectionCategory.
      */
     public static final ConnectionCategory VERTICA = fromString("Vertica");
+
+    /**
+     * Static value Pinecone for ConnectionCategory.
+     */
+    public static final ConnectionCategory PINECONE = fromString("Pinecone");
 
     /**
      * Static value Cassandra for ConnectionCategory.
@@ -497,6 +507,11 @@ public final class ConnectionCategory extends ExpandableStringEnum<ConnectionCat
     public static final ConnectionCategory GENERIC_CONTAINER_REGISTRY = fromString("GenericContainerRegistry");
 
     /**
+     * Static value Elasticsearch for ConnectionCategory.
+     */
+    public static final ConnectionCategory ELASTICSEARCH = fromString("Elasticsearch");
+
+    /**
      * Static value OpenAI for ConnectionCategory.
      */
     public static final ConnectionCategory OPEN_AI = fromString("OpenAI");
@@ -517,9 +532,9 @@ public final class ConnectionCategory extends ExpandableStringEnum<ConnectionCat
     public static final ConnectionCategory SERVERLESS = fromString("Serverless");
 
     /**
-     * Static value AIServices for ConnectionCategory.
+     * Static value ManagedOnlineEndpoint for ConnectionCategory.
      */
-    public static final ConnectionCategory AISERVICES = fromString("AIServices");
+    public static final ConnectionCategory MANAGED_ONLINE_ENDPOINT = fromString("ManagedOnlineEndpoint");
 
     /**
      * Creates a new instance of ConnectionCategory value.

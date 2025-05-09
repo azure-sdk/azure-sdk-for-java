@@ -18,39 +18,19 @@ import java.io.IOException;
 @Fluent
 public final class ImageSweepSettings implements JsonSerializable<ImageSweepSettings> {
     /*
-     * [Required] Type of the hyperparameter sampling algorithms.
-     */
-    private SamplingAlgorithmType samplingAlgorithm;
-
-    /*
      * Type of early termination policy.
      */
     private EarlyTerminationPolicy earlyTermination;
+
+    /*
+     * [Required] Type of the hyperparameter sampling algorithms.
+     */
+    private SamplingAlgorithmType samplingAlgorithm;
 
     /**
      * Creates an instance of ImageSweepSettings class.
      */
     public ImageSweepSettings() {
-    }
-
-    /**
-     * Get the samplingAlgorithm property: [Required] Type of the hyperparameter sampling algorithms.
-     * 
-     * @return the samplingAlgorithm value.
-     */
-    public SamplingAlgorithmType samplingAlgorithm() {
-        return this.samplingAlgorithm;
-    }
-
-    /**
-     * Set the samplingAlgorithm property: [Required] Type of the hyperparameter sampling algorithms.
-     * 
-     * @param samplingAlgorithm the samplingAlgorithm value to set.
-     * @return the ImageSweepSettings object itself.
-     */
-    public ImageSweepSettings withSamplingAlgorithm(SamplingAlgorithmType samplingAlgorithm) {
-        this.samplingAlgorithm = samplingAlgorithm;
-        return this;
     }
 
     /**
@@ -74,18 +54,38 @@ public final class ImageSweepSettings implements JsonSerializable<ImageSweepSett
     }
 
     /**
+     * Get the samplingAlgorithm property: [Required] Type of the hyperparameter sampling algorithms.
+     * 
+     * @return the samplingAlgorithm value.
+     */
+    public SamplingAlgorithmType samplingAlgorithm() {
+        return this.samplingAlgorithm;
+    }
+
+    /**
+     * Set the samplingAlgorithm property: [Required] Type of the hyperparameter sampling algorithms.
+     * 
+     * @param samplingAlgorithm the samplingAlgorithm value to set.
+     * @return the ImageSweepSettings object itself.
+     */
+    public ImageSweepSettings withSamplingAlgorithm(SamplingAlgorithmType samplingAlgorithm) {
+        this.samplingAlgorithm = samplingAlgorithm;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (earlyTermination() != null) {
+            earlyTermination().validate();
+        }
         if (samplingAlgorithm() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property samplingAlgorithm in model ImageSweepSettings"));
-        }
-        if (earlyTermination() != null) {
-            earlyTermination().validate();
         }
     }
 
