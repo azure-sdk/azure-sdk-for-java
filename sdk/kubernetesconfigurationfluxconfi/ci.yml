@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/kubernetesconfigurationfluxconfi/ci.yml
+      - sdk/kubernetesconfigurationfluxconfi/azure-resourcemanager-kubernetesconfigurationfluxconfi/
+    exclude:
+      - sdk/kubernetesconfigurationfluxconfi/pom.xml
+      - sdk/kubernetesconfigurationfluxconfi/azure-resourcemanager-kubernetesconfigurationfluxconfi/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/kubernetesconfigurationfluxconfi/ci.yml
+      - sdk/kubernetesconfigurationfluxconfi/azure-resourcemanager-kubernetesconfigurationfluxconfi/
+    exclude:
+      - sdk/kubernetesconfigurationfluxconfi/pom.xml
+      - sdk/kubernetesconfigurationfluxconfi/azure-resourcemanager-kubernetesconfigurationfluxconfi/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerkubernetesconfigurationfluxconfi
+    displayName: azure-resourcemanager-kubernetesconfigurationfluxconfi
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: kubernetesconfigurationfluxconfi
+    Artifacts:
+      - name: azure-resourcemanager-kubernetesconfigurationfluxconfi
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerkubernetesconfigurationfluxconfi
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerkubernetesconfigurationfluxconfi }}
