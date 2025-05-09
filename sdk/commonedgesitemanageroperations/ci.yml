@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/commonedgesitemanageroperations/ci.yml
+      - sdk/commonedgesitemanageroperations/azure-resourcemanager-commonedgesitemanageroperations/
+    exclude:
+      - sdk/commonedgesitemanageroperations/pom.xml
+      - sdk/commonedgesitemanageroperations/azure-resourcemanager-commonedgesitemanageroperations/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/commonedgesitemanageroperations/ci.yml
+      - sdk/commonedgesitemanageroperations/azure-resourcemanager-commonedgesitemanageroperations/
+    exclude:
+      - sdk/commonedgesitemanageroperations/pom.xml
+      - sdk/commonedgesitemanageroperations/azure-resourcemanager-commonedgesitemanageroperations/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagercommonedgesitemanageroperations
+    displayName: azure-resourcemanager-commonedgesitemanageroperations
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: commonedgesitemanageroperations
+    Artifacts:
+      - name: azure-resourcemanager-commonedgesitemanageroperations
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagercommonedgesitemanageroperations
+        releaseInBatch: ${{ parameters.release_azureresourcemanagercommonedgesitemanageroperations }}
