@@ -43,7 +43,6 @@ public final class AutoTargetRollingWindowSize extends TargetRollingWindowSize {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

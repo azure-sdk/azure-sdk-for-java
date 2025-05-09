@@ -18,39 +18,19 @@ import java.io.IOException;
 @Fluent
 public final class Objective implements JsonSerializable<Objective> {
     /*
-     * [Required] Name of the metric to optimize.
-     */
-    private String primaryMetric;
-
-    /*
      * [Required] Defines supported metric goals for hyperparameter tuning
      */
     private Goal goal;
+
+    /*
+     * [Required] Name of the metric to optimize.
+     */
+    private String primaryMetric;
 
     /**
      * Creates an instance of Objective class.
      */
     public Objective() {
-    }
-
-    /**
-     * Get the primaryMetric property: [Required] Name of the metric to optimize.
-     * 
-     * @return the primaryMetric value.
-     */
-    public String primaryMetric() {
-        return this.primaryMetric;
-    }
-
-    /**
-     * Set the primaryMetric property: [Required] Name of the metric to optimize.
-     * 
-     * @param primaryMetric the primaryMetric value to set.
-     * @return the Objective object itself.
-     */
-    public Objective withPrimaryMetric(String primaryMetric) {
-        this.primaryMetric = primaryMetric;
-        return this;
     }
 
     /**
@@ -74,18 +54,38 @@ public final class Objective implements JsonSerializable<Objective> {
     }
 
     /**
+     * Get the primaryMetric property: [Required] Name of the metric to optimize.
+     * 
+     * @return the primaryMetric value.
+     */
+    public String primaryMetric() {
+        return this.primaryMetric;
+    }
+
+    /**
+     * Set the primaryMetric property: [Required] Name of the metric to optimize.
+     * 
+     * @param primaryMetric the primaryMetric value to set.
+     * @return the Objective object itself.
+     */
+    public Objective withPrimaryMetric(String primaryMetric) {
+        this.primaryMetric = primaryMetric;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (primaryMetric() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property primaryMetric in model Objective"));
-        }
         if (goal() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property goal in model Objective"));
+        }
+        if (primaryMetric() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property primaryMetric in model Objective"));
         }
     }
 
@@ -97,8 +97,8 @@ public final class Objective implements JsonSerializable<Objective> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("primaryMetric", this.primaryMetric);
         jsonWriter.writeStringField("goal", this.goal == null ? null : this.goal.toString());
+        jsonWriter.writeStringField("primaryMetric", this.primaryMetric);
         return jsonWriter.writeEndObject();
     }
 
@@ -118,10 +118,10 @@ public final class Objective implements JsonSerializable<Objective> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("primaryMetric".equals(fieldName)) {
-                    deserializedObjective.primaryMetric = reader.getString();
-                } else if ("goal".equals(fieldName)) {
+                if ("goal".equals(fieldName)) {
                     deserializedObjective.goal = Goal.fromString(reader.getString());
+                } else if ("primaryMetric".equals(fieldName)) {
+                    deserializedObjective.primaryMetric = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

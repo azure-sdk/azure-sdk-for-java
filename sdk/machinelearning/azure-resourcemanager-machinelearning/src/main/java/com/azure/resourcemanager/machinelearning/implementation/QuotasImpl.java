@@ -12,8 +12,8 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearning.fluent.QuotasClient;
 import com.azure.resourcemanager.machinelearning.fluent.models.ResourceQuotaInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.UpdateWorkspaceQuotasResultInner;
-import com.azure.resourcemanager.machinelearning.models.Quotas;
 import com.azure.resourcemanager.machinelearning.models.QuotaUpdateParameters;
+import com.azure.resourcemanager.machinelearning.models.Quotas;
 import com.azure.resourcemanager.machinelearning.models.ResourceQuota;
 import com.azure.resourcemanager.machinelearning.models.UpdateWorkspaceQuotasResult;
 

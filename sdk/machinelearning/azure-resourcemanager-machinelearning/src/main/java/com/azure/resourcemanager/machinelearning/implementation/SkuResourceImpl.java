@@ -20,16 +20,16 @@ public final class SkuResourceImpl implements SkuResource {
         this.serviceManager = serviceManager;
     }
 
+    public SkuCapacity capacity() {
+        return this.innerModel().capacity();
+    }
+
     public String resourceType() {
         return this.innerModel().resourceType();
     }
 
     public SkuSetting sku() {
         return this.innerModel().sku();
-    }
-
-    public SkuCapacity capacity() {
-        return this.innerModel().capacity();
     }
 
     public SkuResourceInner innerModel() {

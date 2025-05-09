@@ -9,6 +9,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Private Endpoint Outbound Rule for the managed network of a machine learning workspace.
@@ -89,7 +90,6 @@ public final class PrivateEndpointOutboundRule extends OutboundRule {
      */
     @Override
     public void validate() {
-        super.validate();
         if (destination() != null) {
             destination().validate();
         }
@@ -127,6 +127,11 @@ public final class PrivateEndpointOutboundRule extends OutboundRule {
                     deserializedPrivateEndpointOutboundRule.withCategory(RuleCategory.fromString(reader.getString()));
                 } else if ("status".equals(fieldName)) {
                     deserializedPrivateEndpointOutboundRule.withStatus(RuleStatus.fromString(reader.getString()));
+                } else if ("errorInformation".equals(fieldName)) {
+                    deserializedPrivateEndpointOutboundRule.withErrorInformation(reader.getString());
+                } else if ("parentRuleNames".equals(fieldName)) {
+                    List<String> parentRuleNames = reader.readArray(reader1 -> reader1.getString());
+                    deserializedPrivateEndpointOutboundRule.withParentRuleNames(parentRuleNames);
                 } else if ("type".equals(fieldName)) {
                     deserializedPrivateEndpointOutboundRule.type = RuleType.fromString(reader.getString());
                 } else if ("destination".equals(fieldName)) {

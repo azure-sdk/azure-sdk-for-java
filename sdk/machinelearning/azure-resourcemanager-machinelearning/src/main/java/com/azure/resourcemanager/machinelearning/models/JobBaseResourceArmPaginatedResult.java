@@ -19,39 +19,19 @@ import java.util.List;
 @Fluent
 public final class JobBaseResourceArmPaginatedResult implements JsonSerializable<JobBaseResourceArmPaginatedResult> {
     /*
-     * An array of objects of type JobBase.
-     */
-    private List<JobBaseInner> value;
-
-    /*
      * The link to the next page of JobBase objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type JobBase.
+     */
+    private List<JobBaseInner> value;
 
     /**
      * Creates an instance of JobBaseResourceArmPaginatedResult class.
      */
     public JobBaseResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type JobBase.
-     * 
-     * @return the value value.
-     */
-    public List<JobBaseInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type JobBase.
-     * 
-     * @param value the value value to set.
-     * @return the JobBaseResourceArmPaginatedResult object itself.
-     */
-    public JobBaseResourceArmPaginatedResult withValue(List<JobBaseInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -75,6 +55,26 @@ public final class JobBaseResourceArmPaginatedResult implements JsonSerializable
     }
 
     /**
+     * Get the value property: An array of objects of type JobBase.
+     * 
+     * @return the value value.
+     */
+    public List<JobBaseInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type JobBase.
+     * 
+     * @param value the value value to set.
+     * @return the JobBaseResourceArmPaginatedResult object itself.
+     */
+    public JobBaseResourceArmPaginatedResult withValue(List<JobBaseInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -91,8 +91,8 @@ public final class JobBaseResourceArmPaginatedResult implements JsonSerializable
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -112,11 +112,11 @@ public final class JobBaseResourceArmPaginatedResult implements JsonSerializable
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedJobBaseResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<JobBaseInner> value = reader.readArray(reader1 -> JobBaseInner.fromJson(reader1));
                     deserializedJobBaseResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedJobBaseResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
