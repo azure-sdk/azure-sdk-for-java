@@ -11,14 +11,14 @@ import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.Operat
  */
 public interface Operation {
     /**
-     * Gets the name property: Operation name: {provider}/{resource}/{read | write | action | delete}.
+     * Gets the name property: The name of the operation.
      * 
      * @return the name value.
      */
     String name();
 
     /**
-     * Gets the display property: The object that represents the operation.
+     * Gets the display property: The display information for the operation.
      * 
      * @return the display value.
      */

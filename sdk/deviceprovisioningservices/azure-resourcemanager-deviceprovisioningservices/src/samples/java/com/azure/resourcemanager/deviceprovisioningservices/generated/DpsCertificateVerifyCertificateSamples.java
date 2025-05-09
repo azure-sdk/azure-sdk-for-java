@@ -12,7 +12,7 @@ import com.azure.resourcemanager.deviceprovisioningservices.models.VerificationC
 public final class DpsCertificateVerifyCertificateSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
      * DPSVerifyCertificate.json
      */
     /**
@@ -23,7 +23,7 @@ public final class DpsCertificateVerifyCertificateSamples {
     public static void
         dPSVerifyCertificate(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
         manager.dpsCertificates()
-            .verifyCertificateWithResponse("cert", "AAAAAAAADGk=", "myResourceGroup", "myFirstProvisioningService",
+            .verifyCertificateWithResponse("myResourceGroup", "myFirstProvisioningService", "cert", "AAAAAAAADGk=",
                 new VerificationCodeRequest().withCertificate("#####################################"), null, null,
                 null, null, null, null, null, null, com.azure.core.util.Context.NONE);
     }

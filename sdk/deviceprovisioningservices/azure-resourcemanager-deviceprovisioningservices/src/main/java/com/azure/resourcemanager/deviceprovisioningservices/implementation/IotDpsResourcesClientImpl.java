@@ -41,7 +41,7 @@ import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.NameAv
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.PrivateLinkResourcesInner;
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.ProvisioningServiceDescriptionInner;
-import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.SharedAccessSignatureAuthorizationRuleInner;
+import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner;
 import com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsSkuDefinitionListResult;
 import com.azure.resourcemanager.deviceprovisioningservices.models.OperationInputs;
@@ -86,24 +86,51 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     @ServiceInterface(name = "IotDpsClientIotDpsRe")
     public interface IotDpsResourcesService {
         @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.Devices/checkProvisioningServiceNameAvailability")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
+        Mono<Response<NameAvailabilityInfoInner>> checkProvisioningServiceNameAvailability(
+            @HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @BodyParam("application/json") OperationInputs arguments, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Devices/provisioningServices")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
+        Mono<Response<ProvisioningServiceDescriptionListResult>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
+        Mono<Response<ProvisioningServiceDescriptionListResult>> listByResourceGroup(
+            @HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<ProvisioningServiceDescriptionInner>> getByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("provisioningServiceName") String provisioningServiceName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("provisioningServiceName") String provisioningServiceName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("provisioningServiceName") String provisioningServiceName,
-            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") ProvisioningServiceDescriptionInner iotDpsDescription,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -112,10 +139,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("provisioningServiceName") String provisioningServiceName,
-            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") TagsResource provisioningServiceTags, @HeaderParam("Accept") String accept,
             Context context);
 
@@ -124,56 +150,20 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         @ExpectedResponses({ 200, 202, 204, 404 })
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("provisioningServiceName") String provisioningServiceName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/keys/{keyName}/listkeys")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
+        Mono<Response<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner>> listKeysForKeyName(
+            @HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("provisioningServiceName") String provisioningServiceName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Devices/provisioningServices")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
-        Mono<Response<ProvisioningServiceDescriptionListResult>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
-        Mono<Response<ProvisioningServiceDescriptionListResult>> listByResourceGroup(
-            @HostParam("$host") String endpoint, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/operationresults/{operationId}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
-        Mono<Response<AsyncOperationResultInner>> getOperationResult(@HostParam("$host") String endpoint,
-            @PathParam("operationId") String operationId, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("provisioningServiceName") String provisioningServiceName,
-            @QueryParam("asyncinfo") String asyncinfo, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/skus")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
-        Mono<Response<IotDpsSkuDefinitionListResult>> listValidSkus(@HostParam("$host") String endpoint,
-            @PathParam("provisioningServiceName") String provisioningServiceName,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.Devices/checkProvisioningServiceNameAvailability")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
-        Mono<Response<NameAvailabilityInfoInner>> checkProvisioningServiceNameAvailability(
-            @HostParam("$host") String endpoint, @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") OperationInputs arguments,
+            @PathParam("provisioningServiceName") String provisioningServiceName, @PathParam("keyName") String keyName,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -181,79 +171,96 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<SharedAccessSignatureAuthorizationRuleListResult>> listKeys(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("provisioningServiceName") String provisioningServiceName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/operationresults/{operationId}/getOperationResult")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
+        Mono<Response<AsyncOperationResultInner>> getOperationResult(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("provisioningServiceName") String provisioningServiceName,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @PathParam("operationId") String operationId, @QueryParam("asyncinfo") String asyncinfo,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/keys/{keyName}/listkeys")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
-        Mono<Response<SharedAccessSignatureAuthorizationRuleInner>> listKeysForKeyName(
-            @HostParam("$host") String endpoint, @PathParam("provisioningServiceName") String provisioningServiceName,
-            @PathParam("keyName") String keyName, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{resourceName}/privateLinkResources")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
-        Mono<Response<PrivateLinkResourcesInner>> listPrivateLinkResources(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("resourceName") String resourceName,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{resourceName}/privateLinkResources/{groupId}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
-        Mono<Response<GroupIdInformationInner>> getPrivateLinkResources(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("resourceName") String resourceName,
-            @PathParam("groupId") String groupId, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{resourceName}/privateEndpointConnections")
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/privateEndpointConnections")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<List<PrivateEndpointConnectionInner>>> listPrivateEndpointConnections(
             @HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("resourceName") String resourceName,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("provisioningServiceName") String provisioningServiceName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<PrivateEndpointConnectionInner>> getPrivateEndpointConnection(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("resourceName") String resourceName,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("provisioningServiceName") String provisioningServiceName,
             @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdatePrivateEndpointConnection(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("resourceName") String resourceName,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("provisioningServiceName") String provisioningServiceName,
             @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
             @BodyParam("application/json") PrivateEndpointConnectionInner privateEndpointConnection,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<Flux<ByteBuffer>>> deletePrivateEndpointConnection(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("resourceName") String resourceName,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("provisioningServiceName") String provisioningServiceName,
             @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
             @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/privateLinkResources")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
+        Mono<Response<PrivateLinkResourcesInner>> listPrivateLinkResources(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("provisioningServiceName") String provisioningServiceName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/privateLinkResources/{groupId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
+        Mono<Response<GroupIdInformationInner>> getPrivateLinkResources(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("provisioningServiceName") String provisioningServiceName, @PathParam("groupId") String groupId,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/skus")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
+        Mono<Response<IotDpsSkuDefinitionListResult>> listValidSkus(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("provisioningServiceName") String provisioningServiceName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -275,7 +282,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
-        Mono<Response<IotDpsSkuDefinitionListResult>> listValidSkusNext(
+        Mono<Response<SharedAccessSignatureAuthorizationRuleListResult>> listKeysNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -283,930 +290,142 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
-        Mono<Response<SharedAccessSignatureAuthorizationRuleListResult>> listKeysNext(
+        Mono<Response<IotDpsSkuDefinitionListResult>> listValidSkusNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Get the non-security related metadata of the provisioning service.
+     * Check if a provisioning service name is available.
      * 
-     * Get the metadata of the provisioning service without SAS keys.
+     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
+     * the name is usable.
      * 
-     * @param resourceGroupName Resource group name.
-     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param arguments The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata of the provisioning service without SAS keys along with {@link Response} on successful
-     * completion of {@link Mono}.
+     * @return description of name availability along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ProvisioningServiceDescriptionInner>>
-        getByResourceGroupWithResponseAsync(String resourceGroupName, String provisioningServiceName) {
+    private Mono<Response<NameAvailabilityInfoInner>>
+        checkProvisioningServiceNameAvailabilityWithResponseAsync(OperationInputs arguments) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        if (arguments == null) {
+            return Mono.error(new IllegalArgumentException("Parameter arguments is required and cannot be null."));
+        } else {
+            arguments.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), resourceGroupName,
-                this.client.getSubscriptionId(), provisioningServiceName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.checkProvisioningServiceNameAvailability(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), arguments, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Get the non-security related metadata of the provisioning service.
+     * Check if a provisioning service name is available.
      * 
-     * Get the metadata of the provisioning service without SAS keys.
+     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
+     * the name is usable.
      * 
-     * @param resourceGroupName Resource group name.
-     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param arguments The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata of the provisioning service without SAS keys along with {@link Response} on successful
-     * completion of {@link Mono}.
+     * @return description of name availability along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ProvisioningServiceDescriptionInner>>
-        getByResourceGroupWithResponseAsync(String resourceGroupName, String provisioningServiceName, Context context) {
+    private Mono<Response<NameAvailabilityInfoInner>>
+        checkProvisioningServiceNameAvailabilityWithResponseAsync(OperationInputs arguments, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        if (arguments == null) {
+            return Mono.error(new IllegalArgumentException("Parameter arguments is required and cannot be null."));
+        } else {
+            arguments.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getByResourceGroup(this.client.getEndpoint(), resourceGroupName, this.client.getSubscriptionId(),
-            provisioningServiceName, this.client.getApiVersion(), accept, context);
+        return service.checkProvisioningServiceNameAvailability(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), arguments, accept, context);
     }
 
     /**
-     * Get the non-security related metadata of the provisioning service.
+     * Check if a provisioning service name is available.
      * 
-     * Get the metadata of the provisioning service without SAS keys.
+     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
+     * the name is usable.
      * 
-     * @param resourceGroupName Resource group name.
-     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param arguments The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata of the provisioning service without SAS keys on successful completion of {@link Mono}.
+     * @return description of name availability on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProvisioningServiceDescriptionInner> getByResourceGroupAsync(String resourceGroupName,
-        String provisioningServiceName) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, provisioningServiceName)
+    private Mono<NameAvailabilityInfoInner> checkProvisioningServiceNameAvailabilityAsync(OperationInputs arguments) {
+        return checkProvisioningServiceNameAvailabilityWithResponseAsync(arguments)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get the non-security related metadata of the provisioning service.
+     * Check if a provisioning service name is available.
      * 
-     * Get the metadata of the provisioning service without SAS keys.
+     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
+     * the name is usable.
      * 
-     * @param resourceGroupName Resource group name.
-     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param arguments The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata of the provisioning service without SAS keys along with {@link Response}.
+     * @return description of name availability along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ProvisioningServiceDescriptionInner> getByResourceGroupWithResponse(String resourceGroupName,
-        String provisioningServiceName, Context context) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, provisioningServiceName, context).block();
+    public Response<NameAvailabilityInfoInner>
+        checkProvisioningServiceNameAvailabilityWithResponse(OperationInputs arguments, Context context) {
+        return checkProvisioningServiceNameAvailabilityWithResponseAsync(arguments, context).block();
     }
 
     /**
-     * Get the non-security related metadata of the provisioning service.
+     * Check if a provisioning service name is available.
      * 
-     * Get the metadata of the provisioning service without SAS keys.
+     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
+     * the name is usable.
      * 
-     * @param resourceGroupName Resource group name.
-     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param arguments The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata of the provisioning service without SAS keys.
+     * @return description of name availability.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ProvisioningServiceDescriptionInner getByResourceGroup(String resourceGroupName,
-        String provisioningServiceName) {
-        return getByResourceGroupWithResponse(resourceGroupName, provisioningServiceName, Context.NONE).getValue();
+    public NameAvailabilityInfoInner checkProvisioningServiceNameAvailability(OperationInputs arguments) {
+        return checkProvisioningServiceNameAvailabilityWithResponse(arguments, Context.NONE).getValue();
     }
 
     /**
-     * Create or update the metadata of the provisioning service.
-     * 
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param iotDpsDescription Description of the provisioning service to create or update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String provisioningServiceName, ProvisioningServiceDescriptionInner iotDpsDescription) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
-        }
-        if (iotDpsDescription == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter iotDpsDescription is required and cannot be null."));
-        } else {
-            iotDpsDescription.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, provisioningServiceName, this.client.getApiVersion(), iotDpsDescription, accept,
-                context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Create or update the metadata of the provisioning service.
-     * 
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param iotDpsDescription Description of the provisioning service to create or update.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String provisioningServiceName, ProvisioningServiceDescriptionInner iotDpsDescription, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
-        }
-        if (iotDpsDescription == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter iotDpsDescription is required and cannot be null."));
-        } else {
-            iotDpsDescription.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            provisioningServiceName, this.client.getApiVersion(), iotDpsDescription, accept, context);
-    }
-
-    /**
-     * Create or update the metadata of the provisioning service.
-     * 
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param iotDpsDescription Description of the provisioning service to create or update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the description of the provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
-        beginCreateOrUpdateAsync(String resourceGroupName, String provisioningServiceName,
-            ProvisioningServiceDescriptionInner iotDpsDescription) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, provisioningServiceName, iotDpsDescription);
-        return this.client.<ProvisioningServiceDescriptionInner, ProvisioningServiceDescriptionInner>getLroResult(mono,
-            this.client.getHttpPipeline(), ProvisioningServiceDescriptionInner.class,
-            ProvisioningServiceDescriptionInner.class, this.client.getContext());
-    }
-
-    /**
-     * Create or update the metadata of the provisioning service.
-     * 
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param iotDpsDescription Description of the provisioning service to create or update.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the description of the provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
-        beginCreateOrUpdateAsync(String resourceGroupName, String provisioningServiceName,
-            ProvisioningServiceDescriptionInner iotDpsDescription, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, provisioningServiceName, iotDpsDescription, context);
-        return this.client.<ProvisioningServiceDescriptionInner, ProvisioningServiceDescriptionInner>getLroResult(mono,
-            this.client.getHttpPipeline(), ProvisioningServiceDescriptionInner.class,
-            ProvisioningServiceDescriptionInner.class, context);
-    }
-
-    /**
-     * Create or update the metadata of the provisioning service.
-     * 
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param iotDpsDescription Description of the provisioning service to create or update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the description of the provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
-        beginCreateOrUpdate(String resourceGroupName, String provisioningServiceName,
-            ProvisioningServiceDescriptionInner iotDpsDescription) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription)
-            .getSyncPoller();
-    }
-
-    /**
-     * Create or update the metadata of the provisioning service.
-     * 
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param iotDpsDescription Description of the provisioning service to create or update.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the description of the provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
-        beginCreateOrUpdate(String resourceGroupName, String provisioningServiceName,
-            ProvisioningServiceDescriptionInner iotDpsDescription, Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription, context)
-            .getSyncPoller();
-    }
-
-    /**
-     * Create or update the metadata of the provisioning service.
-     * 
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param iotDpsDescription Description of the provisioning service to create or update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProvisioningServiceDescriptionInner> createOrUpdateAsync(String resourceGroupName,
-        String provisioningServiceName, ProvisioningServiceDescriptionInner iotDpsDescription) {
-        return beginCreateOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Create or update the metadata of the provisioning service.
-     * 
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param iotDpsDescription Description of the provisioning service to create or update.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProvisioningServiceDescriptionInner> createOrUpdateAsync(String resourceGroupName,
-        String provisioningServiceName, ProvisioningServiceDescriptionInner iotDpsDescription, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Create or update the metadata of the provisioning service.
-     * 
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param iotDpsDescription Description of the provisioning service to create or update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ProvisioningServiceDescriptionInner createOrUpdate(String resourceGroupName, String provisioningServiceName,
-        ProvisioningServiceDescriptionInner iotDpsDescription) {
-        return createOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription).block();
-    }
-
-    /**
-     * Create or update the metadata of the provisioning service.
-     * 
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param iotDpsDescription Description of the provisioning service to create or update.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ProvisioningServiceDescriptionInner createOrUpdate(String resourceGroupName, String provisioningServiceName,
-        ProvisioningServiceDescriptionInner iotDpsDescription, Context context) {
-        return createOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription, context).block();
-    }
-
-    /**
-     * Update an existing provisioning service's tags.
-     * 
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
-        String provisioningServiceName, TagsResource provisioningServiceTags) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
-        }
-        if (provisioningServiceTags == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceTags is required and cannot be null."));
-        } else {
-            provisioningServiceTags.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    provisioningServiceName, this.client.getApiVersion(), provisioningServiceTags, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Update an existing provisioning service's tags.
-     * 
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
-        String provisioningServiceName, TagsResource provisioningServiceTags, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
-        }
-        if (provisioningServiceTags == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceTags is required and cannot be null."));
-        } else {
-            provisioningServiceTags.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            provisioningServiceName, this.client.getApiVersion(), provisioningServiceTags, accept, context);
-    }
-
-    /**
-     * Update an existing provisioning service's tags.
-     * 
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the description of the provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
-        beginUpdateAsync(String resourceGroupName, String provisioningServiceName,
-            TagsResource provisioningServiceTags) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags);
-        return this.client.<ProvisioningServiceDescriptionInner, ProvisioningServiceDescriptionInner>getLroResult(mono,
-            this.client.getHttpPipeline(), ProvisioningServiceDescriptionInner.class,
-            ProvisioningServiceDescriptionInner.class, this.client.getContext());
-    }
-
-    /**
-     * Update an existing provisioning service's tags.
-     * 
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the description of the provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
-        beginUpdateAsync(String resourceGroupName, String provisioningServiceName, TagsResource provisioningServiceTags,
-            Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags, context);
-        return this.client.<ProvisioningServiceDescriptionInner, ProvisioningServiceDescriptionInner>getLroResult(mono,
-            this.client.getHttpPipeline(), ProvisioningServiceDescriptionInner.class,
-            ProvisioningServiceDescriptionInner.class, context);
-    }
-
-    /**
-     * Update an existing provisioning service's tags.
-     * 
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the description of the provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
-        beginUpdate(String resourceGroupName, String provisioningServiceName, TagsResource provisioningServiceTags) {
-        return this.beginUpdateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags)
-            .getSyncPoller();
-    }
-
-    /**
-     * Update an existing provisioning service's tags.
-     * 
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the description of the provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner> beginUpdate(
-        String resourceGroupName, String provisioningServiceName, TagsResource provisioningServiceTags,
-        Context context) {
-        return this.beginUpdateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags, context)
-            .getSyncPoller();
-    }
-
-    /**
-     * Update an existing provisioning service's tags.
-     * 
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProvisioningServiceDescriptionInner> updateAsync(String resourceGroupName,
-        String provisioningServiceName, TagsResource provisioningServiceTags) {
-        return beginUpdateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Update an existing provisioning service's tags.
-     * 
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProvisioningServiceDescriptionInner> updateAsync(String resourceGroupName,
-        String provisioningServiceName, TagsResource provisioningServiceTags, Context context) {
-        return beginUpdateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Update an existing provisioning service's tags.
-     * 
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ProvisioningServiceDescriptionInner update(String resourceGroupName, String provisioningServiceName,
-        TagsResource provisioningServiceTags) {
-        return updateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags).block();
-    }
-
-    /**
-     * Update an existing provisioning service's tags.
-     * 
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to create or update.
-     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ProvisioningServiceDescriptionInner update(String resourceGroupName, String provisioningServiceName,
-        TagsResource provisioningServiceTags, Context context) {
-        return updateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags, context).block();
-    }
-
-    /**
-     * Delete the Provisioning Service
-     * 
-     * Deletes the Provisioning Service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to delete.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String provisioningServiceName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), resourceGroupName,
-                this.client.getSubscriptionId(), provisioningServiceName, this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Delete the Provisioning Service
-     * 
-     * Deletes the Provisioning Service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to delete.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String provisioningServiceName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), resourceGroupName, this.client.getSubscriptionId(),
-            provisioningServiceName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Delete the Provisioning Service
-     * 
-     * Deletes the Provisioning Service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to delete.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName,
-        String provisioningServiceName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, provisioningServiceName);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Delete the Provisioning Service
-     * 
-     * Deletes the Provisioning Service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to delete.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName,
-        String provisioningServiceName, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, provisioningServiceName, context);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            context);
-    }
-
-    /**
-     * Delete the Provisioning Service
-     * 
-     * Deletes the Provisioning Service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to delete.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String provisioningServiceName) {
-        return this.beginDeleteAsync(resourceGroupName, provisioningServiceName).getSyncPoller();
-    }
-
-    /**
-     * Delete the Provisioning Service
-     * 
-     * Deletes the Provisioning Service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to delete.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String provisioningServiceName,
-        Context context) {
-        return this.beginDeleteAsync(resourceGroupName, provisioningServiceName, context).getSyncPoller();
-    }
-
-    /**
-     * Delete the Provisioning Service
-     * 
-     * Deletes the Provisioning Service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to delete.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String provisioningServiceName) {
-        return beginDeleteAsync(resourceGroupName, provisioningServiceName).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Delete the Provisioning Service
-     * 
-     * Deletes the Provisioning Service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to delete.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String provisioningServiceName, Context context) {
-        return beginDeleteAsync(resourceGroupName, provisioningServiceName, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Delete the Provisioning Service
-     * 
-     * Deletes the Provisioning Service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to delete.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String provisioningServiceName) {
-        deleteAsync(resourceGroupName, provisioningServiceName).block();
-    }
-
-    /**
-     * Delete the Provisioning Service
-     * 
-     * Deletes the Provisioning Service.
-     * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service to delete.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String provisioningServiceName, Context context) {
-        deleteAsync(resourceGroupName, provisioningServiceName, context).block();
-    }
-
-    /**
-     * Get all the provisioning services in a subscription.
-     * 
      * List all the provisioning services for a given subscription id.
      * 
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of provisioning service descriptions along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a ProvisioningServiceDescription list operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProvisioningServiceDescriptionInner>> listSinglePageAsync() {
@@ -1220,24 +439,22 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
             .<PagedResponse<ProvisioningServiceDescriptionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Get all the provisioning services in a subscription.
-     * 
      * List all the provisioning services for a given subscription id.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of provisioning service descriptions along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a ProvisioningServiceDescription list operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProvisioningServiceDescriptionInner>> listSinglePageAsync(Context context) {
@@ -1252,20 +469,19 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
                 context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * Get all the provisioning services in a subscription.
-     * 
      * List all the provisioning services for a given subscription id.
      * 
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of provisioning service descriptions as paginated response with {@link PagedFlux}.
+     * @return the response of a ProvisioningServiceDescription list operation as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProvisioningServiceDescriptionInner> listAsync() {
@@ -1274,15 +490,14 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get all the provisioning services in a subscription.
-     * 
      * List all the provisioning services for a given subscription id.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of provisioning service descriptions as paginated response with {@link PagedFlux}.
+     * @return the response of a ProvisioningServiceDescription list operation as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProvisioningServiceDescriptionInner> listAsync(Context context) {
@@ -1291,13 +506,12 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get all the provisioning services in a subscription.
-     * 
      * List all the provisioning services for a given subscription id.
      * 
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of provisioning service descriptions as paginated response with {@link PagedIterable}.
+     * @return the response of a ProvisioningServiceDescription list operation as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ProvisioningServiceDescriptionInner> list() {
@@ -1305,15 +519,14 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get all the provisioning services in a subscription.
-     * 
      * List all the provisioning services for a given subscription id.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of provisioning service descriptions as paginated response with {@link PagedIterable}.
+     * @return the response of a ProvisioningServiceDescription list operation as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ProvisioningServiceDescriptionInner> list(Context context) {
@@ -1323,7 +536,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     /**
      * Get a list of all provisioning services in the given resource group.
      * 
-     * @param resourceGroupName Resource group identifier.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1347,8 +560,8 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, accept, context))
             .<PagedResponse<ProvisioningServiceDescriptionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1357,7 +570,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     /**
      * Get a list of all provisioning services in the given resource group.
      * 
-     * @param resourceGroupName Resource group identifier.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -1383,8 +596,8 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                this.client.getApiVersion(), accept, context)
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -1392,7 +605,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     /**
      * Get a list of all provisioning services in the given resource group.
      * 
-     * @param resourceGroupName Resource group identifier.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1408,7 +621,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     /**
      * Get a list of all provisioning services in the given resource group.
      * 
-     * @param resourceGroupName Resource group identifier.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -1426,7 +639,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     /**
      * Get a list of all provisioning services in the given resource group.
      * 
-     * @param resourceGroupName Resource group identifier.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1441,7 +654,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     /**
      * Get a list of all provisioning services in the given resource group.
      * 
-     * @param resourceGroupName Resource group identifier.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -1456,28 +669,22 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Gets the status of a long running operation, such as create, update or delete a provisioning service.
+     * Get the metadata of the provisioning service without SAS keys.
      * 
-     * @param operationId Operation id corresponding to long running operation. Use this to poll for the status.
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service that the operation is running on.
-     * @param asyncinfo Async header used to poll on the status of the operation, obtained while creating the long
-     * running operation.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of a long running operation, such as create, update or delete a provisioning service along
-     * with {@link Response} on successful completion of {@link Mono}.
+     * @return the metadata of the provisioning service without SAS keys along with {@link Response} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AsyncOperationResultInner>> getOperationResultWithResponseAsync(String operationId,
-        String resourceGroupName, String provisioningServiceName, String asyncinfo) {
+    private Mono<Response<ProvisioningServiceDescriptionInner>>
+        getByResourceGroupWithResponseAsync(String resourceGroupName, String provisioningServiceName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (operationId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
@@ -1491,23 +698,1154 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
         }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the metadata of the provisioning service without SAS keys.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata of the provisioning service without SAS keys along with {@link Response} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ProvisioningServiceDescriptionInner>>
+        getByResourceGroupWithResponseAsync(String resourceGroupName, String provisioningServiceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, accept, context);
+    }
+
+    /**
+     * Get the metadata of the provisioning service without SAS keys.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata of the provisioning service without SAS keys on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ProvisioningServiceDescriptionInner> getByResourceGroupAsync(String resourceGroupName,
+        String provisioningServiceName) {
+        return getByResourceGroupWithResponseAsync(resourceGroupName, provisioningServiceName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get the metadata of the provisioning service without SAS keys.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata of the provisioning service without SAS keys along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ProvisioningServiceDescriptionInner> getByResourceGroupWithResponse(String resourceGroupName,
+        String provisioningServiceName, Context context) {
+        return getByResourceGroupWithResponseAsync(resourceGroupName, provisioningServiceName, context).block();
+    }
+
+    /**
+     * Get the metadata of the provisioning service without SAS keys.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata of the provisioning service without SAS keys.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ProvisioningServiceDescriptionInner getByResourceGroup(String resourceGroupName,
+        String provisioningServiceName) {
+        return getByResourceGroupWithResponse(resourceGroupName, provisioningServiceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
+     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
+     * body to update the provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param iotDpsDescription Description of the provisioning service to create or update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the description of the provisioning service along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName, ProvisioningServiceDescriptionInner iotDpsDescription) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        if (iotDpsDescription == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter iotDpsDescription is required and cannot be null."));
+        } else {
+            iotDpsDescription.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, iotDpsDescription, accept,
+                context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
+     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
+     * body to update the provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param iotDpsDescription Description of the provisioning service to create or update.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the description of the provisioning service along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName, ProvisioningServiceDescriptionInner iotDpsDescription, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        if (iotDpsDescription == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter iotDpsDescription is required and cannot be null."));
+        } else {
+            iotDpsDescription.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, iotDpsDescription, accept,
+            context);
+    }
+
+    /**
+     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
+     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
+     * body to update the provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param iotDpsDescription Description of the provisioning service to create or update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the description of the provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
+        beginCreateOrUpdateAsync(String resourceGroupName, String provisioningServiceName,
+            ProvisioningServiceDescriptionInner iotDpsDescription) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, provisioningServiceName, iotDpsDescription);
+        return this.client.<ProvisioningServiceDescriptionInner, ProvisioningServiceDescriptionInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ProvisioningServiceDescriptionInner.class,
+            ProvisioningServiceDescriptionInner.class, this.client.getContext());
+    }
+
+    /**
+     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
+     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
+     * body to update the provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param iotDpsDescription Description of the provisioning service to create or update.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the description of the provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
+        beginCreateOrUpdateAsync(String resourceGroupName, String provisioningServiceName,
+            ProvisioningServiceDescriptionInner iotDpsDescription, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, provisioningServiceName, iotDpsDescription, context);
+        return this.client.<ProvisioningServiceDescriptionInner, ProvisioningServiceDescriptionInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ProvisioningServiceDescriptionInner.class,
+            ProvisioningServiceDescriptionInner.class, context);
+    }
+
+    /**
+     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
+     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
+     * body to update the provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param iotDpsDescription Description of the provisioning service to create or update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the description of the provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
+        beginCreateOrUpdate(String resourceGroupName, String provisioningServiceName,
+            ProvisioningServiceDescriptionInner iotDpsDescription) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription)
+            .getSyncPoller();
+    }
+
+    /**
+     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
+     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
+     * body to update the provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param iotDpsDescription Description of the provisioning service to create or update.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the description of the provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
+        beginCreateOrUpdate(String resourceGroupName, String provisioningServiceName,
+            ProvisioningServiceDescriptionInner iotDpsDescription, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
+     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
+     * body to update the provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param iotDpsDescription Description of the provisioning service to create or update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the description of the provisioning service on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ProvisioningServiceDescriptionInner> createOrUpdateAsync(String resourceGroupName,
+        String provisioningServiceName, ProvisioningServiceDescriptionInner iotDpsDescription) {
+        return beginCreateOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
+     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
+     * body to update the provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param iotDpsDescription Description of the provisioning service to create or update.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the description of the provisioning service on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ProvisioningServiceDescriptionInner> createOrUpdateAsync(String resourceGroupName,
+        String provisioningServiceName, ProvisioningServiceDescriptionInner iotDpsDescription, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
+     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
+     * body to update the provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param iotDpsDescription Description of the provisioning service to create or update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the description of the provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ProvisioningServiceDescriptionInner createOrUpdate(String resourceGroupName, String provisioningServiceName,
+        ProvisioningServiceDescriptionInner iotDpsDescription) {
+        return createOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription).block();
+    }
+
+    /**
+     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
+     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
+     * body to update the provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param iotDpsDescription Description of the provisioning service to create or update.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the description of the provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ProvisioningServiceDescriptionInner createOrUpdate(String resourceGroupName, String provisioningServiceName,
+        ProvisioningServiceDescriptionInner iotDpsDescription, Context context) {
+        return createOrUpdateAsync(resourceGroupName, provisioningServiceName, iotDpsDescription, context).block();
+    }
+
+    /**
+     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the description of the provisioning service along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName, TagsResource provisioningServiceTags) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        if (provisioningServiceTags == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceTags is required and cannot be null."));
+        } else {
+            provisioningServiceTags.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, provisioningServiceTags,
+                accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the description of the provisioning service along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName, TagsResource provisioningServiceTags, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        if (provisioningServiceTags == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceTags is required and cannot be null."));
+        } else {
+            provisioningServiceTags.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, provisioningServiceName, provisioningServiceTags, accept, context);
+    }
+
+    /**
+     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the description of the provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
+        beginUpdateAsync(String resourceGroupName, String provisioningServiceName,
+            TagsResource provisioningServiceTags) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags);
+        return this.client.<ProvisioningServiceDescriptionInner, ProvisioningServiceDescriptionInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ProvisioningServiceDescriptionInner.class,
+            ProvisioningServiceDescriptionInner.class, this.client.getContext());
+    }
+
+    /**
+     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of the description of the provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
+        beginUpdateAsync(String resourceGroupName, String provisioningServiceName, TagsResource provisioningServiceTags,
+            Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags, context);
+        return this.client.<ProvisioningServiceDescriptionInner, ProvisioningServiceDescriptionInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ProvisioningServiceDescriptionInner.class,
+            ProvisioningServiceDescriptionInner.class, context);
+    }
+
+    /**
+     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the description of the provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
+        beginUpdate(String resourceGroupName, String provisioningServiceName, TagsResource provisioningServiceTags) {
+        return this.beginUpdateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags)
+            .getSyncPoller();
+    }
+
+    /**
+     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the description of the provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner> beginUpdate(
+        String resourceGroupName, String provisioningServiceName, TagsResource provisioningServiceTags,
+        Context context) {
+        return this.beginUpdateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the description of the provisioning service on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ProvisioningServiceDescriptionInner> updateAsync(String resourceGroupName,
+        String provisioningServiceName, TagsResource provisioningServiceTags) {
+        return beginUpdateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the description of the provisioning service on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ProvisioningServiceDescriptionInner> updateAsync(String resourceGroupName,
+        String provisioningServiceName, TagsResource provisioningServiceTags, Context context) {
+        return beginUpdateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the description of the provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ProvisioningServiceDescriptionInner update(String resourceGroupName, String provisioningServiceName,
+        TagsResource provisioningServiceTags) {
+        return updateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags).block();
+    }
+
+    /**
+     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param provisioningServiceTags Updated tag information to set into the provisioning service instance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the description of the provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ProvisioningServiceDescriptionInner update(String resourceGroupName, String provisioningServiceName,
+        TagsResource provisioningServiceTags, Context context) {
+        return updateAsync(resourceGroupName, provisioningServiceName, provisioningServiceTags, context).block();
+    }
+
+    /**
+     * Deletes the Provisioning Service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Deletes the Provisioning Service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, provisioningServiceName, accept, context);
+    }
+
+    /**
+     * Deletes the Provisioning Service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName,
+        String provisioningServiceName) {
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, provisioningServiceName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Deletes the Provisioning Service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName,
+        String provisioningServiceName, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, provisioningServiceName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
+    }
+
+    /**
+     * Deletes the Provisioning Service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String provisioningServiceName) {
+        return this.beginDeleteAsync(resourceGroupName, provisioningServiceName).getSyncPoller();
+    }
+
+    /**
+     * Deletes the Provisioning Service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String provisioningServiceName,
+        Context context) {
+        return this.beginDeleteAsync(resourceGroupName, provisioningServiceName, context).getSyncPoller();
+    }
+
+    /**
+     * Deletes the Provisioning Service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String provisioningServiceName) {
+        return beginDeleteAsync(resourceGroupName, provisioningServiceName).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Deletes the Provisioning Service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String provisioningServiceName, Context context) {
+        return beginDeleteAsync(resourceGroupName, provisioningServiceName, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Deletes the Provisioning Service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String provisioningServiceName) {
+        deleteAsync(resourceGroupName, provisioningServiceName).block();
+    }
+
+    /**
+     * Deletes the Provisioning Service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String provisioningServiceName, Context context) {
+        deleteAsync(resourceGroupName, provisioningServiceName, context).block();
+    }
+
+    /**
+     * List primary and secondary keys for a specific key name.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param keyName Logical key name to get key-values for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return description of the shared access key along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner>>
+        listKeysForKeyNameWithResponseAsync(String resourceGroupName, String provisioningServiceName, String keyName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        if (keyName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter keyName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listKeysForKeyName(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, keyName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List primary and secondary keys for a specific key name.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param keyName Logical key name to get key-values for.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return description of the shared access key along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner>>
+        listKeysForKeyNameWithResponseAsync(String resourceGroupName, String provisioningServiceName, String keyName,
+            Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        if (keyName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter keyName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listKeysForKeyName(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, keyName, accept, context);
+    }
+
+    /**
+     * List primary and secondary keys for a specific key name.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param keyName Logical key name to get key-values for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return description of the shared access key on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner>
+        listKeysForKeyNameAsync(String resourceGroupName, String provisioningServiceName, String keyName) {
+        return listKeysForKeyNameWithResponseAsync(resourceGroupName, provisioningServiceName, keyName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * List primary and secondary keys for a specific key name.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param keyName Logical key name to get key-values for.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return description of the shared access key along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner> listKeysForKeyNameWithResponse(
+        String resourceGroupName, String provisioningServiceName, String keyName, Context context) {
+        return listKeysForKeyNameWithResponseAsync(resourceGroupName, provisioningServiceName, keyName, context)
+            .block();
+    }
+
+    /**
+     * List primary and secondary keys for a specific key name.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param keyName Logical key name to get key-values for.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return description of the shared access key.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner
+        listKeysForKeyName(String resourceGroupName, String provisioningServiceName, String keyName) {
+        return listKeysForKeyNameWithResponse(resourceGroupName, provisioningServiceName, keyName, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * List the primary and secondary keys for a provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of shared access keys along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner>>
+        listKeysSinglePageAsync(String resourceGroupName, String provisioningServiceName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listKeys(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, accept, context))
+            .<PagedResponse<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner>>map(
+                res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                    res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List the primary and secondary keys for a provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of shared access keys along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner>>
+        listKeysSinglePageAsync(String resourceGroupName, String provisioningServiceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listKeys(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, provisioningServiceName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * List the primary and secondary keys for a provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of shared access keys as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner>
+        listKeysAsync(String resourceGroupName, String provisioningServiceName) {
+        return new PagedFlux<>(() -> listKeysSinglePageAsync(resourceGroupName, provisioningServiceName),
+            nextLink -> listKeysNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List the primary and secondary keys for a provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of shared access keys as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner>
+        listKeysAsync(String resourceGroupName, String provisioningServiceName, Context context) {
+        return new PagedFlux<>(() -> listKeysSinglePageAsync(resourceGroupName, provisioningServiceName, context),
+            nextLink -> listKeysNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * List the primary and secondary keys for a provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of shared access keys as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner>
+        listKeys(String resourceGroupName, String provisioningServiceName) {
+        return new PagedIterable<>(listKeysAsync(resourceGroupName, provisioningServiceName));
+    }
+
+    /**
+     * List the primary and secondary keys for a provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of shared access keys as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner>
+        listKeys(String resourceGroupName, String provisioningServiceName, Context context) {
+        return new PagedIterable<>(listKeysAsync(resourceGroupName, provisioningServiceName, context));
+    }
+
+    /**
+     * Gets the status of a long running operation, such as create, update or delete a provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param operationId Operation id corresponding to long running operation. Use this to poll for the status.
+     * @param asyncinfo Async header used to poll on the status of the operation, obtained while creating the long
+     * running operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the status of a long running operation, such as create, update or delete a provisioning service along
+     * with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<AsyncOperationResultInner>> getOperationResultWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName, String operationId, String asyncinfo) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        if (operationId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
+        }
         if (asyncinfo == null) {
             return Mono.error(new IllegalArgumentException("Parameter asyncinfo is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getOperationResult(this.client.getEndpoint(), operationId,
-                this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, asyncinfo,
-                this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.getOperationResult(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, operationId, asyncinfo,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets the status of a long running operation, such as create, update or delete a provisioning service.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param operationId Operation id corresponding to long running operation. Use this to poll for the status.
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service that the operation is running on.
      * @param asyncinfo Async header used to poll on the status of the operation, obtained while creating the long
      * running operation.
      * @param context The context to associate with this operation.
@@ -1518,14 +1856,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      * with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AsyncOperationResultInner>> getOperationResultWithResponseAsync(String operationId,
-        String resourceGroupName, String provisioningServiceName, String asyncinfo, Context context) {
+    private Mono<Response<AsyncOperationResultInner>> getOperationResultWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName, String operationId, String asyncinfo, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (operationId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
@@ -1539,21 +1874,25 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
         }
+        if (operationId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
+        }
         if (asyncinfo == null) {
             return Mono.error(new IllegalArgumentException("Parameter asyncinfo is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getOperationResult(this.client.getEndpoint(), operationId, this.client.getSubscriptionId(),
-            resourceGroupName, provisioningServiceName, asyncinfo, this.client.getApiVersion(), accept, context);
+        return service.getOperationResult(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, operationId, asyncinfo, accept,
+            context);
     }
 
     /**
      * Gets the status of a long running operation, such as create, update or delete a provisioning service.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param operationId Operation id corresponding to long running operation. Use this to poll for the status.
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service that the operation is running on.
      * @param asyncinfo Async header used to poll on the status of the operation, obtained while creating the long
      * running operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1563,18 +1902,18 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AsyncOperationResultInner> getOperationResultAsync(String operationId, String resourceGroupName,
-        String provisioningServiceName, String asyncinfo) {
-        return getOperationResultWithResponseAsync(operationId, resourceGroupName, provisioningServiceName, asyncinfo)
+    private Mono<AsyncOperationResultInner> getOperationResultAsync(String resourceGroupName,
+        String provisioningServiceName, String operationId, String asyncinfo) {
+        return getOperationResultWithResponseAsync(resourceGroupName, provisioningServiceName, operationId, asyncinfo)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Gets the status of a long running operation, such as create, update or delete a provisioning service.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param operationId Operation id corresponding to long running operation. Use this to poll for the status.
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service that the operation is running on.
      * @param asyncinfo Async header used to poll on the status of the operation, obtained while creating the long
      * running operation.
      * @param context The context to associate with this operation.
@@ -1585,18 +1924,18 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      * with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<AsyncOperationResultInner> getOperationResultWithResponse(String operationId,
-        String resourceGroupName, String provisioningServiceName, String asyncinfo, Context context) {
-        return getOperationResultWithResponseAsync(operationId, resourceGroupName, provisioningServiceName, asyncinfo,
+    public Response<AsyncOperationResultInner> getOperationResultWithResponse(String resourceGroupName,
+        String provisioningServiceName, String operationId, String asyncinfo, Context context) {
+        return getOperationResultWithResponseAsync(resourceGroupName, provisioningServiceName, operationId, asyncinfo,
             context).block();
     }
 
     /**
      * Gets the status of a long running operation, such as create, update or delete a provisioning service.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param operationId Operation id corresponding to long running operation. Use this to poll for the status.
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of provisioning service that the operation is running on.
      * @param asyncinfo Async header used to poll on the status of the operation, obtained while creating the long
      * running operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1605,901 +1944,26 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      * @return the status of a long running operation, such as create, update or delete a provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AsyncOperationResultInner getOperationResult(String operationId, String resourceGroupName,
-        String provisioningServiceName, String asyncinfo) {
-        return getOperationResultWithResponse(operationId, resourceGroupName, provisioningServiceName, asyncinfo,
+    public AsyncOperationResultInner getOperationResult(String resourceGroupName, String provisioningServiceName,
+        String operationId, String asyncinfo) {
+        return getOperationResultWithResponse(resourceGroupName, provisioningServiceName, operationId, asyncinfo,
             Context.NONE).getValue();
     }
 
     /**
-     * Get the list of valid SKUs for a provisioning service.
-     * 
-     * Gets the list of valid SKUs and tiers for a provisioning service.
-     * 
-     * @param provisioningServiceName Name of provisioning service.
-     * @param resourceGroupName Name of resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of valid SKUs and tiers for a provisioning service along with {@link PagedResponse} on
-     * successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<IotDpsSkuDefinitionInner>> listValidSkusSinglePageAsync(String provisioningServiceName,
-        String resourceGroupName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listValidSkus(this.client.getEndpoint(), provisioningServiceName,
-                this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<IotDpsSkuDefinitionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the list of valid SKUs for a provisioning service.
-     * 
-     * Gets the list of valid SKUs and tiers for a provisioning service.
-     * 
-     * @param provisioningServiceName Name of provisioning service.
-     * @param resourceGroupName Name of resource group.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of valid SKUs and tiers for a provisioning service along with {@link PagedResponse} on
-     * successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<IotDpsSkuDefinitionInner>> listValidSkusSinglePageAsync(String provisioningServiceName,
-        String resourceGroupName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listValidSkus(this.client.getEndpoint(), provisioningServiceName, this.client.getSubscriptionId(),
-                resourceGroupName, this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Get the list of valid SKUs for a provisioning service.
-     * 
-     * Gets the list of valid SKUs and tiers for a provisioning service.
-     * 
-     * @param provisioningServiceName Name of provisioning service.
-     * @param resourceGroupName Name of resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of valid SKUs and tiers for a provisioning service as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<IotDpsSkuDefinitionInner> listValidSkusAsync(String provisioningServiceName,
-        String resourceGroupName) {
-        return new PagedFlux<>(() -> listValidSkusSinglePageAsync(provisioningServiceName, resourceGroupName),
-            nextLink -> listValidSkusNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Get the list of valid SKUs for a provisioning service.
-     * 
-     * Gets the list of valid SKUs and tiers for a provisioning service.
-     * 
-     * @param provisioningServiceName Name of provisioning service.
-     * @param resourceGroupName Name of resource group.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of valid SKUs and tiers for a provisioning service as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<IotDpsSkuDefinitionInner> listValidSkusAsync(String provisioningServiceName,
-        String resourceGroupName, Context context) {
-        return new PagedFlux<>(() -> listValidSkusSinglePageAsync(provisioningServiceName, resourceGroupName, context),
-            nextLink -> listValidSkusNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Get the list of valid SKUs for a provisioning service.
-     * 
-     * Gets the list of valid SKUs and tiers for a provisioning service.
-     * 
-     * @param provisioningServiceName Name of provisioning service.
-     * @param resourceGroupName Name of resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of valid SKUs and tiers for a provisioning service as paginated response with
-     * {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<IotDpsSkuDefinitionInner> listValidSkus(String provisioningServiceName,
-        String resourceGroupName) {
-        return new PagedIterable<>(listValidSkusAsync(provisioningServiceName, resourceGroupName));
-    }
-
-    /**
-     * Get the list of valid SKUs for a provisioning service.
-     * 
-     * Gets the list of valid SKUs and tiers for a provisioning service.
-     * 
-     * @param provisioningServiceName Name of provisioning service.
-     * @param resourceGroupName Name of resource group.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of valid SKUs and tiers for a provisioning service as paginated response with
-     * {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<IotDpsSkuDefinitionInner> listValidSkus(String provisioningServiceName,
-        String resourceGroupName, Context context) {
-        return new PagedIterable<>(listValidSkusAsync(provisioningServiceName, resourceGroupName, context));
-    }
-
-    /**
-     * Check if a provisioning service name is available.
-     * 
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
-     * 
-     * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
-     * to check.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of name availability along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NameAvailabilityInfoInner>>
-        checkProvisioningServiceNameAvailabilityWithResponseAsync(OperationInputs arguments) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (arguments == null) {
-            return Mono.error(new IllegalArgumentException("Parameter arguments is required and cannot be null."));
-        } else {
-            arguments.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.checkProvisioningServiceNameAvailability(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), this.client.getApiVersion(), arguments, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Check if a provisioning service name is available.
-     * 
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
-     * 
-     * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
-     * to check.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of name availability along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NameAvailabilityInfoInner>>
-        checkProvisioningServiceNameAvailabilityWithResponseAsync(OperationInputs arguments, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (arguments == null) {
-            return Mono.error(new IllegalArgumentException("Parameter arguments is required and cannot be null."));
-        } else {
-            arguments.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.checkProvisioningServiceNameAvailability(this.client.getEndpoint(),
-            this.client.getSubscriptionId(), this.client.getApiVersion(), arguments, accept, context);
-    }
-
-    /**
-     * Check if a provisioning service name is available.
-     * 
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
-     * 
-     * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
-     * to check.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of name availability on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NameAvailabilityInfoInner> checkProvisioningServiceNameAvailabilityAsync(OperationInputs arguments) {
-        return checkProvisioningServiceNameAvailabilityWithResponseAsync(arguments)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Check if a provisioning service name is available.
-     * 
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
-     * 
-     * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
-     * to check.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of name availability along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<NameAvailabilityInfoInner>
-        checkProvisioningServiceNameAvailabilityWithResponse(OperationInputs arguments, Context context) {
-        return checkProvisioningServiceNameAvailabilityWithResponseAsync(arguments, context).block();
-    }
-
-    /**
-     * Check if a provisioning service name is available.
-     * 
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
-     * 
-     * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
-     * to check.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of name availability.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public NameAvailabilityInfoInner checkProvisioningServiceNameAvailability(OperationInputs arguments) {
-        return checkProvisioningServiceNameAvailabilityWithResponse(arguments, Context.NONE).getValue();
-    }
-
-    /**
-     * Get the security metadata for a provisioning service.
-     * 
-     * List the primary and secondary keys for a provisioning service.
-     * 
-     * @param provisioningServiceName The provisioning service name to get the shared access keys for.
-     * @param resourceGroupName resource group name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of shared access keys along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SharedAccessSignatureAuthorizationRuleInner>>
-        listKeysSinglePageAsync(String provisioningServiceName, String resourceGroupName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listKeys(this.client.getEndpoint(), provisioningServiceName,
-                this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<SharedAccessSignatureAuthorizationRuleInner>>map(
-                res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                    res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the security metadata for a provisioning service.
-     * 
-     * List the primary and secondary keys for a provisioning service.
-     * 
-     * @param provisioningServiceName The provisioning service name to get the shared access keys for.
-     * @param resourceGroupName resource group name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of shared access keys along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SharedAccessSignatureAuthorizationRuleInner>>
-        listKeysSinglePageAsync(String provisioningServiceName, String resourceGroupName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listKeys(this.client.getEndpoint(), provisioningServiceName, this.client.getSubscriptionId(),
-                resourceGroupName, this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Get the security metadata for a provisioning service.
-     * 
-     * List the primary and secondary keys for a provisioning service.
-     * 
-     * @param provisioningServiceName The provisioning service name to get the shared access keys for.
-     * @param resourceGroupName resource group name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of shared access keys as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SharedAccessSignatureAuthorizationRuleInner> listKeysAsync(String provisioningServiceName,
-        String resourceGroupName) {
-        return new PagedFlux<>(() -> listKeysSinglePageAsync(provisioningServiceName, resourceGroupName),
-            nextLink -> listKeysNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Get the security metadata for a provisioning service.
-     * 
-     * List the primary and secondary keys for a provisioning service.
-     * 
-     * @param provisioningServiceName The provisioning service name to get the shared access keys for.
-     * @param resourceGroupName resource group name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of shared access keys as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SharedAccessSignatureAuthorizationRuleInner> listKeysAsync(String provisioningServiceName,
-        String resourceGroupName, Context context) {
-        return new PagedFlux<>(() -> listKeysSinglePageAsync(provisioningServiceName, resourceGroupName, context),
-            nextLink -> listKeysNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Get the security metadata for a provisioning service.
-     * 
-     * List the primary and secondary keys for a provisioning service.
-     * 
-     * @param provisioningServiceName The provisioning service name to get the shared access keys for.
-     * @param resourceGroupName resource group name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of shared access keys as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SharedAccessSignatureAuthorizationRuleInner> listKeys(String provisioningServiceName,
-        String resourceGroupName) {
-        return new PagedIterable<>(listKeysAsync(provisioningServiceName, resourceGroupName));
-    }
-
-    /**
-     * Get the security metadata for a provisioning service.
-     * 
-     * List the primary and secondary keys for a provisioning service.
-     * 
-     * @param provisioningServiceName The provisioning service name to get the shared access keys for.
-     * @param resourceGroupName resource group name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of shared access keys as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SharedAccessSignatureAuthorizationRuleInner> listKeys(String provisioningServiceName,
-        String resourceGroupName, Context context) {
-        return new PagedIterable<>(listKeysAsync(provisioningServiceName, resourceGroupName, context));
-    }
-
-    /**
-     * Get a shared access policy by name from a provisioning service.
-     * 
-     * List primary and secondary keys for a specific key name.
-     * 
-     * @param provisioningServiceName Name of the provisioning service.
-     * @param keyName Logical key name to get key-values for.
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the shared access key along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SharedAccessSignatureAuthorizationRuleInner>>
-        listKeysForKeyNameWithResponseAsync(String provisioningServiceName, String keyName, String resourceGroupName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
-        }
-        if (keyName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter keyName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.listKeysForKeyName(this.client.getEndpoint(), provisioningServiceName, keyName,
-                    this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get a shared access policy by name from a provisioning service.
-     * 
-     * List primary and secondary keys for a specific key name.
-     * 
-     * @param provisioningServiceName Name of the provisioning service.
-     * @param keyName Logical key name to get key-values for.
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the shared access key along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SharedAccessSignatureAuthorizationRuleInner>> listKeysForKeyNameWithResponseAsync(
-        String provisioningServiceName, String keyName, String resourceGroupName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
-        }
-        if (keyName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter keyName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listKeysForKeyName(this.client.getEndpoint(), provisioningServiceName, keyName,
-            this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Get a shared access policy by name from a provisioning service.
-     * 
-     * List primary and secondary keys for a specific key name.
-     * 
-     * @param provisioningServiceName Name of the provisioning service.
-     * @param keyName Logical key name to get key-values for.
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the shared access key on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SharedAccessSignatureAuthorizationRuleInner> listKeysForKeyNameAsync(String provisioningServiceName,
-        String keyName, String resourceGroupName) {
-        return listKeysForKeyNameWithResponseAsync(provisioningServiceName, keyName, resourceGroupName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Get a shared access policy by name from a provisioning service.
-     * 
-     * List primary and secondary keys for a specific key name.
-     * 
-     * @param provisioningServiceName Name of the provisioning service.
-     * @param keyName Logical key name to get key-values for.
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the shared access key along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<SharedAccessSignatureAuthorizationRuleInner> listKeysForKeyNameWithResponse(
-        String provisioningServiceName, String keyName, String resourceGroupName, Context context) {
-        return listKeysForKeyNameWithResponseAsync(provisioningServiceName, keyName, resourceGroupName, context)
-            .block();
-    }
-
-    /**
-     * Get a shared access policy by name from a provisioning service.
-     * 
-     * List primary and secondary keys for a specific key name.
-     * 
-     * @param provisioningServiceName Name of the provisioning service.
-     * @param keyName Logical key name to get key-values for.
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the shared access key.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SharedAccessSignatureAuthorizationRuleInner listKeysForKeyName(String provisioningServiceName,
-        String keyName, String resourceGroupName) {
-        return listKeysForKeyNameWithResponse(provisioningServiceName, keyName, resourceGroupName, Context.NONE)
-            .getValue();
-    }
-
-    /**
-     * List private link resources
-     * 
-     * List private link resources for the given provisioning service.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the available private link resources for a provisioning service along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PrivateLinkResourcesInner>>
-        listPrivateLinkResourcesWithResponseAsync(String resourceGroupName, String resourceName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.listPrivateLinkResources(this.client.getEndpoint(), this.client.getApiVersion(),
-                    this.client.getSubscriptionId(), resourceGroupName, resourceName, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * List private link resources
-     * 
-     * List private link resources for the given provisioning service.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the available private link resources for a provisioning service along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PrivateLinkResourcesInner>>
-        listPrivateLinkResourcesWithResponseAsync(String resourceGroupName, String resourceName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listPrivateLinkResources(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, resourceName, accept, context);
-    }
-
-    /**
-     * List private link resources
-     * 
-     * List private link resources for the given provisioning service.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the available private link resources for a provisioning service on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PrivateLinkResourcesInner> listPrivateLinkResourcesAsync(String resourceGroupName,
-        String resourceName) {
-        return listPrivateLinkResourcesWithResponseAsync(resourceGroupName, resourceName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * List private link resources
-     * 
-     * List private link resources for the given provisioning service.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the available private link resources for a provisioning service along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<PrivateLinkResourcesInner> listPrivateLinkResourcesWithResponse(String resourceGroupName,
-        String resourceName, Context context) {
-        return listPrivateLinkResourcesWithResponseAsync(resourceGroupName, resourceName, context).block();
-    }
-
-    /**
-     * List private link resources
-     * 
-     * List private link resources for the given provisioning service.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the available private link resources for a provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourcesInner listPrivateLinkResources(String resourceGroupName, String resourceName) {
-        return listPrivateLinkResourcesWithResponse(resourceGroupName, resourceName, Context.NONE).getValue();
-    }
-
-    /**
-     * Get the specified private link resource
-     * 
-     * Get the specified private link resource for the given provisioning service.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
-     * @param groupId The name of the private link resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private link resource for the given provisioning service along with {@link Response} on
-     * successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<GroupIdInformationInner>> getPrivateLinkResourcesWithResponseAsync(String resourceGroupName,
-        String resourceName, String groupId) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
-        if (groupId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.getPrivateLinkResources(this.client.getEndpoint(), this.client.getApiVersion(),
-                    this.client.getSubscriptionId(), resourceGroupName, resourceName, groupId, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the specified private link resource
-     * 
-     * Get the specified private link resource for the given provisioning service.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
-     * @param groupId The name of the private link resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private link resource for the given provisioning service along with {@link Response} on
-     * successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<GroupIdInformationInner>> getPrivateLinkResourcesWithResponseAsync(String resourceGroupName,
-        String resourceName, String groupId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
-        if (groupId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getPrivateLinkResources(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, resourceName, groupId, accept, context);
-    }
-
-    /**
-     * Get the specified private link resource
-     * 
-     * Get the specified private link resource for the given provisioning service.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
-     * @param groupId The name of the private link resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private link resource for the given provisioning service on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<GroupIdInformationInner> getPrivateLinkResourcesAsync(String resourceGroupName, String resourceName,
-        String groupId) {
-        return getPrivateLinkResourcesWithResponseAsync(resourceGroupName, resourceName, groupId)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Get the specified private link resource
-     * 
-     * Get the specified private link resource for the given provisioning service.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
-     * @param groupId The name of the private link resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private link resource for the given provisioning service along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<GroupIdInformationInner> getPrivateLinkResourcesWithResponse(String resourceGroupName,
-        String resourceName, String groupId, Context context) {
-        return getPrivateLinkResourcesWithResponseAsync(resourceGroupName, resourceName, groupId, context).block();
-    }
-
-    /**
-     * Get the specified private link resource
-     * 
-     * Get the specified private link resource for the given provisioning service.
-     * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
-     * @param groupId The name of the private link resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private link resource for the given provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public GroupIdInformationInner getPrivateLinkResources(String resourceGroupName, String resourceName,
-        String groupId) {
-        return getPrivateLinkResourcesWithResponse(resourceGroupName, resourceName, groupId, Context.NONE).getValue();
-    }
-
-    /**
-     * List private endpoint connections
-     * 
      * List private endpoint connection properties.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of private endpoint connections for a provisioning service along with {@link Response} on
-     * successful completion of {@link Mono}.
+     * @return represents a list of private endpoint connections along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<List<PrivateEndpointConnectionInner>>>
-        listPrivateEndpointConnectionsWithResponseAsync(String resourceGroupName, String resourceName) {
+        listPrivateEndpointConnectionsWithResponseAsync(String resourceGroupName, String provisioningServiceName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -2512,34 +1976,33 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listPrivateEndpointConnections(this.client.getEndpoint(),
-                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, resourceName, accept,
-                context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName,
+                provisioningServiceName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * List private endpoint connections
-     * 
      * List private endpoint connection properties.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of private endpoint connections for a provisioning service along with {@link Response} on
-     * successful completion of {@link Mono}.
+     * @return represents a list of private endpoint connections along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<List<PrivateEndpointConnectionInner>>> listPrivateEndpointConnectionsWithResponseAsync(
-        String resourceGroupName, String resourceName, Context context) {
+        String resourceGroupName, String provisioningServiceName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -2552,79 +2015,73 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listPrivateEndpointConnections(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, resourceName, accept, context);
+            this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, accept, context);
     }
 
     /**
-     * List private endpoint connections
-     * 
      * List private endpoint connection properties.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of private endpoint connections for a provisioning service on successful completion of
-     * {@link Mono}.
+     * @return represents a list of private endpoint connections on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<List<PrivateEndpointConnectionInner>> listPrivateEndpointConnectionsAsync(String resourceGroupName,
-        String resourceName) {
-        return listPrivateEndpointConnectionsWithResponseAsync(resourceGroupName, resourceName)
+        String provisioningServiceName) {
+        return listPrivateEndpointConnectionsWithResponseAsync(resourceGroupName, provisioningServiceName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * List private endpoint connections
-     * 
      * List private endpoint connection properties.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of private endpoint connections for a provisioning service along with {@link Response}.
+     * @return represents a list of private endpoint connections along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<List<PrivateEndpointConnectionInner>>
-        listPrivateEndpointConnectionsWithResponse(String resourceGroupName, String resourceName, Context context) {
-        return listPrivateEndpointConnectionsWithResponseAsync(resourceGroupName, resourceName, context).block();
+    public Response<List<PrivateEndpointConnectionInner>> listPrivateEndpointConnectionsWithResponse(
+        String resourceGroupName, String provisioningServiceName, Context context) {
+        return listPrivateEndpointConnectionsWithResponseAsync(resourceGroupName, provisioningServiceName, context)
+            .block();
     }
 
     /**
-     * List private endpoint connections
-     * 
      * List private endpoint connection properties.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of private endpoint connections for a provisioning service.
+     * @return represents a list of private endpoint connections.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public List<PrivateEndpointConnectionInner> listPrivateEndpointConnections(String resourceGroupName,
-        String resourceName) {
-        return listPrivateEndpointConnectionsWithResponse(resourceGroupName, resourceName, Context.NONE).getValue();
+        String provisioningServiceName) {
+        return listPrivateEndpointConnectionsWithResponse(resourceGroupName, provisioningServiceName, Context.NONE)
+            .getValue();
     }
 
     /**
-     * Get private endpoint connection
-     * 
      * Get private endpoint connection properties.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -2634,7 +2091,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PrivateEndpointConnectionInner>> getPrivateEndpointConnectionWithResponseAsync(
-        String resourceGroupName, String resourceName, String privateEndpointConnectionName) {
+        String resourceGroupName, String provisioningServiceName, String privateEndpointConnectionName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -2647,8 +2104,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
         }
         if (privateEndpointConnectionName == null) {
             return Mono.error(new IllegalArgumentException(
@@ -2657,18 +2115,16 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.getPrivateEndpointConnection(this.client.getEndpoint(),
-                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, resourceName,
-                privateEndpointConnectionName, accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName,
+                provisioningServiceName, privateEndpointConnectionName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Get private endpoint connection
-     * 
      * Get private endpoint connection properties.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2679,7 +2135,8 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PrivateEndpointConnectionInner>> getPrivateEndpointConnectionWithResponseAsync(
-        String resourceGroupName, String resourceName, String privateEndpointConnectionName, Context context) {
+        String resourceGroupName, String provisioningServiceName, String privateEndpointConnectionName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -2692,8 +2149,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
         }
         if (privateEndpointConnectionName == null) {
             return Mono.error(new IllegalArgumentException(
@@ -2702,17 +2160,15 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getPrivateEndpointConnection(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, resourceName, privateEndpointConnectionName, accept,
-            context);
+            this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, privateEndpointConnectionName,
+            accept, context);
     }
 
     /**
-     * Get private endpoint connection
-     * 
      * Get private endpoint connection properties.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -2721,18 +2177,16 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PrivateEndpointConnectionInner> getPrivateEndpointConnectionAsync(String resourceGroupName,
-        String resourceName, String privateEndpointConnectionName) {
-        return getPrivateEndpointConnectionWithResponseAsync(resourceGroupName, resourceName,
+        String provisioningServiceName, String privateEndpointConnectionName) {
+        return getPrivateEndpointConnectionWithResponseAsync(resourceGroupName, provisioningServiceName,
             privateEndpointConnectionName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get private endpoint connection
-     * 
      * Get private endpoint connection properties.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2742,18 +2196,16 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PrivateEndpointConnectionInner> getPrivateEndpointConnectionWithResponse(String resourceGroupName,
-        String resourceName, String privateEndpointConnectionName, Context context) {
-        return getPrivateEndpointConnectionWithResponseAsync(resourceGroupName, resourceName,
+        String provisioningServiceName, String privateEndpointConnectionName, Context context) {
+        return getPrivateEndpointConnectionWithResponseAsync(resourceGroupName, provisioningServiceName,
             privateEndpointConnectionName, context).block();
     }
 
     /**
-     * Get private endpoint connection
-     * 
      * Get private endpoint connection properties.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -2761,19 +2213,17 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      * @return private endpoint connection properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner getPrivateEndpointConnection(String resourceGroupName, String resourceName,
-        String privateEndpointConnectionName) {
-        return getPrivateEndpointConnectionWithResponse(resourceGroupName, resourceName, privateEndpointConnectionName,
-            Context.NONE).getValue();
+    public PrivateEndpointConnectionInner getPrivateEndpointConnection(String resourceGroupName,
+        String provisioningServiceName, String privateEndpointConnectionName) {
+        return getPrivateEndpointConnectionWithResponse(resourceGroupName, provisioningServiceName,
+            privateEndpointConnectionName, Context.NONE).getValue();
     }
 
     /**
-     * Create or update private endpoint connection
-     * 
      * Create or update the status of a private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param privateEndpointConnection The private endpoint connection with updated properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2784,7 +2234,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdatePrivateEndpointConnectionWithResponseAsync(
-        String resourceGroupName, String resourceName, String privateEndpointConnectionName,
+        String resourceGroupName, String provisioningServiceName, String privateEndpointConnectionName,
         PrivateEndpointConnectionInner privateEndpointConnection) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -2798,8 +2248,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
         }
         if (privateEndpointConnectionName == null) {
             return Mono.error(new IllegalArgumentException(
@@ -2814,18 +2265,16 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdatePrivateEndpointConnection(this.client.getEndpoint(),
-                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, resourceName,
-                privateEndpointConnectionName, privateEndpointConnection, accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName,
+                provisioningServiceName, privateEndpointConnectionName, privateEndpointConnection, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Create or update private endpoint connection
-     * 
      * Create or update the status of a private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param privateEndpointConnection The private endpoint connection with updated properties.
      * @param context The context to associate with this operation.
@@ -2837,7 +2286,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdatePrivateEndpointConnectionWithResponseAsync(
-        String resourceGroupName, String resourceName, String privateEndpointConnectionName,
+        String resourceGroupName, String provisioningServiceName, String privateEndpointConnectionName,
         PrivateEndpointConnectionInner privateEndpointConnection, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -2851,8 +2300,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
         }
         if (privateEndpointConnectionName == null) {
             return Mono.error(new IllegalArgumentException(
@@ -2867,17 +2317,15 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdatePrivateEndpointConnection(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, resourceName, privateEndpointConnectionName,
+            this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, privateEndpointConnectionName,
             privateEndpointConnection, accept, context);
     }
 
     /**
-     * Create or update private endpoint connection
-     * 
      * Create or update the status of a private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param privateEndpointConnection The private endpoint connection with updated properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2887,22 +2335,20 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner>
-        beginCreateOrUpdatePrivateEndpointConnectionAsync(String resourceGroupName, String resourceName,
+        beginCreateOrUpdatePrivateEndpointConnectionAsync(String resourceGroupName, String provisioningServiceName,
             String privateEndpointConnectionName, PrivateEndpointConnectionInner privateEndpointConnection) {
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdatePrivateEndpointConnectionWithResponseAsync(
-            resourceGroupName, resourceName, privateEndpointConnectionName, privateEndpointConnection);
+            resourceGroupName, provisioningServiceName, privateEndpointConnectionName, privateEndpointConnection);
         return this.client.<PrivateEndpointConnectionInner, PrivateEndpointConnectionInner>getLroResult(mono,
             this.client.getHttpPipeline(), PrivateEndpointConnectionInner.class, PrivateEndpointConnectionInner.class,
             this.client.getContext());
     }
 
     /**
-     * Create or update private endpoint connection
-     * 
      * Create or update the status of a private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param privateEndpointConnection The private endpoint connection with updated properties.
      * @param context The context to associate with this operation.
@@ -2913,24 +2359,23 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner>
-        beginCreateOrUpdatePrivateEndpointConnectionAsync(String resourceGroupName, String resourceName,
+        beginCreateOrUpdatePrivateEndpointConnectionAsync(String resourceGroupName, String provisioningServiceName,
             String privateEndpointConnectionName, PrivateEndpointConnectionInner privateEndpointConnection,
             Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdatePrivateEndpointConnectionWithResponseAsync(
-            resourceGroupName, resourceName, privateEndpointConnectionName, privateEndpointConnection, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdatePrivateEndpointConnectionWithResponseAsync(resourceGroupName, provisioningServiceName,
+                privateEndpointConnectionName, privateEndpointConnection, context);
         return this.client.<PrivateEndpointConnectionInner, PrivateEndpointConnectionInner>getLroResult(mono,
             this.client.getHttpPipeline(), PrivateEndpointConnectionInner.class, PrivateEndpointConnectionInner.class,
             context);
     }
 
     /**
-     * Create or update private endpoint connection
-     * 
      * Create or update the status of a private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param privateEndpointConnection The private endpoint connection with updated properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2940,21 +2385,19 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner>
-        beginCreateOrUpdatePrivateEndpointConnection(String resourceGroupName, String resourceName,
+        beginCreateOrUpdatePrivateEndpointConnection(String resourceGroupName, String provisioningServiceName,
             String privateEndpointConnectionName, PrivateEndpointConnectionInner privateEndpointConnection) {
         return this
-            .beginCreateOrUpdatePrivateEndpointConnectionAsync(resourceGroupName, resourceName,
+            .beginCreateOrUpdatePrivateEndpointConnectionAsync(resourceGroupName, provisioningServiceName,
                 privateEndpointConnectionName, privateEndpointConnection)
             .getSyncPoller();
     }
 
     /**
-     * Create or update private endpoint connection
-     * 
      * Create or update the status of a private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param privateEndpointConnection The private endpoint connection with updated properties.
      * @param context The context to associate with this operation.
@@ -2965,22 +2408,20 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner>
-        beginCreateOrUpdatePrivateEndpointConnection(String resourceGroupName, String resourceName,
+        beginCreateOrUpdatePrivateEndpointConnection(String resourceGroupName, String provisioningServiceName,
             String privateEndpointConnectionName, PrivateEndpointConnectionInner privateEndpointConnection,
             Context context) {
         return this
-            .beginCreateOrUpdatePrivateEndpointConnectionAsync(resourceGroupName, resourceName,
+            .beginCreateOrUpdatePrivateEndpointConnectionAsync(resourceGroupName, provisioningServiceName,
                 privateEndpointConnectionName, privateEndpointConnection, context)
             .getSyncPoller();
     }
 
     /**
-     * Create or update private endpoint connection
-     * 
      * Create or update the status of a private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param privateEndpointConnection The private endpoint connection with updated properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2990,20 +2431,18 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PrivateEndpointConnectionInner> createOrUpdatePrivateEndpointConnectionAsync(String resourceGroupName,
-        String resourceName, String privateEndpointConnectionName,
+        String provisioningServiceName, String privateEndpointConnectionName,
         PrivateEndpointConnectionInner privateEndpointConnection) {
-        return beginCreateOrUpdatePrivateEndpointConnectionAsync(resourceGroupName, resourceName,
+        return beginCreateOrUpdatePrivateEndpointConnectionAsync(resourceGroupName, provisioningServiceName,
             privateEndpointConnectionName, privateEndpointConnection).last()
                 .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Create or update private endpoint connection
-     * 
      * Create or update the status of a private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param privateEndpointConnection The private endpoint connection with updated properties.
      * @param context The context to associate with this operation.
@@ -3014,20 +2453,18 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PrivateEndpointConnectionInner> createOrUpdatePrivateEndpointConnectionAsync(String resourceGroupName,
-        String resourceName, String privateEndpointConnectionName,
+        String provisioningServiceName, String privateEndpointConnectionName,
         PrivateEndpointConnectionInner privateEndpointConnection, Context context) {
-        return beginCreateOrUpdatePrivateEndpointConnectionAsync(resourceGroupName, resourceName,
+        return beginCreateOrUpdatePrivateEndpointConnectionAsync(resourceGroupName, provisioningServiceName,
             privateEndpointConnectionName, privateEndpointConnection, context).last()
                 .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Create or update private endpoint connection
-     * 
      * Create or update the status of a private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param privateEndpointConnection The private endpoint connection with updated properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3037,19 +2474,17 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PrivateEndpointConnectionInner createOrUpdatePrivateEndpointConnection(String resourceGroupName,
-        String resourceName, String privateEndpointConnectionName,
+        String provisioningServiceName, String privateEndpointConnectionName,
         PrivateEndpointConnectionInner privateEndpointConnection) {
-        return createOrUpdatePrivateEndpointConnectionAsync(resourceGroupName, resourceName,
+        return createOrUpdatePrivateEndpointConnectionAsync(resourceGroupName, provisioningServiceName,
             privateEndpointConnectionName, privateEndpointConnection).block();
     }
 
     /**
-     * Create or update private endpoint connection
-     * 
      * Create or update the status of a private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param privateEndpointConnection The private endpoint connection with updated properties.
      * @param context The context to associate with this operation.
@@ -3060,19 +2495,17 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PrivateEndpointConnectionInner createOrUpdatePrivateEndpointConnection(String resourceGroupName,
-        String resourceName, String privateEndpointConnectionName,
+        String provisioningServiceName, String privateEndpointConnectionName,
         PrivateEndpointConnectionInner privateEndpointConnection, Context context) {
-        return createOrUpdatePrivateEndpointConnectionAsync(resourceGroupName, resourceName,
+        return createOrUpdatePrivateEndpointConnectionAsync(resourceGroupName, provisioningServiceName,
             privateEndpointConnectionName, privateEndpointConnection, context).block();
     }
 
     /**
-     * Delete private endpoint connection
-     * 
      * Delete private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -3082,7 +2515,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deletePrivateEndpointConnectionWithResponseAsync(String resourceGroupName,
-        String resourceName, String privateEndpointConnectionName) {
+        String provisioningServiceName, String privateEndpointConnectionName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -3095,8 +2528,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
         }
         if (privateEndpointConnectionName == null) {
             return Mono.error(new IllegalArgumentException(
@@ -3105,18 +2539,16 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.deletePrivateEndpointConnection(this.client.getEndpoint(),
-                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName, resourceName,
-                privateEndpointConnectionName, accept, context))
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName,
+                provisioningServiceName, privateEndpointConnectionName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Delete private endpoint connection
-     * 
      * Delete private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3127,7 +2559,7 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deletePrivateEndpointConnectionWithResponseAsync(String resourceGroupName,
-        String resourceName, String privateEndpointConnectionName, Context context) {
+        String provisioningServiceName, String privateEndpointConnectionName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -3140,8 +2572,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
         }
         if (privateEndpointConnectionName == null) {
             return Mono.error(new IllegalArgumentException(
@@ -3150,17 +2583,15 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.deletePrivateEndpointConnection(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, resourceName, privateEndpointConnectionName, accept,
-            context);
+            this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, privateEndpointConnectionName,
+            accept, context);
     }
 
     /**
-     * Delete private endpoint connection
-     * 
      * Delete private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -3169,22 +2600,20 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner>
-        beginDeletePrivateEndpointConnectionAsync(String resourceGroupName, String resourceName,
+        beginDeletePrivateEndpointConnectionAsync(String resourceGroupName, String provisioningServiceName,
             String privateEndpointConnectionName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deletePrivateEndpointConnectionWithResponseAsync(resourceGroupName,
-            resourceName, privateEndpointConnectionName);
+            provisioningServiceName, privateEndpointConnectionName);
         return this.client.<PrivateEndpointConnectionInner, PrivateEndpointConnectionInner>getLroResult(mono,
             this.client.getHttpPipeline(), PrivateEndpointConnectionInner.class, PrivateEndpointConnectionInner.class,
             this.client.getContext());
     }
 
     /**
-     * Delete private endpoint connection
-     * 
      * Delete private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3194,23 +2623,21 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner>
-        beginDeletePrivateEndpointConnectionAsync(String resourceGroupName, String resourceName,
+        beginDeletePrivateEndpointConnectionAsync(String resourceGroupName, String provisioningServiceName,
             String privateEndpointConnectionName, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = deletePrivateEndpointConnectionWithResponseAsync(resourceGroupName,
-            resourceName, privateEndpointConnectionName, context);
+            provisioningServiceName, privateEndpointConnectionName, context);
         return this.client.<PrivateEndpointConnectionInner, PrivateEndpointConnectionInner>getLroResult(mono,
             this.client.getHttpPipeline(), PrivateEndpointConnectionInner.class, PrivateEndpointConnectionInner.class,
             context);
     }
 
     /**
-     * Delete private endpoint connection
-     * 
      * Delete private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -3219,20 +2646,19 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner>
-        beginDeletePrivateEndpointConnection(String resourceGroupName, String resourceName,
+        beginDeletePrivateEndpointConnection(String resourceGroupName, String provisioningServiceName,
             String privateEndpointConnectionName) {
         return this
-            .beginDeletePrivateEndpointConnectionAsync(resourceGroupName, resourceName, privateEndpointConnectionName)
+            .beginDeletePrivateEndpointConnectionAsync(resourceGroupName, provisioningServiceName,
+                privateEndpointConnectionName)
             .getSyncPoller();
     }
 
     /**
-     * Delete private endpoint connection
-     * 
      * Delete private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3242,21 +2668,19 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner>
-        beginDeletePrivateEndpointConnection(String resourceGroupName, String resourceName,
+        beginDeletePrivateEndpointConnection(String resourceGroupName, String provisioningServiceName,
             String privateEndpointConnectionName, Context context) {
         return this
-            .beginDeletePrivateEndpointConnectionAsync(resourceGroupName, resourceName, privateEndpointConnectionName,
-                context)
+            .beginDeletePrivateEndpointConnectionAsync(resourceGroupName, provisioningServiceName,
+                privateEndpointConnectionName, context)
             .getSyncPoller();
     }
 
     /**
-     * Delete private endpoint connection
-     * 
      * Delete private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -3265,19 +2689,16 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PrivateEndpointConnectionInner> deletePrivateEndpointConnectionAsync(String resourceGroupName,
-        String resourceName, String privateEndpointConnectionName) {
-        return beginDeletePrivateEndpointConnectionAsync(resourceGroupName, resourceName, privateEndpointConnectionName)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        String provisioningServiceName, String privateEndpointConnectionName) {
+        return beginDeletePrivateEndpointConnectionAsync(resourceGroupName, provisioningServiceName,
+            privateEndpointConnectionName).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Delete private endpoint connection
-     * 
      * Delete private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3287,18 +2708,16 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PrivateEndpointConnectionInner> deletePrivateEndpointConnectionAsync(String resourceGroupName,
-        String resourceName, String privateEndpointConnectionName, Context context) {
-        return beginDeletePrivateEndpointConnectionAsync(resourceGroupName, resourceName, privateEndpointConnectionName,
-            context).last().flatMap(this.client::getLroFinalResultOrError);
+        String provisioningServiceName, String privateEndpointConnectionName, Context context) {
+        return beginDeletePrivateEndpointConnectionAsync(resourceGroupName, provisioningServiceName,
+            privateEndpointConnectionName, context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Delete private endpoint connection
-     * 
      * Delete private endpoint connection with the specified name.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param privateEndpointConnectionName The name of the private endpoint connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -3306,31 +2725,443 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      * @return the private endpoint connection of a provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner deletePrivateEndpointConnection(String resourceGroupName, String resourceName,
-        String privateEndpointConnectionName) {
-        return deletePrivateEndpointConnectionAsync(resourceGroupName, resourceName, privateEndpointConnectionName)
+    public PrivateEndpointConnectionInner deletePrivateEndpointConnection(String resourceGroupName,
+        String provisioningServiceName, String privateEndpointConnectionName) {
+        return deletePrivateEndpointConnectionAsync(resourceGroupName, provisioningServiceName,
+            privateEndpointConnectionName).block();
+    }
+
+    /**
+     * Delete private endpoint connection with the specified name.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param privateEndpointConnectionName The name of the private endpoint connection.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the private endpoint connection of a provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionInner deletePrivateEndpointConnection(String resourceGroupName,
+        String provisioningServiceName, String privateEndpointConnectionName, Context context) {
+        return deletePrivateEndpointConnectionAsync(resourceGroupName, provisioningServiceName,
+            privateEndpointConnectionName, context).block();
+    }
+
+    /**
+     * List private link resources for the given provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the available private link resources for a provisioning service along with {@link Response} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<PrivateLinkResourcesInner>>
+        listPrivateLinkResourcesWithResponseAsync(String resourceGroupName, String provisioningServiceName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.listPrivateLinkResources(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List private link resources for the given provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the available private link resources for a provisioning service along with {@link Response} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<PrivateLinkResourcesInner>> listPrivateLinkResourcesWithResponseAsync(
+        String resourceGroupName, String provisioningServiceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listPrivateLinkResources(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, accept, context);
+    }
+
+    /**
+     * List private link resources for the given provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the available private link resources for a provisioning service on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PrivateLinkResourcesInner> listPrivateLinkResourcesAsync(String resourceGroupName,
+        String provisioningServiceName) {
+        return listPrivateLinkResourcesWithResponseAsync(resourceGroupName, provisioningServiceName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * List private link resources for the given provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the available private link resources for a provisioning service along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<PrivateLinkResourcesInner> listPrivateLinkResourcesWithResponse(String resourceGroupName,
+        String provisioningServiceName, Context context) {
+        return listPrivateLinkResourcesWithResponseAsync(resourceGroupName, provisioningServiceName, context).block();
+    }
+
+    /**
+     * List private link resources for the given provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the available private link resources for a provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourcesInner listPrivateLinkResources(String resourceGroupName,
+        String provisioningServiceName) {
+        return listPrivateLinkResourcesWithResponse(resourceGroupName, provisioningServiceName, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Get the specified private link resource for the given provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param groupId The name of the private link resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified private link resource for the given provisioning service along with {@link Response} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<GroupIdInformationInner>> getPrivateLinkResourcesWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName, String groupId) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        if (groupId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.getPrivateLinkResources(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName,
+                provisioningServiceName, groupId, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the specified private link resource for the given provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param groupId The name of the private link resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified private link resource for the given provisioning service along with {@link Response} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<GroupIdInformationInner>> getPrivateLinkResourcesWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName, String groupId, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        if (groupId == null) {
+            return Mono.error(new IllegalArgumentException("Parameter groupId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.getPrivateLinkResources(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, groupId, accept, context);
+    }
+
+    /**
+     * Get the specified private link resource for the given provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param groupId The name of the private link resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified private link resource for the given provisioning service on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<GroupIdInformationInner> getPrivateLinkResourcesAsync(String resourceGroupName,
+        String provisioningServiceName, String groupId) {
+        return getPrivateLinkResourcesWithResponseAsync(resourceGroupName, provisioningServiceName, groupId)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get the specified private link resource for the given provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param groupId The name of the private link resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified private link resource for the given provisioning service along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<GroupIdInformationInner> getPrivateLinkResourcesWithResponse(String resourceGroupName,
+        String provisioningServiceName, String groupId, Context context) {
+        return getPrivateLinkResourcesWithResponseAsync(resourceGroupName, provisioningServiceName, groupId, context)
             .block();
     }
 
     /**
-     * Delete private endpoint connection
+     * Get the specified private link resource for the given provisioning service.
      * 
-     * Delete private endpoint connection with the specified name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param groupId The name of the private link resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified private link resource for the given provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public GroupIdInformationInner getPrivateLinkResources(String resourceGroupName, String provisioningServiceName,
+        String groupId) {
+        return getPrivateLinkResourcesWithResponse(resourceGroupName, provisioningServiceName, groupId, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Gets the list of valid SKUs and tiers for a provisioning service.
      * 
-     * @param resourceGroupName The name of the resource group that contains the provisioning service.
-     * @param resourceName The name of the provisioning service.
-     * @param privateEndpointConnectionName The name of the private endpoint connection.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of valid SKUs and tiers for a provisioning service along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<IotDpsSkuDefinitionInner>> listValidSkusSinglePageAsync(String resourceGroupName,
+        String provisioningServiceName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listValidSkus(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, accept, context))
+            .<PagedResponse<IotDpsSkuDefinitionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private endpoint connection of a provisioning service.
+     * @return the list of valid SKUs and tiers for a provisioning service along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner deletePrivateEndpointConnection(String resourceGroupName, String resourceName,
-        String privateEndpointConnectionName, Context context) {
-        return deletePrivateEndpointConnectionAsync(resourceGroupName, resourceName, privateEndpointConnectionName,
-            context).block();
+    private Mono<PagedResponse<IotDpsSkuDefinitionInner>> listValidSkusSinglePageAsync(String resourceGroupName,
+        String provisioningServiceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listValidSkus(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, provisioningServiceName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of valid SKUs and tiers for a provisioning service as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<IotDpsSkuDefinitionInner> listValidSkusAsync(String resourceGroupName,
+        String provisioningServiceName) {
+        return new PagedFlux<>(() -> listValidSkusSinglePageAsync(resourceGroupName, provisioningServiceName),
+            nextLink -> listValidSkusNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of valid SKUs and tiers for a provisioning service as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<IotDpsSkuDefinitionInner> listValidSkusAsync(String resourceGroupName,
+        String provisioningServiceName, Context context) {
+        return new PagedFlux<>(() -> listValidSkusSinglePageAsync(resourceGroupName, provisioningServiceName, context),
+            nextLink -> listValidSkusNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of valid SKUs and tiers for a provisioning service as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<IotDpsSkuDefinitionInner> listValidSkus(String resourceGroupName,
+        String provisioningServiceName) {
+        return new PagedIterable<>(listValidSkusAsync(resourceGroupName, provisioningServiceName));
+    }
+
+    /**
+     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of valid SKUs and tiers for a provisioning service as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<IotDpsSkuDefinitionInner> listValidSkus(String resourceGroupName,
+        String provisioningServiceName, Context context) {
+        return new PagedIterable<>(listValidSkusAsync(resourceGroupName, provisioningServiceName, context));
     }
 
     /**
@@ -3340,8 +3171,8 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of provisioning service descriptions along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a ProvisioningServiceDescription list operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProvisioningServiceDescriptionInner>>
@@ -3370,8 +3201,8 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of provisioning service descriptions along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a ProvisioningServiceDescription list operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProvisioningServiceDescriptionInner>>
@@ -3397,8 +3228,8 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of provisioning service descriptions along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a ProvisioningServiceDescription list operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProvisioningServiceDescriptionInner>>
@@ -3427,8 +3258,8 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of provisioning service descriptions along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a ProvisioningServiceDescription list operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProvisioningServiceDescriptionInner>>
@@ -3443,6 +3274,61 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of shared access keys along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner>>
+        listKeysNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listKeysNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner>>map(
+                res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                    res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of shared access keys along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner>>
+        listKeysNextSinglePageAsync(String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listKeysNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -3496,61 +3382,6 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listValidSkusNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Get the next page of items.
-     * 
-     * @param nextLink The URL to get the next list of items.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of shared access keys along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SharedAccessSignatureAuthorizationRuleInner>>
-        listKeysNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listKeysNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<SharedAccessSignatureAuthorizationRuleInner>>map(
-                res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                    res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the next page of items.
-     * 
-     * @param nextLink The URL to get the next list of items.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of shared access keys along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SharedAccessSignatureAuthorizationRuleInner>>
-        listKeysNextSinglePageAsync(String nextLink, Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listKeysNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

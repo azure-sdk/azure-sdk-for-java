@@ -41,14 +41,17 @@ public interface CertificateResponse {
     CertificateProperties properties();
 
     /**
-     * Gets the etag property: The entity tag.
+     * Gets the etag property: If eTag is provided in the response body, it may also be provided as a header per the
+     * normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource.
+     * HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26),
+     * and If-Range (section 14.27) header fields.
      * 
      * @return the etag value.
      */
     String etag();
 
     /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -93,8 +96,8 @@ public interface CertificateResponse {
             /**
              * Specifies resourceGroupName, provisioningServiceName.
              * 
-             * @param resourceGroupName Resource group identifier.
-             * @param provisioningServiceName The name of the provisioning service.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
+             * @param provisioningServiceName Name of the provisioning service to retrieve.
              * @return the next definition stage.
              */
             WithCreate withExistingProvisioningService(String resourceGroupName, String provisioningServiceName);

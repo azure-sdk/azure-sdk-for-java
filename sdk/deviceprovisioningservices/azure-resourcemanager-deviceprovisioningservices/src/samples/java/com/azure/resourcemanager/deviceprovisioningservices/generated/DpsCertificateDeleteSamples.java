@@ -10,7 +10,7 @@ package com.azure.resourcemanager.deviceprovisioningservices.generated;
 public final class DpsCertificateDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
      * DPSDeleteCertificate.json
      */
     /**
@@ -21,7 +21,7 @@ public final class DpsCertificateDeleteSamples {
     public static void
         dPSDeleteCertificate(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
         manager.dpsCertificates()
-            .deleteWithResponse("myResourceGroup", "AAAAAAAADGk=", "myFirstProvisioningService", "cert", null, null,
+            .deleteWithResponse("myResourceGroup", "myFirstProvisioningService", "cert", "AAAAAAAADGk=", null, null,
                 null, null, null, null, null, null, com.azure.core.util.Context.NONE);
     }
 }

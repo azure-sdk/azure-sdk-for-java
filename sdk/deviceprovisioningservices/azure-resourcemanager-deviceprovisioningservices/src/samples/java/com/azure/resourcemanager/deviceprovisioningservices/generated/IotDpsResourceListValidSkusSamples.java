@@ -10,7 +10,7 @@ package com.azure.resourcemanager.deviceprovisioningservices.generated;
 public final class IotDpsResourceListValidSkusSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
      * DPSGetValidSku.json
      */
     /**
@@ -20,6 +20,6 @@ public final class IotDpsResourceListValidSkusSamples {
      */
     public static void dPSGetValidSku(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
         manager.iotDpsResources()
-            .listValidSkus("myFirstProvisioningService", "myResourceGroup", com.azure.core.util.Context.NONE);
+            .listValidSkus("myResourceGroup", "myFirstProvisioningService", com.azure.core.util.Context.NONE);
     }
 }

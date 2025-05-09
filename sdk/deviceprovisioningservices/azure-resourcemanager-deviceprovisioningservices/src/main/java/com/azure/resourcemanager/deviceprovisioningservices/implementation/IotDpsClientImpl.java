@@ -42,12 +42,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = IotDpsClientBuilder.class)
 public final class IotDpsClientImpl implements IotDpsClient {
     /**
-     * The subscription identifier.
+     * The ID of the target subscription.
      */
     private final String subscriptionId;
 
     /**
-     * Gets The subscription identifier.
+     * Gets The ID of the target subscription.
      * 
      * @return the subscriptionId value.
      */
@@ -140,20 +140,6 @@ public final class IotDpsClientImpl implements IotDpsClient {
     }
 
     /**
-     * The DpsCertificatesClient object to access its operations.
-     */
-    private final DpsCertificatesClient dpsCertificates;
-
-    /**
-     * Gets the DpsCertificatesClient object to access its operations.
-     * 
-     * @return the DpsCertificatesClient object.
-     */
-    public DpsCertificatesClient getDpsCertificates() {
-        return this.dpsCertificates;
-    }
-
-    /**
      * The IotDpsResourcesClient object to access its operations.
      */
     private final IotDpsResourcesClient iotDpsResources;
@@ -168,13 +154,27 @@ public final class IotDpsClientImpl implements IotDpsClient {
     }
 
     /**
+     * The DpsCertificatesClient object to access its operations.
+     */
+    private final DpsCertificatesClient dpsCertificates;
+
+    /**
+     * Gets the DpsCertificatesClient object to access its operations.
+     * 
+     * @return the DpsCertificatesClient object.
+     */
+    public DpsCertificatesClient getDpsCertificates() {
+        return this.dpsCertificates;
+    }
+
+    /**
      * Initializes an instance of IotDpsClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The subscription identifier.
+     * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
     IotDpsClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, Duration defaultPollInterval,
@@ -184,10 +184,10 @@ public final class IotDpsClientImpl implements IotDpsClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-02-05";
+        this.apiVersion = "2025-02-01-preview";
         this.operations = new OperationsClientImpl(this);
-        this.dpsCertificates = new DpsCertificatesClientImpl(this);
         this.iotDpsResources = new IotDpsResourcesClientImpl(this);
+        this.dpsCertificates = new DpsCertificatesClientImpl(this);
     }
 
     /**

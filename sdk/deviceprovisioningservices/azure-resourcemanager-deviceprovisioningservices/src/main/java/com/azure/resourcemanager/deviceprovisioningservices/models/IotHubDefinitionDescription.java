@@ -42,6 +42,17 @@ public final class IotHubDefinitionDescription implements JsonSerializable<IotHu
      */
     private String location;
 
+    /*
+     * IotHub MI authentication type: KeyBased, UserAssigned, SystemAssigned.
+     */
+    private IotHubAuthenticationType authenticationType;
+
+    /*
+     * The selected user-assigned identity resource Id associated with IoT Hub. This is required when authenticationType
+     * is UserAssigned.
+     */
+    private String selectedUserAssignedIdentityResourceId;
+
     /**
      * Creates an instance of IotHubDefinitionDescription class.
      */
@@ -138,16 +149,54 @@ public final class IotHubDefinitionDescription implements JsonSerializable<IotHu
     }
 
     /**
+     * Get the authenticationType property: IotHub MI authentication type: KeyBased, UserAssigned, SystemAssigned.
+     * 
+     * @return the authenticationType value.
+     */
+    public IotHubAuthenticationType authenticationType() {
+        return this.authenticationType;
+    }
+
+    /**
+     * Set the authenticationType property: IotHub MI authentication type: KeyBased, UserAssigned, SystemAssigned.
+     * 
+     * @param authenticationType the authenticationType value to set.
+     * @return the IotHubDefinitionDescription object itself.
+     */
+    public IotHubDefinitionDescription withAuthenticationType(IotHubAuthenticationType authenticationType) {
+        this.authenticationType = authenticationType;
+        return this;
+    }
+
+    /**
+     * Get the selectedUserAssignedIdentityResourceId property: The selected user-assigned identity resource Id
+     * associated with IoT Hub. This is required when authenticationType is UserAssigned.
+     * 
+     * @return the selectedUserAssignedIdentityResourceId value.
+     */
+    public String selectedUserAssignedIdentityResourceId() {
+        return this.selectedUserAssignedIdentityResourceId;
+    }
+
+    /**
+     * Set the selectedUserAssignedIdentityResourceId property: The selected user-assigned identity resource Id
+     * associated with IoT Hub. This is required when authenticationType is UserAssigned.
+     * 
+     * @param selectedUserAssignedIdentityResourceId the selectedUserAssignedIdentityResourceId value to set.
+     * @return the IotHubDefinitionDescription object itself.
+     */
+    public IotHubDefinitionDescription
+        withSelectedUserAssignedIdentityResourceId(String selectedUserAssignedIdentityResourceId) {
+        this.selectedUserAssignedIdentityResourceId = selectedUserAssignedIdentityResourceId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (connectionString() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property connectionString in model IotHubDefinitionDescription"));
-        }
         if (location() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
@@ -163,10 +212,14 @@ public final class IotHubDefinitionDescription implements JsonSerializable<IotHu
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("connectionString", this.connectionString);
         jsonWriter.writeStringField("location", this.location);
         jsonWriter.writeBooleanField("applyAllocationPolicy", this.applyAllocationPolicy);
         jsonWriter.writeNumberField("allocationWeight", this.allocationWeight);
+        jsonWriter.writeStringField("connectionString", this.connectionString);
+        jsonWriter.writeStringField("authenticationType",
+            this.authenticationType == null ? null : this.authenticationType.toString());
+        jsonWriter.writeStringField("selectedUserAssignedIdentityResourceId",
+            this.selectedUserAssignedIdentityResourceId);
         return jsonWriter.writeEndObject();
     }
 
@@ -186,9 +239,7 @@ public final class IotHubDefinitionDescription implements JsonSerializable<IotHu
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("connectionString".equals(fieldName)) {
-                    deserializedIotHubDefinitionDescription.connectionString = reader.getString();
-                } else if ("location".equals(fieldName)) {
+                if ("location".equals(fieldName)) {
                     deserializedIotHubDefinitionDescription.location = reader.getString();
                 } else if ("applyAllocationPolicy".equals(fieldName)) {
                     deserializedIotHubDefinitionDescription.applyAllocationPolicy
@@ -197,6 +248,13 @@ public final class IotHubDefinitionDescription implements JsonSerializable<IotHu
                     deserializedIotHubDefinitionDescription.allocationWeight = reader.getNullable(JsonReader::getInt);
                 } else if ("name".equals(fieldName)) {
                     deserializedIotHubDefinitionDescription.name = reader.getString();
+                } else if ("connectionString".equals(fieldName)) {
+                    deserializedIotHubDefinitionDescription.connectionString = reader.getString();
+                } else if ("authenticationType".equals(fieldName)) {
+                    deserializedIotHubDefinitionDescription.authenticationType
+                        = IotHubAuthenticationType.fromString(reader.getString());
+                } else if ("selectedUserAssignedIdentityResourceId".equals(fieldName)) {
+                    deserializedIotHubDefinitionDescription.selectedUserAssignedIdentityResourceId = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

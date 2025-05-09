@@ -10,7 +10,7 @@ package com.azure.resourcemanager.deviceprovisioningservices.generated;
 public final class IotDpsResourceGetPrivateLinkResourcesSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
      * DPSGetPrivateLinkResources.json
      */
     /**
@@ -21,7 +21,6 @@ public final class IotDpsResourceGetPrivateLinkResourcesSamples {
     public static void
         privateLinkResourcesList(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
         manager.iotDpsResources()
-            .getPrivateLinkResourcesWithResponse("myResourceGroup", "myFirstProvisioningService", "iotDps",
-                com.azure.core.util.Context.NONE);
+            .getPrivateLinkResourcesWithResponse("myResourceGroup", null, "iotDps", com.azure.core.util.Context.NONE);
     }
 }

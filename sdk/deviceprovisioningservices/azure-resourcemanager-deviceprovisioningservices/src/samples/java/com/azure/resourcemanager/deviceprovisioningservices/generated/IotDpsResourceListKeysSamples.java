@@ -10,7 +10,7 @@ package com.azure.resourcemanager.deviceprovisioningservices.generated;
 public final class IotDpsResourceListKeysSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
      * DPSListKeys.json
      */
     /**
@@ -20,6 +20,6 @@ public final class IotDpsResourceListKeysSamples {
      */
     public static void dPSListKeys(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
         manager.iotDpsResources()
-            .listKeys("myFirstProvisioningService", "myResourceGroup", com.azure.core.util.Context.NONE);
+            .listKeys("myResourceGroup", "myFirstProvisioningService", com.azure.core.util.Context.NONE);
     }
 }
