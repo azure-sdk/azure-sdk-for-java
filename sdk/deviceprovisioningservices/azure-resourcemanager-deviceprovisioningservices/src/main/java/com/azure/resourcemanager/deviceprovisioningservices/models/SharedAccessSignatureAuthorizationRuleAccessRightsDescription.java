@@ -4,12 +4,12 @@
 
 package com.azure.resourcemanager.deviceprovisioningservices.models;
 
-import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.SharedAccessSignatureAuthorizationRuleInner;
+import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner;
 
 /**
- * An immutable client-side representation of SharedAccessSignatureAuthorizationRule.
+ * An immutable client-side representation of SharedAccessSignatureAuthorizationRuleAccessRightsDescription.
  */
-public interface SharedAccessSignatureAuthorizationRule {
+public interface SharedAccessSignatureAuthorizationRuleAccessRightsDescription {
     /**
      * Gets the keyName property: Name of the key.
      * 
@@ -40,10 +40,10 @@ public interface SharedAccessSignatureAuthorizationRule {
 
     /**
      * Gets the inner
-     * com.azure.resourcemanager.deviceprovisioningservices.fluent.models.SharedAccessSignatureAuthorizationRuleInner
+     * com.azure.resourcemanager.deviceprovisioningservices.fluent.models.SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner
      * object.
      * 
      * @return the inner object.
      */
-    SharedAccessSignatureAuthorizationRuleInner innerModel();
+    SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner innerModel();
 }

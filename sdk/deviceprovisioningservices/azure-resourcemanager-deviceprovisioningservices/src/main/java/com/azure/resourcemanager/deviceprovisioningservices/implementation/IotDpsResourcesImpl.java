@@ -17,7 +17,7 @@ import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.NameAv
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.PrivateLinkResourcesInner;
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.ProvisioningServiceDescriptionInner;
-import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.SharedAccessSignatureAuthorizationRuleInner;
+import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner;
 import com.azure.resourcemanager.deviceprovisioningservices.models.AsyncOperationResult;
 import com.azure.resourcemanager.deviceprovisioningservices.models.GroupIdInformation;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsResources;
@@ -27,7 +27,7 @@ import com.azure.resourcemanager.deviceprovisioningservices.models.OperationInpu
 import com.azure.resourcemanager.deviceprovisioningservices.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.deviceprovisioningservices.models.PrivateLinkResources;
 import com.azure.resourcemanager.deviceprovisioningservices.models.ProvisioningServiceDescription;
-import com.azure.resourcemanager.deviceprovisioningservices.models.SharedAccessSignatureAuthorizationRule;
+import com.azure.resourcemanager.deviceprovisioningservices.models.SharedAccessSignatureAuthorizationRuleAccessRightsDescription;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,6 +43,54 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
         com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
+    }
+
+    public Response<NameAvailabilityInfo>
+        checkProvisioningServiceNameAvailabilityWithResponse(OperationInputs arguments, Context context) {
+        Response<NameAvailabilityInfoInner> inner
+            = this.serviceClient().checkProvisioningServiceNameAvailabilityWithResponse(arguments, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new NameAvailabilityInfoImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public NameAvailabilityInfo checkProvisioningServiceNameAvailability(OperationInputs arguments) {
+        NameAvailabilityInfoInner inner = this.serviceClient().checkProvisioningServiceNameAvailability(arguments);
+        if (inner != null) {
+            return new NameAvailabilityInfoImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PagedIterable<ProvisioningServiceDescription> list() {
+        PagedIterable<ProvisioningServiceDescriptionInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new ProvisioningServiceDescriptionImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ProvisioningServiceDescription> list(Context context) {
+        PagedIterable<ProvisioningServiceDescriptionInner> inner = this.serviceClient().list(context);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new ProvisioningServiceDescriptionImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ProvisioningServiceDescription> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<ProvisioningServiceDescriptionInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new ProvisioningServiceDescriptionImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ProvisioningServiceDescription> listByResourceGroup(String resourceGroupName,
+        Context context) {
+        PagedIterable<ProvisioningServiceDescriptionInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, context);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new ProvisioningServiceDescriptionImpl(inner1, this.manager()));
     }
 
     public Response<ProvisioningServiceDescription> getByResourceGroupWithResponse(String resourceGroupName,
@@ -75,37 +123,50 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
         this.serviceClient().delete(resourceGroupName, provisioningServiceName, context);
     }
 
-    public PagedIterable<ProvisioningServiceDescription> list() {
-        PagedIterable<ProvisioningServiceDescriptionInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new ProvisioningServiceDescriptionImpl(inner1, this.manager()));
+    public Response<SharedAccessSignatureAuthorizationRuleAccessRightsDescription> listKeysForKeyNameWithResponse(
+        String resourceGroupName, String provisioningServiceName, String keyName, Context context) {
+        Response<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner> inner = this.serviceClient()
+            .listKeysForKeyNameWithResponse(resourceGroupName, provisioningServiceName, keyName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionImpl(inner.getValue(),
+                    this.manager()));
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<ProvisioningServiceDescription> list(Context context) {
-        PagedIterable<ProvisioningServiceDescriptionInner> inner = this.serviceClient().list(context);
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new ProvisioningServiceDescriptionImpl(inner1, this.manager()));
+    public SharedAccessSignatureAuthorizationRuleAccessRightsDescription listKeysForKeyName(String resourceGroupName,
+        String provisioningServiceName, String keyName) {
+        SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner inner
+            = this.serviceClient().listKeysForKeyName(resourceGroupName, provisioningServiceName, keyName);
+        if (inner != null) {
+            return new SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<ProvisioningServiceDescription> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<ProvisioningServiceDescriptionInner> inner
-            = this.serviceClient().listByResourceGroup(resourceGroupName);
+    public PagedIterable<SharedAccessSignatureAuthorizationRuleAccessRightsDescription>
+        listKeys(String resourceGroupName, String provisioningServiceName) {
+        PagedIterable<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner> inner
+            = this.serviceClient().listKeys(resourceGroupName, provisioningServiceName);
         return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new ProvisioningServiceDescriptionImpl(inner1, this.manager()));
+            inner1 -> new SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ProvisioningServiceDescription> listByResourceGroup(String resourceGroupName,
-        Context context) {
-        PagedIterable<ProvisioningServiceDescriptionInner> inner
-            = this.serviceClient().listByResourceGroup(resourceGroupName, context);
+    public PagedIterable<SharedAccessSignatureAuthorizationRuleAccessRightsDescription>
+        listKeys(String resourceGroupName, String provisioningServiceName, Context context) {
+        PagedIterable<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner> inner
+            = this.serviceClient().listKeys(resourceGroupName, provisioningServiceName, context);
         return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new ProvisioningServiceDescriptionImpl(inner1, this.manager()));
+            inner1 -> new SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionImpl(inner1, this.manager()));
     }
 
-    public Response<AsyncOperationResult> getOperationResultWithResponse(String operationId, String resourceGroupName,
-        String provisioningServiceName, String asyncinfo, Context context) {
+    public Response<AsyncOperationResult> getOperationResultWithResponse(String resourceGroupName,
+        String provisioningServiceName, String operationId, String asyncinfo, Context context) {
         Response<AsyncOperationResultInner> inner = this.serviceClient()
-            .getOperationResultWithResponse(operationId, resourceGroupName, provisioningServiceName, asyncinfo,
+            .getOperationResultWithResponse(resourceGroupName, provisioningServiceName, operationId, asyncinfo,
                 context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
@@ -115,10 +176,10 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
         }
     }
 
-    public AsyncOperationResult getOperationResult(String operationId, String resourceGroupName,
-        String provisioningServiceName, String asyncinfo) {
+    public AsyncOperationResult getOperationResult(String resourceGroupName, String provisioningServiceName,
+        String operationId, String asyncinfo) {
         AsyncOperationResultInner inner = this.serviceClient()
-            .getOperationResult(operationId, resourceGroupName, provisioningServiceName, asyncinfo);
+            .getOperationResult(resourceGroupName, provisioningServiceName, operationId, asyncinfo);
         if (inner != null) {
             return new AsyncOperationResultImpl(inner, this.manager());
         } else {
@@ -126,127 +187,10 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
         }
     }
 
-    public PagedIterable<IotDpsSkuDefinition> listValidSkus(String provisioningServiceName, String resourceGroupName) {
-        PagedIterable<IotDpsSkuDefinitionInner> inner
-            = this.serviceClient().listValidSkus(provisioningServiceName, resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new IotDpsSkuDefinitionImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<IotDpsSkuDefinition> listValidSkus(String provisioningServiceName, String resourceGroupName,
-        Context context) {
-        PagedIterable<IotDpsSkuDefinitionInner> inner
-            = this.serviceClient().listValidSkus(provisioningServiceName, resourceGroupName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new IotDpsSkuDefinitionImpl(inner1, this.manager()));
-    }
-
-    public Response<NameAvailabilityInfo>
-        checkProvisioningServiceNameAvailabilityWithResponse(OperationInputs arguments, Context context) {
-        Response<NameAvailabilityInfoInner> inner
-            = this.serviceClient().checkProvisioningServiceNameAvailabilityWithResponse(arguments, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new NameAvailabilityInfoImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public NameAvailabilityInfo checkProvisioningServiceNameAvailability(OperationInputs arguments) {
-        NameAvailabilityInfoInner inner = this.serviceClient().checkProvisioningServiceNameAvailability(arguments);
-        if (inner != null) {
-            return new NameAvailabilityInfoImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public PagedIterable<SharedAccessSignatureAuthorizationRule> listKeys(String provisioningServiceName,
-        String resourceGroupName) {
-        PagedIterable<SharedAccessSignatureAuthorizationRuleInner> inner
-            = this.serviceClient().listKeys(provisioningServiceName, resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new SharedAccessSignatureAuthorizationRuleImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<SharedAccessSignatureAuthorizationRule> listKeys(String provisioningServiceName,
-        String resourceGroupName, Context context) {
-        PagedIterable<SharedAccessSignatureAuthorizationRuleInner> inner
-            = this.serviceClient().listKeys(provisioningServiceName, resourceGroupName, context);
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new SharedAccessSignatureAuthorizationRuleImpl(inner1, this.manager()));
-    }
-
-    public Response<SharedAccessSignatureAuthorizationRule> listKeysForKeyNameWithResponse(
-        String provisioningServiceName, String keyName, String resourceGroupName, Context context) {
-        Response<SharedAccessSignatureAuthorizationRuleInner> inner = this.serviceClient()
-            .listKeysForKeyNameWithResponse(provisioningServiceName, keyName, resourceGroupName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new SharedAccessSignatureAuthorizationRuleImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public SharedAccessSignatureAuthorizationRule listKeysForKeyName(String provisioningServiceName, String keyName,
-        String resourceGroupName) {
-        SharedAccessSignatureAuthorizationRuleInner inner
-            = this.serviceClient().listKeysForKeyName(provisioningServiceName, keyName, resourceGroupName);
-        if (inner != null) {
-            return new SharedAccessSignatureAuthorizationRuleImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<PrivateLinkResources> listPrivateLinkResourcesWithResponse(String resourceGroupName,
-        String resourceName, Context context) {
-        Response<PrivateLinkResourcesInner> inner
-            = this.serviceClient().listPrivateLinkResourcesWithResponse(resourceGroupName, resourceName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new PrivateLinkResourcesImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public PrivateLinkResources listPrivateLinkResources(String resourceGroupName, String resourceName) {
-        PrivateLinkResourcesInner inner
-            = this.serviceClient().listPrivateLinkResources(resourceGroupName, resourceName);
-        if (inner != null) {
-            return new PrivateLinkResourcesImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<GroupIdInformation> getPrivateLinkResourcesWithResponse(String resourceGroupName,
-        String resourceName, String groupId, Context context) {
-        Response<GroupIdInformationInner> inner = this.serviceClient()
-            .getPrivateLinkResourcesWithResponse(resourceGroupName, resourceName, groupId, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new GroupIdInformationImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public GroupIdInformation getPrivateLinkResources(String resourceGroupName, String resourceName, String groupId) {
-        GroupIdInformationInner inner
-            = this.serviceClient().getPrivateLinkResources(resourceGroupName, resourceName, groupId);
-        if (inner != null) {
-            return new GroupIdInformationImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<List<PrivateEndpointConnection>>
-        listPrivateEndpointConnectionsWithResponse(String resourceGroupName, String resourceName, Context context) {
-        Response<List<PrivateEndpointConnectionInner>> inner
-            = this.serviceClient().listPrivateEndpointConnectionsWithResponse(resourceGroupName, resourceName, context);
+    public Response<List<PrivateEndpointConnection>> listPrivateEndpointConnectionsWithResponse(
+        String resourceGroupName, String provisioningServiceName, Context context) {
+        Response<List<PrivateEndpointConnectionInner>> inner = this.serviceClient()
+            .listPrivateEndpointConnectionsWithResponse(resourceGroupName, provisioningServiceName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 inner.getValue()
@@ -259,9 +203,9 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
     }
 
     public List<PrivateEndpointConnection> listPrivateEndpointConnections(String resourceGroupName,
-        String resourceName) {
+        String provisioningServiceName) {
         List<PrivateEndpointConnectionInner> inner
-            = this.serviceClient().listPrivateEndpointConnections(resourceGroupName, resourceName);
+            = this.serviceClient().listPrivateEndpointConnections(resourceGroupName, provisioningServiceName);
         if (inner != null) {
             return Collections.unmodifiableList(inner.stream()
                 .map(inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()))
@@ -272,10 +216,10 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
     }
 
     public Response<PrivateEndpointConnection> getPrivateEndpointConnectionWithResponse(String resourceGroupName,
-        String resourceName, String privateEndpointConnectionName, Context context) {
+        String provisioningServiceName, String privateEndpointConnectionName, Context context) {
         Response<PrivateEndpointConnectionInner> inner = this.serviceClient()
-            .getPrivateEndpointConnectionWithResponse(resourceGroupName, resourceName, privateEndpointConnectionName,
-                context);
+            .getPrivateEndpointConnectionWithResponse(resourceGroupName, provisioningServiceName,
+                privateEndpointConnectionName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new PrivateEndpointConnectionImpl(inner.getValue(), this.manager()));
@@ -284,10 +228,10 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
         }
     }
 
-    public PrivateEndpointConnection getPrivateEndpointConnection(String resourceGroupName, String resourceName,
-        String privateEndpointConnectionName) {
+    public PrivateEndpointConnection getPrivateEndpointConnection(String resourceGroupName,
+        String provisioningServiceName, String privateEndpointConnectionName) {
         PrivateEndpointConnectionInner inner = this.serviceClient()
-            .getPrivateEndpointConnection(resourceGroupName, resourceName, privateEndpointConnectionName);
+            .getPrivateEndpointConnection(resourceGroupName, provisioningServiceName, privateEndpointConnectionName);
         if (inner != null) {
             return new PrivateEndpointConnectionImpl(inner, this.manager());
         } else {
@@ -295,10 +239,10 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
         }
     }
 
-    public PrivateEndpointConnection deletePrivateEndpointConnection(String resourceGroupName, String resourceName,
-        String privateEndpointConnectionName) {
+    public PrivateEndpointConnection deletePrivateEndpointConnection(String resourceGroupName,
+        String provisioningServiceName, String privateEndpointConnectionName) {
         PrivateEndpointConnectionInner inner = this.serviceClient()
-            .deletePrivateEndpointConnection(resourceGroupName, resourceName, privateEndpointConnectionName);
+            .deletePrivateEndpointConnection(resourceGroupName, provisioningServiceName, privateEndpointConnectionName);
         if (inner != null) {
             return new PrivateEndpointConnectionImpl(inner, this.manager());
         } else {
@@ -306,15 +250,74 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
         }
     }
 
-    public PrivateEndpointConnection deletePrivateEndpointConnection(String resourceGroupName, String resourceName,
-        String privateEndpointConnectionName, Context context) {
+    public PrivateEndpointConnection deletePrivateEndpointConnection(String resourceGroupName,
+        String provisioningServiceName, String privateEndpointConnectionName, Context context) {
         PrivateEndpointConnectionInner inner = this.serviceClient()
-            .deletePrivateEndpointConnection(resourceGroupName, resourceName, privateEndpointConnectionName, context);
+            .deletePrivateEndpointConnection(resourceGroupName, provisioningServiceName, privateEndpointConnectionName,
+                context);
         if (inner != null) {
             return new PrivateEndpointConnectionImpl(inner, this.manager());
         } else {
             return null;
         }
+    }
+
+    public Response<PrivateLinkResources> listPrivateLinkResourcesWithResponse(String resourceGroupName,
+        String provisioningServiceName, Context context) {
+        Response<PrivateLinkResourcesInner> inner = this.serviceClient()
+            .listPrivateLinkResourcesWithResponse(resourceGroupName, provisioningServiceName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new PrivateLinkResourcesImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PrivateLinkResources listPrivateLinkResources(String resourceGroupName, String provisioningServiceName) {
+        PrivateLinkResourcesInner inner
+            = this.serviceClient().listPrivateLinkResources(resourceGroupName, provisioningServiceName);
+        if (inner != null) {
+            return new PrivateLinkResourcesImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<GroupIdInformation> getPrivateLinkResourcesWithResponse(String resourceGroupName,
+        String provisioningServiceName, String groupId, Context context) {
+        Response<GroupIdInformationInner> inner = this.serviceClient()
+            .getPrivateLinkResourcesWithResponse(resourceGroupName, provisioningServiceName, groupId, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new GroupIdInformationImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public GroupIdInformation getPrivateLinkResources(String resourceGroupName, String provisioningServiceName,
+        String groupId) {
+        GroupIdInformationInner inner
+            = this.serviceClient().getPrivateLinkResources(resourceGroupName, provisioningServiceName, groupId);
+        if (inner != null) {
+            return new GroupIdInformationImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PagedIterable<IotDpsSkuDefinition> listValidSkus(String resourceGroupName, String provisioningServiceName) {
+        PagedIterable<IotDpsSkuDefinitionInner> inner
+            = this.serviceClient().listValidSkus(resourceGroupName, provisioningServiceName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new IotDpsSkuDefinitionImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<IotDpsSkuDefinition> listValidSkus(String resourceGroupName, String provisioningServiceName,
+        Context context) {
+        PagedIterable<IotDpsSkuDefinitionInner> inner
+            = this.serviceClient().listValidSkus(resourceGroupName, provisioningServiceName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new IotDpsSkuDefinitionImpl(inner1, this.manager()));
     }
 
     public ProvisioningServiceDescription getById(String id) {
@@ -351,8 +354,8 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String resourceName = ResourceManagerUtils.getValueFromIdByName(id, "provisioningServices");
-        if (resourceName == null) {
+        String provisioningServiceName = ResourceManagerUtils.getValueFromIdByName(id, "provisioningServices");
+        if (provisioningServiceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'provisioningServices'.", id)));
         }
@@ -363,8 +366,8 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
                 .format("The resource ID '%s' is not valid. Missing path segment 'privateEndpointConnections'.", id)));
         }
         return this
-            .getPrivateEndpointConnectionWithResponse(resourceGroupName, resourceName, privateEndpointConnectionName,
-                Context.NONE)
+            .getPrivateEndpointConnectionWithResponse(resourceGroupName, provisioningServiceName,
+                privateEndpointConnectionName, Context.NONE)
             .getValue();
     }
 
@@ -375,8 +378,8 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String resourceName = ResourceManagerUtils.getValueFromIdByName(id, "provisioningServices");
-        if (resourceName == null) {
+        String provisioningServiceName = ResourceManagerUtils.getValueFromIdByName(id, "provisioningServices");
+        if (provisioningServiceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'provisioningServices'.", id)));
         }
@@ -386,7 +389,7 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
                 .format("The resource ID '%s' is not valid. Missing path segment 'privateEndpointConnections'.", id)));
         }
-        return this.getPrivateEndpointConnectionWithResponse(resourceGroupName, resourceName,
+        return this.getPrivateEndpointConnectionWithResponse(resourceGroupName, provisioningServiceName,
             privateEndpointConnectionName, context);
     }
 
@@ -424,8 +427,8 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String resourceName = ResourceManagerUtils.getValueFromIdByName(id, "provisioningServices");
-        if (resourceName == null) {
+        String provisioningServiceName = ResourceManagerUtils.getValueFromIdByName(id, "provisioningServices");
+        if (provisioningServiceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'provisioningServices'.", id)));
         }
@@ -435,8 +438,8 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
                 .format("The resource ID '%s' is not valid. Missing path segment 'privateEndpointConnections'.", id)));
         }
-        return this.deletePrivateEndpointConnection(resourceGroupName, resourceName, privateEndpointConnectionName,
-            Context.NONE);
+        return this.deletePrivateEndpointConnection(resourceGroupName, provisioningServiceName,
+            privateEndpointConnectionName, Context.NONE);
     }
 
     public PrivateEndpointConnection deletePrivateEndpointConnectionByIdWithResponse(String id, Context context) {
@@ -445,8 +448,8 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String resourceName = ResourceManagerUtils.getValueFromIdByName(id, "provisioningServices");
-        if (resourceName == null) {
+        String provisioningServiceName = ResourceManagerUtils.getValueFromIdByName(id, "provisioningServices");
+        if (provisioningServiceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'provisioningServices'.", id)));
         }
@@ -456,8 +459,8 @@ public final class IotDpsResourcesImpl implements IotDpsResources {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
                 .format("The resource ID '%s' is not valid. Missing path segment 'privateEndpointConnections'.", id)));
         }
-        return this.deletePrivateEndpointConnection(resourceGroupName, resourceName, privateEndpointConnectionName,
-            context);
+        return this.deletePrivateEndpointConnection(resourceGroupName, provisioningServiceName,
+            privateEndpointConnectionName, context);
     }
 
     private IotDpsResourcesClient serviceClient() {

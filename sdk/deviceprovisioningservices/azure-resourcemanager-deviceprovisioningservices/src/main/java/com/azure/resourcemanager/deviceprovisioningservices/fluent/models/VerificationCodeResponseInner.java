@@ -5,8 +5,8 @@
 package com.azure.resourcemanager.deviceprovisioningservices.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
 import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.deviceprovisioningservices.models.VerificationCodeResponseProperties;
@@ -16,36 +16,45 @@ import java.io.IOException;
  * Description of the response of the verification code.
  */
 @Fluent
-public final class VerificationCodeResponseInner extends ProxyResource {
+public final class VerificationCodeResponseInner implements JsonSerializable<VerificationCodeResponseInner> {
+    /*
+     * Name of certificate.
+     */
+    private String name;
+
     /*
      * Request etag.
      */
     private String etag;
 
     /*
-     * The properties property.
+     * The resource identifier.
      */
-    private VerificationCodeResponseProperties properties;
+    private String id;
 
     /*
-     * The type of the resource.
+     * The resource type.
      */
     private String type;
 
     /*
-     * The name of the resource.
+     * The properties property.
      */
-    private String name;
-
-    /*
-     * Fully qualified resource Id for the resource.
-     */
-    private String id;
+    private VerificationCodeResponseProperties properties;
 
     /**
      * Creates an instance of VerificationCodeResponseInner class.
      */
     public VerificationCodeResponseInner() {
+    }
+
+    /**
+     * Get the name property: Name of certificate.
+     * 
+     * @return the name value.
+     */
+    public String name() {
+        return this.name;
     }
 
     /**
@@ -55,6 +64,24 @@ public final class VerificationCodeResponseInner extends ProxyResource {
      */
     public String etag() {
         return this.etag;
+    }
+
+    /**
+     * Get the id property: The resource identifier.
+     * 
+     * @return the id value.
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Get the type property: The resource type.
+     * 
+     * @return the type value.
+     */
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -75,36 +102,6 @@ public final class VerificationCodeResponseInner extends ProxyResource {
     public VerificationCodeResponseInner withProperties(VerificationCodeResponseProperties properties) {
         this.properties = properties;
         return this;
-    }
-
-    /**
-     * Get the type property: The type of the resource.
-     * 
-     * @return the type value.
-     */
-    @Override
-    public String type() {
-        return this.type;
-    }
-
-    /**
-     * Get the name property: The name of the resource.
-     * 
-     * @return the name value.
-     */
-    @Override
-    public String name() {
-        return this.name;
-    }
-
-    /**
-     * Get the id property: Fully qualified resource Id for the resource.
-     * 
-     * @return the id value.
-     */
-    @Override
-    public String id() {
-        return this.id;
     }
 
     /**
@@ -134,7 +131,6 @@ public final class VerificationCodeResponseInner extends ProxyResource {
      * @param jsonReader The JsonReader being read.
      * @return An instance of VerificationCodeResponseInner if the JsonReader was pointing to an instance of it, or null
      * if it was pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the VerificationCodeResponseInner.
      */
     public static VerificationCodeResponseInner fromJson(JsonReader jsonReader) throws IOException {
@@ -145,14 +141,14 @@ public final class VerificationCodeResponseInner extends ProxyResource {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("id".equals(fieldName)) {
-                    deserializedVerificationCodeResponseInner.id = reader.getString();
-                } else if ("name".equals(fieldName)) {
+                if ("name".equals(fieldName)) {
                     deserializedVerificationCodeResponseInner.name = reader.getString();
-                } else if ("type".equals(fieldName)) {
-                    deserializedVerificationCodeResponseInner.type = reader.getString();
                 } else if ("etag".equals(fieldName)) {
                     deserializedVerificationCodeResponseInner.etag = reader.getString();
+                } else if ("id".equals(fieldName)) {
+                    deserializedVerificationCodeResponseInner.id = reader.getString();
+                } else if ("type".equals(fieldName)) {
+                    deserializedVerificationCodeResponseInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedVerificationCodeResponseInner.properties
                         = VerificationCodeResponseProperties.fromJson(reader);

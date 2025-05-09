@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.deviceprovisioningservices.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,18 +15,18 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * List of provisioning service descriptions.
+ * The response of a ProvisioningServiceDescription list operation.
  */
 @Fluent
 public final class ProvisioningServiceDescriptionListResult
     implements JsonSerializable<ProvisioningServiceDescriptionListResult> {
     /*
-     * List of provisioning service descriptions.
+     * The ProvisioningServiceDescription items on this page
      */
     private List<ProvisioningServiceDescriptionInner> value;
 
     /*
-     * the next link
+     * The link to the next page of items
      */
     private String nextLink;
 
@@ -36,7 +37,7 @@ public final class ProvisioningServiceDescriptionListResult
     }
 
     /**
-     * Get the value property: List of provisioning service descriptions.
+     * Get the value property: The ProvisioningServiceDescription items on this page.
      * 
      * @return the value value.
      */
@@ -45,7 +46,7 @@ public final class ProvisioningServiceDescriptionListResult
     }
 
     /**
-     * Set the value property: List of provisioning service descriptions.
+     * Set the value property: The ProvisioningServiceDescription items on this page.
      * 
      * @param value the value value to set.
      * @return the ProvisioningServiceDescriptionListResult object itself.
@@ -56,7 +57,7 @@ public final class ProvisioningServiceDescriptionListResult
     }
 
     /**
-     * Get the nextLink property: the next link.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -65,15 +66,32 @@ public final class ProvisioningServiceDescriptionListResult
     }
 
     /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the ProvisioningServiceDescriptionListResult object itself.
+     */
+    public ProvisioningServiceDescriptionListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model ProvisioningServiceDescriptionListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ProvisioningServiceDescriptionListResult.class);
 
     /**
      * {@inheritDoc}
@@ -82,6 +100,7 @@ public final class ProvisioningServiceDescriptionListResult
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
         return jsonWriter.writeEndObject();
     }
 
@@ -91,6 +110,7 @@ public final class ProvisioningServiceDescriptionListResult
      * @param jsonReader The JsonReader being read.
      * @return An instance of ProvisioningServiceDescriptionListResult if the JsonReader was pointing to an instance of
      * it, or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the ProvisioningServiceDescriptionListResult.
      */
     public static ProvisioningServiceDescriptionListResult fromJson(JsonReader jsonReader) throws IOException {

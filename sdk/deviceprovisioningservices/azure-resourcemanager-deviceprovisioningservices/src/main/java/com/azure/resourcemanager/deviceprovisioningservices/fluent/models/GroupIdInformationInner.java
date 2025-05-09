@@ -5,9 +5,10 @@
 package com.azure.resourcemanager.deviceprovisioningservices.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.deviceprovisioningservices.models.GroupIdInformationProperties;
@@ -17,58 +18,36 @@ import java.io.IOException;
  * The group information for creating a private endpoint on a provisioning service.
  */
 @Fluent
-public final class GroupIdInformationInner implements JsonSerializable<GroupIdInformationInner> {
-    /*
-     * The resource identifier.
-     */
-    private String id;
-
-    /*
-     * The resource name.
-     */
-    private String name;
-
-    /*
-     * The resource type.
-     */
-    private String type;
-
+public final class GroupIdInformationInner extends ProxyResource {
     /*
      * The properties for a group information object
      */
     private GroupIdInformationProperties properties;
 
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
     /**
      * Creates an instance of GroupIdInformationInner class.
      */
     public GroupIdInformationInner() {
-    }
-
-    /**
-     * Get the id property: The resource identifier.
-     * 
-     * @return the id value.
-     */
-    public String id() {
-        return this.id;
-    }
-
-    /**
-     * Get the name property: The resource name.
-     * 
-     * @return the name value.
-     */
-    public String name() {
-        return this.name;
-    }
-
-    /**
-     * Get the type property: The resource type.
-     * 
-     * @return the type value.
-     */
-    public String type() {
-        return this.type;
     }
 
     /**
@@ -89,6 +68,45 @@ public final class GroupIdInformationInner implements JsonSerializable<GroupIdIn
     public GroupIdInformationInner withProperties(GroupIdInformationProperties properties) {
         this.properties = properties;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -134,14 +152,16 @@ public final class GroupIdInformationInner implements JsonSerializable<GroupIdIn
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("properties".equals(fieldName)) {
-                    deserializedGroupIdInformationInner.properties = GroupIdInformationProperties.fromJson(reader);
-                } else if ("id".equals(fieldName)) {
+                if ("id".equals(fieldName)) {
                     deserializedGroupIdInformationInner.id = reader.getString();
                 } else if ("name".equals(fieldName)) {
                     deserializedGroupIdInformationInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedGroupIdInformationInner.type = reader.getString();
+                } else if ("properties".equals(fieldName)) {
+                    deserializedGroupIdInformationInner.properties = GroupIdInformationProperties.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedGroupIdInformationInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

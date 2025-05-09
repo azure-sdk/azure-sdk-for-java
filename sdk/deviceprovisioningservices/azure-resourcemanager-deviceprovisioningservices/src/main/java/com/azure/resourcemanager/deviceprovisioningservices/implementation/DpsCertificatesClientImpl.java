@@ -68,14 +68,24 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     @ServiceInterface(name = "IotDpsClientDpsCerti")
     public interface DpsCertificatesService {
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
+        Mono<Response<CertificateListDescriptionInner>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("provisioningServiceName") String provisioningServiceName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates/{certificateName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<CertificateResponseInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("certificateName") String certificateName, @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("provisioningServiceName") String provisioningServiceName,
-            @HeaderParam("If-Match") String ifMatch, @QueryParam("api-version") String apiVersion,
+            @PathParam("certificateName") String certificateName, @HeaderParam("If-Match") String ifMatch,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -94,11 +104,11 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates/{certificateName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @HeaderParam("If-Match") String ifMatch,
+            @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("provisioningServiceName") String provisioningServiceName,
-            @PathParam("certificateName") String certificateName,
+            @PathParam("certificateName") String certificateName, @HeaderParam("If-Match") String ifMatch,
             @QueryParam("certificate.name") String certificateName1,
             @QueryParam("certificate.rawBytes") String certificateRawBytes,
             @QueryParam("certificate.isVerified") Boolean certificateIsVerified,
@@ -106,28 +116,18 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
             @QueryParam("certificate.created") OffsetDateTime certificateCreated,
             @QueryParam("certificate.lastUpdated") OffsetDateTime certificateLastUpdated,
             @QueryParam("certificate.hasPrivateKey") Boolean certificateHasPrivateKey,
-            @QueryParam("certificate.nonce") String certificateNonce, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ErrorDetailsException.class)
-        Mono<Response<CertificateListDescriptionInner>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("provisioningServiceName") String provisioningServiceName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("certificate.nonce") String certificateNonce, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates/{certificateName}/generateVerificationCode")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<VerificationCodeResponseInner>> generateVerificationCode(@HostParam("$host") String endpoint,
-            @PathParam("certificateName") String certificateName, @HeaderParam("If-Match") String ifMatch,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("provisioningServiceName") String provisioningServiceName,
+            @PathParam("certificateName") String certificateName, @HeaderParam("If-Match") String ifMatch,
             @QueryParam("certificate.name") String certificateName1,
             @QueryParam("certificate.rawBytes") String certificateRawBytes,
             @QueryParam("certificate.isVerified") Boolean certificateIsVerified,
@@ -135,18 +135,18 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
             @QueryParam("certificate.created") OffsetDateTime certificateCreated,
             @QueryParam("certificate.lastUpdated") OffsetDateTime certificateLastUpdated,
             @QueryParam("certificate.hasPrivateKey") Boolean certificateHasPrivateKey,
-            @QueryParam("certificate.nonce") String certificateNonce, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("certificate.nonce") String certificateNonce, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/provisioningServices/{provisioningServiceName}/certificates/{certificateName}/verify")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ErrorDetailsException.class)
         Mono<Response<CertificateResponseInner>> verifyCertificate(@HostParam("$host") String endpoint,
-            @PathParam("certificateName") String certificateName, @HeaderParam("If-Match") String ifMatch,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("provisioningServiceName") String provisioningServiceName,
+            @PathParam("certificateName") String certificateName, @HeaderParam("If-Match") String ifMatch,
             @QueryParam("certificate.name") String certificateName1,
             @QueryParam("certificate.rawBytes") String certificateRawBytes,
             @QueryParam("certificate.isVerified") Boolean certificateIsVerified,
@@ -154,34 +154,28 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
             @QueryParam("certificate.created") OffsetDateTime certificateCreated,
             @QueryParam("certificate.lastUpdated") OffsetDateTime certificateLastUpdated,
             @QueryParam("certificate.hasPrivateKey") Boolean certificateHasPrivateKey,
-            @QueryParam("certificate.nonce") String certificateNonce, @QueryParam("api-version") String apiVersion,
+            @QueryParam("certificate.nonce") String certificateNonce,
             @BodyParam("application/json") VerificationCodeRequest request, @HeaderParam("Accept") String accept,
             Context context);
     }
 
     /**
-     * Get the certificate from the provisioning service.
+     * Get all the certificates tied to the provisioning service.
      * 
-     * @param certificateName Name of the certificate to retrieve.
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of the provisioning service the certificate is associated with.
-     * @param ifMatch ETag of the certificate.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the certificate from the provisioning service along with {@link Response} on successful completion of
-     * {@link Mono}.
+     * @return all the certificates tied to the provisioning service along with {@link Response} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CertificateResponseInner>> getWithResponseAsync(String certificateName,
-        String resourceGroupName, String provisioningServiceName, String ifMatch) {
+    private Mono<Response<CertificateListDescriptionInner>> listWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (certificateName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
@@ -197,36 +191,29 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.get(this.client.getEndpoint(), certificateName, this.client.getSubscriptionId(),
-                    resourceGroupName, provisioningServiceName, ifMatch, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Get the certificate from the provisioning service.
+     * Get all the certificates tied to the provisioning service.
      * 
-     * @param certificateName Name of the certificate to retrieve.
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of the provisioning service the certificate is associated with.
-     * @param ifMatch ETag of the certificate.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the certificate from the provisioning service along with {@link Response} on successful completion of
-     * {@link Mono}.
+     * @return all the certificates tied to the provisioning service along with {@link Response} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CertificateResponseInner>> getWithResponseAsync(String certificateName,
-        String resourceGroupName, String provisioningServiceName, String ifMatch, Context context) {
+    private Mono<Response<CertificateListDescriptionInner>> listWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (certificateName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
@@ -242,35 +229,170 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), certificateName, this.client.getSubscriptionId(),
-            resourceGroupName, provisioningServiceName, ifMatch, this.client.getApiVersion(), accept, context);
+        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, provisioningServiceName, accept, context);
+    }
+
+    /**
+     * Get all the certificates tied to the provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the certificates tied to the provisioning service on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<CertificateListDescriptionInner> listAsync(String resourceGroupName, String provisioningServiceName) {
+        return listWithResponseAsync(resourceGroupName, provisioningServiceName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get all the certificates tied to the provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the certificates tied to the provisioning service along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<CertificateListDescriptionInner> listWithResponse(String resourceGroupName,
+        String provisioningServiceName, Context context) {
+        return listWithResponseAsync(resourceGroupName, provisioningServiceName, context).block();
+    }
+
+    /**
+     * Get all the certificates tied to the provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the certificates tied to the provisioning service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CertificateListDescriptionInner list(String resourceGroupName, String provisioningServiceName) {
+        return listWithResponse(resourceGroupName, provisioningServiceName, Context.NONE).getValue();
     }
 
     /**
      * Get the certificate from the provisioning service.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param certificateName Name of the certificate to retrieve.
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of the provisioning service the certificate is associated with.
+     * @param ifMatch ETag of the certificate.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the certificate from the provisioning service along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<CertificateResponseInner>> getWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName, String certificateName, String ifMatch) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        if (certificateName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, certificateName, ifMatch,
+                accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the certificate from the provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
+     * @param ifMatch ETag of the certificate.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorDetailsException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the certificate from the provisioning service along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<CertificateResponseInner>> getWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName, String certificateName, String ifMatch, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (provisioningServiceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
+        }
+        if (certificateName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, provisioningServiceName, certificateName, ifMatch, accept, context);
+    }
+
+    /**
+     * Get the certificate from the provisioning service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the certificate from the provisioning service on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CertificateResponseInner> getAsync(String certificateName, String resourceGroupName,
-        String provisioningServiceName) {
+    private Mono<CertificateResponseInner> getAsync(String resourceGroupName, String provisioningServiceName,
+        String certificateName) {
         final String ifMatch = null;
-        return getWithResponseAsync(certificateName, resourceGroupName, provisioningServiceName, ifMatch)
+        return getWithResponseAsync(resourceGroupName, provisioningServiceName, certificateName, ifMatch)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get the certificate from the provisioning service.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param certificateName Name of the certificate to retrieve.
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of the provisioning service the certificate is associated with.
      * @param ifMatch ETag of the certificate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -279,39 +401,37 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @return the certificate from the provisioning service along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CertificateResponseInner> getWithResponse(String certificateName, String resourceGroupName,
-        String provisioningServiceName, String ifMatch, Context context) {
-        return getWithResponseAsync(certificateName, resourceGroupName, provisioningServiceName, ifMatch, context)
+    public Response<CertificateResponseInner> getWithResponse(String resourceGroupName, String provisioningServiceName,
+        String certificateName, String ifMatch, Context context) {
+        return getWithResponseAsync(resourceGroupName, provisioningServiceName, certificateName, ifMatch, context)
             .block();
     }
 
     /**
      * Get the certificate from the provisioning service.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
      * @param certificateName Name of the certificate to retrieve.
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName Name of the provisioning service the certificate is associated with.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the certificate from the provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CertificateResponseInner get(String certificateName, String resourceGroupName,
-        String provisioningServiceName) {
+    public CertificateResponseInner get(String resourceGroupName, String provisioningServiceName,
+        String certificateName) {
         final String ifMatch = null;
-        return getWithResponse(certificateName, resourceGroupName, provisioningServiceName, ifMatch, Context.NONE)
+        return getWithResponse(resourceGroupName, provisioningServiceName, certificateName, ifMatch, Context.NONE)
             .getValue();
     }
 
     /**
-     * Upload the certificate to the provisioning service.
-     * 
      * Add new certificate or update an existing certificate.
      * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName The name of the provisioning service.
-     * @param certificateName The name of the certificate create or update.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param certificateDescription The certificate body.
      * @param ifMatch ETag of the certificate. This is required to update an existing certificate, and ignored while
      * creating a brand new certificate.
@@ -359,13 +479,11 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Upload the certificate to the provisioning service.
-     * 
      * Add new certificate or update an existing certificate.
      * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName The name of the provisioning service.
-     * @param certificateName The name of the certificate create or update.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param certificateDescription The certificate body.
      * @param ifMatch ETag of the certificate. This is required to update an existing certificate, and ignored while
      * creating a brand new certificate.
@@ -413,13 +531,11 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Upload the certificate to the provisioning service.
-     * 
      * Add new certificate or update an existing certificate.
      * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName The name of the provisioning service.
-     * @param certificateName The name of the certificate create or update.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param certificateDescription The certificate body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -435,13 +551,11 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Upload the certificate to the provisioning service.
-     * 
      * Add new certificate or update an existing certificate.
      * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName The name of the provisioning service.
-     * @param certificateName The name of the certificate create or update.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param certificateDescription The certificate body.
      * @param ifMatch ETag of the certificate. This is required to update an existing certificate, and ignored while
      * creating a brand new certificate.
@@ -460,13 +574,11 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Upload the certificate to the provisioning service.
-     * 
      * Add new certificate or update an existing certificate.
      * 
-     * @param resourceGroupName Resource group identifier.
-     * @param provisioningServiceName The name of the provisioning service.
-     * @param certificateName The name of the certificate create or update.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param certificateDescription The certificate body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -482,15 +594,12 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Delete the Provisioning Service Certificate.
-     * 
      * Deletes the specified certificate associated with the Provisioning Service.
      * 
-     * @param resourceGroupName Resource group identifier.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param ifMatch ETag of the certificate.
-     * @param provisioningServiceName The name of the provisioning service.
-     * @param certificateName This is a mandatory field, and is the logical name of the certificate that the
-     * provisioning service will access by.
      * @param certificateName1 This is optional, and it is the Common Name of the certificate.
      * @param certificateRawBytes Raw data within the certificate.
      * @param certificateIsVerified Indicates if certificate has been verified by owner of the private key.
@@ -505,8 +614,8 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String ifMatch,
-        String provisioningServiceName, String certificateName, String certificateName1, byte[] certificateRawBytes,
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String provisioningServiceName,
+        String certificateName, String ifMatch, String certificateName1, byte[] certificateRawBytes,
         Boolean certificateIsVerified, CertificatePurpose certificatePurpose, OffsetDateTime certificateCreated,
         OffsetDateTime certificateLastUpdated, Boolean certificateHasPrivateKey, String certificateNonce) {
         if (this.client.getEndpoint() == null) {
@@ -521,9 +630,6 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (ifMatch == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ifMatch is required and cannot be null."));
-        }
         if (provisioningServiceName == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
@@ -532,27 +638,25 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
         }
+        if (ifMatch == null) {
+            return Mono.error(new IllegalArgumentException("Parameter ifMatch is required and cannot be null."));
+        }
         final String accept = "application/json";
         String certificateRawBytesConverted = Base64Util.encodeToString(certificateRawBytes);
-        return FluxUtil
-            .withContext(
-                context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    ifMatch, provisioningServiceName, certificateName, certificateName1, certificateRawBytesConverted,
-                    certificateIsVerified, certificatePurpose, certificateCreated, certificateLastUpdated,
-                    certificateHasPrivateKey, certificateNonce, this.client.getApiVersion(), accept, context))
+        return FluxUtil.withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, certificateName, ifMatch,
+            certificateName1, certificateRawBytesConverted, certificateIsVerified, certificatePurpose,
+            certificateCreated, certificateLastUpdated, certificateHasPrivateKey, certificateNonce, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Delete the Provisioning Service Certificate.
-     * 
      * Deletes the specified certificate associated with the Provisioning Service.
      * 
-     * @param resourceGroupName Resource group identifier.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param ifMatch ETag of the certificate.
-     * @param provisioningServiceName The name of the provisioning service.
-     * @param certificateName This is a mandatory field, and is the logical name of the certificate that the
-     * provisioning service will access by.
      * @param certificateName1 This is optional, and it is the Common Name of the certificate.
      * @param certificateRawBytes Raw data within the certificate.
      * @param certificateIsVerified Indicates if certificate has been verified by owner of the private key.
@@ -568,8 +672,8 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String ifMatch,
-        String provisioningServiceName, String certificateName, String certificateName1, byte[] certificateRawBytes,
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String provisioningServiceName,
+        String certificateName, String ifMatch, String certificateName1, byte[] certificateRawBytes,
         Boolean certificateIsVerified, CertificatePurpose certificatePurpose, OffsetDateTime certificateCreated,
         OffsetDateTime certificateLastUpdated, Boolean certificateHasPrivateKey, String certificateNonce,
         Context context) {
@@ -585,9 +689,6 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (ifMatch == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ifMatch is required and cannot be null."));
-        }
         if (provisioningServiceName == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
@@ -596,33 +697,33 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
         }
+        if (ifMatch == null) {
+            return Mono.error(new IllegalArgumentException("Parameter ifMatch is required and cannot be null."));
+        }
         final String accept = "application/json";
         String certificateRawBytesConverted = Base64Util.encodeToString(certificateRawBytes);
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, ifMatch,
-            provisioningServiceName, certificateName, certificateName1, certificateRawBytesConverted,
-            certificateIsVerified, certificatePurpose, certificateCreated, certificateLastUpdated,
-            certificateHasPrivateKey, certificateNonce, this.client.getApiVersion(), accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, provisioningServiceName, certificateName, ifMatch, certificateName1,
+            certificateRawBytesConverted, certificateIsVerified, certificatePurpose, certificateCreated,
+            certificateLastUpdated, certificateHasPrivateKey, certificateNonce, accept, context);
     }
 
     /**
-     * Delete the Provisioning Service Certificate.
-     * 
      * Deletes the specified certificate associated with the Provisioning Service.
      * 
-     * @param resourceGroupName Resource group identifier.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param ifMatch ETag of the certificate.
-     * @param provisioningServiceName The name of the provisioning service.
-     * @param certificateName This is a mandatory field, and is the logical name of the certificate that the
-     * provisioning service will access by.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String ifMatch, String provisioningServiceName,
-        String certificateName) {
+    private Mono<Void> deleteAsync(String resourceGroupName, String provisioningServiceName, String certificateName,
+        String ifMatch) {
         final String certificateName1 = null;
         final byte[] certificateRawBytes = new byte[0];
         final Boolean certificateIsVerified = null;
@@ -631,21 +732,18 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         final OffsetDateTime certificateLastUpdated = null;
         final Boolean certificateHasPrivateKey = null;
         final String certificateNonce = null;
-        return deleteWithResponseAsync(resourceGroupName, ifMatch, provisioningServiceName, certificateName,
+        return deleteWithResponseAsync(resourceGroupName, provisioningServiceName, certificateName, ifMatch,
             certificateName1, certificateRawBytes, certificateIsVerified, certificatePurpose, certificateCreated,
             certificateLastUpdated, certificateHasPrivateKey, certificateNonce).flatMap(ignored -> Mono.empty());
     }
 
     /**
-     * Delete the Provisioning Service Certificate.
-     * 
      * Deletes the specified certificate associated with the Provisioning Service.
      * 
-     * @param resourceGroupName Resource group identifier.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param ifMatch ETag of the certificate.
-     * @param provisioningServiceName The name of the provisioning service.
-     * @param certificateName This is a mandatory field, and is the logical name of the certificate that the
-     * provisioning service will access by.
      * @param certificateName1 This is optional, and it is the Common Name of the certificate.
      * @param certificateRawBytes Raw data within the certificate.
      * @param certificateIsVerified Indicates if certificate has been verified by owner of the private key.
@@ -661,32 +759,30 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(String resourceGroupName, String ifMatch, String provisioningServiceName,
-        String certificateName, String certificateName1, byte[] certificateRawBytes, Boolean certificateIsVerified,
-        CertificatePurpose certificatePurpose, OffsetDateTime certificateCreated, OffsetDateTime certificateLastUpdated,
-        Boolean certificateHasPrivateKey, String certificateNonce, Context context) {
-        return deleteWithResponseAsync(resourceGroupName, ifMatch, provisioningServiceName, certificateName,
+    public Response<Void> deleteWithResponse(String resourceGroupName, String provisioningServiceName,
+        String certificateName, String ifMatch, String certificateName1, byte[] certificateRawBytes,
+        Boolean certificateIsVerified, CertificatePurpose certificatePurpose, OffsetDateTime certificateCreated,
+        OffsetDateTime certificateLastUpdated, Boolean certificateHasPrivateKey, String certificateNonce,
+        Context context) {
+        return deleteWithResponseAsync(resourceGroupName, provisioningServiceName, certificateName, ifMatch,
             certificateName1, certificateRawBytes, certificateIsVerified, certificatePurpose, certificateCreated,
             certificateLastUpdated, certificateHasPrivateKey, certificateNonce, context).block();
     }
 
     /**
-     * Delete the Provisioning Service Certificate.
-     * 
      * Deletes the specified certificate associated with the Provisioning Service.
      * 
-     * @param resourceGroupName Resource group identifier.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param ifMatch ETag of the certificate.
-     * @param provisioningServiceName The name of the provisioning service.
-     * @param certificateName This is a mandatory field, and is the logical name of the certificate that the
-     * provisioning service will access by.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String ifMatch, String provisioningServiceName,
-        String certificateName) {
+    public void delete(String resourceGroupName, String provisioningServiceName, String certificateName,
+        String ifMatch) {
         final String certificateName1 = null;
         final byte[] certificateRawBytes = new byte[0];
         final Boolean certificateIsVerified = null;
@@ -695,142 +791,19 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         final OffsetDateTime certificateLastUpdated = null;
         final Boolean certificateHasPrivateKey = null;
         final String certificateNonce = null;
-        deleteWithResponse(resourceGroupName, ifMatch, provisioningServiceName, certificateName, certificateName1,
+        deleteWithResponse(resourceGroupName, provisioningServiceName, certificateName, ifMatch, certificateName1,
             certificateRawBytes, certificateIsVerified, certificatePurpose, certificateCreated, certificateLastUpdated,
             certificateHasPrivateKey, certificateNonce, Context.NONE);
     }
 
     /**
-     * Get all the certificates tied to the provisioning service.
-     * 
-     * @param resourceGroupName Name of resource group.
-     * @param provisioningServiceName Name of provisioning service to retrieve certificates for.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the certificates tied to the provisioning service along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CertificateListDescriptionInner>> listWithResponseAsync(String resourceGroupName,
-        String provisioningServiceName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, provisioningServiceName, this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get all the certificates tied to the provisioning service.
-     * 
-     * @param resourceGroupName Name of resource group.
-     * @param provisioningServiceName Name of provisioning service to retrieve certificates for.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the certificates tied to the provisioning service along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CertificateListDescriptionInner>> listWithResponseAsync(String resourceGroupName,
-        String provisioningServiceName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (provisioningServiceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            provisioningServiceName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Get all the certificates tied to the provisioning service.
-     * 
-     * @param resourceGroupName Name of resource group.
-     * @param provisioningServiceName Name of provisioning service to retrieve certificates for.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the certificates tied to the provisioning service on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CertificateListDescriptionInner> listAsync(String resourceGroupName, String provisioningServiceName) {
-        return listWithResponseAsync(resourceGroupName, provisioningServiceName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Get all the certificates tied to the provisioning service.
-     * 
-     * @param resourceGroupName Name of resource group.
-     * @param provisioningServiceName Name of provisioning service to retrieve certificates for.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the certificates tied to the provisioning service along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CertificateListDescriptionInner> listWithResponse(String resourceGroupName,
-        String provisioningServiceName, Context context) {
-        return listWithResponseAsync(resourceGroupName, provisioningServiceName, context).block();
-    }
-
-    /**
-     * Get all the certificates tied to the provisioning service.
-     * 
-     * @param resourceGroupName Name of resource group.
-     * @param provisioningServiceName Name of provisioning service to retrieve certificates for.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorDetailsException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the certificates tied to the provisioning service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CertificateListDescriptionInner list(String resourceGroupName, String provisioningServiceName) {
-        return listWithResponse(resourceGroupName, provisioningServiceName, Context.NONE).getValue();
-    }
-
-    /**
      * Generate verification code for Proof of Possession.
      * 
-     * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
-     * access.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param ifMatch ETag of the certificate. This is required to update an existing certificate, and ignored while
      * creating a brand new certificate.
-     * @param resourceGroupName name of resource group.
-     * @param provisioningServiceName Name of provisioning service.
      * @param certificateName1 Common Name for the certificate.
      * @param certificateRawBytes Raw data of certificate.
      * @param certificateIsVerified Indicates if the certificate has been verified by owner of the private key.
@@ -847,7 +820,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<VerificationCodeResponseInner>> generateVerificationCodeWithResponseAsync(
-        String certificateName, String ifMatch, String resourceGroupName, String provisioningServiceName,
+        String resourceGroupName, String provisioningServiceName, String certificateName, String ifMatch,
         String certificateName1, byte[] certificateRawBytes, Boolean certificateIsVerified,
         CertificatePurpose certificatePurpose, OffsetDateTime certificateCreated, OffsetDateTime certificateLastUpdated,
         Boolean certificateHasPrivateKey, String certificateNonce) {
@@ -855,13 +828,6 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (certificateName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
-        }
-        if (ifMatch == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ifMatch is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
@@ -874,26 +840,32 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
         }
+        if (certificateName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
+        }
+        if (ifMatch == null) {
+            return Mono.error(new IllegalArgumentException("Parameter ifMatch is required and cannot be null."));
+        }
         final String accept = "application/json";
         String certificateRawBytesConverted = Base64Util.encodeToString(certificateRawBytes);
         return FluxUtil
-            .withContext(context -> service.generateVerificationCode(this.client.getEndpoint(), certificateName,
-                ifMatch, this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, certificateName1,
-                certificateRawBytesConverted, certificateIsVerified, certificatePurpose, certificateCreated,
-                certificateLastUpdated, certificateHasPrivateKey, certificateNonce, this.client.getApiVersion(), accept,
-                context))
+            .withContext(context -> service.generateVerificationCode(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName,
+                provisioningServiceName, certificateName, ifMatch, certificateName1, certificateRawBytesConverted,
+                certificateIsVerified, certificatePurpose, certificateCreated, certificateLastUpdated,
+                certificateHasPrivateKey, certificateNonce, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Generate verification code for Proof of Possession.
      * 
-     * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
-     * access.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param ifMatch ETag of the certificate. This is required to update an existing certificate, and ignored while
      * creating a brand new certificate.
-     * @param resourceGroupName name of resource group.
-     * @param provisioningServiceName Name of provisioning service.
      * @param certificateName1 Common Name for the certificate.
      * @param certificateRawBytes Raw data of certificate.
      * @param certificateIsVerified Indicates if the certificate has been verified by owner of the private key.
@@ -911,20 +883,13 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<VerificationCodeResponseInner>> generateVerificationCodeWithResponseAsync(
-        String certificateName, String ifMatch, String resourceGroupName, String provisioningServiceName,
+        String resourceGroupName, String provisioningServiceName, String certificateName, String ifMatch,
         String certificateName1, byte[] certificateRawBytes, Boolean certificateIsVerified,
         CertificatePurpose certificatePurpose, OffsetDateTime certificateCreated, OffsetDateTime certificateLastUpdated,
         Boolean certificateHasPrivateKey, String certificateNonce, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (certificateName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
-        }
-        if (ifMatch == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ifMatch is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
@@ -938,33 +903,38 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
         }
+        if (certificateName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
+        }
+        if (ifMatch == null) {
+            return Mono.error(new IllegalArgumentException("Parameter ifMatch is required and cannot be null."));
+        }
         final String accept = "application/json";
         String certificateRawBytesConverted = Base64Util.encodeToString(certificateRawBytes);
         context = this.client.mergeContext(context);
-        return service.generateVerificationCode(this.client.getEndpoint(), certificateName, ifMatch,
-            this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, certificateName1,
-            certificateRawBytesConverted, certificateIsVerified, certificatePurpose, certificateCreated,
-            certificateLastUpdated, certificateHasPrivateKey, certificateNonce, this.client.getApiVersion(), accept,
-            context);
+        return service.generateVerificationCode(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, certificateName, ifMatch,
+            certificateName1, certificateRawBytesConverted, certificateIsVerified, certificatePurpose,
+            certificateCreated, certificateLastUpdated, certificateHasPrivateKey, certificateNonce, accept, context);
     }
 
     /**
      * Generate verification code for Proof of Possession.
      * 
-     * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
-     * access.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param ifMatch ETag of the certificate. This is required to update an existing certificate, and ignored while
      * creating a brand new certificate.
-     * @param resourceGroupName name of resource group.
-     * @param provisioningServiceName Name of provisioning service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return description of the response of the verification code on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VerificationCodeResponseInner> generateVerificationCodeAsync(String certificateName, String ifMatch,
-        String resourceGroupName, String provisioningServiceName) {
+    private Mono<VerificationCodeResponseInner> generateVerificationCodeAsync(String resourceGroupName,
+        String provisioningServiceName, String certificateName, String ifMatch) {
         final String certificateName1 = null;
         final byte[] certificateRawBytes = new byte[0];
         final Boolean certificateIsVerified = null;
@@ -973,8 +943,8 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         final OffsetDateTime certificateLastUpdated = null;
         final Boolean certificateHasPrivateKey = null;
         final String certificateNonce = null;
-        return generateVerificationCodeWithResponseAsync(certificateName, ifMatch, resourceGroupName,
-            provisioningServiceName, certificateName1, certificateRawBytes, certificateIsVerified, certificatePurpose,
+        return generateVerificationCodeWithResponseAsync(resourceGroupName, provisioningServiceName, certificateName,
+            ifMatch, certificateName1, certificateRawBytes, certificateIsVerified, certificatePurpose,
             certificateCreated, certificateLastUpdated, certificateHasPrivateKey, certificateNonce)
                 .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -982,12 +952,11 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     /**
      * Generate verification code for Proof of Possession.
      * 
-     * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
-     * access.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param ifMatch ETag of the certificate. This is required to update an existing certificate, and ignored while
      * creating a brand new certificate.
-     * @param resourceGroupName name of resource group.
-     * @param provisioningServiceName Name of provisioning service.
      * @param certificateName1 Common Name for the certificate.
      * @param certificateRawBytes Raw data of certificate.
      * @param certificateIsVerified Indicates if the certificate has been verified by owner of the private key.
@@ -1003,33 +972,32 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @return description of the response of the verification code along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<VerificationCodeResponseInner> generateVerificationCodeWithResponse(String certificateName,
-        String ifMatch, String resourceGroupName, String provisioningServiceName, String certificateName1,
+    public Response<VerificationCodeResponseInner> generateVerificationCodeWithResponse(String resourceGroupName,
+        String provisioningServiceName, String certificateName, String ifMatch, String certificateName1,
         byte[] certificateRawBytes, Boolean certificateIsVerified, CertificatePurpose certificatePurpose,
         OffsetDateTime certificateCreated, OffsetDateTime certificateLastUpdated, Boolean certificateHasPrivateKey,
         String certificateNonce, Context context) {
-        return generateVerificationCodeWithResponseAsync(certificateName, ifMatch, resourceGroupName,
-            provisioningServiceName, certificateName1, certificateRawBytes, certificateIsVerified, certificatePurpose,
+        return generateVerificationCodeWithResponseAsync(resourceGroupName, provisioningServiceName, certificateName,
+            ifMatch, certificateName1, certificateRawBytes, certificateIsVerified, certificatePurpose,
             certificateCreated, certificateLastUpdated, certificateHasPrivateKey, certificateNonce, context).block();
     }
 
     /**
      * Generate verification code for Proof of Possession.
      * 
-     * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
-     * access.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param ifMatch ETag of the certificate. This is required to update an existing certificate, and ignored while
      * creating a brand new certificate.
-     * @param resourceGroupName name of resource group.
-     * @param provisioningServiceName Name of provisioning service.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return description of the response of the verification code.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VerificationCodeResponseInner generateVerificationCode(String certificateName, String ifMatch,
-        String resourceGroupName, String provisioningServiceName) {
+    public VerificationCodeResponseInner generateVerificationCode(String resourceGroupName,
+        String provisioningServiceName, String certificateName, String ifMatch) {
         final String certificateName1 = null;
         final byte[] certificateRawBytes = new byte[0];
         final Boolean certificateIsVerified = null;
@@ -1038,23 +1006,20 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         final OffsetDateTime certificateLastUpdated = null;
         final Boolean certificateHasPrivateKey = null;
         final String certificateNonce = null;
-        return generateVerificationCodeWithResponse(certificateName, ifMatch, resourceGroupName,
-            provisioningServiceName, certificateName1, certificateRawBytes, certificateIsVerified, certificatePurpose,
+        return generateVerificationCodeWithResponse(resourceGroupName, provisioningServiceName, certificateName,
+            ifMatch, certificateName1, certificateRawBytes, certificateIsVerified, certificatePurpose,
             certificateCreated, certificateLastUpdated, certificateHasPrivateKey, certificateNonce, Context.NONE)
                 .getValue();
     }
 
     /**
-     * Verify certificate's private key possession.
-     * 
      * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded
      * certificate.
      * 
-     * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
-     * access.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param ifMatch ETag of the certificate.
-     * @param resourceGroupName Resource group name.
-     * @param provisioningServiceName Provisioning service name.
      * @param request The name of the certificate.
      * @param certificateName1 Common Name for the certificate.
      * @param certificateRawBytes Raw data of certificate.
@@ -1070,21 +1035,14 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @return the X509 Certificate along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CertificateResponseInner>> verifyCertificateWithResponseAsync(String certificateName,
-        String ifMatch, String resourceGroupName, String provisioningServiceName, VerificationCodeRequest request,
+    private Mono<Response<CertificateResponseInner>> verifyCertificateWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName, String certificateName, String ifMatch, VerificationCodeRequest request,
         String certificateName1, byte[] certificateRawBytes, Boolean certificateIsVerified,
         CertificatePurpose certificatePurpose, OffsetDateTime certificateCreated, OffsetDateTime certificateLastUpdated,
         Boolean certificateHasPrivateKey, String certificateNonce) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (certificateName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
-        }
-        if (ifMatch == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ifMatch is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
@@ -1098,6 +1056,13 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
         }
+        if (certificateName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
+        }
+        if (ifMatch == null) {
+            return Mono.error(new IllegalArgumentException("Parameter ifMatch is required and cannot be null."));
+        }
         if (request == null) {
             return Mono.error(new IllegalArgumentException("Parameter request is required and cannot be null."));
         } else {
@@ -1106,25 +1071,22 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         final String accept = "application/json";
         String certificateRawBytesConverted = Base64Util.encodeToString(certificateRawBytes);
         return FluxUtil
-            .withContext(context -> service.verifyCertificate(this.client.getEndpoint(), certificateName, ifMatch,
-                this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, certificateName1,
-                certificateRawBytesConverted, certificateIsVerified, certificatePurpose, certificateCreated,
-                certificateLastUpdated, certificateHasPrivateKey, certificateNonce, this.client.getApiVersion(),
-                request, accept, context))
+            .withContext(context -> service.verifyCertificate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, certificateName, ifMatch,
+                certificateName1, certificateRawBytesConverted, certificateIsVerified, certificatePurpose,
+                certificateCreated, certificateLastUpdated, certificateHasPrivateKey, certificateNonce, request, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Verify certificate's private key possession.
-     * 
      * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded
      * certificate.
      * 
-     * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
-     * access.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param ifMatch ETag of the certificate.
-     * @param resourceGroupName Resource group name.
-     * @param provisioningServiceName Provisioning service name.
      * @param request The name of the certificate.
      * @param certificateName1 Common Name for the certificate.
      * @param certificateRawBytes Raw data of certificate.
@@ -1141,21 +1103,14 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @return the X509 Certificate along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CertificateResponseInner>> verifyCertificateWithResponseAsync(String certificateName,
-        String ifMatch, String resourceGroupName, String provisioningServiceName, VerificationCodeRequest request,
+    private Mono<Response<CertificateResponseInner>> verifyCertificateWithResponseAsync(String resourceGroupName,
+        String provisioningServiceName, String certificateName, String ifMatch, VerificationCodeRequest request,
         String certificateName1, byte[] certificateRawBytes, Boolean certificateIsVerified,
         CertificatePurpose certificatePurpose, OffsetDateTime certificateCreated, OffsetDateTime certificateLastUpdated,
         Boolean certificateHasPrivateKey, String certificateNonce, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (certificateName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
-        }
-        if (ifMatch == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ifMatch is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
             return Mono.error(new IllegalArgumentException(
@@ -1169,6 +1124,13 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter provisioningServiceName is required and cannot be null."));
         }
+        if (certificateName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter certificateName is required and cannot be null."));
+        }
+        if (ifMatch == null) {
+            return Mono.error(new IllegalArgumentException("Parameter ifMatch is required and cannot be null."));
+        }
         if (request == null) {
             return Mono.error(new IllegalArgumentException("Parameter request is required and cannot be null."));
         } else {
@@ -1177,24 +1139,21 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         final String accept = "application/json";
         String certificateRawBytesConverted = Base64Util.encodeToString(certificateRawBytes);
         context = this.client.mergeContext(context);
-        return service.verifyCertificate(this.client.getEndpoint(), certificateName, ifMatch,
-            this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, certificateName1,
-            certificateRawBytesConverted, certificateIsVerified, certificatePurpose, certificateCreated,
-            certificateLastUpdated, certificateHasPrivateKey, certificateNonce, this.client.getApiVersion(), request,
-            accept, context);
+        return service.verifyCertificate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, provisioningServiceName, certificateName, ifMatch,
+            certificateName1, certificateRawBytesConverted, certificateIsVerified, certificatePurpose,
+            certificateCreated, certificateLastUpdated, certificateHasPrivateKey, certificateNonce, request, accept,
+            context);
     }
 
     /**
-     * Verify certificate's private key possession.
-     * 
      * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded
      * certificate.
      * 
-     * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
-     * access.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param ifMatch ETag of the certificate.
-     * @param resourceGroupName Resource group name.
-     * @param provisioningServiceName Provisioning service name.
      * @param request The name of the certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -1202,8 +1161,8 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @return the X509 Certificate on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CertificateResponseInner> verifyCertificateAsync(String certificateName, String ifMatch,
-        String resourceGroupName, String provisioningServiceName, VerificationCodeRequest request) {
+    private Mono<CertificateResponseInner> verifyCertificateAsync(String resourceGroupName,
+        String provisioningServiceName, String certificateName, String ifMatch, VerificationCodeRequest request) {
         final String certificateName1 = null;
         final byte[] certificateRawBytes = new byte[0];
         final Boolean certificateIsVerified = null;
@@ -1212,23 +1171,20 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         final OffsetDateTime certificateLastUpdated = null;
         final Boolean certificateHasPrivateKey = null;
         final String certificateNonce = null;
-        return verifyCertificateWithResponseAsync(certificateName, ifMatch, resourceGroupName, provisioningServiceName,
+        return verifyCertificateWithResponseAsync(resourceGroupName, provisioningServiceName, certificateName, ifMatch,
             request, certificateName1, certificateRawBytes, certificateIsVerified, certificatePurpose,
             certificateCreated, certificateLastUpdated, certificateHasPrivateKey, certificateNonce)
                 .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Verify certificate's private key possession.
-     * 
      * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded
      * certificate.
      * 
-     * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
-     * access.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param ifMatch ETag of the certificate.
-     * @param resourceGroupName Resource group name.
-     * @param provisioningServiceName Provisioning service name.
      * @param request The name of the certificate.
      * @param certificateName1 Common Name for the certificate.
      * @param certificateRawBytes Raw data of certificate.
@@ -1245,27 +1201,24 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @return the X509 Certificate along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CertificateResponseInner> verifyCertificateWithResponse(String certificateName, String ifMatch,
-        String resourceGroupName, String provisioningServiceName, VerificationCodeRequest request,
+    public Response<CertificateResponseInner> verifyCertificateWithResponse(String resourceGroupName,
+        String provisioningServiceName, String certificateName, String ifMatch, VerificationCodeRequest request,
         String certificateName1, byte[] certificateRawBytes, Boolean certificateIsVerified,
         CertificatePurpose certificatePurpose, OffsetDateTime certificateCreated, OffsetDateTime certificateLastUpdated,
         Boolean certificateHasPrivateKey, String certificateNonce, Context context) {
-        return verifyCertificateWithResponseAsync(certificateName, ifMatch, resourceGroupName, provisioningServiceName,
+        return verifyCertificateWithResponseAsync(resourceGroupName, provisioningServiceName, certificateName, ifMatch,
             request, certificateName1, certificateRawBytes, certificateIsVerified, certificatePurpose,
             certificateCreated, certificateLastUpdated, certificateHasPrivateKey, certificateNonce, context).block();
     }
 
     /**
-     * Verify certificate's private key possession.
-     * 
      * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded
      * certificate.
      * 
-     * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
-     * access.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param provisioningServiceName Name of the provisioning service to retrieve.
+     * @param certificateName Name of the certificate to retrieve.
      * @param ifMatch ETag of the certificate.
-     * @param resourceGroupName Resource group name.
-     * @param provisioningServiceName Provisioning service name.
      * @param request The name of the certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
@@ -1273,8 +1226,8 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @return the X509 Certificate.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CertificateResponseInner verifyCertificate(String certificateName, String ifMatch, String resourceGroupName,
-        String provisioningServiceName, VerificationCodeRequest request) {
+    public CertificateResponseInner verifyCertificate(String resourceGroupName, String provisioningServiceName,
+        String certificateName, String ifMatch, VerificationCodeRequest request) {
         final String certificateName1 = null;
         final byte[] certificateRawBytes = new byte[0];
         final Boolean certificateIsVerified = null;
@@ -1283,7 +1236,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         final OffsetDateTime certificateLastUpdated = null;
         final Boolean certificateHasPrivateKey = null;
         final String certificateNonce = null;
-        return verifyCertificateWithResponse(certificateName, ifMatch, resourceGroupName, provisioningServiceName,
+        return verifyCertificateWithResponse(resourceGroupName, provisioningServiceName, certificateName, ifMatch,
             request, certificateName1, certificateRawBytes, certificateIsVerified, certificatePurpose,
             certificateCreated, certificateLastUpdated, certificateHasPrivateKey, certificateNonce, Context.NONE)
                 .getValue();

@@ -5,11 +5,12 @@
 package com.azure.resourcemanager.deviceprovisioningservices.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.SharedAccessSignatureAuthorizationRuleInner;
+import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,12 +21,12 @@ import java.util.List;
 public final class SharedAccessSignatureAuthorizationRuleListResult
     implements JsonSerializable<SharedAccessSignatureAuthorizationRuleListResult> {
     /*
-     * The list of shared access policies.
+     * The SharedAccessSignatureAuthorizationRuleAccessRightsDescription items on this page
      */
-    private List<SharedAccessSignatureAuthorizationRuleInner> value;
+    private List<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner> value;
 
     /*
-     * The next link.
+     * The link to the next page of items
      */
     private String nextLink;
 
@@ -36,28 +37,28 @@ public final class SharedAccessSignatureAuthorizationRuleListResult
     }
 
     /**
-     * Get the value property: The list of shared access policies.
+     * Get the value property: The SharedAccessSignatureAuthorizationRuleAccessRightsDescription items on this page.
      * 
      * @return the value value.
      */
-    public List<SharedAccessSignatureAuthorizationRuleInner> value() {
+    public List<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner> value() {
         return this.value;
     }
 
     /**
-     * Set the value property: The list of shared access policies.
+     * Set the value property: The SharedAccessSignatureAuthorizationRuleAccessRightsDescription items on this page.
      * 
      * @param value the value value to set.
      * @return the SharedAccessSignatureAuthorizationRuleListResult object itself.
      */
     public SharedAccessSignatureAuthorizationRuleListResult
-        withValue(List<SharedAccessSignatureAuthorizationRuleInner> value) {
+        withValue(List<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner> value) {
         this.value = value;
         return this;
     }
 
     /**
-     * Get the nextLink property: The next link.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -66,15 +67,32 @@ public final class SharedAccessSignatureAuthorizationRuleListResult
     }
 
     /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the SharedAccessSignatureAuthorizationRuleListResult object itself.
+     */
+    public SharedAccessSignatureAuthorizationRuleListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model SharedAccessSignatureAuthorizationRuleListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SharedAccessSignatureAuthorizationRuleListResult.class);
 
     /**
      * {@inheritDoc}
@@ -83,6 +101,7 @@ public final class SharedAccessSignatureAuthorizationRuleListResult
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
         return jsonWriter.writeEndObject();
     }
 
@@ -92,6 +111,7 @@ public final class SharedAccessSignatureAuthorizationRuleListResult
      * @param jsonReader The JsonReader being read.
      * @return An instance of SharedAccessSignatureAuthorizationRuleListResult if the JsonReader was pointing to an
      * instance of it, or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the SharedAccessSignatureAuthorizationRuleListResult.
      */
     public static SharedAccessSignatureAuthorizationRuleListResult fromJson(JsonReader jsonReader) throws IOException {
@@ -103,8 +123,9 @@ public final class SharedAccessSignatureAuthorizationRuleListResult
                 reader.nextToken();
 
                 if ("value".equals(fieldName)) {
-                    List<SharedAccessSignatureAuthorizationRuleInner> value
-                        = reader.readArray(reader1 -> SharedAccessSignatureAuthorizationRuleInner.fromJson(reader1));
+                    List<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner> value
+                        = reader.readArray(reader1 -> SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner
+                            .fromJson(reader1));
                     deserializedSharedAccessSignatureAuthorizationRuleListResult.value = value;
                 } else if ("nextLink".equals(fieldName)) {
                     deserializedSharedAccessSignatureAuthorizationRuleListResult.nextLink = reader.getString();

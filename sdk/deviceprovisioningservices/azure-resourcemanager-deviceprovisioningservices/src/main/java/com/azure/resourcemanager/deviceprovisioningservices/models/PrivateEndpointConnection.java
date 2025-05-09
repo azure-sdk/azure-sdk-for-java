@@ -41,7 +41,7 @@ public interface PrivateEndpointConnection {
     PrivateEndpointConnectionProperties properties();
 
     /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -84,13 +84,13 @@ public interface PrivateEndpointConnection {
          */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, resourceName.
+             * Specifies resourceGroupName, provisioningServiceName.
              * 
-             * @param resourceGroupName The name of the resource group that contains the provisioning service.
-             * @param resourceName The name of the provisioning service.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
+             * @param provisioningServiceName Name of the provisioning service to retrieve.
              * @return the next definition stage.
              */
-            WithProperties withExistingProvisioningService(String resourceGroupName, String resourceName);
+            WithProperties withExistingProvisioningService(String resourceGroupName, String provisioningServiceName);
         }
 
         /**

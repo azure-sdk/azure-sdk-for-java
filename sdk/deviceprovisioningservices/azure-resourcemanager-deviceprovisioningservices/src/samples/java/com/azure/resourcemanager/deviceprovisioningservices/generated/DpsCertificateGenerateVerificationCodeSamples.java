@@ -10,7 +10,7 @@ package com.azure.resourcemanager.deviceprovisioningservices.generated;
 public final class DpsCertificateGenerateVerificationCodeSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
      * DPSGenerateVerificationCode.json
      */
     /**
@@ -21,8 +21,7 @@ public final class DpsCertificateGenerateVerificationCodeSamples {
     public static void
         dPSGenerateVerificationCode(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
         manager.dpsCertificates()
-            .generateVerificationCodeWithResponse("cert", "AAAAAAAADGk=", "myResourceGroup",
-                "myFirstProvisioningService", null, null, null, null, null, null, null, null,
-                com.azure.core.util.Context.NONE);
+            .generateVerificationCodeWithResponse("myResourceGroup", "myFirstProvisioningService", "cert",
+                "AAAAAAAADGk=", null, null, null, null, null, null, null, null, com.azure.core.util.Context.NONE);
     }
 }

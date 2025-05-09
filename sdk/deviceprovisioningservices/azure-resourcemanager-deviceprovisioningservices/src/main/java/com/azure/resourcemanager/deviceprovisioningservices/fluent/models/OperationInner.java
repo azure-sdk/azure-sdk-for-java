@@ -13,17 +13,17 @@ import com.azure.resourcemanager.deviceprovisioningservices.models.OperationDisp
 import java.io.IOException;
 
 /**
- * Provisioning Service REST API operation.
+ * Represents an operation.
  */
 @Fluent
 public final class OperationInner implements JsonSerializable<OperationInner> {
     /*
-     * Operation name: {provider}/{resource}/{read | write | action | delete}
+     * The name of the operation.
      */
     private String name;
 
     /*
-     * The object that represents the operation.
+     * The display information for the operation.
      */
     private OperationDisplay display;
 
@@ -34,7 +34,7 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
     }
 
     /**
-     * Get the name property: Operation name: {provider}/{resource}/{read | write | action | delete}.
+     * Get the name property: The name of the operation.
      * 
      * @return the name value.
      */
@@ -43,7 +43,7 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
     }
 
     /**
-     * Get the display property: The object that represents the operation.
+     * Get the display property: The display information for the operation.
      * 
      * @return the display value.
      */
@@ -52,7 +52,7 @@ public final class OperationInner implements JsonSerializable<OperationInner> {
     }
 
     /**
-     * Set the display property: The object that represents the operation.
+     * Set the display property: The display information for the operation.
      * 
      * @param display the display value to set.
      * @return the OperationInner object itself.

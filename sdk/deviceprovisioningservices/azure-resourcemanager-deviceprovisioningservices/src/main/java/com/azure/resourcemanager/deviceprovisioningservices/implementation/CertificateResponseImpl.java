@@ -132,7 +132,7 @@ public final class CertificateResponseImpl
         String localIfMatch = null;
         this.innerObject = serviceManager.serviceClient()
             .getDpsCertificates()
-            .getWithResponse(certificateName, resourceGroupName, provisioningServiceName, localIfMatch, Context.NONE)
+            .getWithResponse(resourceGroupName, provisioningServiceName, certificateName, localIfMatch, Context.NONE)
             .getValue();
         return this;
     }
@@ -141,7 +141,7 @@ public final class CertificateResponseImpl
         String localIfMatch = null;
         this.innerObject = serviceManager.serviceClient()
             .getDpsCertificates()
-            .getWithResponse(certificateName, resourceGroupName, provisioningServiceName, localIfMatch, context)
+            .getWithResponse(resourceGroupName, provisioningServiceName, certificateName, localIfMatch, context)
             .getValue();
         return this;
     }

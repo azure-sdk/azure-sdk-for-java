@@ -19,20 +19,20 @@ public final class VerificationCodeResponseImpl implements VerificationCodeRespo
         this.serviceManager = serviceManager;
     }
 
-    public String id() {
-        return this.innerModel().id();
-    }
-
     public String name() {
         return this.innerModel().name();
     }
 
-    public String type() {
-        return this.innerModel().type();
-    }
-
     public String etag() {
         return this.innerModel().etag();
+    }
+
+    public String id() {
+        return this.innerModel().id();
+    }
+
+    public String type() {
+        return this.innerModel().type();
     }
 
     public VerificationCodeResponseProperties properties() {

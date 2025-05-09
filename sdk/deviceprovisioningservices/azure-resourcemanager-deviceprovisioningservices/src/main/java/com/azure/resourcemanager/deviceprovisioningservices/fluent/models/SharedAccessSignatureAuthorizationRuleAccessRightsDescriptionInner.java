@@ -17,8 +17,8 @@ import java.io.IOException;
  * Description of the shared access key.
  */
 @Fluent
-public final class SharedAccessSignatureAuthorizationRuleInner
-    implements JsonSerializable<SharedAccessSignatureAuthorizationRuleInner> {
+public final class SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner
+    implements JsonSerializable<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner> {
     /*
      * Name of the key.
      */
@@ -40,9 +40,9 @@ public final class SharedAccessSignatureAuthorizationRuleInner
     private AccessRightsDescription rights;
 
     /**
-     * Creates an instance of SharedAccessSignatureAuthorizationRuleInner class.
+     * Creates an instance of SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner class.
      */
-    public SharedAccessSignatureAuthorizationRuleInner() {
+    public SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner() {
     }
 
     /**
@@ -58,9 +58,9 @@ public final class SharedAccessSignatureAuthorizationRuleInner
      * Set the keyName property: Name of the key.
      * 
      * @param keyName the keyName value to set.
-     * @return the SharedAccessSignatureAuthorizationRuleInner object itself.
+     * @return the SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner object itself.
      */
-    public SharedAccessSignatureAuthorizationRuleInner withKeyName(String keyName) {
+    public SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner withKeyName(String keyName) {
         this.keyName = keyName;
         return this;
     }
@@ -78,9 +78,9 @@ public final class SharedAccessSignatureAuthorizationRuleInner
      * Set the primaryKey property: Primary SAS key value.
      * 
      * @param primaryKey the primaryKey value to set.
-     * @return the SharedAccessSignatureAuthorizationRuleInner object itself.
+     * @return the SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner object itself.
      */
-    public SharedAccessSignatureAuthorizationRuleInner withPrimaryKey(String primaryKey) {
+    public SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner withPrimaryKey(String primaryKey) {
         this.primaryKey = primaryKey;
         return this;
     }
@@ -98,9 +98,9 @@ public final class SharedAccessSignatureAuthorizationRuleInner
      * Set the secondaryKey property: Secondary SAS key value.
      * 
      * @param secondaryKey the secondaryKey value to set.
-     * @return the SharedAccessSignatureAuthorizationRuleInner object itself.
+     * @return the SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner object itself.
      */
-    public SharedAccessSignatureAuthorizationRuleInner withSecondaryKey(String secondaryKey) {
+    public SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner withSecondaryKey(String secondaryKey) {
         this.secondaryKey = secondaryKey;
         return this;
     }
@@ -118,9 +118,10 @@ public final class SharedAccessSignatureAuthorizationRuleInner
      * Set the rights property: Rights that this key has.
      * 
      * @param rights the rights value to set.
-     * @return the SharedAccessSignatureAuthorizationRuleInner object itself.
+     * @return the SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner object itself.
      */
-    public SharedAccessSignatureAuthorizationRuleInner withRights(AccessRightsDescription rights) {
+    public SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner
+        withRights(AccessRightsDescription rights) {
         this.rights = rights;
         return this;
     }
@@ -134,16 +135,17 @@ public final class SharedAccessSignatureAuthorizationRuleInner
         if (keyName() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
-                    "Missing required property keyName in model SharedAccessSignatureAuthorizationRuleInner"));
+                    "Missing required property keyName in model SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner"));
         }
         if (rights() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
-                    "Missing required property rights in model SharedAccessSignatureAuthorizationRuleInner"));
+                    "Missing required property rights in model SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner"));
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(SharedAccessSignatureAuthorizationRuleInner.class);
+    private static final ClientLogger LOGGER
+        = new ClientLogger(SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner.class);
 
     /**
      * {@inheritDoc}
@@ -159,37 +161,42 @@ public final class SharedAccessSignatureAuthorizationRuleInner
     }
 
     /**
-     * Reads an instance of SharedAccessSignatureAuthorizationRuleInner from the JsonReader.
+     * Reads an instance of SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of SharedAccessSignatureAuthorizationRuleInner if the JsonReader was pointing to an instance
-     * of it, or null if it was pointing to JSON null.
+     * @return An instance of SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner if the JsonReader was
+     * pointing to an instance of it, or null if it was pointing to JSON null.
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the SharedAccessSignatureAuthorizationRuleInner.
+     * @throws IOException If an error occurs while reading the
+     * SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner.
      */
-    public static SharedAccessSignatureAuthorizationRuleInner fromJson(JsonReader jsonReader) throws IOException {
+    public static SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner fromJson(JsonReader jsonReader)
+        throws IOException {
         return jsonReader.readObject(reader -> {
-            SharedAccessSignatureAuthorizationRuleInner deserializedSharedAccessSignatureAuthorizationRuleInner
-                = new SharedAccessSignatureAuthorizationRuleInner();
+            SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner deserializedSharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner
+                = new SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("keyName".equals(fieldName)) {
-                    deserializedSharedAccessSignatureAuthorizationRuleInner.keyName = reader.getString();
+                    deserializedSharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner.keyName
+                        = reader.getString();
                 } else if ("rights".equals(fieldName)) {
-                    deserializedSharedAccessSignatureAuthorizationRuleInner.rights
+                    deserializedSharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner.rights
                         = AccessRightsDescription.fromString(reader.getString());
                 } else if ("primaryKey".equals(fieldName)) {
-                    deserializedSharedAccessSignatureAuthorizationRuleInner.primaryKey = reader.getString();
+                    deserializedSharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner.primaryKey
+                        = reader.getString();
                 } else if ("secondaryKey".equals(fieldName)) {
-                    deserializedSharedAccessSignatureAuthorizationRuleInner.secondaryKey = reader.getString();
+                    deserializedSharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner.secondaryKey
+                        = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedSharedAccessSignatureAuthorizationRuleInner;
+            return deserializedSharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner;
         });
     }
 }

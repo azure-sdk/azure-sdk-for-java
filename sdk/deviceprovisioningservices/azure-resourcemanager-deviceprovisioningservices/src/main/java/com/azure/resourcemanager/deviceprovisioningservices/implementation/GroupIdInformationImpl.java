@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.deviceprovisioningservices.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.GroupIdInformationInner;
 import com.azure.resourcemanager.deviceprovisioningservices.models.GroupIdInformation;
 import com.azure.resourcemanager.deviceprovisioningservices.models.GroupIdInformationProperties;
@@ -33,6 +34,10 @@ public final class GroupIdInformationImpl implements GroupIdInformation {
 
     public GroupIdInformationProperties properties() {
         return this.innerModel().properties();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public GroupIdInformationInner innerModel() {

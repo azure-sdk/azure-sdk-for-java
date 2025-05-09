@@ -10,7 +10,7 @@ package com.azure.resourcemanager.deviceprovisioningservices.generated;
 public final class IotDpsResourceListPrivateEndpointConnectionsSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
      * DPSListPrivateEndpointConnections.json
      */
     /**
@@ -21,7 +21,6 @@ public final class IotDpsResourceListPrivateEndpointConnectionsSamples {
     public static void
         privateEndpointConnectionsList(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
         manager.iotDpsResources()
-            .listPrivateEndpointConnectionsWithResponse("myResourceGroup", "myFirstProvisioningService",
-                com.azure.core.util.Context.NONE);
+            .listPrivateEndpointConnectionsWithResponse("myResourceGroup", null, com.azure.core.util.Context.NONE);
     }
 }

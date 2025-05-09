@@ -10,7 +10,7 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.PrivateEndpointConnectionInner;
-import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.SharedAccessSignatureAuthorizationRuleInner;
+import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner;
 import java.io.IOException;
 import java.util.List;
 
@@ -73,13 +73,18 @@ public final class IotDpsPropertiesDescription implements JsonSerializable<IotDp
     /*
      * List of authorization keys for a provisioning service.
      */
-    private List<SharedAccessSignatureAuthorizationRuleInner> authorizationPolicies;
+    private List<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner> authorizationPolicies;
 
     /*
      * Optional.
      * Indicates if the DPS instance has Data Residency enabled, removing the cross geo-pair disaster recovery.
      */
     private Boolean enableDataResidency;
+
+    /*
+     * Portal endpoint to enable CORS for this provisioning service.
+     */
+    private String portalOperationsHostname;
 
     /**
      * Creates an instance of IotDpsPropertiesDescription class.
@@ -260,7 +265,7 @@ public final class IotDpsPropertiesDescription implements JsonSerializable<IotDp
      * 
      * @return the authorizationPolicies value.
      */
-    public List<SharedAccessSignatureAuthorizationRuleInner> authorizationPolicies() {
+    public List<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner> authorizationPolicies() {
         return this.authorizationPolicies;
     }
 
@@ -270,8 +275,8 @@ public final class IotDpsPropertiesDescription implements JsonSerializable<IotDp
      * @param authorizationPolicies the authorizationPolicies value to set.
      * @return the IotDpsPropertiesDescription object itself.
      */
-    public IotDpsPropertiesDescription
-        withAuthorizationPolicies(List<SharedAccessSignatureAuthorizationRuleInner> authorizationPolicies) {
+    public IotDpsPropertiesDescription withAuthorizationPolicies(
+        List<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner> authorizationPolicies) {
         this.authorizationPolicies = authorizationPolicies;
         return this;
     }
@@ -295,6 +300,26 @@ public final class IotDpsPropertiesDescription implements JsonSerializable<IotDp
      */
     public IotDpsPropertiesDescription withEnableDataResidency(Boolean enableDataResidency) {
         this.enableDataResidency = enableDataResidency;
+        return this;
+    }
+
+    /**
+     * Get the portalOperationsHostname property: Portal endpoint to enable CORS for this provisioning service.
+     * 
+     * @return the portalOperationsHostname value.
+     */
+    public String portalOperationsHostname() {
+        return this.portalOperationsHostname;
+    }
+
+    /**
+     * Set the portalOperationsHostname property: Portal endpoint to enable CORS for this provisioning service.
+     * 
+     * @param portalOperationsHostname the portalOperationsHostname value to set.
+     * @return the IotDpsPropertiesDescription object itself.
+     */
+    public IotDpsPropertiesDescription withPortalOperationsHostname(String portalOperationsHostname) {
+        this.portalOperationsHostname = portalOperationsHostname;
         return this;
     }
 
@@ -337,6 +362,7 @@ public final class IotDpsPropertiesDescription implements JsonSerializable<IotDp
         jsonWriter.writeArrayField("authorizationPolicies", this.authorizationPolicies,
             (writer, element) -> writer.writeJson(element));
         jsonWriter.writeBooleanField("enableDataResidency", this.enableDataResidency);
+        jsonWriter.writeStringField("portalOperationsHostName", this.portalOperationsHostname);
         return jsonWriter.writeEndObject();
     }
 
@@ -383,12 +409,15 @@ public final class IotDpsPropertiesDescription implements JsonSerializable<IotDp
                 } else if ("idScope".equals(fieldName)) {
                     deserializedIotDpsPropertiesDescription.idScope = reader.getString();
                 } else if ("authorizationPolicies".equals(fieldName)) {
-                    List<SharedAccessSignatureAuthorizationRuleInner> authorizationPolicies
-                        = reader.readArray(reader1 -> SharedAccessSignatureAuthorizationRuleInner.fromJson(reader1));
+                    List<SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner> authorizationPolicies
+                        = reader.readArray(reader1 -> SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner
+                            .fromJson(reader1));
                     deserializedIotDpsPropertiesDescription.authorizationPolicies = authorizationPolicies;
                 } else if ("enableDataResidency".equals(fieldName)) {
                     deserializedIotDpsPropertiesDescription.enableDataResidency
                         = reader.getNullable(JsonReader::getBoolean);
+                } else if ("portalOperationsHostName".equals(fieldName)) {
+                    deserializedIotDpsPropertiesDescription.portalOperationsHostname = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
