@@ -19,6 +19,16 @@ import java.util.Map;
 @Fluent
 public final class MonitorDefinition implements JsonSerializable<MonitorDefinition> {
     /*
+     * The monitor's notification settings.
+     */
+    private MonitorNotificationSettings alertNotificationSettings;
+
+    /*
+     * [Required] The ARM resource ID of the compute resource to run the monitoring job on.
+     */
+    private MonitorComputeConfigurationBase computeConfiguration;
+
+    /*
      * The entities targeted by the monitor.
      */
     private MonitoringTarget monitoringTarget;
@@ -28,20 +38,52 @@ public final class MonitorDefinition implements JsonSerializable<MonitorDefiniti
      */
     private Map<String, MonitoringSignalBase> signals;
 
-    /*
-     * [Required] The ARM resource ID of the compute resource to run the monitoring job on.
-     */
-    private MonitorComputeConfigurationBase computeConfiguration;
-
-    /*
-     * The monitor's notification settings.
-     */
-    private MonitorNotificationSettings alertNotificationSettings;
-
     /**
      * Creates an instance of MonitorDefinition class.
      */
     public MonitorDefinition() {
+    }
+
+    /**
+     * Get the alertNotificationSettings property: The monitor's notification settings.
+     * 
+     * @return the alertNotificationSettings value.
+     */
+    public MonitorNotificationSettings alertNotificationSettings() {
+        return this.alertNotificationSettings;
+    }
+
+    /**
+     * Set the alertNotificationSettings property: The monitor's notification settings.
+     * 
+     * @param alertNotificationSettings the alertNotificationSettings value to set.
+     * @return the MonitorDefinition object itself.
+     */
+    public MonitorDefinition withAlertNotificationSettings(MonitorNotificationSettings alertNotificationSettings) {
+        this.alertNotificationSettings = alertNotificationSettings;
+        return this;
+    }
+
+    /**
+     * Get the computeConfiguration property: [Required] The ARM resource ID of the compute resource to run the
+     * monitoring job on.
+     * 
+     * @return the computeConfiguration value.
+     */
+    public MonitorComputeConfigurationBase computeConfiguration() {
+        return this.computeConfiguration;
+    }
+
+    /**
+     * Set the computeConfiguration property: [Required] The ARM resource ID of the compute resource to run the
+     * monitoring job on.
+     * 
+     * @param computeConfiguration the computeConfiguration value to set.
+     * @return the MonitorDefinition object itself.
+     */
+    public MonitorDefinition withComputeConfiguration(MonitorComputeConfigurationBase computeConfiguration) {
+        this.computeConfiguration = computeConfiguration;
+        return this;
     }
 
     /**
@@ -85,53 +127,21 @@ public final class MonitorDefinition implements JsonSerializable<MonitorDefiniti
     }
 
     /**
-     * Get the computeConfiguration property: [Required] The ARM resource ID of the compute resource to run the
-     * monitoring job on.
-     * 
-     * @return the computeConfiguration value.
-     */
-    public MonitorComputeConfigurationBase computeConfiguration() {
-        return this.computeConfiguration;
-    }
-
-    /**
-     * Set the computeConfiguration property: [Required] The ARM resource ID of the compute resource to run the
-     * monitoring job on.
-     * 
-     * @param computeConfiguration the computeConfiguration value to set.
-     * @return the MonitorDefinition object itself.
-     */
-    public MonitorDefinition withComputeConfiguration(MonitorComputeConfigurationBase computeConfiguration) {
-        this.computeConfiguration = computeConfiguration;
-        return this;
-    }
-
-    /**
-     * Get the alertNotificationSettings property: The monitor's notification settings.
-     * 
-     * @return the alertNotificationSettings value.
-     */
-    public MonitorNotificationSettings alertNotificationSettings() {
-        return this.alertNotificationSettings;
-    }
-
-    /**
-     * Set the alertNotificationSettings property: The monitor's notification settings.
-     * 
-     * @param alertNotificationSettings the alertNotificationSettings value to set.
-     * @return the MonitorDefinition object itself.
-     */
-    public MonitorDefinition withAlertNotificationSettings(MonitorNotificationSettings alertNotificationSettings) {
-        this.alertNotificationSettings = alertNotificationSettings;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (alertNotificationSettings() != null) {
+            alertNotificationSettings().validate();
+        }
+        if (computeConfiguration() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property computeConfiguration in model MonitorDefinition"));
+        } else {
+            computeConfiguration().validate();
+        }
         if (monitoringTarget() != null) {
             monitoringTarget().validate();
         }
@@ -145,16 +155,6 @@ public final class MonitorDefinition implements JsonSerializable<MonitorDefiniti
                 }
             });
         }
-        if (computeConfiguration() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property computeConfiguration in model MonitorDefinition"));
-        } else {
-            computeConfiguration().validate();
-        }
-        if (alertNotificationSettings() != null) {
-            alertNotificationSettings().validate();
-        }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(MonitorDefinition.class);
@@ -165,10 +165,10 @@ public final class MonitorDefinition implements JsonSerializable<MonitorDefiniti
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeMapField("signals", this.signals, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("computeConfiguration", this.computeConfiguration);
-        jsonWriter.writeJsonField("monitoringTarget", this.monitoringTarget);
+        jsonWriter.writeMapField("signals", this.signals, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("alertNotificationSettings", this.alertNotificationSettings);
+        jsonWriter.writeJsonField("monitoringTarget", this.monitoringTarget);
         return jsonWriter.writeEndObject();
     }
 
@@ -188,18 +188,18 @@ public final class MonitorDefinition implements JsonSerializable<MonitorDefiniti
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("signals".equals(fieldName)) {
+                if ("computeConfiguration".equals(fieldName)) {
+                    deserializedMonitorDefinition.computeConfiguration
+                        = MonitorComputeConfigurationBase.fromJson(reader);
+                } else if ("signals".equals(fieldName)) {
                     Map<String, MonitoringSignalBase> signals
                         = reader.readMap(reader1 -> MonitoringSignalBase.fromJson(reader1));
                     deserializedMonitorDefinition.signals = signals;
-                } else if ("computeConfiguration".equals(fieldName)) {
-                    deserializedMonitorDefinition.computeConfiguration
-                        = MonitorComputeConfigurationBase.fromJson(reader);
-                } else if ("monitoringTarget".equals(fieldName)) {
-                    deserializedMonitorDefinition.monitoringTarget = MonitoringTarget.fromJson(reader);
                 } else if ("alertNotificationSettings".equals(fieldName)) {
                     deserializedMonitorDefinition.alertNotificationSettings
                         = MonitorNotificationSettings.fromJson(reader);
+                } else if ("monitoringTarget".equals(fieldName)) {
+                    deserializedMonitorDefinition.monitoringTarget = MonitoringTarget.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

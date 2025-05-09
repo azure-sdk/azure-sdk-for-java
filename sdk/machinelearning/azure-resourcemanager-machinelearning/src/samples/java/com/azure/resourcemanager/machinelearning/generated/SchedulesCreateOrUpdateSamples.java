@@ -19,7 +19,7 @@ import java.util.Map;
 public final class SchedulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Schedule/createOrUpdate.json
      */
     /**
@@ -33,18 +33,18 @@ public final class SchedulesCreateOrUpdateSamples {
             .define("string")
             .withExistingWorkspace("test-rg", "my-aml-workspace")
             .withProperties(new ScheduleProperties().withDescription("string")
-                .withTags(mapOf("string", "string"))
                 .withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string"))
+                .withAction(new EndpointScheduleAction()
+                    .withEndpointInvocationDefinition(SerializerFactory.createDefaultManagementSerializerAdapter()
+                        .deserialize("{\"9965593e-526f-4b89-bb36-761138cf2794\":null}", Object.class,
+                            SerializerEncoding.JSON)))
                 .withDisplayName("string")
                 .withIsEnabled(false)
                 .withTrigger(new CronTrigger().withEndTime("string")
                     .withStartTime("string")
                     .withTimeZone("string")
-                    .withExpression("string"))
-                .withAction(new EndpointScheduleAction()
-                    .withEndpointInvocationDefinition(SerializerFactory.createDefaultManagementSerializerAdapter()
-                        .deserialize("{\"9965593e-526f-4b89-bb36-761138cf2794\":null}", Object.class,
-                            SerializerEncoding.JSON))))
+                    .withExpression("string")))
             .create();
     }
 

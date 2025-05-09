@@ -15,7 +15,7 @@ import java.util.Map;
 public final class ModelVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Workspace/ModelVersion/createOrUpdate.json
      */
     /**
@@ -29,8 +29,8 @@ public final class ModelVersionsCreateOrUpdateSamples {
             .define("string")
             .withExistingModel("test-rg", "my-aml-workspace", "string")
             .withProperties(new ModelVersionProperties().withDescription("string")
-                .withTags(mapOf("string", "string"))
                 .withProperties(mapOf("string", "string"))
+                .withTags(mapOf("string", "string"))
                 .withIsAnonymous(false)
                 .withFlavors(mapOf("string", new FlavorData().withData(mapOf("string", "string"))))
                 .withModelType("CustomModel")

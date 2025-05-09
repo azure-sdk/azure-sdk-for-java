@@ -25,16 +25,6 @@ public final class NoneAuthTypeWorkspaceConnectionProperties extends WorkspaceCo
      */
     private ConnectionAuthType authType = ConnectionAuthType.NONE;
 
-    /*
-     * The createdByWorkspaceArmId property.
-     */
-    private String createdByWorkspaceArmId;
-
-    /*
-     * Group based on connection category
-     */
-    private ConnectionGroup group;
-
     /**
      * Creates an instance of NoneAuthTypeWorkspaceConnectionProperties class.
      */
@@ -49,26 +39,6 @@ public final class NoneAuthTypeWorkspaceConnectionProperties extends WorkspaceCo
     @Override
     public ConnectionAuthType authType() {
         return this.authType;
-    }
-
-    /**
-     * Get the createdByWorkspaceArmId property: The createdByWorkspaceArmId property.
-     * 
-     * @return the createdByWorkspaceArmId value.
-     */
-    @Override
-    public String createdByWorkspaceArmId() {
-        return this.createdByWorkspaceArmId;
-    }
-
-    /**
-     * Get the group property: Group based on connection category.
-     * 
-     * @return the group value.
-     */
-    @Override
-    public ConnectionGroup group() {
-        return this.group;
     }
 
     /**
@@ -150,7 +120,6 @@ public final class NoneAuthTypeWorkspaceConnectionProperties extends WorkspaceCo
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -193,13 +162,14 @@ public final class NoneAuthTypeWorkspaceConnectionProperties extends WorkspaceCo
                     deserializedNoneAuthTypeWorkspaceConnectionProperties
                         .withCategory(ConnectionCategory.fromString(reader.getString()));
                 } else if ("createdByWorkspaceArmId".equals(fieldName)) {
-                    deserializedNoneAuthTypeWorkspaceConnectionProperties.createdByWorkspaceArmId = reader.getString();
+                    deserializedNoneAuthTypeWorkspaceConnectionProperties
+                        .withCreatedByWorkspaceArmId(reader.getString());
                 } else if ("expiryTime".equals(fieldName)) {
                     deserializedNoneAuthTypeWorkspaceConnectionProperties.withExpiryTime(reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("group".equals(fieldName)) {
-                    deserializedNoneAuthTypeWorkspaceConnectionProperties.group
-                        = ConnectionGroup.fromString(reader.getString());
+                    deserializedNoneAuthTypeWorkspaceConnectionProperties
+                        .withGroup(ConnectionGroup.fromString(reader.getString()));
                 } else if ("isSharedToAll".equals(fieldName)) {
                     deserializedNoneAuthTypeWorkspaceConnectionProperties
                         .withIsSharedToAll(reader.getNullable(JsonReader::getBoolean));

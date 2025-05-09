@@ -56,7 +56,6 @@ public final class DeploymentResourceConfiguration extends ResourceConfiguration
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

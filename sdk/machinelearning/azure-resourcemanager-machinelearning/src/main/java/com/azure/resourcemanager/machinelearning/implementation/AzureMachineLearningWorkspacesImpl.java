@@ -13,14 +13,17 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.SyncPollerFactory;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.machinelearning.fluent.AzureMachineLearningWorkspaces;
@@ -32,8 +35,8 @@ import com.azure.resourcemanager.machinelearning.fluent.ComponentContainersClien
 import com.azure.resourcemanager.machinelearning.fluent.ComponentVersionsClient;
 import com.azure.resourcemanager.machinelearning.fluent.ComputesClient;
 import com.azure.resourcemanager.machinelearning.fluent.DataContainersClient;
-import com.azure.resourcemanager.machinelearning.fluent.DatastoresClient;
 import com.azure.resourcemanager.machinelearning.fluent.DataVersionsClient;
+import com.azure.resourcemanager.machinelearning.fluent.DatastoresClient;
 import com.azure.resourcemanager.machinelearning.fluent.EnvironmentContainersClient;
 import com.azure.resourcemanager.machinelearning.fluent.EnvironmentVersionsClient;
 import com.azure.resourcemanager.machinelearning.fluent.FeaturesClient;
@@ -171,34 +174,6 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
     }
 
     /**
-     * The OperationsClient object to access its operations.
-     */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
-    }
-
-    /**
-     * The WorkspacesClient object to access its operations.
-     */
-    private final WorkspacesClient workspaces;
-
-    /**
-     * Gets the WorkspacesClient object to access its operations.
-     * 
-     * @return the WorkspacesClient object.
-     */
-    public WorkspacesClient getWorkspaces() {
-        return this.workspaces;
-    }
-
-    /**
      * The UsagesClient object to access its operations.
      */
     private final UsagesClient usages;
@@ -252,76 +227,6 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
      */
     public ComputesClient getComputes() {
         return this.computes;
-    }
-
-    /**
-     * The PrivateEndpointConnectionsClient object to access its operations.
-     */
-    private final PrivateEndpointConnectionsClient privateEndpointConnections;
-
-    /**
-     * Gets the PrivateEndpointConnectionsClient object to access its operations.
-     * 
-     * @return the PrivateEndpointConnectionsClient object.
-     */
-    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
-        return this.privateEndpointConnections;
-    }
-
-    /**
-     * The PrivateLinkResourcesClient object to access its operations.
-     */
-    private final PrivateLinkResourcesClient privateLinkResources;
-
-    /**
-     * Gets the PrivateLinkResourcesClient object to access its operations.
-     * 
-     * @return the PrivateLinkResourcesClient object.
-     */
-    public PrivateLinkResourcesClient getPrivateLinkResources() {
-        return this.privateLinkResources;
-    }
-
-    /**
-     * The WorkspaceConnectionsClient object to access its operations.
-     */
-    private final WorkspaceConnectionsClient workspaceConnections;
-
-    /**
-     * Gets the WorkspaceConnectionsClient object to access its operations.
-     * 
-     * @return the WorkspaceConnectionsClient object.
-     */
-    public WorkspaceConnectionsClient getWorkspaceConnections() {
-        return this.workspaceConnections;
-    }
-
-    /**
-     * The ManagedNetworkSettingsRulesClient object to access its operations.
-     */
-    private final ManagedNetworkSettingsRulesClient managedNetworkSettingsRules;
-
-    /**
-     * Gets the ManagedNetworkSettingsRulesClient object to access its operations.
-     * 
-     * @return the ManagedNetworkSettingsRulesClient object.
-     */
-    public ManagedNetworkSettingsRulesClient getManagedNetworkSettingsRules() {
-        return this.managedNetworkSettingsRules;
-    }
-
-    /**
-     * The ManagedNetworkProvisionsClient object to access its operations.
-     */
-    private final ManagedNetworkProvisionsClient managedNetworkProvisions;
-
-    /**
-     * Gets the ManagedNetworkProvisionsClient object to access its operations.
-     * 
-     * @return the ManagedNetworkProvisionsClient object.
-     */
-    public ManagedNetworkProvisionsClient getManagedNetworkProvisions() {
-        return this.managedNetworkProvisions;
     }
 
     /**
@@ -843,6 +748,104 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
     }
 
     /**
+     * The OperationsClient object to access its operations.
+     */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
+    }
+
+    /**
+     * The WorkspacesClient object to access its operations.
+     */
+    private final WorkspacesClient workspaces;
+
+    /**
+     * Gets the WorkspacesClient object to access its operations.
+     * 
+     * @return the WorkspacesClient object.
+     */
+    public WorkspacesClient getWorkspaces() {
+        return this.workspaces;
+    }
+
+    /**
+     * The PrivateEndpointConnectionsClient object to access its operations.
+     */
+    private final PrivateEndpointConnectionsClient privateEndpointConnections;
+
+    /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     * 
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
+        return this.privateEndpointConnections;
+    }
+
+    /**
+     * The PrivateLinkResourcesClient object to access its operations.
+     */
+    private final PrivateLinkResourcesClient privateLinkResources;
+
+    /**
+     * Gets the PrivateLinkResourcesClient object to access its operations.
+     * 
+     * @return the PrivateLinkResourcesClient object.
+     */
+    public PrivateLinkResourcesClient getPrivateLinkResources() {
+        return this.privateLinkResources;
+    }
+
+    /**
+     * The WorkspaceConnectionsClient object to access its operations.
+     */
+    private final WorkspaceConnectionsClient workspaceConnections;
+
+    /**
+     * Gets the WorkspaceConnectionsClient object to access its operations.
+     * 
+     * @return the WorkspaceConnectionsClient object.
+     */
+    public WorkspaceConnectionsClient getWorkspaceConnections() {
+        return this.workspaceConnections;
+    }
+
+    /**
+     * The ManagedNetworkSettingsRulesClient object to access its operations.
+     */
+    private final ManagedNetworkSettingsRulesClient managedNetworkSettingsRules;
+
+    /**
+     * Gets the ManagedNetworkSettingsRulesClient object to access its operations.
+     * 
+     * @return the ManagedNetworkSettingsRulesClient object.
+     */
+    public ManagedNetworkSettingsRulesClient getManagedNetworkSettingsRules() {
+        return this.managedNetworkSettingsRules;
+    }
+
+    /**
+     * The ManagedNetworkProvisionsClient object to access its operations.
+     */
+    private final ManagedNetworkProvisionsClient managedNetworkProvisions;
+
+    /**
+     * Gets the ManagedNetworkProvisionsClient object to access its operations.
+     * 
+     * @return the ManagedNetworkProvisionsClient object.
+     */
+    public ManagedNetworkProvisionsClient getManagedNetworkProvisions() {
+        return this.managedNetworkProvisions;
+    }
+
+    /**
      * Initializes an instance of AzureMachineLearningWorkspaces client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -859,18 +862,11 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-04-01";
-        this.operations = new OperationsClientImpl(this);
-        this.workspaces = new WorkspacesClientImpl(this);
+        this.apiVersion = "2025-04-01";
         this.usages = new UsagesClientImpl(this);
         this.virtualMachineSizes = new VirtualMachineSizesClientImpl(this);
         this.quotas = new QuotasClientImpl(this);
         this.computes = new ComputesClientImpl(this);
-        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
-        this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
-        this.workspaceConnections = new WorkspaceConnectionsClientImpl(this);
-        this.managedNetworkSettingsRules = new ManagedNetworkSettingsRulesClientImpl(this);
-        this.managedNetworkProvisions = new ManagedNetworkProvisionsClientImpl(this);
         this.registryCodeContainers = new RegistryCodeContainersClientImpl(this);
         this.registryCodeVersions = new RegistryCodeVersionsClientImpl(this);
         this.registryComponentContainers = new RegistryComponentContainersClientImpl(this);
@@ -908,6 +904,13 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
         this.serverlessEndpoints = new ServerlessEndpointsClientImpl(this);
         this.registries = new RegistriesClientImpl(this);
         this.workspaceFeatures = new WorkspaceFeaturesClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
+        this.workspaces = new WorkspacesClientImpl(this);
+        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
+        this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
+        this.workspaceConnections = new WorkspaceConnectionsClientImpl(this);
+        this.managedNetworkSettingsRules = new ManagedNetworkSettingsRulesClientImpl(this);
+        this.managedNetworkProvisions = new ManagedNetworkProvisionsClientImpl(this);
     }
 
     /**
@@ -945,6 +948,23 @@ public final class AzureMachineLearningWorkspacesImpl implements AzureMachineLea
         HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
         return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
             defaultPollInterval, activationResponse, context);
+    }
+
+    /**
+     * Gets long running operation result.
+     * 
+     * @param activationResponse the response of activation operation.
+     * @param pollResultType type of poll result.
+     * @param finalResultType type of final result.
+     * @param context the context shared by all requests.
+     * @param <T> type of poll result.
+     * @param <U> type of final result.
+     * @return SyncPoller for poll result and final result.
+     */
+    public <T, U> SyncPoller<PollResult<T>, U> getLroResult(Response<BinaryData> activationResponse,
+        Type pollResultType, Type finalResultType, Context context) {
+        return SyncPollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, () -> activationResponse, context);
     }
 
     /**

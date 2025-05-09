@@ -1,14 +1,278 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-05-09)
 
-### Features Added
+- Azure Resource Manager Machine Learning client library for Java. This package contains Microsoft Azure SDK for Machine Learning Management SDK. These APIs allow end users to operate on Azure Machine Learning Workspace resources. Package tag package-2025-04-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.UserCreatedAcrAccount` was removed
 
-### Other Changes
+#### `models.UserCreatedStorageAccount` was removed
+
+#### `models.AzureBlobDatastore` was modified
+
+* `isDefault()` was removed
+
+#### `models.SynapseSpark` was modified
+
+* `isAttachedCompute()` was removed
+* `provisioningErrors()` was removed
+* `provisioningState()` was removed
+* `createdOn()` was removed
+* `modifiedOn()` was removed
+
+#### `models.AcrDetails` was modified
+
+* `withUserCreatedAcrAccount(models.UserCreatedAcrAccount)` was removed
+* `userCreatedAcrAccount()` was removed
+
+#### `models.Aks` was modified
+
+* `provisioningErrors()` was removed
+* `provisioningState()` was removed
+* `isAttachedCompute()` was removed
+* `modifiedOn()` was removed
+* `createdOn()` was removed
+
+#### `models.DataLakeAnalytics` was modified
+
+* `createdOn()` was removed
+* `provisioningState()` was removed
+* `provisioningErrors()` was removed
+* `modifiedOn()` was removed
+* `isAttachedCompute()` was removed
+
+#### `models.OneLakeDatastore` was modified
+
+* `isDefault()` was removed
+
+#### `models.ServicePrincipalAuthTypeWorkspaceConnectionProperties` was modified
+
+* `createdByWorkspaceArmId()` was removed
+* `group()` was removed
+
+#### `models.AzureDataLakeGen1Datastore` was modified
+
+* `isDefault()` was removed
+
+#### `models.Kubernetes` was modified
+
+* `createdOn()` was removed
+* `isAttachedCompute()` was removed
+* `provisioningState()` was removed
+* `provisioningErrors()` was removed
+* `modifiedOn()` was removed
+
+#### `models.ManagedOnlineDeployment` was modified
+
+* `provisioningState()` was removed
+
+#### `models.OAuth2AuthTypeWorkspaceConnectionProperties` was modified
+
+* `group()` was removed
+* `createdByWorkspaceArmId()` was removed
+
+#### `models.PipelineJob` was modified
+
+* `status()` was removed
+
+#### `models.StorageAccountDetails` was modified
+
+* `withUserCreatedStorageAccount(models.UserCreatedStorageAccount)` was removed
+* `userCreatedStorageAccount()` was removed
+
+#### `models.VirtualMachine` was modified
+
+* `provisioningState()` was removed
+* `createdOn()` was removed
+* `isAttachedCompute()` was removed
+* `modifiedOn()` was removed
+* `provisioningErrors()` was removed
+
+#### `models.AmlCompute` was modified
+
+* `modifiedOn()` was removed
+* `provisioningState()` was removed
+* `isAttachedCompute()` was removed
+* `provisioningErrors()` was removed
+* `createdOn()` was removed
+
+#### `models.AzureDataLakeGen2Datastore` was modified
+
+* `isDefault()` was removed
+
+#### `models.Databricks` was modified
+
+* `createdOn()` was removed
+* `isAttachedCompute()` was removed
+* `provisioningErrors()` was removed
+* `provisioningState()` was removed
+* `modifiedOn()` was removed
+
+#### `models.ApiKeyAuthWorkspaceConnectionProperties` was modified
+
+* `group()` was removed
+* `createdByWorkspaceArmId()` was removed
+
+#### `models.ComputeInstance` was modified
+
+* `provisioningState()` was removed
+* `createdOn()` was removed
+* `isAttachedCompute()` was removed
+* `provisioningErrors()` was removed
+* `modifiedOn()` was removed
+
+#### `models.WorkspaceConnections` was modified
+
+* `list(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.NoneAuthTypeWorkspaceConnectionProperties` was modified
+
+* `createdByWorkspaceArmId()` was removed
+* `group()` was removed
+
+#### `models.CustomKeysWorkspaceConnectionProperties` was modified
+
+* `group()` was removed
+* `createdByWorkspaceArmId()` was removed
+
+#### `models.UsernamePasswordAuthTypeWorkspaceConnectionProperties` was modified
+
+* `group()` was removed
+* `createdByWorkspaceArmId()` was removed
+
+#### `models.AccountKeyAuthTypeWorkspaceConnectionProperties` was modified
+
+* `group()` was removed
+* `createdByWorkspaceArmId()` was removed
+
+#### `models.AzureFileDatastore` was modified
+
+* `isDefault()` was removed
+
+#### `models.SparkJob` was modified
+
+* `status()` was removed
+
+#### `models.AccessKeyAuthTypeWorkspaceConnectionProperties` was modified
+
+* `createdByWorkspaceArmId()` was removed
+* `group()` was removed
+
+#### `models.AadAuthTypeWorkspaceConnectionProperties` was modified
+
+* `group()` was removed
+* `createdByWorkspaceArmId()` was removed
+
+#### `models.SasAuthTypeWorkspaceConnectionProperties` was modified
+
+* `createdByWorkspaceArmId()` was removed
+* `group()` was removed
+
+#### `models.CommandJob` was modified
+
+* `status()` was removed
+
+#### `models.ManagedIdentityAuthTypeWorkspaceConnectionProperties` was modified
+
+* `group()` was removed
+* `createdByWorkspaceArmId()` was removed
+
+#### `models.DataFactory` was modified
+
+* `isAttachedCompute()` was removed
+* `provisioningErrors()` was removed
+* `createdOn()` was removed
+* `modifiedOn()` was removed
+* `provisioningState()` was removed
+
+#### `models.SweepJob` was modified
+
+* `status()` was removed
+
+#### `models.AutoMLJob` was modified
+
+* `status()` was removed
+
+#### `models.HDInsight` was modified
+
+* `createdOn()` was removed
+* `modifiedOn()` was removed
+* `provisioningErrors()` was removed
+* `provisioningState()` was removed
+* `isAttachedCompute()` was removed
+
+#### `models.KubernetesOnlineDeployment` was modified
+
+* `provisioningState()` was removed
+
+#### `models.PatAuthTypeWorkspaceConnectionProperties` was modified
+
+* `createdByWorkspaceArmId()` was removed
+* `group()` was removed
+
+### Features Added
+
+* `models.ManagedNetworkKind` was added
+
+* `models.WorkspaceConnectionPropertiesV2BasicResource$Update` was added
+
+* `models.ManagedResourceGroupSettings` was added
+
+* `models.ManagedResourceGroupAssignedIdentities` was added
+
+* `models.WorkspaceConnectionUpdateParameter` was added
+
+* `models.FirewallSku` was added
+
+* `models.WorkspaceConnectionPropertiesV2BasicResource$UpdateStages` was added
+
+#### `models.Registry$Definition` was modified
+
+* `withManagedResourceGroupSettings(models.ManagedResourceGroupSettings)` was added
+
+#### `models.Registry` was modified
+
+* `managedResourceGroupSettings()` was added
+
+#### `models.OnlineDeploymentProperties` was modified
+
+* `withStartupProbe(models.ProbeSettings)` was added
+* `startupProbe()` was added
+
+#### `models.InferenceContainerProperties` was modified
+
+* `withStartupRoute(models.Route)` was added
+* `startupRoute()` was added
+
+#### `models.ManagedOnlineDeployment` was modified
+
+* `withStartupProbe(models.ProbeSettings)` was added
+
+#### `models.WorkspaceConnections` was modified
+
+* `list(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.Boolean,com.azure.core.util.Context)` was added
+
+#### `models.ManagedNetworkSettings` was modified
+
+* `firewallPublicIpAddress()` was added
+* `firewallSku()` was added
+* `managedNetworkKind()` was added
+
+#### `models.WorkspaceConnectionPropertiesV2BasicResource` was modified
+
+* `resourceGroupName()` was added
+* `update()` was added
+
+#### `models.OutboundRule` was modified
+
+* `errorInformation()` was added
+* `parentRuleNames()` was added
+
+#### `models.KubernetesOnlineDeployment` was modified
+
+* `withStartupProbe(models.ProbeSettings)` was added
 
 ## 1.1.0 (2024-08-22)
 

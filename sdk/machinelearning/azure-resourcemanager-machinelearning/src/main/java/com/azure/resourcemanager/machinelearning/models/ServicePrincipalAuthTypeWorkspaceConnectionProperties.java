@@ -30,16 +30,6 @@ public final class ServicePrincipalAuthTypeWorkspaceConnectionProperties extends
      */
     private WorkspaceConnectionServicePrincipal credentials;
 
-    /*
-     * The createdByWorkspaceArmId property.
-     */
-    private String createdByWorkspaceArmId;
-
-    /*
-     * Group based on connection category
-     */
-    private ConnectionGroup group;
-
     /**
      * Creates an instance of ServicePrincipalAuthTypeWorkspaceConnectionProperties class.
      */
@@ -75,26 +65,6 @@ public final class ServicePrincipalAuthTypeWorkspaceConnectionProperties extends
         withCredentials(WorkspaceConnectionServicePrincipal credentials) {
         this.credentials = credentials;
         return this;
-    }
-
-    /**
-     * Get the createdByWorkspaceArmId property: The createdByWorkspaceArmId property.
-     * 
-     * @return the createdByWorkspaceArmId value.
-     */
-    @Override
-    public String createdByWorkspaceArmId() {
-        return this.createdByWorkspaceArmId;
-    }
-
-    /**
-     * Get the group property: Group based on connection category.
-     * 
-     * @return the group value.
-     */
-    @Override
-    public ConnectionGroup group() {
-        return this.group;
     }
 
     /**
@@ -176,7 +146,6 @@ public final class ServicePrincipalAuthTypeWorkspaceConnectionProperties extends
      */
     @Override
     public void validate() {
-        super.validate();
         if (credentials() != null) {
             credentials().validate();
         }
@@ -224,14 +193,14 @@ public final class ServicePrincipalAuthTypeWorkspaceConnectionProperties extends
                     deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties
                         .withCategory(ConnectionCategory.fromString(reader.getString()));
                 } else if ("createdByWorkspaceArmId".equals(fieldName)) {
-                    deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties.createdByWorkspaceArmId
-                        = reader.getString();
+                    deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties
+                        .withCreatedByWorkspaceArmId(reader.getString());
                 } else if ("expiryTime".equals(fieldName)) {
                     deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties.withExpiryTime(reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("group".equals(fieldName)) {
-                    deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties.group
-                        = ConnectionGroup.fromString(reader.getString());
+                    deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties
+                        .withGroup(ConnectionGroup.fromString(reader.getString()));
                 } else if ("isSharedToAll".equals(fieldName)) {
                     deserializedServicePrincipalAuthTypeWorkspaceConnectionProperties
                         .withIsSharedToAll(reader.getNullable(JsonReader::getBoolean));

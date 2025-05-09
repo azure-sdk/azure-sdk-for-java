@@ -43,7 +43,6 @@ public final class AmlToken extends IdentityConfiguration {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
