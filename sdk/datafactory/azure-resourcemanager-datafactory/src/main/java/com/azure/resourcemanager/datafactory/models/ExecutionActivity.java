@@ -262,6 +262,8 @@ public class ExecutionActivity extends Activity {
                     return DatabricksSparkJarActivity.fromJson(readerToUse.reset());
                 } else if ("DatabricksSparkPython".equals(discriminatorValue)) {
                     return DatabricksSparkPythonActivity.fromJson(readerToUse.reset());
+                } else if ("DatabricksJob".equals(discriminatorValue)) {
+                    return DatabricksJobActivity.fromJson(readerToUse.reset());
                 } else if ("AzureFunctionActivity".equals(discriminatorValue)) {
                     return AzureFunctionActivity.fromJson(readerToUse.reset());
                 } else if ("ExecuteDataFlow".equals(discriminatorValue)) {

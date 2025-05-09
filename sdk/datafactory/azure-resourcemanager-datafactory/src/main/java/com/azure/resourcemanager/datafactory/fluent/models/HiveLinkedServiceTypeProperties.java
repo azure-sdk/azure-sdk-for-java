@@ -509,21 +509,43 @@ public final class HiveLinkedServiceTypeProperties implements JsonSerializable<H
         jsonWriter.writeUntypedField("host", this.host);
         jsonWriter.writeStringField("authenticationType",
             this.authenticationType == null ? null : this.authenticationType.toString());
-        jsonWriter.writeUntypedField("port", this.port);
+        if (this.port != null) {
+            jsonWriter.writeUntypedField("port", this.port);
+        }
         jsonWriter.writeStringField("serverType", this.serverType == null ? null : this.serverType.toString());
         jsonWriter.writeStringField("thriftTransportProtocol",
             this.thriftTransportProtocol == null ? null : this.thriftTransportProtocol.toString());
-        jsonWriter.writeUntypedField("serviceDiscoveryMode", this.serviceDiscoveryMode);
-        jsonWriter.writeUntypedField("zooKeeperNameSpace", this.zooKeeperNameSpace);
-        jsonWriter.writeUntypedField("useNativeQuery", this.useNativeQuery);
-        jsonWriter.writeUntypedField("username", this.username);
+        if (this.serviceDiscoveryMode != null) {
+            jsonWriter.writeUntypedField("serviceDiscoveryMode", this.serviceDiscoveryMode);
+        }
+        if (this.zooKeeperNameSpace != null) {
+            jsonWriter.writeUntypedField("zooKeeperNameSpace", this.zooKeeperNameSpace);
+        }
+        if (this.useNativeQuery != null) {
+            jsonWriter.writeUntypedField("useNativeQuery", this.useNativeQuery);
+        }
+        if (this.username != null) {
+            jsonWriter.writeUntypedField("username", this.username);
+        }
         jsonWriter.writeJsonField("password", this.password);
-        jsonWriter.writeUntypedField("httpPath", this.httpPath);
-        jsonWriter.writeUntypedField("enableSsl", this.enableSsl);
-        jsonWriter.writeUntypedField("trustedCertPath", this.trustedCertPath);
-        jsonWriter.writeUntypedField("useSystemTrustStore", this.useSystemTrustStore);
-        jsonWriter.writeUntypedField("allowHostNameCNMismatch", this.allowHostnameCNMismatch);
-        jsonWriter.writeUntypedField("allowSelfSignedServerCert", this.allowSelfSignedServerCert);
+        if (this.httpPath != null) {
+            jsonWriter.writeUntypedField("httpPath", this.httpPath);
+        }
+        if (this.enableSsl != null) {
+            jsonWriter.writeUntypedField("enableSsl", this.enableSsl);
+        }
+        if (this.trustedCertPath != null) {
+            jsonWriter.writeUntypedField("trustedCertPath", this.trustedCertPath);
+        }
+        if (this.useSystemTrustStore != null) {
+            jsonWriter.writeUntypedField("useSystemTrustStore", this.useSystemTrustStore);
+        }
+        if (this.allowHostnameCNMismatch != null) {
+            jsonWriter.writeUntypedField("allowHostNameCNMismatch", this.allowHostnameCNMismatch);
+        }
+        if (this.allowSelfSignedServerCert != null) {
+            jsonWriter.writeUntypedField("allowSelfSignedServerCert", this.allowSelfSignedServerCert);
+        }
         jsonWriter.writeStringField("encryptedCredential", this.encryptedCredential);
         return jsonWriter.writeEndObject();
     }
