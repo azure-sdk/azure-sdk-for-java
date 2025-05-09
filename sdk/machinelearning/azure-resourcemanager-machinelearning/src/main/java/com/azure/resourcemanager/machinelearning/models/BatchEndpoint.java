@@ -51,11 +51,11 @@ public interface BatchEndpoint {
     Map<String, String> tags();
 
     /**
-     * Gets the properties property: [Required] Additional attributes of the entity.
+     * Gets the identity property: Managed service identity (system assigned and/or user assigned identities).
      * 
-     * @return the properties value.
+     * @return the identity value.
      */
-    BatchEndpointProperties properties();
+    ManagedServiceIdentity identity();
 
     /**
      * Gets the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
@@ -66,11 +66,11 @@ public interface BatchEndpoint {
     String kind();
 
     /**
-     * Gets the identity property: Managed service identity (system assigned and/or user assigned identities).
+     * Gets the properties property: [Required] Additional attributes of the entity.
      * 
-     * @return the identity value.
+     * @return the properties value.
      */
-    ManagedServiceIdentity identity();
+    BatchEndpointProperties properties();
 
     /**
      * Gets the sku property: Sku details required for ARM contract for Autoscaling.
@@ -183,8 +183,8 @@ public interface BatchEndpoint {
          * The stage of the BatchEndpoint definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithKind,
-            DefinitionStages.WithIdentity, DefinitionStages.WithSku {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
+            DefinitionStages.WithKind, DefinitionStages.WithSku {
             /**
              * Executes the create request.
              * 
@@ -215,6 +215,20 @@ public interface BatchEndpoint {
         }
 
         /**
+         * The stage of the BatchEndpoint definition allowing to specify identity.
+         */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: Managed service identity (system assigned and/or user assigned
+             * identities).
+             * 
+             * @param identity Managed service identity (system assigned and/or user assigned identities).
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(ManagedServiceIdentity identity);
+        }
+
+        /**
          * The stage of the BatchEndpoint definition allowing to specify kind.
          */
         interface WithKind {
@@ -227,20 +241,6 @@ public interface BatchEndpoint {
              * @return the next definition stage.
              */
             WithCreate withKind(String kind);
-        }
-
-        /**
-         * The stage of the BatchEndpoint definition allowing to specify identity.
-         */
-        interface WithIdentity {
-            /**
-             * Specifies the identity property: Managed service identity (system assigned and/or user assigned
-             * identities).
-             * 
-             * @param identity Managed service identity (system assigned and/or user assigned identities).
-             * @return the next definition stage.
-             */
-            WithCreate withIdentity(ManagedServiceIdentity identity);
         }
 
         /**

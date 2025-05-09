@@ -80,7 +80,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param body Managed Network Provisioning Options for a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -121,7 +121,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param body Managed Network Provisioning Options for a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -161,7 +161,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param body Managed Network Provisioning Options for a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -184,7 +184,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -206,7 +206,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param body Managed Network Provisioning Options for a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -231,7 +231,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -249,7 +249,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param body Managed Network Provisioning Options for a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -269,7 +269,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param body Managed Network Provisioning Options for a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -288,7 +288,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -307,7 +307,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param body Managed Network Provisioning Options for a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -327,7 +327,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -343,7 +343,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param body Managed Network Provisioning Options for a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

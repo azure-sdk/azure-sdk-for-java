@@ -17,9 +17,9 @@ import java.io.IOException;
 @Fluent
 public final class StackEnsembleSettings implements JsonSerializable<StackEnsembleSettings> {
     /*
-     * The meta-learner is a model trained on the output of the individual heterogeneous models.
+     * Optional parameters to pass to the initializer of the meta-learner.
      */
-    private StackMetaLearnerType stackMetaLearnerType;
+    private Object stackMetaLearnerKWargs;
 
     /*
      * Specifies the proportion of the training set (when choosing train and validation type of training) to be reserved
@@ -28,9 +28,9 @@ public final class StackEnsembleSettings implements JsonSerializable<StackEnsemb
     private Double stackMetaLearnerTrainPercentage;
 
     /*
-     * Optional parameters to pass to the initializer of the meta-learner.
+     * The meta-learner is a model trained on the output of the individual heterogeneous models.
      */
-    private Object stackMetaLearnerKWargs;
+    private StackMetaLearnerType stackMetaLearnerType;
 
     /**
      * Creates an instance of StackEnsembleSettings class.
@@ -39,24 +39,22 @@ public final class StackEnsembleSettings implements JsonSerializable<StackEnsemb
     }
 
     /**
-     * Get the stackMetaLearnerType property: The meta-learner is a model trained on the output of the individual
-     * heterogeneous models.
+     * Get the stackMetaLearnerKWargs property: Optional parameters to pass to the initializer of the meta-learner.
      * 
-     * @return the stackMetaLearnerType value.
+     * @return the stackMetaLearnerKWargs value.
      */
-    public StackMetaLearnerType stackMetaLearnerType() {
-        return this.stackMetaLearnerType;
+    public Object stackMetaLearnerKWargs() {
+        return this.stackMetaLearnerKWargs;
     }
 
     /**
-     * Set the stackMetaLearnerType property: The meta-learner is a model trained on the output of the individual
-     * heterogeneous models.
+     * Set the stackMetaLearnerKWargs property: Optional parameters to pass to the initializer of the meta-learner.
      * 
-     * @param stackMetaLearnerType the stackMetaLearnerType value to set.
+     * @param stackMetaLearnerKWargs the stackMetaLearnerKWargs value to set.
      * @return the StackEnsembleSettings object itself.
      */
-    public StackEnsembleSettings withStackMetaLearnerType(StackMetaLearnerType stackMetaLearnerType) {
-        this.stackMetaLearnerType = stackMetaLearnerType;
+    public StackEnsembleSettings withStackMetaLearnerKWargs(Object stackMetaLearnerKWargs) {
+        this.stackMetaLearnerKWargs = stackMetaLearnerKWargs;
         return this;
     }
 
@@ -83,22 +81,24 @@ public final class StackEnsembleSettings implements JsonSerializable<StackEnsemb
     }
 
     /**
-     * Get the stackMetaLearnerKWargs property: Optional parameters to pass to the initializer of the meta-learner.
+     * Get the stackMetaLearnerType property: The meta-learner is a model trained on the output of the individual
+     * heterogeneous models.
      * 
-     * @return the stackMetaLearnerKWargs value.
+     * @return the stackMetaLearnerType value.
      */
-    public Object stackMetaLearnerKWargs() {
-        return this.stackMetaLearnerKWargs;
+    public StackMetaLearnerType stackMetaLearnerType() {
+        return this.stackMetaLearnerType;
     }
 
     /**
-     * Set the stackMetaLearnerKWargs property: Optional parameters to pass to the initializer of the meta-learner.
+     * Set the stackMetaLearnerType property: The meta-learner is a model trained on the output of the individual
+     * heterogeneous models.
      * 
-     * @param stackMetaLearnerKWargs the stackMetaLearnerKWargs value to set.
+     * @param stackMetaLearnerType the stackMetaLearnerType value to set.
      * @return the StackEnsembleSettings object itself.
      */
-    public StackEnsembleSettings withStackMetaLearnerKWargs(Object stackMetaLearnerKWargs) {
-        this.stackMetaLearnerKWargs = stackMetaLearnerKWargs;
+    public StackEnsembleSettings withStackMetaLearnerType(StackMetaLearnerType stackMetaLearnerType) {
+        this.stackMetaLearnerType = stackMetaLearnerType;
         return this;
     }
 
@@ -116,10 +116,10 @@ public final class StackEnsembleSettings implements JsonSerializable<StackEnsemb
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeUntypedField("stackMetaLearnerKWargs", this.stackMetaLearnerKWargs);
+        jsonWriter.writeNumberField("stackMetaLearnerTrainPercentage", this.stackMetaLearnerTrainPercentage);
         jsonWriter.writeStringField("stackMetaLearnerType",
             this.stackMetaLearnerType == null ? null : this.stackMetaLearnerType.toString());
-        jsonWriter.writeNumberField("stackMetaLearnerTrainPercentage", this.stackMetaLearnerTrainPercentage);
-        jsonWriter.writeUntypedField("stackMetaLearnerKWargs", this.stackMetaLearnerKWargs);
         return jsonWriter.writeEndObject();
     }
 
@@ -138,14 +138,14 @@ public final class StackEnsembleSettings implements JsonSerializable<StackEnsemb
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("stackMetaLearnerType".equals(fieldName)) {
-                    deserializedStackEnsembleSettings.stackMetaLearnerType
-                        = StackMetaLearnerType.fromString(reader.getString());
+                if ("stackMetaLearnerKWargs".equals(fieldName)) {
+                    deserializedStackEnsembleSettings.stackMetaLearnerKWargs = reader.readUntyped();
                 } else if ("stackMetaLearnerTrainPercentage".equals(fieldName)) {
                     deserializedStackEnsembleSettings.stackMetaLearnerTrainPercentage
                         = reader.getNullable(JsonReader::getDouble);
-                } else if ("stackMetaLearnerKWargs".equals(fieldName)) {
-                    deserializedStackEnsembleSettings.stackMetaLearnerKWargs = reader.readUntyped();
+                } else if ("stackMetaLearnerType".equals(fieldName)) {
+                    deserializedStackEnsembleSettings.stackMetaLearnerType
+                        = StackMetaLearnerType.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

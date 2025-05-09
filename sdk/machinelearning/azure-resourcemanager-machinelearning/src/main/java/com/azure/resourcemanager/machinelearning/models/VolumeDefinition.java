@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Describes the volume configuration for the container.
+ * The VolumeDefinition model.
  */
 @Fluent
 public final class VolumeDefinition implements JsonSerializable<VolumeDefinition> {

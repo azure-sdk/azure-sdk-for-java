@@ -24,14 +24,19 @@ public final class FeatureAttributionDriftMonitoringSignal extends MonitoringSig
     private MonitoringSignalType signalType = MonitoringSignalType.FEATURE_ATTRIBUTION_DRIFT;
 
     /*
-     * [Required] A list of metrics to calculate and their associated thresholds.
+     * A dictionary that maps feature names to their respective data types.
      */
-    private FeatureAttributionMetricThreshold metricThreshold;
+    private Map<String, MonitoringFeatureDataType> featureDataTypeOverride;
 
     /*
      * [Required] The settings for computing feature importance.
      */
     private FeatureImportanceSettings featureImportanceSettings;
+
+    /*
+     * [Required] A list of metrics to calculate and their associated thresholds.
+     */
+    private FeatureAttributionMetricThreshold metricThreshold;
 
     /*
      * [Required] The data which drift will be calculated for.
@@ -42,11 +47,6 @@ public final class FeatureAttributionDriftMonitoringSignal extends MonitoringSig
      * [Required] The data to calculate drift against.
      */
     private MonitoringInputDataBase referenceData;
-
-    /*
-     * A dictionary that maps feature names to their respective data types.
-     */
-    private Map<String, MonitoringFeatureDataType> featureDataTypeOverride;
 
     /**
      * Creates an instance of FeatureAttributionDriftMonitoringSignal class.
@@ -65,23 +65,23 @@ public final class FeatureAttributionDriftMonitoringSignal extends MonitoringSig
     }
 
     /**
-     * Get the metricThreshold property: [Required] A list of metrics to calculate and their associated thresholds.
+     * Get the featureDataTypeOverride property: A dictionary that maps feature names to their respective data types.
      * 
-     * @return the metricThreshold value.
+     * @return the featureDataTypeOverride value.
      */
-    public FeatureAttributionMetricThreshold metricThreshold() {
-        return this.metricThreshold;
+    public Map<String, MonitoringFeatureDataType> featureDataTypeOverride() {
+        return this.featureDataTypeOverride;
     }
 
     /**
-     * Set the metricThreshold property: [Required] A list of metrics to calculate and their associated thresholds.
+     * Set the featureDataTypeOverride property: A dictionary that maps feature names to their respective data types.
      * 
-     * @param metricThreshold the metricThreshold value to set.
+     * @param featureDataTypeOverride the featureDataTypeOverride value to set.
      * @return the FeatureAttributionDriftMonitoringSignal object itself.
      */
     public FeatureAttributionDriftMonitoringSignal
-        withMetricThreshold(FeatureAttributionMetricThreshold metricThreshold) {
-        this.metricThreshold = metricThreshold;
+        withFeatureDataTypeOverride(Map<String, MonitoringFeatureDataType> featureDataTypeOverride) {
+        this.featureDataTypeOverride = featureDataTypeOverride;
         return this;
     }
 
@@ -103,6 +103,27 @@ public final class FeatureAttributionDriftMonitoringSignal extends MonitoringSig
     public FeatureAttributionDriftMonitoringSignal
         withFeatureImportanceSettings(FeatureImportanceSettings featureImportanceSettings) {
         this.featureImportanceSettings = featureImportanceSettings;
+        return this;
+    }
+
+    /**
+     * Get the metricThreshold property: [Required] A list of metrics to calculate and their associated thresholds.
+     * 
+     * @return the metricThreshold value.
+     */
+    public FeatureAttributionMetricThreshold metricThreshold() {
+        return this.metricThreshold;
+    }
+
+    /**
+     * Set the metricThreshold property: [Required] A list of metrics to calculate and their associated thresholds.
+     * 
+     * @param metricThreshold the metricThreshold value to set.
+     * @return the FeatureAttributionDriftMonitoringSignal object itself.
+     */
+    public FeatureAttributionDriftMonitoringSignal
+        withMetricThreshold(FeatureAttributionMetricThreshold metricThreshold) {
+        this.metricThreshold = metricThreshold;
         return this;
     }
 
@@ -147,27 +168,6 @@ public final class FeatureAttributionDriftMonitoringSignal extends MonitoringSig
     }
 
     /**
-     * Get the featureDataTypeOverride property: A dictionary that maps feature names to their respective data types.
-     * 
-     * @return the featureDataTypeOverride value.
-     */
-    public Map<String, MonitoringFeatureDataType> featureDataTypeOverride() {
-        return this.featureDataTypeOverride;
-    }
-
-    /**
-     * Set the featureDataTypeOverride property: A dictionary that maps feature names to their respective data types.
-     * 
-     * @param featureDataTypeOverride the featureDataTypeOverride value to set.
-     * @return the FeatureAttributionDriftMonitoringSignal object itself.
-     */
-    public FeatureAttributionDriftMonitoringSignal
-        withFeatureDataTypeOverride(Map<String, MonitoringFeatureDataType> featureDataTypeOverride) {
-        this.featureDataTypeOverride = featureDataTypeOverride;
-        return this;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -193,20 +193,19 @@ public final class FeatureAttributionDriftMonitoringSignal extends MonitoringSig
      */
     @Override
     public void validate() {
-        super.validate();
-        if (metricThreshold() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property metricThreshold in model FeatureAttributionDriftMonitoringSignal"));
-        } else {
-            metricThreshold().validate();
-        }
         if (featureImportanceSettings() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property featureImportanceSettings in model FeatureAttributionDriftMonitoringSignal"));
         } else {
             featureImportanceSettings().validate();
+        }
+        if (metricThreshold() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property metricThreshold in model FeatureAttributionDriftMonitoringSignal"));
+        } else {
+            metricThreshold().validate();
         }
         if (productionData() == null) {
             throw LOGGER.atError()
@@ -235,8 +234,8 @@ public final class FeatureAttributionDriftMonitoringSignal extends MonitoringSig
         jsonWriter.writeArrayField("notificationTypes", notificationTypes(),
             (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeMapField("properties", properties(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("metricThreshold", this.metricThreshold);
         jsonWriter.writeJsonField("featureImportanceSettings", this.featureImportanceSettings);
+        jsonWriter.writeJsonField("metricThreshold", this.metricThreshold);
         jsonWriter.writeArrayField("productionData", this.productionData,
             (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("referenceData", this.referenceData);
@@ -270,12 +269,12 @@ public final class FeatureAttributionDriftMonitoringSignal extends MonitoringSig
                 } else if ("properties".equals(fieldName)) {
                     Map<String, String> properties = reader.readMap(reader1 -> reader1.getString());
                     deserializedFeatureAttributionDriftMonitoringSignal.withProperties(properties);
-                } else if ("metricThreshold".equals(fieldName)) {
-                    deserializedFeatureAttributionDriftMonitoringSignal.metricThreshold
-                        = FeatureAttributionMetricThreshold.fromJson(reader);
                 } else if ("featureImportanceSettings".equals(fieldName)) {
                     deserializedFeatureAttributionDriftMonitoringSignal.featureImportanceSettings
                         = FeatureImportanceSettings.fromJson(reader);
+                } else if ("metricThreshold".equals(fieldName)) {
+                    deserializedFeatureAttributionDriftMonitoringSignal.metricThreshold
+                        = FeatureAttributionMetricThreshold.fromJson(reader);
                 } else if ("productionData".equals(fieldName)) {
                     List<MonitoringInputDataBase> productionData
                         = reader.readArray(reader1 -> MonitoringInputDataBase.fromJson(reader1));

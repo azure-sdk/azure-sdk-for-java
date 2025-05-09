@@ -17,7 +17,7 @@ import java.io.IOException;
 @Fluent
 public final class ScriptReference implements JsonSerializable<ScriptReference> {
     /*
-     * The storage source of the script: workspace.
+     * The storage source of the script: inline, workspace.
      */
     private String scriptSource;
 
@@ -43,7 +43,7 @@ public final class ScriptReference implements JsonSerializable<ScriptReference> 
     }
 
     /**
-     * Get the scriptSource property: The storage source of the script: workspace.
+     * Get the scriptSource property: The storage source of the script: inline, workspace.
      * 
      * @return the scriptSource value.
      */
@@ -52,7 +52,7 @@ public final class ScriptReference implements JsonSerializable<ScriptReference> 
     }
 
     /**
-     * Set the scriptSource property: The storage source of the script: workspace.
+     * Set the scriptSource property: The storage source of the script: inline, workspace.
      * 
      * @param scriptSource the scriptSource value to set.
      * @return the ScriptReference object itself.

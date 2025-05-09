@@ -122,7 +122,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Lists the managed network outbound rules for a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -160,7 +160,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Lists the managed network outbound rules for a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -199,7 +199,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Lists the managed network outbound rules for a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -216,7 +216,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Lists the managed network outbound rules for a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -235,7 +235,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Lists the managed network outbound rules for a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -251,7 +251,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Lists the managed network outbound rules for a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -269,7 +269,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -308,7 +308,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -347,7 +347,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -366,7 +366,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -388,7 +388,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -405,7 +405,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -423,7 +423,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -440,7 +440,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -458,7 +458,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -473,7 +473,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Deletes an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -489,7 +489,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Gets an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -529,7 +529,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Gets an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -569,7 +569,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Gets an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -588,7 +588,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Gets an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -606,7 +606,7 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Gets an outbound rule from the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -622,14 +622,13 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return outbound Rule Basic Resource for the managed network of a machine learning workspace along with
-     * {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
@@ -668,15 +667,14 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return outbound Rule Basic Resource for the managed network of a machine learning workspace along with
-     * {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
@@ -714,14 +712,13 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of outbound Rule Basic Resource for the managed network of a machine
-     * learning workspace.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OutboundRuleBasicResourceInner>, OutboundRuleBasicResourceInner>
@@ -738,15 +735,14 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of outbound Rule Basic Resource for the managed network of a machine
-     * learning workspace.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OutboundRuleBasicResourceInner>, OutboundRuleBasicResourceInner>
@@ -764,14 +760,13 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of outbound Rule Basic Resource for the managed network of a machine
-     * learning workspace.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OutboundRuleBasicResourceInner>, OutboundRuleBasicResourceInner> beginCreateOrUpdate(
@@ -783,15 +778,14 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of outbound Rule Basic Resource for the managed network of a machine
-     * learning workspace.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OutboundRuleBasicResourceInner>, OutboundRuleBasicResourceInner> beginCreateOrUpdate(
@@ -804,14 +798,13 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return outbound Rule Basic Resource for the managed network of a machine learning workspace on successful
-     * completion of {@link Mono}.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OutboundRuleBasicResourceInner> createOrUpdateAsync(String resourceGroupName, String workspaceName,
@@ -824,15 +817,14 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return outbound Rule Basic Resource for the managed network of a machine learning workspace on successful
-     * completion of {@link Mono}.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OutboundRuleBasicResourceInner> createOrUpdateAsync(String resourceGroupName, String workspaceName,
@@ -845,13 +837,13 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return outbound Rule Basic Resource for the managed network of a machine learning workspace.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OutboundRuleBasicResourceInner createOrUpdate(String resourceGroupName, String workspaceName,
@@ -863,14 +855,14 @@ public final class ManagedNetworkSettingsRulesClientImpl implements ManagedNetwo
      * Creates or updates an outbound rule in the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param ruleName Name of the workspace managed network outbound rule.
      * @param body Outbound Rule to be created or updated in the managed network of a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return outbound Rule Basic Resource for the managed network of a machine learning workspace.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public OutboundRuleBasicResourceInner createOrUpdate(String resourceGroupName, String workspaceName,

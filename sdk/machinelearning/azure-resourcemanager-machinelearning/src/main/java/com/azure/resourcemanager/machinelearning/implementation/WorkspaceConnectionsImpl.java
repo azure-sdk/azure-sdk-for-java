@@ -27,6 +27,31 @@ public final class WorkspaceConnectionsImpl implements WorkspaceConnections {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<WorkspaceConnectionPropertiesV2BasicResource> list(String resourceGroupName,
+        String workspaceName) {
+        PagedIterable<WorkspaceConnectionPropertiesV2BasicResourceInner> inner
+            = this.serviceClient().list(resourceGroupName, workspaceName);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new WorkspaceConnectionPropertiesV2BasicResourceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<WorkspaceConnectionPropertiesV2BasicResource> list(String resourceGroupName,
+        String workspaceName, String target, String category, Boolean includeAll, Context context) {
+        PagedIterable<WorkspaceConnectionPropertiesV2BasicResourceInner> inner
+            = this.serviceClient().list(resourceGroupName, workspaceName, target, category, includeAll, context);
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new WorkspaceConnectionPropertiesV2BasicResourceImpl(inner1, this.manager()));
+    }
+
+    public Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName, String connectionName,
+        Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, connectionName, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String connectionName) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, connectionName);
+    }
+
     public Response<WorkspaceConnectionPropertiesV2BasicResource> getWithResponse(String resourceGroupName,
         String workspaceName, String connectionName, Context context) {
         Response<WorkspaceConnectionPropertiesV2BasicResourceInner> inner
@@ -50,31 +75,6 @@ public final class WorkspaceConnectionsImpl implements WorkspaceConnections {
         }
     }
 
-    public Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName, String connectionName,
-        Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, connectionName, context);
-    }
-
-    public void delete(String resourceGroupName, String workspaceName, String connectionName) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, connectionName);
-    }
-
-    public PagedIterable<WorkspaceConnectionPropertiesV2BasicResource> list(String resourceGroupName,
-        String workspaceName) {
-        PagedIterable<WorkspaceConnectionPropertiesV2BasicResourceInner> inner
-            = this.serviceClient().list(resourceGroupName, workspaceName);
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new WorkspaceConnectionPropertiesV2BasicResourceImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<WorkspaceConnectionPropertiesV2BasicResource> list(String resourceGroupName,
-        String workspaceName, String target, String category, Context context) {
-        PagedIterable<WorkspaceConnectionPropertiesV2BasicResourceInner> inner
-            = this.serviceClient().list(resourceGroupName, workspaceName, target, category, context);
-        return ResourceManagerUtils.mapPage(inner,
-            inner1 -> new WorkspaceConnectionPropertiesV2BasicResourceImpl(inner1, this.manager()));
-    }
-
     public Response<WorkspaceConnectionPropertiesV2BasicResource> listSecretsWithResponse(String resourceGroupName,
         String workspaceName, String connectionName, Context context) {
         Response<WorkspaceConnectionPropertiesV2BasicResourceInner> inner
@@ -96,6 +96,15 @@ public final class WorkspaceConnectionsImpl implements WorkspaceConnections {
         } else {
             return null;
         }
+    }
+
+    public void testConnection(String resourceGroupName, String workspaceName, String connectionName) {
+        this.serviceClient().testConnection(resourceGroupName, workspaceName, connectionName);
+    }
+
+    public void testConnection(String resourceGroupName, String workspaceName, String connectionName,
+        WorkspaceConnectionPropertiesV2BasicResourceInner body, Context context) {
+        this.serviceClient().testConnection(resourceGroupName, workspaceName, connectionName, body, context);
     }
 
     public WorkspaceConnectionPropertiesV2BasicResource getById(String id) {

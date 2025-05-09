@@ -37,7 +37,6 @@ public final class NlpVerticalFeaturizationSettings extends FeaturizationSetting
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**

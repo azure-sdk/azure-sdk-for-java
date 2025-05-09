@@ -69,7 +69,6 @@ public final class SparkJobPythonEntry extends SparkJobEntry {
      */
     @Override
     public void validate() {
-        super.validate();
         if (file() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property file in model SparkJobPythonEntry"));
