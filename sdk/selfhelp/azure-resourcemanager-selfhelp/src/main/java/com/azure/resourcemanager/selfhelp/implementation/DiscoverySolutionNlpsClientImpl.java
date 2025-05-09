@@ -22,6 +22,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.selfhelp.fluent.DiscoverySolutionNlpsClient;
 import com.azure.resourcemanager.selfhelp.fluent.models.DiscoveryNlpResponseInner;
 import com.azure.resourcemanager.selfhelp.models.DiscoveryNlpRequest;
@@ -69,12 +70,29 @@ public final class DiscoverySolutionNlpsClientImpl implements DiscoverySolutionN
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/providers/Microsoft.Help/discoverSolutions")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DiscoveryNlpResponseInner> discoverSolutionsSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") DiscoveryNlpRequest discoverSolutionRequest,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/providers/Microsoft.Help/discoverSolutions")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DiscoveryNlpResponseInner>> discoverSolutionsBySubscription(@HostParam("$host") String endpoint,
-            @PathParam(value = "subscriptionId", encoded = true) String subscriptionId,
-            @QueryParam("api-version") String apiVersion,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @BodyParam("application/json") DiscoveryNlpRequest discoverSolutionRequest,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.Help/discoverSolutions")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DiscoveryNlpResponseInner> discoverSolutionsBySubscriptionSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @BodyParam("application/json") DiscoveryNlpRequest discoverSolutionRequest,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -82,7 +100,7 @@ public final class DiscoverySolutionNlpsClientImpl implements DiscoverySolutionN
     /**
      * Search for relevant Azure Diagnostics, Solutions and Troubleshooters using a natural language issue summary.
      * 
-     * @param discoverSolutionRequest Request body for discovering solutions using NLP.
+     * @param discoverSolutionRequest The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -96,7 +114,10 @@ public final class DiscoverySolutionNlpsClientImpl implements DiscoverySolutionN
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (discoverSolutionRequest != null) {
+        if (discoverSolutionRequest == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter discoverSolutionRequest is required and cannot be null."));
+        } else {
             discoverSolutionRequest.validate();
         }
         final String accept = "application/json";
@@ -109,40 +130,14 @@ public final class DiscoverySolutionNlpsClientImpl implements DiscoverySolutionN
     /**
      * Search for relevant Azure Diagnostics, Solutions and Troubleshooters using a natural language issue summary.
      * 
-     * @param discoverSolutionRequest Request body for discovering solutions using NLP.
-     * @param context The context to associate with this operation.
+     * @param discoverSolutionRequest The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return successfully fetched list of solution metadata along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DiscoveryNlpResponseInner>>
-        discoverSolutionsWithResponseAsync(DiscoveryNlpRequest discoverSolutionRequest, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (discoverSolutionRequest != null) {
-            discoverSolutionRequest.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.discoverSolutions(this.client.getEndpoint(), this.client.getApiVersion(),
-            discoverSolutionRequest, accept, context);
-    }
-
-    /**
-     * Search for relevant Azure Diagnostics, Solutions and Troubleshooters using a natural language issue summary.
-     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return successfully fetched list of solution metadata on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DiscoveryNlpResponseInner> discoverSolutionsAsync() {
-        final DiscoveryNlpRequest discoverSolutionRequest = null;
+    private Mono<DiscoveryNlpResponseInner> discoverSolutionsAsync(DiscoveryNlpRequest discoverSolutionRequest) {
         return discoverSolutionsWithResponseAsync(discoverSolutionRequest)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -150,7 +145,7 @@ public final class DiscoverySolutionNlpsClientImpl implements DiscoverySolutionN
     /**
      * Search for relevant Azure Diagnostics, Solutions and Troubleshooters using a natural language issue summary.
      * 
-     * @param discoverSolutionRequest Request body for discovering solutions using NLP.
+     * @param discoverSolutionRequest The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -160,19 +155,33 @@ public final class DiscoverySolutionNlpsClientImpl implements DiscoverySolutionN
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<DiscoveryNlpResponseInner>
         discoverSolutionsWithResponse(DiscoveryNlpRequest discoverSolutionRequest, Context context) {
-        return discoverSolutionsWithResponseAsync(discoverSolutionRequest, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (discoverSolutionRequest == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter discoverSolutionRequest is required and cannot be null."));
+        } else {
+            discoverSolutionRequest.validate();
+        }
+        final String accept = "application/json";
+        return service.discoverSolutionsSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            discoverSolutionRequest, accept, context);
     }
 
     /**
      * Search for relevant Azure Diagnostics, Solutions and Troubleshooters using a natural language issue summary.
      * 
+     * @param discoverSolutionRequest The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return successfully fetched list of solution metadata.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public DiscoveryNlpResponseInner discoverSolutions() {
-        final DiscoveryNlpRequest discoverSolutionRequest = null;
+    public DiscoveryNlpResponseInner discoverSolutions(DiscoveryNlpRequest discoverSolutionRequest) {
         return discoverSolutionsWithResponse(discoverSolutionRequest, Context.NONE).getValue();
     }
 
@@ -180,8 +189,7 @@ public final class DiscoverySolutionNlpsClientImpl implements DiscoverySolutionN
      * Search for relevant Azure Diagnostics, Solutions and Troubleshooters using a natural language issue summary and
      * subscription.
      * 
-     * @param subscriptionId The Azure subscription ID.
-     * @param discoverSolutionRequest Request body for discovering solutions using NLP.
+     * @param discoverSolutionRequest The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -189,22 +197,26 @@ public final class DiscoverySolutionNlpsClientImpl implements DiscoverySolutionN
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DiscoveryNlpResponseInner>> discoverSolutionsBySubscriptionWithResponseAsync(
-        String subscriptionId, DiscoveryNlpRequest discoverSolutionRequest) {
+    private Mono<Response<DiscoveryNlpResponseInner>>
+        discoverSolutionsBySubscriptionWithResponseAsync(DiscoveryNlpRequest discoverSolutionRequest) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (subscriptionId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (discoverSolutionRequest != null) {
+        if (discoverSolutionRequest == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter discoverSolutionRequest is required and cannot be null."));
+        } else {
             discoverSolutionRequest.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.discoverSolutionsBySubscription(this.client.getEndpoint(), subscriptionId,
-                this.client.getApiVersion(), discoverSolutionRequest, accept, context))
+            .withContext(context -> service.discoverSolutionsBySubscription(this.client.getEndpoint(),
+                this.client.getApiVersion(), this.client.getSubscriptionId(), discoverSolutionRequest, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -212,48 +224,16 @@ public final class DiscoverySolutionNlpsClientImpl implements DiscoverySolutionN
      * Search for relevant Azure Diagnostics, Solutions and Troubleshooters using a natural language issue summary and
      * subscription.
      * 
-     * @param subscriptionId The Azure subscription ID.
-     * @param discoverSolutionRequest Request body for discovering solutions using NLP.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return successfully fetched list of solution metadata along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DiscoveryNlpResponseInner>> discoverSolutionsBySubscriptionWithResponseAsync(
-        String subscriptionId, DiscoveryNlpRequest discoverSolutionRequest, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (subscriptionId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
-        }
-        if (discoverSolutionRequest != null) {
-            discoverSolutionRequest.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.discoverSolutionsBySubscription(this.client.getEndpoint(), subscriptionId,
-            this.client.getApiVersion(), discoverSolutionRequest, accept, context);
-    }
-
-    /**
-     * Search for relevant Azure Diagnostics, Solutions and Troubleshooters using a natural language issue summary and
-     * subscription.
-     * 
-     * @param subscriptionId The Azure subscription ID.
+     * @param discoverSolutionRequest The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return successfully fetched list of solution metadata on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DiscoveryNlpResponseInner> discoverSolutionsBySubscriptionAsync(String subscriptionId) {
-        final DiscoveryNlpRequest discoverSolutionRequest = null;
-        return discoverSolutionsBySubscriptionWithResponseAsync(subscriptionId, discoverSolutionRequest)
+    private Mono<DiscoveryNlpResponseInner>
+        discoverSolutionsBySubscriptionAsync(DiscoveryNlpRequest discoverSolutionRequest) {
+        return discoverSolutionsBySubscriptionWithResponseAsync(discoverSolutionRequest)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -261,8 +241,7 @@ public final class DiscoverySolutionNlpsClientImpl implements DiscoverySolutionN
      * Search for relevant Azure Diagnostics, Solutions and Troubleshooters using a natural language issue summary and
      * subscription.
      * 
-     * @param subscriptionId The Azure subscription ID.
-     * @param discoverSolutionRequest Request body for discovering solutions using NLP.
+     * @param discoverSolutionRequest The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -270,26 +249,43 @@ public final class DiscoverySolutionNlpsClientImpl implements DiscoverySolutionN
      * @return successfully fetched list of solution metadata along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<DiscoveryNlpResponseInner> discoverSolutionsBySubscriptionWithResponse(String subscriptionId,
-        DiscoveryNlpRequest discoverSolutionRequest, Context context) {
-        return discoverSolutionsBySubscriptionWithResponseAsync(subscriptionId, discoverSolutionRequest, context)
-            .block();
+    public Response<DiscoveryNlpResponseInner>
+        discoverSolutionsBySubscriptionWithResponse(DiscoveryNlpRequest discoverSolutionRequest, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (discoverSolutionRequest == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter discoverSolutionRequest is required and cannot be null."));
+        } else {
+            discoverSolutionRequest.validate();
+        }
+        final String accept = "application/json";
+        return service.discoverSolutionsBySubscriptionSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), discoverSolutionRequest, accept, context);
     }
 
     /**
      * Search for relevant Azure Diagnostics, Solutions and Troubleshooters using a natural language issue summary and
      * subscription.
      * 
-     * @param subscriptionId The Azure subscription ID.
+     * @param discoverSolutionRequest The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return successfully fetched list of solution metadata.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public DiscoveryNlpResponseInner discoverSolutionsBySubscription(String subscriptionId) {
-        final DiscoveryNlpRequest discoverSolutionRequest = null;
-        return discoverSolutionsBySubscriptionWithResponse(subscriptionId, discoverSolutionRequest, Context.NONE)
-            .getValue();
+    public DiscoveryNlpResponseInner discoverSolutionsBySubscription(DiscoveryNlpRequest discoverSolutionRequest) {
+        return discoverSolutionsBySubscriptionWithResponse(discoverSolutionRequest, Context.NONE).getValue();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DiscoverySolutionNlpsClientImpl.class);
 }

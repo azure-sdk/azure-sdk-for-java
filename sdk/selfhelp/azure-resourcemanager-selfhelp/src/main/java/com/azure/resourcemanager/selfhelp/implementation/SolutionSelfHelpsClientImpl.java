@@ -21,6 +21,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.selfhelp.fluent.SolutionSelfHelpsClient;
 import com.azure.resourcemanager.selfhelp.fluent.models.SolutionResourceSelfHelpInner;
 import reactor.core.publisher.Mono;
@@ -62,7 +63,15 @@ public final class SolutionSelfHelpsClientImpl implements SolutionSelfHelpsClien
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SolutionResourceSelfHelpInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("solutionId") String solutionId, @QueryParam("api-version") String apiVersion,
+            @QueryParam("api-version") String apiVersion, @PathParam("solutionId") String solutionId,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Help/selfHelp/{solutionId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SolutionResourceSelfHelpInner> getSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("solutionId") String solutionId,
             @HeaderParam("Accept") String accept, Context context);
     }
 
@@ -91,37 +100,8 @@ public final class SolutionSelfHelpsClientImpl implements SolutionSelfHelpsClien
         }
         final String accept = "application/json";
         return FluxUtil.withContext(
-            context -> service.get(this.client.getEndpoint(), solutionId, this.client.getApiVersion(), accept, context))
+            context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), solutionId, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets Self Help Solutions for a given solutionId. Self Help Solutions consist of rich instructional video
-     * tutorials, links and guides to public documentation related to a specific problem that enables users to
-     * troubleshoot Azure issues.
-     * 
-     * @param solutionId SolutionId is a unique id to identify a solution. You can retrieve the solution id using the
-     * Discovery api -
-     * https://learn.microsoft.com/en-us/rest/api/help/discovery-solution/list?view=rest-help-2023-09-01-preview&amp;tabs=HTTP.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return self Help Solutions for a given solutionId along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SolutionResourceSelfHelpInner>> getWithResponseAsync(String solutionId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (solutionId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter solutionId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), solutionId, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -158,7 +138,17 @@ public final class SolutionSelfHelpsClientImpl implements SolutionSelfHelpsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SolutionResourceSelfHelpInner> getWithResponse(String solutionId, Context context) {
-        return getWithResponseAsync(solutionId, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (solutionId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter solutionId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), this.client.getApiVersion(), solutionId, accept, context);
     }
 
     /**
@@ -178,4 +168,6 @@ public final class SolutionSelfHelpsClientImpl implements SolutionSelfHelpsClien
     public SolutionResourceSelfHelpInner get(String solutionId) {
         return getWithResponse(solutionId, Context.NONE).getValue();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SolutionSelfHelpsClientImpl.class);
 }

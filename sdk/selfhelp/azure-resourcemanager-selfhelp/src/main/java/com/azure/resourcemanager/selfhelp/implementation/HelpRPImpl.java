@@ -13,14 +13,17 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.SyncPollerFactory;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.selfhelp.fluent.CheckNameAvailabilitiesClient;
@@ -47,6 +50,20 @@ import reactor.core.publisher.Mono;
  */
 @ServiceClient(builder = HelpRPBuilder.class)
 public final class HelpRPImpl implements HelpRP {
+    /**
+     * The ID of the target subscription. The value must be an UUID.
+     */
+    private final String subscriptionId;
+
+    /**
+     * Gets The ID of the target subscription. The value must be an UUID.
+     * 
+     * @return the subscriptionId value.
+     */
+    public String getSubscriptionId() {
+        return this.subscriptionId;
+    }
+
     /**
      * server parameter.
      */
@@ -118,20 +135,6 @@ public final class HelpRPImpl implements HelpRP {
     }
 
     /**
-     * The OperationsClient object to access its operations.
-     */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
-    }
-
-    /**
      * The CheckNameAvailabilitiesClient object to access its operations.
      */
     private final CheckNameAvailabilitiesClient checkNameAvailabilities;
@@ -160,17 +163,17 @@ public final class HelpRPImpl implements HelpRP {
     }
 
     /**
-     * The DiscoverySolutionsClient object to access its operations.
+     * The SimplifiedSolutionsClient object to access its operations.
      */
-    private final DiscoverySolutionsClient discoverySolutions;
+    private final SimplifiedSolutionsClient simplifiedSolutions;
 
     /**
-     * Gets the DiscoverySolutionsClient object to access its operations.
+     * Gets the SimplifiedSolutionsClient object to access its operations.
      * 
-     * @return the DiscoverySolutionsClient object.
+     * @return the SimplifiedSolutionsClient object.
      */
-    public DiscoverySolutionsClient getDiscoverySolutions() {
-        return this.discoverySolutions;
+    public SimplifiedSolutionsClient getSimplifiedSolutions() {
+        return this.simplifiedSolutions;
     }
 
     /**
@@ -188,20 +191,6 @@ public final class HelpRPImpl implements HelpRP {
     }
 
     /**
-     * The SimplifiedSolutionsClient object to access its operations.
-     */
-    private final SimplifiedSolutionsClient simplifiedSolutions;
-
-    /**
-     * Gets the SimplifiedSolutionsClient object to access its operations.
-     * 
-     * @return the SimplifiedSolutionsClient object.
-     */
-    public SimplifiedSolutionsClient getSimplifiedSolutions() {
-        return this.simplifiedSolutions;
-    }
-
-    /**
      * The TroubleshootersClient object to access its operations.
      */
     private final TroubleshootersClient troubleshooters;
@@ -213,20 +202,6 @@ public final class HelpRPImpl implements HelpRP {
      */
     public TroubleshootersClient getTroubleshooters() {
         return this.troubleshooters;
-    }
-
-    /**
-     * The SolutionSelfHelpsClient object to access its operations.
-     */
-    private final SolutionSelfHelpsClient solutionSelfHelps;
-
-    /**
-     * Gets the SolutionSelfHelpsClient object to access its operations.
-     * 
-     * @return the SolutionSelfHelpsClient object.
-     */
-    public SolutionSelfHelpsClient getSolutionSelfHelps() {
-        return this.solutionSelfHelps;
     }
 
     /**
@@ -244,30 +219,74 @@ public final class HelpRPImpl implements HelpRP {
     }
 
     /**
+     * The DiscoverySolutionsClient object to access its operations.
+     */
+    private final DiscoverySolutionsClient discoverySolutions;
+
+    /**
+     * Gets the DiscoverySolutionsClient object to access its operations.
+     * 
+     * @return the DiscoverySolutionsClient object.
+     */
+    public DiscoverySolutionsClient getDiscoverySolutions() {
+        return this.discoverySolutions;
+    }
+
+    /**
+     * The OperationsClient object to access its operations.
+     */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
+    }
+
+    /**
+     * The SolutionSelfHelpsClient object to access its operations.
+     */
+    private final SolutionSelfHelpsClient solutionSelfHelps;
+
+    /**
+     * Gets the SolutionSelfHelpsClient object to access its operations.
+     * 
+     * @return the SolutionSelfHelpsClient object.
+     */
+    public SolutionSelfHelpsClient getSolutionSelfHelps() {
+        return this.solutionSelfHelps;
+    }
+
+    /**
      * Initializes an instance of HelpRP client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     HelpRPImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, Duration defaultPollInterval,
-        AzureEnvironment environment, String endpoint) {
+        AzureEnvironment environment, String subscriptionId, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
+        this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
         this.apiVersion = "2024-03-01-preview";
-        this.operations = new OperationsClientImpl(this);
         this.checkNameAvailabilities = new CheckNameAvailabilitiesClientImpl(this);
         this.diagnostics = new DiagnosticsClientImpl(this);
-        this.discoverySolutions = new DiscoverySolutionsClientImpl(this);
-        this.solutionOperations = new SolutionOperationsClientImpl(this);
         this.simplifiedSolutions = new SimplifiedSolutionsClientImpl(this);
+        this.solutionOperations = new SolutionOperationsClientImpl(this);
         this.troubleshooters = new TroubleshootersClientImpl(this);
-        this.solutionSelfHelps = new SolutionSelfHelpsClientImpl(this);
         this.discoverySolutionNlps = new DiscoverySolutionNlpsClientImpl(this);
+        this.discoverySolutions = new DiscoverySolutionsClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
+        this.solutionSelfHelps = new SolutionSelfHelpsClientImpl(this);
     }
 
     /**
@@ -305,6 +324,23 @@ public final class HelpRPImpl implements HelpRP {
         HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
         return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
             defaultPollInterval, activationResponse, context);
+    }
+
+    /**
+     * Gets long running operation result.
+     * 
+     * @param activationResponse the response of activation operation.
+     * @param pollResultType type of poll result.
+     * @param finalResultType type of final result.
+     * @param context the context shared by all requests.
+     * @param <T> type of poll result.
+     * @param <U> type of final result.
+     * @return SyncPoller for poll result and final result.
+     */
+    public <T, U> SyncPoller<PollResult<T>, U> getLroResult(Response<BinaryData> activationResponse,
+        Type pollResultType, Type finalResultType, Context context) {
+        return SyncPollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, () -> activationResponse, context);
     }
 
     /**

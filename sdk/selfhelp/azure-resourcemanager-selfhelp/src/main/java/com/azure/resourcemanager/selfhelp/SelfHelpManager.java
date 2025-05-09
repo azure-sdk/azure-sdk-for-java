@@ -11,17 +11,18 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLoggingPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
+import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.selfhelp.fluent.HelpRP;
 import com.azure.resourcemanager.selfhelp.implementation.CheckNameAvailabilitiesImpl;
@@ -47,6 +48,7 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -55,23 +57,23 @@ import java.util.stream.Collectors;
  * Help RP provider.
  */
 public final class SelfHelpManager {
-    private Operations operations;
-
     private CheckNameAvailabilities checkNameAvailabilities;
 
     private Diagnostics diagnostics;
 
-    private DiscoverySolutions discoverySolutions;
+    private SimplifiedSolutions simplifiedSolutions;
 
     private SolutionOperations solutionOperations;
 
-    private SimplifiedSolutions simplifiedSolutions;
-
     private Troubleshooters troubleshooters;
 
-    private SolutionSelfHelps solutionSelfHelps;
-
     private DiscoverySolutionNlps discoverySolutionNlps;
+
+    private DiscoverySolutions discoverySolutions;
+
+    private Operations operations;
+
+    private SolutionSelfHelps solutionSelfHelps;
 
     private final HelpRP clientObject;
 
@@ -80,6 +82,7 @@ public final class SelfHelpManager {
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         this.clientObject = new HelpRPBuilder().pipeline(httpPipeline)
             .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
+            .subscriptionId(profile.getSubscriptionId())
             .defaultPollInterval(defaultPollInterval)
             .buildClient();
     }
@@ -124,6 +127,9 @@ public final class SelfHelpManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-selfhelp.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -231,12 +237,14 @@ public final class SelfHelpManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.selfhelp")
                 .append("/")
-                .append("1.1.0-beta.5");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -269,7 +277,7 @@ public final class SelfHelpManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -280,18 +288,6 @@ public final class SelfHelpManager {
                 .build();
             return new SelfHelpManager(httpPipeline, profile, defaultPollInterval);
         }
-    }
-
-    /**
-     * Gets the resource collection API of Operations.
-     * 
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
     }
 
     /**
@@ -320,15 +316,15 @@ public final class SelfHelpManager {
     }
 
     /**
-     * Gets the resource collection API of DiscoverySolutions.
+     * Gets the resource collection API of SimplifiedSolutions. It manages SimplifiedSolutionsResource.
      * 
-     * @return Resource collection API of DiscoverySolutions.
+     * @return Resource collection API of SimplifiedSolutions.
      */
-    public DiscoverySolutions discoverySolutions() {
-        if (this.discoverySolutions == null) {
-            this.discoverySolutions = new DiscoverySolutionsImpl(clientObject.getDiscoverySolutions(), this);
+    public SimplifiedSolutions simplifiedSolutions() {
+        if (this.simplifiedSolutions == null) {
+            this.simplifiedSolutions = new SimplifiedSolutionsImpl(clientObject.getSimplifiedSolutions(), this);
         }
-        return discoverySolutions;
+        return simplifiedSolutions;
     }
 
     /**
@@ -344,18 +340,6 @@ public final class SelfHelpManager {
     }
 
     /**
-     * Gets the resource collection API of SimplifiedSolutions. It manages SimplifiedSolutionsResource.
-     * 
-     * @return Resource collection API of SimplifiedSolutions.
-     */
-    public SimplifiedSolutions simplifiedSolutions() {
-        if (this.simplifiedSolutions == null) {
-            this.simplifiedSolutions = new SimplifiedSolutionsImpl(clientObject.getSimplifiedSolutions(), this);
-        }
-        return simplifiedSolutions;
-    }
-
-    /**
      * Gets the resource collection API of Troubleshooters. It manages TroubleshooterResource.
      * 
      * @return Resource collection API of Troubleshooters.
@@ -368,18 +352,6 @@ public final class SelfHelpManager {
     }
 
     /**
-     * Gets the resource collection API of SolutionSelfHelps.
-     * 
-     * @return Resource collection API of SolutionSelfHelps.
-     */
-    public SolutionSelfHelps solutionSelfHelps() {
-        if (this.solutionSelfHelps == null) {
-            this.solutionSelfHelps = new SolutionSelfHelpsImpl(clientObject.getSolutionSelfHelps(), this);
-        }
-        return solutionSelfHelps;
-    }
-
-    /**
      * Gets the resource collection API of DiscoverySolutionNlps.
      * 
      * @return Resource collection API of DiscoverySolutionNlps.
@@ -389,6 +361,42 @@ public final class SelfHelpManager {
             this.discoverySolutionNlps = new DiscoverySolutionNlpsImpl(clientObject.getDiscoverySolutionNlps(), this);
         }
         return discoverySolutionNlps;
+    }
+
+    /**
+     * Gets the resource collection API of DiscoverySolutions.
+     * 
+     * @return Resource collection API of DiscoverySolutions.
+     */
+    public DiscoverySolutions discoverySolutions() {
+        if (this.discoverySolutions == null) {
+            this.discoverySolutions = new DiscoverySolutionsImpl(clientObject.getDiscoverySolutions(), this);
+        }
+        return discoverySolutions;
+    }
+
+    /**
+     * Gets the resource collection API of Operations.
+     * 
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
+    }
+
+    /**
+     * Gets the resource collection API of SolutionSelfHelps.
+     * 
+     * @return Resource collection API of SolutionSelfHelps.
+     */
+    public SolutionSelfHelps solutionSelfHelps() {
+        if (this.solutionSelfHelps == null) {
+            this.solutionSelfHelps = new SolutionSelfHelpsImpl(clientObject.getSolutionSelfHelps(), this);
+        }
+        return solutionSelfHelps;
     }
 
     /**

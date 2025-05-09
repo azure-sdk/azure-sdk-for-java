@@ -13,8 +13,6 @@ import com.azure.resourcemanager.selfhelp.models.RestartTroubleshooterResponse;
 import com.azure.resourcemanager.selfhelp.models.Step;
 import com.azure.resourcemanager.selfhelp.models.TroubleshooterProvisioningState;
 import com.azure.resourcemanager.selfhelp.models.TroubleshooterResource;
-import com.azure.resourcemanager.selfhelp.models.TroubleshootersContinueMethodResponse;
-import com.azure.resourcemanager.selfhelp.models.TroubleshootersEndResponse;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -127,8 +125,7 @@ public final class TroubleshooterResourceImpl implements TroubleshooterResource,
         return this;
     }
 
-    public TroubleshootersContinueMethodResponse continueMethodWithResponse(ContinueRequestBody continueRequestBody,
-        Context context) {
+    public Response<Void> continueMethodWithResponse(ContinueRequestBody continueRequestBody, Context context) {
         return serviceManager.troubleshooters()
             .continueMethodWithResponse(scope, troubleshooterName, continueRequestBody, context);
     }
@@ -137,7 +134,7 @@ public final class TroubleshooterResourceImpl implements TroubleshooterResource,
         serviceManager.troubleshooters().continueMethod(scope, troubleshooterName);
     }
 
-    public TroubleshootersEndResponse endWithResponse(Context context) {
+    public Response<Void> endWithResponse(Context context) {
         return serviceManager.troubleshooters().endWithResponse(scope, troubleshooterName, context);
     }
 

@@ -12,6 +12,13 @@ import java.time.Duration;
  */
 public interface HelpRP {
     /**
+     * Gets The ID of the target subscription. The value must be an UUID.
+     * 
+     * @return the subscriptionId value.
+     */
+    String getSubscriptionId();
+
+    /**
      * Gets server parameter.
      * 
      * @return the endpoint value.
@@ -40,13 +47,6 @@ public interface HelpRP {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
-
-    /**
      * Gets the CheckNameAvailabilitiesClient object to access its operations.
      * 
      * @return the CheckNameAvailabilitiesClient object.
@@ -61,11 +61,11 @@ public interface HelpRP {
     DiagnosticsClient getDiagnostics();
 
     /**
-     * Gets the DiscoverySolutionsClient object to access its operations.
+     * Gets the SimplifiedSolutionsClient object to access its operations.
      * 
-     * @return the DiscoverySolutionsClient object.
+     * @return the SimplifiedSolutionsClient object.
      */
-    DiscoverySolutionsClient getDiscoverySolutions();
+    SimplifiedSolutionsClient getSimplifiedSolutions();
 
     /**
      * Gets the SolutionOperationsClient object to access its operations.
@@ -75,13 +75,6 @@ public interface HelpRP {
     SolutionOperationsClient getSolutionOperations();
 
     /**
-     * Gets the SimplifiedSolutionsClient object to access its operations.
-     * 
-     * @return the SimplifiedSolutionsClient object.
-     */
-    SimplifiedSolutionsClient getSimplifiedSolutions();
-
-    /**
      * Gets the TroubleshootersClient object to access its operations.
      * 
      * @return the TroubleshootersClient object.
@@ -89,16 +82,30 @@ public interface HelpRP {
     TroubleshootersClient getTroubleshooters();
 
     /**
-     * Gets the SolutionSelfHelpsClient object to access its operations.
-     * 
-     * @return the SolutionSelfHelpsClient object.
-     */
-    SolutionSelfHelpsClient getSolutionSelfHelps();
-
-    /**
      * Gets the DiscoverySolutionNlpsClient object to access its operations.
      * 
      * @return the DiscoverySolutionNlpsClient object.
      */
     DiscoverySolutionNlpsClient getDiscoverySolutionNlps();
+
+    /**
+     * Gets the DiscoverySolutionsClient object to access its operations.
+     * 
+     * @return the DiscoverySolutionsClient object.
+     */
+    DiscoverySolutionsClient getDiscoverySolutions();
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
+
+    /**
+     * Gets the SolutionSelfHelpsClient object to access its operations.
+     * 
+     * @return the SolutionSelfHelpsClient object.
+     */
+    SolutionSelfHelpsClient getSolutionSelfHelps();
 }

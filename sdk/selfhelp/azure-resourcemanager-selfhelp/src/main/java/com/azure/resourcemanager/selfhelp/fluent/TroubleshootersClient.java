@@ -11,14 +11,48 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.selfhelp.fluent.models.RestartTroubleshooterResponseInner;
 import com.azure.resourcemanager.selfhelp.fluent.models.TroubleshooterResourceInner;
 import com.azure.resourcemanager.selfhelp.models.ContinueRequestBody;
-import com.azure.resourcemanager.selfhelp.models.TroubleshootersContinueMethodResponse;
-import com.azure.resourcemanager.selfhelp.models.TroubleshootersEndResponse;
-import com.azure.resourcemanager.selfhelp.models.TroubleshootersRestartResponse;
 
 /**
  * An instance of this class provides access to all the operations defined in TroubleshootersClient.
  */
 public interface TroubleshootersClient {
+    /**
+     * Gets troubleshooter instance result which includes the step status/result of the troubleshooter resource name
+     * that is being executed.&lt;br/&gt; Get API is used to retrieve the result of a Troubleshooter instance, which
+     * includes the status and result of each step in the Troubleshooter workflow. This API requires the Troubleshooter
+     * resource name that was created using the Create API.
+     * 
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
+     * @param troubleshooterName Troubleshooter resource Name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return troubleshooter instance result which includes the step status/result of the troubleshooter resource name
+     * that is being executed.&lt;br/&gt; Get API is used to retrieve the result of a Troubleshooter instance, which
+     * includes the status and result of each step in the Troubleshooter workflow along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<TroubleshooterResourceInner> getWithResponse(String scope, String troubleshooterName, Context context);
+
+    /**
+     * Gets troubleshooter instance result which includes the step status/result of the troubleshooter resource name
+     * that is being executed.&lt;br/&gt; Get API is used to retrieve the result of a Troubleshooter instance, which
+     * includes the status and result of each step in the Troubleshooter workflow. This API requires the Troubleshooter
+     * resource name that was created using the Create API.
+     * 
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
+     * @param troubleshooterName Troubleshooter resource Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return troubleshooter instance result which includes the step status/result of the troubleshooter resource name
+     * that is being executed.&lt;br/&gt; Get API is used to retrieve the result of a Troubleshooter instance, which
+     * includes the status and result of each step in the Troubleshooter workflow.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    TroubleshooterResourceInner get(String scope, String troubleshooterName);
+
     /**
      * Creates the specific troubleshooter action under a resource or subscription using the ‘solutionId’ and
      * ‘properties.parameters’ as the trigger. &lt;br/&gt; Azure Troubleshooters help with hard to classify issues,
@@ -29,8 +63,7 @@ public interface TroubleshootersClient {
      * Troubleshooters terminate at a well curated solution based off of resource backend signals and customer manual
      * selections.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param createTroubleshooterRequestBody The required request body for this Troubleshooter resource creation.
      * @param context The context to associate with this operation.
@@ -53,55 +86,17 @@ public interface TroubleshootersClient {
      * Troubleshooters terminate at a well curated solution based off of resource backend signals and customer manual
      * selections.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
+     * @param createTroubleshooterRequestBody The required request body for this Troubleshooter resource creation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return troubleshooter response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    TroubleshooterResourceInner create(String scope, String troubleshooterName);
-
-    /**
-     * Gets troubleshooter instance result which includes the step status/result of the troubleshooter resource name
-     * that is being executed.&lt;br/&gt; Get API is used to retrieve the result of a Troubleshooter instance, which
-     * includes the status and result of each step in the Troubleshooter workflow. This API requires the Troubleshooter
-     * resource name that was created using the Create API.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param troubleshooterName Troubleshooter resource Name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return troubleshooter instance result which includes the step status/result of the troubleshooter resource name
-     * that is being executed.&lt;br/&gt; Get API is used to retrieve the result of a Troubleshooter instance, which
-     * includes the status and result of each step in the Troubleshooter workflow along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<TroubleshooterResourceInner> getWithResponse(String scope, String troubleshooterName, Context context);
-
-    /**
-     * Gets troubleshooter instance result which includes the step status/result of the troubleshooter resource name
-     * that is being executed.&lt;br/&gt; Get API is used to retrieve the result of a Troubleshooter instance, which
-     * includes the status and result of each step in the Troubleshooter workflow. This API requires the Troubleshooter
-     * resource name that was created using the Create API.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param troubleshooterName Troubleshooter resource Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return troubleshooter instance result which includes the step status/result of the troubleshooter resource name
-     * that is being executed.&lt;br/&gt; Get API is used to retrieve the result of a Troubleshooter instance, which
-     * includes the status and result of each step in the Troubleshooter workflow.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    TroubleshooterResourceInner get(String scope, String troubleshooterName);
+    TroubleshooterResourceInner create(String scope, String troubleshooterName,
+        TroubleshooterResourceInner createTroubleshooterRequestBody);
 
     /**
      * Uses ‘stepId’ and ‘responses’ as the trigger to continue the troubleshooting steps for the respective
@@ -109,18 +104,17 @@ public interface TroubleshootersClient {
      * specific troubleshooter to progress into the next step in the process. This API is used after the Troubleshooter
      * has been created using the Create API.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param continueRequestBody The required request body for going to next step in Troubleshooter resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    TroubleshootersContinueMethodResponse continueMethodWithResponse(String scope, String troubleshooterName,
+    Response<Void> continueMethodWithResponse(String scope, String troubleshooterName,
         ContinueRequestBody continueRequestBody, Context context);
 
     /**
@@ -129,8 +123,7 @@ public interface TroubleshootersClient {
      * specific troubleshooter to progress into the next step in the process. This API is used after the Troubleshooter
      * has been created using the Create API.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -142,23 +135,21 @@ public interface TroubleshootersClient {
     /**
      * Ends the troubleshooter action.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    TroubleshootersEndResponse endWithResponse(String scope, String troubleshooterName, Context context);
+    Response<Void> endWithResponse(String scope, String troubleshooterName, Context context);
 
     /**
      * Ends the troubleshooter action.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -172,25 +163,24 @@ public interface TroubleshootersClient {
      * new resource name which should be used in subsequent request. The old resource name is obsolete after this API is
      * invoked.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return troubleshooter restart response.
+     * @return troubleshooter restart response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    TroubleshootersRestartResponse restartWithResponse(String scope, String troubleshooterName, Context context);
+    Response<RestartTroubleshooterResponseInner> restartWithResponse(String scope, String troubleshooterName,
+        Context context);
 
     /**
      * Restarts the troubleshooter API using applicable troubleshooter resource name as the input.&lt;br/&gt; It returns
      * new resource name which should be used in subsequent request. The old resource name is obsolete after this API is
      * invoked.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

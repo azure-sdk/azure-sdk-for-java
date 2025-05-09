@@ -24,8 +24,10 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.selfhelp.fluent.SolutionOperationsClient;
@@ -69,33 +71,60 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
     @ServiceInterface(name = "HelpRPSolutionOperat")
     public interface SolutionOperationsService {
         @Headers({ "Content-Type: application/json" })
-        @Put("/{scope}/providers/Microsoft.Help/solutions/{solutionResourceName}")
-        @ExpectedResponses({ 200, 201 })
+        @Get("/{scope}/providers/Microsoft.Help/solutions/{solutionResourceName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> create(@HostParam("$host") String endpoint,
-            @PathParam(value = "scope", encoded = true) String scope,
-            @PathParam("solutionResourceName") String solutionResourceName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") SolutionResourceInner solutionRequestBody,
-            @HeaderParam("Accept") String accept, Context context);
+        Mono<Response<SolutionResourceInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
+            @PathParam("solutionResourceName") String solutionResourceName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/{scope}/providers/Microsoft.Help/solutions/{solutionResourceName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SolutionResourceInner>> get(@HostParam("$host") String endpoint,
-            @PathParam(value = "scope", encoded = true) String scope,
+        Response<SolutionResourceInner> getSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
+            @PathParam("solutionResourceName") String solutionResourceName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/{scope}/providers/Microsoft.Help/solutions/{solutionResourceName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> create(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
             @PathParam("solutionResourceName") String solutionResourceName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @BodyParam("application/json") SolutionResourceInner solutionRequestBody,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/{scope}/providers/Microsoft.Help/solutions/{solutionResourceName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> createSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
+            @PathParam("solutionResourceName") String solutionResourceName,
+            @BodyParam("application/json") SolutionResourceInner solutionRequestBody,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Patch("/{scope}/providers/Microsoft.Help/solutions/{solutionResourceName}")
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
-            @PathParam(value = "scope", encoded = true) String scope,
+            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
             @PathParam("solutionResourceName") String solutionResourceName,
-            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") SolutionPatchRequestBody solutionPatchRequestBody,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/{scope}/providers/Microsoft.Help/solutions/{solutionResourceName}")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> updateSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
+            @PathParam("solutionResourceName") String solutionResourceName,
             @BodyParam("application/json") SolutionPatchRequestBody solutionPatchRequestBody,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -103,12 +132,114 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
         @Post("/{scope}/providers/Microsoft.Help/solutions/{solutionResourceName}/warmup")
         @ExpectedResponses({ 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> warmUp(@HostParam("$host") String endpoint,
+        Mono<Response<Void>> warmUp(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam(value = "scope", encoded = true) String scope,
             @PathParam("solutionResourceName") String solutionResourceName,
-            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") SolutionWarmUpRequestBody solutionWarmUpRequestBody,
             @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/{scope}/providers/Microsoft.Help/solutions/{solutionResourceName}/warmup")
+        @ExpectedResponses({ 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Void> warmUpSync(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "scope", encoded = true) String scope,
+            @PathParam("solutionResourceName") String solutionResourceName,
+            @BodyParam("application/json") SolutionWarmUpRequestBody solutionWarmUpRequestBody,
+            @HeaderParam("Accept") String accept, Context context);
+    }
+
+    /**
+     * Get the solution using the applicable solutionResourceName while creating the solution.
+     * 
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
+     * @param solutionResourceName Solution resource Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the solution using the applicable solutionResourceName while creating the solution along with
+     * {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SolutionResourceInner>> getWithResponseAsync(String scope, String solutionResourceName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (solutionResourceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter solutionResourceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), scope,
+                solutionResourceName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the solution using the applicable solutionResourceName while creating the solution.
+     * 
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
+     * @param solutionResourceName Solution resource Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the solution using the applicable solutionResourceName while creating the solution on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SolutionResourceInner> getAsync(String scope, String solutionResourceName) {
+        return getWithResponseAsync(scope, solutionResourceName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get the solution using the applicable solutionResourceName while creating the solution.
+     * 
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
+     * @param solutionResourceName Solution resource Name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the solution using the applicable solutionResourceName while creating the solution along with
+     * {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<SolutionResourceInner> getWithResponse(String scope, String solutionResourceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (solutionResourceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter solutionResourceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), this.client.getApiVersion(), scope, solutionResourceName,
+            accept, context);
+    }
+
+    /**
+     * Get the solution using the applicable solutionResourceName while creating the solution.
+     * 
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
+     * @param solutionResourceName Solution resource Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the solution using the applicable solutionResourceName while creating the solution.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SolutionResourceInner get(String scope, String solutionResourceName) {
+        return getWithResponse(scope, solutionResourceName, Context.NONE).getValue();
     }
 
     /**
@@ -121,8 +252,7 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
      * &lt;br/&gt; All these components are seamlessly converged into unified solutions tailored to address a specific
      * support problem area.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionRequestBody The required request body for this solution resource creation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -144,13 +274,16 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter solutionResourceName is required and cannot be null."));
         }
-        if (solutionRequestBody != null) {
+        if (solutionRequestBody == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter solutionRequestBody is required and cannot be null."));
+        } else {
             solutionRequestBody.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.create(this.client.getEndpoint(), scope, solutionResourceName,
-                this.client.getApiVersion(), solutionRequestBody, accept, context))
+            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getApiVersion(), scope,
+                solutionResourceName, solutionRequestBody, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -164,36 +297,82 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
      * &lt;br/&gt; All these components are seamlessly converged into unified solutions tailored to address a specific
      * support problem area.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
+     * @param solutionResourceName Solution resource Name.
+     * @param solutionRequestBody The required request body for this solution resource creation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return solution response along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> createWithResponse(String scope, String solutionResourceName,
+        SolutionResourceInner solutionRequestBody) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (solutionResourceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter solutionResourceName is required and cannot be null."));
+        }
+        if (solutionRequestBody == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter solutionRequestBody is required and cannot be null."));
+        } else {
+            solutionRequestBody.validate();
+        }
+        final String accept = "application/json";
+        return service.createSync(this.client.getEndpoint(), this.client.getApiVersion(), scope, solutionResourceName,
+            solutionRequestBody, accept, Context.NONE);
+    }
+
+    /**
+     * Creates a solution for the specific Azure resource or subscription using the inputs ‘solutionId and
+     * requiredInputs’ from discovery solutions. &lt;br/&gt; Azure solutions comprise a comprehensive library of
+     * self-help resources that have been thoughtfully curated by Azure engineers to aid customers in resolving typical
+     * troubleshooting issues. These solutions encompass: &lt;br/&gt; (1.) Dynamic and context-aware diagnostics, guided
+     * troubleshooting wizards, and data visualizations. &lt;br/&gt; (2.) Rich instructional video tutorials and
+     * illustrative diagrams and images. &lt;br/&gt; (3.) Thoughtfully assembled textual troubleshooting instructions.
+     * &lt;br/&gt; All these components are seamlessly converged into unified solutions tailored to address a specific
+     * support problem area.
+     * 
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionRequestBody The required request body for this solution resource creation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return solution response along with {@link Response} on successful completion of {@link Mono}.
+     * @return solution response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(String scope, String solutionResourceName,
+    private Response<BinaryData> createWithResponse(String scope, String solutionResourceName,
         SolutionResourceInner solutionRequestBody, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
         if (solutionResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter solutionResourceName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter solutionResourceName is required and cannot be null."));
         }
-        if (solutionRequestBody != null) {
+        if (solutionRequestBody == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter solutionRequestBody is required and cannot be null."));
+        } else {
             solutionRequestBody.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), scope, solutionResourceName, this.client.getApiVersion(),
+        return service.createSync(this.client.getEndpoint(), this.client.getApiVersion(), scope, solutionResourceName,
             solutionRequestBody, accept, context);
     }
 
@@ -207,8 +386,7 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
      * &lt;br/&gt; All these components are seamlessly converged into unified solutions tailored to address a specific
      * support problem area.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionRequestBody The required request body for this solution resource creation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -236,68 +414,9 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
      * &lt;br/&gt; All these components are seamlessly converged into unified solutions tailored to address a specific
      * support problem area.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param solutionResourceName Solution resource Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of solution response.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<SolutionResourceInner>, SolutionResourceInner> beginCreateAsync(String scope,
-        String solutionResourceName) {
-        final SolutionResourceInner solutionRequestBody = null;
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createWithResponseAsync(scope, solutionResourceName, solutionRequestBody);
-        return this.client.<SolutionResourceInner, SolutionResourceInner>getLroResult(mono,
-            this.client.getHttpPipeline(), SolutionResourceInner.class, SolutionResourceInner.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Creates a solution for the specific Azure resource or subscription using the inputs ‘solutionId and
-     * requiredInputs’ from discovery solutions. &lt;br/&gt; Azure solutions comprise a comprehensive library of
-     * self-help resources that have been thoughtfully curated by Azure engineers to aid customers in resolving typical
-     * troubleshooting issues. These solutions encompass: &lt;br/&gt; (1.) Dynamic and context-aware diagnostics, guided
-     * troubleshooting wizards, and data visualizations. &lt;br/&gt; (2.) Rich instructional video tutorials and
-     * illustrative diagrams and images. &lt;br/&gt; (3.) Thoughtfully assembled textual troubleshooting instructions.
-     * &lt;br/&gt; All these components are seamlessly converged into unified solutions tailored to address a specific
-     * support problem area.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionRequestBody The required request body for this solution resource creation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of solution response.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<SolutionResourceInner>, SolutionResourceInner> beginCreateAsync(String scope,
-        String solutionResourceName, SolutionResourceInner solutionRequestBody, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createWithResponseAsync(scope, solutionResourceName, solutionRequestBody, context);
-        return this.client.<SolutionResourceInner, SolutionResourceInner>getLroResult(mono,
-            this.client.getHttpPipeline(), SolutionResourceInner.class, SolutionResourceInner.class, context);
-    }
-
-    /**
-     * Creates a solution for the specific Azure resource or subscription using the inputs ‘solutionId and
-     * requiredInputs’ from discovery solutions. &lt;br/&gt; Azure solutions comprise a comprehensive library of
-     * self-help resources that have been thoughtfully curated by Azure engineers to aid customers in resolving typical
-     * troubleshooting issues. These solutions encompass: &lt;br/&gt; (1.) Dynamic and context-aware diagnostics, guided
-     * troubleshooting wizards, and data visualizations. &lt;br/&gt; (2.) Rich instructional video tutorials and
-     * illustrative diagrams and images. &lt;br/&gt; (3.) Thoughtfully assembled textual troubleshooting instructions.
-     * &lt;br/&gt; All these components are seamlessly converged into unified solutions tailored to address a specific
-     * support problem area.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param solutionResourceName Solution resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -305,9 +424,10 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SolutionResourceInner>, SolutionResourceInner> beginCreate(String scope,
-        String solutionResourceName) {
-        final SolutionResourceInner solutionRequestBody = null;
-        return this.beginCreateAsync(scope, solutionResourceName, solutionRequestBody).getSyncPoller();
+        String solutionResourceName, SolutionResourceInner solutionRequestBody) {
+        Response<BinaryData> response = createWithResponse(scope, solutionResourceName, solutionRequestBody);
+        return this.client.<SolutionResourceInner, SolutionResourceInner>getLroResult(response,
+            SolutionResourceInner.class, SolutionResourceInner.class, Context.NONE);
     }
 
     /**
@@ -320,8 +440,7 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
      * &lt;br/&gt; All these components are seamlessly converged into unified solutions tailored to address a specific
      * support problem area.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionRequestBody The required request body for this solution resource creation.
      * @param context The context to associate with this operation.
@@ -333,7 +452,9 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SolutionResourceInner>, SolutionResourceInner> beginCreate(String scope,
         String solutionResourceName, SolutionResourceInner solutionRequestBody, Context context) {
-        return this.beginCreateAsync(scope, solutionResourceName, solutionRequestBody, context).getSyncPoller();
+        Response<BinaryData> response = createWithResponse(scope, solutionResourceName, solutionRequestBody, context);
+        return this.client.<SolutionResourceInner, SolutionResourceInner>getLroResult(response,
+            SolutionResourceInner.class, SolutionResourceInner.class, context);
     }
 
     /**
@@ -346,8 +467,7 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
      * &lt;br/&gt; All these components are seamlessly converged into unified solutions tailored to address a specific
      * support problem area.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionRequestBody The required request body for this solution resource creation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -372,70 +492,18 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
      * &lt;br/&gt; All these components are seamlessly converged into unified solutions tailored to address a specific
      * support problem area.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param solutionResourceName Solution resource Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return solution response on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SolutionResourceInner> createAsync(String scope, String solutionResourceName) {
-        final SolutionResourceInner solutionRequestBody = null;
-        return beginCreateAsync(scope, solutionResourceName, solutionRequestBody).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Creates a solution for the specific Azure resource or subscription using the inputs ‘solutionId and
-     * requiredInputs’ from discovery solutions. &lt;br/&gt; Azure solutions comprise a comprehensive library of
-     * self-help resources that have been thoughtfully curated by Azure engineers to aid customers in resolving typical
-     * troubleshooting issues. These solutions encompass: &lt;br/&gt; (1.) Dynamic and context-aware diagnostics, guided
-     * troubleshooting wizards, and data visualizations. &lt;br/&gt; (2.) Rich instructional video tutorials and
-     * illustrative diagrams and images. &lt;br/&gt; (3.) Thoughtfully assembled textual troubleshooting instructions.
-     * &lt;br/&gt; All these components are seamlessly converged into unified solutions tailored to address a specific
-     * support problem area.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionRequestBody The required request body for this solution resource creation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return solution response on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SolutionResourceInner> createAsync(String scope, String solutionResourceName,
-        SolutionResourceInner solutionRequestBody, Context context) {
-        return beginCreateAsync(scope, solutionResourceName, solutionRequestBody, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Creates a solution for the specific Azure resource or subscription using the inputs ‘solutionId and
-     * requiredInputs’ from discovery solutions. &lt;br/&gt; Azure solutions comprise a comprehensive library of
-     * self-help resources that have been thoughtfully curated by Azure engineers to aid customers in resolving typical
-     * troubleshooting issues. These solutions encompass: &lt;br/&gt; (1.) Dynamic and context-aware diagnostics, guided
-     * troubleshooting wizards, and data visualizations. &lt;br/&gt; (2.) Rich instructional video tutorials and
-     * illustrative diagrams and images. &lt;br/&gt; (3.) Thoughtfully assembled textual troubleshooting instructions.
-     * &lt;br/&gt; All these components are seamlessly converged into unified solutions tailored to address a specific
-     * support problem area.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param solutionResourceName Solution resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return solution response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public SolutionResourceInner create(String scope, String solutionResourceName) {
-        final SolutionResourceInner solutionRequestBody = null;
-        return createAsync(scope, solutionResourceName, solutionRequestBody).block();
+    public SolutionResourceInner create(String scope, String solutionResourceName,
+        SolutionResourceInner solutionRequestBody) {
+        return beginCreate(scope, solutionResourceName, solutionRequestBody).getFinalResult();
     }
 
     /**
@@ -448,8 +516,7 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
      * &lt;br/&gt; All these components are seamlessly converged into unified solutions tailored to address a specific
      * support problem area.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionRequestBody The required request body for this solution resource creation.
      * @param context The context to associate with this operation.
@@ -461,130 +528,13 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SolutionResourceInner create(String scope, String solutionResourceName,
         SolutionResourceInner solutionRequestBody, Context context) {
-        return createAsync(scope, solutionResourceName, solutionRequestBody, context).block();
-    }
-
-    /**
-     * Get the solution using the applicable solutionResourceName while creating the solution.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param solutionResourceName Solution resource Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the solution using the applicable solutionResourceName while creating the solution along with
-     * {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SolutionResourceInner>> getWithResponseAsync(String scope, String solutionResourceName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (solutionResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter solutionResourceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), scope, solutionResourceName,
-                this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the solution using the applicable solutionResourceName while creating the solution.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param solutionResourceName Solution resource Name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the solution using the applicable solutionResourceName while creating the solution along with
-     * {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SolutionResourceInner>> getWithResponseAsync(String scope, String solutionResourceName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (solutionResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter solutionResourceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), scope, solutionResourceName, this.client.getApiVersion(), accept,
-            context);
-    }
-
-    /**
-     * Get the solution using the applicable solutionResourceName while creating the solution.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param solutionResourceName Solution resource Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the solution using the applicable solutionResourceName while creating the solution on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SolutionResourceInner> getAsync(String scope, String solutionResourceName) {
-        return getWithResponseAsync(scope, solutionResourceName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Get the solution using the applicable solutionResourceName while creating the solution.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param solutionResourceName Solution resource Name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the solution using the applicable solutionResourceName while creating the solution along with
-     * {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<SolutionResourceInner> getWithResponse(String scope, String solutionResourceName, Context context) {
-        return getWithResponseAsync(scope, solutionResourceName, context).block();
-    }
-
-    /**
-     * Get the solution using the applicable solutionResourceName while creating the solution.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param solutionResourceName Solution resource Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the solution using the applicable solutionResourceName while creating the solution.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SolutionResourceInner get(String scope, String solutionResourceName) {
-        return getWithResponse(scope, solutionResourceName, Context.NONE).getValue();
+        return beginCreate(scope, solutionResourceName, solutionRequestBody, context).getFinalResult();
     }
 
     /**
      * Update the requiredInputs or additional information needed to execute the solution.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionPatchRequestBody The required request body for updating a solution resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -606,57 +556,100 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter solutionResourceName is required and cannot be null."));
         }
-        if (solutionPatchRequestBody != null) {
+        if (solutionPatchRequestBody == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter solutionPatchRequestBody is required and cannot be null."));
+        } else {
             solutionPatchRequestBody.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), scope, solutionResourceName,
-                this.client.getApiVersion(), solutionPatchRequestBody, accept, context))
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(), scope,
+                solutionResourceName, solutionPatchRequestBody, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Update the requiredInputs or additional information needed to execute the solution.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
+     * @param solutionResourceName Solution resource Name.
+     * @param solutionPatchRequestBody The required request body for updating a solution resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return solution response along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> updateWithResponse(String scope, String solutionResourceName,
+        SolutionPatchRequestBody solutionPatchRequestBody) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (solutionResourceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter solutionResourceName is required and cannot be null."));
+        }
+        if (solutionPatchRequestBody == null) {
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Parameter solutionPatchRequestBody is required and cannot be null."));
+        } else {
+            solutionPatchRequestBody.validate();
+        }
+        final String accept = "application/json";
+        return service.updateSync(this.client.getEndpoint(), this.client.getApiVersion(), scope, solutionResourceName,
+            solutionPatchRequestBody, accept, Context.NONE);
+    }
+
+    /**
+     * Update the requiredInputs or additional information needed to execute the solution.
+     * 
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionPatchRequestBody The required request body for updating a solution resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return solution response along with {@link Response} on successful completion of {@link Mono}.
+     * @return solution response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String scope, String solutionResourceName,
+    private Response<BinaryData> updateWithResponse(String scope, String solutionResourceName,
         SolutionPatchRequestBody solutionPatchRequestBody, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
         if (solutionResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter solutionResourceName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter solutionResourceName is required and cannot be null."));
         }
-        if (solutionPatchRequestBody != null) {
+        if (solutionPatchRequestBody == null) {
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Parameter solutionPatchRequestBody is required and cannot be null."));
+        } else {
             solutionPatchRequestBody.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), scope, solutionResourceName, this.client.getApiVersion(),
+        return service.updateSync(this.client.getEndpoint(), this.client.getApiVersion(), scope, solutionResourceName,
             solutionPatchRequestBody, accept, context);
     }
 
     /**
      * Update the requiredInputs or additional information needed to execute the solution.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionPatchRequestBody The required request body for updating a solution resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -677,54 +670,9 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
     /**
      * Update the requiredInputs or additional information needed to execute the solution.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param solutionResourceName Solution resource Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of solution response.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<SolutionResourceInner>, SolutionResourceInner> beginUpdateAsync(String scope,
-        String solutionResourceName) {
-        final SolutionPatchRequestBody solutionPatchRequestBody = null;
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(scope, solutionResourceName, solutionPatchRequestBody);
-        return this.client.<SolutionResourceInner, SolutionResourceInner>getLroResult(mono,
-            this.client.getHttpPipeline(), SolutionResourceInner.class, SolutionResourceInner.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Update the requiredInputs or additional information needed to execute the solution.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionPatchRequestBody The required request body for updating a solution resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of solution response.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<SolutionResourceInner>, SolutionResourceInner> beginUpdateAsync(String scope,
-        String solutionResourceName, SolutionPatchRequestBody solutionPatchRequestBody, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(scope, solutionResourceName, solutionPatchRequestBody, context);
-        return this.client.<SolutionResourceInner, SolutionResourceInner>getLroResult(mono,
-            this.client.getHttpPipeline(), SolutionResourceInner.class, SolutionResourceInner.class, context);
-    }
-
-    /**
-     * Update the requiredInputs or additional information needed to execute the solution.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param solutionResourceName Solution resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -732,16 +680,16 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SolutionResourceInner>, SolutionResourceInner> beginUpdate(String scope,
-        String solutionResourceName) {
-        final SolutionPatchRequestBody solutionPatchRequestBody = null;
-        return this.beginUpdateAsync(scope, solutionResourceName, solutionPatchRequestBody).getSyncPoller();
+        String solutionResourceName, SolutionPatchRequestBody solutionPatchRequestBody) {
+        Response<BinaryData> response = updateWithResponse(scope, solutionResourceName, solutionPatchRequestBody);
+        return this.client.<SolutionResourceInner, SolutionResourceInner>getLroResult(response,
+            SolutionResourceInner.class, SolutionResourceInner.class, Context.NONE);
     }
 
     /**
      * Update the requiredInputs or additional information needed to execute the solution.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionPatchRequestBody The required request body for updating a solution resource.
      * @param context The context to associate with this operation.
@@ -753,14 +701,16 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SolutionResourceInner>, SolutionResourceInner> beginUpdate(String scope,
         String solutionResourceName, SolutionPatchRequestBody solutionPatchRequestBody, Context context) {
-        return this.beginUpdateAsync(scope, solutionResourceName, solutionPatchRequestBody, context).getSyncPoller();
+        Response<BinaryData> response
+            = updateWithResponse(scope, solutionResourceName, solutionPatchRequestBody, context);
+        return this.client.<SolutionResourceInner, SolutionResourceInner>getLroResult(response,
+            SolutionResourceInner.class, SolutionResourceInner.class, context);
     }
 
     /**
      * Update the requiredInputs or additional information needed to execute the solution.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionPatchRequestBody The required request body for updating a solution resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -778,63 +728,24 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
     /**
      * Update the requiredInputs or additional information needed to execute the solution.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param solutionResourceName Solution resource Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return solution response on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SolutionResourceInner> updateAsync(String scope, String solutionResourceName) {
-        final SolutionPatchRequestBody solutionPatchRequestBody = null;
-        return beginUpdateAsync(scope, solutionResourceName, solutionPatchRequestBody).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Update the requiredInputs or additional information needed to execute the solution.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionPatchRequestBody The required request body for updating a solution resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return solution response on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SolutionResourceInner> updateAsync(String scope, String solutionResourceName,
-        SolutionPatchRequestBody solutionPatchRequestBody, Context context) {
-        return beginUpdateAsync(scope, solutionResourceName, solutionPatchRequestBody, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Update the requiredInputs or additional information needed to execute the solution.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param solutionResourceName Solution resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return solution response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public SolutionResourceInner update(String scope, String solutionResourceName) {
-        final SolutionPatchRequestBody solutionPatchRequestBody = null;
-        return updateAsync(scope, solutionResourceName, solutionPatchRequestBody).block();
+    public SolutionResourceInner update(String scope, String solutionResourceName,
+        SolutionPatchRequestBody solutionPatchRequestBody) {
+        return beginUpdate(scope, solutionResourceName, solutionPatchRequestBody).getFinalResult();
     }
 
     /**
      * Update the requiredInputs or additional information needed to execute the solution.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionPatchRequestBody The required request body for updating a solution resource.
      * @param context The context to associate with this operation.
@@ -846,14 +757,13 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SolutionResourceInner update(String scope, String solutionResourceName,
         SolutionPatchRequestBody solutionPatchRequestBody, Context context) {
-        return updateAsync(scope, solutionResourceName, solutionPatchRequestBody, context).block();
+        return beginUpdate(scope, solutionResourceName, solutionPatchRequestBody, context).getFinalResult();
     }
 
     /**
      * Warm up the solution resource by preloading asynchronous diagnostics results into cache.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionWarmUpRequestBody The required request body for warming up a solution resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -880,52 +790,15 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.warmUp(this.client.getEndpoint(), scope, solutionResourceName,
-                this.client.getApiVersion(), solutionWarmUpRequestBody, accept, context))
+            .withContext(context -> service.warmUp(this.client.getEndpoint(), this.client.getApiVersion(), scope,
+                solutionResourceName, solutionWarmUpRequestBody, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Warm up the solution resource by preloading asynchronous diagnostics results into cache.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param solutionResourceName Solution resource Name.
-     * @param solutionWarmUpRequestBody The required request body for warming up a solution resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> warmUpWithResponseAsync(String scope, String solutionResourceName,
-        SolutionWarmUpRequestBody solutionWarmUpRequestBody, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (solutionResourceName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter solutionResourceName is required and cannot be null."));
-        }
-        if (solutionWarmUpRequestBody != null) {
-            solutionWarmUpRequestBody.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.warmUp(this.client.getEndpoint(), scope, solutionResourceName, this.client.getApiVersion(),
-            solutionWarmUpRequestBody, accept, context);
-    }
-
-    /**
-     * Warm up the solution resource by preloading asynchronous diagnostics results into cache.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -942,8 +815,7 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
     /**
      * Warm up the solution resource by preloading asynchronous diagnostics results into cache.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @param solutionWarmUpRequestBody The required request body for warming up a solution resource.
      * @param context The context to associate with this operation.
@@ -955,14 +827,30 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> warmUpWithResponse(String scope, String solutionResourceName,
         SolutionWarmUpRequestBody solutionWarmUpRequestBody, Context context) {
-        return warmUpWithResponseAsync(scope, solutionResourceName, solutionWarmUpRequestBody, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (solutionResourceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter solutionResourceName is required and cannot be null."));
+        }
+        if (solutionWarmUpRequestBody != null) {
+            solutionWarmUpRequestBody.validate();
+        }
+        final String accept = "application/json";
+        return service.warmUpSync(this.client.getEndpoint(), this.client.getApiVersion(), scope, solutionResourceName,
+            solutionWarmUpRequestBody, accept, context);
     }
 
     /**
      * Warm up the solution resource by preloading asynchronous diagnostics results into cache.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param solutionResourceName Solution resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -973,4 +861,6 @@ public final class SolutionOperationsClientImpl implements SolutionOperationsCli
         final SolutionWarmUpRequestBody solutionWarmUpRequestBody = null;
         warmUpWithResponse(scope, solutionResourceName, solutionWarmUpRequestBody, Context.NONE);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SolutionOperationsClientImpl.class);
 }

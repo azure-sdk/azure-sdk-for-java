@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.selfhelp.fluent.DiscoverySolutionsClient;
 import com.azure.resourcemanager.selfhelp.fluent.models.SolutionMetadataResourceInner;
 import com.azure.resourcemanager.selfhelp.models.DiscoveryResponse;
@@ -67,7 +68,15 @@ public final class DiscoverySolutionsClientImpl implements DiscoverySolutionsCli
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DiscoveryResponse>> list(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @QueryParam(value = "$filter", encoded = true) String filter,
+            @QueryParam("api-version") String apiVersion, @QueryParam("$filter") String filter,
+            @QueryParam("$skiptoken") String skiptoken, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Help/discoverySolutions")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DiscoveryResponse> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @QueryParam("$filter") String filter,
             @QueryParam("$skiptoken") String skiptoken, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -75,6 +84,13 @@ public final class DiscoverySolutionsClientImpl implements DiscoverySolutionsCli
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DiscoveryResponse>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DiscoveryResponse> listNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
@@ -112,42 +128,6 @@ public final class DiscoverySolutionsClientImpl implements DiscoverySolutionsCli
             .<PagedResponse<SolutionMetadataResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the relevant Azure Diagnostics, Solutions and Troubleshooters using [problemClassification
-     * API](https://learn.microsoft.com/rest/api/support/problem-classifications/list?tabs=HTTP)) AND resourceUri or
-     * resourceType.&lt;br/&gt; Discovery Solutions is the initial entry point within Help API, which identifies
-     * relevant Azure diagnostics and solutions. &lt;br/&gt;&lt;br/&gt; Required Input : problemClassificationId (Use
-     * the [problemClassification
-     * API](https://learn.microsoft.com/rest/api/support/problem-classifications/list?tabs=HTTP)) &lt;br/&gt;Optional
-     * input: resourceUri OR resource Type &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note: &lt;/b&gt; ‘requiredInputs’ from
-     * Discovery solutions response must be passed via ‘additionalParameters’ as an input to Diagnostics and Solutions
-     * API.
-     * 
-     * @param filter 'ProblemClassificationId' is a mandatory filter to get solutions ids. It also supports optional
-     * 'ResourceType' and 'SolutionType' filters. The
-     * [$filter](https://learn.microsoft.com/en-us/odata/webapi/first-odata-api#filter) supports only 'and', 'or' and
-     * 'eq' operators. Example: $filter=ProblemClassificationId eq '1ddda5b4-cf6c-4d4f-91ad-bc38ab0e811e'.
-     * @param skiptoken Skiptoken is only used if a previous operation returned a partial result.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return discovery response along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SolutionMetadataResourceInner>> listSinglePageAsync(String filter, String skiptoken,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), filter, skiptoken, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -216,16 +196,60 @@ public final class DiscoverySolutionsClientImpl implements DiscoverySolutionsCli
      * [$filter](https://learn.microsoft.com/en-us/odata/webapi/first-odata-api#filter) supports only 'and', 'or' and
      * 'eq' operators. Example: $filter=ProblemClassificationId eq '1ddda5b4-cf6c-4d4f-91ad-bc38ab0e811e'.
      * @param skiptoken Skiptoken is only used if a previous operation returned a partial result.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return discovery response along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SolutionMetadataResourceInner> listSinglePage(String filter, String skiptoken) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<DiscoveryResponse> res = service.listSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            filter, skiptoken, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the relevant Azure Diagnostics, Solutions and Troubleshooters using [problemClassification
+     * API](https://learn.microsoft.com/rest/api/support/problem-classifications/list?tabs=HTTP)) AND resourceUri or
+     * resourceType.&lt;br/&gt; Discovery Solutions is the initial entry point within Help API, which identifies
+     * relevant Azure diagnostics and solutions. &lt;br/&gt;&lt;br/&gt; Required Input : problemClassificationId (Use
+     * the [problemClassification
+     * API](https://learn.microsoft.com/rest/api/support/problem-classifications/list?tabs=HTTP)) &lt;br/&gt;Optional
+     * input: resourceUri OR resource Type &lt;br/&gt;&lt;br/&gt; &lt;b&gt;Note: &lt;/b&gt; ‘requiredInputs’ from
+     * Discovery solutions response must be passed via ‘additionalParameters’ as an input to Diagnostics and Solutions
+     * API.
+     * 
+     * @param filter 'ProblemClassificationId' is a mandatory filter to get solutions ids. It also supports optional
+     * 'ResourceType' and 'SolutionType' filters. The
+     * [$filter](https://learn.microsoft.com/en-us/odata/webapi/first-odata-api#filter) supports only 'and', 'or' and
+     * 'eq' operators. Example: $filter=ProblemClassificationId eq '1ddda5b4-cf6c-4d4f-91ad-bc38ab0e811e'.
+     * @param skiptoken Skiptoken is only used if a previous operation returned a partial result.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return discovery response as paginated response with {@link PagedFlux}.
+     * @return discovery response along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SolutionMetadataResourceInner> listAsync(String filter, String skiptoken, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(filter, skiptoken, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SolutionMetadataResourceInner> listSinglePage(String filter, String skiptoken,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<DiscoveryResponse> res = service.listSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            filter, skiptoken, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -247,7 +271,7 @@ public final class DiscoverySolutionsClientImpl implements DiscoverySolutionsCli
     public PagedIterable<SolutionMetadataResourceInner> list() {
         final String filter = null;
         final String skiptoken = null;
-        return new PagedIterable<>(listAsync(filter, skiptoken));
+        return new PagedIterable<>(() -> listSinglePage(filter, skiptoken), nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -274,7 +298,8 @@ public final class DiscoverySolutionsClientImpl implements DiscoverySolutionsCli
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SolutionMetadataResourceInner> list(String filter, String skiptoken, Context context) {
-        return new PagedIterable<>(listAsync(filter, skiptoken, context));
+        return new PagedIterable<>(() -> listSinglePage(filter, skiptoken, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -306,26 +331,55 @@ public final class DiscoverySolutionsClientImpl implements DiscoverySolutionsCli
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return discovery response along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SolutionMetadataResourceInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<DiscoveryResponse> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return discovery response along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return discovery response along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SolutionMetadataResourceInner>> listNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<SolutionMetadataResourceInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<DiscoveryResponse> res = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DiscoverySolutionsClientImpl.class);
 }

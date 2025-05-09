@@ -17,8 +17,7 @@ public interface Troubleshooters {
      * includes the status and result of each step in the Troubleshooter workflow. This API requires the Troubleshooter
      * resource name that was created using the Create API.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -36,8 +35,7 @@ public interface Troubleshooters {
      * includes the status and result of each step in the Troubleshooter workflow. This API requires the Troubleshooter
      * resource name that was created using the Create API.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -54,17 +52,16 @@ public interface Troubleshooters {
      * specific troubleshooter to progress into the next step in the process. This API is used after the Troubleshooter
      * has been created using the Create API.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param continueRequestBody The required request body for going to next step in Troubleshooter resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
-    TroubleshootersContinueMethodResponse continueMethodWithResponse(String scope, String troubleshooterName,
+    Response<Void> continueMethodWithResponse(String scope, String troubleshooterName,
         ContinueRequestBody continueRequestBody, Context context);
 
     /**
@@ -73,8 +70,7 @@ public interface Troubleshooters {
      * specific troubleshooter to progress into the next step in the process. This API is used after the Troubleshooter
      * has been created using the Create API.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -85,22 +81,20 @@ public interface Troubleshooters {
     /**
      * Ends the troubleshooter action.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
-    TroubleshootersEndResponse endWithResponse(String scope, String troubleshooterName, Context context);
+    Response<Void> endWithResponse(String scope, String troubleshooterName, Context context);
 
     /**
      * Ends the troubleshooter action.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -113,14 +107,13 @@ public interface Troubleshooters {
      * new resource name which should be used in subsequent request. The old resource name is obsolete after this API is
      * invoked.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return troubleshooter restart response.
+     * @return troubleshooter restart response along with {@link Response}.
      */
     Response<RestartTroubleshooterResponse> restartWithResponse(String scope, String troubleshooterName,
         Context context);
@@ -130,8 +123,7 @@ public interface Troubleshooters {
      * new resource name which should be used in subsequent request. The old resource name is obsolete after this API is
      * invoked.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param troubleshooterName Troubleshooter resource Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

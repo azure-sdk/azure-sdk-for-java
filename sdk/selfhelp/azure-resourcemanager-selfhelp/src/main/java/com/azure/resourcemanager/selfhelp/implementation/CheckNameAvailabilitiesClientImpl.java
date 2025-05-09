@@ -22,6 +22,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.selfhelp.fluent.CheckNameAvailabilitiesClient;
 import com.azure.resourcemanager.selfhelp.fluent.models.CheckNameAvailabilityResponseInner;
 import com.azure.resourcemanager.selfhelp.models.CheckNameAvailabilityRequest;
@@ -64,7 +65,16 @@ public final class CheckNameAvailabilitiesClientImpl implements CheckNameAvailab
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CheckNameAvailabilityResponseInner>> checkAvailability(@HostParam("$host") String endpoint,
-            @PathParam(value = "scope", encoded = true) String scope, @QueryParam("api-version") String apiVersion,
+            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
+            @BodyParam("application/json") CheckNameAvailabilityRequest checkNameAvailabilityRequest,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/{scope}/providers/Microsoft.Help/checkNameAvailability")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<CheckNameAvailabilityResponseInner> checkAvailabilitySync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
             @BodyParam("application/json") CheckNameAvailabilityRequest checkNameAvailabilityRequest,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -72,8 +82,7 @@ public final class CheckNameAvailabilitiesClientImpl implements CheckNameAvailab
     /**
      * This API is used to check the uniqueness of a resource name used for a diagnostic, troubleshooter or solutions.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param checkNameAvailabilityRequest The required parameters for availability check.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -96,48 +105,15 @@ public final class CheckNameAvailabilitiesClientImpl implements CheckNameAvailab
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.checkAvailability(this.client.getEndpoint(), scope,
-                this.client.getApiVersion(), checkNameAvailabilityRequest, accept, context))
+            .withContext(context -> service.checkAvailability(this.client.getEndpoint(), this.client.getApiVersion(),
+                scope, checkNameAvailabilityRequest, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * This API is used to check the uniqueness of a resource name used for a diagnostic, troubleshooter or solutions.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
-     * @param checkNameAvailabilityRequest The required parameters for availability check.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for whether the requested resource name is available or not along with {@link Response} on
-     * successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CheckNameAvailabilityResponseInner>> checkAvailabilityWithResponseAsync(String scope,
-        CheckNameAvailabilityRequest checkNameAvailabilityRequest, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (checkNameAvailabilityRequest != null) {
-            checkNameAvailabilityRequest.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.checkAvailability(this.client.getEndpoint(), scope, this.client.getApiVersion(),
-            checkNameAvailabilityRequest, accept, context);
-    }
-
-    /**
-     * This API is used to check the uniqueness of a resource name used for a diagnostic, troubleshooter or solutions.
-     * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -154,8 +130,7 @@ public final class CheckNameAvailabilitiesClientImpl implements CheckNameAvailab
     /**
      * This API is used to check the uniqueness of a resource name used for a diagnostic, troubleshooter or solutions.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @param checkNameAvailabilityRequest The required parameters for availability check.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -166,14 +141,26 @@ public final class CheckNameAvailabilitiesClientImpl implements CheckNameAvailab
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CheckNameAvailabilityResponseInner> checkAvailabilityWithResponse(String scope,
         CheckNameAvailabilityRequest checkNameAvailabilityRequest, Context context) {
-        return checkAvailabilityWithResponseAsync(scope, checkNameAvailabilityRequest, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (checkNameAvailabilityRequest != null) {
+            checkNameAvailabilityRequest.validate();
+        }
+        final String accept = "application/json";
+        return service.checkAvailabilitySync(this.client.getEndpoint(), this.client.getApiVersion(), scope,
+            checkNameAvailabilityRequest, accept, context);
     }
 
     /**
      * This API is used to check the uniqueness of a resource name used for a diagnostic, troubleshooter or solutions.
      * 
-     * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-     * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+     * @param scope The fully qualified Azure Resource manager identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -184,4 +171,6 @@ public final class CheckNameAvailabilitiesClientImpl implements CheckNameAvailab
         final CheckNameAvailabilityRequest checkNameAvailabilityRequest = null;
         return checkAvailabilityWithResponse(scope, checkNameAvailabilityRequest, Context.NONE).getValue();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(CheckNameAvailabilitiesClientImpl.class);
 }
