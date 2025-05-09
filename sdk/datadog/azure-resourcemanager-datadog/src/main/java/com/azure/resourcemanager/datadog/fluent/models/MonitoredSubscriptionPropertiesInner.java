@@ -5,8 +5,9 @@
 package com.azure.resourcemanager.datadog.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.datadog.models.SubscriptionList;
@@ -16,59 +17,36 @@ import java.io.IOException;
  * The request to update subscriptions needed to be monitored by the Datadog monitor resource.
  */
 @Fluent
-public final class MonitoredSubscriptionPropertiesInner
-    implements JsonSerializable<MonitoredSubscriptionPropertiesInner> {
-    /*
-     * Name of the monitored subscription resource.
-     */
-    private String name;
-
-    /*
-     * The id of the monitored subscription resource.
-     */
-    private String id;
-
-    /*
-     * The type of the monitored subscription resource.
-     */
-    private String type;
-
+public final class MonitoredSubscriptionPropertiesInner extends ProxyResource {
     /*
      * The request to update subscriptions needed to be monitored by the Datadog monitor resource.
      */
     private SubscriptionList properties;
 
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    private SystemData systemData;
+
+    /*
+     * The type of the resource.
+     */
+    private String type;
+
+    /*
+     * The name of the resource.
+     */
+    private String name;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
+
     /**
      * Creates an instance of MonitoredSubscriptionPropertiesInner class.
      */
     public MonitoredSubscriptionPropertiesInner() {
-    }
-
-    /**
-     * Get the name property: Name of the monitored subscription resource.
-     * 
-     * @return the name value.
-     */
-    public String name() {
-        return this.name;
-    }
-
-    /**
-     * Get the id property: The id of the monitored subscription resource.
-     * 
-     * @return the id value.
-     */
-    public String id() {
-        return this.id;
-    }
-
-    /**
-     * Get the type property: The type of the monitored subscription resource.
-     * 
-     * @return the type value.
-     */
-    public String type() {
-        return this.type;
     }
 
     /**
@@ -91,6 +69,45 @@ public final class MonitoredSubscriptionPropertiesInner
     public MonitoredSubscriptionPropertiesInner withProperties(SubscriptionList properties) {
         this.properties = properties;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * Get the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
+    }
+
+    /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -120,6 +137,7 @@ public final class MonitoredSubscriptionPropertiesInner
      * @param jsonReader The JsonReader being read.
      * @return An instance of MonitoredSubscriptionPropertiesInner if the JsonReader was pointing to an instance of it,
      * or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the MonitoredSubscriptionPropertiesInner.
      */
     public static MonitoredSubscriptionPropertiesInner fromJson(JsonReader jsonReader) throws IOException {
@@ -130,14 +148,16 @@ public final class MonitoredSubscriptionPropertiesInner
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("name".equals(fieldName)) {
-                    deserializedMonitoredSubscriptionPropertiesInner.name = reader.getString();
-                } else if ("id".equals(fieldName)) {
+                if ("id".equals(fieldName)) {
                     deserializedMonitoredSubscriptionPropertiesInner.id = reader.getString();
+                } else if ("name".equals(fieldName)) {
+                    deserializedMonitoredSubscriptionPropertiesInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedMonitoredSubscriptionPropertiesInner.type = reader.getString();
                 } else if ("properties".equals(fieldName)) {
                     deserializedMonitoredSubscriptionPropertiesInner.properties = SubscriptionList.fromJson(reader);
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedMonitoredSubscriptionPropertiesInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

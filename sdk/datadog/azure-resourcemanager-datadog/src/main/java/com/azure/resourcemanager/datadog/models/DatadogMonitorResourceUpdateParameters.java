@@ -29,7 +29,7 @@ public final class DatadogMonitorResourceUpdateParameters
     private Map<String, String> tags;
 
     /*
-     * The sku property.
+     * Represents the SKU of a resource.
      */
     private ResourceSku sku;
 
@@ -80,7 +80,7 @@ public final class DatadogMonitorResourceUpdateParameters
     }
 
     /**
-     * Get the sku property: The sku property.
+     * Get the sku property: Represents the SKU of a resource.
      * 
      * @return the sku value.
      */
@@ -89,7 +89,7 @@ public final class DatadogMonitorResourceUpdateParameters
     }
 
     /**
-     * Set the sku property: The sku property.
+     * Set the sku property: Represents the SKU of a resource.
      * 
      * @param sku the sku value to set.
      * @return the DatadogMonitorResourceUpdateParameters object itself.

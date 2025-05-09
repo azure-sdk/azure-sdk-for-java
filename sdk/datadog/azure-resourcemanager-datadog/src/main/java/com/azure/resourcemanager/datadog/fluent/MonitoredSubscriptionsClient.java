@@ -25,7 +25,8 @@ public interface MonitoredSubscriptionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return paged collection of MonitoredSubscriptionProperties items as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<MonitoredSubscriptionPropertiesInner> list(String resourceGroupName, String monitorName);
@@ -39,7 +40,8 @@ public interface MonitoredSubscriptionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return paged collection of MonitoredSubscriptionProperties items as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<MonitoredSubscriptionPropertiesInner> list(String resourceGroupName, String monitorName,
@@ -82,6 +84,7 @@ public interface MonitoredSubscriptionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param configurationName The configuration name. Only 'default' value is supported.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -90,7 +93,8 @@ public interface MonitoredSubscriptionsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MonitoredSubscriptionPropertiesInner>, MonitoredSubscriptionPropertiesInner>
-        beginCreateorUpdate(String resourceGroupName, String monitorName, String configurationName);
+        beginCreateorUpdate(String resourceGroupName, String monitorName, String configurationName,
+            MonitoredSubscriptionPropertiesInner body);
 
     /**
      * Add the subscriptions that should be monitored by the Datadog monitor resource.
@@ -117,6 +121,7 @@ public interface MonitoredSubscriptionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param configurationName The configuration name. Only 'default' value is supported.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -124,7 +129,7 @@ public interface MonitoredSubscriptionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     MonitoredSubscriptionPropertiesInner createorUpdate(String resourceGroupName, String monitorName,
-        String configurationName);
+        String configurationName, MonitoredSubscriptionPropertiesInner body);
 
     /**
      * Add the subscriptions that should be monitored by the Datadog monitor resource.
@@ -149,6 +154,7 @@ public interface MonitoredSubscriptionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param configurationName The configuration name. Only 'default' value is supported.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -156,8 +162,9 @@ public interface MonitoredSubscriptionsClient {
      * Datadog monitor resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<MonitoredSubscriptionPropertiesInner>, MonitoredSubscriptionPropertiesInner>
-        beginUpdate(String resourceGroupName, String monitorName, String configurationName);
+    SyncPoller<PollResult<MonitoredSubscriptionPropertiesInner>, MonitoredSubscriptionPropertiesInner> beginUpdate(
+        String resourceGroupName, String monitorName, String configurationName,
+        MonitoredSubscriptionPropertiesInner body);
 
     /**
      * Updates the subscriptions that are being monitored by the Datadog monitor resource.
@@ -184,13 +191,15 @@ public interface MonitoredSubscriptionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param configurationName The configuration name. Only 'default' value is supported.
+     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the request to update subscriptions needed to be monitored by the Datadog monitor resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    MonitoredSubscriptionPropertiesInner update(String resourceGroupName, String monitorName, String configurationName);
+    MonitoredSubscriptionPropertiesInner update(String resourceGroupName, String monitorName, String configurationName,
+        MonitoredSubscriptionPropertiesInner body);
 
     /**
      * Updates the subscriptions that are being monitored by the Datadog monitor resource.
@@ -214,7 +223,7 @@ public interface MonitoredSubscriptionsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
-     * @param configurationName Configuration name.
+     * @param configurationName The configuration name. Only 'default' value is supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -229,7 +238,7 @@ public interface MonitoredSubscriptionsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
-     * @param configurationName Configuration name.
+     * @param configurationName The configuration name. Only 'default' value is supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -245,7 +254,7 @@ public interface MonitoredSubscriptionsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
-     * @param configurationName Configuration name.
+     * @param configurationName The configuration name. Only 'default' value is supported.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -258,7 +267,7 @@ public interface MonitoredSubscriptionsClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
-     * @param configurationName Configuration name.
+     * @param configurationName The configuration name. Only 'default' value is supported.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

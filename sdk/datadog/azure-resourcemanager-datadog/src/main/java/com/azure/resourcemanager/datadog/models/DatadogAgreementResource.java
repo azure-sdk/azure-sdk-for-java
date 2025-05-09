@@ -12,14 +12,14 @@ import com.azure.resourcemanager.datadog.fluent.models.DatadogAgreementResourceI
  */
 public interface DatadogAgreementResource {
     /**
-     * Gets the id property: Fully qualified resource Id for the resource.
+     * Gets the id property: ARM id of the resource.
      * 
      * @return the id value.
      */
     String id();
 
     /**
-     * Gets the name property: The name of the resource.
+     * Gets the name property: Name of the agreement.
      * 
      * @return the name value.
      */

@@ -37,83 +37,6 @@ public final class MonitorsImpl implements Monitors {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<DatadogApiKey> listApiKeys(String resourceGroupName, String monitorName) {
-        PagedIterable<DatadogApiKeyInner> inner = this.serviceClient().listApiKeys(resourceGroupName, monitorName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new DatadogApiKeyImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<DatadogApiKey> listApiKeys(String resourceGroupName, String monitorName, Context context) {
-        PagedIterable<DatadogApiKeyInner> inner
-            = this.serviceClient().listApiKeys(resourceGroupName, monitorName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new DatadogApiKeyImpl(inner1, this.manager()));
-    }
-
-    public Response<DatadogApiKey> getDefaultKeyWithResponse(String resourceGroupName, String monitorName,
-        Context context) {
-        Response<DatadogApiKeyInner> inner
-            = this.serviceClient().getDefaultKeyWithResponse(resourceGroupName, monitorName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new DatadogApiKeyImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public DatadogApiKey getDefaultKey(String resourceGroupName, String monitorName) {
-        DatadogApiKeyInner inner = this.serviceClient().getDefaultKey(resourceGroupName, monitorName);
-        if (inner != null) {
-            return new DatadogApiKeyImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<Void> setDefaultKeyWithResponse(String resourceGroupName, String monitorName,
-        DatadogApiKeyInner body, Context context) {
-        return this.serviceClient().setDefaultKeyWithResponse(resourceGroupName, monitorName, body, context);
-    }
-
-    public void setDefaultKey(String resourceGroupName, String monitorName) {
-        this.serviceClient().setDefaultKey(resourceGroupName, monitorName);
-    }
-
-    public PagedIterable<DatadogHost> listHosts(String resourceGroupName, String monitorName) {
-        PagedIterable<DatadogHostInner> inner = this.serviceClient().listHosts(resourceGroupName, monitorName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new DatadogHostImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<DatadogHost> listHosts(String resourceGroupName, String monitorName, Context context) {
-        PagedIterable<DatadogHostInner> inner = this.serviceClient().listHosts(resourceGroupName, monitorName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new DatadogHostImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<LinkedResource> listLinkedResources(String resourceGroupName, String monitorName) {
-        PagedIterable<LinkedResourceInner> inner
-            = this.serviceClient().listLinkedResources(resourceGroupName, monitorName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new LinkedResourceImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<LinkedResource> listLinkedResources(String resourceGroupName, String monitorName,
-        Context context) {
-        PagedIterable<LinkedResourceInner> inner
-            = this.serviceClient().listLinkedResources(resourceGroupName, monitorName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new LinkedResourceImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<MonitoredResource> listMonitoredResources(String resourceGroupName, String monitorName) {
-        PagedIterable<MonitoredResourceInner> inner
-            = this.serviceClient().listMonitoredResources(resourceGroupName, monitorName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new MonitoredResourceImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<MonitoredResource> listMonitoredResources(String resourceGroupName, String monitorName,
-        Context context) {
-        PagedIterable<MonitoredResourceInner> inner
-            = this.serviceClient().listMonitoredResources(resourceGroupName, monitorName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new MonitoredResourceImpl(inner1, this.manager()));
-    }
-
     public PagedIterable<DatadogMonitorResource> list() {
         PagedIterable<DatadogMonitorResourceInner> inner = this.serviceClient().list();
         return ResourceManagerUtils.mapPage(inner, inner1 -> new DatadogMonitorResourceImpl(inner1, this.manager()));
@@ -164,6 +87,74 @@ public final class MonitorsImpl implements Monitors {
         this.serviceClient().delete(resourceGroupName, monitorName, context);
     }
 
+    public Response<DatadogApiKey> getDefaultKeyWithResponse(String resourceGroupName, String monitorName,
+        Context context) {
+        Response<DatadogApiKeyInner> inner
+            = this.serviceClient().getDefaultKeyWithResponse(resourceGroupName, monitorName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new DatadogApiKeyImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public DatadogApiKey getDefaultKey(String resourceGroupName, String monitorName) {
+        DatadogApiKeyInner inner = this.serviceClient().getDefaultKey(resourceGroupName, monitorName);
+        if (inner != null) {
+            return new DatadogApiKeyImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PagedIterable<DatadogApiKey> listApiKeys(String resourceGroupName, String monitorName) {
+        PagedIterable<DatadogApiKeyInner> inner = this.serviceClient().listApiKeys(resourceGroupName, monitorName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DatadogApiKeyImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<DatadogApiKey> listApiKeys(String resourceGroupName, String monitorName, Context context) {
+        PagedIterable<DatadogApiKeyInner> inner
+            = this.serviceClient().listApiKeys(resourceGroupName, monitorName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DatadogApiKeyImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<DatadogHost> listHosts(String resourceGroupName, String monitorName) {
+        PagedIterable<DatadogHostInner> inner = this.serviceClient().listHosts(resourceGroupName, monitorName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DatadogHostImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<DatadogHost> listHosts(String resourceGroupName, String monitorName, Context context) {
+        PagedIterable<DatadogHostInner> inner = this.serviceClient().listHosts(resourceGroupName, monitorName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DatadogHostImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<LinkedResource> listLinkedResources(String resourceGroupName, String monitorName) {
+        PagedIterable<LinkedResourceInner> inner
+            = this.serviceClient().listLinkedResources(resourceGroupName, monitorName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new LinkedResourceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<LinkedResource> listLinkedResources(String resourceGroupName, String monitorName,
+        Context context) {
+        PagedIterable<LinkedResourceInner> inner
+            = this.serviceClient().listLinkedResources(resourceGroupName, monitorName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new LinkedResourceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<MonitoredResource> listMonitoredResources(String resourceGroupName, String monitorName) {
+        PagedIterable<MonitoredResourceInner> inner
+            = this.serviceClient().listMonitoredResources(resourceGroupName, monitorName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new MonitoredResourceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<MonitoredResource> listMonitoredResources(String resourceGroupName, String monitorName,
+        Context context) {
+        PagedIterable<MonitoredResourceInner> inner
+            = this.serviceClient().listMonitoredResources(resourceGroupName, monitorName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new MonitoredResourceImpl(inner1, this.manager()));
+    }
+
     public Response<DatadogSetPasswordLink> refreshSetPasswordLinkWithResponse(String resourceGroupName,
         String monitorName, Context context) {
         Response<DatadogSetPasswordLinkInner> inner
@@ -183,6 +174,15 @@ public final class MonitorsImpl implements Monitors {
         } else {
             return null;
         }
+    }
+
+    public Response<Void> setDefaultKeyWithResponse(String resourceGroupName, String monitorName,
+        DatadogApiKeyInner body, Context context) {
+        return this.serviceClient().setDefaultKeyWithResponse(resourceGroupName, monitorName, body, context);
+    }
+
+    public void setDefaultKey(String resourceGroupName, String monitorName) {
+        this.serviceClient().setDefaultKey(resourceGroupName, monitorName);
     }
 
     public DatadogMonitorResource getById(String id) {

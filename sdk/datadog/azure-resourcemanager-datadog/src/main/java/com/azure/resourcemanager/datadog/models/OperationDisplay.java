@@ -12,27 +12,27 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The object that represents the operation.
+ * Represents the display information for an operation.
  */
 @Fluent
 public final class OperationDisplay implements JsonSerializable<OperationDisplay> {
     /*
-     * Service provider, i.e., Microsoft.Datadog.
+     * The service provider: Microsoft.Datadog.
      */
     private String provider;
 
     /*
-     * Type on which the operation is performed, e.g., 'monitors'.
+     * The resource on which the operation is performed.
      */
     private String resource;
 
     /*
-     * Operation type, e.g., read, write, delete, etc.
+     * The type of operation: create, update, delete, etc.
      */
     private String operation;
 
     /*
-     * Description of the operation, e.g., 'Write monitors'.
+     * A localized description of the operation.
      */
     private String description;
 
@@ -43,7 +43,7 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Get the provider property: Service provider, i.e., Microsoft.Datadog.
+     * Get the provider property: The service provider: Microsoft.Datadog.
      * 
      * @return the provider value.
      */
@@ -52,7 +52,7 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Set the provider property: Service provider, i.e., Microsoft.Datadog.
+     * Set the provider property: The service provider: Microsoft.Datadog.
      * 
      * @param provider the provider value to set.
      * @return the OperationDisplay object itself.
@@ -63,7 +63,7 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Get the resource property: Type on which the operation is performed, e.g., 'monitors'.
+     * Get the resource property: The resource on which the operation is performed.
      * 
      * @return the resource value.
      */
@@ -72,7 +72,7 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Set the resource property: Type on which the operation is performed, e.g., 'monitors'.
+     * Set the resource property: The resource on which the operation is performed.
      * 
      * @param resource the resource value to set.
      * @return the OperationDisplay object itself.
@@ -83,7 +83,7 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Get the operation property: Operation type, e.g., read, write, delete, etc.
+     * Get the operation property: The type of operation: create, update, delete, etc.
      * 
      * @return the operation value.
      */
@@ -92,7 +92,7 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Set the operation property: Operation type, e.g., read, write, delete, etc.
+     * Set the operation property: The type of operation: create, update, delete, etc.
      * 
      * @param operation the operation value to set.
      * @return the OperationDisplay object itself.
@@ -103,7 +103,7 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Get the description property: Description of the operation, e.g., 'Write monitors'.
+     * Get the description property: A localized description of the operation.
      * 
      * @return the description value.
      */
@@ -112,7 +112,7 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Set the description property: Description of the operation, e.g., 'Write monitors'.
+     * Set the description property: A localized description of the operation.
      * 
      * @param description the description value to set.
      * @return the OperationDisplay object itself.

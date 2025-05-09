@@ -165,14 +165,6 @@ public final class DatadogMonitorResourceImpl
         return this;
     }
 
-    public PagedIterable<DatadogApiKey> listApiKeys() {
-        return serviceManager.monitors().listApiKeys(resourceGroupName, monitorName);
-    }
-
-    public PagedIterable<DatadogApiKey> listApiKeys(Context context) {
-        return serviceManager.monitors().listApiKeys(resourceGroupName, monitorName, context);
-    }
-
     public Response<DatadogApiKey> getDefaultKeyWithResponse(Context context) {
         return serviceManager.monitors().getDefaultKeyWithResponse(resourceGroupName, monitorName, context);
     }
@@ -181,12 +173,12 @@ public final class DatadogMonitorResourceImpl
         return serviceManager.monitors().getDefaultKey(resourceGroupName, monitorName);
     }
 
-    public Response<Void> setDefaultKeyWithResponse(DatadogApiKeyInner body, Context context) {
-        return serviceManager.monitors().setDefaultKeyWithResponse(resourceGroupName, monitorName, body, context);
+    public PagedIterable<DatadogApiKey> listApiKeys() {
+        return serviceManager.monitors().listApiKeys(resourceGroupName, monitorName);
     }
 
-    public void setDefaultKey() {
-        serviceManager.monitors().setDefaultKey(resourceGroupName, monitorName);
+    public PagedIterable<DatadogApiKey> listApiKeys(Context context) {
+        return serviceManager.monitors().listApiKeys(resourceGroupName, monitorName, context);
     }
 
     public PagedIterable<DatadogHost> listHosts() {
@@ -219,6 +211,14 @@ public final class DatadogMonitorResourceImpl
 
     public DatadogSetPasswordLink refreshSetPasswordLink() {
         return serviceManager.monitors().refreshSetPasswordLink(resourceGroupName, monitorName);
+    }
+
+    public Response<Void> setDefaultKeyWithResponse(DatadogApiKeyInner body, Context context) {
+        return serviceManager.monitors().setDefaultKeyWithResponse(resourceGroupName, monitorName, body, context);
+    }
+
+    public void setDefaultKey() {
+        serviceManager.monitors().setDefaultKey(resourceGroupName, monitorName);
     }
 
     public DatadogMonitorResourceImpl withRegion(Region location) {

@@ -10,7 +10,7 @@ package com.azure.resourcemanager.datadog.generated;
 public final class MonitorsGetDefaultKeySamples {
     /*
      * x-ms-original-file:
-     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-01-01/examples/ApiKeys_GetDefaultKey.json
+     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-10-20/examples/ApiKeys_GetDefaultKey.json
      */
     /**
      * Sample code: Monitors_GetDefaultKey.

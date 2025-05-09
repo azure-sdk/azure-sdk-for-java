@@ -22,8 +22,10 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datadog.fluent.MicrosoftDatadogClient;
+import com.azure.resourcemanager.datadog.implementation.BillingInfoesImpl;
 import com.azure.resourcemanager.datadog.implementation.CreationSupportedsImpl;
 import com.azure.resourcemanager.datadog.implementation.MarketplaceAgreementsImpl;
 import com.azure.resourcemanager.datadog.implementation.MicrosoftDatadogClientBuilder;
@@ -32,6 +34,7 @@ import com.azure.resourcemanager.datadog.implementation.MonitorsImpl;
 import com.azure.resourcemanager.datadog.implementation.OperationsImpl;
 import com.azure.resourcemanager.datadog.implementation.SingleSignOnConfigurationsImpl;
 import com.azure.resourcemanager.datadog.implementation.TagRulesImpl;
+import com.azure.resourcemanager.datadog.models.BillingInfoes;
 import com.azure.resourcemanager.datadog.models.CreationSupporteds;
 import com.azure.resourcemanager.datadog.models.MarketplaceAgreements;
 import com.azure.resourcemanager.datadog.models.MonitoredSubscriptions;
@@ -43,6 +46,7 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -50,19 +54,21 @@ import java.util.stream.Collectors;
  * Entry point to MicrosoftDatadogManager.
  */
 public final class MicrosoftDatadogManager {
-    private MarketplaceAgreements marketplaceAgreements;
+    private Operations operations;
 
-    private CreationSupporteds creationSupporteds;
+    private MarketplaceAgreements marketplaceAgreements;
 
     private Monitors monitors;
 
-    private Operations operations;
+    private CreationSupporteds creationSupporteds;
 
-    private TagRules tagRules;
+    private BillingInfoes billingInfoes;
+
+    private MonitoredSubscriptions monitoredSubscriptions;
 
     private SingleSignOnConfigurations singleSignOnConfigurations;
 
-    private MonitoredSubscriptions monitoredSubscriptions;
+    private TagRules tagRules;
 
     private final MicrosoftDatadogClient clientObject;
 
@@ -116,6 +122,9 @@ public final class MicrosoftDatadogManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-datadog.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -223,12 +232,14 @@ public final class MicrosoftDatadogManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.datadog")
                 .append("/")
-                .append("1.1.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -275,6 +286,18 @@ public final class MicrosoftDatadogManager {
     }
 
     /**
+     * Gets the resource collection API of Operations.
+     * 
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
+    }
+
+    /**
      * Gets the resource collection API of MarketplaceAgreements.
      * 
      * @return Resource collection API of MarketplaceAgreements.
@@ -284,18 +307,6 @@ public final class MicrosoftDatadogManager {
             this.marketplaceAgreements = new MarketplaceAgreementsImpl(clientObject.getMarketplaceAgreements(), this);
         }
         return marketplaceAgreements;
-    }
-
-    /**
-     * Gets the resource collection API of CreationSupporteds.
-     * 
-     * @return Resource collection API of CreationSupporteds.
-     */
-    public CreationSupporteds creationSupporteds() {
-        if (this.creationSupporteds == null) {
-            this.creationSupporteds = new CreationSupportedsImpl(clientObject.getCreationSupporteds(), this);
-        }
-        return creationSupporteds;
     }
 
     /**
@@ -311,27 +322,40 @@ public final class MicrosoftDatadogManager {
     }
 
     /**
-     * Gets the resource collection API of Operations.
+     * Gets the resource collection API of CreationSupporteds.
      * 
-     * @return Resource collection API of Operations.
+     * @return Resource collection API of CreationSupporteds.
      */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+    public CreationSupporteds creationSupporteds() {
+        if (this.creationSupporteds == null) {
+            this.creationSupporteds = new CreationSupportedsImpl(clientObject.getCreationSupporteds(), this);
         }
-        return operations;
+        return creationSupporteds;
     }
 
     /**
-     * Gets the resource collection API of TagRules. It manages MonitoringTagRules.
+     * Gets the resource collection API of BillingInfoes.
      * 
-     * @return Resource collection API of TagRules.
+     * @return Resource collection API of BillingInfoes.
      */
-    public TagRules tagRules() {
-        if (this.tagRules == null) {
-            this.tagRules = new TagRulesImpl(clientObject.getTagRules(), this);
+    public BillingInfoes billingInfoes() {
+        if (this.billingInfoes == null) {
+            this.billingInfoes = new BillingInfoesImpl(clientObject.getBillingInfoes(), this);
         }
-        return tagRules;
+        return billingInfoes;
+    }
+
+    /**
+     * Gets the resource collection API of MonitoredSubscriptions. It manages MonitoredSubscriptionProperties.
+     * 
+     * @return Resource collection API of MonitoredSubscriptions.
+     */
+    public MonitoredSubscriptions monitoredSubscriptions() {
+        if (this.monitoredSubscriptions == null) {
+            this.monitoredSubscriptions
+                = new MonitoredSubscriptionsImpl(clientObject.getMonitoredSubscriptions(), this);
+        }
+        return monitoredSubscriptions;
     }
 
     /**
@@ -348,16 +372,15 @@ public final class MicrosoftDatadogManager {
     }
 
     /**
-     * Gets the resource collection API of MonitoredSubscriptions. It manages MonitoredSubscriptionProperties.
+     * Gets the resource collection API of TagRules. It manages MonitoringTagRules.
      * 
-     * @return Resource collection API of MonitoredSubscriptions.
+     * @return Resource collection API of TagRules.
      */
-    public MonitoredSubscriptions monitoredSubscriptions() {
-        if (this.monitoredSubscriptions == null) {
-            this.monitoredSubscriptions
-                = new MonitoredSubscriptionsImpl(clientObject.getMonitoredSubscriptions(), this);
+    public TagRules tagRules() {
+        if (this.tagRules == null) {
+            this.tagRules = new TagRulesImpl(clientObject.getTagRules(), this);
         }
-        return monitoredSubscriptions;
+        return tagRules;
     }
 
     /**

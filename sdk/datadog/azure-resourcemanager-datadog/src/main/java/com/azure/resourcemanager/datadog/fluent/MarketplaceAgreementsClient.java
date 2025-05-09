@@ -40,7 +40,7 @@ public interface MarketplaceAgreementsClient {
     /**
      * Create Datadog marketplace agreement in the subscription.
      * 
-     * @param body The body parameter.
+     * @param body The request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -54,10 +54,12 @@ public interface MarketplaceAgreementsClient {
     /**
      * Create Datadog marketplace agreement in the subscription.
      * 
+     * @param body The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    DatadogAgreementResourceInner createOrUpdate();
+    DatadogAgreementResourceInner createOrUpdate(DatadogAgreementResourceInner body);
 }

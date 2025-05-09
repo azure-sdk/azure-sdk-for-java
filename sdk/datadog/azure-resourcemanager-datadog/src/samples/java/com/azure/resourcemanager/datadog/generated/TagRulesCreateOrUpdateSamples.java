@@ -17,7 +17,7 @@ import java.util.Arrays;
 public final class TagRulesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-01-01/examples/TagRules_CreateOrUpdate.json
+     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-10-20/examples/TagRules_CreateOrUpdate.json
      */
     /**
      * Sample code: TagRules_CreateOrUpdate.

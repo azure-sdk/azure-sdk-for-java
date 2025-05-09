@@ -18,6 +18,13 @@ public interface LinkedResource {
     String id();
 
     /**
+     * Gets the location property: The location of the linked resource.
+     * 
+     * @return the location value.
+     */
+    String location();
+
+    /**
      * Gets the inner com.azure.resourcemanager.datadog.fluent.models.LinkedResourceInner object.
      * 
      * @return the inner object.

@@ -53,7 +53,7 @@ public interface DatadogMonitorResource {
     Map<String, String> tags();
 
     /**
-     * Gets the sku property: The sku property.
+     * Gets the sku property: Represents the SKU of a resource.
      * 
      * @return the sku value.
      */
@@ -74,7 +74,7 @@ public interface DatadogMonitorResource {
     IdentityProperties identity();
 
     /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -199,9 +199,9 @@ public interface DatadogMonitorResource {
          */
         interface WithSku {
             /**
-             * Specifies the sku property: The sku property..
+             * Specifies the sku property: Represents the SKU of a resource..
              * 
-             * @param sku The sku property.
+             * @param sku Represents the SKU of a resource.
              * @return the next definition stage.
              */
             WithCreate withSku(ResourceSku sku);
@@ -297,9 +297,9 @@ public interface DatadogMonitorResource {
          */
         interface WithSku {
             /**
-             * Specifies the sku property: The sku property..
+             * Specifies the sku property: Represents the SKU of a resource..
              * 
-             * @param sku The sku property.
+             * @param sku Represents the SKU of a resource.
              * @return the next definition stage.
              */
             Update withSku(ResourceSku sku);
@@ -322,26 +322,6 @@ public interface DatadogMonitorResource {
     DatadogMonitorResource refresh(Context context);
 
     /**
-     * List the api keys for a given monitor resource.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<DatadogApiKey> listApiKeys();
-
-    /**
-     * List the api keys for a given monitor resource.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<DatadogApiKey> listApiKeys(Context context);
-
-    /**
      * Get the default api key.
      * 
      * @param context The context to associate with this operation.
@@ -362,24 +342,24 @@ public interface DatadogMonitorResource {
     DatadogApiKey getDefaultKey();
 
     /**
-     * Set the default api key.
+     * List the api keys for a given monitor resource.
      * 
-     * @param body The body parameter.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response of a list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<DatadogApiKey> listApiKeys();
+
+    /**
+     * List the api keys for a given monitor resource.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return response of a list operation as paginated response with {@link PagedIterable}.
      */
-    Response<Void> setDefaultKeyWithResponse(DatadogApiKeyInner body, Context context);
-
-    /**
-     * Set the default api key.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void setDefaultKey();
+    PagedIterable<DatadogApiKey> listApiKeys(Context context);
 
     /**
      * List the hosts for a given monitor resource.
@@ -460,4 +440,24 @@ public interface DatadogMonitorResource {
      * @return the response.
      */
     DatadogSetPasswordLink refreshSetPasswordLink();
+
+    /**
+     * Set the default api key.
+     * 
+     * @param body The body parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> setDefaultKeyWithResponse(DatadogApiKeyInner body, Context context);
+
+    /**
+     * Set the default api key.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void setDefaultKey();
 }
