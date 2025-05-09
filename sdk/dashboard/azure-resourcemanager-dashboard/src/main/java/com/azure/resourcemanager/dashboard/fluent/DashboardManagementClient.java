@@ -61,6 +61,20 @@ public interface DashboardManagementClient {
     GrafanasClient getGrafanas();
 
     /**
+     * Gets the IntegrationFabricsClient object to access its operations.
+     * 
+     * @return the IntegrationFabricsClient object.
+     */
+    IntegrationFabricsClient getIntegrationFabrics();
+
+    /**
+     * Gets the ManagedPrivateEndpointsClient object to access its operations.
+     * 
+     * @return the ManagedPrivateEndpointsClient object.
+     */
+    ManagedPrivateEndpointsClient getManagedPrivateEndpoints();
+
+    /**
      * Gets the PrivateEndpointConnectionsClient object to access its operations.
      * 
      * @return the PrivateEndpointConnectionsClient object.
@@ -73,11 +87,4 @@ public interface DashboardManagementClient {
      * @return the PrivateLinkResourcesClient object.
      */
     PrivateLinkResourcesClient getPrivateLinkResources();
-
-    /**
-     * Gets the ManagedPrivateEndpointsClient object to access its operations.
-     * 
-     * @return the ManagedPrivateEndpointsClient object.
-     */
-    ManagedPrivateEndpointsClient getManagedPrivateEndpoints();
 }

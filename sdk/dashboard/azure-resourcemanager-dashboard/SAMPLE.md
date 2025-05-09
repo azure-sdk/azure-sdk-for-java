@@ -12,6 +12,14 @@
 - [ListByResourceGroup](#grafana_listbyresourcegroup)
 - [Update](#grafana_update)
 
+## IntegrationFabrics
+
+- [Create](#integrationfabrics_create)
+- [Delete](#integrationfabrics_delete)
+- [Get](#integrationfabrics_get)
+- [List](#integrationfabrics_list)
+- [Update](#integrationfabrics_update)
+
 ## ManagedPrivateEndpoints
 
 - [Create](#managedprivateendpoints_create)
@@ -40,293 +48,26 @@
 
 ```java
 /**
- * Samples for Grafana CheckEnterpriseDetails.
+ * Samples for ManagedPrivateEndpoints Get.
  */
-public final class GrafanaCheckEnterpriseDetailsSamples {
+public final class ManagedPrivateEndpointsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/EnterpriseDetails_Post.
-     * json
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/
+     * ManagedPrivateEndpoints_Get.json
      */
     /**
-     * Sample code: EnterpriseDetails_Post.
+     * Sample code: ManagedPrivateEndpoint_Get.
      * 
      * @param manager Entry point to DashboardManager.
      */
-    public static void enterpriseDetailsPost(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas()
-            .checkEnterpriseDetailsWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
+    public static void managedPrivateEndpointGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.managedPrivateEndpoints()
+            .getWithResponse("myResourceGroup", "myWorkspace", "myMPEName", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### Grafana_Create
-
-```java
-import com.azure.resourcemanager.dashboard.models.ApiKey;
-import com.azure.resourcemanager.dashboard.models.AzureMonitorWorkspaceIntegration;
-import com.azure.resourcemanager.dashboard.models.DeterministicOutboundIp;
-import com.azure.resourcemanager.dashboard.models.EnterpriseConfigurations;
-import com.azure.resourcemanager.dashboard.models.GrafanaConfigurations;
-import com.azure.resourcemanager.dashboard.models.GrafanaIntegrations;
-import com.azure.resourcemanager.dashboard.models.GrafanaPlugin;
-import com.azure.resourcemanager.dashboard.models.ManagedGrafanaProperties;
-import com.azure.resourcemanager.dashboard.models.ManagedServiceIdentity;
-import com.azure.resourcemanager.dashboard.models.ManagedServiceIdentityType;
-import com.azure.resourcemanager.dashboard.models.MarketplaceAutoRenew;
-import com.azure.resourcemanager.dashboard.models.PublicNetworkAccess;
-import com.azure.resourcemanager.dashboard.models.ResourceSku;
-import com.azure.resourcemanager.dashboard.models.Smtp;
-import com.azure.resourcemanager.dashboard.models.StartTlsPolicy;
-import com.azure.resourcemanager.dashboard.models.ZoneRedundancy;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for Grafana Create.
- */
-public final class GrafanaCreateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/Grafana_Create.json
-     */
-    /**
-     * Sample code: Grafana_Create.
-     * 
-     * @param manager Entry point to DashboardManager.
-     */
-    public static void grafanaCreate(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas()
-            .define("myWorkspace")
-            .withRegion("West US")
-            .withExistingResourceGroup("myResourceGroup")
-            .withTags(mapOf("Environment", "Dev"))
-            .withSku(new ResourceSku().withName("Standard"))
-            .withProperties(new ManagedGrafanaProperties().withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
-                .withZoneRedundancy(ZoneRedundancy.ENABLED)
-                .withApiKey(ApiKey.ENABLED)
-                .withDeterministicOutboundIp(DeterministicOutboundIp.ENABLED)
-                .withGrafanaIntegrations(new GrafanaIntegrations().withAzureMonitorWorkspaceIntegrations(
-                    Arrays.asList(new AzureMonitorWorkspaceIntegration().withAzureMonitorWorkspaceResourceId(
-                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/microsoft.monitor/accounts/myAzureMonitorWorkspace"))))
-                .withEnterpriseConfigurations(new EnterpriseConfigurations().withMarketplacePlanId("myPlanId")
-                    .withMarketplaceAutoRenew(MarketplaceAutoRenew.ENABLED))
-                .withGrafanaConfigurations(new GrafanaConfigurations().withSmtp(new Smtp().withEnabled(true)
-                    .withHost("smtp.sendemail.com:587")
-                    .withUser("username")
-                    .withPassword("fakeTokenPlaceholder")
-                    .withFromAddress("test@sendemail.com")
-                    .withFromName("emailsender")
-                    .withStartTlsPolicy(StartTlsPolicy.OPPORTUNISTIC_START_TLS)
-                    .withSkipVerify(true)))
-                .withGrafanaPlugins(mapOf("sample-plugin-id", new GrafanaPlugin()))
-                .withGrafanaMajorVersion("9"))
-            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
-            .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### Grafana_Delete
-
-```java
-/**
- * Samples for Grafana Delete.
- */
-public final class GrafanaDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/Grafana_Delete.json
-     */
-    /**
-     * Sample code: Grafana_Delete.
-     * 
-     * @param manager Entry point to DashboardManager.
-     */
-    public static void grafanaDelete(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas().delete("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Grafana_FetchAvailablePlugins
-
-```java
-/**
- * Samples for Grafana FetchAvailablePlugins.
- */
-public final class GrafanaFetchAvailablePluginsSamples {
-    /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
-     * Grafana_FetchAvailablePlugins.json
-     */
-    /**
-     * Sample code: Grafana_FetchAvailablePlugins.
-     * 
-     * @param manager Entry point to DashboardManager.
-     */
-    public static void grafanaFetchAvailablePlugins(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas()
-            .fetchAvailablePluginsWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Grafana_GetByResourceGroup
-
-```java
-/**
- * Samples for Grafana GetByResourceGroup.
- */
-public final class GrafanaGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/Grafana_Get.json
-     */
-    /**
-     * Sample code: Grafana_Get.
-     * 
-     * @param manager Entry point to DashboardManager.
-     */
-    public static void grafanaGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas()
-            .getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Grafana_List
-
-```java
-/**
- * Samples for Grafana List.
- */
-public final class GrafanaListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/Grafana_List.json
-     */
-    /**
-     * Sample code: Grafana_List.
-     * 
-     * @param manager Entry point to DashboardManager.
-     */
-    public static void grafanaList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Grafana_ListByResourceGroup
-
-```java
-/**
- * Samples for Grafana ListByResourceGroup.
- */
-public final class GrafanaListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
-     * Grafana_ListByResourceGroup.json
-     */
-    /**
-     * Sample code: Grafana_ListByResourceGroup.
-     * 
-     * @param manager Entry point to DashboardManager.
-     */
-    public static void grafanaListByResourceGroup(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.grafanas().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Grafana_Update
-
-```java
-import com.azure.resourcemanager.dashboard.models.ApiKey;
-import com.azure.resourcemanager.dashboard.models.AzureMonitorWorkspaceIntegration;
-import com.azure.resourcemanager.dashboard.models.DeterministicOutboundIp;
-import com.azure.resourcemanager.dashboard.models.EnterpriseConfigurations;
-import com.azure.resourcemanager.dashboard.models.GrafanaConfigurations;
-import com.azure.resourcemanager.dashboard.models.GrafanaIntegrations;
-import com.azure.resourcemanager.dashboard.models.GrafanaPlugin;
-import com.azure.resourcemanager.dashboard.models.ManagedGrafana;
-import com.azure.resourcemanager.dashboard.models.ManagedGrafanaPropertiesUpdateParameters;
-import com.azure.resourcemanager.dashboard.models.MarketplaceAutoRenew;
-import com.azure.resourcemanager.dashboard.models.ResourceSku;
-import com.azure.resourcemanager.dashboard.models.Smtp;
-import com.azure.resourcemanager.dashboard.models.StartTlsPolicy;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for Grafana Update.
- */
-public final class GrafanaUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/Grafana_Update.json
-     */
-    /**
-     * Sample code: Grafana_Update.
-     * 
-     * @param manager Entry point to DashboardManager.
-     */
-    public static void grafanaUpdate(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        ManagedGrafana resource = manager.grafanas()
-            .getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update()
-            .withTags(mapOf("Environment", "Dev 2"))
-            .withSku(new ResourceSku().withName("Standard"))
-            .withProperties(new ManagedGrafanaPropertiesUpdateParameters().withApiKey(ApiKey.ENABLED)
-                .withDeterministicOutboundIp(DeterministicOutboundIp.ENABLED)
-                .withGrafanaIntegrations(new GrafanaIntegrations().withAzureMonitorWorkspaceIntegrations(
-                    Arrays.asList(new AzureMonitorWorkspaceIntegration().withAzureMonitorWorkspaceResourceId(
-                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/microsoft.monitor/accounts/myAzureMonitorWorkspace"))))
-                .withEnterpriseConfigurations(new EnterpriseConfigurations().withMarketplacePlanId("myPlanId")
-                    .withMarketplaceAutoRenew(MarketplaceAutoRenew.ENABLED))
-                .withGrafanaConfigurations(new GrafanaConfigurations().withSmtp(new Smtp().withEnabled(true)
-                    .withHost("smtp.sendemail.com:587")
-                    .withUser("username")
-                    .withPassword("fakeTokenPlaceholder")
-                    .withFromAddress("test@sendemail.com")
-                    .withFromName("emailsender")
-                    .withStartTlsPolicy(StartTlsPolicy.OPPORTUNISTIC_START_TLS)
-                    .withSkipVerify(true)))
-                .withGrafanaPlugins(mapOf("sample-plugin-id", new GrafanaPlugin()))
-                .withGrafanaMajorVersion("9"))
-            .apply();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### ManagedPrivateEndpoints_Create
 
 ```java
 import java.util.Arrays;
@@ -336,7 +77,7 @@ import java.util.Arrays;
  */
 public final class ManagedPrivateEndpointsCreateSamples {
     /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/
      * ManagedPrivateEndpoints_Create.json
      */
     /**
@@ -360,7 +101,341 @@ public final class ManagedPrivateEndpointsCreateSamples {
 }
 ```
 
-### ManagedPrivateEndpoints_Delete
+### Grafana_Delete
+
+```java
+/**
+ * Samples for ManagedPrivateEndpoints Refresh.
+ */
+public final class ManagedPrivateEndpointsRefreshSamples {
+    /*
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/
+     * ManagedPrivateEndpoints_Refresh.json
+     */
+    /**
+     * Sample code: ManagedPrivateEndpoint_Refresh.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void managedPrivateEndpointRefresh(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.managedPrivateEndpoints().refresh("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Grafana_FetchAvailablePlugins
+
+```java
+/**
+ * Samples for PrivateEndpointConnections List.
+ */
+public final class PrivateEndpointConnectionsListSamples {
+    /*
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/
+     * PrivateEndpointConnections_List.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnections_List.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void privateEndpointConnectionsList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.privateEndpointConnections().list("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Grafana_GetByResourceGroup
+
+```java
+/**
+ * Samples for Grafana Delete.
+ */
+public final class GrafanaDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/Grafana_Delete.json
+     */
+    /**
+     * Sample code: Grafana_Delete.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void grafanaDelete(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.grafanas().delete("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Grafana_List
+
+```java
+import com.azure.resourcemanager.dashboard.models.IntegrationFabric;
+import com.azure.resourcemanager.dashboard.models.IntegrationFabricPropertiesUpdateParameters;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for IntegrationFabrics Update.
+ */
+public final class IntegrationFabricsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/IntegrationFabrics_Update
+     * .json
+     */
+    /**
+     * Sample code: IntegrationFabrics_Update.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void integrationFabricsUpdate(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        IntegrationFabric resource = manager.integrationFabrics()
+            .getWithResponse("myResourceGroup", "myWorkspace", "sampleIntegration", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("Environment", "Dev 2"))
+            .withProperties(new IntegrationFabricPropertiesUpdateParameters().withScenarios(Arrays.asList("scenario1")))
+            .apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### Grafana_ListByResourceGroup
+
+```java
+/**
+ * Samples for PrivateLinkResources Get.
+ */
+public final class PrivateLinkResourcesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/PrivateLinkResources_Get.
+     * json
+     */
+    /**
+     * Sample code: PrivateLinkResources_Get.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void privateLinkResourcesGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.privateLinkResources()
+            .getWithResponse("myResourceGroup", "myWorkspace", "grafana", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Grafana_Update
+
+```java
+/**
+ * Samples for PrivateLinkResources List.
+ */
+public final class PrivateLinkResourcesListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/PrivateLinkResources_List
+     * .json
+     */
+    /**
+     * Sample code: PrivateLinkResources_List.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void privateLinkResourcesList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.privateLinkResources().list("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IntegrationFabrics_Create
+
+```java
+import com.azure.resourcemanager.dashboard.models.ApiKey;
+import com.azure.resourcemanager.dashboard.models.AzureMonitorWorkspaceIntegration;
+import com.azure.resourcemanager.dashboard.models.DeterministicOutboundIp;
+import com.azure.resourcemanager.dashboard.models.EnterpriseConfigurations;
+import com.azure.resourcemanager.dashboard.models.GrafanaConfigurations;
+import com.azure.resourcemanager.dashboard.models.GrafanaIntegrations;
+import com.azure.resourcemanager.dashboard.models.GrafanaPlugin;
+import com.azure.resourcemanager.dashboard.models.ManagedGrafana;
+import com.azure.resourcemanager.dashboard.models.ManagedGrafanaPropertiesUpdateParameters;
+import com.azure.resourcemanager.dashboard.models.MarketplaceAutoRenew;
+import com.azure.resourcemanager.dashboard.models.ResourceSku;
+import com.azure.resourcemanager.dashboard.models.Security;
+import com.azure.resourcemanager.dashboard.models.Smtp;
+import com.azure.resourcemanager.dashboard.models.Snapshots;
+import com.azure.resourcemanager.dashboard.models.StartTlsPolicy;
+import com.azure.resourcemanager.dashboard.models.Users;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for Grafana Update.
+ */
+public final class GrafanaUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/Grafana_Update.json
+     */
+    /**
+     * Sample code: Grafana_Update.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void grafanaUpdate(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        ManagedGrafana resource = manager.grafanas()
+            .getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("Environment", "Dev 2"))
+            .withSku(new ResourceSku().withName("Standard"))
+            .withProperties(new ManagedGrafanaPropertiesUpdateParameters().withApiKey(ApiKey.ENABLED)
+                .withDeterministicOutboundIp(DeterministicOutboundIp.ENABLED)
+                .withGrafanaIntegrations(new GrafanaIntegrations().withAzureMonitorWorkspaceIntegrations(
+                    Arrays.asList(new AzureMonitorWorkspaceIntegration().withAzureMonitorWorkspaceResourceId(
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/microsoft.monitor/accounts/myAzureMonitorWorkspace"))))
+                .withEnterpriseConfigurations(new EnterpriseConfigurations().withMarketplacePlanId("myPlanId")
+                    .withMarketplaceAutoRenew(MarketplaceAutoRenew.ENABLED))
+                .withGrafanaConfigurations(new GrafanaConfigurations()
+                    .withSmtp(new Smtp().withEnabled(true)
+                        .withHost("smtp.sendemail.com:587")
+                        .withUser("username")
+                        .withPassword("fakeTokenPlaceholder")
+                        .withFromAddress("test@sendemail.com")
+                        .withFromName("emailsender")
+                        .withStartTlsPolicy(StartTlsPolicy.OPPORTUNISTIC_START_TLS)
+                        .withSkipVerify(true))
+                    .withSnapshots(new Snapshots().withExternalEnabled(true))
+                    .withUsers(new Users().withViewersCanEdit(true))
+                    .withSecurity(new Security().withCsrfAlwaysCheck(false)))
+                .withGrafanaPlugins(mapOf("sample-plugin-id", new GrafanaPlugin()))
+                .withGrafanaMajorVersion("9"))
+            .apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### IntegrationFabrics_Delete
+
+```java
+/**
+ * Samples for IntegrationFabrics Delete.
+ */
+public final class IntegrationFabricsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/IntegrationFabrics_Delete
+     * .json
+     */
+    /**
+     * Sample code: IntegrationFabrics_Delete.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void integrationFabricsDelete(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.integrationFabrics()
+            .delete("myResourceGroup", "myWorkspace", "sampleIntegration", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IntegrationFabrics_Get
+
+```java
+/**
+ * Samples for IntegrationFabrics Get.
+ */
+public final class IntegrationFabricsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/IntegrationFabrics_Get.
+     * json
+     */
+    /**
+     * Sample code: IntegrationFabrics_Get.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void integrationFabricsGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.integrationFabrics()
+            .getWithResponse("myResourceGroup", "myWorkspace", "sampleIntegration", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IntegrationFabrics_List
+
+```java
+/**
+ * Samples for ManagedPrivateEndpoints List.
+ */
+public final class ManagedPrivateEndpointsListSamples {
+    /*
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/
+     * ManagedPrivateEndpoints_List.json
+     */
+    /**
+     * Sample code: ManagedPrivateEndpoint_List.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void managedPrivateEndpointList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.managedPrivateEndpoints().list("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### IntegrationFabrics_Update
+
+```java
+/**
+ * Samples for IntegrationFabrics List.
+ */
+public final class IntegrationFabricsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/IntegrationFabrics_List.
+     * json
+     */
+    /**
+     * Sample code: IntegrationFabrics_List.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void integrationFabricsList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.integrationFabrics().list("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ManagedPrivateEndpoints_Create
 
 ```java
 /**
@@ -368,7 +443,7 @@ public final class ManagedPrivateEndpointsCreateSamples {
  */
 public final class ManagedPrivateEndpointsDeleteSamples {
     /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/
      * ManagedPrivateEndpoints_Delete.json
      */
     /**
@@ -383,25 +458,111 @@ public final class ManagedPrivateEndpointsDeleteSamples {
 }
 ```
 
+### ManagedPrivateEndpoints_Delete
+
+```java
+import com.azure.resourcemanager.dashboard.models.ApiKey;
+import com.azure.resourcemanager.dashboard.models.AzureMonitorWorkspaceIntegration;
+import com.azure.resourcemanager.dashboard.models.DeterministicOutboundIp;
+import com.azure.resourcemanager.dashboard.models.EnterpriseConfigurations;
+import com.azure.resourcemanager.dashboard.models.GrafanaConfigurations;
+import com.azure.resourcemanager.dashboard.models.GrafanaIntegrations;
+import com.azure.resourcemanager.dashboard.models.GrafanaPlugin;
+import com.azure.resourcemanager.dashboard.models.ManagedGrafanaProperties;
+import com.azure.resourcemanager.dashboard.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.dashboard.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.dashboard.models.MarketplaceAutoRenew;
+import com.azure.resourcemanager.dashboard.models.PublicNetworkAccess;
+import com.azure.resourcemanager.dashboard.models.ResourceSku;
+import com.azure.resourcemanager.dashboard.models.Security;
+import com.azure.resourcemanager.dashboard.models.Smtp;
+import com.azure.resourcemanager.dashboard.models.Snapshots;
+import com.azure.resourcemanager.dashboard.models.StartTlsPolicy;
+import com.azure.resourcemanager.dashboard.models.Users;
+import com.azure.resourcemanager.dashboard.models.ZoneRedundancy;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for Grafana Create.
+ */
+public final class GrafanaCreateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/Grafana_Create.json
+     */
+    /**
+     * Sample code: Grafana_Create.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void grafanaCreate(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.grafanas()
+            .define("myWorkspace")
+            .withRegion("West US")
+            .withExistingResourceGroup("myResourceGroup")
+            .withTags(mapOf("Environment", "Dev"))
+            .withSku(new ResourceSku().withName("Standard"))
+            .withProperties(new ManagedGrafanaProperties().withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
+                .withZoneRedundancy(ZoneRedundancy.ENABLED)
+                .withApiKey(ApiKey.ENABLED)
+                .withDeterministicOutboundIp(DeterministicOutboundIp.ENABLED)
+                .withGrafanaIntegrations(new GrafanaIntegrations().withAzureMonitorWorkspaceIntegrations(
+                    Arrays.asList(new AzureMonitorWorkspaceIntegration().withAzureMonitorWorkspaceResourceId(
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/microsoft.monitor/accounts/myAzureMonitorWorkspace"))))
+                .withEnterpriseConfigurations(new EnterpriseConfigurations().withMarketplacePlanId("myPlanId")
+                    .withMarketplaceAutoRenew(MarketplaceAutoRenew.ENABLED))
+                .withGrafanaConfigurations(new GrafanaConfigurations()
+                    .withSmtp(new Smtp().withEnabled(true)
+                        .withHost("smtp.sendemail.com:587")
+                        .withUser("username")
+                        .withPassword("fakeTokenPlaceholder")
+                        .withFromAddress("test@sendemail.com")
+                        .withFromName("emailsender")
+                        .withStartTlsPolicy(StartTlsPolicy.OPPORTUNISTIC_START_TLS)
+                        .withSkipVerify(true))
+                    .withSnapshots(new Snapshots().withExternalEnabled(true))
+                    .withUsers(new Users().withViewersCanEdit(true))
+                    .withSecurity(new Security().withCsrfAlwaysCheck(false)))
+                .withGrafanaPlugins(mapOf("sample-plugin-id", new GrafanaPlugin()))
+                .withGrafanaMajorVersion("9"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
+            .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
 ### ManagedPrivateEndpoints_Get
 
 ```java
 /**
- * Samples for ManagedPrivateEndpoints Get.
+ * Samples for Grafana ListByResourceGroup.
  */
-public final class ManagedPrivateEndpointsGetSamples {
+public final class GrafanaListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
-     * ManagedPrivateEndpoints_Get.json
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/
+     * Grafana_ListByResourceGroup.json
      */
     /**
-     * Sample code: ManagedPrivateEndpoint_Get.
+     * Sample code: Grafana_ListByResourceGroup.
      * 
      * @param manager Entry point to DashboardManager.
      */
-    public static void managedPrivateEndpointGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.managedPrivateEndpoints()
-            .getWithResponse("myResourceGroup", "myWorkspace", "myMPEName", com.azure.core.util.Context.NONE);
+    public static void grafanaListByResourceGroup(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.grafanas().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -410,20 +571,22 @@ public final class ManagedPrivateEndpointsGetSamples {
 
 ```java
 /**
- * Samples for ManagedPrivateEndpoints List.
+ * Samples for Grafana CheckEnterpriseDetails.
  */
-public final class ManagedPrivateEndpointsListSamples {
+public final class GrafanaCheckEnterpriseDetailsSamples {
     /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
-     * ManagedPrivateEndpoints_List.json
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/EnterpriseDetails_Post.
+     * json
      */
     /**
-     * Sample code: ManagedPrivateEndpoint_List.
+     * Sample code: EnterpriseDetails_Post.
      * 
      * @param manager Entry point to DashboardManager.
      */
-    public static void managedPrivateEndpointList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.managedPrivateEndpoints().list("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
+    public static void enterpriseDetailsPost(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.grafanas()
+            .checkEnterpriseDetailsWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -431,26 +594,200 @@ public final class ManagedPrivateEndpointsListSamples {
 ### ManagedPrivateEndpoints_Refresh
 
 ```java
+import com.azure.resourcemanager.dashboard.models.IntegrationFabricProperties;
+import java.util.Arrays;
+
 /**
- * Samples for ManagedPrivateEndpoints Refresh.
+ * Samples for IntegrationFabrics Create.
  */
-public final class ManagedPrivateEndpointsRefreshSamples {
+public final class IntegrationFabricsCreateSamples {
     /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
-     * ManagedPrivateEndpoints_Refresh.json
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/IntegrationFabrics_Create
+     * .json
      */
     /**
-     * Sample code: ManagedPrivateEndpoint_Refresh.
+     * Sample code: IntegrationFabrics_Create.
      * 
      * @param manager Entry point to DashboardManager.
      */
-    public static void managedPrivateEndpointRefresh(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.managedPrivateEndpoints().refresh("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
+    public static void integrationFabricsCreate(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.integrationFabrics()
+            .define("sampleIntegration")
+            .withRegion("West US")
+            .withExistingGrafana("myResourceGroup", "myWorkspace")
+            .withProperties(new IntegrationFabricProperties().withTargetResourceId(
+                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.ContainerService/managedClusters/myAks")
+                .withDataSourceResourceId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.Monitor/accounts/myAmw")
+                .withScenarios(Arrays.asList("scenario1", "scenario2")))
+            .create();
     }
 }
 ```
 
 ### ManagedPrivateEndpoints_Update
+
+```java
+/**
+ * Samples for Grafana FetchAvailablePlugins.
+ */
+public final class GrafanaFetchAvailablePluginsSamples {
+    /*
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/
+     * Grafana_FetchAvailablePlugins.json
+     */
+    /**
+     * Sample code: Grafana_FetchAvailablePlugins.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void grafanaFetchAvailablePlugins(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.grafanas()
+            .fetchAvailablePluginsWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+/**
+ * Samples for PrivateEndpointConnections Approve.
+ */
+public final class PrivateEndpointConnectionsApproveSamples {
+    /*
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/
+     * PrivateEndpointConnections_Approve.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnections_Approve.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void privateEndpointConnectionsApprove(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.privateEndpointConnections()
+            .define("myConnection")
+            .withExistingGrafana("myResourceGroup", "myWorkspace")
+            .create();
+    }
+}
+```
+
+### PrivateEndpointConnections_Approve
+
+```java
+/**
+ * Samples for Grafana List.
+ */
+public final class GrafanaListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/Grafana_List.json
+     */
+    /**
+     * Sample code: Grafana_List.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void grafanaList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.grafanas().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_Delete
+
+```java
+/**
+ * Samples for PrivateEndpointConnections Get.
+ */
+public final class PrivateEndpointConnectionsGetSamples {
+    /*
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/
+     * PrivateEndpointConnections_Get.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnections_Get.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void privateEndpointConnectionsGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.privateEndpointConnections()
+            .getWithResponse("myResourceGroup", "myWorkspace", "myConnection", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_Get
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/Operations_List.json
+     */
+    /**
+     * Sample code: Operations_List.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void operationsList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateEndpointConnections_List
+
+```java
+/**
+ * Samples for PrivateEndpointConnections Delete.
+ */
+public final class PrivateEndpointConnectionsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/
+     * PrivateEndpointConnections_Delete.json
+     */
+    /**
+     * Sample code: PrivateEndpointConnections_Delete.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void privateEndpointConnectionsDelete(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.privateEndpointConnections()
+            .delete("myResourceGroup", "myWorkspace", "myConnection", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateLinkResources_Get
+
+```java
+/**
+ * Samples for Grafana GetByResourceGroup.
+ */
+public final class GrafanaGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/Grafana_Get.json
+     */
+    /**
+     * Sample code: Grafana_Get.
+     * 
+     * @param manager Entry point to DashboardManager.
+     */
+    public static void grafanaGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
+        manager.grafanas()
+            .getByResourceGroupWithResponse("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### PrivateLinkResources_List
 
 ```java
 import com.azure.resourcemanager.dashboard.models.ManagedPrivateEndpointModel;
@@ -462,7 +799,7 @@ import java.util.Map;
  */
 public final class ManagedPrivateEndpointsUpdateSamples {
     /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
+     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2024-10-01/examples/
      * ManagedPrivateEndpoints_Patch.json
      */
     /**
@@ -487,168 +824,6 @@ public final class ManagedPrivateEndpointsUpdateSamples {
             map.put(key, value);
         }
         return map;
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/Operations_List.json
-     */
-    /**
-     * Sample code: Operations_List.
-     * 
-     * @param manager Entry point to DashboardManager.
-     */
-    public static void operationsList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_Approve
-
-```java
-/**
- * Samples for PrivateEndpointConnections Approve.
- */
-public final class PrivateEndpointConnectionsApproveSamples {
-    /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
-     * PrivateEndpointConnections_Approve.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnections_Approve.
-     * 
-     * @param manager Entry point to DashboardManager.
-     */
-    public static void privateEndpointConnectionsApprove(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateEndpointConnections()
-            .define("myConnection")
-            .withExistingGrafana("myResourceGroup", "myWorkspace")
-            .create();
-    }
-}
-```
-
-### PrivateEndpointConnections_Delete
-
-```java
-/**
- * Samples for PrivateEndpointConnections Delete.
- */
-public final class PrivateEndpointConnectionsDeleteSamples {
-    /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
-     * PrivateEndpointConnections_Delete.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnections_Delete.
-     * 
-     * @param manager Entry point to DashboardManager.
-     */
-    public static void privateEndpointConnectionsDelete(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateEndpointConnections()
-            .delete("myResourceGroup", "myWorkspace", "myConnection", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_Get
-
-```java
-/**
- * Samples for PrivateEndpointConnections Get.
- */
-public final class PrivateEndpointConnectionsGetSamples {
-    /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
-     * PrivateEndpointConnections_Get.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnections_Get.
-     * 
-     * @param manager Entry point to DashboardManager.
-     */
-    public static void privateEndpointConnectionsGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateEndpointConnections()
-            .getWithResponse("myResourceGroup", "myWorkspace", "myConnection", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_List
-
-```java
-/**
- * Samples for PrivateEndpointConnections List.
- */
-public final class PrivateEndpointConnectionsListSamples {
-    /*
-     * x-ms-original-file: specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/
-     * PrivateEndpointConnections_List.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnections_List.
-     * 
-     * @param manager Entry point to DashboardManager.
-     */
-    public static void privateEndpointConnectionsList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateEndpointConnections().list("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateLinkResources_Get
-
-```java
-/**
- * Samples for PrivateLinkResources Get.
- */
-public final class PrivateLinkResourcesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/PrivateLinkResources_Get.
-     * json
-     */
-    /**
-     * Sample code: PrivateLinkResources_Get.
-     * 
-     * @param manager Entry point to DashboardManager.
-     */
-    public static void privateLinkResourcesGet(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateLinkResources()
-            .getWithResponse("myResourceGroup", "myWorkspace", "grafana", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### PrivateLinkResources_List
-
-```java
-/**
- * Samples for PrivateLinkResources List.
- */
-public final class PrivateLinkResourcesListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/dashboard/resource-manager/Microsoft.Dashboard/stable/2023-09-01/examples/PrivateLinkResources_List
-     * .json
-     */
-    /**
-     * Sample code: PrivateLinkResources_List.
-     * 
-     * @param manager Entry point to DashboardManager.
-     */
-    public static void privateLinkResourcesList(com.azure.resourcemanager.dashboard.DashboardManager manager) {
-        manager.privateLinkResources().list("myResourceGroup", "myWorkspace", com.azure.core.util.Context.NONE);
     }
 }
 ```

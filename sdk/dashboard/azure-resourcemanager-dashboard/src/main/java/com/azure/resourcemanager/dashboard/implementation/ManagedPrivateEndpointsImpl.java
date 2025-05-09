@@ -42,14 +42,6 @@ public final class ManagedPrivateEndpointsImpl implements ManagedPrivateEndpoint
             inner1 -> new ManagedPrivateEndpointModelImpl(inner1, this.manager()));
     }
 
-    public void refresh(String resourceGroupName, String workspaceName) {
-        this.serviceClient().refresh(resourceGroupName, workspaceName);
-    }
-
-    public void refresh(String resourceGroupName, String workspaceName, Context context) {
-        this.serviceClient().refresh(resourceGroupName, workspaceName, context);
-    }
-
     public Response<ManagedPrivateEndpointModel> getWithResponse(String resourceGroupName, String workspaceName,
         String managedPrivateEndpointName, Context context) {
         Response<ManagedPrivateEndpointModelInner> inner = this.serviceClient()
@@ -80,6 +72,14 @@ public final class ManagedPrivateEndpointsImpl implements ManagedPrivateEndpoint
     public void delete(String resourceGroupName, String workspaceName, String managedPrivateEndpointName,
         Context context) {
         this.serviceClient().delete(resourceGroupName, workspaceName, managedPrivateEndpointName, context);
+    }
+
+    public void refresh(String resourceGroupName, String workspaceName) {
+        this.serviceClient().refresh(resourceGroupName, workspaceName);
+    }
+
+    public void refresh(String resourceGroupName, String workspaceName, Context context) {
+        this.serviceClient().refresh(resourceGroupName, workspaceName, context);
     }
 
     public ManagedPrivateEndpointModel getById(String id) {

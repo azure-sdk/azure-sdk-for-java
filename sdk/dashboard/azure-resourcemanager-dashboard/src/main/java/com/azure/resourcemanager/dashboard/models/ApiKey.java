@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for ApiKey.
+ * The api key setting of the Grafana instance.
  */
 public final class ApiKey extends ExpandableStringEnum<ApiKey> {
     /**

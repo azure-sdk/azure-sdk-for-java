@@ -17,7 +17,7 @@ public interface Grafanas {
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return paged collection of ManagedGrafana items as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ManagedGrafana> list();
 
@@ -28,7 +28,7 @@ public interface Grafanas {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return paged collection of ManagedGrafana items as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ManagedGrafana> list(Context context);
 
@@ -39,7 +39,7 @@ public interface Grafanas {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return paged collection of ManagedGrafana items as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ManagedGrafana> listByResourceGroup(String resourceGroupName);
 
@@ -51,7 +51,7 @@ public interface Grafanas {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return paged collection of ManagedGrafana items as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ManagedGrafana> listByResourceGroup(String resourceGroupName, Context context);
 
@@ -131,7 +131,7 @@ public interface Grafanas {
     EnterpriseDetails checkEnterpriseDetails(String resourceGroupName, String workspaceName);
 
     /**
-     * The fetchAvailablePlugins operation.
+     * A synchronous resource action.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The workspace name of Azure Managed Grafana.
@@ -145,7 +145,7 @@ public interface Grafanas {
         String workspaceName, Context context);
 
     /**
-     * The fetchAvailablePlugins operation.
+     * A synchronous resource action.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The workspace name of Azure Managed Grafana.

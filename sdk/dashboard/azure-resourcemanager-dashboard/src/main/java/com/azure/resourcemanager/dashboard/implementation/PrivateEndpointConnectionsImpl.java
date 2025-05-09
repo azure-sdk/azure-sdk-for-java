@@ -27,6 +27,19 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<PrivateEndpointConnection> list(String resourceGroupName, String workspaceName) {
+        PagedIterable<PrivateEndpointConnectionInner> inner
+            = this.serviceClient().list(resourceGroupName, workspaceName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<PrivateEndpointConnection> list(String resourceGroupName, String workspaceName,
+        Context context) {
+        PagedIterable<PrivateEndpointConnectionInner> inner
+            = this.serviceClient().list(resourceGroupName, workspaceName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()));
+    }
+
     public Response<PrivateEndpointConnection> getWithResponse(String resourceGroupName, String workspaceName,
         String privateEndpointConnectionName, Context context) {
         Response<PrivateEndpointConnectionInner> inner = this.serviceClient()
@@ -57,19 +70,6 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
     public void delete(String resourceGroupName, String workspaceName, String privateEndpointConnectionName,
         Context context) {
         this.serviceClient().delete(resourceGroupName, workspaceName, privateEndpointConnectionName, context);
-    }
-
-    public PagedIterable<PrivateEndpointConnection> list(String resourceGroupName, String workspaceName) {
-        PagedIterable<PrivateEndpointConnectionInner> inner
-            = this.serviceClient().list(resourceGroupName, workspaceName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<PrivateEndpointConnection> list(String resourceGroupName, String workspaceName,
-        Context context) {
-        PagedIterable<PrivateEndpointConnectionInner> inner
-            = this.serviceClient().list(resourceGroupName, workspaceName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()));
     }
 
     public PrivateEndpointConnection getById(String id) {

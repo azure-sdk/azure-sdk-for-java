@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for DeterministicOutboundIp.
+ * Whether a Grafana instance uses deterministic outbound IPs.
  */
 public final class DeterministicOutboundIp extends ExpandableStringEnum<DeterministicOutboundIp> {
     /**

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for AvailablePromotion.
+ * Available enterprise promotion for the subscription.
  */
 public final class AvailablePromotion extends ExpandableStringEnum<AvailablePromotion> {
     /**
