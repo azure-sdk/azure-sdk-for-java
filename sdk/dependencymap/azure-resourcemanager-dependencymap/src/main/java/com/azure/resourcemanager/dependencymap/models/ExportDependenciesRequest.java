@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.dependencymap.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -26,6 +25,11 @@ public final class ExportDependenciesRequest implements JsonSerializable<ExportD
      * Filters for ExportDependencies
      */
     private DependencyMapVisualizationFilter filters;
+
+    /*
+     * Appliance Name
+     */
+    private String applianceName;
 
     /**
      * Creates an instance of ExportDependenciesRequest class.
@@ -74,22 +78,35 @@ public final class ExportDependenciesRequest implements JsonSerializable<ExportD
     }
 
     /**
+     * Get the applianceName property: Appliance Name.
+     * 
+     * @return the applianceName value.
+     */
+    public String applianceName() {
+        return this.applianceName;
+    }
+
+    /**
+     * Set the applianceName property: Appliance Name.
+     * 
+     * @param applianceName the applianceName value to set.
+     * @return the ExportDependenciesRequest object itself.
+     */
+    public ExportDependenciesRequest withApplianceName(String applianceName) {
+        this.applianceName = applianceName;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (focusedMachineId() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property focusedMachineId in model ExportDependenciesRequest"));
-        }
         if (filters() != null) {
             filters().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ExportDependenciesRequest.class);
 
     /**
      * {@inheritDoc}
@@ -99,6 +116,7 @@ public final class ExportDependenciesRequest implements JsonSerializable<ExportD
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("focusedMachineId", this.focusedMachineId);
         jsonWriter.writeJsonField("filters", this.filters);
+        jsonWriter.writeStringField("applianceName", this.applianceName);
         return jsonWriter.writeEndObject();
     }
 
@@ -108,7 +126,6 @@ public final class ExportDependenciesRequest implements JsonSerializable<ExportD
      * @param jsonReader The JsonReader being read.
      * @return An instance of ExportDependenciesRequest if the JsonReader was pointing to an instance of it, or null if
      * it was pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the ExportDependenciesRequest.
      */
     public static ExportDependenciesRequest fromJson(JsonReader jsonReader) throws IOException {
@@ -122,6 +139,8 @@ public final class ExportDependenciesRequest implements JsonSerializable<ExportD
                     deserializedExportDependenciesRequest.focusedMachineId = reader.getString();
                 } else if ("filters".equals(fieldName)) {
                     deserializedExportDependenciesRequest.filters = DependencyMapVisualizationFilter.fromJson(reader);
+                } else if ("applianceName".equals(fieldName)) {
+                    deserializedExportDependenciesRequest.applianceName = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

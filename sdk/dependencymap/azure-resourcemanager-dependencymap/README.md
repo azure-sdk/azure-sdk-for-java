@@ -32,7 +32,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-dependencymap</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>1.0.0-beta.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -70,6 +70,14 @@ See [API design][design] for general introduction on design and key concepts on 
 
 ## Examples
 
+```java
+mapsResource = dependencyMapManager.maps()
+    .define(resourceName)
+    .withRegion(REGION)
+    .withExistingResourceGroup(resourceGroupName)
+    .withProperties(new MapsResourceProperties())
+    .create();
+```
 [Code snippets and samples](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/dependencymap/azure-resourcemanager-dependencymap/SAMPLE.md)
 
 

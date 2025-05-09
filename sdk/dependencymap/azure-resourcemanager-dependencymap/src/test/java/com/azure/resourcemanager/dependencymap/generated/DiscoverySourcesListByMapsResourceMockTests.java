@@ -22,7 +22,7 @@ public final class DiscoverySourcesListByMapsResourceMockTests {
     @Test
     public void testListByMapsResource() throws Exception {
         String responseStr
-            = "{\"value\":[{\"properties\":{\"sourceType\":\"DiscoverySourceResourceProperties\",\"provisioningState\":\"Deleting\",\"sourceId\":\"qwxrjfeallnw\"},\"location\":\"bisnja\",\"tags\":{\"onq\":\"ngnzscxaqwoochc\",\"ea\":\"pkvlrxn\",\"enjbdlwtgrhp\":\"eipheoflokeyy\"},\"id\":\"jp\",\"name\":\"umasxazjpq\",\"type\":\"e\"}]}";
+            = "{\"value\":[{\"properties\":{\"sourceType\":\"DiscoverySourceResourceProperties\",\"provisioningState\":\"Accepted\",\"sourceId\":\"wey\"},\"location\":\"menevfyexfwh\",\"tags\":{\"vyvdcs\":\"i\",\"scjeypv\":\"tynnaamdectehfi\",\"gm\":\"ezrkgqhcjrefo\",\"yyvxyqjpkcattpn\":\"qsl\"},\"id\":\"jcrcczsqpjhvmda\",\"name\":\"v\",\"type\":\"ysou\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -32,10 +32,10 @@ public final class DiscoverySourcesListByMapsResourceMockTests {
                 new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
         PagedIterable<DiscoverySourceResource> response = manager.discoverySources()
-            .listByMapsResource("ccfwnfnbacfion", "ebxetqgtzxdp", com.azure.core.util.Context.NONE);
+            .listByMapsResource("gujjugwdkcglh", "lazjdyggdtjixhbk", com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals("bisnja", response.iterator().next().location());
-        Assertions.assertEquals("ngnzscxaqwoochc", response.iterator().next().tags().get("onq"));
-        Assertions.assertEquals("qwxrjfeallnw", response.iterator().next().properties().sourceId());
+        Assertions.assertEquals("menevfyexfwh", response.iterator().next().location());
+        Assertions.assertEquals("i", response.iterator().next().tags().get("vyvdcs"));
+        Assertions.assertEquals("wey", response.iterator().next().properties().sourceId());
     }
 }
