@@ -50,6 +50,11 @@ public final class CustomService implements JsonSerializable<CustomService> {
     private List<VolumeDefinition> volumes;
 
     /*
+     * Describes the jupyter kernel settings for the image if its a custom environment
+     */
+    private JupyterKernelConfig kernel;
+
+    /*
      * Specifies the custom service configuration
      */
     private Map<String, Object> additionalProperties;
@@ -181,6 +186,26 @@ public final class CustomService implements JsonSerializable<CustomService> {
     }
 
     /**
+     * Get the kernel property: Describes the jupyter kernel settings for the image if its a custom environment.
+     * 
+     * @return the kernel value.
+     */
+    public JupyterKernelConfig kernel() {
+        return this.kernel;
+    }
+
+    /**
+     * Set the kernel property: Describes the jupyter kernel settings for the image if its a custom environment.
+     * 
+     * @param kernel the kernel value to set.
+     * @return the CustomService object itself.
+     */
+    public CustomService withKernel(JupyterKernelConfig kernel) {
+        this.kernel = kernel;
+        return this;
+    }
+
+    /**
      * Get the additionalProperties property: Specifies the custom service configuration.
      * 
      * @return the additionalProperties value.
@@ -225,6 +250,9 @@ public final class CustomService implements JsonSerializable<CustomService> {
         if (volumes() != null) {
             volumes().forEach(e -> e.validate());
         }
+        if (kernel() != null) {
+            kernel().validate();
+        }
     }
 
     /**
@@ -240,6 +268,7 @@ public final class CustomService implements JsonSerializable<CustomService> {
         jsonWriter.writeJsonField("docker", this.docker);
         jsonWriter.writeArrayField("endpoints", this.endpoints, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeArrayField("volumes", this.volumes, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeJsonField("kernel", this.kernel);
         if (additionalProperties != null) {
             for (Map.Entry<String, Object> additionalProperty : additionalProperties.entrySet()) {
                 jsonWriter.writeUntypedField(additionalProperty.getKey(), additionalProperty.getValue());
@@ -280,6 +309,8 @@ public final class CustomService implements JsonSerializable<CustomService> {
                 } else if ("volumes".equals(fieldName)) {
                     List<VolumeDefinition> volumes = reader.readArray(reader1 -> VolumeDefinition.fromJson(reader1));
                     deserializedCustomService.volumes = volumes;
+                } else if ("kernel".equals(fieldName)) {
+                    deserializedCustomService.kernel = JupyterKernelConfig.fromJson(reader);
                 } else {
                     if (additionalProperties == null) {
                         additionalProperties = new LinkedHashMap<>();

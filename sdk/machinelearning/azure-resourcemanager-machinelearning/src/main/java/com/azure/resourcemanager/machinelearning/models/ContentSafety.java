@@ -18,6 +18,11 @@ import java.io.IOException;
 @Fluent
 public final class ContentSafety implements JsonSerializable<ContentSafety> {
     /*
+     * Specifies the current safety level for content safety.
+     */
+    private ContentSafetyLevel contentSafetyLevel;
+
+    /*
      * [Required] Specifies the status of content safety.
      */
     private ContentSafetyStatus contentSafetyStatus;
@@ -26,6 +31,26 @@ public final class ContentSafety implements JsonSerializable<ContentSafety> {
      * Creates an instance of ContentSafety class.
      */
     public ContentSafety() {
+    }
+
+    /**
+     * Get the contentSafetyLevel property: Specifies the current safety level for content safety.
+     * 
+     * @return the contentSafetyLevel value.
+     */
+    public ContentSafetyLevel contentSafetyLevel() {
+        return this.contentSafetyLevel;
+    }
+
+    /**
+     * Set the contentSafetyLevel property: Specifies the current safety level for content safety.
+     * 
+     * @param contentSafetyLevel the contentSafetyLevel value to set.
+     * @return the ContentSafety object itself.
+     */
+    public ContentSafety withContentSafetyLevel(ContentSafetyLevel contentSafetyLevel) {
+        this.contentSafetyLevel = contentSafetyLevel;
+        return this;
     }
 
     /**
@@ -71,6 +96,8 @@ public final class ContentSafety implements JsonSerializable<ContentSafety> {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("contentSafetyStatus",
             this.contentSafetyStatus == null ? null : this.contentSafetyStatus.toString());
+        jsonWriter.writeStringField("contentSafetyLevel",
+            this.contentSafetyLevel == null ? null : this.contentSafetyLevel.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -92,6 +119,8 @@ public final class ContentSafety implements JsonSerializable<ContentSafety> {
 
                 if ("contentSafetyStatus".equals(fieldName)) {
                     deserializedContentSafety.contentSafetyStatus = ContentSafetyStatus.fromString(reader.getString());
+                } else if ("contentSafetyLevel".equals(fieldName)) {
+                    deserializedContentSafety.contentSafetyLevel = ContentSafetyLevel.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
