@@ -44,6 +44,11 @@ public final class WorkspaceFeatures implements JsonSerializable<WorkspaceFeatur
     private Boolean disableLocalAuth;
 
     /*
+     * An indication if the specify workspace is limited to sentinel's unified billing model only.
+     */
+    private Boolean unifiedSentinelBillingOnly;
+
+    /*
      * Workspace features.
      */
     private Map<String, Object> additionalProperties;
@@ -158,6 +163,16 @@ public final class WorkspaceFeatures implements JsonSerializable<WorkspaceFeatur
     }
 
     /**
+     * Get the unifiedSentinelBillingOnly property: An indication if the specify workspace is limited to sentinel's
+     * unified billing model only.
+     * 
+     * @return the unifiedSentinelBillingOnly value.
+     */
+    public Boolean unifiedSentinelBillingOnly() {
+        return this.unifiedSentinelBillingOnly;
+    }
+
+    /**
      * Get the additionalProperties property: Workspace features.
      * 
      * @return the additionalProperties value.
@@ -233,6 +248,9 @@ public final class WorkspaceFeatures implements JsonSerializable<WorkspaceFeatur
                     deserializedWorkspaceFeatures.clusterResourceId = reader.getString();
                 } else if ("disableLocalAuth".equals(fieldName)) {
                     deserializedWorkspaceFeatures.disableLocalAuth = reader.getNullable(JsonReader::getBoolean);
+                } else if ("unifiedSentinelBillingOnly".equals(fieldName)) {
+                    deserializedWorkspaceFeatures.unifiedSentinelBillingOnly
+                        = reader.getNullable(JsonReader::getBoolean);
                 } else {
                     if (additionalProperties == null) {
                         additionalProperties = new LinkedHashMap<>();

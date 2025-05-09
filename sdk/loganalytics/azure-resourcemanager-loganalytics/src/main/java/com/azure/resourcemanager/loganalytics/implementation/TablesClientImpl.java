@@ -172,11 +172,10 @@ public final class TablesClientImpl implements TablesClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByWorkspace(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), accept, context))
             .<PagedResponse<TableInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), null, null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -212,12 +211,11 @@ public final class TablesClientImpl implements TablesClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByWorkspace(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                workspaceName, apiVersion, accept, context)
+                workspaceName, this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), null, null));
     }
@@ -325,11 +323,10 @@ public final class TablesClientImpl implements TablesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, tableName, parameters, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), tableName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -372,11 +369,10 @@ public final class TablesClientImpl implements TablesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, apiVersion, tableName, parameters, accept, context);
+            workspaceName, this.client.getApiVersion(), tableName, parameters, accept, context);
     }
 
     /**
@@ -575,11 +571,10 @@ public final class TablesClientImpl implements TablesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, tableName, parameters, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), tableName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -622,11 +617,10 @@ public final class TablesClientImpl implements TablesClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, apiVersion, tableName, parameters, accept, context);
+            workspaceName, this.client.getApiVersion(), tableName, parameters, accept, context);
     }
 
     /**
@@ -817,11 +811,10 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, tableName, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), tableName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -858,11 +851,10 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workspaceName,
-            apiVersion, tableName, accept, context);
+            this.client.getApiVersion(), tableName, accept, context);
     }
 
     /**
@@ -948,11 +940,10 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, tableName, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), tableName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -989,11 +980,10 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, apiVersion, tableName, accept, context);
+            workspaceName, this.client.getApiVersion(), tableName, accept, context);
     }
 
     /**
@@ -1171,11 +1161,10 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.migrate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, tableName, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), tableName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1213,11 +1202,10 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.migrate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, apiVersion, tableName, accept, context);
+            workspaceName, this.client.getApiVersion(), tableName, accept, context);
     }
 
     /**
@@ -1304,11 +1292,10 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.cancelSearch(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, apiVersion, tableName, accept, context))
+                resourceGroupName, workspaceName, this.client.getApiVersion(), tableName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1345,11 +1332,10 @@ public final class TablesClientImpl implements TablesClient {
         if (tableName == null) {
             return Mono.error(new IllegalArgumentException("Parameter tableName is required and cannot be null."));
         }
-        final String apiVersion = "2022-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.cancelSearch(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, apiVersion, tableName, accept, context);
+            workspaceName, this.client.getApiVersion(), tableName, accept, context);
     }
 
     /**

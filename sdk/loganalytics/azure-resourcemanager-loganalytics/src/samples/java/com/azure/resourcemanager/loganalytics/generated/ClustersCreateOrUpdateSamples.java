@@ -16,7 +16,7 @@ import java.util.Map;
 public final class ClustersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/
+     * specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2025-02-01/examples/
      * ClustersCreate.json
      */
     /**
@@ -27,7 +27,7 @@ public final class ClustersCreateOrUpdateSamples {
     public static void clustersCreate(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
         manager.clusters()
             .define("oiautorest6685")
-            .withRegion("australiasoutheast")
+            .withRegion("eastus")
             .withExistingResourceGroup("oiautorest6685")
             .withTags(mapOf("tag1", "val1"))
             .withSku(new ClusterSku().withCapacity(Capacity.ONE_ZERO_ZERO_ZERO)

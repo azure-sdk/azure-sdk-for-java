@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.loganalytics.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.CoreUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -13,8 +14,10 @@ import com.azure.resourcemanager.loganalytics.models.AssociatedWorkspace;
 import com.azure.resourcemanager.loganalytics.models.BillingType;
 import com.azure.resourcemanager.loganalytics.models.CapacityReservationProperties;
 import com.azure.resourcemanager.loganalytics.models.ClusterEntityStatus;
+import com.azure.resourcemanager.loganalytics.models.ClusterReplicationProperties;
 import com.azure.resourcemanager.loganalytics.models.KeyVaultProperties;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 /**
@@ -58,12 +61,12 @@ public final class ClusterProperties implements JsonSerializable<ClusterProperti
     /*
      * The last time the cluster was updated.
      */
-    private String lastModifiedDate;
+    private OffsetDateTime lastModifiedDate;
 
     /*
      * The cluster creation time
      */
-    private String createdDate;
+    private OffsetDateTime createdDate;
 
     /*
      * The list of Log Analytics workspaces associated with the cluster
@@ -74,6 +77,11 @@ public final class ClusterProperties implements JsonSerializable<ClusterProperti
      * Additional properties for capacity reservation
      */
     private CapacityReservationProperties capacityReservationProperties;
+
+    /*
+     * Cluster's replication properties.
+     */
+    private ClusterReplicationProperties replication;
 
     /**
      * Creates an instance of ClusterProperties class.
@@ -190,7 +198,7 @@ public final class ClusterProperties implements JsonSerializable<ClusterProperti
      * 
      * @return the lastModifiedDate value.
      */
-    public String lastModifiedDate() {
+    public OffsetDateTime lastModifiedDate() {
         return this.lastModifiedDate;
     }
 
@@ -199,7 +207,7 @@ public final class ClusterProperties implements JsonSerializable<ClusterProperti
      * 
      * @return the createdDate value.
      */
-    public String createdDate() {
+    public OffsetDateTime createdDate() {
         return this.createdDate;
     }
 
@@ -210,17 +218,6 @@ public final class ClusterProperties implements JsonSerializable<ClusterProperti
      */
     public List<AssociatedWorkspace> associatedWorkspaces() {
         return this.associatedWorkspaces;
-    }
-
-    /**
-     * Set the associatedWorkspaces property: The list of Log Analytics workspaces associated with the cluster.
-     * 
-     * @param associatedWorkspaces the associatedWorkspaces value to set.
-     * @return the ClusterProperties object itself.
-     */
-    public ClusterProperties withAssociatedWorkspaces(List<AssociatedWorkspace> associatedWorkspaces) {
-        this.associatedWorkspaces = associatedWorkspaces;
-        return this;
     }
 
     /**
@@ -245,6 +242,26 @@ public final class ClusterProperties implements JsonSerializable<ClusterProperti
     }
 
     /**
+     * Get the replication property: Cluster's replication properties.
+     * 
+     * @return the replication value.
+     */
+    public ClusterReplicationProperties replication() {
+        return this.replication;
+    }
+
+    /**
+     * Set the replication property: Cluster's replication properties.
+     * 
+     * @param replication the replication value to set.
+     * @return the ClusterProperties object itself.
+     */
+    public ClusterProperties withReplication(ClusterReplicationProperties replication) {
+        this.replication = replication;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -259,6 +276,9 @@ public final class ClusterProperties implements JsonSerializable<ClusterProperti
         if (capacityReservationProperties() != null) {
             capacityReservationProperties().validate();
         }
+        if (replication() != null) {
+            replication().validate();
+        }
     }
 
     /**
@@ -271,9 +291,8 @@ public final class ClusterProperties implements JsonSerializable<ClusterProperti
         jsonWriter.writeBooleanField("isAvailabilityZonesEnabled", this.isAvailabilityZonesEnabled);
         jsonWriter.writeStringField("billingType", this.billingType == null ? null : this.billingType.toString());
         jsonWriter.writeJsonField("keyVaultProperties", this.keyVaultProperties);
-        jsonWriter.writeArrayField("associatedWorkspaces", this.associatedWorkspaces,
-            (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("capacityReservationProperties", this.capacityReservationProperties);
+        jsonWriter.writeJsonField("replication", this.replication);
         return jsonWriter.writeEndObject();
     }
 
@@ -308,9 +327,11 @@ public final class ClusterProperties implements JsonSerializable<ClusterProperti
                 } else if ("keyVaultProperties".equals(fieldName)) {
                     deserializedClusterProperties.keyVaultProperties = KeyVaultProperties.fromJson(reader);
                 } else if ("lastModifiedDate".equals(fieldName)) {
-                    deserializedClusterProperties.lastModifiedDate = reader.getString();
+                    deserializedClusterProperties.lastModifiedDate = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("createdDate".equals(fieldName)) {
-                    deserializedClusterProperties.createdDate = reader.getString();
+                    deserializedClusterProperties.createdDate = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("associatedWorkspaces".equals(fieldName)) {
                     List<AssociatedWorkspace> associatedWorkspaces
                         = reader.readArray(reader1 -> AssociatedWorkspace.fromJson(reader1));
@@ -318,6 +339,8 @@ public final class ClusterProperties implements JsonSerializable<ClusterProperti
                 } else if ("capacityReservationProperties".equals(fieldName)) {
                     deserializedClusterProperties.capacityReservationProperties
                         = CapacityReservationProperties.fromJson(reader);
+                } else if ("replication".equals(fieldName)) {
+                    deserializedClusterProperties.replication = ClusterReplicationProperties.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

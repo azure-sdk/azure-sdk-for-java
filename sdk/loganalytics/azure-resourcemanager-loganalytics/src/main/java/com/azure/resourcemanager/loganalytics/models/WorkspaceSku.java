@@ -5,12 +5,14 @@
 package com.azure.resourcemanager.loganalytics.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.time.OffsetDateTime;
 
 /**
  * The SKU (tier) of a workspace.
@@ -30,7 +32,7 @@ public final class WorkspaceSku implements JsonSerializable<WorkspaceSku> {
     /*
      * The last time when the sku was updated.
      */
-    private String lastSkuUpdate;
+    private OffsetDateTime lastSkuUpdate;
 
     /**
      * Creates an instance of WorkspaceSku class.
@@ -85,7 +87,7 @@ public final class WorkspaceSku implements JsonSerializable<WorkspaceSku> {
      * 
      * @return the lastSkuUpdate value.
      */
-    public String lastSkuUpdate() {
+    public OffsetDateTime lastSkuUpdate() {
         return this.lastSkuUpdate;
     }
 
@@ -137,7 +139,8 @@ public final class WorkspaceSku implements JsonSerializable<WorkspaceSku> {
                     deserializedWorkspaceSku.capacityReservationLevel
                         = CapacityReservationLevel.fromInt(reader.getInt());
                 } else if ("lastSkuUpdate".equals(fieldName)) {
-                    deserializedWorkspaceSku.lastSkuUpdate = reader.getString();
+                    deserializedWorkspaceSku.lastSkuUpdate = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else {
                     reader.skipChildren();
                 }

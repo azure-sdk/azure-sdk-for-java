@@ -248,4 +248,141 @@ public interface WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     WorkspaceInner update(String resourceGroupName, String workspaceName, WorkspacePatch parameters);
+
+    /**
+     * Activates failover for the specified workspace.
+     * 
+     * The specified replication location must match the location of the enabled replication for this workspace. The
+     * failover operation is asynchronous and can take up to 30 minutes to complete. The status of the operation can be
+     * checked using the operationId returned in the response.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The name of the Azure region.
+     * @param workspaceName The name of the workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginFailover(String resourceGroupName, String location, String workspaceName);
+
+    /**
+     * Activates failover for the specified workspace.
+     * 
+     * The specified replication location must match the location of the enabled replication for this workspace. The
+     * failover operation is asynchronous and can take up to 30 minutes to complete. The status of the operation can be
+     * checked using the operationId returned in the response.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The name of the Azure region.
+     * @param workspaceName The name of the workspace.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginFailover(String resourceGroupName, String location, String workspaceName,
+        Context context);
+
+    /**
+     * Activates failover for the specified workspace.
+     * 
+     * The specified replication location must match the location of the enabled replication for this workspace. The
+     * failover operation is asynchronous and can take up to 30 minutes to complete. The status of the operation can be
+     * checked using the operationId returned in the response.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The name of the Azure region.
+     * @param workspaceName The name of the workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void failover(String resourceGroupName, String location, String workspaceName);
+
+    /**
+     * Activates failover for the specified workspace.
+     * 
+     * The specified replication location must match the location of the enabled replication for this workspace. The
+     * failover operation is asynchronous and can take up to 30 minutes to complete. The status of the operation can be
+     * checked using the operationId returned in the response.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param location The name of the Azure region.
+     * @param workspaceName The name of the workspace.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void failover(String resourceGroupName, String location, String workspaceName, Context context);
+
+    /**
+     * Deactivates failover for the specified workspace.
+     * 
+     * The failback operation is asynchronous and can take up to 30 minutes to complete. The status of the operation can
+     * be checked using the operationId returned in the response.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginFailback(String resourceGroupName, String workspaceName);
+
+    /**
+     * Deactivates failover for the specified workspace.
+     * 
+     * The failback operation is asynchronous and can take up to 30 minutes to complete. The status of the operation can
+     * be checked using the operationId returned in the response.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginFailback(String resourceGroupName, String workspaceName, Context context);
+
+    /**
+     * Deactivates failover for the specified workspace.
+     * 
+     * The failback operation is asynchronous and can take up to 30 minutes to complete. The status of the operation can
+     * be checked using the operationId returned in the response.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void failback(String resourceGroupName, String workspaceName);
+
+    /**
+     * Deactivates failover for the specified workspace.
+     * 
+     * The failback operation is asynchronous and can take up to 30 minutes to complete. The status of the operation can
+     * be checked using the operationId returned in the response.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void failback(String resourceGroupName, String workspaceName, Context context);
 }

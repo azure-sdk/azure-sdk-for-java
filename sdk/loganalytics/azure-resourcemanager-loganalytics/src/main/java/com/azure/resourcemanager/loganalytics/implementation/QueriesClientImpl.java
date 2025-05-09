@@ -182,11 +182,11 @@ public final class QueriesClientImpl implements QueriesClient {
         if (queryPackName == null) {
             return Mono.error(new IllegalArgumentException("Parameter queryPackName is required and cannot be null."));
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, queryPackName, apiVersion, top, includeBody, skipToken, accept, context))
+            .withContext(
+                context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    queryPackName, this.client.getApiVersion(), top, includeBody, skipToken, accept, context))
             .<PagedResponse<LogAnalyticsQueryPackQueryInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -226,12 +226,11 @@ public final class QueriesClientImpl implements QueriesClient {
         if (queryPackName == null) {
             return Mono.error(new IllegalArgumentException("Parameter queryPackName is required and cannot be null."));
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, queryPackName,
-                apiVersion, top, includeBody, skipToken, accept, context)
+                this.client.getApiVersion(), top, includeBody, skipToken, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -381,12 +380,11 @@ public final class QueriesClientImpl implements QueriesClient {
         } else {
             querySearchProperties.validate();
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.search(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    queryPackName, apiVersion, top, includeBody, skipToken, querySearchProperties, accept, context))
+            .withContext(context -> service.search(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, queryPackName, this.client.getApiVersion(), top, includeBody, skipToken,
+                querySearchProperties, accept, context))
             .<PagedResponse<LogAnalyticsQueryPackQueryInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -434,12 +432,11 @@ public final class QueriesClientImpl implements QueriesClient {
         } else {
             querySearchProperties.validate();
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .search(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, queryPackName,
-                apiVersion, top, includeBody, skipToken, querySearchProperties, accept, context)
+                this.client.getApiVersion(), top, includeBody, skipToken, querySearchProperties, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -595,11 +592,10 @@ public final class QueriesClientImpl implements QueriesClient {
         if (id == null) {
             return Mono.error(new IllegalArgumentException("Parameter id is required and cannot be null."));
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, queryPackName, id, apiVersion, accept, context))
+                resourceGroupName, queryPackName, id, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -637,11 +633,10 @@ public final class QueriesClientImpl implements QueriesClient {
         if (id == null) {
             return Mono.error(new IllegalArgumentException("Parameter id is required and cannot be null."));
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, queryPackName,
-            id, apiVersion, accept, context);
+            id, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -736,11 +731,10 @@ public final class QueriesClientImpl implements QueriesClient {
         } else {
             queryPayload.validate();
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.put(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, queryPackName, id, apiVersion, queryPayload, accept, context))
+                resourceGroupName, queryPackName, id, this.client.getApiVersion(), queryPayload, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -785,11 +779,10 @@ public final class QueriesClientImpl implements QueriesClient {
         } else {
             queryPayload.validate();
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.put(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, queryPackName,
-            id, apiVersion, queryPayload, accept, context);
+            id, this.client.getApiVersion(), queryPayload, accept, context);
     }
 
     /**
@@ -891,11 +884,10 @@ public final class QueriesClientImpl implements QueriesClient {
         } else {
             queryPayload.validate();
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, queryPackName, id, apiVersion, queryPayload, accept, context))
+                resourceGroupName, queryPackName, id, this.client.getApiVersion(), queryPayload, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -940,11 +932,10 @@ public final class QueriesClientImpl implements QueriesClient {
         } else {
             queryPayload.validate();
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            queryPackName, id, apiVersion, queryPayload, accept, context);
+            queryPackName, id, this.client.getApiVersion(), queryPayload, accept, context);
     }
 
     /**
@@ -1037,11 +1028,10 @@ public final class QueriesClientImpl implements QueriesClient {
         if (id == null) {
             return Mono.error(new IllegalArgumentException("Parameter id is required and cannot be null."));
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, queryPackName, id, apiVersion, accept, context))
+                resourceGroupName, queryPackName, id, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -1078,11 +1068,10 @@ public final class QueriesClientImpl implements QueriesClient {
         if (id == null) {
             return Mono.error(new IllegalArgumentException("Parameter id is required and cannot be null."));
         }
-        final String apiVersion = "2019-09-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            queryPackName, id, apiVersion, accept, context);
+            queryPackName, id, this.client.getApiVersion(), accept, context);
     }
 
     /**
