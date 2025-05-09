@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.nginx.models;
 
-import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.nginx.fluent.models.NginxCertificateInner;
@@ -35,18 +34,11 @@ public interface NginxCertificate {
     String type();
 
     /**
-     * Gets the properties property: The properties property.
+     * Gets the properties property: Nginx Certificate Properties.
      * 
      * @return the properties value.
      */
     NginxCertificateProperties properties();
-
-    /**
-     * Gets the location property: The location property.
-     * 
-     * @return the location value.
-     */
-    String location();
 
     /**
      * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
@@ -54,20 +46,6 @@ public interface NginxCertificate {
      * @return the systemData value.
      */
     SystemData systemData();
-
-    /**
-     * Gets the region of the resource.
-     * 
-     * @return the region of the resource.
-     */
-    Region region();
-
-    /**
-     * Gets the name of the resource region.
-     * 
-     * @return the name of the resource region.
-     */
-    String regionName();
 
     /**
      * Gets the name of the resource group.
@@ -118,7 +96,7 @@ public interface NginxCertificate {
          * The stage of the NginxCertificate definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithLocation, DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithProperties {
             /**
              * Executes the create request.
              * 
@@ -136,34 +114,13 @@ public interface NginxCertificate {
         }
 
         /**
-         * The stage of the NginxCertificate definition allowing to specify location.
-         */
-        interface WithLocation {
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The location property.
-             * @return the next definition stage.
-             */
-            WithCreate withRegion(Region location);
-
-            /**
-             * Specifies the region for the resource.
-             * 
-             * @param location The location property.
-             * @return the next definition stage.
-             */
-            WithCreate withRegion(String location);
-        }
-
-        /**
          * The stage of the NginxCertificate definition allowing to specify properties.
          */
         interface WithProperties {
             /**
-             * Specifies the properties property: The properties property..
+             * Specifies the properties property: Nginx Certificate Properties.
              * 
-             * @param properties The properties property.
+             * @param properties Nginx Certificate Properties.
              * @return the next definition stage.
              */
             WithCreate withProperties(NginxCertificateProperties properties);
@@ -206,9 +163,9 @@ public interface NginxCertificate {
          */
         interface WithProperties {
             /**
-             * Specifies the properties property: The properties property..
+             * Specifies the properties property: Nginx Certificate Properties.
              * 
-             * @param properties The properties property.
+             * @param properties Nginx Certificate Properties.
              * @return the next definition stage.
              */
             Update withProperties(NginxCertificateProperties properties);

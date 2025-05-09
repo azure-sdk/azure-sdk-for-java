@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for NginxPrivateIpAllocationMethod.
+ * Nginx Private IP Allocation Method.
  */
 public final class NginxPrivateIpAllocationMethod extends ExpandableStringEnum<NginxPrivateIpAllocationMethod> {
     /**

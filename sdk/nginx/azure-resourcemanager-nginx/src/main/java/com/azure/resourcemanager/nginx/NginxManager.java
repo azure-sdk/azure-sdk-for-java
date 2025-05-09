@@ -28,14 +28,18 @@ import com.azure.resourcemanager.nginx.fluent.NginxManagementClient;
 import com.azure.resourcemanager.nginx.implementation.ApiKeysImpl;
 import com.azure.resourcemanager.nginx.implementation.CertificatesImpl;
 import com.azure.resourcemanager.nginx.implementation.ConfigurationsImpl;
+import com.azure.resourcemanager.nginx.implementation.DefaultWafPoliciesImpl;
 import com.azure.resourcemanager.nginx.implementation.DeploymentsImpl;
 import com.azure.resourcemanager.nginx.implementation.NginxManagementClientBuilder;
 import com.azure.resourcemanager.nginx.implementation.OperationsImpl;
+import com.azure.resourcemanager.nginx.implementation.WafPoliciesImpl;
 import com.azure.resourcemanager.nginx.models.ApiKeys;
 import com.azure.resourcemanager.nginx.models.Certificates;
 import com.azure.resourcemanager.nginx.models.Configurations;
+import com.azure.resourcemanager.nginx.models.DefaultWafPolicies;
 import com.azure.resourcemanager.nginx.models.Deployments;
 import com.azure.resourcemanager.nginx.models.Operations;
+import com.azure.resourcemanager.nginx.models.WafPolicies;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -55,6 +59,10 @@ public final class NginxManager {
     private Configurations configurations;
 
     private Deployments deployments;
+
+    private WafPolicies wafPolicies;
+
+    private DefaultWafPolicies defaultWafPolicies;
 
     private Operations operations;
 
@@ -319,6 +327,30 @@ public final class NginxManager {
             this.deployments = new DeploymentsImpl(clientObject.getDeployments(), this);
         }
         return deployments;
+    }
+
+    /**
+     * Gets the resource collection API of WafPolicies. It manages NginxDeploymentWafPolicy.
+     * 
+     * @return Resource collection API of WafPolicies.
+     */
+    public WafPolicies wafPolicies() {
+        if (this.wafPolicies == null) {
+            this.wafPolicies = new WafPoliciesImpl(clientObject.getWafPolicies(), this);
+        }
+        return wafPolicies;
+    }
+
+    /**
+     * Gets the resource collection API of DefaultWafPolicies.
+     * 
+     * @return Resource collection API of DefaultWafPolicies.
+     */
+    public DefaultWafPolicies defaultWafPolicies() {
+        if (this.defaultWafPolicies == null) {
+            this.defaultWafPolicies = new DefaultWafPoliciesImpl(clientObject.getDefaultWafPolicies(), this);
+        }
+        return defaultWafPolicies;
     }
 
     /**

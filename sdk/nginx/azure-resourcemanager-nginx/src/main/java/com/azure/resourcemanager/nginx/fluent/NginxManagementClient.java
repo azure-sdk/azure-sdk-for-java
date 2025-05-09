@@ -75,6 +75,20 @@ public interface NginxManagementClient {
     DeploymentsClient getDeployments();
 
     /**
+     * Gets the WafPoliciesClient object to access its operations.
+     * 
+     * @return the WafPoliciesClient object.
+     */
+    WafPoliciesClient getWafPolicies();
+
+    /**
+     * Gets the DefaultWafPoliciesClient object to access its operations.
+     * 
+     * @return the DefaultWafPoliciesClient object.
+     */
+    DefaultWafPoliciesClient getDefaultWafPolicies();
+
+    /**
      * Gets the OperationsClient object to access its operations.
      * 
      * @return the OperationsClient object.

@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The NginxConfigurationProtectedFileResponse model.
+ * Nginx Configuration Protected File Response.
  */
 @Fluent
 public final class NginxConfigurationProtectedFileResponse

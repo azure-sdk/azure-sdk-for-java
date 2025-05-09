@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.nginx.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -12,27 +12,30 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The object that represents the operation.
+ * Localized display information for this particular operation.
  */
-@Fluent
+@Immutable
 public final class OperationDisplay implements JsonSerializable<OperationDisplay> {
     /*
-     * Service provider: Nginx.NginxPlus
+     * The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or
+     * "Microsoft Compute".
      */
     private String provider;
 
     /*
-     * Type on which the operation is performed, e.g., 'deployments'.
+     * The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or
+     * "Job Schedule Collections".
      */
     private String resource;
 
     /*
-     * Operation type, e.g., read, write, delete, etc.
+     * The concise, localized friendly name for the operation; suitable for dropdowns. E.g.
+     * "Create or Update Virtual Machine", "Restart Virtual Machine".
      */
     private String operation;
 
     /*
-     * Description of the operation, e.g., 'Write deployments'.
+     * The short, localized friendly description of the operation; suitable for tool tips and detailed views.
      */
     private String description;
 
@@ -43,7 +46,8 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Get the provider property: Service provider: Nginx.NginxPlus.
+     * Get the provider property: The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring
+     * Insights" or "Microsoft Compute".
      * 
      * @return the provider value.
      */
@@ -52,18 +56,8 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Set the provider property: Service provider: Nginx.NginxPlus.
-     * 
-     * @param provider the provider value to set.
-     * @return the OperationDisplay object itself.
-     */
-    public OperationDisplay withProvider(String provider) {
-        this.provider = provider;
-        return this;
-    }
-
-    /**
-     * Get the resource property: Type on which the operation is performed, e.g., 'deployments'.
+     * Get the resource property: The localized friendly name of the resource type related to this operation. E.g.
+     * "Virtual Machines" or "Job Schedule Collections".
      * 
      * @return the resource value.
      */
@@ -72,18 +66,8 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Set the resource property: Type on which the operation is performed, e.g., 'deployments'.
-     * 
-     * @param resource the resource value to set.
-     * @return the OperationDisplay object itself.
-     */
-    public OperationDisplay withResource(String resource) {
-        this.resource = resource;
-        return this;
-    }
-
-    /**
-     * Get the operation property: Operation type, e.g., read, write, delete, etc.
+     * Get the operation property: The concise, localized friendly name for the operation; suitable for dropdowns. E.g.
+     * "Create or Update Virtual Machine", "Restart Virtual Machine".
      * 
      * @return the operation value.
      */
@@ -92,34 +76,13 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Set the operation property: Operation type, e.g., read, write, delete, etc.
-     * 
-     * @param operation the operation value to set.
-     * @return the OperationDisplay object itself.
-     */
-    public OperationDisplay withOperation(String operation) {
-        this.operation = operation;
-        return this;
-    }
-
-    /**
-     * Get the description property: Description of the operation, e.g., 'Write deployments'.
+     * Get the description property: The short, localized friendly description of the operation; suitable for tool tips
+     * and detailed views.
      * 
      * @return the description value.
      */
     public String description() {
         return this.description;
-    }
-
-    /**
-     * Set the description property: Description of the operation, e.g., 'Write deployments'.
-     * 
-     * @param description the description value to set.
-     * @return the OperationDisplay object itself.
-     */
-    public OperationDisplay withDescription(String description) {
-        this.description = description;
-        return this;
     }
 
     /**
@@ -136,10 +99,6 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("provider", this.provider);
-        jsonWriter.writeStringField("resource", this.resource);
-        jsonWriter.writeStringField("operation", this.operation);
-        jsonWriter.writeStringField("description", this.description);
         return jsonWriter.writeEndObject();
     }
 

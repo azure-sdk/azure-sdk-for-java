@@ -5,8 +5,11 @@
 package com.azure.resourcemanager.nginx.implementation;
 
 import com.azure.resourcemanager.nginx.fluent.models.AnalysisResultInner;
+import com.azure.resourcemanager.nginx.models.AnalysisDiagnostic;
 import com.azure.resourcemanager.nginx.models.AnalysisResult;
-import com.azure.resourcemanager.nginx.models.AnalysisResultData;
+import com.azure.resourcemanager.nginx.models.DiagnosticItem;
+import java.util.Collections;
+import java.util.List;
 
 public final class AnalysisResultImpl implements AnalysisResult {
     private AnalysisResultInner innerObject;
@@ -22,8 +25,22 @@ public final class AnalysisResultImpl implements AnalysisResult {
         return this.innerModel().status();
     }
 
-    public AnalysisResultData data() {
-        return this.innerModel().data();
+    public List<AnalysisDiagnostic> errors() {
+        List<AnalysisDiagnostic> inner = this.innerModel().errors();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<DiagnosticItem> diagnostics() {
+        List<DiagnosticItem> inner = this.innerModel().diagnostics();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public AnalysisResultInner innerModel() {

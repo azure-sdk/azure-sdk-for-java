@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * Nginx Configuration List Response
+ * 
  * Response of a list operation.
  */
 @Fluent
