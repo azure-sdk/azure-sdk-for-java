@@ -25,8 +25,10 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.peering.fluent.LegacyPeeringsClient;
 import com.azure.resourcemanager.peering.fluent.models.PeeringInner;
+import com.azure.resourcemanager.peering.models.DirectPeeringType;
 import com.azure.resourcemanager.peering.models.LegacyPeeringsKind;
 import com.azure.resourcemanager.peering.models.PeeringListResult;
 import reactor.core.publisher.Mono;
@@ -69,14 +71,32 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PeeringListResult>> list(@HostParam("$host") String endpoint,
             @QueryParam("peeringLocation") String peeringLocation, @QueryParam("kind") LegacyPeeringsKind kind,
-            @QueryParam("asn") Integer asn, @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("asn") Integer asn, @QueryParam("directPeeringType") DirectPeeringType directPeeringType,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Peering/legacyPeerings")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PeeringListResult> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("peeringLocation") String peeringLocation, @QueryParam("kind") LegacyPeeringsKind kind,
+            @QueryParam("asn") Integer asn, @QueryParam("directPeeringType") DirectPeeringType directPeeringType,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PeeringListResult>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PeeringListResult> listNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
@@ -86,6 +106,7 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      * @param peeringLocation The location of the peering.
      * @param kind The kind of the peering.
      * @param asn The ASN number associated with a legacy peering.
+     * @param directPeeringType The direct peering type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -93,7 +114,7 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PeeringInner>> listSinglePageAsync(String peeringLocation, LegacyPeeringsKind kind,
-        Integer asn) {
+        Integer asn, DirectPeeringType directPeeringType) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -112,7 +133,7 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), peeringLocation, kind, asn,
-                this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
+                directPeeringType, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context))
             .<PagedResponse<PeeringInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -124,53 +145,16 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      * @param peeringLocation The location of the peering.
      * @param kind The kind of the peering.
      * @param asn The ASN number associated with a legacy peering.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated list of peerings along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PeeringInner>> listSinglePageAsync(String peeringLocation, LegacyPeeringsKind kind,
-        Integer asn, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (peeringLocation == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter peeringLocation is required and cannot be null."));
-        }
-        if (kind == null) {
-            return Mono.error(new IllegalArgumentException("Parameter kind is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), peeringLocation, kind, asn, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists all of the legacy peerings under the given subscription matching the specified kind and location.
-     * 
-     * @param peeringLocation The location of the peering.
-     * @param kind The kind of the peering.
-     * @param asn The ASN number associated with a legacy peering.
+     * @param directPeeringType The direct peering type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated list of peerings as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PeeringInner> listAsync(String peeringLocation, LegacyPeeringsKind kind, Integer asn) {
-        return new PagedFlux<>(() -> listSinglePageAsync(peeringLocation, kind, asn),
+    private PagedFlux<PeeringInner> listAsync(String peeringLocation, LegacyPeeringsKind kind, Integer asn,
+        DirectPeeringType directPeeringType) {
+        return new PagedFlux<>(() -> listSinglePageAsync(peeringLocation, kind, asn, directPeeringType),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -187,7 +171,8 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PeeringInner> listAsync(String peeringLocation, LegacyPeeringsKind kind) {
         final Integer asn = null;
-        return new PagedFlux<>(() -> listSinglePageAsync(peeringLocation, kind, asn),
+        final DirectPeeringType directPeeringType = null;
+        return new PagedFlux<>(() -> listSinglePageAsync(peeringLocation, kind, asn, directPeeringType),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -197,17 +182,77 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      * @param peeringLocation The location of the peering.
      * @param kind The kind of the peering.
      * @param asn The ASN number associated with a legacy peering.
+     * @param directPeeringType The direct peering type.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the paginated list of peerings along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<PeeringInner> listSinglePage(String peeringLocation, LegacyPeeringsKind kind, Integer asn,
+        DirectPeeringType directPeeringType) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (peeringLocation == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter peeringLocation is required and cannot be null."));
+        }
+        if (kind == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter kind is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PeeringListResult> res = service.listSync(this.client.getEndpoint(), peeringLocation, kind, asn,
+            directPeeringType, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists all of the legacy peerings under the given subscription matching the specified kind and location.
+     * 
+     * @param peeringLocation The location of the peering.
+     * @param kind The kind of the peering.
+     * @param asn The ASN number associated with a legacy peering.
+     * @param directPeeringType The direct peering type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated list of peerings as paginated response with {@link PagedFlux}.
+     * @return the paginated list of peerings along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PeeringInner> listAsync(String peeringLocation, LegacyPeeringsKind kind, Integer asn,
-        Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(peeringLocation, kind, asn, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<PeeringInner> listSinglePage(String peeringLocation, LegacyPeeringsKind kind, Integer asn,
+        DirectPeeringType directPeeringType, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (peeringLocation == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter peeringLocation is required and cannot be null."));
+        }
+        if (kind == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter kind is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PeeringListResult> res = service.listSync(this.client.getEndpoint(), peeringLocation, kind, asn,
+            directPeeringType, this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -223,7 +268,9 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PeeringInner> list(String peeringLocation, LegacyPeeringsKind kind) {
         final Integer asn = null;
-        return new PagedIterable<>(listAsync(peeringLocation, kind, asn));
+        final DirectPeeringType directPeeringType = null;
+        return new PagedIterable<>(() -> listSinglePage(peeringLocation, kind, asn, directPeeringType),
+            nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -232,6 +279,7 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      * @param peeringLocation The location of the peering.
      * @param kind The kind of the peering.
      * @param asn The ASN number associated with a legacy peering.
+     * @param directPeeringType The direct peering type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -240,8 +288,9 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PeeringInner> list(String peeringLocation, LegacyPeeringsKind kind, Integer asn,
-        Context context) {
-        return new PagedIterable<>(listAsync(peeringLocation, kind, asn, context));
+        DirectPeeringType directPeeringType, Context context) {
+        return new PagedIterable<>(() -> listSinglePage(peeringLocation, kind, asn, directPeeringType, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -273,25 +322,55 @@ public final class LegacyPeeringsClientImpl implements LegacyPeeringsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the paginated list of peerings along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<PeeringInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PeeringListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated list of peerings along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the paginated list of peerings along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PeeringInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<PeeringInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<PeeringListResult> res = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(LegacyPeeringsClientImpl.class);
 }

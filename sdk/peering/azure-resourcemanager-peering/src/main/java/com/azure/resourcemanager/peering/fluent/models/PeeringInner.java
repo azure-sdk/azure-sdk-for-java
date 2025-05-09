@@ -10,12 +10,14 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.peering.models.ConnectivityProbe;
 import com.azure.resourcemanager.peering.models.Kind;
 import com.azure.resourcemanager.peering.models.PeeringPropertiesDirect;
 import com.azure.resourcemanager.peering.models.PeeringPropertiesExchange;
 import com.azure.resourcemanager.peering.models.PeeringSku;
 import com.azure.resourcemanager.peering.models.ProvisioningState;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -231,6 +233,29 @@ public final class PeeringInner extends ProxyResource {
             this.innerProperties = new PeeringProperties();
         }
         this.innerProperties().withExchange(exchange);
+        return this;
+    }
+
+    /**
+     * Get the connectivityProbes property: The connectivity probes associated with the peering.
+     * 
+     * @return the connectivityProbes value.
+     */
+    public List<ConnectivityProbe> connectivityProbes() {
+        return this.innerProperties() == null ? null : this.innerProperties().connectivityProbes();
+    }
+
+    /**
+     * Set the connectivityProbes property: The connectivity probes associated with the peering.
+     * 
+     * @param connectivityProbes the connectivityProbes value to set.
+     * @return the PeeringInner object itself.
+     */
+    public PeeringInner withConnectivityProbes(List<ConnectivityProbe> connectivityProbes) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new PeeringProperties();
+        }
+        this.innerProperties().withConnectivityProbes(connectivityProbes);
         return this;
     }
 

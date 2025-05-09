@@ -5,11 +5,15 @@
 package com.azure.resourcemanager.peering.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.CoreUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 /**
  * The properties that define a direct connection.
@@ -57,6 +61,17 @@ public final class DirectConnection implements JsonSerializable<DirectConnection
     private BgpSession bgpSession;
 
     /*
+     * The old V4 BGP session associated with the connection during migration on the same device. Will be used for
+     * Work-Window validation
+     */
+    private Map<String, Enum11> migrationWorkWindowBgpSessionSameDevice;
+
+    /*
+     * Gets or sets the time corresponding to when the connection was last set to ProvisioningFailed.
+     */
+    private OffsetDateTime lastFailureTimeUtc;
+
+    /*
      * The unique identifier (GUID) for the connection.
      */
     private String connectionIdentifier;
@@ -65,6 +80,16 @@ public final class DirectConnection implements JsonSerializable<DirectConnection
      * The error message related to the connection state, if any.
      */
     private String errorMessage;
+
+    /*
+     * The previous connection provisioning state, used to resume provisioning after connection has been blocked.
+     */
+    private PreviousConnectionProvisioningState previousConnectionProvisioningState;
+
+    /*
+     * Gets or sets the migration work window tracker. Format = "DateTime String Format|WorkWindowInitiator Email ID"
+     */
+    private String migrationWorkWindowTracker;
 
     /**
      * Creates an instance of DirectConnection class.
@@ -205,6 +230,51 @@ public final class DirectConnection implements JsonSerializable<DirectConnection
     }
 
     /**
+     * Get the migrationWorkWindowBgpSessionSameDevice property: The old V4 BGP session associated with the connection
+     * during migration on the same device. Will be used for Work-Window validation.
+     * 
+     * @return the migrationWorkWindowBgpSessionSameDevice value.
+     */
+    public Map<String, Enum11> migrationWorkWindowBgpSessionSameDevice() {
+        return this.migrationWorkWindowBgpSessionSameDevice;
+    }
+
+    /**
+     * Set the migrationWorkWindowBgpSessionSameDevice property: The old V4 BGP session associated with the connection
+     * during migration on the same device. Will be used for Work-Window validation.
+     * 
+     * @param migrationWorkWindowBgpSessionSameDevice the migrationWorkWindowBgpSessionSameDevice value to set.
+     * @return the DirectConnection object itself.
+     */
+    public DirectConnection
+        withMigrationWorkWindowBgpSessionSameDevice(Map<String, Enum11> migrationWorkWindowBgpSessionSameDevice) {
+        this.migrationWorkWindowBgpSessionSameDevice = migrationWorkWindowBgpSessionSameDevice;
+        return this;
+    }
+
+    /**
+     * Get the lastFailureTimeUtc property: Gets or sets the time corresponding to when the connection was last set to
+     * ProvisioningFailed.
+     * 
+     * @return the lastFailureTimeUtc value.
+     */
+    public OffsetDateTime lastFailureTimeUtc() {
+        return this.lastFailureTimeUtc;
+    }
+
+    /**
+     * Set the lastFailureTimeUtc property: Gets or sets the time corresponding to when the connection was last set to
+     * ProvisioningFailed.
+     * 
+     * @param lastFailureTimeUtc the lastFailureTimeUtc value to set.
+     * @return the DirectConnection object itself.
+     */
+    public DirectConnection withLastFailureTimeUtc(OffsetDateTime lastFailureTimeUtc) {
+        this.lastFailureTimeUtc = lastFailureTimeUtc;
+        return this;
+    }
+
+    /**
      * Get the connectionIdentifier property: The unique identifier (GUID) for the connection.
      * 
      * @return the connectionIdentifier value.
@@ -234,6 +304,51 @@ public final class DirectConnection implements JsonSerializable<DirectConnection
     }
 
     /**
+     * Get the previousConnectionProvisioningState property: The previous connection provisioning state, used to resume
+     * provisioning after connection has been blocked.
+     * 
+     * @return the previousConnectionProvisioningState value.
+     */
+    public PreviousConnectionProvisioningState previousConnectionProvisioningState() {
+        return this.previousConnectionProvisioningState;
+    }
+
+    /**
+     * Set the previousConnectionProvisioningState property: The previous connection provisioning state, used to resume
+     * provisioning after connection has been blocked.
+     * 
+     * @param previousConnectionProvisioningState the previousConnectionProvisioningState value to set.
+     * @return the DirectConnection object itself.
+     */
+    public DirectConnection withPreviousConnectionProvisioningState(
+        PreviousConnectionProvisioningState previousConnectionProvisioningState) {
+        this.previousConnectionProvisioningState = previousConnectionProvisioningState;
+        return this;
+    }
+
+    /**
+     * Get the migrationWorkWindowTracker property: Gets or sets the migration work window tracker. Format = "DateTime
+     * String Format|WorkWindowInitiator Email ID".
+     * 
+     * @return the migrationWorkWindowTracker value.
+     */
+    public String migrationWorkWindowTracker() {
+        return this.migrationWorkWindowTracker;
+    }
+
+    /**
+     * Set the migrationWorkWindowTracker property: Gets or sets the migration work window tracker. Format = "DateTime
+     * String Format|WorkWindowInitiator Email ID".
+     * 
+     * @param migrationWorkWindowTracker the migrationWorkWindowTracker value to set.
+     * @return the DirectConnection object itself.
+     */
+    public DirectConnection withMigrationWorkWindowTracker(String migrationWorkWindowTracker) {
+        this.migrationWorkWindowTracker = migrationWorkWindowTracker;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -256,7 +371,19 @@ public final class DirectConnection implements JsonSerializable<DirectConnection
         jsonWriter.writeBooleanField("useForPeeringService", this.useForPeeringService);
         jsonWriter.writeNumberField("peeringDBFacilityId", this.peeringDBFacilityId);
         jsonWriter.writeJsonField("bgpSession", this.bgpSession);
+        jsonWriter.writeMapField("migrationWorkWindowBgpSessionSameDevice",
+            this.migrationWorkWindowBgpSessionSameDevice,
+            (writer, element) -> writer.writeString(element == null ? null : element.toString()));
+        jsonWriter.writeStringField("lastFailureTimeUtc",
+            this.lastFailureTimeUtc == null
+                ? null
+                : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.lastFailureTimeUtc));
         jsonWriter.writeStringField("connectionIdentifier", this.connectionIdentifier);
+        jsonWriter.writeStringField("previousConnectionProvisioningState",
+            this.previousConnectionProvisioningState == null
+                ? null
+                : this.previousConnectionProvisioningState.toString());
+        jsonWriter.writeStringField("migrationWorkWindowTracker", this.migrationWorkWindowTracker);
         return jsonWriter.writeEndObject();
     }
 
@@ -292,10 +419,23 @@ public final class DirectConnection implements JsonSerializable<DirectConnection
                     deserializedDirectConnection.connectionState = ConnectionState.fromString(reader.getString());
                 } else if ("bgpSession".equals(fieldName)) {
                     deserializedDirectConnection.bgpSession = BgpSession.fromJson(reader);
+                } else if ("migrationWorkWindowBgpSessionSameDevice".equals(fieldName)) {
+                    Map<String, Enum11> migrationWorkWindowBgpSessionSameDevice
+                        = reader.readMap(reader1 -> Enum11.fromString(reader1.getString()));
+                    deserializedDirectConnection.migrationWorkWindowBgpSessionSameDevice
+                        = migrationWorkWindowBgpSessionSameDevice;
+                } else if ("lastFailureTimeUtc".equals(fieldName)) {
+                    deserializedDirectConnection.lastFailureTimeUtc = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("connectionIdentifier".equals(fieldName)) {
                     deserializedDirectConnection.connectionIdentifier = reader.getString();
                 } else if ("errorMessage".equals(fieldName)) {
                     deserializedDirectConnection.errorMessage = reader.getString();
+                } else if ("previousConnectionProvisioningState".equals(fieldName)) {
+                    deserializedDirectConnection.previousConnectionProvisioningState
+                        = PreviousConnectionProvisioningState.fromString(reader.getString());
+                } else if ("migrationWorkWindowTracker".equals(fieldName)) {
+                    deserializedDirectConnection.migrationWorkWindowTracker = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.peering.implementation;
 import com.azure.core.management.Region;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.peering.fluent.models.PeeringInner;
+import com.azure.resourcemanager.peering.models.ConnectivityProbe;
 import com.azure.resourcemanager.peering.models.Kind;
 import com.azure.resourcemanager.peering.models.Peering;
 import com.azure.resourcemanager.peering.models.PeeringPropertiesDirect;
@@ -15,6 +16,7 @@ import com.azure.resourcemanager.peering.models.PeeringSku;
 import com.azure.resourcemanager.peering.models.ProvisioningState;
 import com.azure.resourcemanager.peering.models.ResourceTags;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class PeeringImpl implements Peering, Peering.Definition, Peering.Update {
@@ -61,6 +63,15 @@ public final class PeeringImpl implements Peering, Peering.Definition, Peering.U
 
     public PeeringPropertiesExchange exchange() {
         return this.innerModel().exchange();
+    }
+
+    public List<ConnectivityProbe> connectivityProbes() {
+        List<ConnectivityProbe> inner = this.innerModel().connectivityProbes();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public String peeringLocation() {
@@ -205,6 +216,11 @@ public final class PeeringImpl implements Peering, Peering.Definition, Peering.U
 
     public PeeringImpl withExchange(PeeringPropertiesExchange exchange) {
         this.innerModel().withExchange(exchange);
+        return this;
+    }
+
+    public PeeringImpl withConnectivityProbes(List<ConnectivityProbe> connectivityProbes) {
+        this.innerModel().withConnectivityProbes(connectivityProbes);
         return this;
     }
 

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.peering.models;
 import com.azure.core.management.Region;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.peering.fluent.models.PeeringInner;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -75,6 +76,13 @@ public interface Peering {
      * @return the exchange value.
      */
     PeeringPropertiesExchange exchange();
+
+    /**
+     * Gets the connectivityProbes property: The connectivity probes associated with the peering.
+     * 
+     * @return the connectivityProbes value.
+     */
+    List<ConnectivityProbe> connectivityProbes();
 
     /**
      * Gets the peeringLocation property: The location of the peering.
@@ -200,8 +208,9 @@ public interface Peering {
          * The stage of the Peering definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithDirect,
-            DefinitionStages.WithExchange, DefinitionStages.WithPeeringLocation {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithDirect, DefinitionStages.WithExchange,
+            DefinitionStages.WithConnectivityProbes, DefinitionStages.WithPeeringLocation {
             /**
              * Executes the create request.
              * 
@@ -255,6 +264,19 @@ public interface Peering {
              * @return the next definition stage.
              */
             WithCreate withExchange(PeeringPropertiesExchange exchange);
+        }
+
+        /**
+         * The stage of the Peering definition allowing to specify connectivityProbes.
+         */
+        interface WithConnectivityProbes {
+            /**
+             * Specifies the connectivityProbes property: The connectivity probes associated with the peering..
+             * 
+             * @param connectivityProbes The connectivity probes associated with the peering.
+             * @return the next definition stage.
+             */
+            WithCreate withConnectivityProbes(List<ConnectivityProbe> connectivityProbes);
         }
 
         /**

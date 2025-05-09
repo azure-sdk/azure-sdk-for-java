@@ -1,14 +1,145 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-05-09)
 
-### Features Added
+- Azure Resource Manager Peering client library for Java. This package contains Microsoft Azure SDK for Peering Management SDK. Peering Client. Package tag package-2025-05-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.PeerAsn$Update` was modified
 
-### Other Changes
+* `withValidationState(models.ValidationState)` was removed
+
+#### `models.LegacyPeerings` was modified
+
+* `list(java.lang.String,models.LegacyPeeringsKind,java.lang.Integer,com.azure.core.util.Context)` was removed
+
+#### `models.PeeringSku` was modified
+
+* `withTier(models.Tier)` was removed
+* `withSize(models.Size)` was removed
+* `withFamily(models.Family)` was removed
+
+#### `models.PeerAsn$Definition` was modified
+
+* `withValidationState(models.ValidationState)` was removed
+
+### Features Added
+
+* `models.ServiceSpecification` was added
+
+* `models.Protocol` was added
+
+* `models.ConnectionMonitorTest$Update` was added
+
+* `models.LogAnalyticsWorkspaceProperties` was added
+
+* `models.RpUnbilledPrefixes` was added
+
+* `models.ConnectionMonitorTest` was added
+
+* `models.ConnectionMonitorTest$UpdateStages` was added
+
+* `models.ConnectivityProbe` was added
+
+* `models.Command` was added
+
+* `models.ConnectionMonitorTest$DefinitionStages` was added
+
+* `models.LookingGlassOutput` was added
+
+* `models.PreviousConnectionProvisioningState` was added
+
+* `models.ConnectionMonitorTestListResult` was added
+
+* `models.LookingGlass` was added
+
+* `models.Enum11` was added
+
+* `models.ConnectionMonitorTest$Definition` was added
+
+* `models.Enum13` was added
+
+* `models.LookingGlassCommand` was added
+
+* `models.ConnectionMonitorTests` was added
+
+* `models.RpUnbilledPrefix` was added
+
+* `models.LookingGlassSourceType` was added
+
+* `models.MetricDimension` was added
+
+* `models.RpUnbilledPrefixListResult` was added
+
+* `models.MetricSpecification` was added
+
+#### `models.Operation` was modified
+
+* `serviceSpecification()` was added
+
+#### `models.PeeringRegisteredPrefix` was modified
+
+* `validate()` was added
+* `validateWithResponse(com.azure.core.util.Context)` was added
+
+#### `models.Peering` was modified
+
+* `connectivityProbes()` was added
+
+#### `models.LegacyPeerings` was modified
+
+* `list(java.lang.String,models.LegacyPeeringsKind,java.lang.Integer,models.DirectPeeringType,com.azure.core.util.Context)` was added
+
+#### `models.PeeringServices` was modified
+
+* `initializeConnectionMonitor()` was added
+* `initializeConnectionMonitorWithResponse(com.azure.core.util.Context)` was added
+
+#### `models.PeeringService$Definition` was modified
+
+* `withLogAnalyticsWorkspaceProperties(models.LogAnalyticsWorkspaceProperties)` was added
+
+#### `models.PeeringService` was modified
+
+* `logAnalyticsWorkspaceProperties()` was added
+
+#### `PeeringManager` was modified
+
+* `lookingGlass()` was added
+* `connectionMonitorTests()` was added
+* `rpUnbilledPrefixes()` was added
+
+#### `models.Peering$Definition` was modified
+
+* `withConnectivityProbes(java.util.List)` was added
+
+#### `models.ExchangeConnection` was modified
+
+* `migrationWorkWindowTracker()` was added
+* `previousConnectionProvisioningState()` was added
+* `lastFailureTimeUtc()` was added
+* `migrationWorkWindowBgpSessionSameDevice()` was added
+* `withLastFailureTimeUtc(java.time.OffsetDateTime)` was added
+* `withMigrationWorkWindowTracker(java.lang.String)` was added
+* `withPreviousConnectionProvisioningState(models.PreviousConnectionProvisioningState)` was added
+* `withMigrationWorkWindowBgpSessionSameDevice(java.util.Map)` was added
+
+#### `models.RegisteredPrefixes` was modified
+
+* `validateWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `validate(java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.DirectConnection` was modified
+
+* `withMigrationWorkWindowBgpSessionSameDevice(java.util.Map)` was added
+* `migrationWorkWindowBgpSessionSameDevice()` was added
+* `previousConnectionProvisioningState()` was added
+* `migrationWorkWindowTracker()` was added
+* `withMigrationWorkWindowTracker(java.lang.String)` was added
+* `lastFailureTimeUtc()` was added
+* `withLastFailureTimeUtc(java.time.OffsetDateTime)` was added
+* `withPreviousConnectionProvisioningState(models.PreviousConnectionProvisioningState)` was added
 
 ## 1.0.0 (2024-12-25)
 
