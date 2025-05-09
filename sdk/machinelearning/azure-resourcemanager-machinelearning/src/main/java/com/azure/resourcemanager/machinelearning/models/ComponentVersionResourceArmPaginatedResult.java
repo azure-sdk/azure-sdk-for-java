@@ -20,39 +20,19 @@ import java.util.List;
 public final class ComponentVersionResourceArmPaginatedResult
     implements JsonSerializable<ComponentVersionResourceArmPaginatedResult> {
     /*
-     * An array of objects of type ComponentVersion.
-     */
-    private List<ComponentVersionInner> value;
-
-    /*
      * The link to the next page of ComponentVersion objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type ComponentVersion.
+     */
+    private List<ComponentVersionInner> value;
 
     /**
      * Creates an instance of ComponentVersionResourceArmPaginatedResult class.
      */
     public ComponentVersionResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type ComponentVersion.
-     * 
-     * @return the value value.
-     */
-    public List<ComponentVersionInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type ComponentVersion.
-     * 
-     * @param value the value value to set.
-     * @return the ComponentVersionResourceArmPaginatedResult object itself.
-     */
-    public ComponentVersionResourceArmPaginatedResult withValue(List<ComponentVersionInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -78,6 +58,26 @@ public final class ComponentVersionResourceArmPaginatedResult
     }
 
     /**
+     * Get the value property: An array of objects of type ComponentVersion.
+     * 
+     * @return the value value.
+     */
+    public List<ComponentVersionInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type ComponentVersion.
+     * 
+     * @param value the value value to set.
+     * @return the ComponentVersionResourceArmPaginatedResult object itself.
+     */
+    public ComponentVersionResourceArmPaginatedResult withValue(List<ComponentVersionInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -94,8 +94,8 @@ public final class ComponentVersionResourceArmPaginatedResult
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -115,12 +115,12 @@ public final class ComponentVersionResourceArmPaginatedResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedComponentVersionResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<ComponentVersionInner> value
                         = reader.readArray(reader1 -> ComponentVersionInner.fromJson(reader1));
                     deserializedComponentVersionResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedComponentVersionResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

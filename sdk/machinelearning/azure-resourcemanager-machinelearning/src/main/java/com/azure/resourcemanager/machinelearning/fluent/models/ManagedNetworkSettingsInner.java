@@ -9,7 +9,9 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.machinelearning.models.FirewallSku;
 import com.azure.resourcemanager.machinelearning.models.IsolationMode;
+import com.azure.resourcemanager.machinelearning.models.ManagedNetworkKind;
 import com.azure.resourcemanager.machinelearning.models.OutboundRule;
 import java.io.IOException;
 import java.util.Map;
@@ -38,6 +40,22 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
      * Status of the Provisioning for the managed network of a machine learning workspace.
      */
     private ManagedNetworkProvisionStatusInner status;
+
+    /*
+     * Firewall Sku used for FQDN Rules
+     */
+    private FirewallSku firewallSku;
+
+    /*
+     * The Kind of the managed network. Users can switch from V1 to V2 for granular access controls, but cannot switch
+     * back to V1 once V2 is enabled.
+     */
+    private ManagedNetworkKind managedNetworkKind;
+
+    /*
+     * Public IP address assigned to the Azure Firewall.
+     */
+    private String firewallPublicIpAddress;
 
     /**
      * Creates an instance of ManagedNetworkSettingsInner class.
@@ -115,6 +133,68 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
     }
 
     /**
+     * Get the firewallSku property: Firewall Sku used for FQDN Rules.
+     * 
+     * @return the firewallSku value.
+     */
+    public FirewallSku firewallSku() {
+        return this.firewallSku;
+    }
+
+    /**
+     * Set the firewallSku property: Firewall Sku used for FQDN Rules.
+     * 
+     * @param firewallSku the firewallSku value to set.
+     * @return the ManagedNetworkSettingsInner object itself.
+     */
+    public ManagedNetworkSettingsInner withFirewallSku(FirewallSku firewallSku) {
+        this.firewallSku = firewallSku;
+        return this;
+    }
+
+    /**
+     * Get the managedNetworkKind property: The Kind of the managed network. Users can switch from V1 to V2 for granular
+     * access controls, but cannot switch back to V1 once V2 is enabled.
+     * 
+     * @return the managedNetworkKind value.
+     */
+    public ManagedNetworkKind managedNetworkKind() {
+        return this.managedNetworkKind;
+    }
+
+    /**
+     * Set the managedNetworkKind property: The Kind of the managed network. Users can switch from V1 to V2 for granular
+     * access controls, but cannot switch back to V1 once V2 is enabled.
+     * 
+     * @param managedNetworkKind the managedNetworkKind value to set.
+     * @return the ManagedNetworkSettingsInner object itself.
+     */
+    public ManagedNetworkSettingsInner withManagedNetworkKind(ManagedNetworkKind managedNetworkKind) {
+        this.managedNetworkKind = managedNetworkKind;
+        return this;
+    }
+
+    /**
+     * Get the firewallPublicIpAddress property: Public IP address assigned to the Azure Firewall.
+     * 
+     * @return the firewallPublicIpAddress value.
+     */
+    public String firewallPublicIpAddress() {
+        return this.firewallPublicIpAddress;
+    }
+
+    /**
+     * Set the firewallPublicIpAddress property: Public IP address assigned to the Azure Firewall.
+     * 
+     * @param firewallPublicIpAddress the firewallPublicIpAddress value to set.
+     * @return the ManagedNetworkSettingsInner object itself.
+     */
+    public ManagedNetworkSettingsInner withFirewallPublicIpAddress(String firewallPublicIpAddress) {
+        this.firewallPublicIpAddress = firewallPublicIpAddress;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -141,6 +221,10 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
         jsonWriter.writeStringField("isolationMode", this.isolationMode == null ? null : this.isolationMode.toString());
         jsonWriter.writeMapField("outboundRules", this.outboundRules, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("status", this.status);
+        jsonWriter.writeStringField("firewallSku", this.firewallSku == null ? null : this.firewallSku.toString());
+        jsonWriter.writeStringField("managedNetworkKind",
+            this.managedNetworkKind == null ? null : this.managedNetworkKind.toString());
+        jsonWriter.writeStringField("firewallPublicIpAddress", this.firewallPublicIpAddress);
         return jsonWriter.writeEndObject();
     }
 
@@ -170,6 +254,13 @@ public final class ManagedNetworkSettingsInner implements JsonSerializable<Manag
                 } else if ("status".equals(fieldName)) {
                     deserializedManagedNetworkSettingsInner.status
                         = ManagedNetworkProvisionStatusInner.fromJson(reader);
+                } else if ("firewallSku".equals(fieldName)) {
+                    deserializedManagedNetworkSettingsInner.firewallSku = FirewallSku.fromString(reader.getString());
+                } else if ("managedNetworkKind".equals(fieldName)) {
+                    deserializedManagedNetworkSettingsInner.managedNetworkKind
+                        = ManagedNetworkKind.fromString(reader.getString());
+                } else if ("firewallPublicIpAddress".equals(fieldName)) {
+                    deserializedManagedNetworkSettingsInner.firewallPublicIpAddress = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

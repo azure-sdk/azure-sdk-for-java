@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -27,14 +28,14 @@ public final class TextClassification extends AutoMLVertical {
     private ClassificationPrimaryMetrics primaryMetric;
 
     /*
-     * Execution constraints for AutoMLJob.
-     */
-    private NlpVerticalLimitSettings limitSettings;
-
-    /*
      * Featurization inputs needed for AutoML job.
      */
     private NlpVerticalFeaturizationSettings featurizationSettings;
+
+    /*
+     * Execution constraints for AutoMLJob.
+     */
+    private NlpVerticalLimitSettings limitSettings;
 
     /*
      * Validation data inputs.
@@ -78,26 +79,6 @@ public final class TextClassification extends AutoMLVertical {
     }
 
     /**
-     * Get the limitSettings property: Execution constraints for AutoMLJob.
-     * 
-     * @return the limitSettings value.
-     */
-    public NlpVerticalLimitSettings limitSettings() {
-        return this.limitSettings;
-    }
-
-    /**
-     * Set the limitSettings property: Execution constraints for AutoMLJob.
-     * 
-     * @param limitSettings the limitSettings value to set.
-     * @return the TextClassification object itself.
-     */
-    public TextClassification withLimitSettings(NlpVerticalLimitSettings limitSettings) {
-        this.limitSettings = limitSettings;
-        return this;
-    }
-
-    /**
      * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
      * 
      * @return the featurizationSettings value.
@@ -114,6 +95,26 @@ public final class TextClassification extends AutoMLVertical {
      */
     public TextClassification withFeaturizationSettings(NlpVerticalFeaturizationSettings featurizationSettings) {
         this.featurizationSettings = featurizationSettings;
+        return this;
+    }
+
+    /**
+     * Get the limitSettings property: Execution constraints for AutoMLJob.
+     * 
+     * @return the limitSettings value.
+     */
+    public NlpVerticalLimitSettings limitSettings() {
+        return this.limitSettings;
+    }
+
+    /**
+     * Set the limitSettings property: Execution constraints for AutoMLJob.
+     * 
+     * @param limitSettings the limitSettings value to set.
+     * @return the TextClassification object itself.
+     */
+    public TextClassification withLimitSettings(NlpVerticalLimitSettings limitSettings) {
+        this.limitSettings = limitSettings;
         return this;
     }
 
@@ -150,8 +151,8 @@ public final class TextClassification extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public TextClassification withTrainingData(MLTableJobInput trainingData) {
-        super.withTrainingData(trainingData);
+    public TextClassification withTargetColumnName(String targetColumnName) {
+        super.withTargetColumnName(targetColumnName);
         return this;
     }
 
@@ -159,8 +160,8 @@ public final class TextClassification extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public TextClassification withTargetColumnName(String targetColumnName) {
-        super.withTargetColumnName(targetColumnName);
+    public TextClassification withTrainingData(MLTableJobInput trainingData) {
+        super.withTrainingData(trainingData);
         return this;
     }
 
@@ -171,17 +172,25 @@ public final class TextClassification extends AutoMLVertical {
      */
     @Override
     public void validate() {
-        super.validate();
-        if (limitSettings() != null) {
-            limitSettings().validate();
-        }
         if (featurizationSettings() != null) {
             featurizationSettings().validate();
+        }
+        if (limitSettings() != null) {
+            limitSettings().validate();
         }
         if (validationData() != null) {
             validationData().validate();
         }
+        if (trainingData() == null) {
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property trainingData in model TextClassification"));
+        } else {
+            trainingData().validate();
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(TextClassification.class);
 
     /**
      * {@inheritDoc}
@@ -194,8 +203,8 @@ public final class TextClassification extends AutoMLVertical {
         jsonWriter.writeStringField("targetColumnName", targetColumnName());
         jsonWriter.writeStringField("taskType", this.taskType == null ? null : this.taskType.toString());
         jsonWriter.writeStringField("primaryMetric", this.primaryMetric == null ? null : this.primaryMetric.toString());
-        jsonWriter.writeJsonField("limitSettings", this.limitSettings);
         jsonWriter.writeJsonField("featurizationSettings", this.featurizationSettings);
+        jsonWriter.writeJsonField("limitSettings", this.limitSettings);
         jsonWriter.writeJsonField("validationData", this.validationData);
         return jsonWriter.writeEndObject();
     }
@@ -227,11 +236,11 @@ public final class TextClassification extends AutoMLVertical {
                 } else if ("primaryMetric".equals(fieldName)) {
                     deserializedTextClassification.primaryMetric
                         = ClassificationPrimaryMetrics.fromString(reader.getString());
-                } else if ("limitSettings".equals(fieldName)) {
-                    deserializedTextClassification.limitSettings = NlpVerticalLimitSettings.fromJson(reader);
                 } else if ("featurizationSettings".equals(fieldName)) {
                     deserializedTextClassification.featurizationSettings
                         = NlpVerticalFeaturizationSettings.fromJson(reader);
+                } else if ("limitSettings".equals(fieldName)) {
+                    deserializedTextClassification.limitSettings = NlpVerticalLimitSettings.fromJson(reader);
                 } else if ("validationData".equals(fieldName)) {
                     deserializedTextClassification.validationData = MLTableJobInput.fromJson(reader);
                 } else {
