@@ -18,7 +18,7 @@
   <packaging>jar</packaging>
 
   <name>Microsoft Azure SDK for Dell Storage Management</name>
-  <description>This package contains Microsoft Azure SDK for Dell Storage Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. Dell Storage service. Package api-version 2025-03-21-preview.</description>
+  <description>This package contains Microsoft Azure SDK for Dell Storage Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. Dell Storage service.</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 
   <licenses>

@@ -2,7 +2,7 @@
 
 Azure Resource Manager Dell Storage client library for Java.
 
-This package contains Microsoft Azure SDK for Dell Storage Management SDK. Dell Storage service. Package api-version 2025-03-21-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for Dell Storage Management SDK. Dell Storage service. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
