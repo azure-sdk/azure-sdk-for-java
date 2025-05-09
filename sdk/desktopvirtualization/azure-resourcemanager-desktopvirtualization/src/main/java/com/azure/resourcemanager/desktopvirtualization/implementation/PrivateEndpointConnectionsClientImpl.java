@@ -28,6 +28,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.PrivateEndpointConnectionWithSystemDataInner;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
@@ -77,10 +78,30 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/workspaces/{workspaceName}/privateEndpointConnections")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PrivateEndpointConnectionListResultWithSystemData> listByWorkspaceSync(
+            @HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionWithSystemDataInner>> getByWorkspace(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PrivateEndpointConnectionWithSystemDataInner> getByWorkspaceSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
@@ -97,10 +118,32 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Void> deleteByWorkspaceSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionWithSystemDataInner>> updateByWorkspace(
+            @HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
+            @BodyParam("application/json") PrivateEndpointConnection connection, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PrivateEndpointConnectionWithSystemDataInner> updateByWorkspaceSync(
             @HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
@@ -120,6 +163,17 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
             @QueryParam("initialSkip") Integer initialSkip, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/privateEndpointConnections")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PrivateEndpointConnectionListResultWithSystemData> listByHostPoolSync(
+            @HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("hostPoolName") String hostPoolName,
+            @QueryParam("pageSize") Integer pageSize, @QueryParam("isDescending") Boolean isDescending,
+            @QueryParam("initialSkip") Integer initialSkip, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -130,10 +184,30 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/privateEndpointConnections/{privateEndpointConnectionName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PrivateEndpointConnectionWithSystemDataInner> getByHostPoolSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("hostPoolName") String hostPoolName,
+            @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/privateEndpointConnections/{privateEndpointConnectionName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> deleteByHostPool(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("hostPoolName") String hostPoolName,
+            @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/privateEndpointConnections/{privateEndpointConnectionName}")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Void> deleteByHostPoolSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("hostPoolName") String hostPoolName,
             @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
@@ -152,6 +226,17 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/hostPools/{hostPoolName}/privateEndpointConnections/{privateEndpointConnectionName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PrivateEndpointConnectionWithSystemDataInner> updateByHostPoolSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("hostPoolName") String hostPoolName,
+            @PathParam("privateEndpointConnectionName") String privateEndpointConnectionName,
+            @BodyParam("application/json") PrivateEndpointConnection connection, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -163,7 +248,23 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PrivateEndpointConnectionListResultWithSystemData> listByWorkspaceNextSync(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateEndpointConnectionListResultWithSystemData>> listByHostPoolNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PrivateEndpointConnectionListResultWithSystemData> listByHostPoolNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -212,45 +313,6 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of private endpoint connection associated with the specified storage account along with
-     * {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateEndpointConnectionWithSystemDataInner>>
-        listByWorkspaceSinglePageAsync(String resourceGroupName, String workspaceName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByWorkspace(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, workspaceName, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * List private endpoint connections.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -269,18 +331,80 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of private endpoint connection associated with the specified storage account along with
+     * {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<PrivateEndpointConnectionWithSystemDataInner>
+        listByWorkspaceSinglePage(String resourceGroupName, String workspaceName) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PrivateEndpointConnectionListResultWithSystemData> res
+            = service.listByWorkspaceSync(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workspaceName, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * List private endpoint connections.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of private endpoint connection associated with the specified storage account as paginated response
-     * with {@link PagedFlux}.
+     * @return list of private endpoint connection associated with the specified storage account along with
+     * {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PrivateEndpointConnectionWithSystemDataInner> listByWorkspaceAsync(String resourceGroupName,
-        String workspaceName, Context context) {
-        return new PagedFlux<>(() -> listByWorkspaceSinglePageAsync(resourceGroupName, workspaceName, context),
-            nextLink -> listByWorkspaceNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<PrivateEndpointConnectionWithSystemDataInner>
+        listByWorkspaceSinglePage(String resourceGroupName, String workspaceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PrivateEndpointConnectionListResultWithSystemData> res
+            = service.listByWorkspaceSync(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, workspaceName, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -297,7 +421,8 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PrivateEndpointConnectionWithSystemDataInner> listByWorkspace(String resourceGroupName,
         String workspaceName) {
-        return new PagedIterable<>(listByWorkspaceAsync(resourceGroupName, workspaceName));
+        return new PagedIterable<>(() -> listByWorkspaceSinglePage(resourceGroupName, workspaceName),
+            nextLink -> listByWorkspaceNextSinglePage(nextLink));
     }
 
     /**
@@ -315,7 +440,8 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PrivateEndpointConnectionWithSystemDataInner> listByWorkspace(String resourceGroupName,
         String workspaceName, Context context) {
-        return new PagedIterable<>(listByWorkspaceAsync(resourceGroupName, workspaceName, context));
+        return new PagedIterable<>(() -> listByWorkspaceSinglePage(resourceGroupName, workspaceName, context),
+            nextLink -> listByWorkspaceNextSinglePage(nextLink, context));
     }
 
     /**
@@ -367,48 +493,6 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @param workspaceName The name of the workspace.
      * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
      * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a private endpoint connection along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PrivateEndpointConnectionWithSystemDataInner>> getByWorkspaceWithResponseAsync(
-        String resourceGroupName, String workspaceName, String privateEndpointConnectionName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (privateEndpointConnectionName == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter privateEndpointConnectionName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getByWorkspace(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, workspaceName, privateEndpointConnectionName, accept,
-            context);
-    }
-
-    /**
-     * Get a private endpoint connection.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     * resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -437,8 +521,33 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PrivateEndpointConnectionWithSystemDataInner> getByWorkspaceWithResponse(String resourceGroupName,
         String workspaceName, String privateEndpointConnectionName, Context context) {
-        return getByWorkspaceWithResponseAsync(resourceGroupName, workspaceName, privateEndpointConnectionName, context)
-            .block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (privateEndpointConnectionName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter privateEndpointConnectionName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getByWorkspaceSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, workspaceName, privateEndpointConnectionName, accept,
+            context);
     }
 
     /**
@@ -509,48 +618,6 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @param workspaceName The name of the workspace.
      * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
      * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteByWorkspaceWithResponseAsync(String resourceGroupName, String workspaceName,
-        String privateEndpointConnectionName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (privateEndpointConnectionName == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter privateEndpointConnectionName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.deleteByWorkspace(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, workspaceName, privateEndpointConnectionName, accept,
-            context);
-    }
-
-    /**
-     * Remove a connection.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     * resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -579,8 +646,33 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteByWorkspaceWithResponse(String resourceGroupName, String workspaceName,
         String privateEndpointConnectionName, Context context) {
-        return deleteByWorkspaceWithResponseAsync(resourceGroupName, workspaceName, privateEndpointConnectionName,
-            context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (privateEndpointConnectionName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter privateEndpointConnectionName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.deleteByWorkspaceSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, workspaceName, privateEndpointConnectionName, accept,
+            context);
     }
 
     /**
@@ -658,56 +750,6 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
      * resource.
      * @param connection Object containing the updated connection.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PrivateEndpointConnectionWithSystemDataInner>> updateByWorkspaceWithResponseAsync(
-        String resourceGroupName, String workspaceName, String privateEndpointConnectionName,
-        PrivateEndpointConnection connection, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (privateEndpointConnectionName == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter privateEndpointConnectionName is required and cannot be null."));
-        }
-        if (connection == null) {
-            return Mono.error(new IllegalArgumentException("Parameter connection is required and cannot be null."));
-        } else {
-            connection.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.updateByWorkspace(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, workspaceName, privateEndpointConnectionName,
-            connection, accept, context);
-    }
-
-    /**
-     * Approve or reject a private endpoint connection.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     * resource.
-     * @param connection Object containing the updated connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -738,8 +780,39 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     public Response<PrivateEndpointConnectionWithSystemDataInner> updateByWorkspaceWithResponse(
         String resourceGroupName, String workspaceName, String privateEndpointConnectionName,
         PrivateEndpointConnection connection, Context context) {
-        return updateByWorkspaceWithResponseAsync(resourceGroupName, workspaceName, privateEndpointConnectionName,
-            connection, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (privateEndpointConnectionName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter privateEndpointConnectionName is required and cannot be null."));
+        }
+        if (connection == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter connection is required and cannot be null."));
+        } else {
+            connection.validate();
+        }
+        final String accept = "application/json";
+        return service.updateByWorkspaceSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, workspaceName, privateEndpointConnectionName,
+            connection, accept, context);
     }
 
     /**
@@ -813,49 +886,6 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of private endpoint connection associated with the specified storage account along with
-     * {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateEndpointConnectionWithSystemDataInner>> listByHostPoolSinglePageAsync(
-        String resourceGroupName, String hostPoolName, Integer pageSize, Boolean isDescending, Integer initialSkip,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (hostPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByHostPool(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * List private endpoint connections associated with hostpool.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -900,18 +930,84 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of private endpoint connection associated with the specified storage account along with
+     * {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<PrivateEndpointConnectionWithSystemDataInner> listByHostPoolSinglePage(
+        String resourceGroupName, String hostPoolName, Integer pageSize, Boolean isDescending, Integer initialSkip) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (hostPoolName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PrivateEndpointConnectionListResultWithSystemData> res = service.listByHostPoolSync(
+            this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName,
+            hostPoolName, pageSize, isDescending, initialSkip, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * List private endpoint connections associated with hostpool.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of private endpoint connection associated with the specified storage account as paginated response
-     * with {@link PagedFlux}.
+     * @return list of private endpoint connection associated with the specified storage account along with
+     * {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PrivateEndpointConnectionWithSystemDataInner> listByHostPoolAsync(String resourceGroupName,
-        String hostPoolName, Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
-        return new PagedFlux<>(() -> listByHostPoolSinglePageAsync(resourceGroupName, hostPoolName, pageSize,
-            isDescending, initialSkip, context), nextLink -> listByHostPoolNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<PrivateEndpointConnectionWithSystemDataInner> listByHostPoolSinglePage(
+        String resourceGroupName, String hostPoolName, Integer pageSize, Boolean isDescending, Integer initialSkip,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (hostPoolName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PrivateEndpointConnectionListResultWithSystemData> res = service.listByHostPoolSync(
+            this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName,
+            hostPoolName, pageSize, isDescending, initialSkip, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -932,7 +1028,8 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         final Boolean isDescending = null;
         final Integer initialSkip = null;
         return new PagedIterable<>(
-            listByHostPoolAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip));
+            () -> listByHostPoolSinglePage(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip),
+            nextLink -> listByHostPoolNextSinglePage(nextLink));
     }
 
     /**
@@ -953,8 +1050,8 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PrivateEndpointConnectionWithSystemDataInner> listByHostPool(String resourceGroupName,
         String hostPoolName, Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
-        return new PagedIterable<>(
-            listByHostPoolAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, context));
+        return new PagedIterable<>(() -> listByHostPoolSinglePage(resourceGroupName, hostPoolName, pageSize,
+            isDescending, initialSkip, context), nextLink -> listByHostPoolNextSinglePage(nextLink, context));
     }
 
     /**
@@ -1006,48 +1103,6 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
      * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a private endpoint connection along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PrivateEndpointConnectionWithSystemDataInner>> getByHostPoolWithResponseAsync(
-        String resourceGroupName, String hostPoolName, String privateEndpointConnectionName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (hostPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
-        }
-        if (privateEndpointConnectionName == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter privateEndpointConnectionName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getByHostPool(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, hostPoolName, privateEndpointConnectionName, accept,
-            context);
-    }
-
-    /**
-     * Get a private endpoint connection.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     * resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1076,8 +1131,33 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PrivateEndpointConnectionWithSystemDataInner> getByHostPoolWithResponse(String resourceGroupName,
         String hostPoolName, String privateEndpointConnectionName, Context context) {
-        return getByHostPoolWithResponseAsync(resourceGroupName, hostPoolName, privateEndpointConnectionName, context)
-            .block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (hostPoolName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
+        }
+        if (privateEndpointConnectionName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter privateEndpointConnectionName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getByHostPoolSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, hostPoolName, privateEndpointConnectionName, accept,
+            context);
     }
 
     /**
@@ -1148,48 +1228,6 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
      * resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteByHostPoolWithResponseAsync(String resourceGroupName, String hostPoolName,
-        String privateEndpointConnectionName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (hostPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
-        }
-        if (privateEndpointConnectionName == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter privateEndpointConnectionName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.deleteByHostPool(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, hostPoolName, privateEndpointConnectionName, accept,
-            context);
-    }
-
-    /**
-     * Remove a connection.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     * resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1218,8 +1256,33 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteByHostPoolWithResponse(String resourceGroupName, String hostPoolName,
         String privateEndpointConnectionName, Context context) {
-        return deleteByHostPoolWithResponseAsync(resourceGroupName, hostPoolName, privateEndpointConnectionName,
-            context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (hostPoolName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
+        }
+        if (privateEndpointConnectionName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter privateEndpointConnectionName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.deleteByHostPoolSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, hostPoolName, privateEndpointConnectionName, accept,
+            context);
     }
 
     /**
@@ -1296,56 +1359,6 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
      * resource.
      * @param connection Object containing the updated connection.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PrivateEndpointConnectionWithSystemDataInner>> updateByHostPoolWithResponseAsync(
-        String resourceGroupName, String hostPoolName, String privateEndpointConnectionName,
-        PrivateEndpointConnection connection, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (hostPoolName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
-        }
-        if (privateEndpointConnectionName == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter privateEndpointConnectionName is required and cannot be null."));
-        }
-        if (connection == null) {
-            return Mono.error(new IllegalArgumentException("Parameter connection is required and cannot be null."));
-        } else {
-            connection.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.updateByHostPool(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, hostPoolName, privateEndpointConnectionName, connection,
-            accept, context);
-    }
-
-    /**
-     * Approve or reject a private endpoint connection.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param hostPoolName The name of the host pool within the specified resource group.
-     * @param privateEndpointConnectionName The name of the private endpoint connection associated with the Azure
-     * resource.
-     * @param connection Object containing the updated connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1376,8 +1389,39 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     public Response<PrivateEndpointConnectionWithSystemDataInner> updateByHostPoolWithResponse(String resourceGroupName,
         String hostPoolName, String privateEndpointConnectionName, PrivateEndpointConnection connection,
         Context context) {
-        return updateByHostPoolWithResponseAsync(resourceGroupName, hostPoolName, privateEndpointConnectionName,
-            connection, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (hostPoolName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter hostPoolName is required and cannot be null."));
+        }
+        if (privateEndpointConnectionName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter privateEndpointConnectionName is required and cannot be null."));
+        }
+        if (connection == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter connection is required and cannot be null."));
+        } else {
+            connection.validate();
+        }
+        final String accept = "application/json";
+        return service.updateByHostPoolSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, hostPoolName, privateEndpointConnectionName, connection,
+            accept, context);
     }
 
     /**
@@ -1433,28 +1477,58 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of private endpoint connection associated with the specified storage account along with
+     * {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<PrivateEndpointConnectionWithSystemDataInner> listByWorkspaceNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PrivateEndpointConnectionListResultWithSystemData> res
+            = service.listByWorkspaceNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of private endpoint connection associated with the specified storage account along with
-     * {@link PagedResponse} on successful completion of {@link Mono}.
+     * {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateEndpointConnectionWithSystemDataInner>>
-        listByWorkspaceNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<PrivateEndpointConnectionWithSystemDataInner> listByWorkspaceNextSinglePage(String nextLink,
+        Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByWorkspaceNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<PrivateEndpointConnectionListResultWithSystemData> res
+            = service.listByWorkspaceNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -1490,27 +1564,59 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of private endpoint connection associated with the specified storage account along with
+     * {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<PrivateEndpointConnectionWithSystemDataInner> listByHostPoolNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PrivateEndpointConnectionListResultWithSystemData> res
+            = service.listByHostPoolNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of private endpoint connection associated with the specified storage account along with
-     * {@link PagedResponse} on successful completion of {@link Mono}.
+     * {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PrivateEndpointConnectionWithSystemDataInner>>
-        listByHostPoolNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<PrivateEndpointConnectionWithSystemDataInner> listByHostPoolNextSinglePage(String nextLink,
+        Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByHostPoolNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<PrivateEndpointConnectionListResultWithSystemData> res
+            = service.listByHostPoolNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PrivateEndpointConnectionsClientImpl.class);
 }

@@ -27,6 +27,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.DesktopsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.DesktopInner;
 import com.azure.resourcemanager.desktopvirtualization.models.DesktopList;
@@ -75,10 +76,31 @@ public final class DesktopsClientImpl implements DesktopsClient {
             @PathParam("desktopName") String desktopName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/applicationGroups/{applicationGroupName}/desktops/{desktopName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DesktopInner> getSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("applicationGroupName") String applicationGroupName,
+            @PathParam("desktopName") String desktopName, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/applicationGroups/{applicationGroupName}/desktops/{desktopName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DesktopInner>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("applicationGroupName") String applicationGroupName,
+            @PathParam("desktopName") String desktopName, @BodyParam("application/json") DesktopPatch desktop,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/applicationGroups/{applicationGroupName}/desktops/{desktopName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DesktopInner> updateSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("applicationGroupName") String applicationGroupName,
@@ -97,10 +119,28 @@ public final class DesktopsClientImpl implements DesktopsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/applicationGroups/{applicationGroupName}/desktops")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DesktopList> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("applicationGroupName") String applicationGroupName, @QueryParam("pageSize") Integer pageSize,
+            @QueryParam("isDescending") Boolean isDescending, @QueryParam("initialSkip") Integer initialSkip,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DesktopList>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DesktopList> listNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
@@ -150,46 +190,6 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param applicationGroupName The name of the application group.
      * @param desktopName The name of the desktop within the specified desktop group.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a desktop along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DesktopInner>> getWithResponseAsync(String resourceGroupName, String applicationGroupName,
-        String desktopName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (applicationGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter applicationGroupName is required and cannot be null."));
-        }
-        if (desktopName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter desktopName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, applicationGroupName, desktopName, accept, context);
-    }
-
-    /**
-     * Get a desktop.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @param desktopName The name of the desktop within the specified desktop group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -216,7 +216,31 @@ public final class DesktopsClientImpl implements DesktopsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<DesktopInner> getWithResponse(String resourceGroupName, String applicationGroupName,
         String desktopName, Context context) {
-        return getWithResponseAsync(resourceGroupName, applicationGroupName, desktopName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (applicationGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter applicationGroupName is required and cannot be null."));
+        }
+        if (desktopName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter desktopName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, applicationGroupName, desktopName, accept, context);
     }
 
     /**
@@ -286,50 +310,6 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param applicationGroupName The name of the application group.
      * @param desktopName The name of the desktop within the specified desktop group.
-     * @param desktop Object containing Desktop definitions.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schema for Desktop properties along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DesktopInner>> updateWithResponseAsync(String resourceGroupName, String applicationGroupName,
-        String desktopName, DesktopPatch desktop, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (applicationGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter applicationGroupName is required and cannot be null."));
-        }
-        if (desktopName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter desktopName is required and cannot be null."));
-        }
-        if (desktop != null) {
-            desktop.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, applicationGroupName, desktopName, desktop, accept, context);
-    }
-
-    /**
-     * Update a desktop.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @param desktopName The name of the desktop within the specified desktop group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -358,7 +338,35 @@ public final class DesktopsClientImpl implements DesktopsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<DesktopInner> updateWithResponse(String resourceGroupName, String applicationGroupName,
         String desktopName, DesktopPatch desktop, Context context) {
-        return updateWithResponseAsync(resourceGroupName, applicationGroupName, desktopName, desktop, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (applicationGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter applicationGroupName is required and cannot be null."));
+        }
+        if (desktopName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter desktopName is required and cannot be null."));
+        }
+        if (desktop != null) {
+            desktop.validate();
+        }
+        final String accept = "application/json";
+        return service.updateSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, applicationGroupName, desktopName, desktop, accept,
+            context);
     }
 
     /**
@@ -429,48 +437,6 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return desktopList along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DesktopInner>> listSinglePageAsync(String resourceGroupName, String applicationGroupName,
-        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (applicationGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter applicationGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * List desktops.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -512,17 +478,81 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return desktopList along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<DesktopInner> listSinglePage(String resourceGroupName, String applicationGroupName,
+        Integer pageSize, Boolean isDescending, Integer initialSkip) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (applicationGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter applicationGroupName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<DesktopList> res
+            = service.listSync(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * List desktops.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param applicationGroupName The name of the application group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return desktopList as paginated response with {@link PagedFlux}.
+     * @return desktopList along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DesktopInner> listAsync(String resourceGroupName, String applicationGroupName, Integer pageSize,
-        Boolean isDescending, Integer initialSkip, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, applicationGroupName, pageSize,
-            isDescending, initialSkip, context), nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<DesktopInner> listSinglePage(String resourceGroupName, String applicationGroupName,
+        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (applicationGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter applicationGroupName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<DesktopList> res
+            = service.listSync(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -541,7 +571,8 @@ public final class DesktopsClientImpl implements DesktopsClient {
         final Boolean isDescending = null;
         final Integer initialSkip = null;
         return new PagedIterable<>(
-            listAsync(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip));
+            () -> listSinglePage(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip),
+            nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -562,7 +593,8 @@ public final class DesktopsClientImpl implements DesktopsClient {
     public PagedIterable<DesktopInner> list(String resourceGroupName, String applicationGroupName, Integer pageSize,
         Boolean isDescending, Integer initialSkip, Context context) {
         return new PagedIterable<>(
-            listAsync(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, context));
+            () -> listSinglePage(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -594,25 +626,54 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return desktopList along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<DesktopInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<DesktopList> res = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return desktopList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return desktopList along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DesktopInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<DesktopInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<DesktopList> res = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DesktopsClientImpl.class);
 }

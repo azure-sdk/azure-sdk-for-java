@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.StartMenuItemsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.StartMenuItemInner;
 import com.azure.resourcemanager.desktopvirtualization.models.StartMenuItemList;
@@ -74,10 +75,28 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DesktopVirtualization/applicationGroups/{applicationGroupName}/startMenuItems")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<StartMenuItemList> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("applicationGroupName") String applicationGroupName, @QueryParam("pageSize") Integer pageSize,
+            @QueryParam("isDescending") Boolean isDescending, @QueryParam("initialSkip") Integer initialSkip,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<StartMenuItemList>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<StartMenuItemList> listNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
@@ -131,48 +150,6 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return startMenuItemList along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<StartMenuItemInner>> listSinglePageAsync(String resourceGroupName,
-        String applicationGroupName, Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (applicationGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter applicationGroupName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * List start menu items in the given application group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @param pageSize Number of items per page.
-     * @param isDescending Indicates whether the collection is descending.
-     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -214,17 +191,81 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      * @param pageSize Number of items per page.
      * @param isDescending Indicates whether the collection is descending.
      * @param initialSkip Initial number of items to skip.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return startMenuItemList along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<StartMenuItemInner> listSinglePage(String resourceGroupName, String applicationGroupName,
+        Integer pageSize, Boolean isDescending, Integer initialSkip) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (applicationGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter applicationGroupName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<StartMenuItemList> res
+            = service.listSync(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * List start menu items in the given application group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param applicationGroupName The name of the application group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return startMenuItemList as paginated response with {@link PagedFlux}.
+     * @return startMenuItemList along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<StartMenuItemInner> listAsync(String resourceGroupName, String applicationGroupName,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<StartMenuItemInner> listSinglePage(String resourceGroupName, String applicationGroupName,
         Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, applicationGroupName, pageSize,
-            isDescending, initialSkip, context), nextLink -> listNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (applicationGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter applicationGroupName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<StartMenuItemList> res
+            = service.listSync(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -243,7 +284,8 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
         final Boolean isDescending = null;
         final Integer initialSkip = null;
         return new PagedIterable<>(
-            listAsync(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip));
+            () -> listSinglePage(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip),
+            nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -264,7 +306,8 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
     public PagedIterable<StartMenuItemInner> list(String resourceGroupName, String applicationGroupName,
         Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
         return new PagedIterable<>(
-            listAsync(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, context));
+            () -> listSinglePage(resourceGroupName, applicationGroupName, pageSize, isDescending, initialSkip, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -296,25 +339,55 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return startMenuItemList along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<StartMenuItemInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<StartMenuItemList> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return startMenuItemList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return startMenuItemList along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<StartMenuItemInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<StartMenuItemInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<StartMenuItemList> res = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(StartMenuItemsClientImpl.class);
 }

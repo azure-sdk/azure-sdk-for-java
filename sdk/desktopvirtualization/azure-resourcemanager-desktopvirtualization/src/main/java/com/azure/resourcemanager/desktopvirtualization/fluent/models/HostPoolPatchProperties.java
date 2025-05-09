@@ -10,11 +10,15 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdatePatchProperties;
+import com.azure.resourcemanager.desktopvirtualization.models.DirectUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.HostpoolPublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedPrivateUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
+import com.azure.resourcemanager.desktopvirtualization.models.PublicUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfoPatch;
+import com.azure.resourcemanager.desktopvirtualization.models.RelayUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import java.io.IOException;
 
@@ -64,7 +68,8 @@ public final class HostPoolPatchProperties implements JsonSerializable<HostPoolP
     private Boolean validationEnvironment;
 
     /*
-     * The registration info of HostPool.
+     * The registration info of HostPool. This is not returned on GET. In order to get the registration token use the
+     * retrieveRegistrationToken or listRegistrationTokens POST calls.
      */
     private RegistrationInfoPatch registrationInfo;
 
@@ -112,6 +117,38 @@ public final class HostPoolPatchProperties implements JsonSerializable<HostPoolP
      * The session host configuration for updating agent, monitoring agent, and stack component.
      */
     private AgentUpdatePatchProperties agentUpdate;
+
+    /*
+     * Default: AVD-wide settings are used to determine connection availability, Enabled: UDP will attempt this
+     * connection type when making connections. This means that this connection is possible, but is not guaranteed, as
+     * there are other factors that may prevent this connection type, Disabled: UDP will not attempt this connection
+     * type when making connections
+     */
+    private ManagedPrivateUdp managedPrivateUdp;
+
+    /*
+     * Default: AVD-wide settings are used to determine connection availability, Enabled: UDP will attempt this
+     * connection type when making connections. This means that this connection is possible, but is not guaranteed, as
+     * there are other factors that may prevent this connection type, Disabled: UDP will not attempt this connection
+     * type when making connections
+     */
+    private DirectUdp directUdp;
+
+    /*
+     * Default: AVD-wide settings are used to determine connection availability, Enabled: UDP will attempt this
+     * connection type when making connections. This means that this connection is possible, but is not guaranteed, as
+     * there are other factors that may prevent this connection type, Disabled: UDP will not attempt this connection
+     * type when making connections
+     */
+    private PublicUdp publicUdp;
+
+    /*
+     * Default: AVD-wide settings are used to determine connection availability, Enabled: UDP will attempt this
+     * connection type when making connections. This means that this connection is possible, but is not guaranteed, as
+     * there are other factors that may prevent this connection type, Disabled: UDP will not attempt this connection
+     * type when making connections
+     */
+    private RelayUdp relayUdp;
 
     /**
      * Creates an instance of HostPoolPatchProperties class.
@@ -281,7 +318,8 @@ public final class HostPoolPatchProperties implements JsonSerializable<HostPoolP
     }
 
     /**
-     * Get the registrationInfo property: The registration info of HostPool.
+     * Get the registrationInfo property: The registration info of HostPool. This is not returned on GET. In order to
+     * get the registration token use the retrieveRegistrationToken or listRegistrationTokens POST calls.
      * 
      * @return the registrationInfo value.
      */
@@ -290,7 +328,8 @@ public final class HostPoolPatchProperties implements JsonSerializable<HostPoolP
     }
 
     /**
-     * Set the registrationInfo property: The registration info of HostPool.
+     * Set the registrationInfo property: The registration info of HostPool. This is not returned on GET. In order to
+     * get the registration token use the retrieveRegistrationToken or listRegistrationTokens POST calls.
      * 
      * @param registrationInfo the registrationInfo value to set.
      * @return the HostPoolPatchProperties object itself.
@@ -487,6 +526,110 @@ public final class HostPoolPatchProperties implements JsonSerializable<HostPoolP
     }
 
     /**
+     * Get the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @return the managedPrivateUdp value.
+     */
+    public ManagedPrivateUdp managedPrivateUdp() {
+        return this.managedPrivateUdp;
+    }
+
+    /**
+     * Set the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @param managedPrivateUdp the managedPrivateUdp value to set.
+     * @return the HostPoolPatchProperties object itself.
+     */
+    public HostPoolPatchProperties withManagedPrivateUdp(ManagedPrivateUdp managedPrivateUdp) {
+        this.managedPrivateUdp = managedPrivateUdp;
+        return this;
+    }
+
+    /**
+     * Get the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the directUdp value.
+     */
+    public DirectUdp directUdp() {
+        return this.directUdp;
+    }
+
+    /**
+     * Set the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @param directUdp the directUdp value to set.
+     * @return the HostPoolPatchProperties object itself.
+     */
+    public HostPoolPatchProperties withDirectUdp(DirectUdp directUdp) {
+        this.directUdp = directUdp;
+        return this;
+    }
+
+    /**
+     * Get the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the publicUdp value.
+     */
+    public PublicUdp publicUdp() {
+        return this.publicUdp;
+    }
+
+    /**
+     * Set the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @param publicUdp the publicUdp value to set.
+     * @return the HostPoolPatchProperties object itself.
+     */
+    public HostPoolPatchProperties withPublicUdp(PublicUdp publicUdp) {
+        this.publicUdp = publicUdp;
+        return this;
+    }
+
+    /**
+     * Get the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+     * will attempt this connection type when making connections. This means that this connection is possible, but is
+     * not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not attempt
+     * this connection type when making connections.
+     * 
+     * @return the relayUdp value.
+     */
+    public RelayUdp relayUdp() {
+        return this.relayUdp;
+    }
+
+    /**
+     * Set the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+     * will attempt this connection type when making connections. This means that this connection is possible, but is
+     * not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not attempt
+     * this connection type when making connections.
+     * 
+     * @param relayUdp the relayUdp value to set.
+     * @return the HostPoolPatchProperties object itself.
+     */
+    public HostPoolPatchProperties withRelayUdp(RelayUdp relayUdp) {
+        this.relayUdp = relayUdp;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -528,6 +671,11 @@ public final class HostPoolPatchProperties implements JsonSerializable<HostPoolP
         jsonWriter.writeStringField("publicNetworkAccess",
             this.publicNetworkAccess == null ? null : this.publicNetworkAccess.toString());
         jsonWriter.writeJsonField("agentUpdate", this.agentUpdate);
+        jsonWriter.writeStringField("managedPrivateUDP",
+            this.managedPrivateUdp == null ? null : this.managedPrivateUdp.toString());
+        jsonWriter.writeStringField("directUDP", this.directUdp == null ? null : this.directUdp.toString());
+        jsonWriter.writeStringField("publicUDP", this.publicUdp == null ? null : this.publicUdp.toString());
+        jsonWriter.writeStringField("relayUDP", this.relayUdp == null ? null : this.relayUdp.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -587,6 +735,15 @@ public final class HostPoolPatchProperties implements JsonSerializable<HostPoolP
                         = HostpoolPublicNetworkAccess.fromString(reader.getString());
                 } else if ("agentUpdate".equals(fieldName)) {
                     deserializedHostPoolPatchProperties.agentUpdate = AgentUpdatePatchProperties.fromJson(reader);
+                } else if ("managedPrivateUDP".equals(fieldName)) {
+                    deserializedHostPoolPatchProperties.managedPrivateUdp
+                        = ManagedPrivateUdp.fromString(reader.getString());
+                } else if ("directUDP".equals(fieldName)) {
+                    deserializedHostPoolPatchProperties.directUdp = DirectUdp.fromString(reader.getString());
+                } else if ("publicUDP".equals(fieldName)) {
+                    deserializedHostPoolPatchProperties.publicUdp = PublicUdp.fromString(reader.getString());
+                } else if ("relayUDP".equals(fieldName)) {
+                    deserializedHostPoolPatchProperties.relayUdp = RelayUdp.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

@@ -42,11 +42,34 @@ public interface ScalingPlanPooledSchedule {
     SystemData systemData();
 
     /**
+     * Gets the namePropertiesName property: Name of the ScalingPlanPooledSchedule.
+     * 
+     * @return the namePropertiesName value.
+     */
+    String namePropertiesName();
+
+    /**
      * Gets the daysOfWeek property: Set of days of the week on which this schedule is active.
      * 
      * @return the daysOfWeek value.
      */
     List<DayOfWeek> daysOfWeek();
+
+    /**
+     * Gets the scalingMethod property: The desired scaling method to be used to scale the hosts in the assigned host
+     * pool.
+     * 
+     * @return the scalingMethod value.
+     */
+    ScalingMethod scalingMethod();
+
+    /**
+     * Gets the createDelete property: The properties that control how Scaling will manage the size of the hostpool by
+     * creating and deleting hosts.
+     * 
+     * @return the createDelete value.
+     */
+    CreateDeleteProperties createDelete();
 
     /**
      * Gets the rampUpStartTime property: Starting time for ramp up period.
@@ -74,7 +97,7 @@ public interface ScalingPlanPooledSchedule {
      * 
      * @return the rampUpCapacityThresholdPct value.
      */
-    Integer rampUpCapacityThresholdPct();
+    int rampUpCapacityThresholdPct();
 
     /**
      * Gets the peakStartTime property: Starting time for peak period.
@@ -116,7 +139,7 @@ public interface ScalingPlanPooledSchedule {
      * 
      * @return the rampDownCapacityThresholdPct value.
      */
-    Integer rampDownCapacityThresholdPct();
+    int rampDownCapacityThresholdPct();
 
     /**
      * Gets the rampDownForceLogoffUsers property: Should users be logged off forcefully from hosts.
@@ -178,8 +201,11 @@ public interface ScalingPlanPooledSchedule {
     /**
      * The entirety of the ScalingPlanPooledSchedule definition.
      */
-    interface Definition
-        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithParentResource,
+        DefinitionStages.WithDaysOfWeek, DefinitionStages.WithRampUpStartTime,
+        DefinitionStages.WithRampUpCapacityThresholdPct, DefinitionStages.WithPeakStartTime,
+        DefinitionStages.WithRampDownStartTime, DefinitionStages.WithRampDownCapacityThresholdPct,
+        DefinitionStages.WithOffPeakStartTime, DefinitionStages.WithCreate {
     }
 
     /**
@@ -203,22 +229,110 @@ public interface ScalingPlanPooledSchedule {
              * @param scalingPlanName The name of the scaling plan.
              * @return the next definition stage.
              */
-            WithCreate withExistingScalingPlan(String resourceGroupName, String scalingPlanName);
+            WithDaysOfWeek withExistingScalingPlan(String resourceGroupName, String scalingPlanName);
+        }
+
+        /**
+         * The stage of the ScalingPlanPooledSchedule definition allowing to specify daysOfWeek.
+         */
+        interface WithDaysOfWeek {
+            /**
+             * Specifies the daysOfWeek property: Set of days of the week on which this schedule is active..
+             * 
+             * @param daysOfWeek Set of days of the week on which this schedule is active.
+             * @return the next definition stage.
+             */
+            WithRampUpStartTime withDaysOfWeek(List<DayOfWeek> daysOfWeek);
+        }
+
+        /**
+         * The stage of the ScalingPlanPooledSchedule definition allowing to specify rampUpStartTime.
+         */
+        interface WithRampUpStartTime {
+            /**
+             * Specifies the rampUpStartTime property: Starting time for ramp up period..
+             * 
+             * @param rampUpStartTime Starting time for ramp up period.
+             * @return the next definition stage.
+             */
+            WithRampUpCapacityThresholdPct withRampUpStartTime(Time rampUpStartTime);
+        }
+
+        /**
+         * The stage of the ScalingPlanPooledSchedule definition allowing to specify rampUpCapacityThresholdPct.
+         */
+        interface WithRampUpCapacityThresholdPct {
+            /**
+             * Specifies the rampUpCapacityThresholdPct property: Capacity threshold for ramp up period..
+             * 
+             * @param rampUpCapacityThresholdPct Capacity threshold for ramp up period.
+             * @return the next definition stage.
+             */
+            WithPeakStartTime withRampUpCapacityThresholdPct(int rampUpCapacityThresholdPct);
+        }
+
+        /**
+         * The stage of the ScalingPlanPooledSchedule definition allowing to specify peakStartTime.
+         */
+        interface WithPeakStartTime {
+            /**
+             * Specifies the peakStartTime property: Starting time for peak period..
+             * 
+             * @param peakStartTime Starting time for peak period.
+             * @return the next definition stage.
+             */
+            WithRampDownStartTime withPeakStartTime(Time peakStartTime);
+        }
+
+        /**
+         * The stage of the ScalingPlanPooledSchedule definition allowing to specify rampDownStartTime.
+         */
+        interface WithRampDownStartTime {
+            /**
+             * Specifies the rampDownStartTime property: Starting time for ramp down period..
+             * 
+             * @param rampDownStartTime Starting time for ramp down period.
+             * @return the next definition stage.
+             */
+            WithRampDownCapacityThresholdPct withRampDownStartTime(Time rampDownStartTime);
+        }
+
+        /**
+         * The stage of the ScalingPlanPooledSchedule definition allowing to specify rampDownCapacityThresholdPct.
+         */
+        interface WithRampDownCapacityThresholdPct {
+            /**
+             * Specifies the rampDownCapacityThresholdPct property: Capacity threshold for ramp down period..
+             * 
+             * @param rampDownCapacityThresholdPct Capacity threshold for ramp down period.
+             * @return the next definition stage.
+             */
+            WithOffPeakStartTime withRampDownCapacityThresholdPct(int rampDownCapacityThresholdPct);
+        }
+
+        /**
+         * The stage of the ScalingPlanPooledSchedule definition allowing to specify offPeakStartTime.
+         */
+        interface WithOffPeakStartTime {
+            /**
+             * Specifies the offPeakStartTime property: Starting time for off-peak period..
+             * 
+             * @param offPeakStartTime Starting time for off-peak period.
+             * @return the next definition stage.
+             */
+            WithCreate withOffPeakStartTime(Time offPeakStartTime);
         }
 
         /**
          * The stage of the ScalingPlanPooledSchedule definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithDaysOfWeek, DefinitionStages.WithRampUpStartTime,
+        interface WithCreate extends DefinitionStages.WithScalingMethod, DefinitionStages.WithCreateDelete,
             DefinitionStages.WithRampUpLoadBalancingAlgorithm, DefinitionStages.WithRampUpMinimumHostsPct,
-            DefinitionStages.WithRampUpCapacityThresholdPct, DefinitionStages.WithPeakStartTime,
-            DefinitionStages.WithPeakLoadBalancingAlgorithm, DefinitionStages.WithRampDownStartTime,
-            DefinitionStages.WithRampDownLoadBalancingAlgorithm, DefinitionStages.WithRampDownMinimumHostsPct,
-            DefinitionStages.WithRampDownCapacityThresholdPct, DefinitionStages.WithRampDownForceLogoffUsers,
+            DefinitionStages.WithPeakLoadBalancingAlgorithm, DefinitionStages.WithRampDownLoadBalancingAlgorithm,
+            DefinitionStages.WithRampDownMinimumHostsPct, DefinitionStages.WithRampDownForceLogoffUsers,
             DefinitionStages.WithRampDownStopHostsWhen, DefinitionStages.WithRampDownWaitTimeMinutes,
-            DefinitionStages.WithRampDownNotificationMessage, DefinitionStages.WithOffPeakStartTime,
-            DefinitionStages.WithOffPeakLoadBalancingAlgorithm {
+            DefinitionStages.WithRampDownNotificationMessage, DefinitionStages.WithOffPeakLoadBalancingAlgorithm {
             /**
              * Executes the create request.
              * 
@@ -236,29 +350,32 @@ public interface ScalingPlanPooledSchedule {
         }
 
         /**
-         * The stage of the ScalingPlanPooledSchedule definition allowing to specify daysOfWeek.
+         * The stage of the ScalingPlanPooledSchedule definition allowing to specify scalingMethod.
          */
-        interface WithDaysOfWeek {
+        interface WithScalingMethod {
             /**
-             * Specifies the daysOfWeek property: Set of days of the week on which this schedule is active..
+             * Specifies the scalingMethod property: The desired scaling method to be used to scale the hosts in the
+             * assigned host pool..
              * 
-             * @param daysOfWeek Set of days of the week on which this schedule is active.
+             * @param scalingMethod The desired scaling method to be used to scale the hosts in the assigned host pool.
              * @return the next definition stage.
              */
-            WithCreate withDaysOfWeek(List<DayOfWeek> daysOfWeek);
+            WithCreate withScalingMethod(ScalingMethod scalingMethod);
         }
 
         /**
-         * The stage of the ScalingPlanPooledSchedule definition allowing to specify rampUpStartTime.
+         * The stage of the ScalingPlanPooledSchedule definition allowing to specify createDelete.
          */
-        interface WithRampUpStartTime {
+        interface WithCreateDelete {
             /**
-             * Specifies the rampUpStartTime property: Starting time for ramp up period..
+             * Specifies the createDelete property: The properties that control how Scaling will manage the size of the
+             * hostpool by creating and deleting hosts..
              * 
-             * @param rampUpStartTime Starting time for ramp up period.
+             * @param createDelete The properties that control how Scaling will manage the size of the hostpool by
+             * creating and deleting hosts.
              * @return the next definition stage.
              */
-            WithCreate withRampUpStartTime(Time rampUpStartTime);
+            WithCreate withCreateDelete(CreateDeleteProperties createDelete);
         }
 
         /**
@@ -288,32 +405,6 @@ public interface ScalingPlanPooledSchedule {
         }
 
         /**
-         * The stage of the ScalingPlanPooledSchedule definition allowing to specify rampUpCapacityThresholdPct.
-         */
-        interface WithRampUpCapacityThresholdPct {
-            /**
-             * Specifies the rampUpCapacityThresholdPct property: Capacity threshold for ramp up period..
-             * 
-             * @param rampUpCapacityThresholdPct Capacity threshold for ramp up period.
-             * @return the next definition stage.
-             */
-            WithCreate withRampUpCapacityThresholdPct(Integer rampUpCapacityThresholdPct);
-        }
-
-        /**
-         * The stage of the ScalingPlanPooledSchedule definition allowing to specify peakStartTime.
-         */
-        interface WithPeakStartTime {
-            /**
-             * Specifies the peakStartTime property: Starting time for peak period..
-             * 
-             * @param peakStartTime Starting time for peak period.
-             * @return the next definition stage.
-             */
-            WithCreate withPeakStartTime(Time peakStartTime);
-        }
-
-        /**
          * The stage of the ScalingPlanPooledSchedule definition allowing to specify peakLoadBalancingAlgorithm.
          */
         interface WithPeakLoadBalancingAlgorithm {
@@ -324,19 +415,6 @@ public interface ScalingPlanPooledSchedule {
              * @return the next definition stage.
              */
             WithCreate withPeakLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm peakLoadBalancingAlgorithm);
-        }
-
-        /**
-         * The stage of the ScalingPlanPooledSchedule definition allowing to specify rampDownStartTime.
-         */
-        interface WithRampDownStartTime {
-            /**
-             * Specifies the rampDownStartTime property: Starting time for ramp down period..
-             * 
-             * @param rampDownStartTime Starting time for ramp down period.
-             * @return the next definition stage.
-             */
-            WithCreate withRampDownStartTime(Time rampDownStartTime);
         }
 
         /**
@@ -364,19 +442,6 @@ public interface ScalingPlanPooledSchedule {
              * @return the next definition stage.
              */
             WithCreate withRampDownMinimumHostsPct(Integer rampDownMinimumHostsPct);
-        }
-
-        /**
-         * The stage of the ScalingPlanPooledSchedule definition allowing to specify rampDownCapacityThresholdPct.
-         */
-        interface WithRampDownCapacityThresholdPct {
-            /**
-             * Specifies the rampDownCapacityThresholdPct property: Capacity threshold for ramp down period..
-             * 
-             * @param rampDownCapacityThresholdPct Capacity threshold for ramp down period.
-             * @return the next definition stage.
-             */
-            WithCreate withRampDownCapacityThresholdPct(Integer rampDownCapacityThresholdPct);
         }
 
         /**
@@ -434,19 +499,6 @@ public interface ScalingPlanPooledSchedule {
         }
 
         /**
-         * The stage of the ScalingPlanPooledSchedule definition allowing to specify offPeakStartTime.
-         */
-        interface WithOffPeakStartTime {
-            /**
-             * Specifies the offPeakStartTime property: Starting time for off-peak period..
-             * 
-             * @param offPeakStartTime Starting time for off-peak period.
-             * @return the next definition stage.
-             */
-            WithCreate withOffPeakStartTime(Time offPeakStartTime);
-        }
-
-        /**
          * The stage of the ScalingPlanPooledSchedule definition allowing to specify offPeakLoadBalancingAlgorithm.
          */
         interface WithOffPeakLoadBalancingAlgorithm {
@@ -471,10 +523,10 @@ public interface ScalingPlanPooledSchedule {
     /**
      * The template for ScalingPlanPooledSchedule update.
      */
-    interface Update extends UpdateStages.WithDaysOfWeek, UpdateStages.WithRampUpStartTime,
-        UpdateStages.WithRampUpLoadBalancingAlgorithm, UpdateStages.WithRampUpMinimumHostsPct,
-        UpdateStages.WithRampUpCapacityThresholdPct, UpdateStages.WithPeakStartTime,
-        UpdateStages.WithPeakLoadBalancingAlgorithm, UpdateStages.WithRampDownStartTime,
+    interface Update extends UpdateStages.WithDaysOfWeek, UpdateStages.WithScalingMethod, UpdateStages.WithCreateDelete,
+        UpdateStages.WithRampUpStartTime, UpdateStages.WithRampUpLoadBalancingAlgorithm,
+        UpdateStages.WithRampUpMinimumHostsPct, UpdateStages.WithRampUpCapacityThresholdPct,
+        UpdateStages.WithPeakStartTime, UpdateStages.WithPeakLoadBalancingAlgorithm, UpdateStages.WithRampDownStartTime,
         UpdateStages.WithRampDownLoadBalancingAlgorithm, UpdateStages.WithRampDownMinimumHostsPct,
         UpdateStages.WithRampDownCapacityThresholdPct, UpdateStages.WithRampDownForceLogoffUsers,
         UpdateStages.WithRampDownStopHostsWhen, UpdateStages.WithRampDownWaitTimeMinutes,
@@ -511,6 +563,35 @@ public interface ScalingPlanPooledSchedule {
              * @return the next definition stage.
              */
             Update withDaysOfWeek(List<DayOfWeek> daysOfWeek);
+        }
+
+        /**
+         * The stage of the ScalingPlanPooledSchedule update allowing to specify scalingMethod.
+         */
+        interface WithScalingMethod {
+            /**
+             * Specifies the scalingMethod property: The desired scaling method to be used to scale the hosts in the
+             * assigned host pool..
+             * 
+             * @param scalingMethod The desired scaling method to be used to scale the hosts in the assigned host pool.
+             * @return the next definition stage.
+             */
+            Update withScalingMethod(ScalingMethod scalingMethod);
+        }
+
+        /**
+         * The stage of the ScalingPlanPooledSchedule update allowing to specify createDelete.
+         */
+        interface WithCreateDelete {
+            /**
+             * Specifies the createDelete property: The properties that control how Scaling will manage the size of the
+             * hostpool by creating and deleting hosts..
+             * 
+             * @param createDelete The properties that control how Scaling will manage the size of the hostpool by
+             * creating and deleting hosts.
+             * @return the next definition stage.
+             */
+            Update withCreateDelete(CreateDeleteProperties createDelete);
         }
 
         /**
