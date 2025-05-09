@@ -12,8 +12,8 @@ import com.azure.resourcemanager.machinelearning.models.DestinationAsset;
 public final class DataVersionsPublishSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/DataVersionBase/publish.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/Workspace/DataVersionBase/publish.json
      */
     /**
      * Sample code: Publish Workspace Data Version Base.
@@ -24,9 +24,9 @@ public final class DataVersionsPublishSamples {
         publishWorkspaceDataVersionBase(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.dataVersions()
             .publish("test-rg", "my-aml-workspace", "string", "string",
-                new DestinationAsset().withRegistryName("string")
-                    .withDestinationName("string")
-                    .withDestinationVersion("string"),
+                new DestinationAsset().withDestinationName("string")
+                    .withDestinationVersion("string")
+                    .withRegistryName("string"),
                 com.azure.core.util.Context.NONE);
     }
 }

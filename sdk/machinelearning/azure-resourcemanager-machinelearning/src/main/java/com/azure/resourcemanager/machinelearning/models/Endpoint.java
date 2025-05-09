@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Describes the endpoint configuration for the container.
+ * The Endpoint model.
  */
 @Fluent
 public final class Endpoint implements JsonSerializable<Endpoint> {

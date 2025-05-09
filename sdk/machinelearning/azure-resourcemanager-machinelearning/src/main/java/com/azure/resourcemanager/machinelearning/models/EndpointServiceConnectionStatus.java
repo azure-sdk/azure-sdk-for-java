@@ -32,6 +32,11 @@ public final class EndpointServiceConnectionStatus extends ExpandableStringEnum<
     public static final EndpointServiceConnectionStatus DISCONNECTED = fromString("Disconnected");
 
     /**
+     * Static value Timeout for EndpointServiceConnectionStatus.
+     */
+    public static final EndpointServiceConnectionStatus TIMEOUT = fromString("Timeout");
+
+    /**
      * Creates a new instance of EndpointServiceConnectionStatus value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.
