@@ -15,8 +15,8 @@ import java.time.Duration;
 public final class ComputeUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Compute/patch.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/Compute/patch.json
      */
     /**
      * Sample code: Update a AmlCompute Compute.

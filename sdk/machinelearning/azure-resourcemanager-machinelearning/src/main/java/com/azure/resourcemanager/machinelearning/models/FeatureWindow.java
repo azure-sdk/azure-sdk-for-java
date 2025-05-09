@@ -20,39 +20,19 @@ import java.time.format.DateTimeFormatter;
 @Fluent
 public final class FeatureWindow implements JsonSerializable<FeatureWindow> {
     /*
-     * Specifies the feature window start time
-     */
-    private OffsetDateTime featureWindowStart;
-
-    /*
      * Specifies the feature window end time
      */
     private OffsetDateTime featureWindowEnd;
+
+    /*
+     * Specifies the feature window start time
+     */
+    private OffsetDateTime featureWindowStart;
 
     /**
      * Creates an instance of FeatureWindow class.
      */
     public FeatureWindow() {
-    }
-
-    /**
-     * Get the featureWindowStart property: Specifies the feature window start time.
-     * 
-     * @return the featureWindowStart value.
-     */
-    public OffsetDateTime featureWindowStart() {
-        return this.featureWindowStart;
-    }
-
-    /**
-     * Set the featureWindowStart property: Specifies the feature window start time.
-     * 
-     * @param featureWindowStart the featureWindowStart value to set.
-     * @return the FeatureWindow object itself.
-     */
-    public FeatureWindow withFeatureWindowStart(OffsetDateTime featureWindowStart) {
-        this.featureWindowStart = featureWindowStart;
-        return this;
     }
 
     /**
@@ -76,6 +56,26 @@ public final class FeatureWindow implements JsonSerializable<FeatureWindow> {
     }
 
     /**
+     * Get the featureWindowStart property: Specifies the feature window start time.
+     * 
+     * @return the featureWindowStart value.
+     */
+    public OffsetDateTime featureWindowStart() {
+        return this.featureWindowStart;
+    }
+
+    /**
+     * Set the featureWindowStart property: Specifies the feature window start time.
+     * 
+     * @param featureWindowStart the featureWindowStart value to set.
+     * @return the FeatureWindow object itself.
+     */
+    public FeatureWindow withFeatureWindowStart(OffsetDateTime featureWindowStart) {
+        this.featureWindowStart = featureWindowStart;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -89,14 +89,14 @@ public final class FeatureWindow implements JsonSerializable<FeatureWindow> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("featureWindowStart",
-            this.featureWindowStart == null
-                ? null
-                : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.featureWindowStart));
         jsonWriter.writeStringField("featureWindowEnd",
             this.featureWindowEnd == null
                 ? null
                 : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.featureWindowEnd));
+        jsonWriter.writeStringField("featureWindowStart",
+            this.featureWindowStart == null
+                ? null
+                : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.featureWindowStart));
         return jsonWriter.writeEndObject();
     }
 
@@ -115,11 +115,11 @@ public final class FeatureWindow implements JsonSerializable<FeatureWindow> {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("featureWindowStart".equals(fieldName)) {
-                    deserializedFeatureWindow.featureWindowStart = reader
-                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
-                } else if ("featureWindowEnd".equals(fieldName)) {
+                if ("featureWindowEnd".equals(fieldName)) {
                     deserializedFeatureWindow.featureWindowEnd = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("featureWindowStart".equals(fieldName)) {
+                    deserializedFeatureWindow.featureWindowStart = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else {
                     reader.skipChildren();

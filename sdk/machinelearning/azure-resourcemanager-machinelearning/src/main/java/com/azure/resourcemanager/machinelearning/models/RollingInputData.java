@@ -25,6 +25,11 @@ public final class RollingInputData extends MonitoringInputDataBase {
     private MonitoringInputDataType inputDataType = MonitoringInputDataType.ROLLING;
 
     /*
+     * Reference to the component asset used to preprocess the data.
+     */
+    private String preprocessingComponentId;
+
+    /*
      * [Required] The time offset between the end of the data window and the monitor's current run time.
      */
     private Duration windowOffset;
@@ -33,11 +38,6 @@ public final class RollingInputData extends MonitoringInputDataBase {
      * [Required] The size of the rolling data window.
      */
     private Duration windowSize;
-
-    /*
-     * Reference to the component asset used to preprocess the data.
-     */
-    private String preprocessingComponentId;
 
     /**
      * Creates an instance of RollingInputData class.
@@ -53,6 +53,26 @@ public final class RollingInputData extends MonitoringInputDataBase {
     @Override
     public MonitoringInputDataType inputDataType() {
         return this.inputDataType;
+    }
+
+    /**
+     * Get the preprocessingComponentId property: Reference to the component asset used to preprocess the data.
+     * 
+     * @return the preprocessingComponentId value.
+     */
+    public String preprocessingComponentId() {
+        return this.preprocessingComponentId;
+    }
+
+    /**
+     * Set the preprocessingComponentId property: Reference to the component asset used to preprocess the data.
+     * 
+     * @param preprocessingComponentId the preprocessingComponentId value to set.
+     * @return the RollingInputData object itself.
+     */
+    public RollingInputData withPreprocessingComponentId(String preprocessingComponentId) {
+        this.preprocessingComponentId = preprocessingComponentId;
+        return this;
     }
 
     /**
@@ -98,22 +118,11 @@ public final class RollingInputData extends MonitoringInputDataBase {
     }
 
     /**
-     * Get the preprocessingComponentId property: Reference to the component asset used to preprocess the data.
-     * 
-     * @return the preprocessingComponentId value.
+     * {@inheritDoc}
      */
-    public String preprocessingComponentId() {
-        return this.preprocessingComponentId;
-    }
-
-    /**
-     * Set the preprocessingComponentId property: Reference to the component asset used to preprocess the data.
-     * 
-     * @param preprocessingComponentId the preprocessingComponentId value to set.
-     * @return the RollingInputData object itself.
-     */
-    public RollingInputData withPreprocessingComponentId(String preprocessingComponentId) {
-        this.preprocessingComponentId = preprocessingComponentId;
+    @Override
+    public RollingInputData withColumns(Map<String, String> columns) {
+        super.withColumns(columns);
         return this;
     }
 
@@ -145,22 +154,12 @@ public final class RollingInputData extends MonitoringInputDataBase {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public RollingInputData withColumns(Map<String, String> columns) {
-        super.withColumns(columns);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
         if (windowOffset() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property windowOffset in model RollingInputData"));
@@ -168,6 +167,14 @@ public final class RollingInputData extends MonitoringInputDataBase {
         if (windowSize() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property windowSize in model RollingInputData"));
+        }
+        if (jobInputType() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property jobInputType in model RollingInputData"));
+        }
+        if (uri() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property uri in model RollingInputData"));
         }
     }
 
@@ -181,8 +188,8 @@ public final class RollingInputData extends MonitoringInputDataBase {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("jobInputType", jobInputType() == null ? null : jobInputType().toString());
         jsonWriter.writeStringField("uri", uri());
-        jsonWriter.writeStringField("dataContext", dataContext());
         jsonWriter.writeMapField("columns", columns(), (writer, element) -> writer.writeString(element));
+        jsonWriter.writeStringField("dataContext", dataContext());
         jsonWriter.writeStringField("windowOffset", CoreUtils.durationToStringWithDays(this.windowOffset));
         jsonWriter.writeStringField("windowSize", CoreUtils.durationToStringWithDays(this.windowSize));
         jsonWriter.writeStringField("inputDataType", this.inputDataType == null ? null : this.inputDataType.toString());
@@ -210,11 +217,11 @@ public final class RollingInputData extends MonitoringInputDataBase {
                     deserializedRollingInputData.withJobInputType(JobInputType.fromString(reader.getString()));
                 } else if ("uri".equals(fieldName)) {
                     deserializedRollingInputData.withUri(reader.getString());
-                } else if ("dataContext".equals(fieldName)) {
-                    deserializedRollingInputData.withDataContext(reader.getString());
                 } else if ("columns".equals(fieldName)) {
                     Map<String, String> columns = reader.readMap(reader1 -> reader1.getString());
                     deserializedRollingInputData.withColumns(columns);
+                } else if ("dataContext".equals(fieldName)) {
+                    deserializedRollingInputData.withDataContext(reader.getString());
                 } else if ("windowOffset".equals(fieldName)) {
                     deserializedRollingInputData.windowOffset
                         = reader.getNullable(nonNullReader -> Duration.parse(nonNullReader.getString()));

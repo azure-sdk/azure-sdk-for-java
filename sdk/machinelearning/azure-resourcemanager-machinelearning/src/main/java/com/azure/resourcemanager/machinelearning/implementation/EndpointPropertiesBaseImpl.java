@@ -23,8 +23,21 @@ public final class EndpointPropertiesBaseImpl implements EndpointPropertiesBase 
         this.serviceManager = serviceManager;
     }
 
+    public EndpointAuthMode authMode() {
+        return this.innerModel().authMode();
+    }
+
     public String description() {
         return this.innerModel().description();
+    }
+
+    public EndpointAuthKeys keys() {
+        EndpointAuthKeysInner inner = this.innerModel().keys();
+        if (inner != null) {
+            return new EndpointAuthKeysImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Map<String, String> properties() {
@@ -42,19 +55,6 @@ public final class EndpointPropertiesBaseImpl implements EndpointPropertiesBase 
 
     public String swaggerUri() {
         return this.innerModel().swaggerUri();
-    }
-
-    public EndpointAuthMode authMode() {
-        return this.innerModel().authMode();
-    }
-
-    public EndpointAuthKeys keys() {
-        EndpointAuthKeysInner inner = this.innerModel().keys();
-        if (inner != null) {
-            return new EndpointAuthKeysImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public EndpointPropertiesBaseInner innerModel() {

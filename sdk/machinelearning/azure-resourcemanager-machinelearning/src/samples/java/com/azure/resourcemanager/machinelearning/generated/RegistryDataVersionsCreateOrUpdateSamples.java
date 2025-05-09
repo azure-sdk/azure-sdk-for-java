@@ -16,8 +16,8 @@ import java.util.Map;
 public final class RegistryDataVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registry/DataVersionBase/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/Registry/DataVersionBase/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Registry Data Version Base.
@@ -29,10 +29,10 @@ public final class RegistryDataVersionsCreateOrUpdateSamples {
         manager.registryDataVersions()
             .createOrUpdate("test-rg", "registryName", "string", "string",
                 new DataVersionBaseInner().withProperties(new MLTableData().withDescription("string")
-                    .withTags(mapOf("string", "string"))
                     .withProperties(mapOf("string", "string"))
-                    .withIsArchived(false)
+                    .withTags(mapOf("string", "string"))
                     .withIsAnonymous(false)
+                    .withIsArchived(false)
                     .withDataUri("string")
                     .withReferencedUris(Arrays.asList("string"))),
                 com.azure.core.util.Context.NONE);

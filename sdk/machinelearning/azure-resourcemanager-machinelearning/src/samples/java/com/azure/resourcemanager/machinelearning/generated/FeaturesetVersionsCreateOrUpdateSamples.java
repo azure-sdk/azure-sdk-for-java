@@ -25,8 +25,8 @@ import java.util.Map;
 public final class FeaturesetVersionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Workspace/FeaturesetVersion/createOrUpdate.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/Workspace/FeaturesetVersion/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Workspace Featureset Version.
@@ -39,28 +39,29 @@ public final class FeaturesetVersionsCreateOrUpdateSamples {
             .define("string")
             .withExistingFeatureset("test-rg", "my-aml-workspace", "string")
             .withProperties(new FeaturesetVersionProperties().withDescription("string")
-                .withTags(mapOf("string", "string"))
                 .withProperties(mapOf("string", "string"))
-                .withIsArchived(false)
+                .withTags(mapOf("string", "string"))
                 .withIsAnonymous(false)
+                .withIsArchived(false)
+                .withEntities(Arrays.asList("string"))
+                .withMaterializationSettings(new MaterializationSettings()
+                    .withNotification(
+                        new NotificationSetting().withEmailOn(Arrays.asList(EmailNotificationEnableType.JOB_FAILED))
+                            .withEmails(Arrays.asList("string")))
+                    .withResource(new MaterializationComputeResource().withInstanceType("string"))
+                    .withSchedule(new RecurrenceTrigger().withEndTime("string")
+                        .withStartTime("string")
+                        .withTimeZone("string")
+                        .withFrequency(RecurrenceFrequency.DAY)
+                        .withInterval(1)
+                        .withSchedule(new RecurrenceSchedule().withHours(Arrays.asList(1))
+                            .withMinutes(Arrays.asList(1))
+                            .withMonthDays(Arrays.asList(1))
+                            .withWeekDays(Arrays.asList(WeekDay.MONDAY))))
+                    .withSparkConfiguration(mapOf("string", "string"))
+                    .withStoreType(MaterializationStoreType.ONLINE))
                 .withSpecification(new FeaturesetSpecification().withPath("string"))
-                .withMaterializationSettings(
-                    new MaterializationSettings().withStoreType(MaterializationStoreType.ONLINE)
-                        .withSchedule(new RecurrenceTrigger().withEndTime("string")
-                            .withStartTime("string")
-                            .withTimeZone("string")
-                            .withFrequency(RecurrenceFrequency.DAY)
-                            .withInterval(1)
-                            .withSchedule(new RecurrenceSchedule().withHours(Arrays.asList(1))
-                                .withMinutes(Arrays.asList(1))
-                                .withWeekDays(Arrays.asList(WeekDay.MONDAY))
-                                .withMonthDays(Arrays.asList(1))))
-                        .withNotification(new NotificationSetting().withEmails(Arrays.asList("string"))
-                            .withEmailOn(Arrays.asList(EmailNotificationEnableType.JOB_FAILED)))
-                        .withResource(new MaterializationComputeResource().withInstanceType("string"))
-                        .withSparkConfiguration(mapOf("string", "string")))
-                .withStage("string")
-                .withEntities(Arrays.asList("string")))
+                .withStage("string"))
             .create();
     }
 

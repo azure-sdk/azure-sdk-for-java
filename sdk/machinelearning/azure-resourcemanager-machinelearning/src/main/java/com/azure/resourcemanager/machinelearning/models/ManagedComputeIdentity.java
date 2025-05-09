@@ -69,7 +69,6 @@ public final class ManagedComputeIdentity extends MonitorComputeIdentityBase {
      */
     @Override
     public void validate() {
-        super.validate();
         if (identity() != null) {
             identity().validate();
         }

@@ -21,8 +21,10 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.machinelearning.fluent.ManagedNetworkProvisionsClient;
@@ -74,13 +76,24 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") ManagedNetworkProvisionOptions body, @HeaderParam("Accept") String accept,
             Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/provisionManagedNetwork")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> provisionManagedNetworkSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") ManagedNetworkProvisionOptions body, @HeaderParam("Accept") String accept,
+            Context context);
     }
 
     /**
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param body Managed Network Provisioning Options for a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -121,39 +134,82 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
+     * @param body Managed Network Provisioning Options for a machine learning workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return status of the Provisioning for the managed network of a machine learning workspace along with
+     * {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> provisionManagedNetworkWithResponse(String resourceGroupName, String workspaceName,
+        ManagedNetworkProvisionOptions body) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (body != null) {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return service.provisionManagedNetworkSync(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, workspaceName, this.client.getApiVersion(), body, accept, Context.NONE);
+    }
+
+    /**
+     * Provisions the managed network of a machine learning workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param body Managed Network Provisioning Options for a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return status of the Provisioning for the managed network of a machine learning workspace along with
-     * {@link Response} on successful completion of {@link Mono}.
+     * {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> provisionManagedNetworkWithResponseAsync(String resourceGroupName,
-        String workspaceName, ManagedNetworkProvisionOptions body, Context context) {
+    private Response<BinaryData> provisionManagedNetworkWithResponse(String resourceGroupName, String workspaceName,
+        ManagedNetworkProvisionOptions body, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
         if (body != null) {
             body.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.provisionManagedNetwork(this.client.getEndpoint(), this.client.getSubscriptionId(),
+        return service.provisionManagedNetworkSync(this.client.getEndpoint(), this.client.getSubscriptionId(),
             resourceGroupName, workspaceName, this.client.getApiVersion(), body, accept, context);
     }
 
@@ -161,7 +217,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param body Managed Network Provisioning Options for a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -184,7 +240,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -206,32 +262,28 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param body Managed Network Provisioning Options for a machine learning workspace.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of status of the Provisioning for the managed network of a machine
+     * @return the {@link SyncPoller} for polling of status of the Provisioning for the managed network of a machine
      * learning workspace.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ManagedNetworkProvisionStatusInner>, ManagedNetworkProvisionStatusInner>
-        beginProvisionManagedNetworkAsync(String resourceGroupName, String workspaceName,
-            ManagedNetworkProvisionOptions body, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = provisionManagedNetworkWithResponseAsync(resourceGroupName, workspaceName, body, context);
-        return this.client.<ManagedNetworkProvisionStatusInner, ManagedNetworkProvisionStatusInner>getLroResult(mono,
-            this.client.getHttpPipeline(), ManagedNetworkProvisionStatusInner.class,
-            ManagedNetworkProvisionStatusInner.class, context);
+    public SyncPoller<PollResult<ManagedNetworkProvisionStatusInner>, ManagedNetworkProvisionStatusInner>
+        beginProvisionManagedNetwork(String resourceGroupName, String workspaceName,
+            ManagedNetworkProvisionOptions body) {
+        Response<BinaryData> response = provisionManagedNetworkWithResponse(resourceGroupName, workspaceName, body);
+        return this.client.<ManagedNetworkProvisionStatusInner, ManagedNetworkProvisionStatusInner>getLroResult(
+            response, ManagedNetworkProvisionStatusInner.class, ManagedNetworkProvisionStatusInner.class, Context.NONE);
     }
 
     /**
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -242,14 +294,16 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
     public SyncPoller<PollResult<ManagedNetworkProvisionStatusInner>, ManagedNetworkProvisionStatusInner>
         beginProvisionManagedNetwork(String resourceGroupName, String workspaceName) {
         final ManagedNetworkProvisionOptions body = null;
-        return this.beginProvisionManagedNetworkAsync(resourceGroupName, workspaceName, body).getSyncPoller();
+        Response<BinaryData> response = provisionManagedNetworkWithResponse(resourceGroupName, workspaceName, body);
+        return this.client.<ManagedNetworkProvisionStatusInner, ManagedNetworkProvisionStatusInner>getLroResult(
+            response, ManagedNetworkProvisionStatusInner.class, ManagedNetworkProvisionStatusInner.class, Context.NONE);
     }
 
     /**
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param body Managed Network Provisioning Options for a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -262,14 +316,17 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
     public SyncPoller<PollResult<ManagedNetworkProvisionStatusInner>, ManagedNetworkProvisionStatusInner>
         beginProvisionManagedNetwork(String resourceGroupName, String workspaceName,
             ManagedNetworkProvisionOptions body, Context context) {
-        return this.beginProvisionManagedNetworkAsync(resourceGroupName, workspaceName, body, context).getSyncPoller();
+        Response<BinaryData> response
+            = provisionManagedNetworkWithResponse(resourceGroupName, workspaceName, body, context);
+        return this.client.<ManagedNetworkProvisionStatusInner, ManagedNetworkProvisionStatusInner>getLroResult(
+            response, ManagedNetworkProvisionStatusInner.class, ManagedNetworkProvisionStatusInner.class, context);
     }
 
     /**
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param body Managed Network Provisioning Options for a machine learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -288,7 +345,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -307,27 +364,7 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param body Managed Network Provisioning Options for a machine learning workspace.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return status of the Provisioning for the managed network of a machine learning workspace on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ManagedNetworkProvisionStatusInner> provisionManagedNetworkAsync(String resourceGroupName,
-        String workspaceName, ManagedNetworkProvisionOptions body, Context context) {
-        return beginProvisionManagedNetworkAsync(resourceGroupName, workspaceName, body, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Provisions the managed network of a machine learning workspace.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -336,14 +373,14 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ManagedNetworkProvisionStatusInner provisionManagedNetwork(String resourceGroupName, String workspaceName) {
         final ManagedNetworkProvisionOptions body = null;
-        return provisionManagedNetworkAsync(resourceGroupName, workspaceName, body).block();
+        return beginProvisionManagedNetwork(resourceGroupName, workspaceName, body).getFinalResult();
     }
 
     /**
      * Provisions the managed network of a machine learning workspace.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param body Managed Network Provisioning Options for a machine learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -354,6 +391,8 @@ public final class ManagedNetworkProvisionsClientImpl implements ManagedNetworkP
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ManagedNetworkProvisionStatusInner provisionManagedNetwork(String resourceGroupName, String workspaceName,
         ManagedNetworkProvisionOptions body, Context context) {
-        return provisionManagedNetworkAsync(resourceGroupName, workspaceName, body, context).block();
+        return beginProvisionManagedNetwork(resourceGroupName, workspaceName, body, context).getFinalResult();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ManagedNetworkProvisionsClientImpl.class);
 }

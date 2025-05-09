@@ -238,8 +238,8 @@ public final class ImageClassificationMultilabel extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public ImageClassificationMultilabel withTrainingData(MLTableJobInput trainingData) {
-        super.withTrainingData(trainingData);
+    public ImageClassificationMultilabel withTargetColumnName(String targetColumnName) {
+        super.withTargetColumnName(targetColumnName);
         return this;
     }
 
@@ -247,8 +247,8 @@ public final class ImageClassificationMultilabel extends AutoMLVertical {
      * {@inheritDoc}
      */
     @Override
-    public ImageClassificationMultilabel withTargetColumnName(String targetColumnName) {
-        super.withTargetColumnName(targetColumnName);
+    public ImageClassificationMultilabel withTrainingData(MLTableJobInput trainingData) {
+        super.withTrainingData(trainingData);
         return this;
     }
 
@@ -259,7 +259,6 @@ public final class ImageClassificationMultilabel extends AutoMLVertical {
      */
     @Override
     public void validate() {
-        super.validate();
         if (modelSettings() != null) {
             modelSettings().validate();
         }
@@ -278,6 +277,13 @@ public final class ImageClassificationMultilabel extends AutoMLVertical {
         }
         if (validationData() != null) {
             validationData().validate();
+        }
+        if (trainingData() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property trainingData in model ImageClassificationMultilabel"));
+        } else {
+            trainingData().validate();
         }
     }
 

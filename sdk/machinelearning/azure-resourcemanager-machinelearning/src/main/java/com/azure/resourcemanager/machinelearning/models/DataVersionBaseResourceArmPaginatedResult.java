@@ -20,39 +20,19 @@ import java.util.List;
 public final class DataVersionBaseResourceArmPaginatedResult
     implements JsonSerializable<DataVersionBaseResourceArmPaginatedResult> {
     /*
-     * An array of objects of type DataVersionBase.
-     */
-    private List<DataVersionBaseInner> value;
-
-    /*
      * The link to the next page of DataVersionBase objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type DataVersionBase.
+     */
+    private List<DataVersionBaseInner> value;
 
     /**
      * Creates an instance of DataVersionBaseResourceArmPaginatedResult class.
      */
     public DataVersionBaseResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type DataVersionBase.
-     * 
-     * @return the value value.
-     */
-    public List<DataVersionBaseInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type DataVersionBase.
-     * 
-     * @param value the value value to set.
-     * @return the DataVersionBaseResourceArmPaginatedResult object itself.
-     */
-    public DataVersionBaseResourceArmPaginatedResult withValue(List<DataVersionBaseInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -78,6 +58,26 @@ public final class DataVersionBaseResourceArmPaginatedResult
     }
 
     /**
+     * Get the value property: An array of objects of type DataVersionBase.
+     * 
+     * @return the value value.
+     */
+    public List<DataVersionBaseInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type DataVersionBase.
+     * 
+     * @param value the value value to set.
+     * @return the DataVersionBaseResourceArmPaginatedResult object itself.
+     */
+    public DataVersionBaseResourceArmPaginatedResult withValue(List<DataVersionBaseInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -94,8 +94,8 @@ public final class DataVersionBaseResourceArmPaginatedResult
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -115,12 +115,12 @@ public final class DataVersionBaseResourceArmPaginatedResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedDataVersionBaseResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<DataVersionBaseInner> value
                         = reader.readArray(reader1 -> DataVersionBaseInner.fromJson(reader1));
                     deserializedDataVersionBaseResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedDataVersionBaseResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

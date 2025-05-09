@@ -27,6 +27,12 @@ public final class DataCollector implements JsonSerializable<DataCollector> {
     private Map<String, Collection> collections;
 
     /*
+     * The request logging configuration for mdc, it includes advanced logging settings for all collections. It's
+     * optional.
+     */
+    private RequestLogging requestLogging;
+
+    /*
      * When model data is collected to blob storage, we need to roll the data to different path to avoid logging all of
      * them in a single blob file.
      * If the rolling rate is hour, all data will be collected in the blob path /yyyy/MM/dd/HH/.
@@ -35,12 +41,6 @@ public final class DataCollector implements JsonSerializable<DataCollector> {
      * quickly.
      */
     private RollingRateType rollingRate;
-
-    /*
-     * The request logging configuration for mdc, it includes advanced logging settings for all collections. It's
-     * optional.
-     */
-    private RequestLogging requestLogging;
 
     /**
      * Creates an instance of DataCollector class.
@@ -75,6 +75,28 @@ public final class DataCollector implements JsonSerializable<DataCollector> {
     }
 
     /**
+     * Get the requestLogging property: The request logging configuration for mdc, it includes advanced logging settings
+     * for all collections. It's optional.
+     * 
+     * @return the requestLogging value.
+     */
+    public RequestLogging requestLogging() {
+        return this.requestLogging;
+    }
+
+    /**
+     * Set the requestLogging property: The request logging configuration for mdc, it includes advanced logging settings
+     * for all collections. It's optional.
+     * 
+     * @param requestLogging the requestLogging value to set.
+     * @return the DataCollector object itself.
+     */
+    public DataCollector withRequestLogging(RequestLogging requestLogging) {
+        this.requestLogging = requestLogging;
+        return this;
+    }
+
+    /**
      * Get the rollingRate property: When model data is collected to blob storage, we need to roll the data to different
      * path to avoid logging all of them in a single blob file.
      * If the rolling rate is hour, all data will be collected in the blob path /yyyy/MM/dd/HH/.
@@ -101,28 +123,6 @@ public final class DataCollector implements JsonSerializable<DataCollector> {
      */
     public DataCollector withRollingRate(RollingRateType rollingRate) {
         this.rollingRate = rollingRate;
-        return this;
-    }
-
-    /**
-     * Get the requestLogging property: The request logging configuration for mdc, it includes advanced logging settings
-     * for all collections. It's optional.
-     * 
-     * @return the requestLogging value.
-     */
-    public RequestLogging requestLogging() {
-        return this.requestLogging;
-    }
-
-    /**
-     * Set the requestLogging property: The request logging configuration for mdc, it includes advanced logging settings
-     * for all collections. It's optional.
-     * 
-     * @param requestLogging the requestLogging value to set.
-     * @return the DataCollector object itself.
-     */
-    public DataCollector withRequestLogging(RequestLogging requestLogging) {
-        this.requestLogging = requestLogging;
         return this;
     }
 
@@ -156,8 +156,8 @@ public final class DataCollector implements JsonSerializable<DataCollector> {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeMapField("collections", this.collections, (writer, element) -> writer.writeJson(element));
-        jsonWriter.writeStringField("rollingRate", this.rollingRate == null ? null : this.rollingRate.toString());
         jsonWriter.writeJsonField("requestLogging", this.requestLogging);
+        jsonWriter.writeStringField("rollingRate", this.rollingRate == null ? null : this.rollingRate.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -180,10 +180,10 @@ public final class DataCollector implements JsonSerializable<DataCollector> {
                 if ("collections".equals(fieldName)) {
                     Map<String, Collection> collections = reader.readMap(reader1 -> Collection.fromJson(reader1));
                     deserializedDataCollector.collections = collections;
-                } else if ("rollingRate".equals(fieldName)) {
-                    deserializedDataCollector.rollingRate = RollingRateType.fromString(reader.getString());
                 } else if ("requestLogging".equals(fieldName)) {
                     deserializedDataCollector.requestLogging = RequestLogging.fromJson(reader);
+                } else if ("rollingRate".equals(fieldName)) {
+                    deserializedDataCollector.rollingRate = RollingRateType.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

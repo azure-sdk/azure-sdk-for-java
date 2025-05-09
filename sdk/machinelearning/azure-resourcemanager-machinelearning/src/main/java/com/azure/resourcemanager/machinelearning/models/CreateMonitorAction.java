@@ -69,7 +69,6 @@ public final class CreateMonitorAction extends ScheduleActionBase {
      */
     @Override
     public void validate() {
-        super.validate();
         if (monitorDefinition() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
