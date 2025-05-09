@@ -5,9 +5,9 @@
 package com.azure.resourcemanager.hybridkubernetes.generated;
 
 /**
- * Samples for Operations Get.
+ * Samples for Operations List.
  */
-public final class OperationsGetSamples {
+public final class OperationsListSamples {
     /*
      * x-ms-original-file:
      * specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2024-12-01-preview/examples/
@@ -20,6 +20,6 @@ public final class OperationsGetSamples {
      */
     public static void listConnectedClusterOperationsExample(
         com.azure.resourcemanager.hybridkubernetes.HybridKubernetesManager manager) {
-        manager.operations().get(com.azure.core.util.Context.NONE);
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

@@ -67,7 +67,7 @@ public interface ConnectedCluster {
     ConnectedClusterKind kind();
 
     /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -223,7 +223,7 @@ public interface ConnectedCluster {
      * 
      * @return the gateway value.
      */
-    Gateway gateway();
+    ConnectedClusterPropertiesGateway gateway();
 
     /**
      * Gets the arcAgentryConfigurations property: Configuration settings for customizing the behavior of the connected
@@ -563,7 +563,7 @@ public interface ConnectedCluster {
              * @param gateway Details of the gateway used by the Arc router for connectivity.
              * @return the next definition stage.
              */
-            WithCreate withGateway(Gateway gateway);
+            WithCreate withGateway(ConnectedClusterPropertiesGateway gateway);
         }
 
         /**

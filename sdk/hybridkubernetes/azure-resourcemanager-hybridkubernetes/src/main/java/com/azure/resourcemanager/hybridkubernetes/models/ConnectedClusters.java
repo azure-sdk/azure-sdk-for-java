@@ -13,6 +13,57 @@ import com.azure.core.util.Context;
  */
 public interface ConnectedClusters {
     /**
+     * Lists all connected clusters in the given Subscription
+     * 
+     * API to enumerate registered connected K8s clusters under a Subscription.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ConnectedCluster list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ConnectedCluster> list();
+
+    /**
+     * Lists all connected clusters in the given Subscription
+     * 
+     * API to enumerate registered connected K8s clusters under a Subscription.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ConnectedCluster list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ConnectedCluster> list(Context context);
+
+    /**
+     * Lists all connected clusters in the given Resource Group
+     * 
+     * API to enumerate registered connected K8s clusters under a Resource Group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ConnectedCluster list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ConnectedCluster> listByResourceGroup(String resourceGroupName);
+
+    /**
+     * Lists all connected clusters in the given Resource Group
+     * 
+     * API to enumerate registered connected K8s clusters under a Resource Group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a ConnectedCluster list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ConnectedCluster> listByResourceGroup(String resourceGroupName, Context context);
+
+    /**
      * Get the properties of the specified connected cluster.
      * 
      * Returns the properties of the specified connected cluster, including name, identity, properties, and additional
@@ -104,57 +155,6 @@ public interface ConnectedClusters {
      */
     CredentialResults listClusterUserCredential(String resourceGroupName, String clusterName,
         ListClusterUserCredentialProperties properties);
-
-    /**
-     * Lists all connected clusters in the given ResourceGroup
-     * 
-     * API to enumerate registered connected K8s clusters under a Resource Group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated list of connected Clusters as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<ConnectedCluster> listByResourceGroup(String resourceGroupName);
-
-    /**
-     * Lists all connected clusters in the given ResourceGroup
-     * 
-     * API to enumerate registered connected K8s clusters under a Resource Group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated list of connected Clusters as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<ConnectedCluster> listByResourceGroup(String resourceGroupName, Context context);
-
-    /**
-     * Lists all connected clusters in the given Subscription
-     * 
-     * API to enumerate registered connected K8s clusters under a Subscription.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated list of connected Clusters as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<ConnectedCluster> list();
-
-    /**
-     * Lists all connected clusters in the given Subscription
-     * 
-     * API to enumerate registered connected K8s clusters under a Subscription.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated list of connected Clusters as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<ConnectedCluster> list(Context context);
 
     /**
      * Get the properties of the specified connected cluster.

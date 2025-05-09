@@ -17,8 +17,8 @@ import com.azure.resourcemanager.hybridkubernetes.models.ArcAgentryConfiguration
 import com.azure.resourcemanager.hybridkubernetes.models.AzureHybridBenefit;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterIdentity;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterKind;
+import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterPropertiesGateway;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectivityStatus;
-import com.azure.resourcemanager.hybridkubernetes.models.Gateway;
 import com.azure.resourcemanager.hybridkubernetes.models.OidcIssuerProfile;
 import com.azure.resourcemanager.hybridkubernetes.models.PrivateLinkState;
 import com.azure.resourcemanager.hybridkubernetes.models.ProvisioningState;
@@ -34,6 +34,11 @@ import java.util.Map;
 @Fluent
 public final class ConnectedClusterInner extends Resource {
     /*
+     * Describes the connected cluster resource properties.
+     */
+    private ConnectedClusterProperties innerProperties = new ConnectedClusterProperties();
+
+    /*
      * The identity of the connected cluster.
      */
     private ConnectedClusterIdentity identity;
@@ -44,12 +49,7 @@ public final class ConnectedClusterInner extends Resource {
     private ConnectedClusterKind kind;
 
     /*
-     * Describes the connected cluster resource properties.
-     */
-    private ConnectedClusterProperties innerProperties = new ConnectedClusterProperties();
-
-    /*
-     * Metadata pertaining to creation and last modification of the resource
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
 
@@ -72,6 +72,15 @@ public final class ConnectedClusterInner extends Resource {
      * Creates an instance of ConnectedClusterInner class.
      */
     public ConnectedClusterInner() {
+    }
+
+    /**
+     * Get the innerProperties property: Describes the connected cluster resource properties.
+     * 
+     * @return the innerProperties value.
+     */
+    private ConnectedClusterProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -115,16 +124,7 @@ public final class ConnectedClusterInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: Describes the connected cluster resource properties.
-     * 
-     * @return the innerProperties value.
-     */
-    private ConnectedClusterProperties innerProperties() {
-        return this.innerProperties;
-    }
-
-    /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -544,7 +544,7 @@ public final class ConnectedClusterInner extends Resource {
      * 
      * @return the gateway value.
      */
-    public Gateway gateway() {
+    public ConnectedClusterPropertiesGateway gateway() {
         return this.innerProperties() == null ? null : this.innerProperties().gateway();
     }
 
@@ -554,7 +554,7 @@ public final class ConnectedClusterInner extends Resource {
      * @param gateway the gateway value to set.
      * @return the ConnectedClusterInner object itself.
      */
-    public ConnectedClusterInner withGateway(Gateway gateway) {
+    public ConnectedClusterInner withGateway(ConnectedClusterPropertiesGateway gateway) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ConnectedClusterProperties();
         }
@@ -602,18 +602,18 @@ public final class ConnectedClusterInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (identity() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property identity in model ConnectedClusterInner"));
-        } else {
-            identity().validate();
-        }
         if (innerProperties() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
                     "Missing required property innerProperties in model ConnectedClusterInner"));
         } else {
             innerProperties().validate();
+        }
+        if (identity() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property identity in model ConnectedClusterInner"));
+        } else {
+            identity().validate();
         }
     }
 
@@ -627,8 +627,8 @@ public final class ConnectedClusterInner extends Resource {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("identity", this.identity);
         jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("identity", this.identity);
         jsonWriter.writeStringField("kind", this.kind == null ? null : this.kind.toString());
         return jsonWriter.writeEndObject();
     }
@@ -660,10 +660,10 @@ public final class ConnectedClusterInner extends Resource {
                 } else if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedConnectedClusterInner.withTags(tags);
-                } else if ("identity".equals(fieldName)) {
-                    deserializedConnectedClusterInner.identity = ConnectedClusterIdentity.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
                     deserializedConnectedClusterInner.innerProperties = ConnectedClusterProperties.fromJson(reader);
+                } else if ("identity".equals(fieldName)) {
+                    deserializedConnectedClusterInner.identity = ConnectedClusterIdentity.fromJson(reader);
                 } else if ("kind".equals(fieldName)) {
                     deserializedConnectedClusterInner.kind = ConnectedClusterKind.fromString(reader.getString());
                 } else if ("systemData".equals(fieldName)) {

@@ -43,9 +43,9 @@ import java.util.stream.Collectors;
  * Hybrid Kubernetes Client.
  */
 public final class HybridKubernetesManager {
-    private ConnectedClusters connectedClusters;
-
     private Operations operations;
+
+    private ConnectedClusters connectedClusters;
 
     private final HybridKubernetesManagementClient clientObject;
 
@@ -263,18 +263,6 @@ public final class HybridKubernetesManager {
     }
 
     /**
-     * Gets the resource collection API of ConnectedClusters. It manages ConnectedCluster.
-     * 
-     * @return Resource collection API of ConnectedClusters.
-     */
-    public ConnectedClusters connectedClusters() {
-        if (this.connectedClusters == null) {
-            this.connectedClusters = new ConnectedClustersImpl(clientObject.getConnectedClusters(), this);
-        }
-        return connectedClusters;
-    }
-
-    /**
      * Gets the resource collection API of Operations.
      * 
      * @return Resource collection API of Operations.
@@ -284,6 +272,18 @@ public final class HybridKubernetesManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of ConnectedClusters. It manages ConnectedCluster.
+     * 
+     * @return Resource collection API of ConnectedClusters.
+     */
+    public ConnectedClusters connectedClusters() {
+        if (this.connectedClusters == null) {
+            this.connectedClusters = new ConnectedClustersImpl(clientObject.getConnectedClusters(), this);
+        }
+        return connectedClusters;
     }
 
     /**

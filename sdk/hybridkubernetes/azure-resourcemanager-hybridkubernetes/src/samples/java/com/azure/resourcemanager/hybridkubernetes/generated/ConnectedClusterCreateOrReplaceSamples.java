@@ -10,7 +10,7 @@ import com.azure.resourcemanager.hybridkubernetes.models.AutoUpgradeOptions;
 import com.azure.resourcemanager.hybridkubernetes.models.AzureHybridBenefit;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterIdentity;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterKind;
-import com.azure.resourcemanager.hybridkubernetes.models.Gateway;
+import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterPropertiesGateway;
 import com.azure.resourcemanager.hybridkubernetes.models.OidcIssuerProfile;
 import com.azure.resourcemanager.hybridkubernetes.models.PrivateLinkState;
 import com.azure.resourcemanager.hybridkubernetes.models.ResourceIdentityType;
@@ -46,7 +46,7 @@ public final class ConnectedClusterCreateOrReplaceSamples {
             .withDistribution("AKS")
             .withDistributionVersion("1.0")
             .withAzureHybridBenefit(AzureHybridBenefit.NOT_APPLICABLE)
-            .withGateway(new Gateway().withEnabled(true)
+            .withGateway(new ConnectedClusterPropertiesGateway().withEnabled(true)
                 .withResourceId(
                     "/subscriptions/1bfbb5d0-917e-4346-9026-1d3b344417f5/resourceGroups/akkeshar/providers/Microsoft.HybridCompute/gateways/gateway1"))
             .create();

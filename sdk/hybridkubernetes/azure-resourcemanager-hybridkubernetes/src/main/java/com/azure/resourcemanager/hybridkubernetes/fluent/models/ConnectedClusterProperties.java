@@ -15,8 +15,8 @@ import com.azure.resourcemanager.hybridkubernetes.models.AadProfile;
 import com.azure.resourcemanager.hybridkubernetes.models.ArcAgentProfile;
 import com.azure.resourcemanager.hybridkubernetes.models.ArcAgentryConfigurations;
 import com.azure.resourcemanager.hybridkubernetes.models.AzureHybridBenefit;
+import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterPropertiesGateway;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectivityStatus;
-import com.azure.resourcemanager.hybridkubernetes.models.Gateway;
 import com.azure.resourcemanager.hybridkubernetes.models.OidcIssuerProfile;
 import com.azure.resourcemanager.hybridkubernetes.models.PrivateLinkState;
 import com.azure.resourcemanager.hybridkubernetes.models.ProvisioningState;
@@ -135,7 +135,7 @@ public final class ConnectedClusterProperties implements JsonSerializable<Connec
     /*
      * Details of the gateway used by the Arc router for connectivity.
      */
-    private Gateway gateway;
+    private ConnectedClusterPropertiesGateway gateway;
 
     /*
      * Configuration settings for customizing the behavior of the connected cluster.
@@ -479,7 +479,7 @@ public final class ConnectedClusterProperties implements JsonSerializable<Connec
      * 
      * @return the gateway value.
      */
-    public Gateway gateway() {
+    public ConnectedClusterPropertiesGateway gateway() {
         return this.gateway;
     }
 
@@ -489,7 +489,7 @@ public final class ConnectedClusterProperties implements JsonSerializable<Connec
      * @param gateway the gateway value to set.
      * @return the ConnectedClusterProperties object itself.
      */
-    public ConnectedClusterProperties withGateway(Gateway gateway) {
+    public ConnectedClusterProperties withGateway(ConnectedClusterPropertiesGateway gateway) {
         this.gateway = gateway;
         return this;
     }
@@ -649,7 +649,7 @@ public final class ConnectedClusterProperties implements JsonSerializable<Connec
                 } else if ("oidcIssuerProfile".equals(fieldName)) {
                     deserializedConnectedClusterProperties.oidcIssuerProfile = OidcIssuerProfile.fromJson(reader);
                 } else if ("gateway".equals(fieldName)) {
-                    deserializedConnectedClusterProperties.gateway = Gateway.fromJson(reader);
+                    deserializedConnectedClusterProperties.gateway = ConnectedClusterPropertiesGateway.fromJson(reader);
                 } else if ("arcAgentryConfigurations".equals(fieldName)) {
                     List<ArcAgentryConfigurations> arcAgentryConfigurations
                         = reader.readArray(reader1 -> ArcAgentryConfigurations.fromJson(reader1));
