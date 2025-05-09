@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.peering.fluent.ReceivedRoutesClient;
 import com.azure.resourcemanager.peering.fluent.models.PeeringReceivedRouteInner;
 import com.azure.resourcemanager.peering.models.PeeringReceivedRouteListResult;
@@ -75,10 +76,30 @@ public final class ReceivedRoutesClientImpl implements ReceivedRoutesClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Peering/peerings/{peeringName}/receivedRoutes")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PeeringReceivedRouteListResult> listByPeeringSync(@HostParam("$host") String endpoint,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("peeringName") String peeringName,
+            @QueryParam("prefix") String prefix, @QueryParam("asPath") String asPath,
+            @QueryParam("originAsValidationState") String originAsValidationState,
+            @QueryParam("rpkiValidationState") String rpkiValidationState, @QueryParam("$skipToken") String skipToken,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PeeringReceivedRouteListResult>> listByPeeringNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PeeringReceivedRouteListResult> listByPeeringNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -138,52 +159,6 @@ public final class ReceivedRoutesClientImpl implements ReceivedRoutesClient {
      * @param originAsValidationState The optional origin AS validation state that can be used to filter the routes.
      * @param rpkiValidationState The optional RPKI validation state that can be used to filter the routes.
      * @param skipToken The optional page continuation token that is used in the event of paginated result.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated list of received routes for the peering along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PeeringReceivedRouteInner>> listByPeeringSinglePageAsync(String resourceGroupName,
-        String peeringName, String prefix, String asPath, String originAsValidationState, String rpkiValidationState,
-        String skipToken, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (peeringName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter peeringName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByPeering(this.client.getEndpoint(), resourceGroupName, peeringName, prefix, asPath,
-                originAsValidationState, rpkiValidationState, skipToken, this.client.getSubscriptionId(),
-                this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the prefixes received over the specified peering under the given subscription and resource group.
-     * 
-     * @param resourceGroupName The name of the resource group.
-     * @param peeringName The name of the peering.
-     * @param prefix The optional prefix that can be used to filter the routes.
-     * @param asPath The optional AS path that can be used to filter the routes.
-     * @param originAsValidationState The optional origin AS validation state that can be used to filter the routes.
-     * @param rpkiValidationState The optional RPKI validation state that can be used to filter the routes.
-     * @param skipToken The optional page continuation token that is used in the event of paginated result.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -229,20 +204,85 @@ public final class ReceivedRoutesClientImpl implements ReceivedRoutesClient {
      * @param originAsValidationState The optional origin AS validation state that can be used to filter the routes.
      * @param rpkiValidationState The optional RPKI validation state that can be used to filter the routes.
      * @param skipToken The optional page continuation token that is used in the event of paginated result.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the paginated list of received routes for the peering along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<PeeringReceivedRouteInner> listByPeeringSinglePage(String resourceGroupName,
+        String peeringName, String prefix, String asPath, String originAsValidationState, String rpkiValidationState,
+        String skipToken) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (peeringName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter peeringName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PeeringReceivedRouteListResult> res = service.listByPeeringSync(this.client.getEndpoint(),
+            resourceGroupName, peeringName, prefix, asPath, originAsValidationState, rpkiValidationState, skipToken,
+            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the prefixes received over the specified peering under the given subscription and resource group.
+     * 
+     * @param resourceGroupName The name of the resource group.
+     * @param peeringName The name of the peering.
+     * @param prefix The optional prefix that can be used to filter the routes.
+     * @param asPath The optional AS path that can be used to filter the routes.
+     * @param originAsValidationState The optional origin AS validation state that can be used to filter the routes.
+     * @param rpkiValidationState The optional RPKI validation state that can be used to filter the routes.
+     * @param skipToken The optional page continuation token that is used in the event of paginated result.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated list of received routes for the peering as paginated response with {@link PagedFlux}.
+     * @return the paginated list of received routes for the peering along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PeeringReceivedRouteInner> listByPeeringAsync(String resourceGroupName, String peeringName,
-        String prefix, String asPath, String originAsValidationState, String rpkiValidationState, String skipToken,
-        Context context) {
-        return new PagedFlux<>(
-            () -> listByPeeringSinglePageAsync(resourceGroupName, peeringName, prefix, asPath, originAsValidationState,
-                rpkiValidationState, skipToken, context),
-            nextLink -> listByPeeringNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<PeeringReceivedRouteInner> listByPeeringSinglePage(String resourceGroupName,
+        String peeringName, String prefix, String asPath, String originAsValidationState, String rpkiValidationState,
+        String skipToken, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (peeringName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter peeringName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PeeringReceivedRouteListResult> res = service.listByPeeringSync(this.client.getEndpoint(),
+            resourceGroupName, peeringName, prefix, asPath, originAsValidationState, rpkiValidationState, skipToken,
+            this.client.getSubscriptionId(), this.client.getApiVersion(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -262,8 +302,9 @@ public final class ReceivedRoutesClientImpl implements ReceivedRoutesClient {
         final String originAsValidationState = null;
         final String rpkiValidationState = null;
         final String skipToken = null;
-        return new PagedIterable<>(listByPeeringAsync(resourceGroupName, peeringName, prefix, asPath,
-            originAsValidationState, rpkiValidationState, skipToken));
+        return new PagedIterable<>(() -> listByPeeringSinglePage(resourceGroupName, peeringName, prefix, asPath,
+            originAsValidationState, rpkiValidationState, skipToken),
+            nextLink -> listByPeeringNextSinglePage(nextLink));
     }
 
     /**
@@ -286,8 +327,9 @@ public final class ReceivedRoutesClientImpl implements ReceivedRoutesClient {
     public PagedIterable<PeeringReceivedRouteInner> listByPeering(String resourceGroupName, String peeringName,
         String prefix, String asPath, String originAsValidationState, String rpkiValidationState, String skipToken,
         Context context) {
-        return new PagedIterable<>(listByPeeringAsync(resourceGroupName, peeringName, prefix, asPath,
-            originAsValidationState, rpkiValidationState, skipToken, context));
+        return new PagedIterable<>(() -> listByPeeringSinglePage(resourceGroupName, peeringName, prefix, asPath,
+            originAsValidationState, rpkiValidationState, skipToken, context),
+            nextLink -> listByPeeringNextSinglePage(nextLink, context));
     }
 
     /**
@@ -321,27 +363,56 @@ public final class ReceivedRoutesClientImpl implements ReceivedRoutesClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the paginated list of received routes for the peering along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<PeeringReceivedRouteInner> listByPeeringNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PeeringReceivedRouteListResult> res
+            = service.listByPeeringNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated list of received routes for the peering along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return the paginated list of received routes for the peering along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PeeringReceivedRouteInner>> listByPeeringNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<PeeringReceivedRouteInner> listByPeeringNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByPeeringNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<PeeringReceivedRouteListResult> res
+            = service.listByPeeringNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ReceivedRoutesClientImpl.class);
 }

@@ -47,6 +47,16 @@ public final class PeeringLocationsDirectPeeringType extends ExpandableStringEnu
     public static final PeeringLocationsDirectPeeringType VOICE = fromString("Voice");
 
     /**
+     * Static value EdgeZoneForOperators for PeeringLocationsDirectPeeringType.
+     */
+    public static final PeeringLocationsDirectPeeringType EDGE_ZONE_FOR_OPERATORS = fromString("EdgeZoneForOperators");
+
+    /**
+     * Static value PeerProp for PeeringLocationsDirectPeeringType.
+     */
+    public static final PeeringLocationsDirectPeeringType PEER_PROP = fromString("PeerProp");
+
+    /**
      * Creates a new instance of PeeringLocationsDirectPeeringType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

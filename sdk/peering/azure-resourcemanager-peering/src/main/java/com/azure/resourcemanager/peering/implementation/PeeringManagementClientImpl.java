@@ -15,16 +15,21 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.SyncPollerFactory;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.peering.fluent.CdnPeeringPrefixesClient;
+import com.azure.resourcemanager.peering.fluent.ConnectionMonitorTestsClient;
 import com.azure.resourcemanager.peering.fluent.LegacyPeeringsClient;
+import com.azure.resourcemanager.peering.fluent.LookingGlassClient;
 import com.azure.resourcemanager.peering.fluent.OperationsClient;
 import com.azure.resourcemanager.peering.fluent.PeerAsnsClient;
 import com.azure.resourcemanager.peering.fluent.PeeringLocationsClient;
@@ -39,6 +44,7 @@ import com.azure.resourcemanager.peering.fluent.ReceivedRoutesClient;
 import com.azure.resourcemanager.peering.fluent.RegisteredAsnsClient;
 import com.azure.resourcemanager.peering.fluent.RegisteredPrefixesClient;
 import com.azure.resourcemanager.peering.fluent.ResourceProvidersClient;
+import com.azure.resourcemanager.peering.fluent.RpUnbilledPrefixesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -180,6 +186,20 @@ public final class PeeringManagementClientImpl implements PeeringManagementClien
     }
 
     /**
+     * The LookingGlassClient object to access its operations.
+     */
+    private final LookingGlassClient lookingGlass;
+
+    /**
+     * Gets the LookingGlassClient object to access its operations.
+     * 
+     * @return the LookingGlassClient object.
+     */
+    public LookingGlassClient getLookingGlass() {
+        return this.lookingGlass;
+    }
+
+    /**
      * The OperationsClient object to access its operations.
      */
     private final OperationsClient operations;
@@ -278,6 +298,20 @@ public final class PeeringManagementClientImpl implements PeeringManagementClien
     }
 
     /**
+     * The ConnectionMonitorTestsClient object to access its operations.
+     */
+    private final ConnectionMonitorTestsClient connectionMonitorTests;
+
+    /**
+     * Gets the ConnectionMonitorTestsClient object to access its operations.
+     * 
+     * @return the ConnectionMonitorTestsClient object.
+     */
+    public ConnectionMonitorTestsClient getConnectionMonitorTests() {
+        return this.connectionMonitorTests;
+    }
+
+    /**
      * The PeeringServiceCountriesClient object to access its operations.
      */
     private final PeeringServiceCountriesClient peeringServiceCountries;
@@ -348,6 +382,20 @@ public final class PeeringManagementClientImpl implements PeeringManagementClien
     }
 
     /**
+     * The RpUnbilledPrefixesClient object to access its operations.
+     */
+    private final RpUnbilledPrefixesClient rpUnbilledPrefixes;
+
+    /**
+     * Gets the RpUnbilledPrefixesClient object to access its operations.
+     * 
+     * @return the RpUnbilledPrefixesClient object.
+     */
+    public RpUnbilledPrefixesClient getRpUnbilledPrefixes() {
+        return this.rpUnbilledPrefixes;
+    }
+
+    /**
      * Initializes an instance of PeeringManagementClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -364,10 +412,11 @@ public final class PeeringManagementClientImpl implements PeeringManagementClien
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-01-01";
+        this.apiVersion = "2025-05-01";
         this.cdnPeeringPrefixes = new CdnPeeringPrefixesClientImpl(this);
         this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.legacyPeerings = new LegacyPeeringsClientImpl(this);
+        this.lookingGlass = new LookingGlassClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.peerAsns = new PeerAsnsClientImpl(this);
         this.peeringLocations = new PeeringLocationsClientImpl(this);
@@ -375,11 +424,13 @@ public final class PeeringManagementClientImpl implements PeeringManagementClien
         this.registeredPrefixes = new RegisteredPrefixesClientImpl(this);
         this.peerings = new PeeringsClientImpl(this);
         this.receivedRoutes = new ReceivedRoutesClientImpl(this);
+        this.connectionMonitorTests = new ConnectionMonitorTestsClientImpl(this);
         this.peeringServiceCountries = new PeeringServiceCountriesClientImpl(this);
         this.peeringServiceLocations = new PeeringServiceLocationsClientImpl(this);
         this.prefixes = new PrefixesClientImpl(this);
         this.peeringServiceProviders = new PeeringServiceProvidersClientImpl(this);
         this.peeringServices = new PeeringServicesClientImpl(this);
+        this.rpUnbilledPrefixes = new RpUnbilledPrefixesClientImpl(this);
     }
 
     /**
@@ -417,6 +468,23 @@ public final class PeeringManagementClientImpl implements PeeringManagementClien
         HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
         return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
             defaultPollInterval, activationResponse, context);
+    }
+
+    /**
+     * Gets long running operation result.
+     * 
+     * @param activationResponse the response of activation operation.
+     * @param pollResultType type of poll result.
+     * @param finalResultType type of final result.
+     * @param context the context shared by all requests.
+     * @param <T> type of poll result.
+     * @param <U> type of final result.
+     * @return SyncPoller for poll result and final result.
+     */
+    public <T, U> SyncPoller<PollResult<T>, U> getLroResult(Response<BinaryData> activationResponse,
+        Type pollResultType, Type finalResultType, Context context) {
+        return SyncPollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, () -> activationResponse, context);
     }
 
     /**

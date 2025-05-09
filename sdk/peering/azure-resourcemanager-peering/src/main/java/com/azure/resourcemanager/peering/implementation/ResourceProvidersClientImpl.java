@@ -22,6 +22,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.peering.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.peering.models.CheckServiceProviderAvailabilityInput;
 import com.azure.resourcemanager.peering.models.Enum0;
@@ -60,10 +61,19 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     @ServiceInterface(name = "PeeringManagementCli")
     public interface ResourceProvidersService {
         @Headers({ "Content-Type: application/json" })
-        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.Peering/CheckServiceProviderAvailability")
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.Peering/checkServiceProviderAvailability")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Enum0>> checkServiceProviderAvailability(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") CheckServiceProviderAvailabilityInput checkServiceProviderAvailabilityInput,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.Peering/checkServiceProviderAvailability")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Enum0> checkServiceProviderAvailabilitySync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") CheckServiceProviderAvailabilityInput checkServiceProviderAvailabilityInput,
             @HeaderParam("Accept") String accept, Context context);
@@ -109,40 +119,6 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * 
      * @param checkServiceProviderAvailabilityInput The CheckServiceProviderAvailabilityInput indicating customer
      * location and service provider.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Enum0>> checkServiceProviderAvailabilityWithResponseAsync(
-        CheckServiceProviderAvailabilityInput checkServiceProviderAvailabilityInput, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (checkServiceProviderAvailabilityInput == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter checkServiceProviderAvailabilityInput is required and cannot be null."));
-        } else {
-            checkServiceProviderAvailabilityInput.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.checkServiceProviderAvailability(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            this.client.getApiVersion(), checkServiceProviderAvailabilityInput, accept, context);
-    }
-
-    /**
-     * Checks if the peering service provider is present within 1000 miles of customer's location.
-     * 
-     * @param checkServiceProviderAvailabilityInput The CheckServiceProviderAvailabilityInput indicating customer
-     * location and service provider.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -169,8 +145,26 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Enum0> checkServiceProviderAvailabilityWithResponse(
         CheckServiceProviderAvailabilityInput checkServiceProviderAvailabilityInput, Context context) {
-        return checkServiceProviderAvailabilityWithResponseAsync(checkServiceProviderAvailabilityInput, context)
-            .block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (checkServiceProviderAvailabilityInput == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter checkServiceProviderAvailabilityInput is required and cannot be null."));
+        } else {
+            checkServiceProviderAvailabilityInput.validate();
+        }
+        final String accept = "application/json";
+        return service.checkServiceProviderAvailabilitySync(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            this.client.getApiVersion(), checkServiceProviderAvailabilityInput, accept, context);
     }
 
     /**
@@ -189,4 +183,6 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
         return checkServiceProviderAvailabilityWithResponse(checkServiceProviderAvailabilityInput, Context.NONE)
             .getValue();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ResourceProvidersClientImpl.class);
 }

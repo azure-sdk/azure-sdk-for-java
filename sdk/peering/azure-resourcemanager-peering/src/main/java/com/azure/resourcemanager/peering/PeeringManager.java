@@ -22,10 +22,13 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.peering.fluent.PeeringManagementClient;
 import com.azure.resourcemanager.peering.implementation.CdnPeeringPrefixesImpl;
+import com.azure.resourcemanager.peering.implementation.ConnectionMonitorTestsImpl;
 import com.azure.resourcemanager.peering.implementation.LegacyPeeringsImpl;
+import com.azure.resourcemanager.peering.implementation.LookingGlassImpl;
 import com.azure.resourcemanager.peering.implementation.OperationsImpl;
 import com.azure.resourcemanager.peering.implementation.PeerAsnsImpl;
 import com.azure.resourcemanager.peering.implementation.PeeringLocationsImpl;
@@ -40,8 +43,11 @@ import com.azure.resourcemanager.peering.implementation.ReceivedRoutesImpl;
 import com.azure.resourcemanager.peering.implementation.RegisteredAsnsImpl;
 import com.azure.resourcemanager.peering.implementation.RegisteredPrefixesImpl;
 import com.azure.resourcemanager.peering.implementation.ResourceProvidersImpl;
+import com.azure.resourcemanager.peering.implementation.RpUnbilledPrefixesImpl;
 import com.azure.resourcemanager.peering.models.CdnPeeringPrefixes;
+import com.azure.resourcemanager.peering.models.ConnectionMonitorTests;
 import com.azure.resourcemanager.peering.models.LegacyPeerings;
+import com.azure.resourcemanager.peering.models.LookingGlass;
 import com.azure.resourcemanager.peering.models.Operations;
 import com.azure.resourcemanager.peering.models.PeerAsns;
 import com.azure.resourcemanager.peering.models.PeeringLocations;
@@ -55,10 +61,12 @@ import com.azure.resourcemanager.peering.models.ReceivedRoutes;
 import com.azure.resourcemanager.peering.models.RegisteredAsns;
 import com.azure.resourcemanager.peering.models.RegisteredPrefixes;
 import com.azure.resourcemanager.peering.models.ResourceProviders;
+import com.azure.resourcemanager.peering.models.RpUnbilledPrefixes;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -72,6 +80,8 @@ public final class PeeringManager {
     private ResourceProviders resourceProviders;
 
     private LegacyPeerings legacyPeerings;
+
+    private LookingGlass lookingGlass;
 
     private Operations operations;
 
@@ -87,6 +97,8 @@ public final class PeeringManager {
 
     private ReceivedRoutes receivedRoutes;
 
+    private ConnectionMonitorTests connectionMonitorTests;
+
     private PeeringServiceCountries peeringServiceCountries;
 
     private PeeringServiceLocations peeringServiceLocations;
@@ -96,6 +108,8 @@ public final class PeeringManager {
     private PeeringServiceProviders peeringServiceProviders;
 
     private PeeringServices peeringServices;
+
+    private RpUnbilledPrefixes rpUnbilledPrefixes;
 
     private final PeeringManagementClient clientObject;
 
@@ -149,6 +163,9 @@ public final class PeeringManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-peering.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -256,12 +273,14 @@ public final class PeeringManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.peering")
                 .append("/")
-                .append("1.0.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -341,6 +360,18 @@ public final class PeeringManager {
             this.legacyPeerings = new LegacyPeeringsImpl(clientObject.getLegacyPeerings(), this);
         }
         return legacyPeerings;
+    }
+
+    /**
+     * Gets the resource collection API of LookingGlass.
+     * 
+     * @return Resource collection API of LookingGlass.
+     */
+    public LookingGlass lookingGlass() {
+        if (this.lookingGlass == null) {
+            this.lookingGlass = new LookingGlassImpl(clientObject.getLookingGlass(), this);
+        }
+        return lookingGlass;
     }
 
     /**
@@ -428,6 +459,19 @@ public final class PeeringManager {
     }
 
     /**
+     * Gets the resource collection API of ConnectionMonitorTests. It manages ConnectionMonitorTest.
+     * 
+     * @return Resource collection API of ConnectionMonitorTests.
+     */
+    public ConnectionMonitorTests connectionMonitorTests() {
+        if (this.connectionMonitorTests == null) {
+            this.connectionMonitorTests
+                = new ConnectionMonitorTestsImpl(clientObject.getConnectionMonitorTests(), this);
+        }
+        return connectionMonitorTests;
+    }
+
+    /**
      * Gets the resource collection API of PeeringServiceCountries.
      * 
      * @return Resource collection API of PeeringServiceCountries.
@@ -488,6 +532,18 @@ public final class PeeringManager {
             this.peeringServices = new PeeringServicesImpl(clientObject.getPeeringServices(), this);
         }
         return peeringServices;
+    }
+
+    /**
+     * Gets the resource collection API of RpUnbilledPrefixes.
+     * 
+     * @return Resource collection API of RpUnbilledPrefixes.
+     */
+    public RpUnbilledPrefixes rpUnbilledPrefixes() {
+        if (this.rpUnbilledPrefixes == null) {
+            this.rpUnbilledPrefixes = new RpUnbilledPrefixesImpl(clientObject.getRpUnbilledPrefixes(), this);
+        }
+        return rpUnbilledPrefixes;
     }
 
     /**

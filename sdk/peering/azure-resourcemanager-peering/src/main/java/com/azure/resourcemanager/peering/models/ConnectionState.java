@@ -52,6 +52,21 @@ public final class ConnectionState extends ExpandableStringEnum<ConnectionState>
     public static final ConnectionState ACTIVE = fromString("Active");
 
     /**
+     * Static value TypeChangeRequested for ConnectionState.
+     */
+    public static final ConnectionState TYPE_CHANGE_REQUESTED = fromString("TypeChangeRequested");
+
+    /**
+     * Static value TypeChangeInProgress for ConnectionState.
+     */
+    public static final ConnectionState TYPE_CHANGE_IN_PROGRESS = fromString("TypeChangeInProgress");
+
+    /**
+     * Static value ExternalBlocker for ConnectionState.
+     */
+    public static final ConnectionState EXTERNAL_BLOCKER = fromString("ExternalBlocker");
+
+    /**
      * Creates a new instance of ConnectionState value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

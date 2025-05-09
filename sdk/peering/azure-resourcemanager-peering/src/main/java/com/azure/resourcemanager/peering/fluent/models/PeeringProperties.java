@@ -9,10 +9,12 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.peering.models.ConnectivityProbe;
 import com.azure.resourcemanager.peering.models.PeeringPropertiesDirect;
 import com.azure.resourcemanager.peering.models.PeeringPropertiesExchange;
 import com.azure.resourcemanager.peering.models.ProvisioningState;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * The properties that define connectivity to the Microsoft Cloud Edge.
@@ -28,6 +30,11 @@ public final class PeeringProperties implements JsonSerializable<PeeringProperti
      * The properties that define an exchange peering.
      */
     private PeeringPropertiesExchange exchange;
+
+    /*
+     * The connectivity probes associated with the peering.
+     */
+    private List<ConnectivityProbe> connectivityProbes;
 
     /*
      * The location of the peering.
@@ -86,6 +93,26 @@ public final class PeeringProperties implements JsonSerializable<PeeringProperti
     }
 
     /**
+     * Get the connectivityProbes property: The connectivity probes associated with the peering.
+     * 
+     * @return the connectivityProbes value.
+     */
+    public List<ConnectivityProbe> connectivityProbes() {
+        return this.connectivityProbes;
+    }
+
+    /**
+     * Set the connectivityProbes property: The connectivity probes associated with the peering.
+     * 
+     * @param connectivityProbes the connectivityProbes value to set.
+     * @return the PeeringProperties object itself.
+     */
+    public PeeringProperties withConnectivityProbes(List<ConnectivityProbe> connectivityProbes) {
+        this.connectivityProbes = connectivityProbes;
+        return this;
+    }
+
+    /**
      * Get the peeringLocation property: The location of the peering.
      * 
      * @return the peeringLocation value.
@@ -126,6 +153,9 @@ public final class PeeringProperties implements JsonSerializable<PeeringProperti
         if (exchange() != null) {
             exchange().validate();
         }
+        if (connectivityProbes() != null) {
+            connectivityProbes().forEach(e -> e.validate());
+        }
     }
 
     /**
@@ -136,6 +166,8 @@ public final class PeeringProperties implements JsonSerializable<PeeringProperti
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("direct", this.direct);
         jsonWriter.writeJsonField("exchange", this.exchange);
+        jsonWriter.writeArrayField("connectivityProbes", this.connectivityProbes,
+            (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("peeringLocation", this.peeringLocation);
         return jsonWriter.writeEndObject();
     }
@@ -159,6 +191,10 @@ public final class PeeringProperties implements JsonSerializable<PeeringProperti
                     deserializedPeeringProperties.direct = PeeringPropertiesDirect.fromJson(reader);
                 } else if ("exchange".equals(fieldName)) {
                     deserializedPeeringProperties.exchange = PeeringPropertiesExchange.fromJson(reader);
+                } else if ("connectivityProbes".equals(fieldName)) {
+                    List<ConnectivityProbe> connectivityProbes
+                        = reader.readArray(reader1 -> ConnectivityProbe.fromJson(reader1));
+                    deserializedPeeringProperties.connectivityProbes = connectivityProbes;
                 } else if ("peeringLocation".equals(fieldName)) {
                     deserializedPeeringProperties.peeringLocation = reader.getString();
                 } else if ("provisioningState".equals(fieldName)) {
