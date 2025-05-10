@@ -12,27 +12,33 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.healthbot.models.HealthBotProperties;
+import com.azure.resourcemanager.healthbot.models.Identity;
 import com.azure.resourcemanager.healthbot.models.Sku;
 import java.io.IOException;
 import java.util.Map;
 
 /**
- * HealthBot resource definition.
+ * Azure Health Bot resource definition.
  */
 @Fluent
 public final class HealthBotInner extends Resource {
     /*
-     * SKU of the HealthBot.
+     * SKU of the Azure Health Bot.
      */
     private Sku sku;
 
     /*
-     * The set of properties specific to Healthbot resource.
+     * The identity of the Azure Health Bot.
+     */
+    private Identity identity;
+
+    /*
+     * The set of properties specific to Azure Health Bot resource.
      */
     private HealthBotProperties properties;
 
     /*
-     * Metadata pertaining to creation and last modification of the resource
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
 
@@ -58,7 +64,7 @@ public final class HealthBotInner extends Resource {
     }
 
     /**
-     * Get the sku property: SKU of the HealthBot.
+     * Get the sku property: SKU of the Azure Health Bot.
      * 
      * @return the sku value.
      */
@@ -67,7 +73,7 @@ public final class HealthBotInner extends Resource {
     }
 
     /**
-     * Set the sku property: SKU of the HealthBot.
+     * Set the sku property: SKU of the Azure Health Bot.
      * 
      * @param sku the sku value to set.
      * @return the HealthBotInner object itself.
@@ -78,7 +84,27 @@ public final class HealthBotInner extends Resource {
     }
 
     /**
-     * Get the properties property: The set of properties specific to Healthbot resource.
+     * Get the identity property: The identity of the Azure Health Bot.
+     * 
+     * @return the identity value.
+     */
+    public Identity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The identity of the Azure Health Bot.
+     * 
+     * @param identity the identity value to set.
+     * @return the HealthBotInner object itself.
+     */
+    public HealthBotInner withIdentity(Identity identity) {
+        this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the properties property: The set of properties specific to Azure Health Bot resource.
      * 
      * @return the properties value.
      */
@@ -87,7 +113,7 @@ public final class HealthBotInner extends Resource {
     }
 
     /**
-     * Set the properties property: The set of properties specific to Healthbot resource.
+     * Set the properties property: The set of properties specific to Azure Health Bot resource.
      * 
      * @param properties the properties value to set.
      * @return the HealthBotInner object itself.
@@ -98,7 +124,7 @@ public final class HealthBotInner extends Resource {
     }
 
     /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -166,6 +192,9 @@ public final class HealthBotInner extends Resource {
         } else {
             sku().validate();
         }
+        if (identity() != null) {
+            identity().validate();
+        }
         if (properties() != null) {
             properties().validate();
         }
@@ -182,6 +211,7 @@ public final class HealthBotInner extends Resource {
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
         jsonWriter.writeJsonField("sku", this.sku);
+        jsonWriter.writeJsonField("identity", this.identity);
         jsonWriter.writeJsonField("properties", this.properties);
         return jsonWriter.writeEndObject();
     }
@@ -215,6 +245,8 @@ public final class HealthBotInner extends Resource {
                     deserializedHealthBotInner.withTags(tags);
                 } else if ("sku".equals(fieldName)) {
                     deserializedHealthBotInner.sku = Sku.fromJson(reader);
+                } else if ("identity".equals(fieldName)) {
+                    deserializedHealthBotInner.identity = Identity.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
                     deserializedHealthBotInner.properties = HealthBotProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {

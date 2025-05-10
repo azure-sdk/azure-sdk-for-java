@@ -8,6 +8,8 @@
 - [GetByResourceGroup](#bots_getbyresourcegroup)
 - [List](#bots_list)
 - [ListByResourceGroup](#bots_listbyresourcegroup)
+- [ListSecrets](#bots_listsecrets)
+- [RegenerateApiJwtSecret](#bots_regenerateapijwtsecret)
 - [Update](#bots_update)
 
 ## Operations
@@ -16,29 +18,22 @@
 ### Bots_Create
 
 ```java
-import com.azure.resourcemanager.healthbot.models.Sku;
-import com.azure.resourcemanager.healthbot.models.SkuName;
-
 /**
- * Samples for Bots Create.
+ * Samples for Bots ListByResourceGroup.
  */
-public final class BotsCreateSamples {
+public final class BotsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ResourceCreationPut.json
+     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2024-02-01/examples/ListBotsByResourceGroup.
+     * json
      */
     /**
-     * Sample code: BotCreate.
+     * Sample code: List Bots by Resource Group.
      * 
      * @param manager Entry point to HealthbotManager.
      */
-    public static void botCreate(com.azure.resourcemanager.healthbot.HealthbotManager manager) {
-        manager.bots()
-            .define("samplebotname")
-            .withRegion("East US")
-            .withExistingResourceGroup("healthbotClient")
-            .withSku(new Sku().withName(SkuName.F0))
-            .create();
+    public static void listBotsByResourceGroup(com.azure.resourcemanager.healthbot.HealthbotManager manager) {
+        manager.bots().listByResourceGroup("OneResourceGroupName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -52,7 +47,7 @@ public final class BotsCreateSamples {
 public final class BotsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ResourceDeletionDelete.
+     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2024-02-01/examples/ResourceDeletionDelete.
      * json
      */
     /**
@@ -69,22 +64,28 @@ public final class BotsDeleteSamples {
 ### Bots_GetByResourceGroup
 
 ```java
+import com.azure.resourcemanager.healthbot.models.HealthBot;
+import com.azure.resourcemanager.healthbot.models.Sku;
+import com.azure.resourcemanager.healthbot.models.SkuName;
+
 /**
- * Samples for Bots GetByResourceGroup.
+ * Samples for Bots Update.
  */
-public final class BotsGetByResourceGroupSamples {
+public final class BotsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ResourceInfoGet.json
+     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2024-02-01/examples/ResourceUpdatePatch.json
      */
     /**
-     * Sample code: ResourceInfoGet.
+     * Sample code: BotUpdate.
      * 
      * @param manager Entry point to HealthbotManager.
      */
-    public static void resourceInfoGet(com.azure.resourcemanager.healthbot.HealthbotManager manager) {
-        manager.bots()
-            .getByResourceGroupWithResponse("healthbotClient", "samplebotname", com.azure.core.util.Context.NONE);
+    public static void botUpdate(com.azure.resourcemanager.healthbot.HealthbotManager manager) {
+        HealthBot resource = manager.bots()
+            .getByResourceGroupWithResponse("healthbotClient", "samplebotname", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withSku(new Sku().withName(SkuName.F0)).apply();
     }
 }
 ```
@@ -98,7 +99,7 @@ public final class BotsGetByResourceGroupSamples {
 public final class BotsListSamples {
     /*
      * x-ms-original-file:
-     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ListBotsBySubscription.
+     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2024-02-01/examples/ListBotsBySubscription.
      * json
      */
     /**
@@ -116,55 +117,27 @@ public final class BotsListSamples {
 
 ```java
 /**
- * Samples for Bots ListByResourceGroup.
+ * Samples for Bots RegenerateApiJwtSecret.
  */
-public final class BotsListByResourceGroupSamples {
+public final class BotsRegenerateApiJwtSecretSamples {
     /*
      * x-ms-original-file:
-     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ListBotsByResourceGroup.
+     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2024-02-01/examples/RegenerateApiJwtSecret.
      * json
      */
     /**
-     * Sample code: List Bots by Resource Group.
+     * Sample code: Bot Regenerate API JWT Secret.
      * 
      * @param manager Entry point to HealthbotManager.
      */
-    public static void listBotsByResourceGroup(com.azure.resourcemanager.healthbot.HealthbotManager manager) {
-        manager.bots().listByResourceGroup("OneResourceGroupName", com.azure.core.util.Context.NONE);
+    public static void botRegenerateAPIJWTSecret(com.azure.resourcemanager.healthbot.HealthbotManager manager) {
+        manager.bots()
+            .regenerateApiJwtSecretWithResponse("healthbotClient", "samplebotname", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### Bots_Update
-
-```java
-import com.azure.resourcemanager.healthbot.models.HealthBot;
-import com.azure.resourcemanager.healthbot.models.Sku;
-import com.azure.resourcemanager.healthbot.models.SkuName;
-
-/**
- * Samples for Bots Update.
- */
-public final class BotsUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ResourceUpdatePatch.json
-     */
-    /**
-     * Sample code: BotUpdate.
-     * 
-     * @param manager Entry point to HealthbotManager.
-     */
-    public static void botUpdate(com.azure.resourcemanager.healthbot.HealthbotManager manager) {
-        HealthBot resource = manager.bots()
-            .getByResourceGroupWithResponse("healthbotClient", "samplebotname", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().withSku(new Sku().withName(SkuName.F0)).apply();
-    }
-}
-```
-
-### Operations_List
+### Bots_ListSecrets
 
 ```java
 /**
@@ -173,7 +146,7 @@ public final class BotsUpdateSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/GetOperations.json
+     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2024-02-01/examples/GetOperations.json
      */
     /**
      * Sample code: Get Operations.
@@ -182,6 +155,104 @@ public final class OperationsListSamples {
      */
     public static void getOperations(com.azure.resourcemanager.healthbot.HealthbotManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Bots_RegenerateApiJwtSecret
+
+```java
+/**
+ * Samples for Bots ListSecrets.
+ */
+public final class BotsListSecretsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2024-02-01/examples/ListSecrets.json
+     */
+    /**
+     * Sample code: Bot List Secrets.
+     * 
+     * @param manager Entry point to HealthbotManager.
+     */
+    public static void botListSecrets(com.azure.resourcemanager.healthbot.HealthbotManager manager) {
+        manager.bots().listSecretsWithResponse("healthbotClient", "samplebotname", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Bots_Update
+
+```java
+import com.azure.resourcemanager.healthbot.models.Identity;
+import com.azure.resourcemanager.healthbot.models.ResourceIdentityType;
+import com.azure.resourcemanager.healthbot.models.Sku;
+import com.azure.resourcemanager.healthbot.models.SkuName;
+import com.azure.resourcemanager.healthbot.models.UserAssignedIdentity;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for Bots Create.
+ */
+public final class BotsCreateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2024-02-01/examples/ResourceCreationPut.json
+     */
+    /**
+     * Sample code: BotCreate.
+     * 
+     * @param manager Entry point to HealthbotManager.
+     */
+    public static void botCreate(com.azure.resourcemanager.healthbot.HealthbotManager manager) {
+        manager.bots()
+            .define("samplebotname")
+            .withRegion("East US")
+            .withExistingResourceGroup("healthbotClient")
+            .withSku(new Sku().withName(SkuName.F0))
+            .withIdentity(new Identity().withType(ResourceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/subscription-id/resourcegroups/myrg/providers/microsoft.managedidentity/userassignedidentities/my-mi",
+                    new UserAssignedIdentity(),
+                    "/subscriptions/subscription-id/resourcegroups/myrg/providers/microsoft.managedidentity/userassignedidentities/my-mi2",
+                    new UserAssignedIdentity())))
+            .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### Operations_List
+
+```java
+/**
+ * Samples for Bots GetByResourceGroup.
+ */
+public final class BotsGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2024-02-01/examples/ResourceInfoGet.json
+     */
+    /**
+     * Sample code: ResourceInfoGet.
+     * 
+     * @param manager Entry point to HealthbotManager.
+     */
+    public static void resourceInfoGet(com.azure.resourcemanager.healthbot.HealthbotManager manager) {
+        manager.bots()
+            .getByResourceGroupWithResponse("healthbotClient", "samplebotname", com.azure.core.util.Context.NONE);
     }
 }
 ```

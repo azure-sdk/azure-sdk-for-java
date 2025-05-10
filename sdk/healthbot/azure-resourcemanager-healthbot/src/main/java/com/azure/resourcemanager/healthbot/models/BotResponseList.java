@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.healthbot.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,19 +14,19 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The list of Healthbot operation response.
+ * The list of Azure Health Bot operation response.
  */
-@Immutable
+@Fluent
 public final class BotResponseList implements JsonSerializable<BotResponseList> {
     /*
-     * The link used to get the next page of bot service resources.
-     */
-    private String nextLink;
-
-    /*
-     * Gets the list of Healthbot results and their properties.
+     * The HealthBot items on this page
      */
     private List<HealthBotInner> value;
+
+    /*
+     * The link to the next page of items
+     */
+    private String nextLink;
 
     /**
      * Creates an instance of BotResponseList class.
@@ -35,7 +35,16 @@ public final class BotResponseList implements JsonSerializable<BotResponseList> 
     }
 
     /**
-     * Get the nextLink property: The link used to get the next page of bot service resources.
+     * Get the value property: The HealthBot items on this page.
+     * 
+     * @return the value value.
+     */
+    public List<HealthBotInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -44,12 +53,14 @@ public final class BotResponseList implements JsonSerializable<BotResponseList> 
     }
 
     /**
-     * Get the value property: Gets the list of Healthbot results and their properties.
+     * Set the nextLink property: The link to the next page of items.
      * 
-     * @return the value value.
+     * @param nextLink the nextLink value to set.
+     * @return the BotResponseList object itself.
      */
-    public List<HealthBotInner> value() {
-        return this.value;
+    public BotResponseList withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
     }
 
     /**
@@ -69,6 +80,7 @@ public final class BotResponseList implements JsonSerializable<BotResponseList> 
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("nextLink", this.nextLink);
         return jsonWriter.writeEndObject();
     }
 
@@ -78,6 +90,7 @@ public final class BotResponseList implements JsonSerializable<BotResponseList> 
      * @param jsonReader The JsonReader being read.
      * @return An instance of BotResponseList if the JsonReader was pointing to an instance of it, or null if it was
      * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the BotResponseList.
      */
     public static BotResponseList fromJson(JsonReader jsonReader) throws IOException {
@@ -87,11 +100,11 @@ public final class BotResponseList implements JsonSerializable<BotResponseList> 
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("nextLink".equals(fieldName)) {
-                    deserializedBotResponseList.nextLink = reader.getString();
-                } else if ("value".equals(fieldName)) {
+                if ("value".equals(fieldName)) {
                     List<HealthBotInner> value = reader.readArray(reader1 -> HealthBotInner.fromJson(reader1));
                     deserializedBotResponseList.value = value;
+                } else if ("nextLink".equals(fieldName)) {
+                    deserializedBotResponseList.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
