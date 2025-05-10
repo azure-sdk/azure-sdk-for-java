@@ -15,12 +15,15 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.SyncPollerFactory;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.consumption.fluent.AggregatedCostsClient;
@@ -137,6 +140,20 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
      */
     public Duration getDefaultPollInterval() {
         return this.defaultPollInterval;
+    }
+
+    /**
+     * The PriceSheetsClient object to access its operations.
+     */
+    private final PriceSheetsClient priceSheets;
+
+    /**
+     * Gets the PriceSheetsClient object to access its operations.
+     * 
+     * @return the PriceSheetsClient object.
+     */
+    public PriceSheetsClient getPriceSheets() {
+        return this.priceSheets;
     }
 
     /**
@@ -294,20 +311,6 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
     }
 
     /**
-     * The PriceSheetsClient object to access its operations.
-     */
-    private final PriceSheetsClient priceSheets;
-
-    /**
-     * Gets the PriceSheetsClient object to access its operations.
-     * 
-     * @return the PriceSheetsClient object.
-     */
-    public PriceSheetsClient getPriceSheets() {
-        return this.priceSheets;
-    }
-
-    /**
      * The OperationsClient object to access its operations.
      */
     private final OperationsClient operations;
@@ -394,7 +397,8 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-10-01";
+        this.apiVersion = "2025-04-01";
+        this.priceSheets = new PriceSheetsClientImpl(this);
         this.usageDetails = new UsageDetailsClientImpl(this);
         this.marketplaces = new MarketplacesClientImpl(this);
         this.budgets = new BudgetsClientImpl(this);
@@ -406,7 +410,6 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
         this.reservationRecommendations = new ReservationRecommendationsClientImpl(this);
         this.reservationRecommendationDetails = new ReservationRecommendationDetailsClientImpl(this);
         this.reservationTransactions = new ReservationTransactionsClientImpl(this);
-        this.priceSheets = new PriceSheetsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.aggregatedCosts = new AggregatedCostsClientImpl(this);
         this.eventsOperations = new EventsOperationsClientImpl(this);
@@ -449,6 +452,23 @@ public final class ConsumptionManagementClientImpl implements ConsumptionManagem
         HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
         return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
             defaultPollInterval, activationResponse, context);
+    }
+
+    /**
+     * Gets long running operation result.
+     * 
+     * @param activationResponse the response of activation operation.
+     * @param pollResultType type of poll result.
+     * @param finalResultType type of final result.
+     * @param context the context shared by all requests.
+     * @param <T> type of poll result.
+     * @param <U> type of final result.
+     * @return SyncPoller for poll result and final result.
+     */
+    public <T, U> SyncPoller<PollResult<T>, U> getLroResult(Response<BinaryData> activationResponse,
+        Type pollResultType, Type finalResultType, Context context) {
+        return SyncPollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, () -> activationResponse, context);
     }
 
     /**

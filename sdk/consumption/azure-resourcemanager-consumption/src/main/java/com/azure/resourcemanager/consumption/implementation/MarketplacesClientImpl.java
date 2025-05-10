@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.MarketplacesClient;
 import com.azure.resourcemanager.consumption.fluent.models.MarketplaceInner;
 import com.azure.resourcemanager.consumption.models.MarketplacesListResult;
@@ -72,10 +73,26 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/{scope}/providers/Microsoft.Consumption/marketplaces")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<MarketplacesListResult> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("$filter") String filter, @QueryParam("$top") Integer top,
+            @QueryParam("$skiptoken") String skiptoken, @PathParam(value = "scope", encoded = true) String scope,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MarketplacesListResult>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<MarketplacesListResult> listNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
@@ -121,51 +138,6 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
             .<PagedResponse<MarketplaceInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the marketplaces for a scope at the defined scope. Marketplaces are available via this API only for May 1,
-     * 2014 or later.
-     * 
-     * @param scope The scope associated with marketplace operations. This includes '/subscriptions/{subscriptionId}/'
-     * for subscription scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account
-     * scope, '/providers/Microsoft.Billing/departments/{departmentId}' for Department scope,
-     * '/providers/Microsoft.Billing/enrollmentAccounts/{enrollmentAccountId}' for EnrollmentAccount scope and
-     * '/providers/Microsoft.Management/managementGroups/{managementGroupId}' for Management Group scope. For
-     * subscription, billing account, department, enrollment account and ManagementGroup, you can also add billing
-     * period to the scope using '/providers/Microsoft.Billing/billingPeriods/{billingPeriodName}'. For e.g. to specify
-     * billing period at department scope use
-     * '/providers/Microsoft.Billing/departments/{departmentId}/providers/Microsoft.Billing/billingPeriods/{billingPeriodName}'.
-     * @param filter May be used to filter marketplaces by properties/usageEnd (Utc time), properties/usageStart (Utc
-     * time), properties/resourceGroup, properties/instanceName or properties/instanceId. The filter supports 'eq',
-     * 'lt', 'gt', 'le', 'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'.
-     * @param top May be used to limit the number of results to the most recent N marketplaces.
-     * @param skiptoken Skiptoken is only used if a previous operation returned a partial result. If a previous response
-     * contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies
-     * a starting point to use for subsequent calls.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing marketplaces along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<MarketplaceInner>> listSinglePageAsync(String scope, String filter, Integer top,
-        String skiptoken, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), filter, top, skiptoken, scope, this.client.getApiVersion(), accept,
-                context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -246,17 +218,70 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
      * @param skiptoken Skiptoken is only used if a previous operation returned a partial result. If a previous response
      * contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies
      * a starting point to use for subsequent calls.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing marketplaces along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<MarketplaceInner> listSinglePage(String scope, String filter, Integer top, String skiptoken) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<MarketplacesListResult> res = service.listSync(this.client.getEndpoint(), filter, top, skiptoken,
+            scope, this.client.getApiVersion(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the marketplaces for a scope at the defined scope. Marketplaces are available via this API only for May 1,
+     * 2014 or later.
+     * 
+     * @param scope The scope associated with marketplace operations. This includes '/subscriptions/{subscriptionId}/'
+     * for subscription scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account
+     * scope, '/providers/Microsoft.Billing/departments/{departmentId}' for Department scope,
+     * '/providers/Microsoft.Billing/enrollmentAccounts/{enrollmentAccountId}' for EnrollmentAccount scope and
+     * '/providers/Microsoft.Management/managementGroups/{managementGroupId}' for Management Group scope. For
+     * subscription, billing account, department, enrollment account and ManagementGroup, you can also add billing
+     * period to the scope using '/providers/Microsoft.Billing/billingPeriods/{billingPeriodName}'. For e.g. to specify
+     * billing period at department scope use
+     * '/providers/Microsoft.Billing/departments/{departmentId}/providers/Microsoft.Billing/billingPeriods/{billingPeriodName}'.
+     * @param filter May be used to filter marketplaces by properties/usageEnd (Utc time), properties/usageStart (Utc
+     * time), properties/resourceGroup, properties/instanceName or properties/instanceId. The filter supports 'eq',
+     * 'lt', 'gt', 'le', 'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'.
+     * @param top May be used to limit the number of results to the most recent N marketplaces.
+     * @param skiptoken Skiptoken is only used if a previous operation returned a partial result. If a previous response
+     * contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies
+     * a starting point to use for subsequent calls.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing marketplaces as paginated response with {@link PagedFlux}.
+     * @return result of listing marketplaces along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<MarketplaceInner> listAsync(String scope, String filter, Integer top, String skiptoken,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<MarketplaceInner> listSinglePage(String scope, String filter, Integer top, String skiptoken,
         Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(scope, filter, top, skiptoken, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<MarketplacesListResult> res = service.listSync(this.client.getEndpoint(), filter, top, skiptoken,
+            scope, this.client.getApiVersion(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -282,7 +307,8 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
         final String filter = null;
         final Integer top = null;
         final String skiptoken = null;
-        return new PagedIterable<>(listAsync(scope, filter, top, skiptoken));
+        return new PagedIterable<>(() -> listSinglePage(scope, filter, top, skiptoken),
+            nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -314,7 +340,8 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MarketplaceInner> list(String scope, String filter, Integer top, String skiptoken,
         Context context) {
-        return new PagedIterable<>(listAsync(scope, filter, top, skiptoken, context));
+        return new PagedIterable<>(() -> listSinglePage(scope, filter, top, skiptoken, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -346,25 +373,56 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing marketplaces along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<MarketplaceInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<MarketplacesListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing marketplaces along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return result of listing marketplaces along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<MarketplaceInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<MarketplaceInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<MarketplacesListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(MarketplacesClientImpl.class);
 }

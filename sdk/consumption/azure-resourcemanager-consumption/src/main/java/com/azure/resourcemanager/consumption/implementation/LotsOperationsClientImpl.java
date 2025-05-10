@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.LotsOperationsClient;
 import com.azure.resourcemanager.consumption.fluent.models.LotSummaryInner;
 import com.azure.resourcemanager.consumption.models.Lots;
@@ -72,6 +73,15 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}/providers/Microsoft.Consumption/lots")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Lots> listByBillingProfileSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountId") String billingAccountId,
+            @PathParam("billingProfileId") String billingProfileId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/providers/Microsoft.Consumption/lots")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -80,10 +90,27 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
             @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/providers/Microsoft.Consumption/lots")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Lots> listByBillingAccountSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountId") String billingAccountId, @QueryParam("api-version") String apiVersion,
+            @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/customers/{customerId}/providers/Microsoft.Consumption/lots")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Lots>> listByCustomer(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountId") String billingAccountId, @PathParam("customerId") String customerId,
+            @QueryParam("api-version") String apiVersion, @QueryParam("$filter") String filter,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/customers/{customerId}/providers/Microsoft.Consumption/lots")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Lots> listByCustomerSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountId") String billingAccountId, @PathParam("customerId") String customerId,
             @QueryParam("api-version") String apiVersion, @QueryParam("$filter") String filter,
             @HeaderParam("Accept") String accept, Context context);
@@ -99,6 +126,13 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Lots> listByBillingProfileNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Lots>> listByBillingAccountNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
 
@@ -106,7 +140,21 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Lots> listByBillingAccountNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Lots>> listByCustomerNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Lots> listByCustomerNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
@@ -151,42 +199,6 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * 
      * @param billingAccountId BillingAccount ID.
      * @param billingProfileId Azure Billing Profile ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LotSummaryInner>> listByBillingProfileSinglePageAsync(String billingAccountId,
-        String billingProfileId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountId is required and cannot be null."));
-        }
-        if (billingProfileId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByBillingProfile(this.client.getEndpoint(), billingAccountId, billingProfileId,
-                this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists all Azure credits for a billing account or a billing profile. The API is only supported for Microsoft
-     * Customer Agreements (MCA) billing accounts.
-     * 
-     * @param billingAccountId BillingAccount ID.
-     * @param billingProfileId Azure Billing Profile ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -204,17 +216,67 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * 
      * @param billingAccountId BillingAccount ID.
      * @param billingProfileId Azure Billing Profile ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing lot summary along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<LotSummaryInner> listByBillingProfileSinglePage(String billingAccountId,
+        String billingProfileId) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountId is required and cannot be null."));
+        }
+        if (billingProfileId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<Lots> res = service.listByBillingProfileSync(this.client.getEndpoint(), billingAccountId,
+            billingProfileId, this.client.getApiVersion(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists all Azure credits for a billing account or a billing profile. The API is only supported for Microsoft
+     * Customer Agreements (MCA) billing accounts.
+     * 
+     * @param billingAccountId BillingAccount ID.
+     * @param billingProfileId Azure Billing Profile ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
+     * @return result of listing lot summary along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<LotSummaryInner> listByBillingProfileAsync(String billingAccountId, String billingProfileId,
-        Context context) {
-        return new PagedFlux<>(() -> listByBillingProfileSinglePageAsync(billingAccountId, billingProfileId, context),
-            nextLink -> listByBillingProfileNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<LotSummaryInner> listByBillingProfileSinglePage(String billingAccountId,
+        String billingProfileId, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountId is required and cannot be null."));
+        }
+        if (billingProfileId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<Lots> res = service.listByBillingProfileSync(this.client.getEndpoint(), billingAccountId,
+            billingProfileId, this.client.getApiVersion(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -230,7 +292,8 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LotSummaryInner> listByBillingProfile(String billingAccountId, String billingProfileId) {
-        return new PagedIterable<>(listByBillingProfileAsync(billingAccountId, billingProfileId));
+        return new PagedIterable<>(() -> listByBillingProfileSinglePage(billingAccountId, billingProfileId),
+            nextLink -> listByBillingProfileNextSinglePage(nextLink));
     }
 
     /**
@@ -248,7 +311,8 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LotSummaryInner> listByBillingProfile(String billingAccountId, String billingProfileId,
         Context context) {
-        return new PagedIterable<>(listByBillingProfileAsync(billingAccountId, billingProfileId, context));
+        return new PagedIterable<>(() -> listByBillingProfileSinglePage(billingAccountId, billingProfileId, context),
+            nextLink -> listByBillingProfileNextSinglePage(nextLink, context));
     }
 
     /**
@@ -282,40 +346,6 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
             .<PagedResponse<LotSummaryInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists all Microsoft Azure consumption commitments for a billing account. The API is only supported for Microsoft
-     * Customer Agreements (MCA) and Direct Enterprise Agreement (EA) billing accounts.
-     * 
-     * @param billingAccountId BillingAccount ID.
-     * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
-     * 'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string where
-     * key and value is separated by a colon (:).
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LotSummaryInner>> listByBillingAccountSinglePageAsync(String billingAccountId,
-        String filter, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByBillingAccount(this.client.getEndpoint(), billingAccountId, this.client.getApiVersion(), filter,
-                accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -362,17 +392,60 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
      * 'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string where
      * key and value is separated by a colon (:).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing lot summary along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<LotSummaryInner> listByBillingAccountSinglePage(String billingAccountId, String filter) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<Lots> res = service.listByBillingAccountSync(this.client.getEndpoint(), billingAccountId,
+            this.client.getApiVersion(), filter, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists all Microsoft Azure consumption commitments for a billing account. The API is only supported for Microsoft
+     * Customer Agreements (MCA) and Direct Enterprise Agreement (EA) billing accounts.
+     * 
+     * @param billingAccountId BillingAccount ID.
+     * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
+     * 'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string where
+     * key and value is separated by a colon (:).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
+     * @return result of listing lot summary along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<LotSummaryInner> listByBillingAccountAsync(String billingAccountId, String filter,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<LotSummaryInner> listByBillingAccountSinglePage(String billingAccountId, String filter,
         Context context) {
-        return new PagedFlux<>(() -> listByBillingAccountSinglePageAsync(billingAccountId, filter, context),
-            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<Lots> res = service.listByBillingAccountSync(this.client.getEndpoint(), billingAccountId,
+            this.client.getApiVersion(), filter, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -388,7 +461,8 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LotSummaryInner> listByBillingAccount(String billingAccountId) {
         final String filter = null;
-        return new PagedIterable<>(listByBillingAccountAsync(billingAccountId, filter));
+        return new PagedIterable<>(() -> listByBillingAccountSinglePage(billingAccountId, filter),
+            nextLink -> listByBillingAccountNextSinglePage(nextLink));
     }
 
     /**
@@ -408,7 +482,8 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LotSummaryInner> listByBillingAccount(String billingAccountId, String filter,
         Context context) {
-        return new PagedIterable<>(listByBillingAccountAsync(billingAccountId, filter, context));
+        return new PagedIterable<>(() -> listByBillingAccountSinglePage(billingAccountId, filter, context),
+            nextLink -> listByBillingAccountNextSinglePage(nextLink, context));
     }
 
     /**
@@ -445,43 +520,6 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
             .<PagedResponse<LotSummaryInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists all Azure credits for a customer. The API is only supported for Microsoft Partner Agreements (MPA) billing
-     * accounts.
-     * 
-     * @param billingAccountId BillingAccount ID.
-     * @param customerId Customer ID.
-     * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
-     * 'ge', and 'and'. Tag filter is a key value pair string where key and value is separated by a colon (:).
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LotSummaryInner>> listByCustomerSinglePageAsync(String billingAccountId,
-        String customerId, String filter, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountId is required and cannot be null."));
-        }
-        if (customerId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter customerId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByCustomer(this.client.getEndpoint(), billingAccountId, customerId, this.client.getApiVersion(),
-                filter, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -529,17 +567,69 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @param customerId Customer ID.
      * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
      * 'ge', and 'and'. Tag filter is a key value pair string where key and value is separated by a colon (:).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing lot summary along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<LotSummaryInner> listByCustomerSinglePage(String billingAccountId, String customerId,
+        String filter) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountId is required and cannot be null."));
+        }
+        if (customerId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter customerId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<Lots> res = service.listByCustomerSync(this.client.getEndpoint(), billingAccountId, customerId,
+            this.client.getApiVersion(), filter, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists all Azure credits for a customer. The API is only supported for Microsoft Partner Agreements (MPA) billing
+     * accounts.
+     * 
+     * @param billingAccountId BillingAccount ID.
+     * @param customerId Customer ID.
+     * @param filter May be used to filter the lots by Status, Source etc. The filter supports 'eq', 'lt', 'gt', 'le',
+     * 'ge', and 'and'. Tag filter is a key value pair string where key and value is separated by a colon (:).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
+     * @return result of listing lot summary along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<LotSummaryInner> listByCustomerAsync(String billingAccountId, String customerId, String filter,
-        Context context) {
-        return new PagedFlux<>(() -> listByCustomerSinglePageAsync(billingAccountId, customerId, filter, context),
-            nextLink -> listByCustomerNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<LotSummaryInner> listByCustomerSinglePage(String billingAccountId, String customerId,
+        String filter, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountId is required and cannot be null."));
+        }
+        if (customerId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter customerId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<Lots> res = service.listByCustomerSync(this.client.getEndpoint(), billingAccountId, customerId,
+            this.client.getApiVersion(), filter, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -556,7 +646,8 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LotSummaryInner> listByCustomer(String billingAccountId, String customerId) {
         final String filter = null;
-        return new PagedIterable<>(listByCustomerAsync(billingAccountId, customerId, filter));
+        return new PagedIterable<>(() -> listByCustomerSinglePage(billingAccountId, customerId, filter),
+            nextLink -> listByCustomerNextSinglePage(nextLink));
     }
 
     /**
@@ -576,7 +667,8 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LotSummaryInner> listByCustomer(String billingAccountId, String customerId, String filter,
         Context context) {
-        return new PagedIterable<>(listByCustomerAsync(billingAccountId, customerId, filter, context));
+        return new PagedIterable<>(() -> listByCustomerSinglePage(billingAccountId, customerId, filter, context),
+            nextLink -> listByCustomerNextSinglePage(nextLink, context));
     }
 
     /**
@@ -610,27 +702,54 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing lot summary along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<LotSummaryInner> listByBillingProfileNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<Lots> res
+            = service.listByBillingProfileNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return result of listing lot summary along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LotSummaryInner>> listByBillingProfileNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<LotSummaryInner> listByBillingProfileNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<Lots> res = service.listByBillingProfileNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -664,27 +783,54 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing lot summary along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<LotSummaryInner> listByBillingAccountNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<Lots> res
+            = service.listByBillingAccountNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return result of listing lot summary along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LotSummaryInner>> listByBillingAccountNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<LotSummaryInner> listByBillingAccountNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<Lots> res = service.listByBillingAccountNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -717,25 +863,54 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing lot summary along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<LotSummaryInner> listByCustomerNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<Lots> res = service.listByCustomerNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return result of listing lot summary along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LotSummaryInner>> listByCustomerNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<LotSummaryInner> listByCustomerNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByCustomerNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<Lots> res = service.listByCustomerNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(LotsOperationsClientImpl.class);
 }
