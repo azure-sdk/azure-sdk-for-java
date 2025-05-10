@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.ReservationsDetailsClient;
 import com.azure.resourcemanager.consumption.fluent.models.ReservationDetailInner;
 import com.azure.resourcemanager.consumption.models.ReservationDetailsListResult;
@@ -71,6 +72,14 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Capacity/reservationorders/{reservationOrderId}/providers/Microsoft.Consumption/reservationDetails")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ReservationDetailsListResult> listByReservationOrderSync(@HostParam("$host") String endpoint,
+            @PathParam("reservationOrderId") String reservationOrderId, @QueryParam("$filter") String filter,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Capacity/reservationorders/{reservationOrderId}/reservations/{reservationId}/providers/Microsoft.Consumption/reservationDetails")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -80,10 +89,30 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Capacity/reservationorders/{reservationOrderId}/reservations/{reservationId}/providers/Microsoft.Consumption/reservationDetails")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ReservationDetailsListResult> listByReservationOrderAndReservationSync(
+            @HostParam("$host") String endpoint, @PathParam("reservationOrderId") String reservationOrderId,
+            @PathParam("reservationId") String reservationId, @QueryParam("$filter") String filter,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/{resourceScope}/providers/Microsoft.Consumption/reservationDetails")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ReservationDetailsListResult>> list(@HostParam("$host") String endpoint,
+            @PathParam(value = "resourceScope", encoded = true) String resourceScope,
+            @QueryParam("startDate") String startDate, @QueryParam("endDate") String endDate,
+            @QueryParam("$filter") String filter, @QueryParam("reservationId") String reservationId,
+            @QueryParam("reservationOrderId") String reservationOrderId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/{resourceScope}/providers/Microsoft.Consumption/reservationDetails")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ReservationDetailsListResult> listSync(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceScope", encoded = true) String resourceScope,
             @QueryParam("startDate") String startDate, @QueryParam("endDate") String endDate,
             @QueryParam("$filter") String filter, @QueryParam("reservationId") String reservationId,
@@ -102,7 +131,23 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ReservationDetailsListResult> listByReservationOrderNextSync(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ReservationDetailsListResult>> listByReservationOrderAndReservationNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ReservationDetailsListResult> listByReservationOrderAndReservationNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -113,12 +158,22 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
         Mono<Response<ReservationDetailsListResult>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ReservationDetailsListResult> listNextSync(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
-     * callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller
-     * date ranges.
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param filter Filter reservation details by date range. The properties/UsageDate for start date and end date. The
@@ -154,46 +209,10 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
 
     /**
      * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
-     * callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller
-     * date ranges.
-     * 
-     * @param reservationOrderId Order Id of the reservation.
-     * @param filter Filter reservation details by date range. The properties/UsageDate for start date and end date. The
-     * filter supports 'le' and 'ge'.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation details along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationDetailInner>> listByReservationOrderSinglePageAsync(String reservationOrderId,
-        String filter, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (reservationOrderId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter reservationOrderId is required and cannot be null."));
-        }
-        if (filter == null) {
-            return Mono.error(new IllegalArgumentException("Parameter filter is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByReservationOrder(this.client.getEndpoint(), reservationOrderId, filter, this.client.getApiVersion(),
-                accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
-     * callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller
-     * date ranges.
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param filter Filter reservation details by date range. The properties/UsageDate for start date and end date. The
@@ -211,8 +230,48 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
 
     /**
      * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
-     * callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller
-     * date ranges.
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
+     * 
+     * @param reservationOrderId Order Id of the reservation.
+     * @param filter Filter reservation details by date range. The properties/UsageDate for start date and end date. The
+     * filter supports 'le' and 'ge'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing reservation details along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationDetailInner> listByReservationOrderSinglePage(String reservationOrderId,
+        String filter) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (reservationOrderId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter reservationOrderId is required and cannot be null."));
+        }
+        if (filter == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter filter is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationDetailsListResult> res = service.listByReservationOrderSync(this.client.getEndpoint(),
+            reservationOrderId, filter, this.client.getApiVersion(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param filter Filter reservation details by date range. The properties/UsageDate for start date and end date. The
@@ -221,19 +280,37 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation details as paginated response with {@link PagedFlux}.
+     * @return result of listing reservation details along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ReservationDetailInner> listByReservationOrderAsync(String reservationOrderId, String filter,
-        Context context) {
-        return new PagedFlux<>(() -> listByReservationOrderSinglePageAsync(reservationOrderId, filter, context),
-            nextLink -> listByReservationOrderNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationDetailInner> listByReservationOrderSinglePage(String reservationOrderId,
+        String filter, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (reservationOrderId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter reservationOrderId is required and cannot be null."));
+        }
+        if (filter == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter filter is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationDetailsListResult> res = service.listByReservationOrderSync(this.client.getEndpoint(),
+            reservationOrderId, filter, this.client.getApiVersion(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
      * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
-     * callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller
-     * date ranges.
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param filter Filter reservation details by date range. The properties/UsageDate for start date and end date. The
@@ -245,13 +322,16 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ReservationDetailInner> listByReservationOrder(String reservationOrderId, String filter) {
-        return new PagedIterable<>(listByReservationOrderAsync(reservationOrderId, filter));
+        return new PagedIterable<>(() -> listByReservationOrderSinglePage(reservationOrderId, filter),
+            nextLink -> listByReservationOrderNextSinglePage(nextLink));
     }
 
     /**
      * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
-     * callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller
-     * date ranges.
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param filter Filter reservation details by date range. The properties/UsageDate for start date and end date. The
@@ -265,13 +345,16 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ReservationDetailInner> listByReservationOrder(String reservationOrderId, String filter,
         Context context) {
-        return new PagedIterable<>(listByReservationOrderAsync(reservationOrderId, filter, context));
+        return new PagedIterable<>(() -> listByReservationOrderSinglePage(reservationOrderId, filter, context),
+            nextLink -> listByReservationOrderNextSinglePage(nextLink, context));
     }
 
     /**
      * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
-     * callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller
-     * date ranges.
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation.
@@ -311,50 +394,10 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
 
     /**
      * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
-     * callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller
-     * date ranges.
-     * 
-     * @param reservationOrderId Order Id of the reservation.
-     * @param reservationId Id of the reservation.
-     * @param filter Filter reservation details by date range. The properties/UsageDate for start date and end date. The
-     * filter supports 'le' and 'ge'.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation details along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationDetailInner>> listByReservationOrderAndReservationSinglePageAsync(
-        String reservationOrderId, String reservationId, String filter, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (reservationOrderId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter reservationOrderId is required and cannot be null."));
-        }
-        if (reservationId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter reservationId is required and cannot be null."));
-        }
-        if (filter == null) {
-            return Mono.error(new IllegalArgumentException("Parameter filter is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByReservationOrderAndReservation(this.client.getEndpoint(), reservationOrderId, reservationId, filter,
-                this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
-     * callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller
-     * date ranges.
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation.
@@ -375,8 +418,54 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
 
     /**
      * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
-     * callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller
-     * date ranges.
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
+     * 
+     * @param reservationOrderId Order Id of the reservation.
+     * @param reservationId Id of the reservation.
+     * @param filter Filter reservation details by date range. The properties/UsageDate for start date and end date. The
+     * filter supports 'le' and 'ge'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing reservation details along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationDetailInner>
+        listByReservationOrderAndReservationSinglePage(String reservationOrderId, String reservationId, String filter) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (reservationOrderId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter reservationOrderId is required and cannot be null."));
+        }
+        if (reservationId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter reservationId is required and cannot be null."));
+        }
+        if (filter == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter filter is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationDetailsListResult> res
+            = service.listByReservationOrderAndReservationSync(this.client.getEndpoint(), reservationOrderId,
+                reservationId, filter, this.client.getApiVersion(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation.
@@ -386,20 +475,42 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation details as paginated response with {@link PagedFlux}.
+     * @return result of listing reservation details along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ReservationDetailInner> listByReservationOrderAndReservationAsync(String reservationOrderId,
-        String reservationId, String filter, Context context) {
-        return new PagedFlux<>(() -> listByReservationOrderAndReservationSinglePageAsync(reservationOrderId,
-            reservationId, filter, context),
-            nextLink -> listByReservationOrderAndReservationNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationDetailInner> listByReservationOrderAndReservationSinglePage(
+        String reservationOrderId, String reservationId, String filter, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (reservationOrderId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter reservationOrderId is required and cannot be null."));
+        }
+        if (reservationId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter reservationId is required and cannot be null."));
+        }
+        if (filter == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter filter is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationDetailsListResult> res
+            = service.listByReservationOrderAndReservationSync(this.client.getEndpoint(), reservationOrderId,
+                reservationId, filter, this.client.getApiVersion(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
      * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
-     * callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller
-     * date ranges.
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation.
@@ -414,13 +525,16 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
     public PagedIterable<ReservationDetailInner> listByReservationOrderAndReservation(String reservationOrderId,
         String reservationId, String filter) {
         return new PagedIterable<>(
-            listByReservationOrderAndReservationAsync(reservationOrderId, reservationId, filter));
+            () -> listByReservationOrderAndReservationSinglePage(reservationOrderId, reservationId, filter),
+            nextLink -> listByReservationOrderAndReservationNextSinglePage(nextLink));
     }
 
     /**
      * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
-     * callers get 400 when the response size exceeds the ARM limit. In such cases, API call should be made with smaller
-     * date ranges.
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation.
@@ -436,13 +550,16 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
     public PagedIterable<ReservationDetailInner> listByReservationOrderAndReservation(String reservationOrderId,
         String reservationId, String filter, Context context) {
         return new PagedIterable<>(
-            listByReservationOrderAndReservationAsync(reservationOrderId, reservationId, filter, context));
+            () -> listByReservationOrderAndReservationSinglePage(reservationOrderId, reservationId, filter, context),
+            nextLink -> listByReservationOrderAndReservationNextSinglePage(nextLink, context));
     }
 
     /**
-     * Lists the reservations details for the defined scope and provided date range. Note: ARM has a payload size limit
-     * of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call
-     * should be made with smaller date ranges.
+     * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param resourceScope The scope associated with reservations details operations. This includes
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
@@ -482,52 +599,11 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
     }
 
     /**
-     * Lists the reservations details for the defined scope and provided date range. Note: ARM has a payload size limit
-     * of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call
-     * should be made with smaller date ranges.
-     * 
-     * @param resourceScope The scope associated with reservations details operations. This includes
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
-     * BillingProfile scope (modern).
-     * @param startDate Start date. Only applicable when querying with billing profile.
-     * @param endDate End date. Only applicable when querying with billing profile.
-     * @param filter Filter reservation details by date range. The properties/UsageDate for start date and end date. The
-     * filter supports 'le' and 'ge'. Not applicable when querying with billing profile.
-     * @param reservationId Reservation Id GUID. Only valid if reservationOrderId is also provided. Filter to a specific
-     * reservation.
-     * @param reservationOrderId Reservation Order Id GUID. Required if reservationId is provided. Filter to a specific
-     * reservation order.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation details along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationDetailInner>> listSinglePageAsync(String resourceScope, String startDate,
-        String endDate, String filter, String reservationId, String reservationOrderId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceScope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceScope is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), resourceScope, startDate, endDate, filter, reservationId,
-                reservationOrderId, this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the reservations details for the defined scope and provided date range. Note: ARM has a payload size limit
-     * of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call
-     * should be made with smaller date ranges.
+     * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param resourceScope The scope associated with reservations details operations. This includes
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
@@ -555,9 +631,11 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
     }
 
     /**
-     * Lists the reservations details for the defined scope and provided date range. Note: ARM has a payload size limit
-     * of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call
-     * should be made with smaller date ranges.
+     * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param resourceScope The scope associated with reservations details operations. This includes
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
@@ -581,9 +659,55 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
     }
 
     /**
-     * Lists the reservations details for the defined scope and provided date range. Note: ARM has a payload size limit
-     * of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call
-     * should be made with smaller date ranges.
+     * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
+     * 
+     * @param resourceScope The scope associated with reservations details operations. This includes
+     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
+     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
+     * BillingProfile scope (modern).
+     * @param startDate Start date. Only applicable when querying with billing profile.
+     * @param endDate End date. Only applicable when querying with billing profile.
+     * @param filter Filter reservation details by date range. The properties/UsageDate for start date and end date. The
+     * filter supports 'le' and 'ge'. Not applicable when querying with billing profile.
+     * @param reservationId Reservation Id GUID. Only valid if reservationOrderId is also provided. Filter to a specific
+     * reservation.
+     * @param reservationOrderId Reservation Order Id GUID. Required if reservationId is provided. Filter to a specific
+     * reservation order.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing reservation details along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationDetailInner> listSinglePage(String resourceScope, String startDate, String endDate,
+        String filter, String reservationId, String reservationOrderId) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceScope == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceScope is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationDetailsListResult> res
+            = service.listSync(this.client.getEndpoint(), resourceScope, startDate, endDate, filter, reservationId,
+                reservationOrderId, this.client.getApiVersion(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param resourceScope The scope associated with reservations details operations. This includes
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
@@ -601,19 +725,34 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation details as paginated response with {@link PagedFlux}.
+     * @return result of listing reservation details along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ReservationDetailInner> listAsync(String resourceScope, String startDate, String endDate,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationDetailInner> listSinglePage(String resourceScope, String startDate, String endDate,
         String filter, String reservationId, String reservationOrderId, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceScope, startDate, endDate, filter, reservationId,
-            reservationOrderId, context), nextLink -> listNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceScope == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceScope is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationDetailsListResult> res
+            = service.listSync(this.client.getEndpoint(), resourceScope, startDate, endDate, filter, reservationId,
+                reservationOrderId, this.client.getApiVersion(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
-     * Lists the reservations details for the defined scope and provided date range. Note: ARM has a payload size limit
-     * of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call
-     * should be made with smaller date ranges.
+     * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param resourceScope The scope associated with reservations details operations. This includes
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
@@ -632,13 +771,16 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
         final String reservationId = null;
         final String reservationOrderId = null;
         return new PagedIterable<>(
-            listAsync(resourceScope, startDate, endDate, filter, reservationId, reservationOrderId));
+            () -> listSinglePage(resourceScope, startDate, endDate, filter, reservationId, reservationOrderId),
+            nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
-     * Lists the reservations details for the defined scope and provided date range. Note: ARM has a payload size limit
-     * of 12MB, so currently callers get 400 when the response size exceeds the ARM limit. In such cases, API call
-     * should be made with smaller date ranges.
+     * Lists the reservations details for provided date range. Note: ARM has a payload size limit of 12MB, so currently
+     * callers get 400 when the response size exceeds the ARM limit. If the data size is too large, customers may also
+     * get 504 as the API timed out preparing the data. In such cases, API call should be made with smaller date ranges
+     * or a call to Generate Reservation Details Report API should be made as it is asynchronous and will not run into
+     * response size time outs.
      * 
      * @param resourceScope The scope associated with reservations details operations. This includes
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope (legacy), and
@@ -662,7 +804,8 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
     public PagedIterable<ReservationDetailInner> list(String resourceScope, String startDate, String endDate,
         String filter, String reservationId, String reservationOrderId, Context context) {
         return new PagedIterable<>(
-            listAsync(resourceScope, startDate, endDate, filter, reservationId, reservationOrderId, context));
+            () -> listSinglePage(resourceScope, startDate, endDate, filter, reservationId, reservationOrderId, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -697,28 +840,56 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing reservation details along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationDetailInner> listByReservationOrderNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationDetailsListResult> res
+            = service.listByReservationOrderNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation details along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return result of listing reservation details along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationDetailInner>> listByReservationOrderNextSinglePageAsync(String nextLink,
+    private PagedResponse<ReservationDetailInner> listByReservationOrderNextSinglePage(String nextLink,
         Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByReservationOrderNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<ReservationDetailsListResult> res
+            = service.listByReservationOrderNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -754,28 +925,56 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing reservation details along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationDetailInner> listByReservationOrderAndReservationNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationDetailsListResult> res = service.listByReservationOrderAndReservationNextSync(nextLink,
+            this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation details along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return result of listing reservation details along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationDetailInner>>
-        listByReservationOrderAndReservationNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<ReservationDetailInner> listByReservationOrderAndReservationNextSinglePage(String nextLink,
+        Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByReservationOrderAndReservationNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<ReservationDetailsListResult> res = service.listByReservationOrderAndReservationNextSync(nextLink,
+            this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -808,26 +1007,56 @@ public final class ReservationsDetailsClientImpl implements ReservationsDetailsC
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing reservation details along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationDetailInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationDetailsListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation details along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return result of listing reservation details along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationDetailInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<ReservationDetailInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<ReservationDetailsListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ReservationsDetailsClientImpl.class);
 }

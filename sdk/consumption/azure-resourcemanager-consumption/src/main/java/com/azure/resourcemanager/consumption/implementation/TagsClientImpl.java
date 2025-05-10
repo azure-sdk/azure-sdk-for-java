@@ -21,6 +21,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.TagsClient;
 import com.azure.resourcemanager.consumption.fluent.models.TagsResultInner;
 import reactor.core.publisher.Mono;
@@ -61,6 +62,14 @@ public final class TagsClientImpl implements TagsClient {
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<TagsResultInner>> get(@HostParam("$host") String endpoint,
+            @PathParam(value = "scope", encoded = true) String scope, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/{scope}/providers/Microsoft.Consumption/tags")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<TagsResultInner> getSync(@HostParam("$host") String endpoint,
             @PathParam(value = "scope", encoded = true) String scope, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -107,37 +116,6 @@ public final class TagsClientImpl implements TagsClient {
      * scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/enrollmentAccounts/{enrollmentAccountId}'
      * for EnrollmentAccount scope and '/providers/Microsoft.Management/managementGroups/{managementGroupId}' for
      * Management Group scope..
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all available tag keys for the defined scope along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<TagsResultInner>> getWithResponseAsync(String scope, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), scope, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Get all available tag keys for the defined scope.
-     * 
-     * @param scope The scope associated with tags operations. This includes '/subscriptions/{subscriptionId}/' for
-     * subscription scope, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for resourceGroup scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/departments/{departmentId}' for Department
-     * scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/enrollmentAccounts/{enrollmentAccountId}'
-     * for EnrollmentAccount scope and '/providers/Microsoft.Management/managementGroups/{managementGroupId}' for
-     * Management Group scope..
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -166,7 +144,16 @@ public final class TagsClientImpl implements TagsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TagsResultInner> getWithResponse(String scope, Context context) {
-        return getWithResponseAsync(scope, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), scope, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -188,4 +175,6 @@ public final class TagsClientImpl implements TagsClient {
     public TagsResultInner get(String scope) {
         return getWithResponse(scope, Context.NONE).getValue();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(TagsClientImpl.class);
 }

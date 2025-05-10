@@ -63,6 +63,11 @@ public final class PriceSheetProperties implements JsonSerializable<PriceSheetPr
      */
     private String offerId;
 
+    /*
+     * SavingsPlan Details
+     */
+    private SavingsPlan savingsPlan;
+
     /**
      * Creates an instance of PriceSheetProperties class.
      */
@@ -152,6 +157,15 @@ public final class PriceSheetProperties implements JsonSerializable<PriceSheetPr
     }
 
     /**
+     * Get the savingsPlan property: SavingsPlan Details.
+     * 
+     * @return the savingsPlan value.
+     */
+    public SavingsPlan savingsPlan() {
+        return this.savingsPlan;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -159,6 +173,9 @@ public final class PriceSheetProperties implements JsonSerializable<PriceSheetPr
     public void validate() {
         if (meterDetails() != null) {
             meterDetails().validate();
+        }
+        if (savingsPlan() != null) {
+            savingsPlan().validate();
         }
     }
 
@@ -207,6 +224,8 @@ public final class PriceSheetProperties implements JsonSerializable<PriceSheetPr
                     deserializedPriceSheetProperties.currencyCode = reader.getString();
                 } else if ("offerId".equals(fieldName)) {
                     deserializedPriceSheetProperties.offerId = reader.getString();
+                } else if ("savingsPlan".equals(fieldName)) {
+                    deserializedPriceSheetProperties.savingsPlan = SavingsPlan.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

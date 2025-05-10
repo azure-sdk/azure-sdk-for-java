@@ -134,6 +134,12 @@ public final class ModernSharedScopeReservationRecommendationProperties
                     deserializedModernSharedScopeReservationRecommendationProperties.withSkuProperties(skuProperties);
                 } else if ("skuName".equals(fieldName)) {
                     deserializedModernSharedScopeReservationRecommendationProperties.withSkuName(reader.getString());
+                } else if ("lastUsageDate".equals(fieldName)) {
+                    deserializedModernSharedScopeReservationRecommendationProperties.withLastUsageDate(reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
+                } else if ("totalHours".equals(fieldName)) {
+                    deserializedModernSharedScopeReservationRecommendationProperties
+                        .withTotalHours(reader.getNullable(JsonReader::getInt));
                 } else if ("scope".equals(fieldName)) {
                     deserializedModernSharedScopeReservationRecommendationProperties.scope = reader.getString();
                 } else {
