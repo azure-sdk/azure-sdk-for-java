@@ -1,6 +1,27 @@
 # Code snippets and samples
 
 
+## AkriConnector
+
+- [CreateOrUpdate](#akriconnector_createorupdate)
+- [Delete](#akriconnector_delete)
+- [Get](#akriconnector_get)
+- [ListByTemplate](#akriconnector_listbytemplate)
+
+## AkriConnectorTemplate
+
+- [CreateOrUpdate](#akriconnectortemplate_createorupdate)
+- [Delete](#akriconnectortemplate_delete)
+- [Get](#akriconnectortemplate_get)
+- [ListByInstanceResource](#akriconnectortemplate_listbyinstanceresource)
+
+## AkriDiscoveryHandler
+
+- [CreateOrUpdate](#akridiscoveryhandler_createorupdate)
+- [Delete](#akridiscoveryhandler_delete)
+- [Get](#akridiscoveryhandler_get)
+- [ListByInstanceResource](#akridiscoveryhandler_listbyinstanceresource)
+
 ## Broker
 
 - [CreateOrUpdate](#broker_createorupdate)
@@ -43,12 +64,26 @@
 - [Get](#dataflowendpoint_get)
 - [ListByResourceGroup](#dataflowendpoint_listbyresourcegroup)
 
+## DataflowGraph
+
+- [CreateOrUpdate](#dataflowgraph_createorupdate)
+- [Delete](#dataflowgraph_delete)
+- [Get](#dataflowgraph_get)
+- [ListByDataflowProfile](#dataflowgraph_listbydataflowprofile)
+
 ## DataflowProfile
 
 - [CreateOrUpdate](#dataflowprofile_createorupdate)
 - [Delete](#dataflowprofile_delete)
 - [Get](#dataflowprofile_get)
 - [ListByResourceGroup](#dataflowprofile_listbyresourcegroup)
+
+## Diagnostic
+
+- [CreateOrUpdate](#diagnostic_createorupdate)
+- [Delete](#diagnostic_delete)
+- [Get](#diagnostic_get)
+- [ListByInstanceResource](#diagnostic_listbyinstanceresource)
 
 ## Instance
 
@@ -62,7 +97,637 @@
 ## Operations
 
 - [List](#operations_list)
+
+## RegistryEndpoint
+
+- [CreateOrUpdate](#registryendpoint_createorupdate)
+- [Delete](#registryendpoint_delete)
+- [Get](#registryendpoint_get)
+- [ListByInstanceResource](#registryendpoint_listbyinstanceresource)
+### AkriConnector_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorsDiagnosticsLogs;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorsImagePullPolicy;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorsMqttAuthentication;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorsMqttConnectionConfiguration;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorsMqttProtocolType;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorsRegistrySettings;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorsSecret;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorsTagDigestSettings;
+import com.azure.resourcemanager.iotoperations.models.AkriDiscoveryHandlerAioMetadata;
+import com.azure.resourcemanager.iotoperations.models.AkriDiscoveryHandlerDiagnostics;
+import com.azure.resourcemanager.iotoperations.models.AkriDiscoveryHandlerDiscoverableDeviceEndpointType;
+import com.azure.resourcemanager.iotoperations.models.AkriDiscoveryHandlerImageConfiguration;
+import com.azure.resourcemanager.iotoperations.models.AkriDiscoveryHandlerProperties;
+import com.azure.resourcemanager.iotoperations.models.AkriDiscoveryHandlerSchedule;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
+import com.azure.resourcemanager.iotoperations.models.OperationalMode;
+import com.azure.resourcemanager.iotoperations.models.TlsProperties;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for AkriDiscoveryHandler CreateOrUpdate.
+ */
+public final class AkriDiscoveryHandlerCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/AkriDiscoveryHandler_CreateOrUpdate_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AkriDiscoveryHandler_CreateOrUpdate_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void akriDiscoveryHandlerCreateOrUpdateMaximumSet(
+        com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.akriDiscoveryHandlers()
+            .define("resource-name123")
+            .withExistingInstance("rgiotoperations", "resource-name123")
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withProperties(new AkriDiscoveryHandlerProperties()
+                .withAioMetadata(new AkriDiscoveryHandlerAioMetadata().withAioMinVersion("nxusafsppaikld")
+                    .withAioMaxVersion("yrmlixhxsnrgialgwruyk"))
+                .withAdditionalConfiguration(mapOf("key2206", "fakeTokenPlaceholder"))
+                .withDiagnostics(new AkriDiscoveryHandlerDiagnostics()
+                    .withLogs(new AkriConnectorsDiagnosticsLogs().withLevel("inypis")))
+                .withMode(OperationalMode.ENABLED)
+                .withDiscoverableDeviceEndpointTypes(Arrays
+                    .asList(new AkriDiscoveryHandlerDiscoverableDeviceEndpointType().withEndpointType("chkkpymxhp")
+                        .withVersion("chkkpymxhp")))
+                .withMqttConnectionConfiguration(new AkriConnectorsMqttConnectionConfiguration()
+                    .withAuthentication(new AkriConnectorsMqttAuthentication())
+                    .withHost("mfxhevl")
+                    .withProtocol(AkriConnectorsMqttProtocolType.MQTT)
+                    .withKeepAliveSeconds(0)
+                    .withMaxInflightMessages(0)
+                    .withSessionExpirySeconds(0)
+                    .withTls(new TlsProperties().withMode(OperationalMode.ENABLED)
+                        .withTrustedCaCertificateConfigMapRef("tectjjvukvelsreihwadh")))
+                .withImageConfiguration(
+                    new AkriDiscoveryHandlerImageConfiguration().withImageName("vrglpcosiuiulgwqkjbrdxnyjphp")
+                        .withImagePullPolicy(AkriConnectorsImagePullPolicy.ALWAYS)
+                        .withReplicas(4)
+                        .withRegistrySettings(new AkriConnectorsRegistrySettings())
+                        .withTagDigestSettings(new AkriConnectorsTagDigestSettings()))
+                .withSchedule(new AkriDiscoveryHandlerSchedule())
+                .withSecrets(Arrays.asList(new AkriConnectorsSecret().withSecretKey("fakeTokenPlaceholder")
+                    .withSecretAlias("fakeTokenPlaceholder")
+                    .withSecretRef("fakeTokenPlaceholder"))))
+            .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### AkriConnector_Delete
+
+```java
+/**
+ * Samples for Dataflow Delete.
+ */
+public final class DataflowDeleteSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/Dataflow_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Dataflow_Delete.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void dataflowDelete(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.dataflows()
+            .delete("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AkriConnector_Get
+
+```java
+/**
+ * Samples for BrokerAuthentication Delete.
+ */
+public final class BrokerAuthenticationDeleteSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/BrokerAuthentication_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BrokerAuthentication_Delete.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        brokerAuthenticationDelete(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.brokerAuthentications()
+            .delete("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AkriConnector_ListByTemplate
+
+```java
+/**
+ * Samples for BrokerListener ListByResourceGroup.
+ */
+public final class BrokerListenerListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/BrokerListener_ListByResourceGroup_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BrokerListener_ListByResourceGroup.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        brokerListenerListByResourceGroup(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.brokerListeners()
+            .listByResourceGroup("rgiotoperations", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AkriConnectorTemplate_CreateOrUpdate
+
+```java
+/**
+ * Samples for Broker ListByResourceGroup.
+ */
+public final class BrokerListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/Broker_ListByResourceGroup_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Broker_ListByResourceGroup.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void brokerListByResourceGroup(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.brokers().listByResourceGroup("rgiotoperations", "resource-name123", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AkriConnectorTemplate_Delete
+
+```java
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
+import com.azure.resourcemanager.iotoperations.models.RegistryEndpointAuthentication;
+import com.azure.resourcemanager.iotoperations.models.RegistryEndpointProperties;
+
+/**
+ * Samples for RegistryEndpoint CreateOrUpdate.
+ */
+public final class RegistryEndpointCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/RegistryEndpoint_CreateOrUpdate_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: RegistryEndpoint_CreateOrUpdate_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        registryEndpointCreateOrUpdateMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.registryEndpoints()
+            .define("resource-123")
+            .withExistingInstance("rgiotoperations", "resource-123")
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withProperties(new RegistryEndpointProperties().withHost("contoso.azurecr.io")
+                .withAuthentication(new RegistryEndpointAuthentication()))
+            .create();
+    }
+}
+```
+
+### AkriConnectorTemplate_Get
+
+```java
+/**
+ * Samples for AkriDiscoveryHandler ListByInstanceResource.
+ */
+public final class AkriDiscoveryHandlerListByInstanceResourceSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/AkriDiscoveryHandler_ListByInstanceResource_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AkriDiscoveryHandler_ListByInstanceResource_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void akriDiscoveryHandlerListByInstanceResourceMaximumSet(
+        com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.akriDiscoveryHandlers()
+            .listByInstanceResource("rgiotoperations", "resource-name123", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AkriConnectorTemplate_ListByInstanceResource
+
+```java
+/**
+ * Samples for BrokerListener Delete.
+ */
+public final class BrokerListenerDeleteSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/BrokerListener_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BrokerListener_Delete.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void brokerListenerDelete(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.brokerListeners()
+            .delete("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AkriDiscoveryHandler_CreateOrUpdate
+
+```java
+/**
+ * Samples for Dataflow ListByResourceGroup.
+ */
+public final class DataflowListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/Dataflow_ListByProfileResource_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Dataflow_ListByProfileResource.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        dataflowListByProfileResource(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.dataflows()
+            .listByResourceGroup("rgiotoperations", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AkriDiscoveryHandler_Delete
+
+```java
+/**
+ * Samples for DataflowProfile ListByResourceGroup.
+ */
+public final class DataflowProfileListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/DataflowProfile_ListByResourceGroup_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: DataflowProfile_ListByResourceGroup.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        dataflowProfileListByResourceGroup(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.dataflowProfiles()
+            .listByResourceGroup("rgiotoperations", "resource-name123", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AkriDiscoveryHandler_Get
+
+```java
+/**
+ * Samples for Diagnostic Delete.
+ */
+public final class DiagnosticDeleteSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/Diagnostic_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Diagnostic_Delete_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        diagnosticDeleteMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.diagnostics()
+            .delete("rgiotoperations", "resource-123", "resource-123", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AkriDiscoveryHandler_ListByInstanceResource
+
+```java
+/**
+ * Samples for DataflowGraph ListByDataflowProfile.
+ */
+public final class DataflowGraphListByDataflowProfileSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/DataflowGraph_ListByDataflowProfile_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: DataflowGraph_ListByDataflowProfile_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void dataflowGraphListByDataflowProfileMaximumSet(
+        com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.dataflowGraphs()
+            .listByDataflowProfile("rgiotoperations", "resource-123", "resource-123", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Broker_CreateOrUpdate
+
+```java
+/**
+ * Samples for RegistryEndpoint Delete.
+ */
+public final class RegistryEndpointDeleteSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/RegistryEndpoint_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: RegistryEndpoint_Delete_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        registryEndpointDeleteMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.registryEndpoints()
+            .delete("rgiotoperations", "resource-123", "resource-123", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Broker_Delete
+
+```java
+/**
+ * Samples for AkriConnector Delete.
+ */
+public final class AkriConnectorDeleteSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/AkriConnector_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AkriConnector_Delete_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        akriConnectorDeleteMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.akriConnectors()
+            .delete("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Broker_Get
+
+```java
+/**
+ * Samples for AkriConnector ListByTemplate.
+ */
+public final class AkriConnectorListByTemplateSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/AkriConnector_ListByTemplate_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AkriConnector_ListByTemplate_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        akriConnectorListByTemplateMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.akriConnectors()
+            .listByTemplate("rgiotoperations", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Broker_ListByResourceGroup
+
+```java
+/**
+ * Samples for AkriConnectorTemplate Get.
+ */
+public final class AkriConnectorTemplateGetSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/AkriConnectorTemplate_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AkriConnectorTemplate_Get_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        akriConnectorTemplateGetMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.akriConnectorTemplates()
+            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BrokerAuthentication_CreateOrUpdate
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/Operations_List_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Operations_List.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void operationsList(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BrokerAuthentication_Delete
+
+```java
+/**
+ * Samples for Broker Get.
+ */
+public final class BrokerGetSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/Broker_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Broker_Get.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void brokerGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.brokers()
+            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BrokerAuthentication_Get
+
+```java
+import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticationMethod;
+import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticationProperties;
+import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorCustomAuth;
+import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodCustom;
+import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodSat;
+import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodX509;
+import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodX509Attributes;
+import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethods;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
+import com.azure.resourcemanager.iotoperations.models.X509ManualCertificate;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for BrokerAuthentication CreateOrUpdate.
+ */
+public final class BrokerAuthenticationCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/BrokerAuthentication_CreateOrUpdate_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BrokerAuthentication_CreateOrUpdate.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        brokerAuthenticationCreateOrUpdate(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.brokerAuthentications()
+            .define("resource-name123")
+            .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withProperties(
+                new BrokerAuthenticationProperties()
+                    .withAuthenticationMethods(
+                        Arrays
+                            .asList(new BrokerAuthenticatorMethods().withMethod(BrokerAuthenticationMethod.CUSTOM)
+                                .withCustomSettings(new BrokerAuthenticatorMethodCustom()
+                                    .withAuth(new BrokerAuthenticatorCustomAuth()
+                                        .withX509(new X509ManualCertificate().withSecretRef("fakeTokenPlaceholder")))
+                                    .withCaCertConfigMap("pdecudefqyolvncbus")
+                                    .withEndpoint("https://www.example.com")
+                                    .withHeaders(mapOf("key8518", "fakeTokenPlaceholder")))
+                                .withServiceAccountTokenSettings(
+                                    new BrokerAuthenticatorMethodSat().withAudiences(Arrays.asList("jqyhyqatuydg")))
+                                .withX509Settings(new BrokerAuthenticatorMethodX509()
+                                    .withAuthorizationAttributes(mapOf("key3384",
+                                        new BrokerAuthenticatorMethodX509Attributes()
+                                            .withAttributes(mapOf("key186", "fakeTokenPlaceholder"))
+                                            .withSubject("jpgwctfeixitptfgfnqhua")))
+                                    .withTrustedClientCaCert("vlctsqddl")))))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: 2025-07-01-preview/BrokerAuthentication_CreateOrUpdate_Complex.json
+     */
+    /**
+     * Sample code: BrokerAuthentication_CreateOrUpdate_Complex.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void brokerAuthenticationCreateOrUpdateComplex(
+        com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.brokerAuthentications()
+            .define("resource-name123")
+            .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withProperties(new BrokerAuthenticationProperties().withAuthenticationMethods(Arrays.asList(
+                new BrokerAuthenticatorMethods().withMethod(BrokerAuthenticationMethod.SERVICE_ACCOUNT_TOKEN)
+                    .withServiceAccountTokenSettings(
+                        new BrokerAuthenticatorMethodSat().withAudiences(Arrays.asList("aio-internal"))),
+                new BrokerAuthenticatorMethods().withMethod(BrokerAuthenticationMethod.X509)
+                    .withX509Settings(new BrokerAuthenticatorMethodX509().withAuthorizationAttributes(mapOf("root",
+                        new BrokerAuthenticatorMethodX509Attributes().withAttributes(mapOf("organization", "contoso"))
+                            .withSubject("CN = Contoso Root CA Cert, OU = Engineering, C = US"),
+                        "intermediate",
+                        new BrokerAuthenticatorMethodX509Attributes()
+                            .withAttributes(mapOf("city", "seattle", "foo", "bar"))
+                            .withSubject("CN = Contoso Intermediate CA"),
+                        "smart-fan",
+                        new BrokerAuthenticatorMethodX509Attributes().withAttributes(mapOf("building", "17"))
+                            .withSubject("CN = smart-fan")))
+                        .withTrustedClientCaCert("my-ca")))))
+            .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### BrokerAuthentication_ListByResourceGroup
+
+```java
+/**
+ * Samples for Instance ListByResourceGroup.
+ */
+public final class InstanceListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/Instance_ListByResourceGroup_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Instance_ListByResourceGroup.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        instanceListByResourceGroup(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.instances().listByResourceGroup("rgiotoperations", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BrokerAuthorization_CreateOrUpdate
 
 ```java
 import com.azure.resourcemanager.iotoperations.models.AdvancedSettings;
@@ -105,7 +770,7 @@ import java.util.Map;
  */
 public final class BrokerCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Broker_CreateOrUpdate_Minimal.json
+     * x-ms-original-file: 2025-07-01-preview/Broker_CreateOrUpdate_Minimal.json
      */
     /**
      * Sample code: Broker_CreateOrUpdate_Minimal.
@@ -124,7 +789,7 @@ public final class BrokerCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/Broker_CreateOrUpdate_Complex.json
+     * x-ms-original-file: 2025-07-01-preview/Broker_CreateOrUpdate_Complex.json
      */
     /**
      * Sample code: Broker_CreateOrUpdate_Complex.
@@ -149,7 +814,7 @@ public final class BrokerCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/Broker_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/Broker_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: Broker_CreateOrUpdate.
@@ -238,7 +903,7 @@ public final class BrokerCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/Broker_CreateOrUpdate_Simple.json
+     * x-ms-original-file: 2025-07-01-preview/Broker_CreateOrUpdate_Simple.json
      */
     /**
      * Sample code: Broker_CreateOrUpdate_Simple.
@@ -275,7 +940,100 @@ public final class BrokerCreateOrUpdateSamples {
 }
 ```
 
-### Broker_Delete
+### BrokerAuthorization_Delete
+
+```java
+/**
+ * Samples for DataflowGraph Delete.
+ */
+public final class DataflowGraphDeleteSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/DataflowGraph_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: DataflowGraph_Delete_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        dataflowGraphDeleteMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.dataflowGraphs()
+            .delete("rgiotoperations", "resource-123", "resource-123", "resource-123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BrokerAuthorization_Get
+
+```java
+/**
+ * Samples for BrokerListener Get.
+ */
+public final class BrokerListenerGetSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/BrokerListener_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BrokerListener_Get.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void brokerListenerGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.brokerListeners()
+            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BrokerAuthorization_ListByResourceGroup
+
+```java
+/**
+ * Samples for AkriConnectorTemplate Delete.
+ */
+public final class AkriConnectorTemplateDeleteSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/AkriConnectorTemplate_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AkriConnectorTemplate_Delete_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        akriConnectorTemplateDeleteMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.akriConnectorTemplates()
+            .delete("rgiotoperations", "resource-name123", "resource-name123", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BrokerListener_CreateOrUpdate
+
+```java
+/**
+ * Samples for Diagnostic ListByInstanceResource.
+ */
+public final class DiagnosticListByInstanceResourceSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/Diagnostic_ListByInstanceResource_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Diagnostic_ListByInstanceResource_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void diagnosticListByInstanceResourceMaximumSet(
+        com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.diagnostics()
+            .listByInstanceResource("rgiotoperations", "resource-123", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### BrokerListener_Delete
 
 ```java
 /**
@@ -283,7 +1041,7 @@ public final class BrokerCreateOrUpdateSamples {
  */
 public final class BrokerDeleteSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Broker_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/Broker_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: Broker_Delete.
@@ -297,205 +1055,30 @@ public final class BrokerDeleteSamples {
 }
 ```
 
-### Broker_Get
+### BrokerListener_Get
 
 ```java
 /**
- * Samples for Broker Get.
+ * Samples for AkriDiscoveryHandler Delete.
  */
-public final class BrokerGetSamples {
+public final class AkriDiscoveryHandlerDeleteSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Broker_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/AkriDiscoveryHandler_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Broker_Get.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void brokerGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.brokers()
-            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Broker_ListByResourceGroup
-
-```java
-/**
- * Samples for Broker ListByResourceGroup.
- */
-public final class BrokerListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/Broker_ListByResourceGroup_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: Broker_ListByResourceGroup.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void brokerListByResourceGroup(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.brokers().listByResourceGroup("rgiotoperations", "resource-name123", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### BrokerAuthentication_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticationMethod;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticationProperties;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorCustomAuth;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodCustom;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodSat;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodX509;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethodX509Attributes;
-import com.azure.resourcemanager.iotoperations.models.BrokerAuthenticatorMethods;
-import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
-import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
-import com.azure.resourcemanager.iotoperations.models.X509ManualCertificate;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for BrokerAuthentication CreateOrUpdate.
- */
-public final class BrokerAuthenticationCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/BrokerAuthentication_CreateOrUpdate_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: BrokerAuthentication_CreateOrUpdate.
+     * Sample code: AkriDiscoveryHandler_Delete_MaximumSet.
      * 
      * @param manager Entry point to IoTOperationsManager.
      */
     public static void
-        brokerAuthenticationCreateOrUpdate(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.brokerAuthentications()
-            .define("resource-name123")
-            .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(
-                new BrokerAuthenticationProperties()
-                    .withAuthenticationMethods(
-                        Arrays
-                            .asList(new BrokerAuthenticatorMethods().withMethod(BrokerAuthenticationMethod.CUSTOM)
-                                .withCustomSettings(new BrokerAuthenticatorMethodCustom()
-                                    .withAuth(new BrokerAuthenticatorCustomAuth()
-                                        .withX509(new X509ManualCertificate().withSecretRef("fakeTokenPlaceholder")))
-                                    .withCaCertConfigMap("pdecudefqyolvncbus")
-                                    .withEndpoint("https://www.example.com")
-                                    .withHeaders(mapOf("key8518", "fakeTokenPlaceholder")))
-                                .withServiceAccountTokenSettings(
-                                    new BrokerAuthenticatorMethodSat().withAudiences(Arrays.asList("jqyhyqatuydg")))
-                                .withX509Settings(new BrokerAuthenticatorMethodX509()
-                                    .withAuthorizationAttributes(mapOf("key3384",
-                                        new BrokerAuthenticatorMethodX509Attributes()
-                                            .withAttributes(mapOf("key186", "fakeTokenPlaceholder"))
-                                            .withSubject("jpgwctfeixitptfgfnqhua")))
-                                    .withTrustedClientCaCert("vlctsqddl")))))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: 2024-11-01/BrokerAuthentication_CreateOrUpdate_Complex.json
-     */
-    /**
-     * Sample code: BrokerAuthentication_CreateOrUpdate_Complex.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void brokerAuthenticationCreateOrUpdateComplex(
-        com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.brokerAuthentications()
-            .define("resource-name123")
-            .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerAuthenticationProperties().withAuthenticationMethods(Arrays.asList(
-                new BrokerAuthenticatorMethods().withMethod(BrokerAuthenticationMethod.SERVICE_ACCOUNT_TOKEN)
-                    .withServiceAccountTokenSettings(
-                        new BrokerAuthenticatorMethodSat().withAudiences(Arrays.asList("aio-internal"))),
-                new BrokerAuthenticatorMethods().withMethod(BrokerAuthenticationMethod.X509)
-                    .withX509Settings(new BrokerAuthenticatorMethodX509().withAuthorizationAttributes(mapOf("root",
-                        new BrokerAuthenticatorMethodX509Attributes().withAttributes(mapOf("organization", "contoso"))
-                            .withSubject("CN = Contoso Root CA Cert, OU = Engineering, C = US"),
-                        "intermediate",
-                        new BrokerAuthenticatorMethodX509Attributes()
-                            .withAttributes(mapOf("city", "seattle", "foo", "bar"))
-                            .withSubject("CN = Contoso Intermediate CA"),
-                        "smart-fan",
-                        new BrokerAuthenticatorMethodX509Attributes().withAttributes(mapOf("building", "17"))
-                            .withSubject("CN = smart-fan")))
-                        .withTrustedClientCaCert("my-ca")))))
-            .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
+        akriDiscoveryHandlerDeleteMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.akriDiscoveryHandlers()
+            .delete("rgiotoperations", "resource-name123", "resource-name123", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### BrokerAuthentication_Delete
-
-```java
-/**
- * Samples for BrokerAuthentication Delete.
- */
-public final class BrokerAuthenticationDeleteSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/BrokerAuthentication_Delete_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: BrokerAuthentication_Delete.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void
-        brokerAuthenticationDelete(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.brokerAuthentications()
-            .delete("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### BrokerAuthentication_Get
-
-```java
-/**
- * Samples for BrokerAuthentication Get.
- */
-public final class BrokerAuthenticationGetSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/BrokerAuthentication_Get_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: BrokerAuthentication_Get.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void brokerAuthenticationGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.brokerAuthentications()
-            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### BrokerAuthentication_ListByResourceGroup
+### BrokerListener_ListByResourceGroup
 
 ```java
 /**
@@ -503,7 +1086,7 @@ public final class BrokerAuthenticationGetSamples {
  */
 public final class BrokerAuthenticationListByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-11-01/BrokerAuthentication_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/BrokerAuthentication_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerAuthentication_ListByResourceGroup.
@@ -519,7 +1102,7 @@ public final class BrokerAuthenticationListByResourceGroupSamples {
 }
 ```
 
-### BrokerAuthorization_CreateOrUpdate
+### Dataflow_CreateOrUpdate
 
 ```java
 import com.azure.resourcemanager.iotoperations.models.AuthorizationConfig;
@@ -543,7 +1126,7 @@ import java.util.Map;
  */
 public final class BrokerAuthorizationCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-11-01/BrokerAuthorization_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/BrokerAuthorization_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: BrokerAuthorization_CreateOrUpdate.
@@ -576,7 +1159,7 @@ public final class BrokerAuthorizationCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/BrokerAuthorization_CreateOrUpdate_Simple.json
+     * x-ms-original-file: 2025-07-01-preview/BrokerAuthorization_CreateOrUpdate_Simple.json
      */
     /**
      * Sample code: BrokerAuthorization_CreateOrUpdate_Simple.
@@ -608,7 +1191,7 @@ public final class BrokerAuthorizationCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/BrokerAuthorization_CreateOrUpdate_Complex.json
+     * x-ms-original-file: 2025-07-01-preview/BrokerAuthorization_CreateOrUpdate_Complex.json
      */
     /**
      * Sample code: BrokerAuthorization_CreateOrUpdate_Complex.
@@ -661,267 +1244,7 @@ public final class BrokerAuthorizationCreateOrUpdateSamples {
 }
 ```
 
-### BrokerAuthorization_Delete
-
-```java
-/**
- * Samples for BrokerAuthorization Delete.
- */
-public final class BrokerAuthorizationDeleteSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/BrokerAuthorization_Delete_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: BrokerAuthorization_Delete.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void brokerAuthorizationDelete(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.brokerAuthorizations()
-            .delete("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### BrokerAuthorization_Get
-
-```java
-/**
- * Samples for BrokerAuthorization Get.
- */
-public final class BrokerAuthorizationGetSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/BrokerAuthorization_Get_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: BrokerAuthorization_Get.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void brokerAuthorizationGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.brokerAuthorizations()
-            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### BrokerAuthorization_ListByResourceGroup
-
-```java
-/**
- * Samples for BrokerAuthorization ListByResourceGroup.
- */
-public final class BrokerAuthorizationListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/BrokerAuthorization_ListByResourceGroup_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: BrokerAuthorization_ListByResourceGroup.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void
-        brokerAuthorizationListByResourceGroup(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.brokerAuthorizations()
-            .listByResourceGroup("rgiotoperations", "resource-name123", "resource-name123",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### BrokerListener_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.iotoperations.models.BrokerListenerProperties;
-import com.azure.resourcemanager.iotoperations.models.BrokerProtocolType;
-import com.azure.resourcemanager.iotoperations.models.CertManagerCertificateSpec;
-import com.azure.resourcemanager.iotoperations.models.CertManagerIssuerKind;
-import com.azure.resourcemanager.iotoperations.models.CertManagerIssuerRef;
-import com.azure.resourcemanager.iotoperations.models.CertManagerPrivateKey;
-import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
-import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
-import com.azure.resourcemanager.iotoperations.models.ListenerPort;
-import com.azure.resourcemanager.iotoperations.models.PrivateKeyAlgorithm;
-import com.azure.resourcemanager.iotoperations.models.PrivateKeyRotationPolicy;
-import com.azure.resourcemanager.iotoperations.models.SanForCert;
-import com.azure.resourcemanager.iotoperations.models.ServiceType;
-import com.azure.resourcemanager.iotoperations.models.TlsCertMethod;
-import com.azure.resourcemanager.iotoperations.models.TlsCertMethodMode;
-import com.azure.resourcemanager.iotoperations.models.X509ManualCertificate;
-import java.util.Arrays;
-
-/**
- * Samples for BrokerListener CreateOrUpdate.
- */
-public final class BrokerListenerCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/BrokerListener_CreateOrUpdate_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: BrokerListener_CreateOrUpdate.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void
-        brokerListenerCreateOrUpdate(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.brokerListeners()
-            .define("resource-name123")
-            .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerListenerProperties().withServiceName("tpfiszlapdpxktx")
-                .withPorts(Arrays.asList(new ListenerPort().withAuthenticationRef("tjvdroaqqy")
-                    .withAuthorizationRef("fakeTokenPlaceholder")
-                    .withNodePort(7281)
-                    .withPort(1268)
-                    .withProtocol(BrokerProtocolType.MQTT)
-                    .withTls(new TlsCertMethod().withMode(TlsCertMethodMode.AUTOMATIC)
-                        .withCertManagerCertificateSpec(new CertManagerCertificateSpec().withDuration("qmpeffoksron")
-                            .withSecretName("fakeTokenPlaceholder")
-                            .withRenewBefore("hutno")
-                            .withIssuerRef(new CertManagerIssuerRef().withGroup("jtmuladdkpasfpoyvewekmiy")
-                                .withKind(CertManagerIssuerKind.ISSUER)
-                                .withName("ocwoqpgucvjrsuudtjhb"))
-                            .withPrivateKey(new CertManagerPrivateKey().withAlgorithm(PrivateKeyAlgorithm.EC256)
-                                .withRotationPolicy(PrivateKeyRotationPolicy.ALWAYS))
-                            .withSan(new SanForCert().withDns(Arrays.asList("xhvmhrrhgfsapocjeebqtnzarlj"))
-                                .withIp(Arrays.asList("zbgugfzcgsmegevzktsnibyuyp"))))
-                        .withManual(new X509ManualCertificate().withSecretRef("fakeTokenPlaceholder")))))
-                .withServiceType(ServiceType.CLUSTER_IP))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: 2024-11-01/BrokerListener_CreateOrUpdate_Simple.json
-     */
-    /**
-     * Sample code: BrokerListener_CreateOrUpdate_Simple.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void
-        brokerListenerCreateOrUpdateSimple(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.brokerListeners()
-            .define("resource-name123")
-            .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerListenerProperties().withPorts(Arrays.asList(new ListenerPort().withPort(1883))))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: 2024-11-01/BrokerListener_CreateOrUpdate_Complex.json
-     */
-    /**
-     * Sample code: BrokerListener_CreateOrUpdate_Complex.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void
-        brokerListenerCreateOrUpdateComplex(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.brokerListeners()
-            .define("resource-name123")
-            .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new BrokerListenerProperties()
-                .withPorts(Arrays.asList(
-                    new ListenerPort().withAuthenticationRef("example-authentication")
-                        .withPort(8080)
-                        .withProtocol(BrokerProtocolType.WEB_SOCKETS),
-                    new ListenerPort().withAuthenticationRef("example-authentication")
-                        .withPort(8443)
-                        .withProtocol(BrokerProtocolType.WEB_SOCKETS)
-                        .withTls(new TlsCertMethod().withMode(TlsCertMethodMode.AUTOMATIC)
-                            .withCertManagerCertificateSpec(new CertManagerCertificateSpec()
-                                .withIssuerRef(new CertManagerIssuerRef().withGroup("jtmuladdkpasfpoyvewekmiy")
-                                    .withKind(CertManagerIssuerKind.ISSUER)
-                                    .withName("example-issuer")))),
-                    new ListenerPort().withAuthenticationRef("example-authentication").withPort(1883),
-                    new ListenerPort().withAuthenticationRef("example-authentication")
-                        .withPort(8883)
-                        .withTls(new TlsCertMethod().withMode(TlsCertMethodMode.MANUAL)
-                            .withManual(new X509ManualCertificate().withSecretRef("fakeTokenPlaceholder")))))
-                .withServiceType(ServiceType.LOAD_BALANCER))
-            .create();
-    }
-}
-```
-
-### BrokerListener_Delete
-
-```java
-/**
- * Samples for BrokerListener Delete.
- */
-public final class BrokerListenerDeleteSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/BrokerListener_Delete_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: BrokerListener_Delete.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void brokerListenerDelete(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.brokerListeners()
-            .delete("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### BrokerListener_Get
-
-```java
-/**
- * Samples for BrokerListener Get.
- */
-public final class BrokerListenerGetSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/BrokerListener_Get_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: BrokerListener_Get.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void brokerListenerGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.brokerListeners()
-            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### BrokerListener_ListByResourceGroup
-
-```java
-/**
- * Samples for BrokerListener ListByResourceGroup.
- */
-public final class BrokerListenerListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/BrokerListener_ListByResourceGroup_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: BrokerListener_ListByResourceGroup.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void
-        brokerListenerListByResourceGroup(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.brokerListeners()
-            .listByResourceGroup("rgiotoperations", "resource-name123", "resource-name123",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Dataflow_CreateOrUpdate
+### Dataflow_Delete
 
 ```java
 import com.azure.resourcemanager.iotoperations.models.DataflowBuiltInTransformationDataset;
@@ -947,7 +1270,7 @@ import java.util.Arrays;
  */
 public final class DataflowCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Dataflow_CreateOrUpdate_FilterToTopic.json
+     * x-ms-original-file: 2025-07-01-preview/Dataflow_CreateOrUpdate_FilterToTopic.json
      */
     /**
      * Sample code: Dataflow_CreateOrUpdate_FilterToTopic.
@@ -991,7 +1314,7 @@ public final class DataflowCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/Dataflow_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/Dataflow_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: Dataflow_CreateOrUpdate.
@@ -1041,7 +1364,7 @@ public final class DataflowCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/Dataflow_CreateOrUpdate_ComplexContextualization.json
+     * x-ms-original-file: 2025-07-01-preview/Dataflow_CreateOrUpdate_ComplexContextualization.json
      */
     /**
      * Sample code: Dataflow_CreateOrUpdate_ComplexContextualization.
@@ -1085,7 +1408,7 @@ public final class DataflowCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/Dataflow_CreateOrUpdate_ComplexEventHub.json
+     * x-ms-original-file: 2025-07-01-preview/Dataflow_CreateOrUpdate_ComplexEventHub.json
      */
     /**
      * Sample code: Dataflow_CreateOrUpdate_ComplexEventHub.
@@ -1149,7 +1472,7 @@ public final class DataflowCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/Dataflow_CreateOrUpdate_SimpleFabric.json
+     * x-ms-original-file: 2025-07-01-preview/Dataflow_CreateOrUpdate_SimpleFabric.json
      */
     /**
      * Sample code: Dataflow_CreateOrUpdate_SimpleFabric.
@@ -1186,7 +1509,7 @@ public final class DataflowCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/Dataflow_CreateOrUpdate_SimpleEventGrid.json
+     * x-ms-original-file: 2025-07-01-preview/Dataflow_CreateOrUpdate_SimpleEventGrid.json
      */
     /**
      * Sample code: Dataflow_CreateOrUpdate_SimpleEventGrid.
@@ -1217,47 +1540,24 @@ public final class DataflowCreateOrUpdateSamples {
 }
 ```
 
-### Dataflow_Delete
-
-```java
-/**
- * Samples for Dataflow Delete.
- */
-public final class DataflowDeleteSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/Dataflow_Delete_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: Dataflow_Delete.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void dataflowDelete(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.dataflows()
-            .delete("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Dataflow_Get
 
 ```java
 /**
- * Samples for Dataflow Get.
+ * Samples for DataflowEndpoint Get.
  */
-public final class DataflowGetSamples {
+public final class DataflowEndpointGetSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Dataflow_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Dataflow_Get.
+     * Sample code: DataflowEndpoint_Get.
      * 
      * @param manager Entry point to IoTOperationsManager.
      */
-    public static void dataflowGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.dataflows()
-            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
+    public static void dataflowEndpointGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.dataflowEndpoints()
+            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123",
                 com.azure.core.util.Context.NONE);
     }
 }
@@ -1267,27 +1567,345 @@ public final class DataflowGetSamples {
 
 ```java
 /**
- * Samples for Dataflow ListByResourceGroup.
+ * Samples for AkriDiscoveryHandler Get.
  */
-public final class DataflowListByResourceGroupSamples {
+public final class AkriDiscoveryHandlerGetSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Dataflow_ListByProfileResource_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/AkriDiscoveryHandler_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Dataflow_ListByProfileResource.
+     * Sample code: AkriDiscoveryHandler_Get_MaximumSet.
      * 
      * @param manager Entry point to IoTOperationsManager.
      */
     public static void
-        dataflowListByProfileResource(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.dataflows()
-            .listByResourceGroup("rgiotoperations", "resource-name123", "resource-name123",
+        akriDiscoveryHandlerGetMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.akriDiscoveryHandlers()
+            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123",
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### DataflowEndpoint_CreateOrUpdate
+
+```java
+/**
+ * Samples for BrokerAuthorization ListByResourceGroup.
+ */
+public final class BrokerAuthorizationListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/BrokerAuthorization_ListByResourceGroup_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BrokerAuthorization_ListByResourceGroup.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        brokerAuthorizationListByResourceGroup(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.brokerAuthorizations()
+            .listByResourceGroup("rgiotoperations", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataflowEndpoint_Delete
+
+```java
+import com.azure.resourcemanager.iotoperations.models.InstanceResource;
+import com.azure.resourcemanager.iotoperations.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.iotoperations.models.ManagedServiceIdentityType;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for Instance Update.
+ */
+public final class InstanceUpdateSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/Instance_Update_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Instance_Update.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void instanceUpdate(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        InstanceResource resource = manager.instances()
+            .getByResourceGroupWithResponse("rgiotoperations", "aio-instance", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf())
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
+                .withUserAssignedIdentities(mapOf()))
+            .apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### DataflowEndpoint_Get
+
+```java
+import com.azure.resourcemanager.iotoperations.models.DataflowGraphConnectionInput;
+import com.azure.resourcemanager.iotoperations.models.DataflowGraphConnectionOutput;
+import com.azure.resourcemanager.iotoperations.models.DataflowGraphNode;
+import com.azure.resourcemanager.iotoperations.models.DataflowGraphNodeConnection;
+import com.azure.resourcemanager.iotoperations.models.DataflowGraphProperties;
+import com.azure.resourcemanager.iotoperations.models.DataflowGraphSchemaSettings;
+import com.azure.resourcemanager.iotoperations.models.DataflowGraphSerializationFormat;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
+import com.azure.resourcemanager.iotoperations.models.OperationalMode;
+import java.util.Arrays;
+
+/**
+ * Samples for DataflowGraph CreateOrUpdate.
+ */
+public final class DataflowGraphCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/DataflowGraph_CreateOrUpdate_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: DataflowGraph_CreateOrUpdate_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        dataflowGraphCreateOrUpdateMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.dataflowGraphs()
+            .define("resource-123")
+            .withExistingDataflowProfile("rgiotoperations", "resource-123", "resource-123")
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withProperties(new DataflowGraphProperties().withMode(OperationalMode.ENABLED)
+                .withRequestDiskPersistence(OperationalMode.ENABLED)
+                .withNodes(Arrays.asList(new DataflowGraphNode().withName("gjbjgii")))
+                .withNodeConnections(Arrays.asList(new DataflowGraphNodeConnection()
+                    .withFrom(new DataflowGraphConnectionInput().withName("wsqbccd")
+                        .withSchema(new DataflowGraphSchemaSettings()
+                            .withSerializationFormat(DataflowGraphSerializationFormat.DELTA)
+                            .withSchemaRef("gkyqreiunkvdgggy")))
+                    .withTo(new DataflowGraphConnectionOutput()
+                        .withName("dqvkpqshglptwrjfeblfzbofmkfktzbjhidsvqctmbzocbtgtkbgrayg")))))
+            .create();
+    }
+}
+```
+
+### DataflowEndpoint_ListByResourceGroup
+
+```java
+/**
+ * Samples for Instance GetByResourceGroup.
+ */
+public final class InstanceGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/Instance_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Instance_Get.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void instanceGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.instances()
+            .getByResourceGroupWithResponse("rgiotoperations", "aio-instance", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataflowGraph_CreateOrUpdate
+
+```java
+/**
+ * Samples for DataflowGraph Get.
+ */
+public final class DataflowGraphGetSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/DataflowGraph_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: DataflowGraph_Get_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        dataflowGraphGetMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.dataflowGraphs()
+            .getWithResponse("rgiotoperations", "resource-123", "resource-123", "resource-123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataflowGraph_Delete
+
+```java
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
+import com.azure.resourcemanager.iotoperations.models.InstanceProperties;
+import com.azure.resourcemanager.iotoperations.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.iotoperations.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.iotoperations.models.SchemaRegistryRef;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for Instance CreateOrUpdate.
+ */
+public final class InstanceCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/Instance_CreateOrUpdate_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Instance_CreateOrUpdate.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void instanceCreateOrUpdate(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.instances()
+            .define("aio-instance")
+            .withRegion("xvewadyhycrjpu")
+            .withExistingResourceGroup("rgiotoperations")
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withTags(mapOf())
+            .withProperties(new InstanceProperties().withDescription("kpqtgocs")
+                .withSchemaRegistryRef(new SchemaRegistryRef().withResourceId(
+                    "/subscriptions/0000000-0000-0000-0000-000000000000/resourceGroups/resourceGroup123/providers/Microsoft.DeviceRegistry/schemaRegistries/resource-name123")))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
+                .withUserAssignedIdentities(mapOf()))
+            .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### DataflowGraph_Get
+
+```java
+import com.azure.resourcemanager.iotoperations.models.DataflowProfileProperties;
+import com.azure.resourcemanager.iotoperations.models.DiagnosticsLogs;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
+import com.azure.resourcemanager.iotoperations.models.Metrics;
+import com.azure.resourcemanager.iotoperations.models.ProfileDiagnostics;
+
+/**
+ * Samples for DataflowProfile CreateOrUpdate.
+ */
+public final class DataflowProfileCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/DataflowProfile_CreateOrUpdate_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: DataflowProfile_CreateOrUpdate.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        dataflowProfileCreateOrUpdate(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.dataflowProfiles()
+            .define("resource-name123")
+            .withExistingInstance("rgiotoperations", "resource-name123")
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withProperties(new DataflowProfileProperties().withDiagnostics(
+                new ProfileDiagnostics().withLogs(new DiagnosticsLogs().withLevel("rnmwokumdmebpmfxxxzvvjfdywotav"))
+                    .withMetrics(new Metrics().withPrometheusPort(7581)))
+                .withInstanceCount(14))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: 2025-07-01-preview/DataflowProfile_CreateOrUpdate_Minimal.json
+     */
+    /**
+     * Sample code: DataflowProfile_CreateOrUpdate_Minimal.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        dataflowProfileCreateOrUpdateMinimal(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.dataflowProfiles()
+            .define("aio-dataflowprofile")
+            .withExistingInstance("rgiotoperations", "resource-name123")
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withProperties(new DataflowProfileProperties().withInstanceCount(1))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: 2025-07-01-preview/DataflowProfile_CreateOrUpdate_Multi.json
+     */
+    /**
+     * Sample code: DataflowProfile_CreateOrUpdate_Multi.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        dataflowProfileCreateOrUpdateMulti(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.dataflowProfiles()
+            .define("aio-dataflowprofile")
+            .withExistingInstance("rgiotoperations", "resource-name123")
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withProperties(new DataflowProfileProperties().withInstanceCount(3))
+            .create();
+    }
+}
+```
+
+### DataflowGraph_ListByDataflowProfile
+
+```java
+/**
+ * Samples for BrokerAuthentication Get.
+ */
+public final class BrokerAuthenticationGetSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/BrokerAuthentication_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BrokerAuthentication_Get.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void brokerAuthenticationGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.brokerAuthentications()
+            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataflowProfile_CreateOrUpdate
 
 ```java
 import com.azure.resourcemanager.iotoperations.models.BatchingConfiguration;
@@ -1335,7 +1953,7 @@ import com.azure.resourcemanager.iotoperations.models.TlsProperties;
  */
 public final class DataflowEndpointCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-11-01/DataflowEndpoint_CreateOrUpdate_EventGrid.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_EventGrid.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_EventGrid.
@@ -1361,7 +1979,7 @@ public final class DataflowEndpointCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/DataflowEndpoint_CreateOrUpdate_ADLSv2.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_ADLSv2.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_ADLSv2.
@@ -1388,7 +2006,7 @@ public final class DataflowEndpointCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/DataflowEndpoint_CreateOrUpdate_EventHub.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_EventHub.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_EventHub.
@@ -1415,7 +2033,7 @@ public final class DataflowEndpointCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/DataflowEndpoint_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate.
@@ -1540,7 +2158,7 @@ public final class DataflowEndpointCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/DataflowEndpoint_CreateOrUpdate_ADX.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_ADX.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_ADX.
@@ -1567,7 +2185,7 @@ public final class DataflowEndpointCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/DataflowEndpoint_CreateOrUpdate_Fabric.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_Fabric.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_Fabric.
@@ -1595,7 +2213,7 @@ public final class DataflowEndpointCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/DataflowEndpoint_CreateOrUpdate_LocalStorage.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_LocalStorage.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_LocalStorage.
@@ -1616,7 +2234,7 @@ public final class DataflowEndpointCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/DataflowEndpoint_CreateOrUpdate_AIO.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_AIO.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_AIO.
@@ -1644,7 +2262,7 @@ public final class DataflowEndpointCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/DataflowEndpoint_CreateOrUpdate_MQTT.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_MQTT.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_MQTT.
@@ -1677,7 +2295,7 @@ public final class DataflowEndpointCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: 2024-11-01/DataflowEndpoint_CreateOrUpdate_Kafka.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_Kafka.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_Kafka.
@@ -1715,52 +2333,7 @@ public final class DataflowEndpointCreateOrUpdateSamples {
 }
 ```
 
-### DataflowEndpoint_Delete
-
-```java
-/**
- * Samples for DataflowEndpoint Delete.
- */
-public final class DataflowEndpointDeleteSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/DataflowEndpoint_Delete_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: DataflowEndpoint_Delete.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void dataflowEndpointDelete(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.dataflowEndpoints()
-            .delete("rgiotoperations", "resource-name123", "resource-name123", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DataflowEndpoint_Get
-
-```java
-/**
- * Samples for DataflowEndpoint Get.
- */
-public final class DataflowEndpointGetSamples {
-    /*
-     * x-ms-original-file: 2024-11-01/DataflowEndpoint_Get_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: DataflowEndpoint_Get.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void dataflowEndpointGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.dataflowEndpoints()
-            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DataflowEndpoint_ListByResourceGroup
+### DataflowProfile_Delete
 
 ```java
 /**
@@ -1768,7 +2341,7 @@ public final class DataflowEndpointGetSamples {
  */
 public final class DataflowEndpointListByResourceGroupSamples {
     /*
-     * x-ms-original-file: 2024-11-01/DataflowEndpoint_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: DataflowEndpoint_ListByResourceGroup.
@@ -1783,83 +2356,54 @@ public final class DataflowEndpointListByResourceGroupSamples {
 }
 ```
 
-### DataflowProfile_CreateOrUpdate
+### DataflowProfile_Get
 
 ```java
-import com.azure.resourcemanager.iotoperations.models.DataflowProfileProperties;
-import com.azure.resourcemanager.iotoperations.models.DiagnosticsLogs;
-import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
-import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
-import com.azure.resourcemanager.iotoperations.models.Metrics;
-import com.azure.resourcemanager.iotoperations.models.ProfileDiagnostics;
-
 /**
- * Samples for DataflowProfile CreateOrUpdate.
+ * Samples for RegistryEndpoint Get.
  */
-public final class DataflowProfileCreateOrUpdateSamples {
+public final class RegistryEndpointGetSamples {
     /*
-     * x-ms-original-file: 2024-11-01/DataflowProfile_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/RegistryEndpoint_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: DataflowProfile_CreateOrUpdate.
+     * Sample code: RegistryEndpoint_Get_MaximumSet.
      * 
      * @param manager Entry point to IoTOperationsManager.
      */
     public static void
-        dataflowProfileCreateOrUpdate(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.dataflowProfiles()
-            .define("resource-name123")
-            .withExistingInstance("rgiotoperations", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowProfileProperties().withDiagnostics(
-                new ProfileDiagnostics().withLogs(new DiagnosticsLogs().withLevel("rnmwokumdmebpmfxxxzvvjfdywotav"))
-                    .withMetrics(new Metrics().withPrometheusPort(7581)))
-                .withInstanceCount(14))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: 2024-11-01/DataflowProfile_CreateOrUpdate_Minimal.json
-     */
-    /**
-     * Sample code: DataflowProfile_CreateOrUpdate_Minimal.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void
-        dataflowProfileCreateOrUpdateMinimal(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.dataflowProfiles()
-            .define("aio-dataflowprofile")
-            .withExistingInstance("rgiotoperations", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowProfileProperties().withInstanceCount(1))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: 2024-11-01/DataflowProfile_CreateOrUpdate_Multi.json
-     */
-    /**
-     * Sample code: DataflowProfile_CreateOrUpdate_Multi.
-     * 
-     * @param manager Entry point to IoTOperationsManager.
-     */
-    public static void
-        dataflowProfileCreateOrUpdateMulti(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.dataflowProfiles()
-            .define("aio-dataflowprofile")
-            .withExistingInstance("rgiotoperations", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withProperties(new DataflowProfileProperties().withInstanceCount(3))
-            .create();
+        registryEndpointGetMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.registryEndpoints()
+            .getWithResponse("rgiotoperations", "resource-123", "resource-123", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### DataflowProfile_Delete
+### DataflowProfile_ListByResourceGroup
+
+```java
+/**
+ * Samples for AkriConnector Get.
+ */
+public final class AkriConnectorGetSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/AkriConnector_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AkriConnector_Get_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        akriConnectorGetMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.akriConnectors()
+            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Diagnostic_CreateOrUpdate
 
 ```java
 /**
@@ -1867,7 +2411,7 @@ public final class DataflowProfileCreateOrUpdateSamples {
  */
 public final class DataflowProfileDeleteSamples {
     /*
-     * x-ms-original-file: 2024-11-01/DataflowProfile_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowProfile_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: DataflowProfile_Delete.
@@ -1881,48 +2425,86 @@ public final class DataflowProfileDeleteSamples {
 }
 ```
 
-### DataflowProfile_Get
+### Diagnostic_Delete
 
 ```java
 /**
- * Samples for DataflowProfile Get.
+ * Samples for BrokerAuthorization Delete.
  */
-public final class DataflowProfileGetSamples {
+public final class BrokerAuthorizationDeleteSamples {
     /*
-     * x-ms-original-file: 2024-11-01/DataflowProfile_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/BrokerAuthorization_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: DataflowProfile_Get.
+     * Sample code: BrokerAuthorization_Delete.
      * 
      * @param manager Entry point to IoTOperationsManager.
      */
-    public static void dataflowProfileGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.dataflowProfiles()
-            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123",
+    public static void brokerAuthorizationDelete(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.brokerAuthorizations()
+            .delete("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### DataflowProfile_ListByResourceGroup
+### Diagnostic_Get
 
 ```java
 /**
- * Samples for DataflowProfile ListByResourceGroup.
+ * Samples for Dataflow Get.
  */
-public final class DataflowProfileListByResourceGroupSamples {
+public final class DataflowGetSamples {
     /*
-     * x-ms-original-file: 2024-11-01/DataflowProfile_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/Dataflow_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: DataflowProfile_ListByResourceGroup.
+     * Sample code: Dataflow_Get.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void dataflowGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.dataflows()
+            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Diagnostic_ListByInstanceResource
+
+```java
+import com.azure.resourcemanager.iotoperations.models.DiagnosticProperties;
+import com.azure.resourcemanager.iotoperations.models.DiagnosticsRemoteSupportAccessLevels;
+import com.azure.resourcemanager.iotoperations.models.DiagnosticsRemoteSupportActivationState;
+import com.azure.resourcemanager.iotoperations.models.DiagnosticsRemoteSupportProperties;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
+
+/**
+ * Samples for Diagnostic CreateOrUpdate.
+ */
+public final class DiagnosticCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/Diagnostic_CreateOrUpdate_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Diagnostic_CreateOrUpdate_MaximumSet.
      * 
      * @param manager Entry point to IoTOperationsManager.
      */
     public static void
-        dataflowProfileListByResourceGroup(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.dataflowProfiles()
-            .listByResourceGroup("rgiotoperations", "resource-name123", com.azure.core.util.Context.NONE);
+        diagnosticCreateOrUpdateMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.diagnostics()
+            .define("resource-123")
+            .withExistingInstance("rgiotoperations", "resource-123")
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withProperties(new DiagnosticProperties().withRemoteSupport(
+                new DiagnosticsRemoteSupportProperties().withState(DiagnosticsRemoteSupportActivationState.ENABLED)
+                    .withAccessLevel(DiagnosticsRemoteSupportAccessLevels.DIAGNOSE)
+                    .withExpirationTimestamp("tkaq")))
+            .create();
     }
 }
 ```
@@ -1930,53 +2512,21 @@ public final class DataflowProfileListByResourceGroupSamples {
 ### Instance_CreateOrUpdate
 
 ```java
-import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
-import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
-import com.azure.resourcemanager.iotoperations.models.InstanceProperties;
-import com.azure.resourcemanager.iotoperations.models.ManagedServiceIdentity;
-import com.azure.resourcemanager.iotoperations.models.ManagedServiceIdentityType;
-import com.azure.resourcemanager.iotoperations.models.SchemaRegistryRef;
-import java.util.HashMap;
-import java.util.Map;
-
 /**
- * Samples for Instance CreateOrUpdate.
+ * Samples for Diagnostic Get.
  */
-public final class InstanceCreateOrUpdateSamples {
+public final class DiagnosticGetSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Instance_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/Diagnostic_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Instance_CreateOrUpdate.
+     * Sample code: Diagnostic_Get_MaximumSet.
      * 
      * @param manager Entry point to IoTOperationsManager.
      */
-    public static void instanceCreateOrUpdate(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.instances()
-            .define("aio-instance")
-            .withRegion("xvewadyhycrjpu")
-            .withExistingResourceGroup("rgiotoperations")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
-            .withTags(mapOf())
-            .withProperties(new InstanceProperties().withDescription("kpqtgocs")
-                .withSchemaRegistryRef(new SchemaRegistryRef().withResourceId(
-                    "/subscriptions/0000000-0000-0000-0000-000000000000/resourceGroups/resourceGroup123/providers/Microsoft.DeviceRegistry/schemaRegistries/resource-name123")))
-            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
-                .withUserAssignedIdentities(mapOf()))
-            .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
+    public static void diagnosticGetMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.diagnostics()
+            .getWithResponse("rgiotoperations", "resource-123", "resource-123", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1989,7 +2539,7 @@ public final class InstanceCreateOrUpdateSamples {
  */
 public final class InstanceDeleteSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Instance_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/Instance_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: Instance_Delete.
@@ -2006,20 +2556,20 @@ public final class InstanceDeleteSamples {
 
 ```java
 /**
- * Samples for Instance GetByResourceGroup.
+ * Samples for DataflowEndpoint Delete.
  */
-public final class InstanceGetByResourceGroupSamples {
+public final class DataflowEndpointDeleteSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Instance_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Instance_Get.
+     * Sample code: DataflowEndpoint_Delete.
      * 
      * @param manager Entry point to IoTOperationsManager.
      */
-    public static void instanceGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.instances()
-            .getByResourceGroupWithResponse("rgiotoperations", "aio-instance", com.azure.core.util.Context.NONE);
+    public static void dataflowEndpointDelete(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.dataflowEndpoints()
+            .delete("rgiotoperations", "resource-name123", "resource-name123", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2028,11 +2578,34 @@ public final class InstanceGetByResourceGroupSamples {
 
 ```java
 /**
+ * Samples for AkriConnectorTemplate ListByInstanceResource.
+ */
+public final class AkriConnectorTemplateListByInstanceResourceSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/AkriConnectorTemplate_ListByInstanceResource_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AkriConnectorTemplate_ListByInstanceResource_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void akriConnectorTemplateListByInstanceResourceMaximumSet(
+        com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.akriConnectorTemplates()
+            .listByInstanceResource("rgiotoperations", "resource-name123", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Instance_ListByResourceGroup
+
+```java
+/**
  * Samples for Instance List.
  */
 public final class InstanceListSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Instance_ListBySubscription_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/Instance_ListBySubscription_MaximumSet_Gen.json
      */
     /**
      * Sample code: Instance_ListBySubscription.
@@ -2046,70 +2619,122 @@ public final class InstanceListSamples {
 }
 ```
 
-### Instance_ListByResourceGroup
+### Instance_Update
 
 ```java
+import com.azure.resourcemanager.iotoperations.models.BrokerListenerProperties;
+import com.azure.resourcemanager.iotoperations.models.BrokerProtocolType;
+import com.azure.resourcemanager.iotoperations.models.CertManagerCertificateSpec;
+import com.azure.resourcemanager.iotoperations.models.CertManagerIssuerKind;
+import com.azure.resourcemanager.iotoperations.models.CertManagerIssuerRef;
+import com.azure.resourcemanager.iotoperations.models.CertManagerPrivateKey;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
+import com.azure.resourcemanager.iotoperations.models.ListenerPort;
+import com.azure.resourcemanager.iotoperations.models.PrivateKeyAlgorithm;
+import com.azure.resourcemanager.iotoperations.models.PrivateKeyRotationPolicy;
+import com.azure.resourcemanager.iotoperations.models.SanForCert;
+import com.azure.resourcemanager.iotoperations.models.ServiceType;
+import com.azure.resourcemanager.iotoperations.models.TlsCertMethod;
+import com.azure.resourcemanager.iotoperations.models.TlsCertMethodMode;
+import com.azure.resourcemanager.iotoperations.models.X509ManualCertificate;
+import java.util.Arrays;
+
 /**
- * Samples for Instance ListByResourceGroup.
+ * Samples for BrokerListener CreateOrUpdate.
  */
-public final class InstanceListByResourceGroupSamples {
+public final class BrokerListenerCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Instance_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/BrokerListener_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Instance_ListByResourceGroup.
+     * Sample code: BrokerListener_CreateOrUpdate.
      * 
      * @param manager Entry point to IoTOperationsManager.
      */
     public static void
-        instanceListByResourceGroup(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.instances().listByResourceGroup("rgiotoperations", com.azure.core.util.Context.NONE);
+        brokerListenerCreateOrUpdate(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.brokerListeners()
+            .define("resource-name123")
+            .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withProperties(new BrokerListenerProperties().withServiceName("tpfiszlapdpxktx")
+                .withPorts(Arrays.asList(new ListenerPort().withAuthenticationRef("tjvdroaqqy")
+                    .withAuthorizationRef("fakeTokenPlaceholder")
+                    .withNodePort(7281)
+                    .withPort(1268)
+                    .withProtocol(BrokerProtocolType.MQTT)
+                    .withTls(new TlsCertMethod().withMode(TlsCertMethodMode.AUTOMATIC)
+                        .withCertManagerCertificateSpec(new CertManagerCertificateSpec().withDuration("qmpeffoksron")
+                            .withSecretName("fakeTokenPlaceholder")
+                            .withRenewBefore("hutno")
+                            .withIssuerRef(new CertManagerIssuerRef().withGroup("jtmuladdkpasfpoyvewekmiy")
+                                .withKind(CertManagerIssuerKind.ISSUER)
+                                .withName("ocwoqpgucvjrsuudtjhb"))
+                            .withPrivateKey(new CertManagerPrivateKey().withAlgorithm(PrivateKeyAlgorithm.EC256)
+                                .withRotationPolicy(PrivateKeyRotationPolicy.ALWAYS))
+                            .withSan(new SanForCert().withDns(Arrays.asList("xhvmhrrhgfsapocjeebqtnzarlj"))
+                                .withIp(Arrays.asList("zbgugfzcgsmegevzktsnibyuyp"))))
+                        .withManual(new X509ManualCertificate().withSecretRef("fakeTokenPlaceholder")))))
+                .withServiceType(ServiceType.CLUSTER_IP))
+            .create();
     }
-}
-```
 
-### Instance_Update
-
-```java
-import com.azure.resourcemanager.iotoperations.models.InstanceResource;
-import com.azure.resourcemanager.iotoperations.models.ManagedServiceIdentity;
-import com.azure.resourcemanager.iotoperations.models.ManagedServiceIdentityType;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for Instance Update.
- */
-public final class InstanceUpdateSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Instance_Update_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/BrokerListener_CreateOrUpdate_Simple.json
      */
     /**
-     * Sample code: Instance_Update.
+     * Sample code: BrokerListener_CreateOrUpdate_Simple.
      * 
      * @param manager Entry point to IoTOperationsManager.
      */
-    public static void instanceUpdate(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        InstanceResource resource = manager.instances()
-            .getByResourceGroupWithResponse("rgiotoperations", "aio-instance", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update()
-            .withTags(mapOf())
-            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
-                .withUserAssignedIdentities(mapOf()))
-            .apply();
+    public static void
+        brokerListenerCreateOrUpdateSimple(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.brokerListeners()
+            .define("resource-name123")
+            .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withProperties(new BrokerListenerProperties().withPorts(Arrays.asList(new ListenerPort().withPort(1883))))
+            .create();
     }
 
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
+    /*
+     * x-ms-original-file: 2025-07-01-preview/BrokerListener_CreateOrUpdate_Complex.json
+     */
+    /**
+     * Sample code: BrokerListener_CreateOrUpdate_Complex.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void
+        brokerListenerCreateOrUpdateComplex(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.brokerListeners()
+            .define("resource-name123")
+            .withExistingBroker("rgiotoperations", "resource-name123", "resource-name123")
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withProperties(new BrokerListenerProperties()
+                .withPorts(Arrays.asList(
+                    new ListenerPort().withAuthenticationRef("example-authentication")
+                        .withPort(8080)
+                        .withProtocol(BrokerProtocolType.WEB_SOCKETS),
+                    new ListenerPort().withAuthenticationRef("example-authentication")
+                        .withPort(8443)
+                        .withProtocol(BrokerProtocolType.WEB_SOCKETS)
+                        .withTls(new TlsCertMethod().withMode(TlsCertMethodMode.AUTOMATIC)
+                            .withCertManagerCertificateSpec(new CertManagerCertificateSpec()
+                                .withIssuerRef(new CertManagerIssuerRef().withGroup("jtmuladdkpasfpoyvewekmiy")
+                                    .withKind(CertManagerIssuerKind.ISSUER)
+                                    .withName("example-issuer")))),
+                    new ListenerPort().withAuthenticationRef("example-authentication").withPort(1883),
+                    new ListenerPort().withAuthenticationRef("example-authentication")
+                        .withPort(8883)
+                        .withTls(new TlsCertMethod().withMode(TlsCertMethodMode.MANUAL)
+                            .withManual(new X509ManualCertificate().withSecretRef("fakeTokenPlaceholder")))))
+                .withServiceType(ServiceType.LOAD_BALANCER))
+            .create();
     }
 }
 ```
@@ -2117,20 +2742,167 @@ public final class InstanceUpdateSamples {
 ### Operations_List
 
 ```java
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorProperties;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
+
 /**
- * Samples for Operations List.
+ * Samples for AkriConnector CreateOrUpdate.
  */
-public final class OperationsListSamples {
+public final class AkriConnectorCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2024-11-01/Operations_List_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/AkriConnector_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Operations_List.
+     * Sample code: AkriConnector_CreateOrUpdate_MaximumSet.
      * 
      * @param manager Entry point to IoTOperationsManager.
      */
-    public static void operationsList(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
+    public static void
+        akriConnectorCreateOrUpdateMaximumSet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.akriConnectors()
+            .define("resource-name123")
+            .withExistingAkriConnectorTemplate("rgiotoperations", "resource-name123", "resource-name123")
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withProperties(new AkriConnectorProperties())
+            .create();
+    }
+}
+```
+
+### RegistryEndpoint_CreateOrUpdate
+
+```java
+/**
+ * Samples for DataflowProfile Get.
+ */
+public final class DataflowProfileGetSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/DataflowProfile_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: DataflowProfile_Get.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void dataflowProfileGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.dataflowProfiles()
+            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### RegistryEndpoint_Delete
+
+```java
+/**
+ * Samples for BrokerAuthorization Get.
+ */
+public final class BrokerAuthorizationGetSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/BrokerAuthorization_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: BrokerAuthorization_Get.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void brokerAuthorizationGet(com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.brokerAuthorizations()
+            .getWithResponse("rgiotoperations", "resource-name123", "resource-name123", "resource-name123",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### RegistryEndpoint_Get
+
+```java
+/**
+ * Samples for RegistryEndpoint ListByInstanceResource.
+ */
+public final class RegistryEndpointListByInstanceResourceSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/RegistryEndpoint_ListByInstanceResource_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: RegistryEndpoint_ListByInstanceResource_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void registryEndpointListByInstanceResourceMaximumSet(
+        com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.registryEndpoints()
+            .listByInstanceResource("rgiotoperations", "resource-123", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### RegistryEndpoint_ListByInstanceResource
+
+```java
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorTemplateAioMetadata;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorTemplateDeviceInboundEndpointConfigurationSchemaRefs;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorTemplateDeviceInboundEndpointType;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorTemplateDiagnostics;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorTemplateProperties;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorTemplateRuntimeConfiguration;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorsDiagnosticsLogs;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorsMqttAuthentication;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorsMqttConnectionConfiguration;
+import com.azure.resourcemanager.iotoperations.models.AkriConnectorsMqttProtocolType;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocation;
+import com.azure.resourcemanager.iotoperations.models.ExtendedLocationType;
+import com.azure.resourcemanager.iotoperations.models.OperationalMode;
+import com.azure.resourcemanager.iotoperations.models.TlsProperties;
+import java.util.Arrays;
+
+/**
+ * Samples for AkriConnectorTemplate CreateOrUpdate.
+ */
+public final class AkriConnectorTemplateCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: 2025-07-01-preview/AkriConnectorTemplate_CreateOrUpdate_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: AkriConnectorTemplate_CreateOrUpdate_MaximumSet.
+     * 
+     * @param manager Entry point to IoTOperationsManager.
+     */
+    public static void akriConnectorTemplateCreateOrUpdateMaximumSet(
+        com.azure.resourcemanager.iotoperations.IoTOperationsManager manager) {
+        manager.akriConnectorTemplates()
+            .define("resource-name123")
+            .withExistingInstance("rgiotoperations", "resource-name123")
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .withProperties(new AkriConnectorTemplateProperties()
+                .withAioMetadata(new AkriConnectorTemplateAioMetadata().withAioMinVersion("tkiz")
+                    .withAioMaxVersion("qoxwkvfxvqedqtju"))
+                .withRuntimeConfiguration(new AkriConnectorTemplateRuntimeConfiguration())
+                .withDiagnostics(new AkriConnectorTemplateDiagnostics()
+                    .withLogs(new AkriConnectorsDiagnosticsLogs().withLevel("pe")))
+                .withDeviceInboundEndpointTypes(Arrays.asList(new AkriConnectorTemplateDeviceInboundEndpointType()
+                    .withEndpointType("chkkpymxhp")
+                    .withVersion("chkkpymxhp")
+                    .withConfigurationSchemaRefs(new AkriConnectorTemplateDeviceInboundEndpointConfigurationSchemaRefs()
+                        .withDefaultDatasetConfigSchemaRef("nsifbedzo")
+                        .withDefaultEventsConfigSchemaRef("tloquokslyfukgwhklpvpybdgykl")
+                        .withDefaultProcessControlConfigSchemaRef("mvjycfnxovmiijpwlpbeacryfdo")
+                        .withDefaultStreamsConfigSchemaRef("kdaitmohr")
+                        .withAdditionalConfigSchemaRef("uxvyqeqxbamqwjy"))))
+                .withMqttConnectionConfiguration(new AkriConnectorsMqttConnectionConfiguration()
+                    .withAuthentication(new AkriConnectorsMqttAuthentication())
+                    .withHost("kj")
+                    .withProtocol(AkriConnectorsMqttProtocolType.MQTT)
+                    .withKeepAliveSeconds(0)
+                    .withMaxInflightMessages(0)
+                    .withSessionExpirySeconds(0)
+                    .withTls(new TlsProperties().withMode(OperationalMode.ENABLED)
+                        .withTrustedCaCertificateConfigMapRef("tectjjvukvelsreihwadh"))))
+            .create();
     }
 }
 ```
