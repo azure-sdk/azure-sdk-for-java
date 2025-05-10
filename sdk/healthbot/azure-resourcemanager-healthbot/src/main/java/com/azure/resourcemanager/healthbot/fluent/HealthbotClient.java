@@ -12,7 +12,7 @@ import java.time.Duration;
  */
 public interface HealthbotClient {
     /**
-     * Gets Azure Subscription ID.
+     * Gets The ID of the target subscription.
      * 
      * @return the subscriptionId value.
      */
@@ -47,16 +47,16 @@ public interface HealthbotClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the BotsClient object to access its operations.
-     * 
-     * @return the BotsClient object.
-     */
-    BotsClient getBots();
-
-    /**
      * Gets the OperationsClient object to access its operations.
      * 
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
+
+    /**
+     * Gets the BotsClient object to access its operations.
+     * 
+     * @return the BotsClient object.
+     */
+    BotsClient getBots();
 }

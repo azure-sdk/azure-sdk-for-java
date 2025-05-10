@@ -12,27 +12,30 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Operation display payload.
+ * Localized display information for and operation.
  */
 @Fluent
 public final class OperationDisplay implements JsonSerializable<OperationDisplay> {
     /*
-     * Resource provider of the operation
+     * The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or
+     * "Microsoft Compute".
      */
     private String provider;
 
     /*
-     * Resource of the operation
+     * The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or
+     * "Job Schedule Collections".
      */
     private String resource;
 
     /*
-     * Localized friendly name for the operation
+     * The concise, localized friendly name for the operation; suitable for dropdowns. E.g.
+     * "Create or Update Virtual Machine", "Restart Virtual Machine".
      */
     private String operation;
 
     /*
-     * Localized friendly description for the operation
+     * The short, localized friendly description of the operation; suitable for tool tips and detailed views.
      */
     private String description;
 
@@ -43,7 +46,8 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Get the provider property: Resource provider of the operation.
+     * Get the provider property: The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring
+     * Insights" or "Microsoft Compute".
      * 
      * @return the provider value.
      */
@@ -52,7 +56,8 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Set the provider property: Resource provider of the operation.
+     * Set the provider property: The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring
+     * Insights" or "Microsoft Compute".
      * 
      * @param provider the provider value to set.
      * @return the OperationDisplay object itself.
@@ -63,7 +68,8 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Get the resource property: Resource of the operation.
+     * Get the resource property: The localized friendly name of the resource type related to this operation. E.g.
+     * "Virtual Machines" or "Job Schedule Collections".
      * 
      * @return the resource value.
      */
@@ -72,7 +78,8 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Set the resource property: Resource of the operation.
+     * Set the resource property: The localized friendly name of the resource type related to this operation. E.g.
+     * "Virtual Machines" or "Job Schedule Collections".
      * 
      * @param resource the resource value to set.
      * @return the OperationDisplay object itself.
@@ -83,7 +90,8 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Get the operation property: Localized friendly name for the operation.
+     * Get the operation property: The concise, localized friendly name for the operation; suitable for dropdowns. E.g.
+     * "Create or Update Virtual Machine", "Restart Virtual Machine".
      * 
      * @return the operation value.
      */
@@ -92,7 +100,8 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Set the operation property: Localized friendly name for the operation.
+     * Set the operation property: The concise, localized friendly name for the operation; suitable for dropdowns. E.g.
+     * "Create or Update Virtual Machine", "Restart Virtual Machine".
      * 
      * @param operation the operation value to set.
      * @return the OperationDisplay object itself.
@@ -103,7 +112,8 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Get the description property: Localized friendly description for the operation.
+     * Get the description property: The short, localized friendly description of the operation; suitable for tool tips
+     * and detailed views.
      * 
      * @return the description value.
      */
@@ -112,7 +122,8 @@ public final class OperationDisplay implements JsonSerializable<OperationDisplay
     }
 
     /**
-     * Set the description property: Localized friendly description for the operation.
+     * Set the description property: The short, localized friendly description of the operation; suitable for tool tips
+     * and detailed views.
      * 
      * @param description the description value to set.
      * @return the OperationDisplay object itself.

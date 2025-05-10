@@ -15,12 +15,15 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.SyncPollerFactory;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.healthbot.fluent.BotsClient;
@@ -41,12 +44,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = HealthbotClientBuilder.class)
 public final class HealthbotClientImpl implements HealthbotClient {
     /**
-     * Azure Subscription ID.
+     * The ID of the target subscription.
      */
     private final String subscriptionId;
 
     /**
-     * Gets Azure Subscription ID.
+     * Gets The ID of the target subscription.
      * 
      * @return the subscriptionId value.
      */
@@ -125,20 +128,6 @@ public final class HealthbotClientImpl implements HealthbotClient {
     }
 
     /**
-     * The BotsClient object to access its operations.
-     */
-    private final BotsClient bots;
-
-    /**
-     * Gets the BotsClient object to access its operations.
-     * 
-     * @return the BotsClient object.
-     */
-    public BotsClient getBots() {
-        return this.bots;
-    }
-
-    /**
      * The OperationsClient object to access its operations.
      */
     private final OperationsClient operations;
@@ -153,13 +142,27 @@ public final class HealthbotClientImpl implements HealthbotClient {
     }
 
     /**
+     * The BotsClient object to access its operations.
+     */
+    private final BotsClient bots;
+
+    /**
+     * Gets the BotsClient object to access its operations.
+     * 
+     * @return the BotsClient object.
+     */
+    public BotsClient getBots() {
+        return this.bots;
+    }
+
+    /**
      * Initializes an instance of HealthbotClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId Azure Subscription ID.
+     * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
     HealthbotClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, Duration defaultPollInterval,
@@ -169,9 +172,9 @@ public final class HealthbotClientImpl implements HealthbotClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2020-12-08";
-        this.bots = new BotsClientImpl(this);
+        this.apiVersion = "2024-02-01";
         this.operations = new OperationsClientImpl(this);
+        this.bots = new BotsClientImpl(this);
     }
 
     /**
@@ -209,6 +212,23 @@ public final class HealthbotClientImpl implements HealthbotClient {
         HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
         return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
             defaultPollInterval, activationResponse, context);
+    }
+
+    /**
+     * Gets long running operation result.
+     * 
+     * @param activationResponse the response of activation operation.
+     * @param pollResultType type of poll result.
+     * @param finalResultType type of final result.
+     * @param context the context shared by all requests.
+     * @param <T> type of poll result.
+     * @param <U> type of final result.
+     * @return SyncPoller for poll result and final result.
+     */
+    public <T, U> SyncPoller<PollResult<T>, U> getLroResult(Response<BinaryData> activationResponse,
+        Type pollResultType, Type finalResultType, Context context) {
+        return SyncPollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, () -> activationResponse, context);
     }
 
     /**

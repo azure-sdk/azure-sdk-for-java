@@ -10,7 +10,7 @@ package com.azure.resourcemanager.healthbot.generated;
 public final class BotsListSamples {
     /*
      * x-ms-original-file:
-     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ListBotsBySubscription.
+     * specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2024-02-01/examples/ListBotsBySubscription.
      * json
      */
     /**
