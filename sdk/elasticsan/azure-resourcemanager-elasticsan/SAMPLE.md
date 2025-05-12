@@ -7,6 +7,7 @@
 - [Delete](#elasticsans_delete)
 - [GetByResourceGroup](#elasticsans_getbyresourcegroup)
 - [List](#elasticsans_list)
+- [ListByElasticSan](#elasticsans_listbyelasticsan)
 - [ListByResourceGroup](#elasticsans_listbyresourcegroup)
 - [Update](#elasticsans_update)
 
@@ -21,17 +22,16 @@
 - [Get](#privateendpointconnections_get)
 - [List](#privateendpointconnections_list)
 
-## PrivateLinkResources
+## SkusOperationGroup
 
-- [ListByElasticSan](#privatelinkresources_listbyelasticsan)
+- [List](#skusoperationgroup_list)
 
-## ResourceProvider
+## Snapshots
 
-- [RestoreVolume](#resourceprovider_restorevolume)
-
-## Skus
-
-- [List](#skus_list)
+- [Create](#snapshots_create)
+- [Delete](#snapshots_delete)
+- [Get](#snapshots_get)
+- [ListByVolumeGroup](#snapshots_listbyvolumegroup)
 
 ## VolumeGroups
 
@@ -39,14 +39,9 @@
 - [Delete](#volumegroups_delete)
 - [Get](#volumegroups_get)
 - [ListByElasticSan](#volumegroups_listbyelasticsan)
+- [PreBackup](#volumegroups_prebackup)
+- [PreRestore](#volumegroups_prerestore)
 - [Update](#volumegroups_update)
-
-## VolumeSnapshots
-
-- [Create](#volumesnapshots_create)
-- [Delete](#volumesnapshots_delete)
-- [Get](#volumesnapshots_get)
-- [ListByVolumeGroup](#volumesnapshots_listbyvolumegroup)
 
 ## Volumes
 
@@ -54,8 +49,7 @@
 - [Delete](#volumes_delete)
 - [Get](#volumes_get)
 - [ListByVolumeGroup](#volumes_listbyvolumegroup)
-- [PreBackup](#volumes_prebackup)
-- [PreRestore](#volumes_prerestore)
+- [RestoreVolume](#volumes_restorevolume)
 - [Update](#volumes_update)
 ### ElasticSans_Create
 
@@ -65,9 +59,7 @@
  */
 public final class PrivateEndpointConnectionsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * PrivateEndpointConnections_List_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/PrivateEndpointConnections_List_MinimumSet_Gen.json
      */
     /**
      * Sample code: PrivateEndpointConnections_List_MinimumSet_Gen.
@@ -81,9 +73,7 @@ public final class PrivateEndpointConnectionsListSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * PrivateEndpointConnections_List_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/PrivateEndpointConnections_List_MaximumSet_Gen.json
      */
     /**
      * Sample code: PrivateEndpointConnections_List_MaximumSet_Gen.
@@ -106,9 +96,7 @@ public final class PrivateEndpointConnectionsListSamples {
  */
 public final class VolumeGroupsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeGroups_Delete_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/VolumeGroups_Delete_MinimumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_Delete_MinimumSet_Gen.
@@ -121,9 +109,7 @@ public final class VolumeGroupsDeleteSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeGroups_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/VolumeGroups_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_Delete_MaximumSet_Gen.
@@ -138,37 +124,6 @@ public final class VolumeGroupsDeleteSamples {
 ```
 
 ### ElasticSans_GetByResourceGroup
-
-```java
-import com.azure.resourcemanager.elasticsan.models.DiskSnapshotList;
-import java.util.Arrays;
-
-/**
- * Samples for Volumes PreRestore.
- */
-public final class VolumesPreRestoreSamples {
-    /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Volumes_PreRestore_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: VolumeGroups_PreRestore_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void
-        volumeGroupsPreRestoreMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes()
-            .preRestore("resourcegroupname", "elasticsanname", "volumegroupname",
-                new DiskSnapshotList().withDiskSnapshotIds(Arrays.asList(
-                    "/subscriptions/{subscriptionid}/resourceGroups/{resourcegroupname}/providers/Microsoft.Compute/snapshots/disksnapshot1")),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ElasticSans_List
 
 ```java
 import com.azure.resourcemanager.elasticsan.models.AutoScalePolicyEnforcement;
@@ -187,9 +142,7 @@ import java.util.Map;
  */
 public final class ElasticSansCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * ElasticSans_Create_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/ElasticSans_Create_MaximumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_Create_MaximumSet_Gen.
@@ -216,9 +169,7 @@ public final class ElasticSansCreateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * ElasticSans_Create_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/ElasticSans_Create_MinimumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_Create_MinimumSet_Gen.
@@ -250,6 +201,74 @@ public final class ElasticSansCreateSamples {
 }
 ```
 
+### ElasticSans_List
+
+```java
+/**
+ * Samples for Snapshots ListByVolumeGroup.
+ */
+public final class SnapshotsListByVolumeGroupSamples {
+    /*
+     * x-ms-original-file: 2024-07-01-preview/VolumeSnapshots_ListByVolumeGroup_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: VolumeSnapshots_ListByVolumeGroup_MinimumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void
+        volumeSnapshotsListByVolumeGroupMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.snapshots()
+            .listByVolumeGroup("resourcegroupname", "elasticsanname", "volumegroupname", null,
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: 2024-07-01-preview/VolumeSnapshots_ListByVolumeGroup_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: VolumeSnapshots_ListByVolumeGroup_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void
+        volumeSnapshotsListByVolumeGroupMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.snapshots()
+            .listByVolumeGroup("resourcegroupname", "elasticsanname", "volumegroupname", "volumeName eq <volume name>",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ElasticSans_ListByElasticSan
+
+```java
+import com.azure.resourcemanager.elasticsan.models.DiskSnapshotList;
+import java.util.Arrays;
+
+/**
+ * Samples for VolumeGroups PreRestore.
+ */
+public final class VolumeGroupsPreRestoreSamples {
+    /*
+     * x-ms-original-file: 2024-07-01-preview/Volumes_PreRestore_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: VolumeGroups_PreRestore_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void
+        volumeGroupsPreRestoreMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.volumeGroups()
+            .preRestore("resourcegroupname", "elasticsanname", "volumegroupname",
+                new DiskSnapshotList().withDiskSnapshotIds(Arrays.asList(
+                    "/subscriptions/{subscriptionid}/resourceGroups/{resourcegroupname}/providers/Microsoft.Compute/snapshots/disksnapshot1")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### ElasticSans_ListByResourceGroup
 
 ```java
@@ -260,9 +279,7 @@ import com.azure.resourcemanager.elasticsan.models.XMsAccessSoftDeletedResources
  */
 public final class VolumesListByVolumeGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Volumes_ListByVolumeGroup_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/Volumes_ListByVolumeGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: Volumes_ListByVolumeGroup_MaximumSet_Gen.
@@ -277,9 +294,7 @@ public final class VolumesListByVolumeGroupSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Volumes_ListByVolumeGroup_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/Volumes_ListByVolumeGroup_MinimumSet_Gen.json
      */
     /**
      * Sample code: Volumes_ListByVolumeGroup_MinimumSet_Gen.
@@ -298,14 +313,39 @@ public final class VolumesListByVolumeGroupSamples {
 ### ElasticSans_Update
 
 ```java
+import com.azure.resourcemanager.elasticsan.models.VolumeNameList;
+import java.util.Arrays;
+
+/**
+ * Samples for VolumeGroups PreBackup.
+ */
+public final class VolumeGroupsPreBackupSamples {
+    /*
+     * x-ms-original-file: 2024-07-01-preview/Volumes_PreBackup_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: VolumeGroups_PreBackup_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void
+        volumeGroupsPreBackupMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.volumeGroups()
+            .preBackup("resourcegroupname", "elasticsanname", "volumegroupname",
+                new VolumeNameList().withVolumeNames(Arrays.asList("volumename")), com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
 /**
  * Samples for ElasticSans ListByResourceGroup.
  */
 public final class ElasticSansListByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * ElasticSans_ListByResourceGroup_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/ElasticSans_ListByResourceGroup_MinimumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_ListByResourceGroup_MinimumSet_Gen.
@@ -318,9 +358,7 @@ public final class ElasticSansListByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * ElasticSans_ListByResourceGroup_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/ElasticSans_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_ListByResourceGroup_MaximumSet_Gen.
@@ -330,49 +368,6 @@ public final class ElasticSansListByResourceGroupSamples {
     public static void
         elasticSansListByResourceGroupMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
         manager.elasticSans().listByResourceGroup("resourcegroupname", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for VolumeSnapshots ListByVolumeGroup.
- */
-public final class VolumeSnapshotsListByVolumeGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeSnapshots_ListByVolumeGroup_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VolumeSnapshots_ListByVolumeGroup_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void
-        volumeSnapshotsListByVolumeGroupMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeSnapshots()
-            .listByVolumeGroup("resourcegroupname", "elasticsanname", "volumegroupname", null,
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeSnapshots_ListByVolumeGroup_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: VolumeSnapshots_ListByVolumeGroup_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void
-        volumeSnapshotsListByVolumeGroupMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeSnapshots()
-            .listByVolumeGroup("resourcegroupname", "elasticsanname", "volumegroupname", "volumeName eq <volume name>",
-                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -389,9 +384,7 @@ import com.azure.resourcemanager.elasticsan.models.XMsForceDelete;
  */
 public final class VolumesDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Volumes_Delete_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/Volumes_Delete_MinimumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Delete_MinimumSet_Gen.
@@ -405,9 +398,7 @@ public final class VolumesDeleteSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Volumes_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/Volumes_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Delete_MaximumSet_Gen.
@@ -430,9 +421,7 @@ public final class VolumesDeleteSamples {
  */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * PrivateEndpointConnections_Get_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/PrivateEndpointConnections_Get_MinimumSet_Gen.json
      */
     /**
      * Sample code: PrivateEndpointConnections_Get_MinimumSet_Gen.
@@ -447,9 +436,7 @@ public final class PrivateEndpointConnectionsGetSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * PrivateEndpointConnections_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/PrivateEndpointConnections_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: PrivateEndpointConnections_Get_MaximumSet_Gen.
@@ -468,14 +455,59 @@ public final class PrivateEndpointConnectionsGetSamples {
 ### PrivateEndpointConnections_Get
 
 ```java
+import com.azure.resourcemanager.elasticsan.models.SnapshotCreationData;
+
+/**
+ * Samples for Snapshots Create.
+ */
+public final class SnapshotsCreateSamples {
+    /*
+     * x-ms-original-file: 2024-07-01-preview/VolumeSnapshots_Create_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: VolumeSnapshots_Create_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void
+        volumeSnapshotsCreateMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.snapshots()
+            .define("snapshotname")
+            .withExistingVolumegroup("resourcegroupname", "elasticsanname", "volumegroupname")
+            .withCreationData(new SnapshotCreationData().withSourceId(
+                "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}"))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: 2024-07-01-preview/VolumeSnapshots_Create_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: VolumeSnapshots_Create_MinimumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void
+        volumeSnapshotsCreateMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.snapshots()
+            .define("snapshotname")
+            .withExistingVolumegroup("resourcegroupname", "elasticsanname", "volumegroupname")
+            .withCreationData(new SnapshotCreationData().withSourceId(
+                "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}"))
+            .create();
+    }
+}
+```
+
+### PrivateEndpointConnections_List
+
+```java
 /**
  * Samples for VolumeGroups Get.
  */
 public final class VolumeGroupsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeGroups_Get_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/VolumeGroups_Get_MinimumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_Get_MinimumSet_Gen.
@@ -489,9 +521,7 @@ public final class VolumeGroupsGetSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeGroups_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/VolumeGroups_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_Get_MaximumSet_Gen.
@@ -506,7 +536,7 @@ public final class VolumeGroupsGetSamples {
 }
 ```
 
-### PrivateEndpointConnections_List
+### SkusOperationGroup_List
 
 ```java
 /**
@@ -514,9 +544,7 @@ public final class VolumeGroupsGetSamples {
  */
 public final class ElasticSansDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * ElasticSans_Delete_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/ElasticSans_Delete_MinimumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_Delete_MinimumSet_Gen.
@@ -528,9 +556,7 @@ public final class ElasticSansDeleteSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * ElasticSans_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/ElasticSans_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_Delete_MaximumSet_Gen.
@@ -543,48 +569,46 @@ public final class ElasticSansDeleteSamples {
 }
 ```
 
-### PrivateLinkResources_ListByElasticSan
+### Snapshots_Create
 
 ```java
 /**
- * Samples for VolumeSnapshots Get.
+ * Samples for Snapshots Delete.
  */
-public final class VolumeSnapshotsGetSamples {
+public final class SnapshotsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeSnapshots_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/VolumeSnapshots_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: VolumeSnapshots_Get_MaximumSet_Gen.
+     * Sample code: VolumeSnapshots_Delete_MaximumSet_Gen.
      * 
      * @param manager Entry point to ElasticSanManager.
      */
-    public static void volumeSnapshotsGetMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeSnapshots()
-            .getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname", "snapshotname",
+    public static void
+        volumeSnapshotsDeleteMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.snapshots()
+            .delete("resourcegroupname", "elasticsanname", "volumegroupname", "snapshotname",
                 com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeSnapshots_Get_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/VolumeSnapshots_Delete_MinimumSet_Gen.json
      */
     /**
-     * Sample code: VolumeSnapshots_Get_MinimumSet_Gen.
+     * Sample code: VolumeSnapshots_Delete_MinimumSet_Gen.
      * 
      * @param manager Entry point to ElasticSanManager.
      */
-    public static void volumeSnapshotsGetMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeSnapshots()
-            .getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname", "snapshotname",
+    public static void
+        volumeSnapshotsDeleteMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.snapshots()
+            .delete("resourcegroupname", "elasticsanname", "volumegroupname", "snapshotname",
                 com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### ResourceProvider_RestoreVolume
+### Snapshots_Delete
 
 ```java
 import com.azure.resourcemanager.elasticsan.models.ManagedByInfo;
@@ -595,9 +619,7 @@ import com.azure.resourcemanager.elasticsan.models.Volume;
  */
 public final class VolumesUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Volumes_Update_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/Volumes_Update_MinimumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Update_MinimumSet_Gen.
@@ -613,9 +635,7 @@ public final class VolumesUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Volumes_Update_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/Volumes_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Update_MaximumSet_Gen.
@@ -635,7 +655,7 @@ public final class VolumesUpdateSamples {
 }
 ```
 
-### Skus_List
+### Snapshots_Get
 
 ```java
 /**
@@ -643,9 +663,7 @@ public final class VolumesUpdateSamples {
  */
 public final class ElasticSansGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * ElasticSans_Get_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/ElasticSans_Get_MinimumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_Get_MinimumSet_Gen.
@@ -658,9 +676,7 @@ public final class ElasticSansGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * ElasticSans_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/ElasticSans_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_Get_MaximumSet_Gen.
@@ -670,6 +686,43 @@ public final class ElasticSansGetByResourceGroupSamples {
     public static void elasticSansGetMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
         manager.elasticSans()
             .getByResourceGroupWithResponse("resourcegroupname", "elasticsanname", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Snapshots_ListByVolumeGroup
+
+```java
+/**
+ * Samples for Snapshots Get.
+ */
+public final class SnapshotsGetSamples {
+    /*
+     * x-ms-original-file: 2024-07-01-preview/VolumeSnapshots_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: VolumeSnapshots_Get_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void volumeSnapshotsGetMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.snapshots()
+            .getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname", "snapshotname",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: 2024-07-01-preview/VolumeSnapshots_Get_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: VolumeSnapshots_Get_MinimumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void volumeSnapshotsGetMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.snapshots()
+            .getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname", "snapshotname",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -684,9 +737,7 @@ import com.azure.resourcemanager.elasticsan.models.XMsAccessSoftDeletedResources
  */
 public final class VolumeGroupsListByElasticSanSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeGroups_ListByElasticSan_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/VolumeGroups_ListByElasticSan_MinimumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_ListByElasticSan_MinimumSet_Gen.
@@ -701,9 +752,7 @@ public final class VolumeGroupsListByElasticSanSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeGroups_ListByElasticSan_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/VolumeGroups_ListByElasticSan_MaximumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_ListByElasticSan_MaximumSet_Gen.
@@ -720,6 +769,43 @@ public final class VolumeGroupsListByElasticSanSamples {
 ```
 
 ### VolumeGroups_Delete
+
+```java
+/**
+ * Samples for Volumes RestoreVolume.
+ */
+public final class VolumesRestoreVolumeSamples {
+    /*
+     * x-ms-original-file: 2024-07-01-preview/RestoreVolume_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: RestoreVolume_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void restoreVolumeMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.volumes()
+            .restoreVolume("resourcegroupname", "elasticsanname", "volumegroupname", "volumename-1741526907",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: 2024-07-01-preview/RestoreVolume_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: RestoreVolume_MinimumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void restoreVolumeMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.volumes()
+            .restoreVolume("resourcegroupname", "elasticsanname", "volumegroupname", "volumename-1741526907",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### VolumeGroups_Get
 
 ```java
 import com.azure.resourcemanager.elasticsan.models.Action;
@@ -745,9 +831,7 @@ import java.util.Map;
  */
 public final class VolumeGroupsUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeGroups_Update_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/VolumeGroups_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_Update_MaximumSet_Gen.
@@ -777,9 +861,7 @@ public final class VolumeGroupsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeGroups_Update_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/VolumeGroups_Update_MinimumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_Update_MinimumSet_Gen.
@@ -807,7 +889,7 @@ public final class VolumeGroupsUpdateSamples {
 }
 ```
 
-### VolumeGroups_Get
+### VolumeGroups_ListByElasticSan
 
 ```java
 /**
@@ -815,9 +897,7 @@ public final class VolumeGroupsUpdateSamples {
  */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * PrivateEndpointConnections_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/PrivateEndpointConnections_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: PrivateEndpointConnections_Delete_MaximumSet_Gen.
@@ -832,9 +912,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * PrivateEndpointConnections_Delete_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/PrivateEndpointConnections_Delete_MinimumSet_Gen.json
      */
     /**
      * Sample code: PrivateEndpointConnections_Delete_MinimumSet_Gen.
@@ -850,7 +928,40 @@ public final class PrivateEndpointConnectionsDeleteSamples {
 }
 ```
 
-### VolumeGroups_ListByElasticSan
+### VolumeGroups_PreBackup
+
+```java
+/**
+ * Samples for SkusOperationGroup List.
+ */
+public final class SkusOperationGroupListSamples {
+    /*
+     * x-ms-original-file: 2024-07-01-preview/Skus_List_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: Skus_List_MinimumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void skusListMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.skusOperationGroups().list(null, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: 2024-07-01-preview/Skus_List_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: Skus_List_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void skusListMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.skusOperationGroups().list("obwwdrkq", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### VolumeGroups_PreRestore
 
 ```java
 import com.azure.resourcemanager.elasticsan.models.AutoScalePolicyEnforcement;
@@ -866,9 +977,7 @@ import java.util.Map;
  */
 public final class ElasticSansUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * ElasticSans_Update_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/ElasticSans_Update_MinimumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_Update_MinimumSet_Gen.
@@ -883,9 +992,7 @@ public final class ElasticSansUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * ElasticSans_Update_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/ElasticSans_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_Update_MaximumSet_Gen.
@@ -927,204 +1034,11 @@ public final class ElasticSansUpdateSamples {
 
 ```java
 /**
- * Samples for VolumeSnapshots Delete.
- */
-public final class VolumeSnapshotsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeSnapshots_Delete_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: VolumeSnapshots_Delete_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void
-        volumeSnapshotsDeleteMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeSnapshots()
-            .delete("resourcegroupname", "elasticsanname", "volumegroupname", "snapshotname",
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeSnapshots_Delete_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VolumeSnapshots_Delete_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void
-        volumeSnapshotsDeleteMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeSnapshots()
-            .delete("resourcegroupname", "elasticsanname", "volumegroupname", "snapshotname",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VolumeSnapshots_Create
-
-```java
-/**
- * Samples for PrivateLinkResources ListByElasticSan.
- */
-public final class PrivateLinkResourcesListByElasticSanSamples {
-    /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * PrivateLinkResources_ListByElasticSan_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: PrivateLinkResources_ListByElasticSan_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void privateLinkResourcesListByElasticSanMinimumSetGen(
-        com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.privateLinkResources()
-            .listByElasticSanWithResponse("resourcegroupname", "elasticsanname", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * PrivateLinkResources_ListByElasticSan_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: PrivateLinkResources_ListByElasticSan_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void privateLinkResourcesListByElasticSanMaximumSetGen(
-        com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.privateLinkResources()
-            .listByElasticSanWithResponse("resourcegroupname", "elasticsanname", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VolumeSnapshots_Delete
-
-```java
-/**
- * Samples for ResourceProvider RestoreVolume.
- */
-public final class ResourceProviderRestoreVolumeSamples {
-    /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * RestoreVolume_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: RestoreVolume_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void restoreVolumeMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.resourceProviders()
-            .restoreVolume("resourcegroupname", "elasticsanname", "volumegroupname", "volumename-1741526907",
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * RestoreVolume_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: RestoreVolume_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void restoreVolumeMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.resourceProviders()
-            .restoreVolume("resourcegroupname", "elasticsanname", "volumegroupname", "volumename-1741526907",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VolumeSnapshots_Get
-
-```java
-/**
- * Samples for Skus List.
- */
-public final class SkusListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Skus_List_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: Skus_List_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void skusListMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.skus().list(null, com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Skus_List_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: Skus_List_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void skusListMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.skus().list("obwwdrkq", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### VolumeSnapshots_ListByVolumeGroup
-
-```java
-import com.azure.resourcemanager.elasticsan.models.VolumeNameList;
-import java.util.Arrays;
-
-/**
- * Samples for Volumes PreBackup.
- */
-public final class VolumesPreBackupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Volumes_PreBackup_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: VolumeGroups_PreBackup_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void
-        volumeGroupsPreBackupMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes()
-            .preBackup("resourcegroupname", "elasticsanname", "volumegroupname",
-                new VolumeNameList().withVolumeNames(Arrays.asList("volumename")), com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Volumes_Create
-
-```java
-/**
  * Samples for ElasticSans List.
  */
 public final class ElasticSansListSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * ElasticSans_ListBySubscription_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/ElasticSans_ListBySubscription_MaximumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_ListBySubscription_MaximumSet_Gen.
@@ -1137,9 +1051,7 @@ public final class ElasticSansListSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * ElasticSans_ListBySubscription_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/ElasticSans_ListBySubscription_MinimumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_ListBySubscription_MinimumSet_Gen.
@@ -1153,7 +1065,7 @@ public final class ElasticSansListSamples {
 }
 ```
 
-### Volumes_Delete
+### Volumes_Create
 
 ```java
 import com.azure.resourcemanager.elasticsan.models.Action;
@@ -1178,9 +1090,7 @@ import java.util.Map;
  */
 public final class VolumeGroupsCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeGroups_Create_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/VolumeGroups_Create_MinimumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_Create_MinimumSet_Gen.
@@ -1195,9 +1105,7 @@ public final class VolumeGroupsCreateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeGroups_Create_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/VolumeGroups_Create_MaximumSet_Gen.json
      */
     /**
      * Sample code: VolumeGroups_Create_MaximumSet_Gen.
@@ -1239,6 +1147,41 @@ public final class VolumeGroupsCreateSamples {
 }
 ```
 
+### Volumes_Delete
+
+```java
+/**
+ * Samples for ElasticSans ListByElasticSan.
+ */
+public final class ElasticSansListByElasticSanSamples {
+    /*
+     * x-ms-original-file: 2024-07-01-preview/PrivateLinkResources_ListByElasticSan_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: PrivateLinkResources_ListByElasticSan_MinimumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void privateLinkResourcesListByElasticSanMinimumSetGen(
+        com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.elasticSans().listByElasticSan("resourcegroupname", "elasticsanname", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: 2024-07-01-preview/PrivateLinkResources_ListByElasticSan_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: PrivateLinkResources_ListByElasticSan_MaximumSet_Gen.
+     * 
+     * @param manager Entry point to ElasticSanManager.
+     */
+    public static void privateLinkResourcesListByElasticSanMaximumSetGen(
+        com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
+        manager.elasticSans().listByElasticSan("resourcegroupname", "elasticsanname", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### Volumes_Get
 
 ```java
@@ -1247,9 +1190,7 @@ public final class VolumeGroupsCreateSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Operations_List_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/Operations_List_MinimumSet_Gen.json
      */
     /**
      * Sample code: Operations_List_MinimumSet_Gen.
@@ -1261,9 +1202,7 @@ public final class OperationsListSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Operations_List_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/Operations_List_MaximumSet_Gen.json
      */
     /**
      * Sample code: Operations_List_MaximumSet_Gen.
@@ -1289,9 +1228,7 @@ import java.util.Arrays;
  */
 public final class PrivateEndpointConnectionsCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * PrivateEndpointConnections_Create_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/PrivateEndpointConnections_Create_MaximumSet_Gen.json
      */
     /**
      * Sample code: PrivateEndpointConnections_Create_MaximumSet_Gen.
@@ -1313,9 +1250,7 @@ public final class PrivateEndpointConnectionsCreateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * PrivateEndpointConnections_Create_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/PrivateEndpointConnections_Create_MinimumSet_Gen.json
      */
     /**
      * Sample code: PrivateEndpointConnections_Create_MinimumSet_Gen.
@@ -1333,7 +1268,7 @@ public final class PrivateEndpointConnectionsCreateSamples {
 }
 ```
 
-### Volumes_PreBackup
+### Volumes_RestoreVolume
 
 ```java
 /**
@@ -1341,9 +1276,7 @@ public final class PrivateEndpointConnectionsCreateSamples {
  */
 public final class VolumesGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Volumes_Get_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/Volumes_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Get_MaximumSet_Gen.
@@ -1357,9 +1290,7 @@ public final class VolumesGetSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Volumes_Get_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/Volumes_Get_MinimumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Get_MinimumSet_Gen.
@@ -1370,57 +1301,6 @@ public final class VolumesGetSamples {
         manager.volumes()
             .getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname", "volumename",
                 com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Volumes_PreRestore
-
-```java
-import com.azure.resourcemanager.elasticsan.models.SnapshotCreationData;
-
-/**
- * Samples for VolumeSnapshots Create.
- */
-public final class VolumeSnapshotsCreateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeSnapshots_Create_MaximumSet_Gen.json
-     */
-    /**
-     * Sample code: VolumeSnapshots_Create_MaximumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void
-        volumeSnapshotsCreateMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeSnapshots()
-            .define("snapshotname")
-            .withExistingVolumegroup("resourcegroupname", "elasticsanname", "volumegroupname")
-            .withCreationData(new SnapshotCreationData().withSourceId(
-                "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}"))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * VolumeSnapshots_Create_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: VolumeSnapshots_Create_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void
-        volumeSnapshotsCreateMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumeSnapshots()
-            .define("snapshotname")
-            .withExistingVolumegroup("resourcegroupname", "elasticsanname", "volumegroupname")
-            .withCreationData(new SnapshotCreationData().withSourceId(
-                "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}"))
-            .create();
     }
 }
 ```
@@ -1437,9 +1317,7 @@ import com.azure.resourcemanager.elasticsan.models.VolumeCreateOption;
  */
 public final class VolumesCreateSamples {
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Volumes_Create_MaximumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/Volumes_Create_MaximumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Create_MaximumSet_Gen.
@@ -1458,9 +1336,7 @@ public final class VolumesCreateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-07-01-preview/examples/
-     * Volumes_Create_MinimumSet_Gen.json
+     * x-ms-original-file: 2024-07-01-preview/Volumes_Create_MinimumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Create_MinimumSet_Gen.

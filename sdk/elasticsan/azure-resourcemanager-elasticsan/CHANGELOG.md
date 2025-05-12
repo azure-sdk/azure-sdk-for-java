@@ -1,14 +1,131 @@
 # Release History
 
-## 1.2.0-beta.3 (Unreleased)
+## 1.2.0-beta.3 (2025-05-12)
 
-### Features Added
+- Azure Resource Manager ElasticSan client library for Java. This package contains Microsoft Azure SDK for ElasticSan Management SDK. (missing-service-description) Add service description. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.PrivateLinkResourceListResult` was removed
 
-### Other Changes
+#### `models.SnapshotList` was removed
+
+#### `models.Skus` was removed
+
+#### `models.SkuCapability` was removed
+
+#### `models.VolumeSnapshots` was removed
+
+#### `models.SkuInformationList` was removed
+
+#### `models.VolumeList` was removed
+
+#### `models.ElasticSanList` was removed
+
+#### `models.PrivateLinkResources` was removed
+
+#### `models.VolumeGroupList` was removed
+
+#### `models.PrivateEndpointConnectionListResult` was removed
+
+#### `models.OperationListResult` was removed
+
+#### `models.ResourceProviders` was removed
+
+#### `models.Volumes` was modified
+
+* `preRestore(java.lang.String,java.lang.String,java.lang.String,models.DiskSnapshotList,com.azure.core.util.Context)` was removed
+* `preBackup(java.lang.String,java.lang.String,java.lang.String,models.VolumeNameList)` was removed
+* `preBackup(java.lang.String,java.lang.String,java.lang.String,models.VolumeNameList,com.azure.core.util.Context)` was removed
+* `preRestore(java.lang.String,java.lang.String,java.lang.String,models.DiskSnapshotList)` was removed
+
+#### `ElasticSanManager` was modified
+
+* `skus()` was removed
+* `privateLinkResources()` was removed
+* `volumeSnapshots()` was removed
+* `fluent.ElasticSanManagement serviceClient()` -> `fluent.ElasticSanClient serviceClient()`
+* `resourceProviders()` was removed
+
+#### `models.PrivateLinkResource` was modified
+
+* `java.lang.String name()` -> `java.lang.String name()`
+* `withRequiredZoneNames(java.util.List)` was removed
+* `com.azure.core.management.SystemData systemData()` -> `com.azure.core.management.SystemData systemData()`
+* `fromJson(com.azure.json.JsonReader)` was removed
+* `validate()` was removed
+* `java.lang.String type()` -> `java.lang.String type()`
+* `toJson(com.azure.json.JsonWriter)` was removed
+* `java.lang.String groupId()` -> `java.lang.String groupId()`
+* `java.lang.String id()` -> `java.lang.String id()`
+* `java.util.List requiredZoneNames()` -> `java.util.List requiredZoneNames()`
+* `java.util.List requiredMembers()` -> `java.util.List requiredMembers()`
+
+### Features Added
+
+* `implementation.models.VolumeList` was added
+
+* `implementation.models.OperationListResult` was added
+
+* `implementation.models.PrivateEndpointConnectionListResult` was added
+
+* `models.SKUCapability` was added
+
+* `models.SkusOperationGroups` was added
+
+* `implementation.models.VolumeGroupList` was added
+
+* `implementation.models.SkuInformationList` was added
+
+* `implementation.models.PrivateLinkResourceListResult` was added
+
+* `models.Snapshots` was added
+
+* `implementation.models.SnapshotList` was added
+
+* `implementation.models.ElasticSanList` was added
+
+#### `models.VolumeGroups` was modified
+
+* `preBackup(java.lang.String,java.lang.String,java.lang.String,models.VolumeNameList,com.azure.core.util.Context)` was added
+* `preBackup(java.lang.String,java.lang.String,java.lang.String,models.VolumeNameList)` was added
+* `preRestore(java.lang.String,java.lang.String,java.lang.String,models.DiskSnapshotList,com.azure.core.util.Context)` was added
+* `preRestore(java.lang.String,java.lang.String,java.lang.String,models.DiskSnapshotList)` was added
+
+#### `models.Volume` was modified
+
+* `restoreVolume()` was added
+* `restoreVolume(com.azure.core.util.Context)` was added
+
+#### `models.Volumes` was modified
+
+* `restoreVolume(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `restoreVolume(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+
+#### `models.ElasticSans` was modified
+
+* `listByElasticSan(java.lang.String,java.lang.String)` was added
+* `listByElasticSan(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `ElasticSanManager` was modified
+
+* `skusOperationGroups()` was added
+* `snapshots()` was added
+
+#### `models.PrivateLinkResource` was modified
+
+* `innerModel()` was added
+
+#### `models.Volume$Definition` was modified
+
+* `withStorageTarget(models.IscsiTargetInfo)` was added
+
+#### `models.VolumeGroup` was modified
+
+* `preBackup(models.VolumeNameList)` was added
+* `preBackup(models.VolumeNameList,com.azure.core.util.Context)` was added
+* `preRestore(models.DiskSnapshotList,com.azure.core.util.Context)` was added
+* `preRestore(models.DiskSnapshotList)` was added
 
 ## 1.2.0-beta.2 (2025-04-18)
 
