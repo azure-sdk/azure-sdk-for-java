@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.healthbot.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -19,7 +20,7 @@ import java.util.List;
 @Fluent
 public final class AvailableOperations implements JsonSerializable<AvailableOperations> {
     /*
-     * Collection of available operation details
+     * Collection of available operation details.
      */
     private List<OperationDetailInner> value;
 
@@ -83,10 +84,15 @@ public final class AvailableOperations implements JsonSerializable<AvailableOper
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model AvailableOperations"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AvailableOperations.class);
 
     /**
      * {@inheritDoc}
@@ -105,6 +111,7 @@ public final class AvailableOperations implements JsonSerializable<AvailableOper
      * @param jsonReader The JsonReader being read.
      * @return An instance of AvailableOperations if the JsonReader was pointing to an instance of it, or null if it was
      * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the AvailableOperations.
      */
     public static AvailableOperations fromJson(JsonReader jsonReader) throws IOException {

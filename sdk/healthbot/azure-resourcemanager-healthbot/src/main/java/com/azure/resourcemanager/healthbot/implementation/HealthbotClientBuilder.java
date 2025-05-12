@@ -20,12 +20,12 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = { HealthbotClientImpl.class })
 public final class HealthbotClientBuilder {
     /*
-     * Azure Subscription ID.
+     * The ID of the target subscription.
      */
     private String subscriptionId;
 
     /**
-     * Sets Azure Subscription ID.
+     * Sets The ID of the target subscription.
      * 
      * @param subscriptionId the subscriptionId value.
      * @return the HealthbotClientBuilder.
