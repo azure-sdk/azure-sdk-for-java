@@ -1,0 +1,46 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/kubernetesconfigurationprivateli/ci.yml
+      - sdk/kubernetesconfigurationprivateli/azure-resourcemanager-kubernetesconfigurationprivateli/
+    exclude:
+      - sdk/kubernetesconfigurationprivateli/pom.xml
+      - sdk/kubernetesconfigurationprivateli/azure-resourcemanager-kubernetesconfigurationprivateli/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/kubernetesconfigurationprivateli/ci.yml
+      - sdk/kubernetesconfigurationprivateli/azure-resourcemanager-kubernetesconfigurationprivateli/
+    exclude:
+      - sdk/kubernetesconfigurationprivateli/pom.xml
+      - sdk/kubernetesconfigurationprivateli/azure-resourcemanager-kubernetesconfigurationprivateli/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerkubernetesconfigurationprivateli
+    displayName: azure-resourcemanager-kubernetesconfigurationprivateli
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: kubernetesconfigurationprivateli
+    Artifacts:
+      - name: azure-resourcemanager-kubernetesconfigurationprivateli
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerkubernetesconfigurationprivateli
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerkubernetesconfigurationprivateli }}
