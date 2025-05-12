@@ -1,14 +1,77 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.1.0-beta.1 (2025-05-12)
+
+- Azure Resource Manager Mongo Cluster client library for Java. This package contains Microsoft Azure SDK for Mongo Cluster Management SDK. The Microsoft Azure management API provides create, read, update, and delete functionality for Azure Cosmos DB for MongoDB vCore resources including clusters and firewall rules. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
-### Breaking Changes
+* `implementation.models.UserListResult` was added
 
-### Bugs Fixed
+* `models.DatabaseRole` was added
 
-### Other Changes
+* `models.IdentityProvider` was added
+
+* `models.User` was added
+
+* `models.EntraIdentityProviderProperties` was added
+
+* `models.User$UpdateStages` was added
+
+* `models.StorageType` was added
+
+* `models.UserProperties` was added
+
+* `models.EntraPrincipalType` was added
+
+* `models.EntraIdentityProvider` was added
+
+* `models.DataApiMode` was added
+
+* `models.User$DefinitionStages` was added
+
+* `models.UserRole` was added
+
+* `models.User$Definition` was added
+
+* `models.AuthenticationMode` was added
+
+* `models.Users` was added
+
+* `models.IdentityProviderType` was added
+
+* `models.AuthConfigProperties` was added
+
+* `models.DataApiProperties` was added
+
+* `models.User$Update` was added
+
+#### `models.MongoClusterProperties` was modified
+
+* `withAuthConfig(models.AuthConfigProperties)` was added
+* `dataApi()` was added
+* `authConfig()` was added
+* `withDataApi(models.DataApiProperties)` was added
+
+#### `models.StorageProperties` was modified
+
+* `type()` was added
+* `withIops(java.lang.Long)` was added
+* `withThroughput(java.lang.Long)` was added
+* `throughput()` was added
+* `withType(models.StorageType)` was added
+* `iops()` was added
+
+#### `MongoClusterManager` was modified
+
+* `users()` was added
+
+#### `models.MongoClusterUpdateProperties` was modified
+
+* `dataApi()` was added
+* `withDataApi(models.DataApiProperties)` was added
+* `authConfig()` was added
+* `withAuthConfig(models.AuthConfigProperties)` was added
 
 ## 1.0.0 (2024-09-25)
 
