@@ -19,8 +19,6 @@ import com.azure.resourcemanager.machinelearning.models.StorageAccountDetails;
 import com.azure.resourcemanager.machinelearning.models.SystemCreatedAcrAccount;
 import com.azure.resourcemanager.machinelearning.models.SystemCreatedStorageAccount;
 import com.azure.resourcemanager.machinelearning.models.UserAssignedIdentity;
-import com.azure.resourcemanager.machinelearning.models.UserCreatedAcrAccount;
-import com.azure.resourcemanager.machinelearning.models.UserCreatedStorageAccount;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,8 +29,8 @@ import java.util.Map;
 public final class RegistriesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registries/createOrUpdate-SystemCreated.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
+     * examples/Registries/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Registry with system created accounts.
@@ -81,55 +79,6 @@ public final class RegistriesCreateOrUpdateSamples {
                         .withStorageAccountHnsEnabled(false)
                         .withStorageAccountName("string")
                         .withStorageAccountType("string"))))))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registries/createOrUpdate-UserCreated.json
-     */
-    /**
-     * Sample code: CreateOrUpdate Registry with user created accounts.
-     * 
-     * @param manager Entry point to MachineLearningManager.
-     */
-    public static void createOrUpdateRegistryWithUserCreatedAccounts(
-        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager.registries()
-            .define("string")
-            .withRegion("string")
-            .withExistingResourceGroup("test-rg")
-            .withTags(mapOf())
-            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.NONE)
-                .withUserAssignedIdentities(mapOf("string", new UserAssignedIdentity())))
-            .withKind("string")
-            .withSku(new Sku().withName("string")
-                .withTier(SkuTier.FREE)
-                .withSize("string")
-                .withFamily("string")
-                .withCapacity(1))
-            .withDiscoveryUrl("string")
-            .withIntellectualPropertyPublisher("string")
-            .withManagedResourceGroup(new ArmResourceId().withResourceId("string"))
-            .withMlFlowRegistryUri("string")
-            .withRegistryPrivateEndpointConnections(
-                Arrays.asList(new RegistryPrivateEndpointConnection().withId("string")
-                    .withLocation("string")
-                    .withGroupIds(Arrays.asList("string"))
-                    .withPrivateEndpoint(new PrivateEndpointResource().withSubnetArmId("string"))
-                    .withRegistryPrivateLinkServiceConnectionState(
-                        new RegistryPrivateLinkServiceConnectionState().withActionsRequired("string")
-                            .withDescription("string")
-                            .withStatus(EndpointServiceConnectionStatus.APPROVED))
-                    .withProvisioningState("string")))
-            .withPublicNetworkAccess("string")
-            .withRegionDetails(Arrays.asList(new RegistryRegionArmDetails()
-                .withAcrDetails(Arrays.asList(new AcrDetails().withUserCreatedAcrAccount(
-                    new UserCreatedAcrAccount().withArmResourceId(new ArmResourceId().withResourceId("string")))))
-                .withLocation("string")
-                .withStorageAccountDetails(Arrays.asList(new StorageAccountDetails().withUserCreatedStorageAccount(
-                    new UserCreatedStorageAccount().withArmResourceId(new ArmResourceId().withResourceId("string")))))))
             .create();
     }
 

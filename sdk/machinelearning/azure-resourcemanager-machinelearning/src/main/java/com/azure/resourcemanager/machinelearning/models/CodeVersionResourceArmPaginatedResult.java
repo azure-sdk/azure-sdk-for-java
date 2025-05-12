@@ -20,39 +20,19 @@ import java.util.List;
 public final class CodeVersionResourceArmPaginatedResult
     implements JsonSerializable<CodeVersionResourceArmPaginatedResult> {
     /*
-     * An array of objects of type CodeVersion.
-     */
-    private List<CodeVersionInner> value;
-
-    /*
      * The link to the next page of CodeVersion objects. If null, there are no additional pages.
      */
     private String nextLink;
+
+    /*
+     * An array of objects of type CodeVersion.
+     */
+    private List<CodeVersionInner> value;
 
     /**
      * Creates an instance of CodeVersionResourceArmPaginatedResult class.
      */
     public CodeVersionResourceArmPaginatedResult() {
-    }
-
-    /**
-     * Get the value property: An array of objects of type CodeVersion.
-     * 
-     * @return the value value.
-     */
-    public List<CodeVersionInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: An array of objects of type CodeVersion.
-     * 
-     * @param value the value value to set.
-     * @return the CodeVersionResourceArmPaginatedResult object itself.
-     */
-    public CodeVersionResourceArmPaginatedResult withValue(List<CodeVersionInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**
@@ -78,6 +58,26 @@ public final class CodeVersionResourceArmPaginatedResult
     }
 
     /**
+     * Get the value property: An array of objects of type CodeVersion.
+     * 
+     * @return the value value.
+     */
+    public List<CodeVersionInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: An array of objects of type CodeVersion.
+     * 
+     * @param value the value value to set.
+     * @return the CodeVersionResourceArmPaginatedResult object itself.
+     */
+    public CodeVersionResourceArmPaginatedResult withValue(List<CodeVersionInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -94,8 +94,8 @@ public final class CodeVersionResourceArmPaginatedResult
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -115,11 +115,11 @@ public final class CodeVersionResourceArmPaginatedResult
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedCodeVersionResourceArmPaginatedResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<CodeVersionInner> value = reader.readArray(reader1 -> CodeVersionInner.fromJson(reader1));
                     deserializedCodeVersionResourceArmPaginatedResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedCodeVersionResourceArmPaginatedResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
