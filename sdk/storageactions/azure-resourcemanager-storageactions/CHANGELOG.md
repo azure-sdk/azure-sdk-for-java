@@ -1,14 +1,139 @@
 # Release History
 
-## 1.0.0-beta.4 (Unreleased)
+## 1.0.0-beta.4 (2025-05-09)
 
-### Features Added
+- Azure Resource Manager StorageActions client library for Java. This package contains Microsoft Azure SDK for StorageActions Management SDK. The Azure Storage Actions Management API. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.StorageTaskReportSummary` was removed
 
-### Other Changes
+#### `models.StorageTasksReports` was removed
+
+#### `models.StorageTaskPreviewActionProperties` was removed
+
+#### `models.StorageTasksListResult` was removed
+
+#### `models.StorageTaskAssignmentsListResult` was removed
+
+#### `models.StorageTaskProperties` was removed
+
+#### `models.OperationListResult` was removed
+
+#### `models.StorageTaskAssignments` was removed
+
+#### `models.StorageTask$DefinitionStages` was modified
+
+* Required stage 5, 6 was added
+* `withProperties(models.StorageTaskProperties)` was removed in stage 4
+
+#### `models.StorageTask` was modified
+
+* `properties()` was removed
+
+#### `models.StorageTaskPreviewAction` was modified
+
+* `properties()` was removed
+
+#### `models.StorageTask$Definition` was modified
+
+* `withProperties(models.StorageTaskProperties)` was removed
+
+#### `models.StorageTasks` was modified
+
+* `list(com.azure.core.util.Context)` was removed
+* `previewActionsWithResponse(java.lang.String,fluent.models.StorageTaskPreviewActionInner,com.azure.core.util.Context)` was removed
+* `list()` was removed
+* `previewActions(java.lang.String,fluent.models.StorageTaskPreviewActionInner)` was removed
+
+#### `models.StorageTask$Update` was modified
+
+* `withProperties(models.StorageTaskProperties)` was removed
+
+#### `models.StorageTaskUpdateParameters` was modified
+
+* `withProperties(models.StorageTaskProperties)` was removed
+* `properties()` was removed
+
+#### `models.UserAssignedIdentity` was modified
+
+* `java.util.UUID principalId()` -> `java.lang.String principalId()`
+* `java.util.UUID clientId()` -> `java.lang.String clientId()`
+
+#### `StorageActionsManager` was modified
+
+* `fluent.StorageActionsMgmtClient serviceClient()` -> `fluent.StorageActionsClient serviceClient()`
+* `storageTaskAssignments()` was removed
+* `storageTasksReports()` was removed
+
+#### `models.ManagedServiceIdentity` was modified
+
+* `java.util.UUID tenantId()` -> `java.lang.String tenantId()`
+* `java.util.UUID principalId()` -> `java.lang.String principalId()`
+
+### Features Added
+
+* `implementation.models.OperationListResult` was added
+
+* `implementation.models.StorageTaskReportSummary` was added
+
+* `implementation.models.StorageTasksListResult` was added
+
+* `models.StorageTasksOperationGroups` was added
+
+* `implementation.models.StorageTaskAssignmentsListResult` was added
+
+#### `models.StorageTask` was modified
+
+* `provisioningState()` was added
+* `action()` was added
+* `description()` was added
+* `creationTimeInUtc()` was added
+* `enabled()` was added
+* `taskVersion()` was added
+
+#### `models.StorageTaskPreviewAction` was modified
+
+* `container()` was added
+* `action()` was added
+* `blobs()` was added
+
+#### `models.StorageTask$Definition` was modified
+
+* `withDescription(java.lang.String)` was added
+* `withEnabled(boolean)` was added
+* `withAction(models.StorageTaskAction)` was added
+
+#### `models.StorageTasks` was modified
+
+* `listBySubscription(com.azure.core.util.Context)` was added
+* `list(java.lang.String,java.lang.String,java.lang.Integer,java.lang.String,com.azure.core.util.Context)` was added
+* `list(java.lang.String,java.lang.String)` was added
+* `storageTaskAssignmentList(java.lang.String,java.lang.String,java.lang.Integer,com.azure.core.util.Context)` was added
+* `storageTaskAssignmentList(java.lang.String,java.lang.String)` was added
+* `listBySubscription()` was added
+
+#### `models.StorageTask$Update` was modified
+
+* `withDescription(java.lang.String)` was added
+* `withAction(models.StorageTaskAction)` was added
+* `withEnabled(java.lang.Boolean)` was added
+
+#### `models.StorageTaskUpdateParameters` was modified
+
+* `provisioningState()` was added
+* `creationTimeInUtc()` was added
+* `enabled()` was added
+* `withEnabled(java.lang.Boolean)` was added
+* `action()` was added
+* `taskVersion()` was added
+* `description()` was added
+* `withAction(models.StorageTaskAction)` was added
+* `withDescription(java.lang.String)` was added
+
+#### `StorageActionsManager` was modified
+
+* `storageTasksOperationGroups()` was added
 
 ## 1.0.0-beta.3 (2025-04-18)
 
