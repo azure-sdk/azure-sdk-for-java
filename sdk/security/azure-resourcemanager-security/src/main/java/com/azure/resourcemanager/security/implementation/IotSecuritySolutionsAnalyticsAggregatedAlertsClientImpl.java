@@ -26,6 +26,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.IotSecuritySolutionsAnalyticsAggregatedAlertsClient;
 import com.azure.resourcemanager.security.fluent.models.IoTSecurityAggregatedAlertInner;
 import com.azure.resourcemanager.security.models.IoTSecurityAggregatedAlertList;
@@ -75,10 +76,29 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertsClientImpl
             @QueryParam("$top") Integer top, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/iotSecuritySolutions/{solutionName}/analyticsModels/default/aggregatedAlerts")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<IoTSecurityAggregatedAlertList> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("solutionName") String solutionName,
+            @QueryParam("$top") Integer top, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/iotSecuritySolutions/{solutionName}/analyticsModels/default/aggregatedAlerts/{aggregatedAlertName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IoTSecurityAggregatedAlertInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("solutionName") String solutionName,
+            @PathParam("aggregatedAlertName") String aggregatedAlertName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/iotSecuritySolutions/{solutionName}/analyticsModels/default/aggregatedAlerts/{aggregatedAlertName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<IoTSecurityAggregatedAlertInner> getSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("solutionName") String solutionName,
             @PathParam("aggregatedAlertName") String aggregatedAlertName, @HeaderParam("Accept") String accept,
@@ -95,10 +115,28 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertsClientImpl
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/iotSecuritySolutions/{solutionName}/analyticsModels/default/aggregatedAlerts/{aggregatedAlertName}/dismiss")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Void> dismissSync(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("solutionName") String solutionName,
+            @PathParam("aggregatedAlertName") String aggregatedAlertName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IoTSecurityAggregatedAlertList>> listNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<IoTSecurityAggregatedAlertList> listNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -151,48 +189,6 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertsClientImpl
      * insensitive.
      * @param solutionName The name of the IoT Security solution.
      * @param top Number of results to retrieve.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of IoT Security solution aggregated alert data along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<IoTSecurityAggregatedAlertInner>> listSinglePageAsync(String resourceGroupName,
-        String solutionName, Integer top, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (solutionName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
-        }
-        final String apiVersion = "2019-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-                solutionName, top, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Use this method to get the aggregated alert list of yours IoT Security solution.
-     * 
-     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
-     * insensitive.
-     * @param solutionName The name of the IoT Security solution.
-     * @param top Number of results to retrieve.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -230,17 +226,80 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertsClientImpl
      * insensitive.
      * @param solutionName The name of the IoT Security solution.
      * @param top Number of results to retrieve.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of IoT Security solution aggregated alert data along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<IoTSecurityAggregatedAlertInner> listSinglePage(String resourceGroupName, String solutionName,
+        Integer top) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (solutionName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
+        }
+        final String apiVersion = "2019-08-01";
+        final String accept = "application/json";
+        Response<IoTSecurityAggregatedAlertList> res = service.listSync(this.client.getEndpoint(), apiVersion,
+            this.client.getSubscriptionId(), resourceGroupName, solutionName, top, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Use this method to get the aggregated alert list of yours IoT Security solution.
+     * 
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     * insensitive.
+     * @param solutionName The name of the IoT Security solution.
+     * @param top Number of results to retrieve.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of IoT Security solution aggregated alert data as paginated response with {@link PagedFlux}.
+     * @return list of IoT Security solution aggregated alert data along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<IoTSecurityAggregatedAlertInner> listAsync(String resourceGroupName, String solutionName,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<IoTSecurityAggregatedAlertInner> listSinglePage(String resourceGroupName, String solutionName,
         Integer top, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, solutionName, top, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (solutionName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
+        }
+        final String apiVersion = "2019-08-01";
+        final String accept = "application/json";
+        Response<IoTSecurityAggregatedAlertList> res = service.listSync(this.client.getEndpoint(), apiVersion,
+            this.client.getSubscriptionId(), resourceGroupName, solutionName, top, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -257,7 +316,8 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertsClientImpl
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<IoTSecurityAggregatedAlertInner> list(String resourceGroupName, String solutionName) {
         final Integer top = null;
-        return new PagedIterable<>(listAsync(resourceGroupName, solutionName, top));
+        return new PagedIterable<>(() -> listSinglePage(resourceGroupName, solutionName, top),
+            nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -276,7 +336,8 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertsClientImpl
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<IoTSecurityAggregatedAlertInner> list(String resourceGroupName, String solutionName,
         Integer top, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, solutionName, top, context));
+        return new PagedIterable<>(() -> listSinglePage(resourceGroupName, solutionName, top, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -331,50 +392,6 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertsClientImpl
      * insensitive.
      * @param solutionName The name of the IoT Security solution.
      * @param aggregatedAlertName Identifier of the aggregated alert.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return security Solution Aggregated Alert information along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<IoTSecurityAggregatedAlertInner>> getWithResponseAsync(String resourceGroupName,
-        String solutionName, String aggregatedAlertName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (solutionName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
-        }
-        if (aggregatedAlertName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter aggregatedAlertName is required and cannot be null."));
-        }
-        final String apiVersion = "2019-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            solutionName, aggregatedAlertName, accept, context);
-    }
-
-    /**
-     * Use this method to get a single the aggregated alert of yours IoT Security solution. This aggregation is
-     * performed by alert name.
-     * 
-     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
-     * insensitive.
-     * @param solutionName The name of the IoT Security solution.
-     * @param aggregatedAlertName Identifier of the aggregated alert.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -404,7 +421,32 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertsClientImpl
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<IoTSecurityAggregatedAlertInner> getWithResponse(String resourceGroupName, String solutionName,
         String aggregatedAlertName, Context context) {
-        return getWithResponseAsync(resourceGroupName, solutionName, aggregatedAlertName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (solutionName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
+        }
+        if (aggregatedAlertName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter aggregatedAlertName is required and cannot be null."));
+        }
+        final String apiVersion = "2019-08-01";
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+            resourceGroupName, solutionName, aggregatedAlertName, accept, context);
     }
 
     /**
@@ -475,48 +517,6 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertsClientImpl
      * insensitive.
      * @param solutionName The name of the IoT Security solution.
      * @param aggregatedAlertName Identifier of the aggregated alert.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> dismissWithResponseAsync(String resourceGroupName, String solutionName,
-        String aggregatedAlertName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (solutionName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
-        }
-        if (aggregatedAlertName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter aggregatedAlertName is required and cannot be null."));
-        }
-        final String apiVersion = "2019-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.dismiss(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
-            resourceGroupName, solutionName, aggregatedAlertName, accept, context);
-    }
-
-    /**
-     * Use this method to dismiss an aggregated IoT Security Solution Alert.
-     * 
-     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
-     * insensitive.
-     * @param solutionName The name of the IoT Security solution.
-     * @param aggregatedAlertName Identifier of the aggregated alert.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -544,7 +544,32 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertsClientImpl
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> dismissWithResponse(String resourceGroupName, String solutionName, String aggregatedAlertName,
         Context context) {
-        return dismissWithResponseAsync(resourceGroupName, solutionName, aggregatedAlertName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (solutionName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
+        }
+        if (aggregatedAlertName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter aggregatedAlertName is required and cannot be null."));
+        }
+        final String apiVersion = "2019-08-01";
+        final String accept = "application/json";
+        return service.dismissSync(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+            resourceGroupName, solutionName, aggregatedAlertName, accept, context);
     }
 
     /**
@@ -593,27 +618,57 @@ public final class IotSecuritySolutionsAnalyticsAggregatedAlertsClientImpl
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of IoT Security solution aggregated alert data along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<IoTSecurityAggregatedAlertInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<IoTSecurityAggregatedAlertList> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of IoT Security solution aggregated alert data along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return list of IoT Security solution aggregated alert data along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<IoTSecurityAggregatedAlertInner>> listNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<IoTSecurityAggregatedAlertInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<IoTSecurityAggregatedAlertList> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER
+        = new ClientLogger(IotSecuritySolutionsAnalyticsAggregatedAlertsClientImpl.class);
 }

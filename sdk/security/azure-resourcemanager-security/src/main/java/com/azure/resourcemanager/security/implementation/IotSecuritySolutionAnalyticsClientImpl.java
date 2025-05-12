@@ -21,6 +21,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.IotSecuritySolutionAnalyticsClient;
 import com.azure.resourcemanager.security.fluent.models.IoTSecuritySolutionAnalyticsModelInner;
 import com.azure.resourcemanager.security.fluent.models.IoTSecuritySolutionAnalyticsModelListInner;
@@ -68,10 +69,28 @@ public final class IotSecuritySolutionAnalyticsClientImpl implements IotSecurity
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/iotSecuritySolutions/{solutionName}/analyticsModels")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<IoTSecuritySolutionAnalyticsModelListInner> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("solutionName") String solutionName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/iotSecuritySolutions/{solutionName}/analyticsModels/default")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<IoTSecuritySolutionAnalyticsModelInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("solutionName") String solutionName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/iotSecuritySolutions/{solutionName}/analyticsModels/default")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<IoTSecuritySolutionAnalyticsModelInner> getSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("solutionName") String solutionName,
             @HeaderParam("Accept") String accept, Context context);
@@ -121,44 +140,6 @@ public final class IotSecuritySolutionAnalyticsClientImpl implements IotSecurity
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
      * @param solutionName The name of the IoT Security solution.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Security analytics of your IoT Security solution along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<IoTSecuritySolutionAnalyticsModelListInner>> listWithResponseAsync(String resourceGroupName,
-        String solutionName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (solutionName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
-        }
-        final String apiVersion = "2019-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            solutionName, accept, context);
-    }
-
-    /**
-     * Use this method to get IoT security Analytics metrics in an array.
-     * 
-     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
-     * insensitive.
-     * @param solutionName The name of the IoT Security solution.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -184,7 +165,28 @@ public final class IotSecuritySolutionAnalyticsClientImpl implements IotSecurity
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<IoTSecuritySolutionAnalyticsModelListInner> listWithResponse(String resourceGroupName,
         String solutionName, Context context) {
-        return listWithResponseAsync(resourceGroupName, solutionName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (solutionName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
+        }
+        final String apiVersion = "2019-08-01";
+        final String accept = "application/json";
+        return service.listSync(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+            resourceGroupName, solutionName, accept, context);
     }
 
     /**
@@ -247,44 +249,6 @@ public final class IotSecuritySolutionAnalyticsClientImpl implements IotSecurity
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
      * @param solutionName The name of the IoT Security solution.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return security analytics of your IoT Security solution along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<IoTSecuritySolutionAnalyticsModelInner>> getWithResponseAsync(String resourceGroupName,
-        String solutionName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (solutionName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
-        }
-        final String apiVersion = "2019-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
-            solutionName, accept, context);
-    }
-
-    /**
-     * Use this method to get IoT Security Analytics metrics.
-     * 
-     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
-     * insensitive.
-     * @param solutionName The name of the IoT Security solution.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -310,7 +274,28 @@ public final class IotSecuritySolutionAnalyticsClientImpl implements IotSecurity
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<IoTSecuritySolutionAnalyticsModelInner> getWithResponse(String resourceGroupName,
         String solutionName, Context context) {
-        return getWithResponseAsync(resourceGroupName, solutionName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (solutionName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter solutionName is required and cannot be null."));
+        }
+        final String apiVersion = "2019-08-01";
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
+            resourceGroupName, solutionName, accept, context);
     }
 
     /**
@@ -328,4 +313,6 @@ public final class IotSecuritySolutionAnalyticsClientImpl implements IotSecurity
     public IoTSecuritySolutionAnalyticsModelInner get(String resourceGroupName, String solutionName) {
         return getWithResponse(resourceGroupName, solutionName, Context.NONE).getValue();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(IotSecuritySolutionAnalyticsClientImpl.class);
 }

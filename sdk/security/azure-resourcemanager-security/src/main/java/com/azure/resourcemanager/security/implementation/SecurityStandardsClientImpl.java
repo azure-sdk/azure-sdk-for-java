@@ -28,6 +28,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.SecurityStandardsClient;
 import com.azure.resourcemanager.security.fluent.models.SecurityStandardInner;
 import com.azure.resourcemanager.security.models.SecurityStandardList;
@@ -74,10 +75,26 @@ public final class SecurityStandardsClientImpl implements SecurityStandardsClien
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/{scope}/providers/Microsoft.Security/securityStandards")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SecurityStandardList> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("scope") String scope,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/{scope}/providers/Microsoft.Security/securityStandards/{standardId}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SecurityStandardInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("scope") String scope,
+            @PathParam("standardId") String standardId, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/{scope}/providers/Microsoft.Security/securityStandards/{standardId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SecurityStandardInner> getSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("scope") String scope,
             @PathParam("standardId") String standardId, @HeaderParam("Accept") String accept, Context context);
 
@@ -91,6 +108,15 @@ public final class SecurityStandardsClientImpl implements SecurityStandardsClien
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Put("/{scope}/providers/Microsoft.Security/securityStandards/{standardId}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SecurityStandardInner> createOrUpdateSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("scope") String scope,
+            @PathParam("standardId") String standardId, @BodyParam("application/json") SecurityStandardInner standard,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Delete("/{scope}/providers/Microsoft.Security/securityStandards/{standardId}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -99,10 +125,25 @@ public final class SecurityStandardsClientImpl implements SecurityStandardsClien
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Delete("/{scope}/providers/Microsoft.Security/securityStandards/{standardId}")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Void> deleteSync(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("scope") String scope, @PathParam("standardId") String standardId,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SecurityStandardList>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SecurityStandardList> listNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
@@ -144,37 +185,6 @@ public final class SecurityStandardsClientImpl implements SecurityStandardsClien
      * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
      * 'subscriptions/{subscriptionId}'), or security connector (format:
      * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant security standards over a scope along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SecurityStandardInner>> listSinglePageAsync(String scope, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        final String apiVersion = "2024-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, scope, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Get a list of all relevant security standards over a scope.
-     * 
-     * @param scope The scope of the security standard. Valid scopes are: management group (format:
-     * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     * 'subscriptions/{subscriptionId}'), or security connector (format:
-     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -192,16 +202,58 @@ public final class SecurityStandardsClientImpl implements SecurityStandardsClien
      * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
      * 'subscriptions/{subscriptionId}'), or security connector (format:
      * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of all relevant security standards over a scope along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SecurityStandardInner> listSinglePage(String scope) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        final String apiVersion = "2024-08-01";
+        final String accept = "application/json";
+        Response<SecurityStandardList> res
+            = service.listSync(this.client.getEndpoint(), apiVersion, scope, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get a list of all relevant security standards over a scope.
+     * 
+     * @param scope The scope of the security standard. Valid scopes are: management group (format:
+     * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant security standards over a scope as paginated response with {@link PagedFlux}.
+     * @return a list of all relevant security standards over a scope along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SecurityStandardInner> listAsync(String scope, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(scope, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SecurityStandardInner> listSinglePage(String scope, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        final String apiVersion = "2024-08-01";
+        final String accept = "application/json";
+        Response<SecurityStandardList> res
+            = service.listSync(this.client.getEndpoint(), apiVersion, scope, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -218,7 +270,7 @@ public final class SecurityStandardsClientImpl implements SecurityStandardsClien
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SecurityStandardInner> list(String scope) {
-        return new PagedIterable<>(listAsync(scope));
+        return new PagedIterable<>(() -> listSinglePage(scope), nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -236,7 +288,8 @@ public final class SecurityStandardsClientImpl implements SecurityStandardsClien
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SecurityStandardInner> list(String scope, Context context) {
-        return new PagedIterable<>(listAsync(scope, context));
+        return new PagedIterable<>(() -> listSinglePage(scope, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -281,40 +334,6 @@ public final class SecurityStandardsClientImpl implements SecurityStandardsClien
      * 'subscriptions/{subscriptionId}'), or security connector (format:
      * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param standardId The Security Standard key - unique key for the standard type.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific security standard for the requested scope by standardId along with {@link Response} on
-     * successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SecurityStandardInner>> getWithResponseAsync(String scope, String standardId,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (standardId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter standardId is required and cannot be null."));
-        }
-        final String apiVersion = "2024-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, scope, standardId, accept, context);
-    }
-
-    /**
-     * Get a specific security standard for the requested scope by standardId.
-     * 
-     * @param scope The scope of the security standard. Valid scopes are: management group (format:
-     * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     * 'subscriptions/{subscriptionId}'), or security connector (format:
-     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
-     * @param standardId The Security Standard key - unique key for the standard type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -342,7 +361,21 @@ public final class SecurityStandardsClientImpl implements SecurityStandardsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SecurityStandardInner> getWithResponse(String scope, String standardId, Context context) {
-        return getWithResponseAsync(scope, standardId, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (standardId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter standardId is required and cannot be null."));
+        }
+        final String apiVersion = "2024-08-01";
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), apiVersion, scope, standardId, accept, context);
     }
 
     /**
@@ -412,46 +445,6 @@ public final class SecurityStandardsClientImpl implements SecurityStandardsClien
      * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param standardId The Security Standard key - unique key for the standard type.
      * @param standard Custom security standard over a pre-defined scope.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return security Standard on a resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SecurityStandardInner>> createOrUpdateWithResponseAsync(String scope, String standardId,
-        SecurityStandardInner standard, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (standardId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter standardId is required and cannot be null."));
-        }
-        if (standard == null) {
-            return Mono.error(new IllegalArgumentException("Parameter standard is required and cannot be null."));
-        } else {
-            standard.validate();
-        }
-        final String apiVersion = "2024-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, scope, standardId, standard, accept,
-            context);
-    }
-
-    /**
-     * Creates or updates a security standard over a given scope.
-     * 
-     * @param scope The scope of the security standard. Valid scopes are: management group (format:
-     * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     * 'subscriptions/{subscriptionId}'), or security connector (format:
-     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
-     * @param standardId The Security Standard key - unique key for the standard type.
-     * @param standard Custom security standard over a pre-defined scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -482,7 +475,28 @@ public final class SecurityStandardsClientImpl implements SecurityStandardsClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SecurityStandardInner> createOrUpdateWithResponse(String scope, String standardId,
         SecurityStandardInner standard, Context context) {
-        return createOrUpdateWithResponseAsync(scope, standardId, standard, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (standardId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter standardId is required and cannot be null."));
+        }
+        if (standard == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter standard is required and cannot be null."));
+        } else {
+            standard.validate();
+        }
+        final String apiVersion = "2024-08-01";
+        final String accept = "application/json";
+        return service.createOrUpdateSync(this.client.getEndpoint(), apiVersion, scope, standardId, standard, accept,
+            context);
     }
 
     /**
@@ -545,38 +559,6 @@ public final class SecurityStandardsClientImpl implements SecurityStandardsClien
      * 'subscriptions/{subscriptionId}'), or security connector (format:
      * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param standardId The Security Standard key - unique key for the standard type.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String scope, String standardId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (standardId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter standardId is required and cannot be null."));
-        }
-        final String apiVersion = "2024-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, scope, standardId, accept, context);
-    }
-
-    /**
-     * Delete a security standard over a given scope.
-     * 
-     * @param scope The scope of the security standard. Valid scopes are: management group (format:
-     * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     * 'subscriptions/{subscriptionId}'), or security connector (format:
-     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
-     * @param standardId The Security Standard key - unique key for the standard type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -603,7 +585,21 @@ public final class SecurityStandardsClientImpl implements SecurityStandardsClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(String scope, String standardId, Context context) {
-        return deleteWithResponseAsync(scope, standardId, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (standardId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter standardId is required and cannot be null."));
+        }
+        final String apiVersion = "2024-08-01";
+        final String accept = "application/json";
+        return service.deleteSync(this.client.getEndpoint(), apiVersion, scope, standardId, accept, context);
     }
 
     /**
@@ -652,25 +648,55 @@ public final class SecurityStandardsClientImpl implements SecurityStandardsClien
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return page of a Standard list along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SecurityStandardInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<SecurityStandardList> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return page of a Standard list along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return page of a Standard list along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SecurityStandardInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<SecurityStandardInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<SecurityStandardList> res = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SecurityStandardsClientImpl.class);
 }

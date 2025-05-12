@@ -24,6 +24,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.PricingsClient;
 import com.azure.resourcemanager.security.fluent.models.PricingInner;
 import com.azure.resourcemanager.security.fluent.models.PricingListInner;
@@ -69,10 +70,27 @@ public final class PricingsClientImpl implements PricingsClient {
             @PathParam("pricingName") String pricingName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/{scopeId}/providers/Microsoft.Security/pricings/{pricingName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PricingInner> getSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam(value = "scopeId", encoded = true) String scopeId,
+            @PathParam("pricingName") String pricingName, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Put("/{scopeId}/providers/Microsoft.Security/pricings/{pricingName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PricingInner>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam(value = "scopeId", encoded = true) String scopeId,
+            @PathParam("pricingName") String pricingName, @BodyParam("application/json") PricingInner pricing,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/{scopeId}/providers/Microsoft.Security/pricings/{pricingName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PricingInner> updateSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam(value = "scopeId", encoded = true) String scopeId,
             @PathParam("pricingName") String pricingName, @BodyParam("application/json") PricingInner pricing,
             @HeaderParam("Accept") String accept, Context context);
@@ -86,10 +104,26 @@ public final class PricingsClientImpl implements PricingsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Delete("/{scopeId}/providers/Microsoft.Security/pricings/{pricingName}")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Void> deleteSync(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "scopeId", encoded = true) String scopeId, @PathParam("pricingName") String pricingName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/{scopeId}/providers/Microsoft.Security/pricings")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PricingListInner>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam(value = "scopeId", encoded = true) String scopeId,
+            @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/{scopeId}/providers/Microsoft.Security/pricings")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PricingListInner> listSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam(value = "scopeId", encoded = true) String scopeId,
             @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
     }
@@ -138,40 +172,6 @@ public final class PricingsClientImpl implements PricingsClient {
      * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName})
      * - Supported resources are (VirtualMachines).
      * @param pricingName name of the pricing configuration.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Defender plans pricing configurations of the selected scope (valid scopes are resource id or a
-     * subscription id) along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PricingInner>> getWithResponseAsync(String scopeId, String pricingName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scopeId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scopeId is required and cannot be null."));
-        }
-        if (pricingName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter pricingName is required and cannot be null."));
-        }
-        final String apiVersion = "2024-01-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, scopeId, pricingName, accept, context);
-    }
-
-    /**
-     * Get the Defender plans pricing configurations of the selected scope (valid scopes are resource id or a
-     * subscription id). At the resource level, supported resource types are 'VirtualMachines, VMSS and ARC Machines'.
-     * 
-     * @param scopeId The scope id of the pricing. Valid scopes are: subscription (format:
-     * 'subscriptions/{subscriptionId}'), or a specific resource (format:
-     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName})
-     * - Supported resources are (VirtualMachines).
-     * @param pricingName name of the pricing configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -201,7 +201,22 @@ public final class PricingsClientImpl implements PricingsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PricingInner> getWithResponse(String scopeId, String pricingName, Context context) {
-        return getWithResponseAsync(scopeId, pricingName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scopeId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter scopeId is required and cannot be null."));
+        }
+        if (pricingName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter pricingName is required and cannot be null."));
+        }
+        final String apiVersion = "2024-01-01";
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), apiVersion, scopeId, pricingName, accept, context);
     }
 
     /**
@@ -278,48 +293,6 @@ public final class PricingsClientImpl implements PricingsClient {
      * - Supported resources are (VirtualMachines).
      * @param pricingName name of the pricing configuration.
      * @param pricing Pricing object.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return microsoft Defender for Cloud is provided in two pricing tiers: free and standard along with
-     * {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PricingInner>> updateWithResponseAsync(String scopeId, String pricingName,
-        PricingInner pricing, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scopeId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scopeId is required and cannot be null."));
-        }
-        if (pricingName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter pricingName is required and cannot be null."));
-        }
-        if (pricing == null) {
-            return Mono.error(new IllegalArgumentException("Parameter pricing is required and cannot be null."));
-        } else {
-            pricing.validate();
-        }
-        final String apiVersion = "2024-01-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), apiVersion, scopeId, pricingName, pricing, accept, context);
-    }
-
-    /**
-     * Updates a provided Microsoft Defender for Cloud pricing configuration in the scope. Valid scopes are:
-     * subscription id or a specific resource id (Supported resources are: 'VirtualMachines, VMSS and ARC Machines' and
-     * only for plan='VirtualMachines' and subPlan='P1').
-     * 
-     * @param scopeId The scope id of the pricing. Valid scopes are: subscription (format:
-     * 'subscriptions/{subscriptionId}'), or a specific resource (format:
-     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName})
-     * - Supported resources are (VirtualMachines).
-     * @param pricingName name of the pricing configuration.
-     * @param pricing Pricing object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -352,7 +325,29 @@ public final class PricingsClientImpl implements PricingsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PricingInner> updateWithResponse(String scopeId, String pricingName, PricingInner pricing,
         Context context) {
-        return updateWithResponseAsync(scopeId, pricingName, pricing, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scopeId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter scopeId is required and cannot be null."));
+        }
+        if (pricingName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter pricingName is required and cannot be null."));
+        }
+        if (pricing == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter pricing is required and cannot be null."));
+        } else {
+            pricing.validate();
+        }
+        final String apiVersion = "2024-01-01";
+        final String accept = "application/json";
+        return service.updateSync(this.client.getEndpoint(), apiVersion, scopeId, pricingName, pricing, accept,
+            context);
     }
 
     /**
@@ -415,37 +410,6 @@ public final class PricingsClientImpl implements PricingsClient {
      * @param scopeId The identifier of the resource, (format:
      * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}).
      * @param pricingName name of the pricing configuration.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String scopeId, String pricingName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scopeId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scopeId is required and cannot be null."));
-        }
-        if (pricingName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter pricingName is required and cannot be null."));
-        }
-        final String apiVersion = "2024-01-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, scopeId, pricingName, accept, context);
-    }
-
-    /**
-     * Deletes a provided Microsoft Defender for Cloud pricing configuration in a specific resource. Valid only for
-     * resource scope (Supported resources are: 'VirtualMachines, VMSS and ARC MachinesS').
-     * 
-     * @param scopeId The identifier of the resource, (format:
-     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}).
-     * @param pricingName name of the pricing configuration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -471,7 +435,22 @@ public final class PricingsClientImpl implements PricingsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(String scopeId, String pricingName, Context context) {
-        return deleteWithResponseAsync(scopeId, pricingName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scopeId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter scopeId is required and cannot be null."));
+        }
+        if (pricingName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter pricingName is required and cannot be null."));
+        }
+        final String apiVersion = "2024-01-01";
+        final String accept = "application/json";
+        return service.deleteSync(this.client.getEndpoint(), apiVersion, scopeId, pricingName, accept, context);
     }
 
     /**
@@ -536,40 +515,6 @@ public final class PricingsClientImpl implements PricingsClient {
      * 'subscriptions/{subscriptionId}'), or a specific resource (format:
      * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName})
      * - Supported resources are (VirtualMachines).
-     * @param filter OData filter. Optional.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of pricing configurations response along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PricingListInner>> listWithResponseAsync(String scopeId, String filter, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scopeId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scopeId is required and cannot be null."));
-        }
-        final String apiVersion = "2024-01-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, scopeId, filter, accept, context);
-    }
-
-    /**
-     * Lists Microsoft Defender for Cloud pricing configurations of the scopeId, that match the optional given $filter.
-     * Valid scopes are: subscription id or a specific resource id (Supported resources are: 'VirtualMachines, VMSS and
-     * ARC Machines'). Valid $filter is: 'name in ({planName1},{planName2},...)'. If $filter is not provided, the
-     * unfiltered list will be returned. If '$filter=name in (planName1,planName2)' is provided, the returned list
-     * includes the pricings set for 'planName1' and 'planName2' only.
-     * 
-     * @param scopeId The scope id of the pricing. Valid scopes are: subscription (format:
-     * 'subscriptions/{subscriptionId}'), or a specific resource (format:
-     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName})
-     * - Supported resources are (VirtualMachines).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -601,7 +546,18 @@ public final class PricingsClientImpl implements PricingsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PricingListInner> listWithResponse(String scopeId, String filter, Context context) {
-        return listWithResponseAsync(scopeId, filter, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scopeId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter scopeId is required and cannot be null."));
+        }
+        final String apiVersion = "2024-01-01";
+        final String accept = "application/json";
+        return service.listSync(this.client.getEndpoint(), apiVersion, scopeId, filter, accept, context);
     }
 
     /**
@@ -625,4 +581,6 @@ public final class PricingsClientImpl implements PricingsClient {
         final String filter = null;
         return listWithResponse(scopeId, filter, Context.NONE).getValue();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PricingsClientImpl.class);
 }
