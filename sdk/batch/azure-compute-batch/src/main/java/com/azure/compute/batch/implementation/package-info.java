@@ -4,7 +4,7 @@
 /**
  * <!-- start generated doc -->
  * Package containing the implementations for Batch.
- * Azure Batch provides Cloud-scale job scheduling and compute management.
+ * Azure Batch provides Cloud-scale job scheduling and compute management test.
  * <!-- end generated doc -->
  */
 package com.azure.compute.batch.implementation;
