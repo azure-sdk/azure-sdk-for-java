@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public final class VmmServersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VmmServers_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**
@@ -33,7 +33,7 @@ public final class VmmServersCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2023-10-07/examples/
+     * x-ms-original-file: specification/scvmm/resource-manager/Microsoft.ScVmm/stable/2025-03-13/examples/
      * VmmServers_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
