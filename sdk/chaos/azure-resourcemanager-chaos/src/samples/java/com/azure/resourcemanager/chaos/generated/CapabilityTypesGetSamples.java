@@ -10,7 +10,7 @@ package com.azure.resourcemanager.chaos.generated;
 public final class CapabilityTypesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetCapabilityType.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2025-01-01/examples/CapabilityTypes_Get.json
      */
     /**
      * Sample code: Get a Capability Type for a virtual machine Target resource on westus2 location.

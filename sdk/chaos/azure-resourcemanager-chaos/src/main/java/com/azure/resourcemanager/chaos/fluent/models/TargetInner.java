@@ -20,19 +20,19 @@ import java.util.Map;
 @Fluent
 public final class TargetInner extends ProxyResource {
     /*
-     * The system metadata of the target resource.
+     * The properties of the target resource.
      */
-    private SystemData systemData;
+    private Map<String, Object> properties;
 
     /*
-     * Location of the target resource.
+     * Azure resource location.
      */
     private String location;
 
     /*
-     * The properties of the target resource.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    private Map<String, Object> properties;
+    private SystemData systemData;
 
     /*
      * The type of the resource.
@@ -56,35 +56,6 @@ public final class TargetInner extends ProxyResource {
     }
 
     /**
-     * Get the systemData property: The system metadata of the target resource.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
-     * Get the location property: Location of the target resource.
-     * 
-     * @return the location value.
-     */
-    public String location() {
-        return this.location;
-    }
-
-    /**
-     * Set the location property: Location of the target resource.
-     * 
-     * @param location the location value to set.
-     * @return the TargetInner object itself.
-     */
-    public TargetInner withLocation(String location) {
-        this.location = location;
-        return this;
-    }
-
-    /**
      * Get the properties property: The properties of the target resource.
      * 
      * @return the properties value.
@@ -102,6 +73,35 @@ public final class TargetInner extends ProxyResource {
     public TargetInner withProperties(Map<String, Object> properties) {
         this.properties = properties;
         return this;
+    }
+
+    /**
+     * Get the location property: Azure resource location.
+     * 
+     * @return the location value.
+     */
+    public String location() {
+        return this.location;
+    }
+
+    /**
+     * Set the location property: Azure resource location.
+     * 
+     * @param location the location value to set.
+     * @return the TargetInner object itself.
+     */
+    public TargetInner withLocation(String location) {
+        this.location = location;
+        return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -184,10 +184,10 @@ public final class TargetInner extends ProxyResource {
                 } else if ("properties".equals(fieldName)) {
                     Map<String, Object> properties = reader.readMap(reader1 -> reader1.readUntyped());
                     deserializedTargetInner.properties = properties;
-                } else if ("systemData".equals(fieldName)) {
-                    deserializedTargetInner.systemData = SystemData.fromJson(reader);
                 } else if ("location".equals(fieldName)) {
                     deserializedTargetInner.location = reader.getString();
+                } else if ("systemData".equals(fieldName)) {
+                    deserializedTargetInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

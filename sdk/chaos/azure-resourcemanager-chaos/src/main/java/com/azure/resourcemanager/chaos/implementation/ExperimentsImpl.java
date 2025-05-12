@@ -52,14 +52,6 @@ public final class ExperimentsImpl implements Experiments {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new ExperimentImpl(inner1, this.manager()));
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String experimentName) {
-        this.serviceClient().delete(resourceGroupName, experimentName);
-    }
-
-    public void delete(String resourceGroupName, String experimentName, Context context) {
-        this.serviceClient().delete(resourceGroupName, experimentName, context);
-    }
-
     public Response<Experiment> getByResourceGroupWithResponse(String resourceGroupName, String experimentName,
         Context context) {
         Response<ExperimentInner> inner
@@ -81,20 +73,20 @@ public final class ExperimentsImpl implements Experiments {
         }
     }
 
+    public void deleteByResourceGroup(String resourceGroupName, String experimentName) {
+        this.serviceClient().delete(resourceGroupName, experimentName);
+    }
+
+    public void delete(String resourceGroupName, String experimentName, Context context) {
+        this.serviceClient().delete(resourceGroupName, experimentName, context);
+    }
+
     public void cancel(String resourceGroupName, String experimentName) {
         this.serviceClient().cancel(resourceGroupName, experimentName);
     }
 
     public void cancel(String resourceGroupName, String experimentName, Context context) {
         this.serviceClient().cancel(resourceGroupName, experimentName, context);
-    }
-
-    public void start(String resourceGroupName, String experimentName) {
-        this.serviceClient().start(resourceGroupName, experimentName);
-    }
-
-    public void start(String resourceGroupName, String experimentName, Context context) {
-        this.serviceClient().start(resourceGroupName, experimentName, context);
     }
 
     public PagedIterable<ExperimentExecution> listAllExecutions(String resourceGroupName, String experimentName) {
@@ -153,6 +145,14 @@ public final class ExperimentsImpl implements Experiments {
         } else {
             return null;
         }
+    }
+
+    public void start(String resourceGroupName, String experimentName) {
+        this.serviceClient().start(resourceGroupName, experimentName);
+    }
+
+    public void start(String resourceGroupName, String experimentName, Context context) {
+        this.serviceClient().start(resourceGroupName, experimentName, context);
     }
 
     public Experiment getById(String id) {
