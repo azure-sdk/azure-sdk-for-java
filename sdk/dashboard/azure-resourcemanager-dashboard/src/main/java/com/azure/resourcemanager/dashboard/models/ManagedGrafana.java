@@ -65,14 +65,14 @@ public interface ManagedGrafana {
     ManagedGrafanaProperties properties();
 
     /**
-     * Gets the identity property: The managed identity of the grafana resource.
+     * Gets the identity property: The managed service identities assigned to this resource.
      * 
      * @return the identity value.
      */
     ManagedServiceIdentity identity();
 
     /**
-     * Gets the systemData property: The system meta data relating to this grafana resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -223,9 +223,9 @@ public interface ManagedGrafana {
          */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The managed identity of the grafana resource..
+             * Specifies the identity property: The managed service identities assigned to this resource..
              * 
-             * @param identity The managed identity of the grafana resource.
+             * @param identity The managed service identities assigned to this resource.
              * @return the next definition stage.
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
@@ -282,9 +282,9 @@ public interface ManagedGrafana {
          */
         interface WithSku {
             /**
-             * Specifies the sku property: The sku property..
+             * Specifies the sku property: Represents the SKU of a resource..
              * 
-             * @param sku The sku property.
+             * @param sku Represents the SKU of a resource.
              * @return the next definition stage.
              */
             Update withSku(ResourceSku sku);
@@ -353,7 +353,7 @@ public interface ManagedGrafana {
     EnterpriseDetails checkEnterpriseDetails();
 
     /**
-     * The fetchAvailablePlugins operation.
+     * A synchronous resource action.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -364,7 +364,7 @@ public interface ManagedGrafana {
     Response<GrafanaAvailablePluginListResponse> fetchAvailablePluginsWithResponse(Context context);
 
     /**
-     * The fetchAvailablePlugins operation.
+     * A synchronous resource action.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.

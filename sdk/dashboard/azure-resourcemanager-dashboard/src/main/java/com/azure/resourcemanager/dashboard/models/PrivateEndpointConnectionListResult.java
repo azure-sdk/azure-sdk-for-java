@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.dashboard.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,18 +15,18 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * List of private endpoint connection associated with the specified storage account.
+ * The response of a PrivateEndpointConnection list operation.
  */
 @Fluent
 public final class PrivateEndpointConnectionListResult
     implements JsonSerializable<PrivateEndpointConnectionListResult> {
     /*
-     * Array of private endpoint connections
+     * The PrivateEndpointConnection items on this page
      */
     private List<PrivateEndpointConnectionInner> value;
 
     /*
-     * URL to get the next set of operation list results (if there are any).
+     * The link to the next page of items
      */
     private String nextLink;
 
@@ -36,7 +37,7 @@ public final class PrivateEndpointConnectionListResult
     }
 
     /**
-     * Get the value property: Array of private endpoint connections.
+     * Get the value property: The PrivateEndpointConnection items on this page.
      * 
      * @return the value value.
      */
@@ -45,7 +46,7 @@ public final class PrivateEndpointConnectionListResult
     }
 
     /**
-     * Set the value property: Array of private endpoint connections.
+     * Set the value property: The PrivateEndpointConnection items on this page.
      * 
      * @param value the value value to set.
      * @return the PrivateEndpointConnectionListResult object itself.
@@ -56,7 +57,7 @@ public final class PrivateEndpointConnectionListResult
     }
 
     /**
-     * Get the nextLink property: URL to get the next set of operation list results (if there are any).
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -65,15 +66,32 @@ public final class PrivateEndpointConnectionListResult
     }
 
     /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the PrivateEndpointConnectionListResult object itself.
+     */
+    public PrivateEndpointConnectionListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model PrivateEndpointConnectionListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PrivateEndpointConnectionListResult.class);
 
     /**
      * {@inheritDoc}
@@ -82,6 +100,7 @@ public final class PrivateEndpointConnectionListResult
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
         return jsonWriter.writeEndObject();
     }
 
@@ -91,6 +110,7 @@ public final class PrivateEndpointConnectionListResult
      * @param jsonReader The JsonReader being read.
      * @return An instance of PrivateEndpointConnectionListResult if the JsonReader was pointing to an instance of it,
      * or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the PrivateEndpointConnectionListResult.
      */
     public static PrivateEndpointConnectionListResult fromJson(JsonReader jsonReader) throws IOException {

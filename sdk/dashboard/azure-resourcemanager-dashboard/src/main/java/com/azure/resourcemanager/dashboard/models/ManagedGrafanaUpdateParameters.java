@@ -18,7 +18,7 @@ import java.util.Map;
 @Fluent
 public final class ManagedGrafanaUpdateParameters implements JsonSerializable<ManagedGrafanaUpdateParameters> {
     /*
-     * The sku property.
+     * Represents the SKU of a resource.
      */
     private ResourceSku sku;
 
@@ -44,7 +44,7 @@ public final class ManagedGrafanaUpdateParameters implements JsonSerializable<Ma
     }
 
     /**
-     * Get the sku property: The sku property.
+     * Get the sku property: Represents the SKU of a resource.
      * 
      * @return the sku value.
      */
@@ -53,7 +53,7 @@ public final class ManagedGrafanaUpdateParameters implements JsonSerializable<Ma
     }
 
     /**
-     * Set the sku property: The sku property.
+     * Set the sku property: Represents the SKU of a resource.
      * 
      * @param sku the sku value to set.
      * @return the ManagedGrafanaUpdateParameters object itself.

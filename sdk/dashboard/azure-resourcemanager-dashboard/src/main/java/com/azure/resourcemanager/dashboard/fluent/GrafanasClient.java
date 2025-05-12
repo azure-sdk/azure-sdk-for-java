@@ -14,7 +14,6 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.dashboard.fluent.models.EnterpriseDetailsInner;
 import com.azure.resourcemanager.dashboard.fluent.models.GrafanaAvailablePluginListResponseInner;
 import com.azure.resourcemanager.dashboard.fluent.models.ManagedGrafanaInner;
-import com.azure.resourcemanager.dashboard.models.GrafanasUpdateResponse;
 import com.azure.resourcemanager.dashboard.models.ManagedGrafanaUpdateParameters;
 
 /**
@@ -26,7 +25,7 @@ public interface GrafanasClient {
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return paged collection of ManagedGrafana items as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ManagedGrafanaInner> list();
@@ -38,7 +37,7 @@ public interface GrafanasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return paged collection of ManagedGrafana items as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ManagedGrafanaInner> list(Context context);
@@ -50,7 +49,7 @@ public interface GrafanasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return paged collection of ManagedGrafana items as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ManagedGrafanaInner> listByResourceGroup(String resourceGroupName);
@@ -63,7 +62,7 @@ public interface GrafanasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return paged collection of ManagedGrafana items as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ManagedGrafanaInner> listByResourceGroup(String resourceGroupName, Context context);
@@ -172,10 +171,10 @@ public interface GrafanasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the grafana resource type.
+     * @return the grafana resource type along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    GrafanasUpdateResponse updateWithResponse(String resourceGroupName, String workspaceName,
+    Response<ManagedGrafanaInner> updateWithResponse(String resourceGroupName, String workspaceName,
         ManagedGrafanaUpdateParameters requestBodyParameters, Context context);
 
     /**
@@ -274,7 +273,7 @@ public interface GrafanasClient {
     EnterpriseDetailsInner checkEnterpriseDetails(String resourceGroupName, String workspaceName);
 
     /**
-     * The fetchAvailablePlugins operation.
+     * A synchronous resource action.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The workspace name of Azure Managed Grafana.
@@ -289,7 +288,7 @@ public interface GrafanasClient {
         String workspaceName, Context context);
 
     /**
-     * The fetchAvailablePlugins operation.
+     * A synchronous resource action.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The workspace name of Azure Managed Grafana.

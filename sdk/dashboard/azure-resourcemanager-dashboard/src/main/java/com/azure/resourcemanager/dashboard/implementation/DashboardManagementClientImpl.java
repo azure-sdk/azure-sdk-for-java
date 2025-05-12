@@ -15,16 +15,20 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.SyncPollerFactory;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.dashboard.fluent.DashboardManagementClient;
 import com.azure.resourcemanager.dashboard.fluent.GrafanasClient;
+import com.azure.resourcemanager.dashboard.fluent.IntegrationFabricsClient;
 import com.azure.resourcemanager.dashboard.fluent.ManagedPrivateEndpointsClient;
 import com.azure.resourcemanager.dashboard.fluent.OperationsClient;
 import com.azure.resourcemanager.dashboard.fluent.PrivateEndpointConnectionsClient;
@@ -156,6 +160,34 @@ public final class DashboardManagementClientImpl implements DashboardManagementC
     }
 
     /**
+     * The IntegrationFabricsClient object to access its operations.
+     */
+    private final IntegrationFabricsClient integrationFabrics;
+
+    /**
+     * Gets the IntegrationFabricsClient object to access its operations.
+     * 
+     * @return the IntegrationFabricsClient object.
+     */
+    public IntegrationFabricsClient getIntegrationFabrics() {
+        return this.integrationFabrics;
+    }
+
+    /**
+     * The ManagedPrivateEndpointsClient object to access its operations.
+     */
+    private final ManagedPrivateEndpointsClient managedPrivateEndpoints;
+
+    /**
+     * Gets the ManagedPrivateEndpointsClient object to access its operations.
+     * 
+     * @return the ManagedPrivateEndpointsClient object.
+     */
+    public ManagedPrivateEndpointsClient getManagedPrivateEndpoints() {
+        return this.managedPrivateEndpoints;
+    }
+
+    /**
      * The PrivateEndpointConnectionsClient object to access its operations.
      */
     private final PrivateEndpointConnectionsClient privateEndpointConnections;
@@ -184,20 +216,6 @@ public final class DashboardManagementClientImpl implements DashboardManagementC
     }
 
     /**
-     * The ManagedPrivateEndpointsClient object to access its operations.
-     */
-    private final ManagedPrivateEndpointsClient managedPrivateEndpoints;
-
-    /**
-     * Gets the ManagedPrivateEndpointsClient object to access its operations.
-     * 
-     * @return the ManagedPrivateEndpointsClient object.
-     */
-    public ManagedPrivateEndpointsClient getManagedPrivateEndpoints() {
-        return this.managedPrivateEndpoints;
-    }
-
-    /**
      * Initializes an instance of DashboardManagementClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -214,12 +232,13 @@ public final class DashboardManagementClientImpl implements DashboardManagementC
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-09-01";
+        this.apiVersion = "2024-10-01";
         this.operations = new OperationsClientImpl(this);
         this.grafanas = new GrafanasClientImpl(this);
+        this.integrationFabrics = new IntegrationFabricsClientImpl(this);
+        this.managedPrivateEndpoints = new ManagedPrivateEndpointsClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
-        this.managedPrivateEndpoints = new ManagedPrivateEndpointsClientImpl(this);
     }
 
     /**
@@ -257,6 +276,23 @@ public final class DashboardManagementClientImpl implements DashboardManagementC
         HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
         return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
             defaultPollInterval, activationResponse, context);
+    }
+
+    /**
+     * Gets long running operation result.
+     * 
+     * @param activationResponse the response of activation operation.
+     * @param pollResultType type of poll result.
+     * @param finalResultType type of final result.
+     * @param context the context shared by all requests.
+     * @param <T> type of poll result.
+     * @param <U> type of final result.
+     * @return SyncPoller for poll result and final result.
+     */
+    public <T, U> SyncPoller<PollResult<T>, U> getLroResult(Response<BinaryData> activationResponse,
+        Type pollResultType, Type finalResultType, Context context) {
+        return SyncPollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, () -> activationResponse, context);
     }
 
     /**

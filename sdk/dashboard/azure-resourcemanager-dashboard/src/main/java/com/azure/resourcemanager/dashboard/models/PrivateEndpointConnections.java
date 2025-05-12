@@ -13,6 +13,31 @@ import com.azure.core.util.Context;
  */
 public interface PrivateEndpointConnections {
     /**
+     * Get private endpoint connection.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return private endpoint connection as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<PrivateEndpointConnection> list(String resourceGroupName, String workspaceName);
+
+    /**
+     * Get private endpoint connection.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return private endpoint connection as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<PrivateEndpointConnection> list(String resourceGroupName, String workspaceName, Context context);
+
+    /**
      * Get private endpoint connections.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -64,31 +89,6 @@ public interface PrivateEndpointConnections {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void delete(String resourceGroupName, String workspaceName, String privateEndpointConnectionName, Context context);
-
-    /**
-     * Get private endpoint connection.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The workspace name of Azure Managed Grafana.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connection as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<PrivateEndpointConnection> list(String resourceGroupName, String workspaceName);
-
-    /**
-     * Get private endpoint connection.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The workspace name of Azure Managed Grafana.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connection as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<PrivateEndpointConnection> list(String resourceGroupName, String workspaceName, Context context);
 
     /**
      * Get private endpoint connections.

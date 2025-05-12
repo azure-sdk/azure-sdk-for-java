@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for ZoneRedundancy.
+ * The zone redundancy setting of the Grafana instance.
  */
 public final class ZoneRedundancy extends ExpandableStringEnum<ZoneRedundancy> {
     /**
