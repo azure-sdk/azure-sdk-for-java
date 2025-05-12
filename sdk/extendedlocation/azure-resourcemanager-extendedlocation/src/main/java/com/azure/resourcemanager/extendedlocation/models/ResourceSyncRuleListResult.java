@@ -10,19 +10,19 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
-import com.azure.resourcemanager.extendedlocation.fluent.models.CustomLocationInner;
+import com.azure.resourcemanager.extendedlocation.fluent.models.ResourceSyncRuleInner;
 import java.io.IOException;
 import java.util.List;
 
 /**
- * The response of a CustomLocation list operation.
+ * The response of a ResourceSyncRule list operation.
  */
 @Fluent
-public final class CustomLocationListResult implements JsonSerializable<CustomLocationListResult> {
+public final class ResourceSyncRuleListResult implements JsonSerializable<ResourceSyncRuleListResult> {
     /*
-     * The CustomLocation items on this page
+     * The ResourceSyncRule items on this page
      */
-    private List<CustomLocationInner> value;
+    private List<ResourceSyncRuleInner> value;
 
     /*
      * The link to the next page of items
@@ -30,27 +30,27 @@ public final class CustomLocationListResult implements JsonSerializable<CustomLo
     private String nextLink;
 
     /**
-     * Creates an instance of CustomLocationListResult class.
+     * Creates an instance of ResourceSyncRuleListResult class.
      */
-    public CustomLocationListResult() {
+    public ResourceSyncRuleListResult() {
     }
 
     /**
-     * Get the value property: The CustomLocation items on this page.
+     * Get the value property: The ResourceSyncRule items on this page.
      * 
      * @return the value value.
      */
-    public List<CustomLocationInner> value() {
+    public List<ResourceSyncRuleInner> value() {
         return this.value;
     }
 
     /**
-     * Set the value property: The CustomLocation items on this page.
+     * Set the value property: The ResourceSyncRule items on this page.
      * 
      * @param value the value value to set.
-     * @return the CustomLocationListResult object itself.
+     * @return the ResourceSyncRuleListResult object itself.
      */
-    public CustomLocationListResult withValue(List<CustomLocationInner> value) {
+    public ResourceSyncRuleListResult withValue(List<ResourceSyncRuleInner> value) {
         this.value = value;
         return this;
     }
@@ -68,9 +68,9 @@ public final class CustomLocationListResult implements JsonSerializable<CustomLo
      * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
-     * @return the CustomLocationListResult object itself.
+     * @return the ResourceSyncRuleListResult object itself.
      */
-    public CustomLocationListResult withNextLink(String nextLink) {
+    public ResourceSyncRuleListResult withNextLink(String nextLink) {
         this.nextLink = nextLink;
         return this;
     }
@@ -83,13 +83,14 @@ public final class CustomLocationListResult implements JsonSerializable<CustomLo
     public void validate() {
         if (value() == null) {
             throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property value in model CustomLocationListResult"));
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model ResourceSyncRuleListResult"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(CustomLocationListResult.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ResourceSyncRuleListResult.class);
 
     /**
      * {@inheritDoc}
@@ -103,33 +104,33 @@ public final class CustomLocationListResult implements JsonSerializable<CustomLo
     }
 
     /**
-     * Reads an instance of CustomLocationListResult from the JsonReader.
+     * Reads an instance of ResourceSyncRuleListResult from the JsonReader.
      * 
      * @param jsonReader The JsonReader being read.
-     * @return An instance of CustomLocationListResult if the JsonReader was pointing to an instance of it, or null if
+     * @return An instance of ResourceSyncRuleListResult if the JsonReader was pointing to an instance of it, or null if
      * it was pointing to JSON null.
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the CustomLocationListResult.
+     * @throws IOException If an error occurs while reading the ResourceSyncRuleListResult.
      */
-    public static CustomLocationListResult fromJson(JsonReader jsonReader) throws IOException {
+    public static ResourceSyncRuleListResult fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
-            CustomLocationListResult deserializedCustomLocationListResult = new CustomLocationListResult();
+            ResourceSyncRuleListResult deserializedResourceSyncRuleListResult = new ResourceSyncRuleListResult();
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
                 if ("value".equals(fieldName)) {
-                    List<CustomLocationInner> value
-                        = reader.readArray(reader1 -> CustomLocationInner.fromJson(reader1));
-                    deserializedCustomLocationListResult.value = value;
+                    List<ResourceSyncRuleInner> value
+                        = reader.readArray(reader1 -> ResourceSyncRuleInner.fromJson(reader1));
+                    deserializedResourceSyncRuleListResult.value = value;
                 } else if ("nextLink".equals(fieldName)) {
-                    deserializedCustomLocationListResult.nextLink = reader.getString();
+                    deserializedResourceSyncRuleListResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
 
-            return deserializedCustomLocationListResult;
+            return deserializedResourceSyncRuleListResult;
         });
     }
 }

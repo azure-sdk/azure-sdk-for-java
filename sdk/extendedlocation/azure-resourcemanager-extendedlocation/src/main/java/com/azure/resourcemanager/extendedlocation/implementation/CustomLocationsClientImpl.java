@@ -14,6 +14,7 @@ import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -33,12 +34,12 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.extendedlocation.fluent.CustomLocationsClient;
+import com.azure.resourcemanager.extendedlocation.fluent.models.CustomLocationFindTargetResourceGroupResultInner;
 import com.azure.resourcemanager.extendedlocation.fluent.models.CustomLocationInner;
-import com.azure.resourcemanager.extendedlocation.fluent.models.CustomLocationOperationInner;
 import com.azure.resourcemanager.extendedlocation.fluent.models.EnabledResourceTypeInner;
+import com.azure.resourcemanager.extendedlocation.models.CustomLocationFindTargetResourceGroupProperties;
 import com.azure.resourcemanager.extendedlocation.models.CustomLocationListResult;
-import com.azure.resourcemanager.extendedlocation.models.CustomLocationOperationsList;
-import com.azure.resourcemanager.extendedlocation.models.EnabledResourceTypesListResult;
+import com.azure.resourcemanager.extendedlocation.models.EnabledResourceTypeListResult;
 import com.azure.resourcemanager.extendedlocation.models.PatchableCustomLocations;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
@@ -77,13 +78,6 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     @ServiceInterface(name = "CustomLocationsManag")
     public interface CustomLocationsService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/providers/Microsoft.ExtendedLocation/operations")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CustomLocationOperationsList>> listOperations(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.ExtendedLocation/customLocations")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -120,15 +114,6 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
             Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation/customLocations/{resourceName}")
-        @ExpectedResponses({ 202, 204 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("resourceName") String resourceName,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation/customLocations/{resourceName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -139,20 +124,32 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
             Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation/customLocations/{resourceName}/enabledResourceTypes")
-        @ExpectedResponses({ 200 })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation/customLocations/{resourceName}")
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<EnabledResourceTypesListResult>> listEnabledResourceTypes(@HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("resourceName") String resourceName,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("{nextLink}")
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation/customLocations/{resourceName}/enabledResourceTypes")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CustomLocationOperationsList>> listOperationsNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+        Mono<Response<EnabledResourceTypeListResult>> listEnabledResourceTypes(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("resourceName") String resourceName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ExtendedLocation/customLocations/{resourceName}/findTargetResourceGroup")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<CustomLocationFindTargetResourceGroupResultInner>> findTargetResourceGroup(
+            @HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("resourceName") String resourceName,
+            @BodyParam("application/json") CustomLocationFindTargetResourceGroupProperties parameters,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -175,108 +172,9 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<EnabledResourceTypesListResult>> listEnabledResourceTypesNext(
+        Mono<Response<EnabledResourceTypeListResult>> listEnabledResourceTypesNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
-    }
-
-    /**
-     * Lists all available Custom Locations operations.
-     * 
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists of Custom Locations operations along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CustomLocationOperationInner>> listOperationsSinglePageAsync() {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-            context -> service.listOperations(this.client.getEndpoint(), this.client.getApiVersion(), accept, context))
-            .<PagedResponse<CustomLocationOperationInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists all available Custom Locations operations.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists of Custom Locations operations along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CustomLocationOperationInner>> listOperationsSinglePageAsync(Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listOperations(this.client.getEndpoint(), this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists all available Custom Locations operations.
-     * 
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists of Custom Locations operations as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<CustomLocationOperationInner> listOperationsAsync() {
-        return new PagedFlux<>(() -> listOperationsSinglePageAsync(),
-            nextLink -> listOperationsNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists all available Custom Locations operations.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists of Custom Locations operations as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<CustomLocationOperationInner> listOperationsAsync(Context context) {
-        return new PagedFlux<>(() -> listOperationsSinglePageAsync(context),
-            nextLink -> listOperationsNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists all available Custom Locations operations.
-     * 
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists of Custom Locations operations as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<CustomLocationOperationInner> listOperations() {
-        return new PagedIterable<>(listOperationsAsync());
-    }
-
-    /**
-     * Lists all available Custom Locations operations.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists of Custom Locations operations as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<CustomLocationOperationInner> listOperations(Context context) {
-        return new PagedIterable<>(listOperationsAsync(context));
     }
 
     /**
@@ -942,6 +840,151 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
+     * Updates a Custom Location.
+     * 
+     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters The updatable fields of an existing Custom Location.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return custom Locations definition along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<CustomLocationInner>> updateWithResponseAsync(String resourceGroupName, String resourceName,
+        PatchableCustomLocations parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, resourceName, parameters, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Updates a Custom Location.
+     * 
+     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters The updatable fields of an existing Custom Location.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return custom Locations definition along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<CustomLocationInner>> updateWithResponseAsync(String resourceGroupName, String resourceName,
+        PatchableCustomLocations parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, resourceName, parameters, accept, context);
+    }
+
+    /**
+     * Updates a Custom Location.
+     * 
+     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters The updatable fields of an existing Custom Location.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return custom Locations definition on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<CustomLocationInner> updateAsync(String resourceGroupName, String resourceName,
+        PatchableCustomLocations parameters) {
+        return updateWithResponseAsync(resourceGroupName, resourceName, parameters)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Updates a Custom Location.
+     * 
+     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters The updatable fields of an existing Custom Location.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return custom Locations definition along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<CustomLocationInner> updateWithResponse(String resourceGroupName, String resourceName,
+        PatchableCustomLocations parameters, Context context) {
+        return updateWithResponseAsync(resourceGroupName, resourceName, parameters, context).block();
+    }
+
+    /**
+     * Updates a Custom Location.
+     * 
+     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters The updatable fields of an existing Custom Location.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return custom Locations definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CustomLocationInner update(String resourceGroupName, String resourceName,
+        PatchableCustomLocations parameters) {
+        return updateWithResponse(resourceGroupName, resourceName, parameters, Context.NONE).getValue();
+    }
+
+    /**
      * Deletes a Custom Location.
      * 
      * Deletes the Custom Location with the specified Resource Name, Resource Group, and Subscription Id.
@@ -1161,151 +1204,6 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Updates a Custom Location.
-     * 
-     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Custom Locations name.
-     * @param parameters The updatable fields of an existing Custom Location.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom Locations definition along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CustomLocationInner>> updateWithResponseAsync(String resourceGroupName, String resourceName,
-        PatchableCustomLocations parameters) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, resourceName, parameters, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Updates a Custom Location.
-     * 
-     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Custom Locations name.
-     * @param parameters The updatable fields of an existing Custom Location.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom Locations definition along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CustomLocationInner>> updateWithResponseAsync(String resourceGroupName, String resourceName,
-        PatchableCustomLocations parameters, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, resourceName, parameters, accept, context);
-    }
-
-    /**
-     * Updates a Custom Location.
-     * 
-     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Custom Locations name.
-     * @param parameters The updatable fields of an existing Custom Location.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom Locations definition on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CustomLocationInner> updateAsync(String resourceGroupName, String resourceName,
-        PatchableCustomLocations parameters) {
-        return updateWithResponseAsync(resourceGroupName, resourceName, parameters)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Updates a Custom Location.
-     * 
-     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Custom Locations name.
-     * @param parameters The updatable fields of an existing Custom Location.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom Locations definition along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CustomLocationInner> updateWithResponse(String resourceGroupName, String resourceName,
-        PatchableCustomLocations parameters, Context context) {
-        return updateWithResponseAsync(resourceGroupName, resourceName, parameters, context).block();
-    }
-
-    /**
-     * Updates a Custom Location.
-     * 
-     * Updates a Custom Location with the specified Resource Name in the specified Resource Group and Subscription.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Custom Locations name.
-     * @param parameters The updatable fields of an existing Custom Location.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom Locations definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CustomLocationInner update(String resourceGroupName, String resourceName,
-        PatchableCustomLocations parameters) {
-        return updateWithResponse(resourceGroupName, resourceName, parameters, Context.NONE).getValue();
-    }
-
-    /**
      * Gets the list of Enabled Resource Types.
      * 
      * Gets the list of the Enabled Resource Types.
@@ -1464,58 +1362,159 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
     }
 
     /**
-     * Get the next page of items.
+     * Gets matching target resource group for resource sync.
      * 
-     * @param nextLink The URL to get the next list of items.
+     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
+     * rules passed in with the Find Target Resource Group Request.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters Parameters of the find target resource group request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists of Custom Locations operations along with {@link PagedResponse} on successful completion of
+     * @return the Find Target Resource Group operation response along with {@link Response} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CustomLocationOperationInner>> listOperationsNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
+    private Mono<Response<CustomLocationFindTargetResourceGroupResultInner>> findTargetResourceGroupWithResponseAsync(
+        String resourceGroupName, String resourceName, CustomLocationFindTargetResourceGroupProperties parameters) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listOperationsNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<CustomLocationOperationInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .withContext(
+                context -> service.findTargetResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), resourceGroupName, resourceName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Get the next page of items.
+     * Gets matching target resource group for resource sync.
      * 
-     * @param nextLink The URL to get the next list of items.
+     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
+     * rules passed in with the Find Target Resource Group Request.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters Parameters of the find target resource group request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists of Custom Locations operations along with {@link PagedResponse} on successful completion of
+     * @return the Find Target Resource Group operation response along with {@link Response} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CustomLocationOperationInner>> listOperationsNextSinglePageAsync(String nextLink,
+    private Mono<Response<CustomLocationFindTargetResourceGroupResultInner>> findTargetResourceGroupWithResponseAsync(
+        String resourceGroupName, String resourceName, CustomLocationFindTargetResourceGroupProperties parameters,
         Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listOperationsNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        return service.findTargetResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, resourceName, parameters, accept, context);
+    }
+
+    /**
+     * Gets matching target resource group for resource sync.
+     * 
+     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
+     * rules passed in with the Find Target Resource Group Request.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters Parameters of the find target resource group request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Find Target Resource Group operation response on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<CustomLocationFindTargetResourceGroupResultInner> findTargetResourceGroupAsync(
+        String resourceGroupName, String resourceName, CustomLocationFindTargetResourceGroupProperties parameters) {
+        return findTargetResourceGroupWithResponseAsync(resourceGroupName, resourceName, parameters)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets matching target resource group for resource sync.
+     * 
+     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
+     * rules passed in with the Find Target Resource Group Request.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters Parameters of the find target resource group request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Find Target Resource Group operation response along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<CustomLocationFindTargetResourceGroupResultInner> findTargetResourceGroupWithResponse(
+        String resourceGroupName, String resourceName, CustomLocationFindTargetResourceGroupProperties parameters,
+        Context context) {
+        return findTargetResourceGroupWithResponseAsync(resourceGroupName, resourceName, parameters, context).block();
+    }
+
+    /**
+     * Gets matching target resource group for resource sync.
+     * 
+     * Returns the target resource group associated with the resource sync rules of the Custom Location that match the
+     * rules passed in with the Find Target Resource Group Request.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Custom Locations name.
+     * @param parameters Parameters of the find target resource group request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Find Target Resource Group operation response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CustomLocationFindTargetResourceGroupResultInner findTargetResourceGroup(String resourceGroupName,
+        String resourceName, CustomLocationFindTargetResourceGroupProperties parameters) {
+        return findTargetResourceGroupWithResponse(resourceGroupName, resourceName, parameters, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -1525,8 +1524,8 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List Custom Locations operation response along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a CustomLocation list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CustomLocationInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -1554,8 +1553,8 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List Custom Locations operation response along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a CustomLocation list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CustomLocationInner>> listBySubscriptionNextSinglePageAsync(String nextLink,
@@ -1581,8 +1580,8 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List Custom Locations operation response along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a CustomLocation list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CustomLocationInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -1610,8 +1609,8 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List Custom Locations operation response along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a CustomLocation list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CustomLocationInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
@@ -1637,8 +1636,8 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of EnabledResourceTypes definition along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a EnabledResourceType list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EnabledResourceTypeInner>> listEnabledResourceTypesNextSinglePageAsync(String nextLink) {
@@ -1666,8 +1665,8 @@ public final class CustomLocationsClientImpl implements CustomLocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of EnabledResourceTypes definition along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a EnabledResourceType list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EnabledResourceTypeInner>> listEnabledResourceTypesNextSinglePageAsync(String nextLink,

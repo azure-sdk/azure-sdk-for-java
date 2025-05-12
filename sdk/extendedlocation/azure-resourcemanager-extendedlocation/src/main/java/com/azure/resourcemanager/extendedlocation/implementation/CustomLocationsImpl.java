@@ -10,11 +10,12 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.extendedlocation.fluent.CustomLocationsClient;
+import com.azure.resourcemanager.extendedlocation.fluent.models.CustomLocationFindTargetResourceGroupResultInner;
 import com.azure.resourcemanager.extendedlocation.fluent.models.CustomLocationInner;
-import com.azure.resourcemanager.extendedlocation.fluent.models.CustomLocationOperationInner;
 import com.azure.resourcemanager.extendedlocation.fluent.models.EnabledResourceTypeInner;
 import com.azure.resourcemanager.extendedlocation.models.CustomLocation;
-import com.azure.resourcemanager.extendedlocation.models.CustomLocationOperation;
+import com.azure.resourcemanager.extendedlocation.models.CustomLocationFindTargetResourceGroupProperties;
+import com.azure.resourcemanager.extendedlocation.models.CustomLocationFindTargetResourceGroupResult;
 import com.azure.resourcemanager.extendedlocation.models.CustomLocations;
 import com.azure.resourcemanager.extendedlocation.models.EnabledResourceType;
 
@@ -29,16 +30,6 @@ public final class CustomLocationsImpl implements CustomLocations {
         com.azure.resourcemanager.extendedlocation.CustomLocationsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public PagedIterable<CustomLocationOperation> listOperations() {
-        PagedIterable<CustomLocationOperationInner> inner = this.serviceClient().listOperations();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new CustomLocationOperationImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<CustomLocationOperation> listOperations(Context context) {
-        PagedIterable<CustomLocationOperationInner> inner = this.serviceClient().listOperations(context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new CustomLocationOperationImpl(inner1, this.manager()));
     }
 
     public PagedIterable<CustomLocation> list() {
@@ -101,6 +92,30 @@ public final class CustomLocationsImpl implements CustomLocations {
         PagedIterable<EnabledResourceTypeInner> inner
             = this.serviceClient().listEnabledResourceTypes(resourceGroupName, resourceName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new EnabledResourceTypeImpl(inner1, this.manager()));
+    }
+
+    public Response<CustomLocationFindTargetResourceGroupResult> findTargetResourceGroupWithResponse(
+        String resourceGroupName, String resourceName, CustomLocationFindTargetResourceGroupProperties parameters,
+        Context context) {
+        Response<CustomLocationFindTargetResourceGroupResultInner> inner = this.serviceClient()
+            .findTargetResourceGroupWithResponse(resourceGroupName, resourceName, parameters, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new CustomLocationFindTargetResourceGroupResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public CustomLocationFindTargetResourceGroupResult findTargetResourceGroup(String resourceGroupName,
+        String resourceName, CustomLocationFindTargetResourceGroupProperties parameters) {
+        CustomLocationFindTargetResourceGroupResultInner inner
+            = this.serviceClient().findTargetResourceGroup(resourceGroupName, resourceName, parameters);
+        if (inner != null) {
+            return new CustomLocationFindTargetResourceGroupResultImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public CustomLocation getById(String id) {

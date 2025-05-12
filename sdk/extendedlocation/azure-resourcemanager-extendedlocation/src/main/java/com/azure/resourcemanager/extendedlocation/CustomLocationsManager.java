@@ -22,15 +22,21 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.extendedlocation.fluent.CustomLocationsManagementClient;
 import com.azure.resourcemanager.extendedlocation.implementation.CustomLocationsImpl;
 import com.azure.resourcemanager.extendedlocation.implementation.CustomLocationsManagementClientBuilder;
+import com.azure.resourcemanager.extendedlocation.implementation.OperationsImpl;
+import com.azure.resourcemanager.extendedlocation.implementation.ResourceSyncRulesImpl;
 import com.azure.resourcemanager.extendedlocation.models.CustomLocations;
+import com.azure.resourcemanager.extendedlocation.models.Operations;
+import com.azure.resourcemanager.extendedlocation.models.ResourceSyncRules;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -39,7 +45,11 @@ import java.util.stream.Collectors;
  * The customLocations Rest API spec.
  */
 public final class CustomLocationsManager {
+    private Operations operations;
+
     private CustomLocations customLocations;
+
+    private ResourceSyncRules resourceSyncRules;
 
     private final CustomLocationsManagementClient clientObject;
 
@@ -93,6 +103,9 @@ public final class CustomLocationsManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-extendedlocation.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -200,12 +213,14 @@ public final class CustomLocationsManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.extendedlocation")
                 .append("/")
-                .append("1.0.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -252,6 +267,18 @@ public final class CustomLocationsManager {
     }
 
     /**
+     * Gets the resource collection API of Operations.
+     * 
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
+    }
+
+    /**
      * Gets the resource collection API of CustomLocations. It manages CustomLocation.
      * 
      * @return Resource collection API of CustomLocations.
@@ -261,6 +288,18 @@ public final class CustomLocationsManager {
             this.customLocations = new CustomLocationsImpl(clientObject.getCustomLocations(), this);
         }
         return customLocations;
+    }
+
+    /**
+     * Gets the resource collection API of ResourceSyncRules. It manages ResourceSyncRule.
+     * 
+     * @return Resource collection API of ResourceSyncRules.
+     */
+    public ResourceSyncRules resourceSyncRules() {
+        if (this.resourceSyncRules == null) {
+            this.resourceSyncRules = new ResourceSyncRulesImpl(clientObject.getResourceSyncRules(), this);
+        }
+        return resourceSyncRules;
     }
 
     /**

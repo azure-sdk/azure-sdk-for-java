@@ -23,17 +23,17 @@ import java.util.Map;
 @Fluent
 public final class CustomLocationInner extends Resource {
     /*
-     * Identity for the resource.
-     */
-    private Identity identity;
-
-    /*
      * The set of properties specific to a Custom Location
      */
     private CustomLocationProperties innerProperties;
 
     /*
-     * Metadata pertaining to creation and last modification of the resource
+     * Identity for the resource.
+     */
+    private Identity identity;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
 
@@ -59,6 +59,15 @@ public final class CustomLocationInner extends Resource {
     }
 
     /**
+     * Get the innerProperties property: The set of properties specific to a Custom Location.
+     * 
+     * @return the innerProperties value.
+     */
+    private CustomLocationProperties innerProperties() {
+        return this.innerProperties;
+    }
+
+    /**
      * Get the identity property: Identity for the resource.
      * 
      * @return the identity value.
@@ -79,16 +88,7 @@ public final class CustomLocationInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: The set of properties specific to a Custom Location.
-     * 
-     * @return the innerProperties value.
-     */
-    private CustomLocationProperties innerProperties() {
-        return this.innerProperties;
-    }
-
-    /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -317,11 +317,11 @@ public final class CustomLocationInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (identity() != null) {
-            identity().validate();
-        }
         if (innerProperties() != null) {
             innerProperties().validate();
+        }
+        if (identity() != null) {
+            identity().validate();
         }
     }
 
@@ -333,8 +333,8 @@ public final class CustomLocationInner extends Resource {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("location", location());
         jsonWriter.writeMapField("tags", tags(), (writer, element) -> writer.writeString(element));
-        jsonWriter.writeJsonField("identity", this.identity);
         jsonWriter.writeJsonField("properties", this.innerProperties);
+        jsonWriter.writeJsonField("identity", this.identity);
         return jsonWriter.writeEndObject();
     }
 
@@ -365,10 +365,10 @@ public final class CustomLocationInner extends Resource {
                 } else if ("tags".equals(fieldName)) {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedCustomLocationInner.withTags(tags);
-                } else if ("identity".equals(fieldName)) {
-                    deserializedCustomLocationInner.identity = Identity.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {
                     deserializedCustomLocationInner.innerProperties = CustomLocationProperties.fromJson(reader);
+                } else if ("identity".equals(fieldName)) {
+                    deserializedCustomLocationInner.identity = Identity.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedCustomLocationInner.systemData = SystemData.fromJson(reader);
                 } else {
