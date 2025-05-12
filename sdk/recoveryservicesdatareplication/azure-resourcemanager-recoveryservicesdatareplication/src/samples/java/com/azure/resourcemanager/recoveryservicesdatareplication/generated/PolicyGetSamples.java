@@ -10,15 +10,15 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class PolicyGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/Policy_Get.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/Policy_Get.json
      */
     /**
-     * Sample code: Policy_Get.
+     * Sample code: Gets the policy.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void policyGet(
+    public static void getsThePolicy(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.policies()
             .getWithResponse("rgrecoveryservicesdatareplication", "4", "wdqsacasc", com.azure.core.util.Context.NONE);

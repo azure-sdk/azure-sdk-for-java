@@ -19,8 +19,57 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.models.FabricMo
  */
 public interface FabricsClient {
     /**
-     * Gets the fabric.
+     * Gets the list of fabrics in the given subscription.
      * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<FabricModelInner> list();
+
+    /**
+     * Gets the list of fabrics in the given subscription.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<FabricModelInner> list(Context context);
+
+    /**
+     * Gets the list of fabrics in the given subscription and resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription and resource group as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<FabricModelInner> listByResourceGroup(String resourceGroupName);
+
+    /**
+     * Gets the list of fabrics in the given subscription and resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param continuationToken Continuation token from the previous call.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of fabrics in the given subscription and resource group as paginated response with
+     * {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<FabricModelInner> listByResourceGroup(String resourceGroupName, String continuationToken,
+        Context context);
+
+    /**
      * Gets the details of the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -36,8 +85,6 @@ public interface FabricsClient {
         Context context);
 
     /**
-     * Gets the fabric.
-     * 
      * Gets the details of the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -51,23 +98,21 @@ public interface FabricsClient {
     FabricModelInner getByResourceGroup(String resourceGroupName, String fabricName);
 
     /**
-     * Puts the fabric.
-     * 
      * Creates the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fabricName The fabric name.
+     * @param body Fabric properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of fabric model.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<FabricModelInner>, FabricModelInner> beginCreate(String resourceGroupName, String fabricName);
+    SyncPoller<PollResult<FabricModelInner>, FabricModelInner> beginCreate(String resourceGroupName, String fabricName,
+        FabricModelInner body);
 
     /**
-     * Puts the fabric.
-     * 
      * Creates the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -84,23 +129,20 @@ public interface FabricsClient {
         FabricModelInner body, Context context);
 
     /**
-     * Puts the fabric.
-     * 
      * Creates the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fabricName The fabric name.
+     * @param body Fabric properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return fabric model.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    FabricModelInner create(String resourceGroupName, String fabricName);
+    FabricModelInner create(String resourceGroupName, String fabricName, FabricModelInner body);
 
     /**
-     * Puts the fabric.
-     * 
      * Creates the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -116,23 +158,21 @@ public interface FabricsClient {
     FabricModelInner create(String resourceGroupName, String fabricName, FabricModelInner body, Context context);
 
     /**
-     * Updates the fabric.
-     * 
      * Performs update on the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fabricName The fabric name.
+     * @param body Fabric properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of fabric model.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<FabricModelInner>, FabricModelInner> beginUpdate(String resourceGroupName, String fabricName);
+    SyncPoller<PollResult<FabricModelInner>, FabricModelInner> beginUpdate(String resourceGroupName, String fabricName,
+        FabricModelUpdate body);
 
     /**
-     * Updates the fabric.
-     * 
      * Performs update on the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -149,23 +189,20 @@ public interface FabricsClient {
         FabricModelUpdate body, Context context);
 
     /**
-     * Updates the fabric.
-     * 
      * Performs update on the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param fabricName The fabric name.
+     * @param body Fabric properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return fabric model.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    FabricModelInner update(String resourceGroupName, String fabricName);
+    FabricModelInner update(String resourceGroupName, String fabricName, FabricModelUpdate body);
 
     /**
-     * Updates the fabric.
-     * 
      * Performs update on the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -181,8 +218,6 @@ public interface FabricsClient {
     FabricModelInner update(String resourceGroupName, String fabricName, FabricModelUpdate body, Context context);
 
     /**
-     * Deletes the fabric.
-     * 
      * Removes the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -196,8 +231,6 @@ public interface FabricsClient {
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String fabricName);
 
     /**
-     * Deletes the fabric.
-     * 
      * Removes the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -212,8 +245,6 @@ public interface FabricsClient {
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String fabricName, Context context);
 
     /**
-     * Deletes the fabric.
-     * 
      * Removes the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -226,8 +257,6 @@ public interface FabricsClient {
     void delete(String resourceGroupName, String fabricName);
 
     /**
-     * Deletes the fabric.
-     * 
      * Removes the fabric.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -239,64 +268,4 @@ public interface FabricsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String fabricName, Context context);
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<FabricModelInner> list();
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription.
-     * 
-     * @param continuationToken Continuation token from the previous call.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<FabricModelInner> list(String continuationToken, Context context);
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription and resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription and resource group as paginated response with
-     * {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<FabricModelInner> listByResourceGroup(String resourceGroupName);
-
-    /**
-     * Lists the fabrics.
-     * 
-     * Gets the list of fabrics in the given subscription and resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param continuationToken Continuation token from the previous call.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of fabrics in the given subscription and resource group as paginated response with
-     * {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<FabricModelInner> listByResourceGroup(String resourceGroupName, String continuationToken,
-        Context context);
 }

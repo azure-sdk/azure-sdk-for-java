@@ -35,6 +35,11 @@ public final class RecoveryPointModelProperties implements JsonSerializable<Reco
      */
     private RecoveryPointModelCustomProperties customProperties;
 
+    /*
+     * Gets or sets the provisioning state of the recovery point item.
+     */
+    private ProvisioningState provisioningState;
+
     /**
      * Creates an instance of RecoveryPointModelProperties class.
      */
@@ -99,6 +104,15 @@ public final class RecoveryPointModelProperties implements JsonSerializable<Reco
     public RecoveryPointModelProperties withCustomProperties(RecoveryPointModelCustomProperties customProperties) {
         this.customProperties = customProperties;
         return this;
+    }
+
+    /**
+     * Get the provisioningState property: Gets or sets the provisioning state of the recovery point item.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
@@ -169,6 +183,9 @@ public final class RecoveryPointModelProperties implements JsonSerializable<Reco
                 } else if ("customProperties".equals(fieldName)) {
                     deserializedRecoveryPointModelProperties.customProperties
                         = RecoveryPointModelCustomProperties.fromJson(reader);
+                } else if ("provisioningState".equals(fieldName)) {
+                    deserializedRecoveryPointModelProperties.provisioningState
+                        = ProvisioningState.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

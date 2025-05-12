@@ -17,7 +17,7 @@ import java.io.IOException;
 @Fluent
 public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExtensionModelCustomProperties {
     /*
-     * Gets or sets the instance type.
+     * Discriminator property for ReplicationExtensionModelCustomProperties.
      */
     private String instanceType = "HyperVToAzStackHCI";
 
@@ -108,7 +108,7 @@ public final class HyperVToAzStackHciRepExtnCustomProps extends ReplicationExten
     }
 
     /**
-     * Get the instanceType property: Gets or sets the instance type.
+     * Get the instanceType property: Discriminator property for ReplicationExtensionModelCustomProperties.
      * 
      * @return the instanceType value.
      */

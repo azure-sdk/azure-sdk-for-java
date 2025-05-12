@@ -5,44 +5,43 @@
 package com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.RecoveryPointModelProperties;
-import com.azure.resourcemanager.recoveryservicesdatareplication.models.RecoveryPointModelSystemData;
 import java.io.IOException;
 
 /**
  * Recovery point model.
  */
 @Fluent
-public final class RecoveryPointModelInner implements JsonSerializable<RecoveryPointModelInner> {
+public final class RecoveryPointModelInner extends ProxyResource {
     /*
-     * Recovery point model properties.
+     * The resource-specific properties for this resource.
      */
     private RecoveryPointModelProperties properties;
 
     /*
-     * Gets or sets the Id of the resource.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    private String id;
+    private SystemData systemData;
 
     /*
-     * Gets or sets the name of the resource.
-     */
-    private String name;
-
-    /*
-     * Gets or sets the type of the resource.
+     * The type of the resource.
      */
     private String type;
 
     /*
-     * The systemData property.
+     * The name of the resource.
      */
-    private RecoveryPointModelSystemData systemData;
+    private String name;
+
+    /*
+     * Fully qualified resource Id for the resource.
+     */
+    private String id;
 
     /**
      * Creates an instance of RecoveryPointModelInner class.
@@ -51,7 +50,7 @@ public final class RecoveryPointModelInner implements JsonSerializable<RecoveryP
     }
 
     /**
-     * Get the properties property: Recovery point model properties.
+     * Get the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */
@@ -60,7 +59,7 @@ public final class RecoveryPointModelInner implements JsonSerializable<RecoveryP
     }
 
     /**
-     * Set the properties property: Recovery point model properties.
+     * Set the properties property: The resource-specific properties for this resource.
      * 
      * @param properties the properties value to set.
      * @return the RecoveryPointModelInner object itself.
@@ -71,39 +70,42 @@ public final class RecoveryPointModelInner implements JsonSerializable<RecoveryP
     }
 
     /**
-     * Get the id property: Gets or sets the Id of the resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the id value.
+     * @return the systemData value.
      */
-    public String id() {
-        return this.id;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
-     * Get the name property: Gets or sets the name of the resource.
-     * 
-     * @return the name value.
-     */
-    public String name() {
-        return this.name;
-    }
-
-    /**
-     * Get the type property: Gets or sets the type of the resource.
+     * Get the type property: The type of the resource.
      * 
      * @return the type value.
      */
+    @Override
     public String type() {
         return this.type;
     }
 
     /**
-     * Get the systemData property: The systemData property.
+     * Get the name property: The name of the resource.
      * 
-     * @return the systemData value.
+     * @return the name value.
      */
-    public RecoveryPointModelSystemData systemData() {
-        return this.systemData;
+    @Override
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the id property: Fully qualified resource Id for the resource.
+     * 
+     * @return the id value.
+     */
+    @Override
+    public String id() {
+        return this.id;
     }
 
     /**
@@ -112,19 +114,10 @@ public final class RecoveryPointModelInner implements JsonSerializable<RecoveryP
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property properties in model RecoveryPointModelInner"));
-        } else {
+        if (properties() != null) {
             properties().validate();
         }
-        if (systemData() != null) {
-            systemData().validate();
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(RecoveryPointModelInner.class);
 
     /**
      * {@inheritDoc}
@@ -152,16 +145,16 @@ public final class RecoveryPointModelInner implements JsonSerializable<RecoveryP
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("properties".equals(fieldName)) {
-                    deserializedRecoveryPointModelInner.properties = RecoveryPointModelProperties.fromJson(reader);
-                } else if ("id".equals(fieldName)) {
+                if ("id".equals(fieldName)) {
                     deserializedRecoveryPointModelInner.id = reader.getString();
                 } else if ("name".equals(fieldName)) {
                     deserializedRecoveryPointModelInner.name = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedRecoveryPointModelInner.type = reader.getString();
+                } else if ("properties".equals(fieldName)) {
+                    deserializedRecoveryPointModelInner.properties = RecoveryPointModelProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
-                    deserializedRecoveryPointModelInner.systemData = RecoveryPointModelSystemData.fromJson(reader);
+                    deserializedRecoveryPointModelInner.systemData = SystemData.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

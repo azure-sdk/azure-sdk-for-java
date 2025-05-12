@@ -13,15 +13,15 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.models.Protecte
 public final class ProtectedItemCreateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/ProtectedItem_Create.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/ProtectedItem_Create.json
      */
     /**
-     * Sample code: ProtectedItem_Create.
+     * Sample code: Puts the protected item.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void protectedItemCreate(
+    public static void putsTheProtectedItem(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
         manager.protectedItems()
             .define("d")

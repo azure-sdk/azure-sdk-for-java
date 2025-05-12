@@ -10,16 +10,17 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class ProtectedItemListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/ProtectedItem_List.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/ProtectedItem_List.json
      */
     /**
-     * Sample code: ProtectedItem_List.
+     * Sample code: Lists the protected items.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void protectedItemList(
+    public static void listsTheProtectedItems(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
-        manager.protectedItems().list("rgrecoveryservicesdatareplication", "4", com.azure.core.util.Context.NONE);
+        manager.protectedItems()
+            .list("rgrecoveryservicesdatareplication", "4", null, null, null, com.azure.core.util.Context.NONE);
     }
 }

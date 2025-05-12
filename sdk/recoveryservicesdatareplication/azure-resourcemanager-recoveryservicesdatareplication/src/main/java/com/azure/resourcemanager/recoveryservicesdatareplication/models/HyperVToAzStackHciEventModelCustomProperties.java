@@ -11,14 +11,14 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * HyperV to AzStackHCI event model custom properties. This class provides provider specific
- * details for events of type DataContract.HealthEvents.HealthEventType.ProtectedItemHealth and
+ * HyperV to AzStackHCI event model custom properties. This class provides provider specific details for events of type
+ * DataContract.HealthEvents.HealthEventType.ProtectedItemHealth and
  * DataContract.HealthEvents.HealthEventType.AgentHealth.
  */
 @Immutable
 public final class HyperVToAzStackHciEventModelCustomProperties extends EventModelCustomProperties {
     /*
-     * Gets or sets the instance type.
+     * Discriminator property for EventModelCustomProperties.
      */
     private String instanceType = "HyperVToAzStackHCI";
 
@@ -54,7 +54,7 @@ public final class HyperVToAzStackHciEventModelCustomProperties extends EventMod
     }
 
     /**
-     * Get the instanceType property: Gets or sets the instance type.
+     * Get the instanceType property: Discriminator property for EventModelCustomProperties.
      * 
      * @return the instanceType value.
      */

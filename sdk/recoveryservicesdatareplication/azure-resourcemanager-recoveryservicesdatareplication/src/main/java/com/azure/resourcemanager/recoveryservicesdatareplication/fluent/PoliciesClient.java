@@ -18,8 +18,33 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.P
  */
 public interface PoliciesClient {
     /**
-     * Gets the policy.
+     * Gets the list of policies in the given vault.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of policies in the given vault as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<PolicyModelInner> list(String resourceGroupName, String vaultName);
+
+    /**
+     * Gets the list of policies in the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of policies in the given vault as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<PolicyModelInner> list(String resourceGroupName, String vaultName, Context context);
+
+    /**
      * Gets the details of the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -36,8 +61,6 @@ public interface PoliciesClient {
         Context context);
 
     /**
-     * Gets the policy.
-     * 
      * Gets the details of the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -52,13 +75,12 @@ public interface PoliciesClient {
     PolicyModelInner get(String resourceGroupName, String vaultName, String policyName);
 
     /**
-     * Puts the policy.
-     * 
      * Creates the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The vault name.
      * @param policyName The policy name.
+     * @param body Policy model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -66,11 +88,9 @@ public interface PoliciesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<PolicyModelInner>, PolicyModelInner> beginCreate(String resourceGroupName, String vaultName,
-        String policyName);
+        String policyName, PolicyModelInner body);
 
     /**
-     * Puts the policy.
-     * 
      * Creates the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -88,24 +108,21 @@ public interface PoliciesClient {
         String policyName, PolicyModelInner body, Context context);
 
     /**
-     * Puts the policy.
-     * 
      * Creates the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The vault name.
      * @param policyName The policy name.
+     * @param body Policy model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return policy model.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PolicyModelInner create(String resourceGroupName, String vaultName, String policyName);
+    PolicyModelInner create(String resourceGroupName, String vaultName, String policyName, PolicyModelInner body);
 
     /**
-     * Puts the policy.
-     * 
      * Creates the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -123,8 +140,6 @@ public interface PoliciesClient {
         Context context);
 
     /**
-     * Deletes the policy.
-     * 
      * Removes the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -139,8 +154,6 @@ public interface PoliciesClient {
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String vaultName, String policyName);
 
     /**
-     * Deletes the policy.
-     * 
      * Removes the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -157,8 +170,6 @@ public interface PoliciesClient {
         Context context);
 
     /**
-     * Deletes the policy.
-     * 
      * Removes the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -172,8 +183,6 @@ public interface PoliciesClient {
     void delete(String resourceGroupName, String vaultName, String policyName);
 
     /**
-     * Deletes the policy.
-     * 
      * Removes the policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -186,35 +195,4 @@ public interface PoliciesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String vaultName, String policyName, Context context);
-
-    /**
-     * Lists the policies.
-     * 
-     * Gets the list of policies in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of policies in the given vault as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<PolicyModelInner> list(String resourceGroupName, String vaultName);
-
-    /**
-     * Lists the policies.
-     * 
-     * Gets the list of policies in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of policies in the given vault as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<PolicyModelInner> list(String resourceGroupName, String vaultName, Context context);
 }

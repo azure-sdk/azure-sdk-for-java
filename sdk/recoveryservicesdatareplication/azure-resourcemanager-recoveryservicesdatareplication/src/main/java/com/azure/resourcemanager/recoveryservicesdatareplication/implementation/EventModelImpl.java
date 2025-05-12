@@ -4,10 +4,10 @@
 
 package com.azure.resourcemanager.recoveryservicesdatareplication.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.EventModelInner;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.EventModel;
 import com.azure.resourcemanager.recoveryservicesdatareplication.models.EventModelProperties;
-import com.azure.resourcemanager.recoveryservicesdatareplication.models.EventModelSystemData;
 
 public final class EventModelImpl implements EventModel {
     private EventModelInner innerObject;
@@ -18,10 +18,6 @@ public final class EventModelImpl implements EventModel {
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-    }
-
-    public EventModelProperties properties() {
-        return this.innerModel().properties();
     }
 
     public String id() {
@@ -36,7 +32,11 @@ public final class EventModelImpl implements EventModel {
         return this.innerModel().type();
     }
 
-    public EventModelSystemData systemData() {
+    public EventModelProperties properties() {
+        return this.innerModel().properties();
+    }
+
+    public SystemData systemData() {
         return this.innerModel().systemData();
     }
 

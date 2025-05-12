@@ -18,8 +18,33 @@ import com.azure.resourcemanager.recoveryservicesdatareplication.fluent.models.R
  */
 public interface ReplicationExtensionsClient {
     /**
-     * Gets the replication extension.
+     * Gets the list of replication extensions in the given vault.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of replication extensions in the given vault as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ReplicationExtensionModelInner> list(String resourceGroupName, String vaultName);
+
+    /**
+     * Gets the list of replication extensions in the given vault.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param vaultName The vault name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of replication extensions in the given vault as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ReplicationExtensionModelInner> list(String resourceGroupName, String vaultName, Context context);
+
+    /**
      * Gets the details of the replication extension.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -36,8 +61,6 @@ public interface ReplicationExtensionsClient {
         String replicationExtensionName, Context context);
 
     /**
-     * Gets the replication extension.
-     * 
      * Gets the details of the replication extension.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -52,25 +75,23 @@ public interface ReplicationExtensionsClient {
     ReplicationExtensionModelInner get(String resourceGroupName, String vaultName, String replicationExtensionName);
 
     /**
-     * Puts the replication extension.
-     * 
      * Creates the replication extension in the given vault.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The vault name.
      * @param replicationExtensionName The replication extension name.
+     * @param body Replication extension model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of replication extension model.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ReplicationExtensionModelInner>, ReplicationExtensionModelInner>
-        beginCreate(String resourceGroupName, String vaultName, String replicationExtensionName);
+    SyncPoller<PollResult<ReplicationExtensionModelInner>, ReplicationExtensionModelInner> beginCreate(
+        String resourceGroupName, String vaultName, String replicationExtensionName,
+        ReplicationExtensionModelInner body);
 
     /**
-     * Puts the replication extension.
-     * 
      * Creates the replication extension in the given vault.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -89,24 +110,22 @@ public interface ReplicationExtensionsClient {
         ReplicationExtensionModelInner body, Context context);
 
     /**
-     * Puts the replication extension.
-     * 
      * Creates the replication extension in the given vault.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param vaultName The vault name.
      * @param replicationExtensionName The replication extension name.
+     * @param body Replication extension model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return replication extension model.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ReplicationExtensionModelInner create(String resourceGroupName, String vaultName, String replicationExtensionName);
+    ReplicationExtensionModelInner create(String resourceGroupName, String vaultName, String replicationExtensionName,
+        ReplicationExtensionModelInner body);
 
     /**
-     * Puts the replication extension.
-     * 
      * Creates the replication extension in the given vault.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -124,8 +143,6 @@ public interface ReplicationExtensionsClient {
         ReplicationExtensionModelInner body, Context context);
 
     /**
-     * Deletes the replication extension.
-     * 
      * Deletes the replication extension in the given vault.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -141,8 +158,6 @@ public interface ReplicationExtensionsClient {
         String replicationExtensionName);
 
     /**
-     * Deletes the replication extension.
-     * 
      * Deletes the replication extension in the given vault.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -159,8 +174,6 @@ public interface ReplicationExtensionsClient {
         String replicationExtensionName, Context context);
 
     /**
-     * Deletes the replication extension.
-     * 
      * Deletes the replication extension in the given vault.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -174,8 +187,6 @@ public interface ReplicationExtensionsClient {
     void delete(String resourceGroupName, String vaultName, String replicationExtensionName);
 
     /**
-     * Deletes the replication extension.
-     * 
      * Deletes the replication extension in the given vault.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -188,35 +199,4 @@ public interface ReplicationExtensionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String vaultName, String replicationExtensionName, Context context);
-
-    /**
-     * Lists the replication extensions.
-     * 
-     * Gets the list of replication extensions in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of replication extensions in the given vault as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ReplicationExtensionModelInner> list(String resourceGroupName, String vaultName);
-
-    /**
-     * Lists the replication extensions.
-     * 
-     * Gets the list of replication extensions in the given vault.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param vaultName The vault name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of replication extensions in the given vault as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ReplicationExtensionModelInner> list(String resourceGroupName, String vaultName, Context context);
 }

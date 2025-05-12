@@ -10,17 +10,16 @@ package com.azure.resourcemanager.recoveryservicesdatareplication.generated;
 public final class EventGetSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/preview/2021-02-16-
-     * preview/examples/Event_Get.json
+     * specification/recoveryservicesdatareplication/resource-manager/Microsoft.DataReplication/stable/2024-09-01/
+     * examples/Event_Get.json
      */
     /**
-     * Sample code: Event_Get.
+     * Sample code: Gets the event.
      * 
      * @param manager Entry point to RecoveryServicesDataReplicationManager.
      */
-    public static void eventGet(
+    public static void getsTheEvent(
         com.azure.resourcemanager.recoveryservicesdatareplication.RecoveryServicesDataReplicationManager manager) {
-        manager.events()
-            .getWithResponse("rgrecoveryservicesdatareplication", "4", "231CIG", com.azure.core.util.Context.NONE);
+        manager.events().getWithResponse("rgswagger_2024-09-01", "4", "231CIG", com.azure.core.util.Context.NONE);
     }
 }
