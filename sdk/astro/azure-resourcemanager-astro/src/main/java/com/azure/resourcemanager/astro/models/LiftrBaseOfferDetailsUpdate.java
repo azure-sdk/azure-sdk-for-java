@@ -46,6 +46,11 @@ public final class LiftrBaseOfferDetailsUpdate implements JsonSerializable<Liftr
      */
     private String termId;
 
+    /*
+     * Subscription renewal mode
+     */
+    private RenewalMode renewalMode;
+
     /**
      * Creates an instance of LiftrBaseOfferDetailsUpdate class.
      */
@@ -173,6 +178,26 @@ public final class LiftrBaseOfferDetailsUpdate implements JsonSerializable<Liftr
     }
 
     /**
+     * Get the renewalMode property: Subscription renewal mode.
+     * 
+     * @return the renewalMode value.
+     */
+    public RenewalMode renewalMode() {
+        return this.renewalMode;
+    }
+
+    /**
+     * Set the renewalMode property: Subscription renewal mode.
+     * 
+     * @param renewalMode the renewalMode value to set.
+     * @return the LiftrBaseOfferDetailsUpdate object itself.
+     */
+    public LiftrBaseOfferDetailsUpdate withRenewalMode(RenewalMode renewalMode) {
+        this.renewalMode = renewalMode;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -192,6 +217,7 @@ public final class LiftrBaseOfferDetailsUpdate implements JsonSerializable<Liftr
         jsonWriter.writeStringField("planName", this.planName);
         jsonWriter.writeStringField("termUnit", this.termUnit);
         jsonWriter.writeStringField("termId", this.termId);
+        jsonWriter.writeStringField("renewalMode", this.renewalMode == null ? null : this.renewalMode.toString());
         return jsonWriter.writeEndObject();
     }
 
@@ -222,6 +248,8 @@ public final class LiftrBaseOfferDetailsUpdate implements JsonSerializable<Liftr
                     deserializedLiftrBaseOfferDetailsUpdate.termUnit = reader.getString();
                 } else if ("termId".equals(fieldName)) {
                     deserializedLiftrBaseOfferDetailsUpdate.termId = reader.getString();
+                } else if ("renewalMode".equals(fieldName)) {
+                    deserializedLiftrBaseOfferDetailsUpdate.renewalMode = RenewalMode.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }
