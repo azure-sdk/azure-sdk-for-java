@@ -79,25 +79,25 @@ public interface ScalingPlan {
     String etag();
 
     /**
-     * Gets the identity property: The identity property.
+     * Gets the identity property: Managed service identity (system assigned and/or user assigned identities).
      * 
      * @return the identity value.
      */
-    ResourceModelWithAllowedPropertySetIdentity identity();
+    ManagedServiceIdentity identity();
 
     /**
-     * Gets the sku property: The sku property.
+     * Gets the sku property: The resource model definition representing SKU.
      * 
      * @return the sku value.
      */
-    ResourceModelWithAllowedPropertySetSku sku();
+    Sku sku();
 
     /**
-     * Gets the plan property: The plan property.
+     * Gets the plan property: Plan for the resource.
      * 
      * @return the plan value.
      */
-    ResourceModelWithAllowedPropertySetPlan plan();
+    Plan plan();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -149,7 +149,7 @@ public interface ScalingPlan {
     String exclusionTag();
 
     /**
-     * Gets the schedules property: List of ScalingPlanPooledSchedule definitions.
+     * Gets the schedules property: List of Pooled ScalingSchedule definitions.
      * 
      * @return the schedules value.
      */
@@ -332,12 +332,13 @@ public interface ScalingPlan {
          */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity property..
+             * Specifies the identity property: Managed service identity (system assigned and/or user assigned
+             * identities).
              * 
-             * @param identity The identity property.
+             * @param identity Managed service identity (system assigned and/or user assigned identities).
              * @return the next definition stage.
              */
-            WithCreate withIdentity(ResourceModelWithAllowedPropertySetIdentity identity);
+            WithCreate withIdentity(ManagedServiceIdentity identity);
         }
 
         /**
@@ -345,12 +346,12 @@ public interface ScalingPlan {
          */
         interface WithSku {
             /**
-             * Specifies the sku property: The sku property..
+             * Specifies the sku property: The resource model definition representing SKU.
              * 
-             * @param sku The sku property.
+             * @param sku The resource model definition representing SKU.
              * @return the next definition stage.
              */
-            WithCreate withSku(ResourceModelWithAllowedPropertySetSku sku);
+            WithCreate withSku(Sku sku);
         }
 
         /**
@@ -358,12 +359,12 @@ public interface ScalingPlan {
          */
         interface WithPlan {
             /**
-             * Specifies the plan property: The plan property..
+             * Specifies the plan property: Plan for the resource..
              * 
-             * @param plan The plan property.
+             * @param plan Plan for the resource.
              * @return the next definition stage.
              */
-            WithCreate withPlan(ResourceModelWithAllowedPropertySetPlan plan);
+            WithCreate withPlan(Plan plan);
         }
 
         /**
@@ -423,9 +424,9 @@ public interface ScalingPlan {
          */
         interface WithSchedules {
             /**
-             * Specifies the schedules property: List of ScalingPlanPooledSchedule definitions..
+             * Specifies the schedules property: List of Pooled ScalingSchedule definitions..
              * 
-             * @param schedules List of ScalingPlanPooledSchedule definitions.
+             * @param schedules List of Pooled ScalingSchedule definitions.
              * @return the next definition stage.
              */
             WithCreate withSchedules(List<ScalingSchedule> schedules);
@@ -548,9 +549,9 @@ public interface ScalingPlan {
          */
         interface WithSchedules {
             /**
-             * Specifies the schedules property: List of ScalingSchedule definitions..
+             * Specifies the schedules property: List Pooled ScalingSchedule definitions..
              * 
-             * @param schedules List of ScalingSchedule definitions.
+             * @param schedules List Pooled ScalingSchedule definitions.
              * @return the next definition stage.
              */
             Update withSchedules(List<ScalingSchedule> schedules);

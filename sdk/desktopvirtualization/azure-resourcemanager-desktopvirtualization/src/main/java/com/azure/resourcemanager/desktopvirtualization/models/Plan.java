@@ -16,7 +16,7 @@ import java.io.IOException;
  * Plan for the resource.
  */
 @Fluent
-public class Plan implements JsonSerializable<Plan> {
+public final class Plan implements JsonSerializable<Plan> {
     /*
      * A user defined name of the 3rd Party Artifact that is being procured.
      */

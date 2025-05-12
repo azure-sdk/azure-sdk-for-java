@@ -11,16 +11,21 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdateProperties;
-import com.azure.resourcemanager.desktopvirtualization.models.HostpoolPublicNetworkAccess;
+import com.azure.resourcemanager.desktopvirtualization.models.DirectUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
+import com.azure.resourcemanager.desktopvirtualization.models.HostpoolPublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedPrivateUdp;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagementType;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
+import com.azure.resourcemanager.desktopvirtualization.models.Plan;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
+import com.azure.resourcemanager.desktopvirtualization.models.PublicUdp;
+import com.azure.resourcemanager.desktopvirtualization.models.RelayUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySet;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
+import com.azure.resourcemanager.desktopvirtualization.models.Sku;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import java.io.IOException;
 import java.util.List;
@@ -154,7 +159,7 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
      * {@inheritDoc}
      */
     @Override
-    public HostPoolInner withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
+    public HostPoolInner withIdentity(ManagedServiceIdentity identity) {
         super.withIdentity(identity);
         return this;
     }
@@ -163,7 +168,7 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
      * {@inheritDoc}
      */
     @Override
-    public HostPoolInner withSku(ResourceModelWithAllowedPropertySetSku sku) {
+    public HostPoolInner withSku(Sku sku) {
         super.withSku(sku);
         return this;
     }
@@ -172,7 +177,7 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
      * {@inheritDoc}
      */
     @Override
-    public HostPoolInner withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
+    public HostPoolInner withPlan(Plan plan) {
         super.withPlan(plan);
         return this;
     }
@@ -413,7 +418,8 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
     }
 
     /**
-     * Get the registrationInfo property: The registration info of HostPool.
+     * Get the registrationInfo property: The registration info of HostPool. This is not returned on GET. In order to
+     * get the registration token use the retrieveRegistrationToken or listRegistrationTokens POST calls.
      * 
      * @return the registrationInfo value.
      */
@@ -422,7 +428,8 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
     }
 
     /**
-     * Set the registrationInfo property: The registration info of HostPool.
+     * Set the registrationInfo property: The registration info of HostPool. This is not returned on GET. In order to
+     * get the registration token use the retrieveRegistrationToken or listRegistrationTokens POST calls.
      * 
      * @param registrationInfo the registrationInfo value to set.
      * @return the HostPoolInner object itself.
@@ -455,6 +462,31 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
             this.innerProperties = new HostPoolPropertiesInner();
         }
         this.innerProperties().withVmTemplate(vmTemplate);
+        return this;
+    }
+
+    /**
+     * Get the managementType property: The type of management for this hostpool, Automated or Standard. The default
+     * value is Automated.
+     * 
+     * @return the managementType value.
+     */
+    public ManagementType managementType() {
+        return this.innerProperties() == null ? null : this.innerProperties().managementType();
+    }
+
+    /**
+     * Set the managementType property: The type of management for this hostpool, Automated or Standard. The default
+     * value is Automated.
+     * 
+     * @param managementType the managementType value to set.
+     * @return the HostPoolInner object itself.
+     */
+    public HostPoolInner withManagementType(ManagementType managementType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPropertiesInner();
+        }
+        this.innerProperties().withManagementType(managementType);
         return this;
     }
 
@@ -688,6 +720,122 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
     }
 
     /**
+     * Get the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @return the managedPrivateUdp value.
+     */
+    public ManagedPrivateUdp managedPrivateUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().managedPrivateUdp();
+    }
+
+    /**
+     * Set the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @param managedPrivateUdp the managedPrivateUdp value to set.
+     * @return the HostPoolInner object itself.
+     */
+    public HostPoolInner withManagedPrivateUdp(ManagedPrivateUdp managedPrivateUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPropertiesInner();
+        }
+        this.innerProperties().withManagedPrivateUdp(managedPrivateUdp);
+        return this;
+    }
+
+    /**
+     * Get the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the directUdp value.
+     */
+    public DirectUdp directUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().directUdp();
+    }
+
+    /**
+     * Set the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @param directUdp the directUdp value to set.
+     * @return the HostPoolInner object itself.
+     */
+    public HostPoolInner withDirectUdp(DirectUdp directUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPropertiesInner();
+        }
+        this.innerProperties().withDirectUdp(directUdp);
+        return this;
+    }
+
+    /**
+     * Get the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the publicUdp value.
+     */
+    public PublicUdp publicUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().publicUdp();
+    }
+
+    /**
+     * Set the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @param publicUdp the publicUdp value to set.
+     * @return the HostPoolInner object itself.
+     */
+    public HostPoolInner withPublicUdp(PublicUdp publicUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPropertiesInner();
+        }
+        this.innerProperties().withPublicUdp(publicUdp);
+        return this;
+    }
+
+    /**
+     * Get the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+     * will attempt this connection type when making connections. This means that this connection is possible, but is
+     * not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not attempt
+     * this connection type when making connections.
+     * 
+     * @return the relayUdp value.
+     */
+    public RelayUdp relayUdp() {
+        return this.innerProperties() == null ? null : this.innerProperties().relayUdp();
+    }
+
+    /**
+     * Set the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled: UDP
+     * will attempt this connection type when making connections. This means that this connection is possible, but is
+     * not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not attempt
+     * this connection type when making connections.
+     * 
+     * @param relayUdp the relayUdp value to set.
+     * @return the HostPoolInner object itself.
+     */
+    public HostPoolInner withRelayUdp(RelayUdp relayUdp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new HostPoolPropertiesInner();
+        }
+        this.innerProperties().withRelayUdp(relayUdp);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -764,12 +912,11 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
                 } else if ("etag".equals(fieldName)) {
                     deserializedHostPoolInner.etag = reader.getString();
                 } else if ("identity".equals(fieldName)) {
-                    deserializedHostPoolInner
-                        .withIdentity(ResourceModelWithAllowedPropertySetIdentity.fromJson(reader));
+                    deserializedHostPoolInner.withIdentity(ManagedServiceIdentity.fromJson(reader));
                 } else if ("sku".equals(fieldName)) {
-                    deserializedHostPoolInner.withSku(ResourceModelWithAllowedPropertySetSku.fromJson(reader));
+                    deserializedHostPoolInner.withSku(Sku.fromJson(reader));
                 } else if ("plan".equals(fieldName)) {
-                    deserializedHostPoolInner.withPlan(ResourceModelWithAllowedPropertySetPlan.fromJson(reader));
+                    deserializedHostPoolInner.withPlan(Plan.fromJson(reader));
                 } else if ("systemData".equals(fieldName)) {
                     deserializedHostPoolInner.systemData = SystemData.fromJson(reader);
                 } else if ("properties".equals(fieldName)) {

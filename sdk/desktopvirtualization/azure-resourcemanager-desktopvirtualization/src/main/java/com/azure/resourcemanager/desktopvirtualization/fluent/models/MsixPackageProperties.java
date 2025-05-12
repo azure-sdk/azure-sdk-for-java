@@ -63,7 +63,7 @@ public final class MsixPackageProperties implements JsonSerializable<MsixPackage
     private List<MsixPackageDependencies> packageDependencies;
 
     /*
-     * Package version found in the appxmanifest.xml.
+     * Package Version found in the appxmanifest.xml.
      */
     private String version;
 
@@ -246,7 +246,7 @@ public final class MsixPackageProperties implements JsonSerializable<MsixPackage
     }
 
     /**
-     * Get the version property: Package version found in the appxmanifest.xml.
+     * Get the version property: Package Version found in the appxmanifest.xml.
      * 
      * @return the version value.
      */
@@ -255,7 +255,7 @@ public final class MsixPackageProperties implements JsonSerializable<MsixPackage
     }
 
     /**
-     * Set the version property: Package version found in the appxmanifest.xml.
+     * Set the version property: Package Version found in the appxmanifest.xml.
      * 
      * @param version the version value to set.
      * @return the MsixPackageProperties object itself.

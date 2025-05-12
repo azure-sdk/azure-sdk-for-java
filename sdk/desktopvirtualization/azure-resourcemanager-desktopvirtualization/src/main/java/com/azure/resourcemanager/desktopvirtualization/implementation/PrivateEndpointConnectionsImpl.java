@@ -12,8 +12,8 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.PrivateEndpointConnectionWithSystemDataInner;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
-import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnectionWithSystemData;
+import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnections;
 
 public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConnections {
     private static final ClientLogger LOGGER = new ClientLogger(PrivateEndpointConnectionsImpl.class);
