@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.ComplianceResultsClient;
 import com.azure.resourcemanager.security.fluent.models.ComplianceResultInner;
 import com.azure.resourcemanager.security.models.ComplianceResultList;
@@ -71,6 +72,14 @@ public final class ComplianceResultsClientImpl implements ComplianceResultsClien
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/{scope}/providers/Microsoft.Security/complianceResults")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ComplianceResultList> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/{resourceId}/providers/Microsoft.Security/complianceResults/{complianceResultName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -81,10 +90,27 @@ public final class ComplianceResultsClientImpl implements ComplianceResultsClien
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/{resourceId}/providers/Microsoft.Security/complianceResults/{complianceResultName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ComplianceResultInner> getSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceId", encoded = true) String resourceId,
+            @PathParam("complianceResultName") String complianceResultName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ComplianceResultList>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ComplianceResultList> listNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
@@ -122,35 +148,6 @@ public final class ComplianceResultsClientImpl implements ComplianceResultsClien
      * 
      * @param scope Scope of the query, can be subscription (/subscriptions/0b06d9ea-afe6-4779-bd59-30e5c2d9d13f) or
      * management group (/providers/Microsoft.Management/managementGroups/mgName).
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of compliance results response along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ComplianceResultInner>> listSinglePageAsync(String scope, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        final String apiVersion = "2017-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, scope, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Security compliance results in the subscription.
-     * 
-     * @param scope Scope of the query, can be subscription (/subscriptions/0b06d9ea-afe6-4779-bd59-30e5c2d9d13f) or
-     * management group (/providers/Microsoft.Management/managementGroups/mgName).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -166,16 +163,56 @@ public final class ComplianceResultsClientImpl implements ComplianceResultsClien
      * 
      * @param scope Scope of the query, can be subscription (/subscriptions/0b06d9ea-afe6-4779-bd59-30e5c2d9d13f) or
      * management group (/providers/Microsoft.Management/managementGroups/mgName).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of compliance results response along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ComplianceResultInner> listSinglePage(String scope) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        final String apiVersion = "2017-08-01";
+        final String accept = "application/json";
+        Response<ComplianceResultList> res
+            = service.listSync(this.client.getEndpoint(), apiVersion, scope, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Security compliance results in the subscription.
+     * 
+     * @param scope Scope of the query, can be subscription (/subscriptions/0b06d9ea-afe6-4779-bd59-30e5c2d9d13f) or
+     * management group (/providers/Microsoft.Management/managementGroups/mgName).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of compliance results response as paginated response with {@link PagedFlux}.
+     * @return list of compliance results response along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ComplianceResultInner> listAsync(String scope, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(scope, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ComplianceResultInner> listSinglePage(String scope, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        final String apiVersion = "2017-08-01";
+        final String accept = "application/json";
+        Response<ComplianceResultList> res
+            = service.listSync(this.client.getEndpoint(), apiVersion, scope, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -190,7 +227,7 @@ public final class ComplianceResultsClientImpl implements ComplianceResultsClien
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ComplianceResultInner> list(String scope) {
-        return new PagedIterable<>(listAsync(scope));
+        return new PagedIterable<>(() -> listSinglePage(scope), nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -206,7 +243,8 @@ public final class ComplianceResultsClientImpl implements ComplianceResultsClien
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ComplianceResultInner> list(String scope, Context context) {
-        return new PagedIterable<>(listAsync(scope, context));
+        return new PagedIterable<>(() -> listSinglePage(scope, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -245,37 +283,6 @@ public final class ComplianceResultsClientImpl implements ComplianceResultsClien
      * 
      * @param resourceId The identifier of the resource.
      * @param complianceResultName name of the desired assessment compliance result.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a compliance result along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ComplianceResultInner>> getWithResponseAsync(String resourceId, String complianceResultName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
-        }
-        if (complianceResultName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter complianceResultName is required and cannot be null."));
-        }
-        final String apiVersion = "2017-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, resourceId, complianceResultName, accept, context);
-    }
-
-    /**
-     * Security Compliance Result.
-     * 
-     * @param resourceId The identifier of the resource.
-     * @param complianceResultName name of the desired assessment compliance result.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -300,7 +307,23 @@ public final class ComplianceResultsClientImpl implements ComplianceResultsClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ComplianceResultInner> getWithResponse(String resourceId, String complianceResultName,
         Context context) {
-        return getWithResponseAsync(resourceId, complianceResultName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
+        }
+        if (complianceResultName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter complianceResultName is required and cannot be null."));
+        }
+        final String apiVersion = "2017-08-01";
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), apiVersion, resourceId, complianceResultName, accept,
+            context);
     }
 
     /**
@@ -348,26 +371,55 @@ public final class ComplianceResultsClientImpl implements ComplianceResultsClien
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of compliance results response along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ComplianceResultInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ComplianceResultList> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of compliance results response along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return list of compliance results response along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ComplianceResultInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<ComplianceResultInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<ComplianceResultList> res = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ComplianceResultsClientImpl.class);
 }

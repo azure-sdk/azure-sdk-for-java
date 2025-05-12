@@ -23,6 +23,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.AdvancedThreatProtectionsClient;
 import com.azure.resourcemanager.security.fluent.models.AdvancedThreatProtectionSettingInner;
 import reactor.core.publisher.Mono;
@@ -69,10 +70,30 @@ public final class AdvancedThreatProtectionsClientImpl implements AdvancedThreat
             @PathParam("settingName") String settingName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/{resourceId}/providers/Microsoft.Security/advancedThreatProtectionSettings/{settingName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<AdvancedThreatProtectionSettingInner> getSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceId", encoded = true) String resourceId,
+            @PathParam("settingName") String settingName, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Put("/{resourceId}/providers/Microsoft.Security/advancedThreatProtectionSettings/{settingName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AdvancedThreatProtectionSettingInner>> create(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceId", encoded = true) String resourceId,
+            @PathParam("settingName") String settingName,
+            @BodyParam("application/json") AdvancedThreatProtectionSettingInner advancedThreatProtectionSetting,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/{resourceId}/providers/Microsoft.Security/advancedThreatProtectionSettings/{settingName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<AdvancedThreatProtectionSettingInner> createSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam(value = "resourceId", encoded = true) String resourceId,
             @PathParam("settingName") String settingName,
@@ -112,34 +133,6 @@ public final class AdvancedThreatProtectionsClientImpl implements AdvancedThreat
      * Gets the Advanced Threat Protection settings for the specified resource.
      * 
      * @param resourceId The identifier of the resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Advanced Threat Protection settings for the specified resource along with {@link Response} on
-     * successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AdvancedThreatProtectionSettingInner>> getWithResponseAsync(String resourceId,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
-        }
-        final String apiVersion = "2019-01-01";
-        final String settingName = "current";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, resourceId, settingName, accept, context);
-    }
-
-    /**
-     * Gets the Advanced Threat Protection settings for the specified resource.
-     * 
-     * @param resourceId The identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -163,7 +156,19 @@ public final class AdvancedThreatProtectionsClientImpl implements AdvancedThreat
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AdvancedThreatProtectionSettingInner> getWithResponse(String resourceId, Context context) {
-        return getWithResponseAsync(resourceId, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
+        }
+        final String apiVersion = "2019-01-01";
+        final String settingName = "current";
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), apiVersion, resourceId, settingName, accept, context);
     }
 
     /**
@@ -221,42 +226,6 @@ public final class AdvancedThreatProtectionsClientImpl implements AdvancedThreat
      * 
      * @param resourceId The identifier of the resource.
      * @param advancedThreatProtectionSetting Advanced Threat Protection Settings.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Advanced Threat Protection resource along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AdvancedThreatProtectionSettingInner>> createWithResponseAsync(String resourceId,
-        AdvancedThreatProtectionSettingInner advancedThreatProtectionSetting, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
-        }
-        if (advancedThreatProtectionSetting == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter advancedThreatProtectionSetting is required and cannot be null."));
-        } else {
-            advancedThreatProtectionSetting.validate();
-        }
-        final String apiVersion = "2019-01-01";
-        final String settingName = "current";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), apiVersion, resourceId, settingName,
-            advancedThreatProtectionSetting, accept, context);
-    }
-
-    /**
-     * Creates or updates the Advanced Threat Protection settings on a specified resource.
-     * 
-     * @param resourceId The identifier of the resource.
-     * @param advancedThreatProtectionSetting Advanced Threat Protection Settings.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -283,7 +252,27 @@ public final class AdvancedThreatProtectionsClientImpl implements AdvancedThreat
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AdvancedThreatProtectionSettingInner> createWithResponse(String resourceId,
         AdvancedThreatProtectionSettingInner advancedThreatProtectionSetting, Context context) {
-        return createWithResponseAsync(resourceId, advancedThreatProtectionSetting, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
+        }
+        if (advancedThreatProtectionSetting == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter advancedThreatProtectionSetting is required and cannot be null."));
+        } else {
+            advancedThreatProtectionSetting.validate();
+        }
+        final String apiVersion = "2019-01-01";
+        final String settingName = "current";
+        final String accept = "application/json";
+        return service.createSync(this.client.getEndpoint(), apiVersion, resourceId, settingName,
+            advancedThreatProtectionSetting, accept, context);
     }
 
     /**
@@ -301,4 +290,6 @@ public final class AdvancedThreatProtectionsClientImpl implements AdvancedThreat
         AdvancedThreatProtectionSettingInner advancedThreatProtectionSetting) {
         return createWithResponse(resourceId, advancedThreatProtectionSetting, Context.NONE).getValue();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AdvancedThreatProtectionsClientImpl.class);
 }

@@ -27,6 +27,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.SettingsClient;
 import com.azure.resourcemanager.security.fluent.models.SettingInner;
 import com.azure.resourcemanager.security.models.SettingName;
@@ -73,10 +74,26 @@ public final class SettingsClientImpl implements SettingsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Security/settings")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SettingsList> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Security/settings/{settingName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SettingInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("settingName") SettingName settingName, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Security/settings/{settingName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SettingInner> getSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("settingName") SettingName settingName, @HeaderParam("Accept") String accept, Context context);
 
@@ -90,10 +107,26 @@ public final class SettingsClientImpl implements SettingsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/providers/Microsoft.Security/settings/{settingName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SettingInner> updateSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("settingName") SettingName settingName, @BodyParam("application/json") SettingInner setting,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SettingsList>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SettingsList> listNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
@@ -127,33 +160,6 @@ public final class SettingsClientImpl implements SettingsClient {
     /**
      * Settings about different configurations in Microsoft Defender for Cloud.
      * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription settings list along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SettingInner>> listSinglePageAsync(Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String apiVersion = "2022-05-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Settings about different configurations in Microsoft Defender for Cloud.
-     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return subscription settings list as paginated response with {@link PagedFlux}.
@@ -166,16 +172,57 @@ public final class SettingsClientImpl implements SettingsClient {
     /**
      * Settings about different configurations in Microsoft Defender for Cloud.
      * 
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return subscription settings list along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SettingInner> listSinglePage() {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String apiVersion = "2022-05-01";
+        final String accept = "application/json";
+        Response<SettingsList> res = service.listSync(this.client.getEndpoint(), apiVersion,
+            this.client.getSubscriptionId(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Settings about different configurations in Microsoft Defender for Cloud.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription settings list as paginated response with {@link PagedFlux}.
+     * @return subscription settings list along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SettingInner> listAsync(Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SettingInner> listSinglePage(Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String apiVersion = "2022-05-01";
+        final String accept = "application/json";
+        Response<SettingsList> res
+            = service.listSync(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -187,7 +234,7 @@ public final class SettingsClientImpl implements SettingsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SettingInner> list() {
-        return new PagedIterable<>(listAsync());
+        return new PagedIterable<>(() -> listSinglePage(), nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -201,7 +248,7 @@ public final class SettingsClientImpl implements SettingsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SettingInner> list(Context context) {
-        return new PagedIterable<>(listAsync(context));
+        return new PagedIterable<>(() -> listSinglePage(context), nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -238,36 +285,6 @@ public final class SettingsClientImpl implements SettingsClient {
      * Settings of different configurations in Microsoft Defender for Cloud.
      * 
      * @param settingName The name of the setting.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the kind of the security setting along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SettingInner>> getWithResponseAsync(SettingName settingName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (settingName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter settingName is required and cannot be null."));
-        }
-        final String apiVersion = "2022-05-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), settingName, accept,
-            context);
-    }
-
-    /**
-     * Settings of different configurations in Microsoft Defender for Cloud.
-     * 
-     * @param settingName The name of the setting.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -290,7 +307,24 @@ public final class SettingsClientImpl implements SettingsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SettingInner> getWithResponse(SettingName settingName, Context context) {
-        return getWithResponseAsync(settingName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (settingName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter settingName is required and cannot be null."));
+        }
+        final String apiVersion = "2022-05-01";
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), settingName,
+            accept, context);
     }
 
     /**
@@ -348,43 +382,6 @@ public final class SettingsClientImpl implements SettingsClient {
      * 
      * @param settingName The name of the setting.
      * @param setting Setting object.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the kind of the security setting along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SettingInner>> updateWithResponseAsync(SettingName settingName, SettingInner setting,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (settingName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter settingName is required and cannot be null."));
-        }
-        if (setting == null) {
-            return Mono.error(new IllegalArgumentException("Parameter setting is required and cannot be null."));
-        } else {
-            setting.validate();
-        }
-        final String apiVersion = "2022-05-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), settingName,
-            setting, accept, context);
-    }
-
-    /**
-     * updating settings about different configurations in Microsoft Defender for Cloud.
-     * 
-     * @param settingName The name of the setting.
-     * @param setting Setting object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -408,7 +405,30 @@ public final class SettingsClientImpl implements SettingsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SettingInner> updateWithResponse(SettingName settingName, SettingInner setting, Context context) {
-        return updateWithResponseAsync(settingName, setting, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (settingName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter settingName is required and cannot be null."));
+        }
+        if (setting == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter setting is required and cannot be null."));
+        } else {
+            setting.validate();
+        }
+        final String apiVersion = "2022-05-01";
+        final String accept = "application/json";
+        return service.updateSync(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), settingName,
+            setting, accept, context);
     }
 
     /**
@@ -455,25 +475,54 @@ public final class SettingsClientImpl implements SettingsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return subscription settings list along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SettingInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<SettingsList> res = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription settings list along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return subscription settings list along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SettingInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<SettingInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<SettingsList> res = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SettingsClientImpl.class);
 }
