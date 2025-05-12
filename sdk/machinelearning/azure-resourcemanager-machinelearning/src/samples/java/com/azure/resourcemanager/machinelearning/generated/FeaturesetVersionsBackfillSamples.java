@@ -5,8 +5,8 @@
 package com.azure.resourcemanager.machinelearning.generated;
 
 import com.azure.resourcemanager.machinelearning.models.DataAvailabilityStatus;
-import com.azure.resourcemanager.machinelearning.models.FeaturesetVersionBackfillRequest;
 import com.azure.resourcemanager.machinelearning.models.FeatureWindow;
+import com.azure.resourcemanager.machinelearning.models.FeaturesetVersionBackfillRequest;
 import com.azure.resourcemanager.machinelearning.models.MaterializationComputeResource;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
@@ -19,7 +19,7 @@ import java.util.Map;
 public final class FeaturesetVersionsBackfillSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-04-01/
      * examples/Workspace/FeaturesetVersion/backfill.json
      */
     /**
@@ -31,16 +31,17 @@ public final class FeaturesetVersionsBackfillSamples {
         backfillWorkspaceFeaturesetVersion(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.featuresetVersions()
             .backfill("test-rg", "my-aml-workspace", "string", "string",
-                new FeaturesetVersionBackfillRequest().withDisplayName("string")
-                    .withDescription("string")
-                    .withFeatureWindow(new FeatureWindow()
-                        .withFeatureWindowStart(OffsetDateTime.parse("2020-01-01T12:34:56.999+00:51"))
-                        .withFeatureWindowEnd(OffsetDateTime.parse("2020-01-01T12:34:56.999+00:51")))
+                new FeaturesetVersionBackfillRequest()
                     .withDataAvailabilityStatus(Arrays.asList(DataAvailabilityStatus.NONE))
+                    .withDescription("string")
+                    .withDisplayName("string")
+                    .withFeatureWindow(
+                        new FeatureWindow().withFeatureWindowEnd(OffsetDateTime.parse("2020-01-01T12:34:56.999+00:51"))
+                            .withFeatureWindowStart(OffsetDateTime.parse("2020-01-01T12:34:56.999+00:51")))
                     .withJobId("string")
-                    .withTags(mapOf("string", "string"))
                     .withResource(new MaterializationComputeResource().withInstanceType("string"))
-                    .withSparkConfiguration(mapOf("string", "string")),
+                    .withSparkConfiguration(mapOf("string", "string"))
+                    .withTags(mapOf("string", "string")),
                 com.azure.core.util.Context.NONE);
     }
 

@@ -30,16 +30,6 @@ public final class AccessKeyAuthTypeWorkspaceConnectionProperties extends Worksp
      */
     private WorkspaceConnectionAccessKey credentials;
 
-    /*
-     * The createdByWorkspaceArmId property.
-     */
-    private String createdByWorkspaceArmId;
-
-    /*
-     * Group based on connection category
-     */
-    private ConnectionGroup group;
-
     /**
      * Creates an instance of AccessKeyAuthTypeWorkspaceConnectionProperties class.
      */
@@ -74,26 +64,6 @@ public final class AccessKeyAuthTypeWorkspaceConnectionProperties extends Worksp
     public AccessKeyAuthTypeWorkspaceConnectionProperties withCredentials(WorkspaceConnectionAccessKey credentials) {
         this.credentials = credentials;
         return this;
-    }
-
-    /**
-     * Get the createdByWorkspaceArmId property: The createdByWorkspaceArmId property.
-     * 
-     * @return the createdByWorkspaceArmId value.
-     */
-    @Override
-    public String createdByWorkspaceArmId() {
-        return this.createdByWorkspaceArmId;
-    }
-
-    /**
-     * Get the group property: Group based on connection category.
-     * 
-     * @return the group value.
-     */
-    @Override
-    public ConnectionGroup group() {
-        return this.group;
     }
 
     /**
@@ -175,7 +145,6 @@ public final class AccessKeyAuthTypeWorkspaceConnectionProperties extends Worksp
      */
     @Override
     public void validate() {
-        super.validate();
         if (credentials() != null) {
             credentials().validate();
         }
@@ -222,14 +191,14 @@ public final class AccessKeyAuthTypeWorkspaceConnectionProperties extends Worksp
                     deserializedAccessKeyAuthTypeWorkspaceConnectionProperties
                         .withCategory(ConnectionCategory.fromString(reader.getString()));
                 } else if ("createdByWorkspaceArmId".equals(fieldName)) {
-                    deserializedAccessKeyAuthTypeWorkspaceConnectionProperties.createdByWorkspaceArmId
-                        = reader.getString();
+                    deserializedAccessKeyAuthTypeWorkspaceConnectionProperties
+                        .withCreatedByWorkspaceArmId(reader.getString());
                 } else if ("expiryTime".equals(fieldName)) {
                     deserializedAccessKeyAuthTypeWorkspaceConnectionProperties.withExpiryTime(reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("group".equals(fieldName)) {
-                    deserializedAccessKeyAuthTypeWorkspaceConnectionProperties.group
-                        = ConnectionGroup.fromString(reader.getString());
+                    deserializedAccessKeyAuthTypeWorkspaceConnectionProperties
+                        .withGroup(ConnectionGroup.fromString(reader.getString()));
                 } else if ("isSharedToAll".equals(fieldName)) {
                     deserializedAccessKeyAuthTypeWorkspaceConnectionProperties
                         .withIsSharedToAll(reader.getNullable(JsonReader::getBoolean));

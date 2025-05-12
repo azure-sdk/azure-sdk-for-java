@@ -458,7 +458,9 @@ public final class AmlComputeProperties implements JsonSerializable<AmlComputePr
         jsonWriter.writeStringField("remoteLoginPortPublicAccess",
             this.remoteLoginPortPublicAccess == null ? null : this.remoteLoginPortPublicAccess.toString());
         jsonWriter.writeBooleanField("enableNodePublicIp", this.enableNodePublicIp);
-        jsonWriter.writeUntypedField("propertyBag", this.propertyBag);
+        if (this.propertyBag != null) {
+            jsonWriter.writeUntypedField("propertyBag", this.propertyBag);
+        }
         return jsonWriter.writeEndObject();
     }
 

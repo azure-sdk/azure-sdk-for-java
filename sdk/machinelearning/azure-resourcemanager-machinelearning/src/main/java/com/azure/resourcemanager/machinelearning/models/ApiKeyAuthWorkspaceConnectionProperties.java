@@ -49,16 +49,6 @@ public final class ApiKeyAuthWorkspaceConnectionProperties extends WorkspaceConn
      */
     private WorkspaceConnectionApiKey credentials;
 
-    /*
-     * The createdByWorkspaceArmId property.
-     */
-    private String createdByWorkspaceArmId;
-
-    /*
-     * Group based on connection category
-     */
-    private ConnectionGroup group;
-
     /**
      * Creates an instance of ApiKeyAuthWorkspaceConnectionProperties class.
      */
@@ -93,26 +83,6 @@ public final class ApiKeyAuthWorkspaceConnectionProperties extends WorkspaceConn
     public ApiKeyAuthWorkspaceConnectionProperties withCredentials(WorkspaceConnectionApiKey credentials) {
         this.credentials = credentials;
         return this;
-    }
-
-    /**
-     * Get the createdByWorkspaceArmId property: The createdByWorkspaceArmId property.
-     * 
-     * @return the createdByWorkspaceArmId value.
-     */
-    @Override
-    public String createdByWorkspaceArmId() {
-        return this.createdByWorkspaceArmId;
-    }
-
-    /**
-     * Get the group property: Group based on connection category.
-     * 
-     * @return the group value.
-     */
-    @Override
-    public ConnectionGroup group() {
-        return this.group;
     }
 
     /**
@@ -194,7 +164,6 @@ public final class ApiKeyAuthWorkspaceConnectionProperties extends WorkspaceConn
      */
     @Override
     public void validate() {
-        super.validate();
         if (credentials() != null) {
             credentials().validate();
         }
@@ -241,13 +210,13 @@ public final class ApiKeyAuthWorkspaceConnectionProperties extends WorkspaceConn
                     deserializedApiKeyAuthWorkspaceConnectionProperties
                         .withCategory(ConnectionCategory.fromString(reader.getString()));
                 } else if ("createdByWorkspaceArmId".equals(fieldName)) {
-                    deserializedApiKeyAuthWorkspaceConnectionProperties.createdByWorkspaceArmId = reader.getString();
+                    deserializedApiKeyAuthWorkspaceConnectionProperties.withCreatedByWorkspaceArmId(reader.getString());
                 } else if ("expiryTime".equals(fieldName)) {
                     deserializedApiKeyAuthWorkspaceConnectionProperties.withExpiryTime(reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString())));
                 } else if ("group".equals(fieldName)) {
-                    deserializedApiKeyAuthWorkspaceConnectionProperties.group
-                        = ConnectionGroup.fromString(reader.getString());
+                    deserializedApiKeyAuthWorkspaceConnectionProperties
+                        .withGroup(ConnectionGroup.fromString(reader.getString()));
                 } else if ("isSharedToAll".equals(fieldName)) {
                     deserializedApiKeyAuthWorkspaceConnectionProperties
                         .withIsSharedToAll(reader.getNullable(JsonReader::getBoolean));
