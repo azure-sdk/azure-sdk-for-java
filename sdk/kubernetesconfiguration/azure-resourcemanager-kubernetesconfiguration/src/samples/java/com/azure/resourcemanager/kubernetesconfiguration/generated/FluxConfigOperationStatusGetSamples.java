@@ -10,8 +10,8 @@ package com.azure.resourcemanager.kubernetesconfiguration.generated;
 public final class FluxConfigOperationStatusGetSamples {
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/GetFluxConfigurationAsyncOperationStatus.json
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/GetFluxConfigurationAsyncOperationStatus.json
      */
     /**
      * Sample code: FluxConfigurationAsyncOperationStatus Get.

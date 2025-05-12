@@ -39,6 +39,311 @@
 ### Extensions_Create
 
 ```java
+/**
+ * Samples for Extensions Get.
+ */
+public final class ExtensionsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
+     * examples/GetExtensionWithPlan.json
+     */
+    /**
+     * Sample code: Get Extension with Plan.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void getExtensionWithPlan(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.extensions()
+            .getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "azureVote",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
+     * examples/GetExtension.json
+     */
+    /**
+     * Sample code: Get Extension.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void
+        getExtension(com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.extensions()
+            .getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "ClusterMonitor",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Extensions_Delete
+
+```java
+/**
+ * Samples for FluxConfigurations List.
+ */
+public final class FluxConfigurationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/ListFluxConfigurations.json
+     */
+    /**
+     * Sample code: List Flux Configuration.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void listFluxConfiguration(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.fluxConfigurations()
+            .list("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Extensions_Get
+
+```java
+import com.azure.resourcemanager.kubernetesconfiguration.models.FluxConfigurationPatch;
+import com.azure.resourcemanager.kubernetesconfiguration.models.GitRepositoryPatchDefinition;
+import com.azure.resourcemanager.kubernetesconfiguration.models.KustomizationPatchDefinition;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for FluxConfigurations Update.
+ */
+public final class FluxConfigurationsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/PatchFluxConfiguration.json
+     */
+    /**
+     * Sample code: Patch Flux Configuration.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void patchFluxConfiguration(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.fluxConfigurations()
+            .update("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "srs-fluxconfig",
+                new FluxConfigurationPatch().withSuspend(true)
+                    .withGitRepository(new GitRepositoryPatchDefinition()
+                        .withUrl("https://github.com/jonathan-innis/flux2-kustomize-helm-example.git"))
+                    .withKustomizations(mapOf("srs-kustomization1", null, "srs-kustomization2",
+                        new KustomizationPatchDefinition().withPath("./test/alt-path").withSyncIntervalInSeconds(300L),
+                        "srs-kustomization3", new KustomizationPatchDefinition().withPath("./test/another-path")
+                            .withSyncIntervalInSeconds(300L))),
+                com.azure.core.util.Context.NONE);
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### Extensions_List
+
+```java
+import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.SourceControlConfigurationInner;
+import com.azure.resourcemanager.kubernetesconfiguration.models.HelmOperatorProperties;
+import com.azure.resourcemanager.kubernetesconfiguration.models.OperatorScopeType;
+import com.azure.resourcemanager.kubernetesconfiguration.models.OperatorType;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for SourceControlConfigurations CreateOrUpdate.
+ */
+public final class SourceControlConfigurationsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
+     * examples/CreateSourceControlConfiguration.json
+     */
+    /**
+     * Sample code: Create Source Control Configuration.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void createSourceControlConfiguration(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.sourceControlConfigurations()
+            .createOrUpdateWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1",
+                "SRS_GitHubConfig",
+                new SourceControlConfigurationInner()
+                    .withRepositoryUrl("git@github.com:k8sdeveloper425/flux-get-started")
+                    .withOperatorNamespace("SRS_Namespace")
+                    .withOperatorInstanceName("SRSGitHubFluxOp-01")
+                    .withOperatorType(OperatorType.FLUX)
+                    .withOperatorParams("--git-email=xyzgituser@users.srs.github.com")
+                    .withConfigurationProtectedSettings(mapOf("protectedSetting1Key", "fakeTokenPlaceholder"))
+                    .withOperatorScope(OperatorScopeType.NAMESPACE)
+                    .withSshKnownHostsContents(
+                        "c3NoLmRldi5henVyZS5jb20gc3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDN0hyMW9UV3FOcU9sekdKT2ZHSjROYWtWeUl6ZjFyWFlkNGQ3d282akJsa0x2Q0E0b2RCbEwwbURVeVowL1FVZlRUcWV1K3RtMjJnT3N2K1ZyVlRNazZ2d1JVNzVnWS95OXV0NU1iM2JSNUJWNThkS1h5cTlBOVVlQjVDYWtlaG41WmdtNngxbUtvVnlmK0ZGbjI2aVlxWEpSZ3pJWlpjWjVWNmhyRTBRZzM5a1ptNGF6NDhvMEFVYmY2U3A0U0xkdm51TWEyc1ZOd0hCYm9TN0VKa201N1hRUFZVMy9RcHlOTEhiV0Rkend0cmxTK2V6MzBTM0FkWWhMS0VPeEFHOHdlT255cnRMSkFVZW45bVRrb2w4b0lJMWVkZjdtV1diV1ZmMG5CbWx5MjErblpjbUNUSVNRQnRkY3lQYUVubzdmRlFNREQyNi9zMGxmS29iNEt3OEg=")
+                    .withEnableHelmOperator(true)
+                    .withHelmOperatorProperties(new HelmOperatorProperties().withChartVersion("0.3.0")
+                        .withChartValues("--set git.ssh.secretName=flux-git-deploy --set tillerNamespace=kube-system")),
+                com.azure.core.util.Context.NONE);
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### Extensions_Update
+
+```java
+/**
+ * Samples for SourceControlConfigurations Delete.
+ */
+public final class SourceControlConfigurationsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
+     * examples/DeleteSourceControlConfiguration.json
+     */
+    /**
+     * Sample code: Delete Source Control Configuration.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void deleteSourceControlConfiguration(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.sourceControlConfigurations()
+            .delete("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "SRS_GitHubConfig",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FluxConfigOperationStatus_Get
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
+     * examples/OperationsList.json
+     */
+    /**
+     * Sample code: BatchAccountDelete.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void batchAccountDelete(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FluxConfigurations_CreateOrUpdate
+
+```java
+/**
+ * Samples for Extensions List.
+ */
+public final class ExtensionsListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
+     * examples/ListExtensions.json
+     */
+    /**
+     * Sample code: List Extensions.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void
+        listExtensions(com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.extensions()
+            .list("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FluxConfigurations_Delete
+
+```java
+/**
+ * Samples for FluxConfigurations Delete.
+ */
+public final class FluxConfigurationsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/DeleteFluxConfiguration.json
+     */
+    /**
+     * Sample code: Delete Flux Configuration.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void deleteFluxConfiguration(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.fluxConfigurations()
+            .delete("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "srs-fluxconfig", null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FluxConfigurations_Get
+
+```java
+/**
+ * Samples for SourceControlConfigurations Get.
+ */
+public final class SourceControlConfigurationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
+     * examples/GetSourceControlConfiguration.json
+     */
+    /**
+     * Sample code: Get Source Control Configuration.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void getSourceControlConfiguration(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.sourceControlConfigurations()
+            .getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "SRS_GitHubConfig",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FluxConfigurations_List
+
+```java
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.ExtensionInner;
 import com.azure.resourcemanager.kubernetesconfiguration.models.Plan;
 import com.azure.resourcemanager.kubernetesconfiguration.models.Scope;
@@ -112,180 +417,14 @@ public final class ExtensionsCreateSamples {
 }
 ```
 
-### Extensions_Delete
-
-```java
-/**
- * Samples for Extensions Delete.
- */
-public final class ExtensionsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/DeleteExtension.json
-     */
-    /**
-     * Sample code: Delete Extension.
-     * 
-     * @param manager Entry point to SourceControlConfigurationManager.
-     */
-    public static void
-        deleteExtension(com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.extensions()
-            .delete("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "ClusterMonitor", null,
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Extensions_Get
-
-```java
-/**
- * Samples for Extensions Get.
- */
-public final class ExtensionsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/GetExtensionWithPlan.json
-     */
-    /**
-     * Sample code: Get Extension with Plan.
-     * 
-     * @param manager Entry point to SourceControlConfigurationManager.
-     */
-    public static void getExtensionWithPlan(
-        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.extensions()
-            .getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "azureVote",
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/GetExtension.json
-     */
-    /**
-     * Sample code: Get Extension.
-     * 
-     * @param manager Entry point to SourceControlConfigurationManager.
-     */
-    public static void
-        getExtension(com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.extensions()
-            .getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "ClusterMonitor",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Extensions_List
-
-```java
-/**
- * Samples for Extensions List.
- */
-public final class ExtensionsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/ListExtensions.json
-     */
-    /**
-     * Sample code: List Extensions.
-     * 
-     * @param manager Entry point to SourceControlConfigurationManager.
-     */
-    public static void
-        listExtensions(com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.extensions()
-            .list("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Extensions_Update
-
-```java
-import com.azure.resourcemanager.kubernetesconfiguration.models.PatchExtension;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for Extensions Update.
- */
-public final class ExtensionsUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/PatchExtension.json
-     */
-    /**
-     * Sample code: Update Extension.
-     * 
-     * @param manager Entry point to SourceControlConfigurationManager.
-     */
-    public static void
-        updateExtension(com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.extensions()
-            .update("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "ClusterMonitor",
-                new PatchExtension().withAutoUpgradeMinorVersion(true)
-                    .withReleaseTrain("Preview")
-                    .withConfigurationSettings(mapOf("omsagent.env.clusterName", "clusterName1", "omsagent.secret.wsid",
-                        "fakeTokenPlaceholder"))
-                    .withConfigurationProtectedSettings(mapOf("omsagent.secret.key", "fakeTokenPlaceholder")),
-                com.azure.core.util.Context.NONE);
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### FluxConfigOperationStatus_Get
-
-```java
-/**
- * Samples for FluxConfigOperationStatus Get.
- */
-public final class FluxConfigOperationStatusGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/GetFluxConfigurationAsyncOperationStatus.json
-     */
-    /**
-     * Sample code: FluxConfigurationAsyncOperationStatus Get.
-     * 
-     * @param manager Entry point to SourceControlConfigurationManager.
-     */
-    public static void fluxConfigurationAsyncOperationStatusGet(
-        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.fluxConfigOperationStatus()
-            .getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "srs-fluxconfig",
-                "99999999-9999-9999-9999-999999999999", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FluxConfigurations_CreateOrUpdate
+### FluxConfigurations_Update
 
 ```java
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.FluxConfigurationInner;
 import com.azure.resourcemanager.kubernetesconfiguration.models.BucketDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.GitRepositoryDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.KustomizationDefinition;
+import com.azure.resourcemanager.kubernetesconfiguration.models.OciRepositoryDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.PostBuildDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.RepositoryRefDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ScopeType;
@@ -301,8 +440,46 @@ import java.util.Map;
 public final class FluxConfigurationsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/CreateFluxConfiguration.json
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/CreateFluxConfigurationWithOCIRepository.json
+     */
+    /**
+     * Sample code: Create Flux Configuration with OCIRepository Source Kind.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void createFluxConfigurationWithOCIRepositorySourceKind(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.fluxConfigurations()
+            .createOrUpdate("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "srs-fluxconfig",
+                new FluxConfigurationInner().withScope(ScopeType.CLUSTER)
+                    .withNamespace("srs-namespace")
+                    .withSourceKind(SourceKindType.OCIREPOSITORY)
+                    .withSuspend(false)
+                    .withOciRepository(
+                        new OciRepositoryDefinition().withUrl("oci://ghcr.io/stefanprodan/manifests/podinfo")
+                            .withTimeoutInSeconds(1000L)
+                            .withSyncIntervalInSeconds(1000L)
+                            .withServiceAccountName("testserviceaccount"))
+                    .withKustomizations(mapOf("srs-kustomization1",
+                        new KustomizationDefinition().withPath("./test/path")
+                            .withDependsOn(Arrays.asList())
+                            .withTimeoutInSeconds(600L)
+                            .withSyncIntervalInSeconds(600L),
+                        "srs-kustomization2",
+                        new KustomizationDefinition().withPath("./other/test/path")
+                            .withDependsOn(Arrays.asList("srs-kustomization1"))
+                            .withTimeoutInSeconds(600L)
+                            .withSyncIntervalInSeconds(600L)
+                            .withRetryIntervalInSeconds(600L)
+                            .withPrune(false))),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/CreateFluxConfiguration.json
      */
     /**
      * Sample code: Create Flux Configuration.
@@ -355,8 +532,8 @@ public final class FluxConfigurationsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/CreateFluxConfigurationWithBucket.json
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/CreateFluxConfigurationWithBucket.json
      */
     /**
      * Sample code: Create Flux Configuration with Bucket Source Kind.
@@ -405,135 +582,32 @@ public final class FluxConfigurationsCreateOrUpdateSamples {
 }
 ```
 
-### FluxConfigurations_Delete
+### OperationStatus_Get
 
 ```java
 /**
- * Samples for FluxConfigurations Delete.
+ * Samples for OperationStatus List.
  */
-public final class FluxConfigurationsDeleteSamples {
+public final class OperationStatusListSamples {
     /*
      * x-ms-original-file:
      * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/DeleteFluxConfiguration.json
+     * examples/ListAsyncOperationStatus.json
      */
     /**
-     * Sample code: Delete Flux Configuration.
+     * Sample code: AsyncOperationStatus List.
      * 
      * @param manager Entry point to SourceControlConfigurationManager.
      */
-    public static void deleteFluxConfiguration(
+    public static void asyncOperationStatusList(
         com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.fluxConfigurations()
-            .delete("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "srs-fluxconfig", null,
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FluxConfigurations_Get
-
-```java
-/**
- * Samples for FluxConfigurations Get.
- */
-public final class FluxConfigurationsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/GetFluxConfiguration.json
-     */
-    /**
-     * Sample code: Get Flux Configuration.
-     * 
-     * @param manager Entry point to SourceControlConfigurationManager.
-     */
-    public static void getFluxConfiguration(
-        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.fluxConfigurations()
-            .getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "srs-fluxconfig",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### FluxConfigurations_List
-
-```java
-/**
- * Samples for FluxConfigurations List.
- */
-public final class FluxConfigurationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/ListFluxConfigurations.json
-     */
-    /**
-     * Sample code: List Flux Configuration.
-     * 
-     * @param manager Entry point to SourceControlConfigurationManager.
-     */
-    public static void listFluxConfiguration(
-        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.fluxConfigurations()
+        manager.operationStatus()
             .list("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### FluxConfigurations_Update
-
-```java
-import com.azure.resourcemanager.kubernetesconfiguration.models.FluxConfigurationPatch;
-import com.azure.resourcemanager.kubernetesconfiguration.models.GitRepositoryPatchDefinition;
-import com.azure.resourcemanager.kubernetesconfiguration.models.KustomizationPatchDefinition;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for FluxConfigurations Update.
- */
-public final class FluxConfigurationsUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/PatchFluxConfiguration.json
-     */
-    /**
-     * Sample code: Patch Flux Configuration.
-     * 
-     * @param manager Entry point to SourceControlConfigurationManager.
-     */
-    public static void patchFluxConfiguration(
-        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.fluxConfigurations()
-            .update("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "srs-fluxconfig",
-                new FluxConfigurationPatch().withSuspend(true)
-                    .withGitRepository(new GitRepositoryPatchDefinition()
-                        .withUrl("https://github.com/jonathan-innis/flux2-kustomize-helm-example.git"))
-                    .withKustomizations(mapOf("srs-kustomization1", null, "srs-kustomization2",
-                        new KustomizationPatchDefinition().withPath("./test/alt-path").withSyncIntervalInSeconds(300L),
-                        "srs-kustomization3", new KustomizationPatchDefinition().withPath("./test/another-path")
-                            .withSyncIntervalInSeconds(300L))),
-                com.azure.core.util.Context.NONE);
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### OperationStatus_Get
+### OperationStatus_List
 
 ```java
 /**
@@ -559,167 +633,7 @@ public final class OperationStatusGetSamples {
 }
 ```
 
-### OperationStatus_List
-
-```java
-/**
- * Samples for OperationStatus List.
- */
-public final class OperationStatusListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/ListAsyncOperationStatus.json
-     */
-    /**
-     * Sample code: AsyncOperationStatus List.
-     * 
-     * @param manager Entry point to SourceControlConfigurationManager.
-     */
-    public static void asyncOperationStatusList(
-        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.operationStatus()
-            .list("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/OperationsList.json
-     */
-    /**
-     * Sample code: BatchAccountDelete.
-     * 
-     * @param manager Entry point to SourceControlConfigurationManager.
-     */
-    public static void batchAccountDelete(
-        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SourceControlConfigurations_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.SourceControlConfigurationInner;
-import com.azure.resourcemanager.kubernetesconfiguration.models.HelmOperatorProperties;
-import com.azure.resourcemanager.kubernetesconfiguration.models.OperatorScopeType;
-import com.azure.resourcemanager.kubernetesconfiguration.models.OperatorType;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for SourceControlConfigurations CreateOrUpdate.
- */
-public final class SourceControlConfigurationsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/CreateSourceControlConfiguration.json
-     */
-    /**
-     * Sample code: Create Source Control Configuration.
-     * 
-     * @param manager Entry point to SourceControlConfigurationManager.
-     */
-    public static void createSourceControlConfiguration(
-        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.sourceControlConfigurations()
-            .createOrUpdateWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1",
-                "SRS_GitHubConfig",
-                new SourceControlConfigurationInner()
-                    .withRepositoryUrl("git@github.com:k8sdeveloper425/flux-get-started")
-                    .withOperatorNamespace("SRS_Namespace")
-                    .withOperatorInstanceName("SRSGitHubFluxOp-01")
-                    .withOperatorType(OperatorType.FLUX)
-                    .withOperatorParams("--git-email=xyzgituser@users.srs.github.com")
-                    .withConfigurationProtectedSettings(mapOf("protectedSetting1Key", "fakeTokenPlaceholder"))
-                    .withOperatorScope(OperatorScopeType.NAMESPACE)
-                    .withSshKnownHostsContents(
-                        "c3NoLmRldi5henVyZS5jb20gc3NoLXJzYSBBQUFBQjNOemFDMXljMkVBQUFBREFRQUJBQUFCQVFDN0hyMW9UV3FOcU9sekdKT2ZHSjROYWtWeUl6ZjFyWFlkNGQ3d282akJsa0x2Q0E0b2RCbEwwbURVeVowL1FVZlRUcWV1K3RtMjJnT3N2K1ZyVlRNazZ2d1JVNzVnWS95OXV0NU1iM2JSNUJWNThkS1h5cTlBOVVlQjVDYWtlaG41WmdtNngxbUtvVnlmK0ZGbjI2aVlxWEpSZ3pJWlpjWjVWNmhyRTBRZzM5a1ptNGF6NDhvMEFVYmY2U3A0U0xkdm51TWEyc1ZOd0hCYm9TN0VKa201N1hRUFZVMy9RcHlOTEhiV0Rkend0cmxTK2V6MzBTM0FkWWhMS0VPeEFHOHdlT255cnRMSkFVZW45bVRrb2w4b0lJMWVkZjdtV1diV1ZmMG5CbWx5MjErblpjbUNUSVNRQnRkY3lQYUVubzdmRlFNREQyNi9zMGxmS29iNEt3OEg=")
-                    .withEnableHelmOperator(true)
-                    .withHelmOperatorProperties(new HelmOperatorProperties().withChartVersion("0.3.0")
-                        .withChartValues("--set git.ssh.secretName=flux-git-deploy --set tillerNamespace=kube-system")),
-                com.azure.core.util.Context.NONE);
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### SourceControlConfigurations_Delete
-
-```java
-/**
- * Samples for SourceControlConfigurations Delete.
- */
-public final class SourceControlConfigurationsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/DeleteSourceControlConfiguration.json
-     */
-    /**
-     * Sample code: Delete Source Control Configuration.
-     * 
-     * @param manager Entry point to SourceControlConfigurationManager.
-     */
-    public static void deleteSourceControlConfiguration(
-        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.sourceControlConfigurations()
-            .delete("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "SRS_GitHubConfig",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SourceControlConfigurations_Get
-
-```java
-/**
- * Samples for SourceControlConfigurations Get.
- */
-public final class SourceControlConfigurationsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
-     * examples/GetSourceControlConfiguration.json
-     */
-    /**
-     * Sample code: Get Source Control Configuration.
-     * 
-     * @param manager Entry point to SourceControlConfigurationManager.
-     */
-    public static void getSourceControlConfiguration(
-        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager.sourceControlConfigurations()
-            .getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "SRS_GitHubConfig",
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### SourceControlConfigurations_List
 
 ```java
 /**
@@ -740,6 +654,131 @@ public final class SourceControlConfigurationsListSamples {
         com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
         manager.sourceControlConfigurations()
             .list("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SourceControlConfigurations_CreateOrUpdate
+
+```java
+/**
+ * Samples for FluxConfigOperationStatus Get.
+ */
+public final class FluxConfigOperationStatusGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/GetFluxConfigurationAsyncOperationStatus.json
+     */
+    /**
+     * Sample code: FluxConfigurationAsyncOperationStatus Get.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void fluxConfigurationAsyncOperationStatusGet(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.fluxConfigOperationStatus()
+            .getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "srs-fluxconfig",
+                "99999999-9999-9999-9999-999999999999", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SourceControlConfigurations_Delete
+
+```java
+/**
+ * Samples for FluxConfigurations Get.
+ */
+public final class FluxConfigurationsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-04-01-
+     * preview/examples/GetFluxConfiguration.json
+     */
+    /**
+     * Sample code: Get Flux Configuration.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void getFluxConfiguration(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.fluxConfigurations()
+            .getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "srs-fluxconfig",
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SourceControlConfigurations_Get
+
+```java
+/**
+ * Samples for Extensions Delete.
+ */
+public final class ExtensionsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
+     * examples/DeleteExtension.json
+     */
+    /**
+     * Sample code: Delete Extension.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void
+        deleteExtension(com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.extensions()
+            .delete("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "ClusterMonitor", null,
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SourceControlConfigurations_List
+
+```java
+import com.azure.resourcemanager.kubernetesconfiguration.models.PatchExtension;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for Extensions Update.
+ */
+public final class ExtensionsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/
+     * examples/PatchExtension.json
+     */
+    /**
+     * Sample code: Update Extension.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void
+        updateExtension(com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.extensions()
+            .update("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "ClusterMonitor",
+                new PatchExtension().withAutoUpgradeMinorVersion(true)
+                    .withReleaseTrain("Preview")
+                    .withConfigurationSettings(mapOf("omsagent.env.clusterName", "clusterName1", "omsagent.secret.wsid",
+                        "fakeTokenPlaceholder"))
+                    .withConfigurationProtectedSettings(mapOf("omsagent.secret.key", "fakeTokenPlaceholder")),
+                com.azure.core.util.Context.NONE);
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
