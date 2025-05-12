@@ -13,8 +13,8 @@ import com.azure.resourcemanager.machinelearning.models.PendingUploadType;
 public final class RegistryDataVersionsCreateOrGetStartPendingUploadSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
-     * examples/Registry/DataVersionBase/createOrGetStartPendingUpload.json
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2025-04-01-
+     * preview/examples/Registry/DataVersionBase/createOrGetStartPendingUpload.json
      */
     /**
      * Sample code: CreateOrGetStartPendingUpload Registry Data Version Base.

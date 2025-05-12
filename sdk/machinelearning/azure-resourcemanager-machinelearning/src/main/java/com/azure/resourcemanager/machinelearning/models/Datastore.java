@@ -217,13 +217,14 @@ public interface Datastore {
     /**
      * Get datastore secrets.
      * 
+     * @param body Secret expiry information.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return datastore secrets along with {@link Response}.
      */
-    Response<DatastoreSecrets> listSecretsWithResponse(Context context);
+    Response<DatastoreSecrets> listSecretsWithResponse(SecretExpiry body, Context context);
 
     /**
      * Get datastore secrets.

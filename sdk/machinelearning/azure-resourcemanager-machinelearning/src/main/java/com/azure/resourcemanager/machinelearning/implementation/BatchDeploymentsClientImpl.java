@@ -28,8 +28,10 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.machinelearning.fluent.BatchDeploymentsClient;
@@ -84,10 +86,31 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}/deployments")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BatchDeploymentTrackedResourceArmPaginatedResult> listSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("endpointName") String endpointName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("$orderBy") String orderBy, @QueryParam("$top") Integer top, @QueryParam("$skip") String skip,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}/deployments/{deploymentName}")
         @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("endpointName") String endpointName, @PathParam("deploymentName") String deploymentName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}/deployments/{deploymentName}")
+        @ExpectedResponses({ 200, 202, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> deleteSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @PathParam("endpointName") String endpointName, @PathParam("deploymentName") String deploymentName,
@@ -104,10 +127,32 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}/deployments/{deploymentName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BatchDeploymentInner> getSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("endpointName") String endpointName, @PathParam("deploymentName") String deploymentName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}/deployments/{deploymentName}")
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("endpointName") String endpointName, @PathParam("deploymentName") String deploymentName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties body,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}/deployments/{deploymentName}")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> updateSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @PathParam("endpointName") String endpointName, @PathParam("deploymentName") String deploymentName,
@@ -127,10 +172,29 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/batchEndpoints/{endpointName}/deployments/{deploymentName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> createOrUpdateSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("endpointName") String endpointName, @PathParam("deploymentName") String deploymentName,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") BatchDeploymentInner body,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BatchDeploymentTrackedResourceArmPaginatedResult>> listNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BatchDeploymentTrackedResourceArmPaginatedResult> listNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -190,52 +254,6 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
      * @param orderBy Ordering of list.
      * @param top Top of list.
      * @param skip Continuation token for pagination.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paginated list of BatchDeployment entities along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BatchDeploymentInner>> listSinglePageAsync(String resourceGroupName,
-        String workspaceName, String endpointName, String orderBy, Integer top, String skip, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (endpointName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter endpointName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workspaceName,
-                endpointName, this.client.getApiVersion(), orderBy, top, skip, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists Batch inference deployments in the workspace.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param endpointName Endpoint name.
-     * @param orderBy Ordering of list.
-     * @param top Top of list.
-     * @param skip Continuation token for pagination.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -280,18 +298,90 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
      * @param orderBy Ordering of list.
      * @param top Top of list.
      * @param skip Continuation token for pagination.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a paginated list of BatchDeployment entities along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BatchDeploymentInner> listSinglePage(String resourceGroupName, String workspaceName,
+        String endpointName, String orderBy, Integer top, String skip) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (endpointName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter endpointName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<BatchDeploymentTrackedResourceArmPaginatedResult> res
+            = service.listSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                workspaceName, endpointName, this.client.getApiVersion(), orderBy, top, skip, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists Batch inference deployments in the workspace.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param endpointName Endpoint name.
+     * @param orderBy Ordering of list.
+     * @param top Top of list.
+     * @param skip Continuation token for pagination.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paginated list of BatchDeployment entities as paginated response with {@link PagedFlux}.
+     * @return a paginated list of BatchDeployment entities along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BatchDeploymentInner> listAsync(String resourceGroupName, String workspaceName,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BatchDeploymentInner> listSinglePage(String resourceGroupName, String workspaceName,
         String endpointName, String orderBy, Integer top, String skip, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, endpointName, orderBy, top, skip, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (endpointName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter endpointName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<BatchDeploymentTrackedResourceArmPaginatedResult> res
+            = service.listSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                workspaceName, endpointName, this.client.getApiVersion(), orderBy, top, skip, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -311,7 +401,9 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
         final String orderBy = null;
         final Integer top = null;
         final String skip = null;
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, endpointName, orderBy, top, skip));
+        return new PagedIterable<>(
+            () -> listSinglePage(resourceGroupName, workspaceName, endpointName, orderBy, top, skip),
+            nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -333,7 +425,8 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
     public PagedIterable<BatchDeploymentInner> list(String resourceGroupName, String workspaceName, String endpointName,
         String orderBy, Integer top, String skip, Context context) {
         return new PagedIterable<>(
-            listAsync(resourceGroupName, workspaceName, endpointName, orderBy, top, skip, context));
+            () -> listSinglePage(resourceGroupName, workspaceName, endpointName, orderBy, top, skip, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -387,39 +480,89 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param endpointName Endpoint name.
      * @param deploymentName Inference deployment identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> deleteWithResponse(String resourceGroupName, String workspaceName, String endpointName,
+        String deploymentName) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (endpointName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter endpointName is required and cannot be null."));
+        }
+        if (deploymentName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.deleteSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, endpointName, deploymentName, this.client.getApiVersion(), accept, Context.NONE);
+    }
+
+    /**
+     * Delete Batch Inference deployment (asynchronous).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param endpointName Endpoint name.
+     * @param deploymentName Inference deployment identifier.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String workspaceName,
-        String endpointName, String deploymentName, Context context) {
+    private Response<BinaryData> deleteWithResponse(String resourceGroupName, String workspaceName, String endpointName,
+        String deploymentName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
         if (endpointName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter endpointName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter endpointName is required and cannot be null."));
         }
         if (deploymentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+        return service.deleteSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
             workspaceName, endpointName, deploymentName, this.client.getApiVersion(), accept, context);
     }
 
@@ -451,29 +594,6 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param endpointName Endpoint name.
      * @param deploymentName Inference deployment identifier.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String workspaceName,
-        String endpointName, String deploymentName, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, workspaceName, endpointName, deploymentName, context);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            context);
-    }
-
-    /**
-     * Delete Batch Inference deployment (asynchronous).
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param endpointName Endpoint name.
-     * @param deploymentName Inference deployment identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -482,7 +602,9 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String workspaceName,
         String endpointName, String deploymentName) {
-        return this.beginDeleteAsync(resourceGroupName, workspaceName, endpointName, deploymentName).getSyncPoller();
+        Response<BinaryData> response
+            = deleteWithResponse(resourceGroupName, workspaceName, endpointName, deploymentName);
+        return this.client.<Void, Void>getLroResult(response, Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -501,8 +623,9 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String workspaceName,
         String endpointName, String deploymentName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, workspaceName, endpointName, deploymentName, context)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = deleteWithResponse(resourceGroupName, workspaceName, endpointName, deploymentName, context);
+        return this.client.<Void, Void>getLroResult(response, Void.class, Void.class, context);
     }
 
     /**
@@ -531,33 +654,13 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param endpointName Endpoint name.
      * @param deploymentName Inference deployment identifier.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String workspaceName, String endpointName,
-        String deploymentName, Context context) {
-        return beginDeleteAsync(resourceGroupName, workspaceName, endpointName, deploymentName, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Delete Batch Inference deployment (asynchronous).
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param endpointName Endpoint name.
-     * @param deploymentName Inference deployment identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String workspaceName, String endpointName, String deploymentName) {
-        deleteAsync(resourceGroupName, workspaceName, endpointName, deploymentName).block();
+        beginDelete(resourceGroupName, workspaceName, endpointName, deploymentName).getFinalResult();
     }
 
     /**
@@ -575,7 +678,7 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String workspaceName, String endpointName, String deploymentName,
         Context context) {
-        deleteAsync(resourceGroupName, workspaceName, endpointName, deploymentName, context).block();
+        beginDelete(resourceGroupName, workspaceName, endpointName, deploymentName, context).getFinalResult();
     }
 
     /**
@@ -629,49 +732,6 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param endpointName Endpoint name.
      * @param deploymentName The identifier for the Batch deployments.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a batch inference deployment by id along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BatchDeploymentInner>> getWithResponseAsync(String resourceGroupName, String workspaceName,
-        String endpointName, String deploymentName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (endpointName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter endpointName is required and cannot be null."));
-        }
-        if (deploymentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workspaceName,
-            endpointName, deploymentName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Gets a batch inference deployment by id.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param endpointName Endpoint name.
-     * @param deploymentName The identifier for the Batch deployments.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -700,7 +760,35 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BatchDeploymentInner> getWithResponse(String resourceGroupName, String workspaceName,
         String endpointName, String deploymentName, Context context) {
-        return getWithResponseAsync(resourceGroupName, workspaceName, endpointName, deploymentName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (endpointName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter endpointName is required and cannot be null."));
+        }
+        if (deploymentName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, endpointName, deploymentName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -780,45 +868,101 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
      * @param endpointName Inference endpoint name.
      * @param deploymentName The identifier for the Batch inference deployment.
      * @param body Batch inference deployment definition object.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String workspaceName,
-        String endpointName, String deploymentName,
-        PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties body, Context context) {
+    private Response<BinaryData> updateWithResponse(String resourceGroupName, String workspaceName, String endpointName,
+        String deploymentName, PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties body) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
         if (endpointName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter endpointName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter endpointName is required and cannot be null."));
         }
         if (deploymentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
         }
         if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
         } else {
             body.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+        return service.updateSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, endpointName, deploymentName, this.client.getApiVersion(), body, accept, Context.NONE);
+    }
+
+    /**
+     * Update a batch inference deployment (asynchronous).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param endpointName Inference endpoint name.
+     * @param deploymentName The identifier for the Batch inference deployment.
+     * @param body Batch inference deployment definition object.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> updateWithResponse(String resourceGroupName, String workspaceName, String endpointName,
+        String deploymentName, PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties body,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (endpointName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter endpointName is required and cannot be null."));
+        }
+        if (deploymentName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
+        }
+        if (body == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return service.updateSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
             workspaceName, endpointName, deploymentName, this.client.getApiVersion(), body, accept, context);
     }
 
@@ -853,31 +997,6 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
      * @param endpointName Inference endpoint name.
      * @param deploymentName The identifier for the Batch inference deployment.
      * @param body Batch inference deployment definition object.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<BatchDeploymentInner>, BatchDeploymentInner> beginUpdateAsync(
-        String resourceGroupName, String workspaceName, String endpointName, String deploymentName,
-        PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties body, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, workspaceName, endpointName, deploymentName, body, context);
-        return this.client.<BatchDeploymentInner, BatchDeploymentInner>getLroResult(mono, this.client.getHttpPipeline(),
-            BatchDeploymentInner.class, BatchDeploymentInner.class, context);
-    }
-
-    /**
-     * Update a batch inference deployment (asynchronous).
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param endpointName Inference endpoint name.
-     * @param deploymentName The identifier for the Batch inference deployment.
-     * @param body Batch inference deployment definition object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -887,8 +1006,10 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
     public SyncPoller<PollResult<BatchDeploymentInner>, BatchDeploymentInner> beginUpdate(String resourceGroupName,
         String workspaceName, String endpointName, String deploymentName,
         PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties body) {
-        return this.beginUpdateAsync(resourceGroupName, workspaceName, endpointName, deploymentName, body)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = updateWithResponse(resourceGroupName, workspaceName, endpointName, deploymentName, body);
+        return this.client.<BatchDeploymentInner, BatchDeploymentInner>getLroResult(response,
+            BatchDeploymentInner.class, BatchDeploymentInner.class, Context.NONE);
     }
 
     /**
@@ -909,8 +1030,10 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
     public SyncPoller<PollResult<BatchDeploymentInner>, BatchDeploymentInner> beginUpdate(String resourceGroupName,
         String workspaceName, String endpointName, String deploymentName,
         PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties body, Context context) {
-        return this.beginUpdateAsync(resourceGroupName, workspaceName, endpointName, deploymentName, body, context)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = updateWithResponse(resourceGroupName, workspaceName, endpointName, deploymentName, body, context);
+        return this.client.<BatchDeploymentInner, BatchDeploymentInner>getLroResult(response,
+            BatchDeploymentInner.class, BatchDeploymentInner.class, context);
     }
 
     /**
@@ -941,28 +1064,6 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
      * @param endpointName Inference endpoint name.
      * @param deploymentName The identifier for the Batch inference deployment.
      * @param body Batch inference deployment definition object.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BatchDeploymentInner> updateAsync(String resourceGroupName, String workspaceName, String endpointName,
-        String deploymentName, PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties body,
-        Context context) {
-        return beginUpdateAsync(resourceGroupName, workspaceName, endpointName, deploymentName, body, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Update a batch inference deployment (asynchronous).
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param endpointName Inference endpoint name.
-     * @param deploymentName The identifier for the Batch inference deployment.
-     * @param body Batch inference deployment definition object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -971,7 +1072,7 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BatchDeploymentInner update(String resourceGroupName, String workspaceName, String endpointName,
         String deploymentName, PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties body) {
-        return updateAsync(resourceGroupName, workspaceName, endpointName, deploymentName, body).block();
+        return beginUpdate(resourceGroupName, workspaceName, endpointName, deploymentName, body).getFinalResult();
     }
 
     /**
@@ -992,7 +1093,8 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
     public BatchDeploymentInner update(String resourceGroupName, String workspaceName, String endpointName,
         String deploymentName, PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties body,
         Context context) {
-        return updateAsync(resourceGroupName, workspaceName, endpointName, deploymentName, body, context).block();
+        return beginUpdate(resourceGroupName, workspaceName, endpointName, deploymentName, body, context)
+            .getFinalResult();
     }
 
     /**
@@ -1053,44 +1155,100 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
      * @param endpointName Inference endpoint name.
      * @param deploymentName The identifier for the Batch inference deployment.
      * @param body Batch inference deployment definition object.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String workspaceName, String endpointName, String deploymentName, BatchDeploymentInner body, Context context) {
+    private Response<BinaryData> createOrUpdateWithResponse(String resourceGroupName, String workspaceName,
+        String endpointName, String deploymentName, BatchDeploymentInner body) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
         if (endpointName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter endpointName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter endpointName is required and cannot be null."));
         }
         if (deploymentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
         }
         if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
         } else {
             body.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+        return service.createOrUpdateSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, endpointName, deploymentName, this.client.getApiVersion(), body, accept, Context.NONE);
+    }
+
+    /**
+     * Creates/updates a batch inference deployment (asynchronous).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param endpointName Inference endpoint name.
+     * @param deploymentName The identifier for the Batch inference deployment.
+     * @param body Batch inference deployment definition object.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> createOrUpdateWithResponse(String resourceGroupName, String workspaceName,
+        String endpointName, String deploymentName, BatchDeploymentInner body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (endpointName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter endpointName is required and cannot be null."));
+        }
+        if (deploymentName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter deploymentName is required and cannot be null."));
+        }
+        if (body == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return service.createOrUpdateSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
             workspaceName, endpointName, deploymentName, this.client.getApiVersion(), body, accept, context);
     }
 
@@ -1125,31 +1283,6 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
      * @param endpointName Inference endpoint name.
      * @param deploymentName The identifier for the Batch inference deployment.
      * @param body Batch inference deployment definition object.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<BatchDeploymentInner>, BatchDeploymentInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String workspaceName, String endpointName, String deploymentName,
-        BatchDeploymentInner body, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, workspaceName,
-            endpointName, deploymentName, body, context);
-        return this.client.<BatchDeploymentInner, BatchDeploymentInner>getLroResult(mono, this.client.getHttpPipeline(),
-            BatchDeploymentInner.class, BatchDeploymentInner.class, context);
-    }
-
-    /**
-     * Creates/updates a batch inference deployment (asynchronous).
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param endpointName Inference endpoint name.
-     * @param deploymentName The identifier for the Batch inference deployment.
-     * @param body Batch inference deployment definition object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1159,8 +1292,10 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
     public SyncPoller<PollResult<BatchDeploymentInner>, BatchDeploymentInner> beginCreateOrUpdate(
         String resourceGroupName, String workspaceName, String endpointName, String deploymentName,
         BatchDeploymentInner body) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, workspaceName, endpointName, deploymentName, body)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = createOrUpdateWithResponse(resourceGroupName, workspaceName, endpointName, deploymentName, body);
+        return this.client.<BatchDeploymentInner, BatchDeploymentInner>getLroResult(response,
+            BatchDeploymentInner.class, BatchDeploymentInner.class, Context.NONE);
     }
 
     /**
@@ -1181,9 +1316,10 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
     public SyncPoller<PollResult<BatchDeploymentInner>, BatchDeploymentInner> beginCreateOrUpdate(
         String resourceGroupName, String workspaceName, String endpointName, String deploymentName,
         BatchDeploymentInner body, Context context) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, workspaceName, endpointName, deploymentName, body, context)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = createOrUpdateWithResponse(resourceGroupName, workspaceName, endpointName, deploymentName, body, context);
+        return this.client.<BatchDeploymentInner, BatchDeploymentInner>getLroResult(response,
+            BatchDeploymentInner.class, BatchDeploymentInner.class, context);
     }
 
     /**
@@ -1214,28 +1350,6 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
      * @param endpointName Inference endpoint name.
      * @param deploymentName The identifier for the Batch inference deployment.
      * @param body Batch inference deployment definition object.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BatchDeploymentInner> createOrUpdateAsync(String resourceGroupName, String workspaceName,
-        String endpointName, String deploymentName, BatchDeploymentInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, workspaceName, endpointName, deploymentName, body, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Creates/updates a batch inference deployment (asynchronous).
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param endpointName Inference endpoint name.
-     * @param deploymentName The identifier for the Batch inference deployment.
-     * @param body Batch inference deployment definition object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1244,7 +1358,8 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BatchDeploymentInner createOrUpdate(String resourceGroupName, String workspaceName, String endpointName,
         String deploymentName, BatchDeploymentInner body) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, endpointName, deploymentName, body).block();
+        return beginCreateOrUpdate(resourceGroupName, workspaceName, endpointName, deploymentName, body)
+            .getFinalResult();
     }
 
     /**
@@ -1264,8 +1379,8 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BatchDeploymentInner createOrUpdate(String resourceGroupName, String workspaceName, String endpointName,
         String deploymentName, BatchDeploymentInner body, Context context) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, endpointName, deploymentName, body, context)
-            .block();
+        return beginCreateOrUpdate(resourceGroupName, workspaceName, endpointName, deploymentName, body, context)
+            .getFinalResult();
     }
 
     /**
@@ -1298,26 +1413,56 @@ public final class BatchDeploymentsClientImpl implements BatchDeploymentsClient 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a paginated list of BatchDeployment entities along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BatchDeploymentInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<BatchDeploymentTrackedResourceArmPaginatedResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paginated list of BatchDeployment entities along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a paginated list of BatchDeployment entities along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BatchDeploymentInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<BatchDeploymentInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<BatchDeploymentTrackedResourceArmPaginatedResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(BatchDeploymentsClientImpl.class);
 }

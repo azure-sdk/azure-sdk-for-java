@@ -91,7 +91,9 @@ public final class ColumnTransformer implements JsonSerializable<ColumnTransform
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeArrayField("fields", this.fields, (writer, element) -> writer.writeString(element));
-        jsonWriter.writeUntypedField("parameters", this.parameters);
+        if (this.parameters != null) {
+            jsonWriter.writeUntypedField("parameters", this.parameters);
+        }
         return jsonWriter.writeEndObject();
     }
 
