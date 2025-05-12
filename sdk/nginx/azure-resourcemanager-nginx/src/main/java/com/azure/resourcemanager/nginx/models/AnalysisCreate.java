@@ -10,7 +10,9 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.nginx.fluent.models.AnalysisCreateConfig;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * The request body for creating an analysis for an NGINX configuration.
@@ -20,7 +22,7 @@ public final class AnalysisCreate implements JsonSerializable<AnalysisCreate> {
     /*
      * The config property.
      */
-    private AnalysisCreateConfig config;
+    private AnalysisCreateConfig innerConfig = new AnalysisCreateConfig();
 
     /**
      * Creates an instance of AnalysisCreate class.
@@ -29,22 +31,103 @@ public final class AnalysisCreate implements JsonSerializable<AnalysisCreate> {
     }
 
     /**
-     * Get the config property: The config property.
+     * Get the innerConfig property: The config property.
      * 
-     * @return the config value.
+     * @return the innerConfig value.
      */
-    public AnalysisCreateConfig config() {
-        return this.config;
+    private AnalysisCreateConfig innerConfig() {
+        return this.innerConfig;
     }
 
     /**
-     * Set the config property: The config property.
+     * Get the rootFile property: The root file of the NGINX config file(s). It must match one of the files' filepath.
      * 
-     * @param config the config value to set.
+     * @return the rootFile value.
+     */
+    public String rootFile() {
+        return this.innerConfig() == null ? null : this.innerConfig().rootFile();
+    }
+
+    /**
+     * Set the rootFile property: The root file of the NGINX config file(s). It must match one of the files' filepath.
+     * 
+     * @param rootFile the rootFile value to set.
      * @return the AnalysisCreate object itself.
      */
-    public AnalysisCreate withConfig(AnalysisCreateConfig config) {
-        this.config = config;
+    public AnalysisCreate withRootFile(String rootFile) {
+        if (this.innerConfig() == null) {
+            this.innerConfig = new AnalysisCreateConfig();
+        }
+        this.innerConfig().withRootFile(rootFile);
+        return this;
+    }
+
+    /**
+     * Get the files property: The files property.
+     * 
+     * @return the files value.
+     */
+    public List<NginxConfigurationFile> files() {
+        return this.innerConfig() == null ? null : this.innerConfig().files();
+    }
+
+    /**
+     * Set the files property: The files property.
+     * 
+     * @param files the files value to set.
+     * @return the AnalysisCreate object itself.
+     */
+    public AnalysisCreate withFiles(List<NginxConfigurationFile> files) {
+        if (this.innerConfig() == null) {
+            this.innerConfig = new AnalysisCreateConfig();
+        }
+        this.innerConfig().withFiles(files);
+        return this;
+    }
+
+    /**
+     * Get the protectedFiles property: The protectedFiles property.
+     * 
+     * @return the protectedFiles value.
+     */
+    public List<NginxConfigurationProtectedFileRequest> protectedFiles() {
+        return this.innerConfig() == null ? null : this.innerConfig().protectedFiles();
+    }
+
+    /**
+     * Set the protectedFiles property: The protectedFiles property.
+     * 
+     * @param protectedFiles the protectedFiles value to set.
+     * @return the AnalysisCreate object itself.
+     */
+    public AnalysisCreate withProtectedFiles(List<NginxConfigurationProtectedFileRequest> protectedFiles) {
+        if (this.innerConfig() == null) {
+            this.innerConfig = new AnalysisCreateConfig();
+        }
+        this.innerConfig().withProtectedFiles(protectedFiles);
+        return this;
+    }
+
+    /**
+     * Get the packageProperty property: Nginx Configuration Package.
+     * 
+     * @return the packageProperty value.
+     */
+    public NginxConfigurationPackage packageProperty() {
+        return this.innerConfig() == null ? null : this.innerConfig().packageProperty();
+    }
+
+    /**
+     * Set the packageProperty property: Nginx Configuration Package.
+     * 
+     * @param packageProperty the packageProperty value to set.
+     * @return the AnalysisCreate object itself.
+     */
+    public AnalysisCreate withPackageProperty(NginxConfigurationPackage packageProperty) {
+        if (this.innerConfig() == null) {
+            this.innerConfig = new AnalysisCreateConfig();
+        }
+        this.innerConfig().withPackageProperty(packageProperty);
         return this;
     }
 
@@ -54,11 +137,11 @@ public final class AnalysisCreate implements JsonSerializable<AnalysisCreate> {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (config() == null) {
+        if (innerConfig() == null) {
             throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property config in model AnalysisCreate"));
+                .log(new IllegalArgumentException("Missing required property innerConfig in model AnalysisCreate"));
         } else {
-            config().validate();
+            innerConfig().validate();
         }
     }
 
@@ -70,7 +153,7 @@ public final class AnalysisCreate implements JsonSerializable<AnalysisCreate> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeJsonField("config", this.config);
+        jsonWriter.writeJsonField("config", this.innerConfig);
         return jsonWriter.writeEndObject();
     }
 
@@ -91,7 +174,7 @@ public final class AnalysisCreate implements JsonSerializable<AnalysisCreate> {
                 reader.nextToken();
 
                 if ("config".equals(fieldName)) {
-                    deserializedAnalysisCreate.config = AnalysisCreateConfig.fromJson(reader);
+                    deserializedAnalysisCreate.innerConfig = AnalysisCreateConfig.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

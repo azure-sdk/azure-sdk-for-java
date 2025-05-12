@@ -10,6 +10,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.nginx.fluent.models.ScaleProfileCapacity;
 import java.io.IOException;
 
 /**
@@ -25,7 +26,7 @@ public final class ScaleProfile implements JsonSerializable<ScaleProfile> {
     /*
      * The capacity parameters of the profile.
      */
-    private ScaleProfileCapacity capacity;
+    private ScaleProfileCapacity innerCapacity = new ScaleProfileCapacity();
 
     /**
      * Creates an instance of ScaleProfile class.
@@ -54,22 +55,57 @@ public final class ScaleProfile implements JsonSerializable<ScaleProfile> {
     }
 
     /**
-     * Get the capacity property: The capacity parameters of the profile.
+     * Get the innerCapacity property: The capacity parameters of the profile.
      * 
-     * @return the capacity value.
+     * @return the innerCapacity value.
      */
-    public ScaleProfileCapacity capacity() {
-        return this.capacity;
+    private ScaleProfileCapacity innerCapacity() {
+        return this.innerCapacity;
     }
 
     /**
-     * Set the capacity property: The capacity parameters of the profile.
+     * Get the min property: The minimum number of NCUs the deployment can be autoscaled to.
      * 
-     * @param capacity the capacity value to set.
+     * @return the min value.
+     */
+    public int min() {
+        return this.innerCapacity() == null ? 0 : this.innerCapacity().min();
+    }
+
+    /**
+     * Set the min property: The minimum number of NCUs the deployment can be autoscaled to.
+     * 
+     * @param min the min value to set.
      * @return the ScaleProfile object itself.
      */
-    public ScaleProfile withCapacity(ScaleProfileCapacity capacity) {
-        this.capacity = capacity;
+    public ScaleProfile withMin(int min) {
+        if (this.innerCapacity() == null) {
+            this.innerCapacity = new ScaleProfileCapacity();
+        }
+        this.innerCapacity().withMin(min);
+        return this;
+    }
+
+    /**
+     * Get the max property: The maximum number of NCUs the deployment can be autoscaled to.
+     * 
+     * @return the max value.
+     */
+    public int max() {
+        return this.innerCapacity() == null ? 0 : this.innerCapacity().max();
+    }
+
+    /**
+     * Set the max property: The maximum number of NCUs the deployment can be autoscaled to.
+     * 
+     * @param max the max value to set.
+     * @return the ScaleProfile object itself.
+     */
+    public ScaleProfile withMax(int max) {
+        if (this.innerCapacity() == null) {
+            this.innerCapacity = new ScaleProfileCapacity();
+        }
+        this.innerCapacity().withMax(max);
         return this;
     }
 
@@ -83,11 +119,11 @@ public final class ScaleProfile implements JsonSerializable<ScaleProfile> {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property name in model ScaleProfile"));
         }
-        if (capacity() == null) {
+        if (innerCapacity() == null) {
             throw LOGGER.atError()
-                .log(new IllegalArgumentException("Missing required property capacity in model ScaleProfile"));
+                .log(new IllegalArgumentException("Missing required property innerCapacity in model ScaleProfile"));
         } else {
-            capacity().validate();
+            innerCapacity().validate();
         }
     }
 
@@ -100,7 +136,7 @@ public final class ScaleProfile implements JsonSerializable<ScaleProfile> {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("name", this.name);
-        jsonWriter.writeJsonField("capacity", this.capacity);
+        jsonWriter.writeJsonField("capacity", this.innerCapacity);
         return jsonWriter.writeEndObject();
     }
 
@@ -123,7 +159,7 @@ public final class ScaleProfile implements JsonSerializable<ScaleProfile> {
                 if ("name".equals(fieldName)) {
                     deserializedScaleProfile.name = reader.getString();
                 } else if ("capacity".equals(fieldName)) {
-                    deserializedScaleProfile.capacity = ScaleProfileCapacity.fromJson(reader);
+                    deserializedScaleProfile.innerCapacity = ScaleProfileCapacity.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

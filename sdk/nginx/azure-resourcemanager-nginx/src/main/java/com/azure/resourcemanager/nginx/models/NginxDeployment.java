@@ -50,21 +50,21 @@ public interface NginxDeployment {
     Map<String, String> tags();
 
     /**
-     * Gets the identity property: The identity property.
+     * Gets the identity property: Identity Properties.
      * 
      * @return the identity value.
      */
     IdentityProperties identity();
 
     /**
-     * Gets the properties property: The properties property.
+     * Gets the properties property: Nginx Deployment Properties.
      * 
      * @return the properties value.
      */
     NginxDeploymentProperties properties();
 
     /**
-     * Gets the sku property: The sku property.
+     * Gets the sku property: Resource Sku.
      * 
      * @return the sku value.
      */
@@ -196,9 +196,9 @@ public interface NginxDeployment {
          */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity property..
+             * Specifies the identity property: Identity Properties.
              * 
-             * @param identity The identity property.
+             * @param identity Identity Properties.
              * @return the next definition stage.
              */
             WithCreate withIdentity(IdentityProperties identity);
@@ -209,9 +209,9 @@ public interface NginxDeployment {
          */
         interface WithProperties {
             /**
-             * Specifies the properties property: The properties property..
+             * Specifies the properties property: Nginx Deployment Properties.
              * 
-             * @param properties The properties property.
+             * @param properties Nginx Deployment Properties.
              * @return the next definition stage.
              */
             WithCreate withProperties(NginxDeploymentProperties properties);
@@ -222,9 +222,9 @@ public interface NginxDeployment {
          */
         interface WithSku {
             /**
-             * Specifies the sku property: The sku property..
+             * Specifies the sku property: Resource Sku.
              * 
-             * @param sku The sku property.
+             * @param sku Resource Sku.
              * @return the next definition stage.
              */
             WithCreate withSku(ResourceSku sku);
@@ -281,9 +281,9 @@ public interface NginxDeployment {
          */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity property..
+             * Specifies the identity property: Identity Properties.
              * 
-             * @param identity The identity property.
+             * @param identity Identity Properties.
              * @return the next definition stage.
              */
             Update withIdentity(IdentityProperties identity);
@@ -294,9 +294,9 @@ public interface NginxDeployment {
          */
         interface WithSku {
             /**
-             * Specifies the sku property: The sku property..
+             * Specifies the sku property: Resource Sku.
              * 
-             * @param sku The sku property.
+             * @param sku Resource Sku.
              * @return the next definition stage.
              */
             Update withSku(ResourceSku sku);
@@ -307,9 +307,9 @@ public interface NginxDeployment {
          */
         interface WithProperties {
             /**
-             * Specifies the properties property: The properties property..
+             * Specifies the properties property: Nginx Deployment Update Properties.
              * 
-             * @param properties The properties property.
+             * @param properties Nginx Deployment Update Properties.
              * @return the next definition stage.
              */
             Update withProperties(NginxDeploymentUpdateProperties properties);

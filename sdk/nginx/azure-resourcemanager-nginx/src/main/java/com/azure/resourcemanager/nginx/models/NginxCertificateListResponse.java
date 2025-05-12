@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The NginxCertificateListResponse model.
+ * Nginx Certificate List Response.
  */
 @Fluent
 public final class NginxCertificateListResponse implements JsonSerializable<NginxCertificateListResponse> {

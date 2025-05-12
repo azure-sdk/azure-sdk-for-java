@@ -13,12 +13,12 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The NginxConfigurationRequest model.
+ * Nginx Configuration Request.
  */
 @Fluent
 public final class NginxConfigurationRequest extends ProxyResource {
     /*
-     * The properties property.
+     * Nginx Configuration Request Properties
      */
     private NginxConfigurationRequestProperties properties;
 
@@ -49,7 +49,7 @@ public final class NginxConfigurationRequest extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The properties property.
+     * Get the properties property: Nginx Configuration Request Properties.
      * 
      * @return the properties value.
      */
@@ -58,7 +58,7 @@ public final class NginxConfigurationRequest extends ProxyResource {
     }
 
     /**
-     * Set the properties property: The properties property.
+     * Set the properties property: Nginx Configuration Request Properties.
      * 
      * @param properties the properties value to set.
      * @return the NginxConfigurationRequest object itself.

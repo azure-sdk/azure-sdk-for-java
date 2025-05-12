@@ -15,7 +15,7 @@ import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * The NginxDeploymentApiKeyResponseProperties model.
+ * Nginx Deployment Api Key Response Properties.
  */
 @Fluent
 public final class NginxDeploymentApiKeyResponseProperties

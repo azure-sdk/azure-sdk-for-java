@@ -17,22 +17,22 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * The NginxDeployment model.
+ * Nginx Deployment.
  */
 @Fluent
 public final class NginxDeploymentInner extends Resource {
     /*
-     * The identity property.
+     * Identity Properties
      */
     private IdentityProperties identity;
 
     /*
-     * The properties property.
+     * Nginx Deployment Properties
      */
     private NginxDeploymentProperties properties;
 
     /*
-     * The sku property.
+     * Resource Sku
      */
     private ResourceSku sku;
 
@@ -63,7 +63,7 @@ public final class NginxDeploymentInner extends Resource {
     }
 
     /**
-     * Get the identity property: The identity property.
+     * Get the identity property: Identity Properties.
      * 
      * @return the identity value.
      */
@@ -72,7 +72,7 @@ public final class NginxDeploymentInner extends Resource {
     }
 
     /**
-     * Set the identity property: The identity property.
+     * Set the identity property: Identity Properties.
      * 
      * @param identity the identity value to set.
      * @return the NginxDeploymentInner object itself.
@@ -83,7 +83,7 @@ public final class NginxDeploymentInner extends Resource {
     }
 
     /**
-     * Get the properties property: The properties property.
+     * Get the properties property: Nginx Deployment Properties.
      * 
      * @return the properties value.
      */
@@ -92,7 +92,7 @@ public final class NginxDeploymentInner extends Resource {
     }
 
     /**
-     * Set the properties property: The properties property.
+     * Set the properties property: Nginx Deployment Properties.
      * 
      * @param properties the properties value to set.
      * @return the NginxDeploymentInner object itself.
@@ -103,7 +103,7 @@ public final class NginxDeploymentInner extends Resource {
     }
 
     /**
-     * Get the sku property: The sku property.
+     * Get the sku property: Resource Sku.
      * 
      * @return the sku value.
      */
@@ -112,7 +112,7 @@ public final class NginxDeploymentInner extends Resource {
     }
 
     /**
-     * Set the sku property: The sku property.
+     * Set the sku property: Resource Sku.
      * 
      * @param sku the sku value to set.
      * @return the NginxDeploymentInner object itself.

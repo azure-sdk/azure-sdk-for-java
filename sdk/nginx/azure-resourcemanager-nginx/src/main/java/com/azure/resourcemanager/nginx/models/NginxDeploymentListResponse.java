@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The NginxDeploymentListResponse model.
+ * Nginx Deployment List Response.
  */
 @Fluent
 public final class NginxDeploymentListResponse implements JsonSerializable<NginxDeploymentListResponse> {

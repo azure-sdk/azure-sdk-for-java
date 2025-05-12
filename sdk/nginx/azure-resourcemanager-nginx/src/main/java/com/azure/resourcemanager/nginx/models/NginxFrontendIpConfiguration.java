@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The NginxFrontendIpConfiguration model.
+ * Nginx Frontend IP Configuration.
  */
 @Fluent
 public final class NginxFrontendIpConfiguration implements JsonSerializable<NginxFrontendIpConfiguration> {

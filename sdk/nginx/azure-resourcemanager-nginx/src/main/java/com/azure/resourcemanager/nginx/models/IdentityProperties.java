@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * The IdentityProperties model.
+ * Identity Properties.
  */
 @Fluent
 public final class IdentityProperties implements JsonSerializable<IdentityProperties> {
@@ -28,7 +28,7 @@ public final class IdentityProperties implements JsonSerializable<IdentityProper
     private String tenantId;
 
     /*
-     * The type property.
+     * Identity Type
      */
     private IdentityType type;
 
@@ -62,7 +62,7 @@ public final class IdentityProperties implements JsonSerializable<IdentityProper
     }
 
     /**
-     * Get the type property: The type property.
+     * Get the type property: Identity Type.
      * 
      * @return the type value.
      */
@@ -71,7 +71,7 @@ public final class IdentityProperties implements JsonSerializable<IdentityProper
     }
 
     /**
-     * Set the type property: The type property.
+     * Set the type property: Identity Type.
      * 
      * @param type the type value to set.
      * @return the IdentityProperties object itself.

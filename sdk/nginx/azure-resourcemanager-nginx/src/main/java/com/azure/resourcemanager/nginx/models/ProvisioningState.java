@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * Defines values for ProvisioningState.
+ * Provisioning State.
  */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {
     /**

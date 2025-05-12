@@ -13,13 +13,13 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The NginxConfigurationRequestProperties model.
+ * Nginx Configuration Request Properties.
  */
 @Fluent
 public final class NginxConfigurationRequestProperties
     implements JsonSerializable<NginxConfigurationRequestProperties> {
     /*
-     * The provisioningState property.
+     * Provisioning State
      */
     private ProvisioningState provisioningState;
 
@@ -34,7 +34,7 @@ public final class NginxConfigurationRequestProperties
     private List<NginxConfigurationProtectedFileRequest> protectedFiles;
 
     /*
-     * The package property.
+     * Nginx Configuration Package
      */
     private NginxConfigurationPackage packageProperty;
 
@@ -50,7 +50,7 @@ public final class NginxConfigurationRequestProperties
     }
 
     /**
-     * Get the provisioningState property: The provisioningState property.
+     * Get the provisioningState property: Provisioning State.
      * 
      * @return the provisioningState value.
      */
@@ -100,7 +100,7 @@ public final class NginxConfigurationRequestProperties
     }
 
     /**
-     * Get the packageProperty property: The package property.
+     * Get the packageProperty property: Nginx Configuration Package.
      * 
      * @return the packageProperty value.
      */
@@ -109,7 +109,7 @@ public final class NginxConfigurationRequestProperties
     }
 
     /**
-     * Set the packageProperty property: The package property.
+     * Set the packageProperty property: Nginx Configuration Package.
      * 
      * @param packageProperty the packageProperty value to set.
      * @return the NginxConfigurationRequestProperties object itself.

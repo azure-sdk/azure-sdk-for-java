@@ -35,7 +35,7 @@ public interface NginxConfigurationResponse {
     String type();
 
     /**
-     * Gets the properties property: The properties property.
+     * Gets the properties property: Nginx Configuration Response Properties.
      * 
      * @return the properties value.
      */
@@ -119,9 +119,9 @@ public interface NginxConfigurationResponse {
          */
         interface WithProperties {
             /**
-             * Specifies the properties property: The properties property..
+             * Specifies the properties property: Nginx Configuration Request Properties.
              * 
-             * @param properties The properties property.
+             * @param properties Nginx Configuration Request Properties.
              * @return the next definition stage.
              */
             WithCreate withProperties(NginxConfigurationRequestProperties properties);
@@ -164,9 +164,9 @@ public interface NginxConfigurationResponse {
          */
         interface WithProperties {
             /**
-             * Specifies the properties property: The properties property..
+             * Specifies the properties property: Nginx Configuration Request Properties.
              * 
-             * @param properties The properties property.
+             * @param properties Nginx Configuration Request Properties.
              * @return the next definition stage.
              */
             Update withProperties(NginxConfigurationRequestProperties properties);

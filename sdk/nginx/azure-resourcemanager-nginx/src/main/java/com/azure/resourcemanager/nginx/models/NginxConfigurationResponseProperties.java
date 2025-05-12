@@ -13,13 +13,13 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The NginxConfigurationResponseProperties model.
+ * Nginx Configuration Response Properties.
  */
 @Fluent
 public final class NginxConfigurationResponseProperties
     implements JsonSerializable<NginxConfigurationResponseProperties> {
     /*
-     * The provisioningState property.
+     * Provisioning State
      */
     private ProvisioningState provisioningState;
 
@@ -34,7 +34,7 @@ public final class NginxConfigurationResponseProperties
     private List<NginxConfigurationProtectedFileResponse> protectedFiles;
 
     /*
-     * The package property.
+     * Nginx Configuration Package
      */
     private NginxConfigurationPackage packageProperty;
 
@@ -50,7 +50,7 @@ public final class NginxConfigurationResponseProperties
     }
 
     /**
-     * Get the provisioningState property: The provisioningState property.
+     * Get the provisioningState property: Provisioning State.
      * 
      * @return the provisioningState value.
      */
@@ -100,7 +100,7 @@ public final class NginxConfigurationResponseProperties
     }
 
     /**
-     * Get the packageProperty property: The package property.
+     * Get the packageProperty property: Nginx Configuration Package.
      * 
      * @return the packageProperty value.
      */
@@ -109,7 +109,7 @@ public final class NginxConfigurationResponseProperties
     }
 
     /**
-     * Set the packageProperty property: The package property.
+     * Set the packageProperty property: Nginx Configuration Package.
      * 
      * @param packageProperty the packageProperty value to set.
      * @return the NginxConfigurationResponseProperties object itself.

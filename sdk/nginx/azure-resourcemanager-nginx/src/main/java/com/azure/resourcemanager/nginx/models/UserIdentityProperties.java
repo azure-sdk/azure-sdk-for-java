@@ -12,7 +12,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * The UserIdentityProperties model.
+ * User Identity Properties.
  */
 @Immutable
 public final class UserIdentityProperties implements JsonSerializable<UserIdentityProperties> {
