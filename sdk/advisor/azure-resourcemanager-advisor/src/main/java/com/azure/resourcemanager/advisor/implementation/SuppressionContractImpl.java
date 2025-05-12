@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.advisor.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.advisor.fluent.models.SuppressionContractInner;
 import com.azure.resourcemanager.advisor.models.SuppressionContract;
@@ -30,6 +31,10 @@ public final class SuppressionContractImpl implements SuppressionContract, Suppr
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String suppressionId() {
