@@ -21,6 +21,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.ChargesClient;
 import com.azure.resourcemanager.consumption.fluent.models.ChargesListResultInner;
 import reactor.core.publisher.Mono;
@@ -61,6 +62,16 @@ public final class ChargesClientImpl implements ChargesClient {
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ChargesListResultInner>> list(@HostParam("$host") String endpoint,
+            @PathParam(value = "scope", encoded = true) String scope, @QueryParam("api-version") String apiVersion,
+            @QueryParam("startDate") String startDate, @QueryParam("endDate") String endDate,
+            @QueryParam("$filter") String filter, @QueryParam("$apply") String apply,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/{scope}/providers/Microsoft.Consumption/charges")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ChargesListResultInner> listSync(@HostParam("$host") String endpoint,
             @PathParam(value = "scope", encoded = true) String scope, @QueryParam("api-version") String apiVersion,
             @QueryParam("startDate") String startDate, @QueryParam("endDate") String endDate,
             @QueryParam("$filter") String filter, @QueryParam("$apply") String apply,
@@ -133,54 +144,6 @@ public final class ChargesClientImpl implements ChargesClient {
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}/invoiceSections/{invoiceSectionId}'
      * for invoiceSection scope, and
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/customers/{customerId}' specific for partners.
-     * @param startDate Start date.
-     * @param endDate End date.
-     * @param filter May be used to filter charges by properties/usageEnd (Utc time), properties/usageStart (Utc time).
-     * The filter supports 'eq', 'lt', 'gt', 'le', 'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'.
-     * Tag filter is a key value pair string where key and value is separated by a colon (:).
-     * @param apply May be used to group charges for billingAccount scope by properties/billingProfileId,
-     * properties/invoiceSectionId, properties/customerId (specific for Partner Led), or for billingProfile scope by
-     * properties/invoiceSectionId.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing charge summary along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ChargesListResultInner>> listWithResponseAsync(String scope, String startDate, String endDate,
-        String filter, String apply, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), scope, this.client.getApiVersion(), startDate, endDate, filter,
-            apply, accept, context);
-    }
-
-    /**
-     * Lists the charges based for the defined scope.
-     * 
-     * @param scope The scope associated with charges operations. This includes
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/departments/{departmentId}' for Department
-     * scope, and
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/enrollmentAccounts/{enrollmentAccountId}' for
-     * EnrollmentAccount scope. For department and enrollment accounts, you can also add billing period to the scope
-     * using '/providers/Microsoft.Billing/billingPeriods/{billingPeriodName}'. For e.g. to specify billing period at
-     * department scope use
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/departments/{departmentId}/providers/Microsoft.Billing/billingPeriods/{billingPeriodName}'.
-     * Also, Modern Commerce Account scopes are '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for
-     * billingAccount scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
-     * billingProfile scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}/invoiceSections/{invoiceSectionId}'
-     * for invoiceSection scope, and
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/customers/{customerId}' specific for partners.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -231,7 +194,17 @@ public final class ChargesClientImpl implements ChargesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ChargesListResultInner> listWithResponse(String scope, String startDate, String endDate,
         String filter, String apply, Context context) {
-        return listWithResponseAsync(scope, startDate, endDate, filter, apply, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.listSync(this.client.getEndpoint(), scope, this.client.getApiVersion(), startDate, endDate,
+            filter, apply, accept, context);
     }
 
     /**
@@ -265,4 +238,6 @@ public final class ChargesClientImpl implements ChargesClient {
         final String apply = null;
         return listWithResponse(scope, startDate, endDate, filter, apply, Context.NONE).getValue();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ChargesClientImpl.class);
 }

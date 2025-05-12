@@ -28,6 +28,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.BudgetsClient;
 import com.azure.resourcemanager.consumption.fluent.models.BudgetInner;
 import com.azure.resourcemanager.consumption.models.BudgetsListResult;
@@ -73,10 +74,26 @@ public final class BudgetsClientImpl implements BudgetsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/{scope}/providers/Microsoft.Consumption/budgets")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BudgetsListResult> listSync(@HostParam("$host") String endpoint,
+            @PathParam(value = "scope", encoded = true) String scope, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/{scope}/providers/Microsoft.Consumption/budgets/{budgetName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BudgetInner>> get(@HostParam("$host") String endpoint,
+            @PathParam(value = "scope", encoded = true) String scope, @QueryParam("api-version") String apiVersion,
+            @PathParam("budgetName") String budgetName, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/{scope}/providers/Microsoft.Consumption/budgets/{budgetName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BudgetInner> getSync(@HostParam("$host") String endpoint,
             @PathParam(value = "scope", encoded = true) String scope, @QueryParam("api-version") String apiVersion,
             @PathParam("budgetName") String budgetName, @HeaderParam("Accept") String accept, Context context);
 
@@ -90,6 +107,15 @@ public final class BudgetsClientImpl implements BudgetsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Put("/{scope}/providers/Microsoft.Consumption/budgets/{budgetName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BudgetInner> createOrUpdateSync(@HostParam("$host") String endpoint,
+            @PathParam(value = "scope", encoded = true) String scope, @QueryParam("api-version") String apiVersion,
+            @PathParam("budgetName") String budgetName, @BodyParam("application/json") BudgetInner parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Delete("/{scope}/providers/Microsoft.Consumption/budgets/{budgetName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -98,10 +124,25 @@ public final class BudgetsClientImpl implements BudgetsClient {
             @PathParam("budgetName") String budgetName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Delete("/{scope}/providers/Microsoft.Consumption/budgets/{budgetName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Void> deleteSync(@HostParam("$host") String endpoint,
+            @PathParam(value = "scope", encoded = true) String scope, @QueryParam("api-version") String apiVersion,
+            @PathParam("budgetName") String budgetName, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BudgetsListResult>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BudgetsListResult> listNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
@@ -156,42 +197,6 @@ public final class BudgetsClientImpl implements BudgetsClient {
      * billingProfile scope,
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/invoiceSections/{invoiceSectionId}' for
      * invoiceSection scope.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing budgets along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BudgetInner>> listSinglePageAsync(String scope, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), scope, this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists all budgets for the defined scope.
-     * 
-     * @param scope The scope associated with budget operations. This includes '/subscriptions/{subscriptionId}/' for
-     * subscription scope, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for resourceGroup scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/departments/{departmentId}' for Department
-     * scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/enrollmentAccounts/{enrollmentAccountId}'
-     * for EnrollmentAccount scope, '/providers/Microsoft.Management/managementGroups/{managementGroupId}' for
-     * Management Group scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
-     * billingProfile scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/invoiceSections/{invoiceSectionId}' for
-     * invoiceSection scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -216,16 +221,63 @@ public final class BudgetsClientImpl implements BudgetsClient {
      * billingProfile scope,
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/invoiceSections/{invoiceSectionId}' for
      * invoiceSection scope.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing budgets along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BudgetInner> listSinglePage(String scope) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<BudgetsListResult> res
+            = service.listSync(this.client.getEndpoint(), scope, this.client.getApiVersion(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists all budgets for the defined scope.
+     * 
+     * @param scope The scope associated with budget operations. This includes '/subscriptions/{subscriptionId}/' for
+     * subscription scope, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for resourceGroup scope,
+     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account scope,
+     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/departments/{departmentId}' for Department
+     * scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/enrollmentAccounts/{enrollmentAccountId}'
+     * for EnrollmentAccount scope, '/providers/Microsoft.Management/managementGroups/{managementGroupId}' for
+     * Management Group scope,
+     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
+     * billingProfile scope,
+     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/invoiceSections/{invoiceSectionId}' for
+     * invoiceSection scope.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing budgets as paginated response with {@link PagedFlux}.
+     * @return result of listing budgets along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BudgetInner> listAsync(String scope, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(scope, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BudgetInner> listSinglePage(String scope, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<BudgetsListResult> res
+            = service.listSync(this.client.getEndpoint(), scope, this.client.getApiVersion(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -249,7 +301,7 @@ public final class BudgetsClientImpl implements BudgetsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BudgetInner> list(String scope) {
-        return new PagedIterable<>(listAsync(scope));
+        return new PagedIterable<>(() -> listSinglePage(scope), nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -274,7 +326,8 @@ public final class BudgetsClientImpl implements BudgetsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BudgetInner> list(String scope, Context context) {
-        return new PagedIterable<>(listAsync(scope, context));
+        return new PagedIterable<>(() -> listSinglePage(scope, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -332,45 +385,6 @@ public final class BudgetsClientImpl implements BudgetsClient {
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/invoiceSections/{invoiceSectionId}' for
      * invoiceSection scope.
      * @param budgetName Budget Name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the budget for the scope by budget name along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BudgetInner>> getWithResponseAsync(String scope, String budgetName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (budgetName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter budgetName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), scope, this.client.getApiVersion(), budgetName, accept, context);
-    }
-
-    /**
-     * Gets the budget for the scope by budget name.
-     * 
-     * @param scope The scope associated with budget operations. This includes '/subscriptions/{subscriptionId}/' for
-     * subscription scope, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for resourceGroup scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/departments/{departmentId}' for Department
-     * scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/enrollmentAccounts/{enrollmentAccountId}'
-     * for EnrollmentAccount scope, '/providers/Microsoft.Management/managementGroups/{managementGroupId}' for
-     * Management Group scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
-     * billingProfile scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/invoiceSections/{invoiceSectionId}' for
-     * invoiceSection scope.
-     * @param budgetName Budget Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -404,7 +418,21 @@ public final class BudgetsClientImpl implements BudgetsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BudgetInner> getWithResponse(String scope, String budgetName, Context context) {
-        return getWithResponseAsync(scope, budgetName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (budgetName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter budgetName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), scope, this.client.getApiVersion(), budgetName, accept,
+            context);
     }
 
     /**
@@ -498,54 +526,6 @@ public final class BudgetsClientImpl implements BudgetsClient {
      * invoiceSection scope.
      * @param budgetName Budget Name.
      * @param parameters Parameters supplied to the Create Budget operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a budget resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BudgetInner>> createOrUpdateWithResponseAsync(String scope, String budgetName,
-        BudgetInner parameters, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (budgetName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter budgetName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), scope, this.client.getApiVersion(), budgetName,
-            parameters, accept, context);
-    }
-
-    /**
-     * The operation to create or update a budget. You can optionally provide an eTag if desired as a form of
-     * concurrency control. To obtain the latest eTag for a given budget, perform a get operation prior to your put
-     * operation.
-     * 
-     * @param scope The scope associated with budget operations. This includes '/subscriptions/{subscriptionId}/' for
-     * subscription scope, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for resourceGroup scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/departments/{departmentId}' for Department
-     * scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/enrollmentAccounts/{enrollmentAccountId}'
-     * for EnrollmentAccount scope, '/providers/Microsoft.Management/managementGroups/{managementGroupId}' for
-     * Management Group scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
-     * billingProfile scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/invoiceSections/{invoiceSectionId}' for
-     * invoiceSection scope.
-     * @param budgetName Budget Name.
-     * @param parameters Parameters supplied to the Create Budget operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -584,7 +564,27 @@ public final class BudgetsClientImpl implements BudgetsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BudgetInner> createOrUpdateWithResponse(String scope, String budgetName, BudgetInner parameters,
         Context context) {
-        return createOrUpdateWithResponseAsync(scope, budgetName, parameters, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (budgetName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter budgetName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return service.createOrUpdateSync(this.client.getEndpoint(), scope, this.client.getApiVersion(), budgetName,
+            parameters, accept, context);
     }
 
     /**
@@ -669,45 +669,6 @@ public final class BudgetsClientImpl implements BudgetsClient {
      * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/invoiceSections/{invoiceSectionId}' for
      * invoiceSection scope.
      * @param budgetName Budget Name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String scope, String budgetName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (budgetName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter budgetName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), scope, this.client.getApiVersion(), budgetName, accept,
-            context);
-    }
-
-    /**
-     * The operation to delete a budget.
-     * 
-     * @param scope The scope associated with budget operations. This includes '/subscriptions/{subscriptionId}/' for
-     * subscription scope, '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for resourceGroup scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/departments/{departmentId}' for Department
-     * scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/enrollmentAccounts/{enrollmentAccountId}'
-     * for EnrollmentAccount scope, '/providers/Microsoft.Management/managementGroups/{managementGroupId}' for
-     * Management Group scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
-     * billingProfile scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/invoiceSections/{invoiceSectionId}' for
-     * invoiceSection scope.
-     * @param budgetName Budget Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -741,7 +702,21 @@ public final class BudgetsClientImpl implements BudgetsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(String scope, String budgetName, Context context) {
-        return deleteWithResponseAsync(scope, budgetName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (budgetName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter budgetName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.deleteSync(this.client.getEndpoint(), scope, this.client.getApiVersion(), budgetName, accept,
+            context);
     }
 
     /**
@@ -797,25 +772,55 @@ public final class BudgetsClientImpl implements BudgetsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing budgets along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BudgetInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<BudgetsListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing budgets along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return result of listing budgets along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BudgetInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<BudgetInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<BudgetsListResult> res = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(BudgetsClientImpl.class);
 }

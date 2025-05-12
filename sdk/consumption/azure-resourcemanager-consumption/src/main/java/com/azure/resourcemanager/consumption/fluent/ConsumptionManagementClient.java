@@ -47,6 +47,13 @@ public interface ConsumptionManagementClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the PriceSheetsClient object to access its operations.
+     * 
+     * @return the PriceSheetsClient object.
+     */
+    PriceSheetsClient getPriceSheets();
+
+    /**
      * Gets the UsageDetailsClient object to access its operations.
      * 
      * @return the UsageDetailsClient object.
@@ -122,13 +129,6 @@ public interface ConsumptionManagementClient {
      * @return the ReservationTransactionsClient object.
      */
     ReservationTransactionsClient getReservationTransactions();
-
-    /**
-     * Gets the PriceSheetsClient object to access its operations.
-     * 
-     * @return the PriceSheetsClient object.
-     */
-    PriceSheetsClient getPriceSheets();
 
     /**
      * Gets the OperationsClient object to access its operations.

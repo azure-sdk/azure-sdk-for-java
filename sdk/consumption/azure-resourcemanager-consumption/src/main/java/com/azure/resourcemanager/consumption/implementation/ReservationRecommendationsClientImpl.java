@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.ReservationRecommendationsClient;
 import com.azure.resourcemanager.consumption.fluent.models.ReservationRecommendationInner;
 import com.azure.resourcemanager.consumption.models.ReservationRecommendationsListResult;
@@ -72,10 +73,27 @@ public final class ReservationRecommendationsClientImpl implements ReservationRe
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/{resourceScope}/providers/Microsoft.Consumption/reservationRecommendations")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ReservationRecommendationsListResult> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("$filter") String filter, @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceScope", encoded = true) String resourceScope,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ReservationRecommendationsListResult>> listNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ReservationRecommendationsListResult> listNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -118,46 +136,6 @@ public final class ReservationRecommendationsClientImpl implements ReservationRe
             .<PagedResponse<ReservationRecommendationInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * List of recommendations for purchasing reserved instances.
-     * 
-     * @param resourceScope The scope associated with reservation recommendations operations. This includes
-     * '/subscriptions/{subscriptionId}/' for subscription scope,
-     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for resource group scope,
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope, and
-     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
-     * billingProfile scope.
-     * @param filter May be used to filter reservationRecommendations by: properties/scope with allowed values
-     * ['Single', 'Shared'] and default value 'Single'; properties/resourceType with allowed values ['VirtualMachines',
-     * 'SQLDatabases', 'PostgreSQL', 'ManagedDisk', 'MySQL', 'RedHat', 'MariaDB', 'RedisCache', 'CosmosDB',
-     * 'SqlDataWarehouse', 'SUSELinux', 'AppService', 'BlockBlob', 'AzureDataExplorer', 'VMwareCloudSimple'] and default
-     * value 'VirtualMachines'; and properties/lookBackPeriod with allowed values ['Last7Days', 'Last30Days',
-     * 'Last60Days'] and default value 'Last7Days'.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationRecommendationInner>> listSinglePageAsync(String resourceScope, String filter,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceScope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceScope is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), filter, this.client.getApiVersion(), resourceScope, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -222,16 +200,67 @@ public final class ReservationRecommendationsClientImpl implements ReservationRe
      * 'SqlDataWarehouse', 'SUSELinux', 'AppService', 'BlockBlob', 'AzureDataExplorer', 'VMwareCloudSimple'] and default
      * value 'VirtualMachines'; and properties/lookBackPeriod with allowed values ['Last7Days', 'Last30Days',
      * 'Last60Days'] and default value 'Last7Days'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing reservation recommendations along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationRecommendationInner> listSinglePage(String resourceScope, String filter) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceScope == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceScope is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationRecommendationsListResult> res = service.listSync(this.client.getEndpoint(), filter,
+            this.client.getApiVersion(), resourceScope, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * List of recommendations for purchasing reserved instances.
+     * 
+     * @param resourceScope The scope associated with reservation recommendations operations. This includes
+     * '/subscriptions/{subscriptionId}/' for subscription scope,
+     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for resource group scope,
+     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope, and
+     * '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
+     * billingProfile scope.
+     * @param filter May be used to filter reservationRecommendations by: properties/scope with allowed values
+     * ['Single', 'Shared'] and default value 'Single'; properties/resourceType with allowed values ['VirtualMachines',
+     * 'SQLDatabases', 'PostgreSQL', 'ManagedDisk', 'MySQL', 'RedHat', 'MariaDB', 'RedisCache', 'CosmosDB',
+     * 'SqlDataWarehouse', 'SUSELinux', 'AppService', 'BlockBlob', 'AzureDataExplorer', 'VMwareCloudSimple'] and default
+     * value 'VirtualMachines'; and properties/lookBackPeriod with allowed values ['Last7Days', 'Last30Days',
+     * 'Last60Days'] and default value 'Last7Days'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations as paginated response with {@link PagedFlux}.
+     * @return result of listing reservation recommendations along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ReservationRecommendationInner> listAsync(String resourceScope, String filter, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceScope, filter, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationRecommendationInner> listSinglePage(String resourceScope, String filter,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceScope == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceScope is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationRecommendationsListResult> res = service.listSync(this.client.getEndpoint(), filter,
+            this.client.getApiVersion(), resourceScope, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -251,7 +280,8 @@ public final class ReservationRecommendationsClientImpl implements ReservationRe
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ReservationRecommendationInner> list(String resourceScope) {
         final String filter = null;
-        return new PagedIterable<>(listAsync(resourceScope, filter));
+        return new PagedIterable<>(() -> listSinglePage(resourceScope, filter),
+            nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -277,7 +307,8 @@ public final class ReservationRecommendationsClientImpl implements ReservationRe
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ReservationRecommendationInner> list(String resourceScope, String filter, Context context) {
-        return new PagedIterable<>(listAsync(resourceScope, filter, context));
+        return new PagedIterable<>(() -> listSinglePage(resourceScope, filter, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -310,27 +341,56 @@ public final class ReservationRecommendationsClientImpl implements ReservationRe
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return result of listing reservation recommendations along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationRecommendationInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationRecommendationsListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing reservation recommendations along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return result of listing reservation recommendations along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationRecommendationInner>> listNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<ReservationRecommendationInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<ReservationRecommendationsListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ReservationRecommendationsClientImpl.class);
 }

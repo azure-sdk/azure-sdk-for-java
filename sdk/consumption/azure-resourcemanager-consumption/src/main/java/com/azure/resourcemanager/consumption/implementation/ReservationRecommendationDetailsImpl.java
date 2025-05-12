@@ -30,9 +30,9 @@ public final class ReservationRecommendationDetailsImpl implements ReservationRe
     }
 
     public Response<ReservationRecommendationDetailsModel> getWithResponse(String resourceScope, Scope scope,
-        String region, Term term, LookBackPeriod lookBackPeriod, String product, Context context) {
+        String region, Term term, LookBackPeriod lookBackPeriod, String product, String filter, Context context) {
         Response<ReservationRecommendationDetailsModelInner> inner = this.serviceClient()
-            .getWithResponse(resourceScope, scope, region, term, lookBackPeriod, product, context);
+            .getWithResponse(resourceScope, scope, region, term, lookBackPeriod, product, filter, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ReservationRecommendationDetailsModelImpl(inner.getValue(), this.manager()));
