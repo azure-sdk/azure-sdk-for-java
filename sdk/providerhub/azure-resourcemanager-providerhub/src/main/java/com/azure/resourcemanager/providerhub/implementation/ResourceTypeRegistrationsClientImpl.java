@@ -92,9 +92,9 @@ public final class ResourceTypeRegistrationsClientImpl implements ResourceTypeRe
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/providers/Microsoft.ProviderHub/providerRegistrations/{providerNamespace}/resourcetypeRegistrations/{resourceType}")
-        @ExpectedResponses({ 200, 204 })
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("providerNamespace") String providerNamespace, @PathParam("resourceType") String resourceType,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
@@ -492,7 +492,7 @@ public final class ResourceTypeRegistrationsClientImpl implements ResourceTypeRe
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String providerNamespace, String resourceType) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String providerNamespace, String resourceType) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -527,7 +527,7 @@ public final class ResourceTypeRegistrationsClientImpl implements ResourceTypeRe
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String providerNamespace, String resourceType,
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String providerNamespace, String resourceType,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -558,11 +558,13 @@ public final class ResourceTypeRegistrationsClientImpl implements ResourceTypeRe
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String providerNamespace, String resourceType) {
-        return deleteWithResponseAsync(providerNamespace, resourceType).flatMap(ignored -> Mono.empty());
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String providerNamespace, String resourceType) {
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(providerNamespace, resourceType);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
@@ -574,11 +576,79 @@ public final class ResourceTypeRegistrationsClientImpl implements ResourceTypeRe
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String providerNamespace, String resourceType,
+        Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(providerNamespace, resourceType, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
+    }
+
+    /**
+     * Deletes a resource type.
+     * 
+     * @param providerNamespace The name of the resource provider hosted within ProviderHub.
+     * @param resourceType The resource type.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String providerNamespace, String resourceType) {
+        return this.beginDeleteAsync(providerNamespace, resourceType).getSyncPoller();
+    }
+
+    /**
+     * Deletes a resource type.
+     * 
+     * @param providerNamespace The name of the resource provider hosted within ProviderHub.
+     * @param resourceType The resource type.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String providerNamespace, String resourceType,
+        Context context) {
+        return this.beginDeleteAsync(providerNamespace, resourceType, context).getSyncPoller();
+    }
+
+    /**
+     * Deletes a resource type.
+     * 
+     * @param providerNamespace The name of the resource provider hosted within ProviderHub.
+     * @param resourceType The resource type.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(String providerNamespace, String resourceType, Context context) {
-        return deleteWithResponseAsync(providerNamespace, resourceType, context).block();
+    private Mono<Void> deleteAsync(String providerNamespace, String resourceType) {
+        return beginDeleteAsync(providerNamespace, resourceType).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Deletes a resource type.
+     * 
+     * @param providerNamespace The name of the resource provider hosted within ProviderHub.
+     * @param resourceType The resource type.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String providerNamespace, String resourceType, Context context) {
+        return beginDeleteAsync(providerNamespace, resourceType, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -592,7 +662,22 @@ public final class ResourceTypeRegistrationsClientImpl implements ResourceTypeRe
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String providerNamespace, String resourceType) {
-        deleteWithResponse(providerNamespace, resourceType, Context.NONE);
+        deleteAsync(providerNamespace, resourceType).block();
+    }
+
+    /**
+     * Deletes a resource type.
+     * 
+     * @param providerNamespace The name of the resource provider hosted within ProviderHub.
+     * @param resourceType The resource type.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String providerNamespace, String resourceType, Context context) {
+        deleteAsync(providerNamespace, resourceType, context).block();
     }
 
     /**

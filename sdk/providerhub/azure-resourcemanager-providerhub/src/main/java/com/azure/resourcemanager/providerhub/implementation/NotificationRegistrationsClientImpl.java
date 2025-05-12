@@ -247,8 +247,7 @@ public final class NotificationRegistrationsClientImpl implements NotificationRe
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the notification registration definition along with {@link Response} on successful completion of
-     * {@link Mono}.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NotificationRegistrationInner>> createOrUpdateWithResponseAsync(String providerNamespace,
@@ -292,8 +291,7 @@ public final class NotificationRegistrationsClientImpl implements NotificationRe
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the notification registration definition along with {@link Response} on successful completion of
-     * {@link Mono}.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NotificationRegistrationInner>> createOrUpdateWithResponseAsync(String providerNamespace,
@@ -334,7 +332,7 @@ public final class NotificationRegistrationsClientImpl implements NotificationRe
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the notification registration definition on successful completion of {@link Mono}.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NotificationRegistrationInner> createOrUpdateAsync(String providerNamespace,
@@ -353,7 +351,7 @@ public final class NotificationRegistrationsClientImpl implements NotificationRe
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the notification registration definition along with {@link Response}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<NotificationRegistrationInner> createOrUpdateWithResponse(String providerNamespace,
@@ -371,7 +369,7 @@ public final class NotificationRegistrationsClientImpl implements NotificationRe
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the notification registration definition.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public NotificationRegistrationInner createOrUpdate(String providerNamespace, String notificationRegistrationName,

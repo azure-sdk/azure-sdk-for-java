@@ -29,10 +29,9 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.providerhub.fluent.OperationsClient;
-import com.azure.resourcemanager.providerhub.fluent.models.OperationsContentInner;
 import com.azure.resourcemanager.providerhub.fluent.models.OperationsDefinitionInner;
+import com.azure.resourcemanager.providerhub.fluent.models.OperationsPutContentInner;
 import com.azure.resourcemanager.providerhub.models.OperationsDefinitionArrayResponseWithContinuation;
-import com.azure.resourcemanager.providerhub.models.OperationsPutContent;
 import java.util.List;
 import reactor.core.publisher.Mono;
 
@@ -88,10 +87,10 @@ public final class OperationsClientImpl implements OperationsClient {
         @Put("/subscriptions/{subscriptionId}/providers/Microsoft.ProviderHub/providerRegistrations/{providerNamespace}/operations/default")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<OperationsContentInner>> createOrUpdate(@HostParam("$host") String endpoint,
+        Mono<Response<OperationsPutContentInner>> createOrUpdate(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("providerNamespace") String providerNamespace, @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") OperationsPutContent operationsPutContent,
+            @BodyParam("application/json") OperationsPutContentInner operationsPutContent,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -327,8 +326,8 @@ public final class OperationsClientImpl implements OperationsClient {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<OperationsContentInner>> createOrUpdateWithResponseAsync(String providerNamespace,
-        OperationsPutContent operationsPutContent) {
+    private Mono<Response<OperationsPutContentInner>> createOrUpdateWithResponseAsync(String providerNamespace,
+        OperationsPutContentInner operationsPutContent) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -366,8 +365,8 @@ public final class OperationsClientImpl implements OperationsClient {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<OperationsContentInner>> createOrUpdateWithResponseAsync(String providerNamespace,
-        OperationsPutContent operationsPutContent, Context context) {
+    private Mono<Response<OperationsPutContentInner>> createOrUpdateWithResponseAsync(String providerNamespace,
+        OperationsPutContentInner operationsPutContent, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -403,8 +402,8 @@ public final class OperationsClientImpl implements OperationsClient {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<OperationsContentInner> createOrUpdateAsync(String providerNamespace,
-        OperationsPutContent operationsPutContent) {
+    private Mono<OperationsPutContentInner> createOrUpdateAsync(String providerNamespace,
+        OperationsPutContentInner operationsPutContent) {
         return createOrUpdateWithResponseAsync(providerNamespace, operationsPutContent)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -421,8 +420,8 @@ public final class OperationsClientImpl implements OperationsClient {
      * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<OperationsContentInner> createOrUpdateWithResponse(String providerNamespace,
-        OperationsPutContent operationsPutContent, Context context) {
+    public Response<OperationsPutContentInner> createOrUpdateWithResponse(String providerNamespace,
+        OperationsPutContentInner operationsPutContent, Context context) {
         return createOrUpdateWithResponseAsync(providerNamespace, operationsPutContent, context).block();
     }
 
@@ -437,7 +436,8 @@ public final class OperationsClientImpl implements OperationsClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationsContentInner createOrUpdate(String providerNamespace, OperationsPutContent operationsPutContent) {
+    public OperationsPutContentInner createOrUpdate(String providerNamespace,
+        OperationsPutContentInner operationsPutContent) {
         return createOrUpdateWithResponse(providerNamespace, operationsPutContent, Context.NONE).getValue();
     }
 
