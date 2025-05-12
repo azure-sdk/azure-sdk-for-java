@@ -22,14 +22,14 @@ public class EarlyTerminationPolicy implements JsonSerializable<EarlyTermination
     private EarlyTerminationPolicyType policyType = EarlyTerminationPolicyType.fromString("EarlyTerminationPolicy");
 
     /*
-     * Interval (number of runs) between policy evaluations.
-     */
-    private Integer evaluationInterval;
-
-    /*
      * Number of intervals by which to delay the first evaluation.
      */
     private Integer delayEvaluation;
+
+    /*
+     * Interval (number of runs) between policy evaluations.
+     */
+    private Integer evaluationInterval;
 
     /**
      * Creates an instance of EarlyTerminationPolicy class.
@@ -44,26 +44,6 @@ public class EarlyTerminationPolicy implements JsonSerializable<EarlyTermination
      */
     public EarlyTerminationPolicyType policyType() {
         return this.policyType;
-    }
-
-    /**
-     * Get the evaluationInterval property: Interval (number of runs) between policy evaluations.
-     * 
-     * @return the evaluationInterval value.
-     */
-    public Integer evaluationInterval() {
-        return this.evaluationInterval;
-    }
-
-    /**
-     * Set the evaluationInterval property: Interval (number of runs) between policy evaluations.
-     * 
-     * @param evaluationInterval the evaluationInterval value to set.
-     * @return the EarlyTerminationPolicy object itself.
-     */
-    public EarlyTerminationPolicy withEvaluationInterval(Integer evaluationInterval) {
-        this.evaluationInterval = evaluationInterval;
-        return this;
     }
 
     /**
@@ -87,6 +67,26 @@ public class EarlyTerminationPolicy implements JsonSerializable<EarlyTermination
     }
 
     /**
+     * Get the evaluationInterval property: Interval (number of runs) between policy evaluations.
+     * 
+     * @return the evaluationInterval value.
+     */
+    public Integer evaluationInterval() {
+        return this.evaluationInterval;
+    }
+
+    /**
+     * Set the evaluationInterval property: Interval (number of runs) between policy evaluations.
+     * 
+     * @param evaluationInterval the evaluationInterval value to set.
+     * @return the EarlyTerminationPolicy object itself.
+     */
+    public EarlyTerminationPolicy withEvaluationInterval(Integer evaluationInterval) {
+        this.evaluationInterval = evaluationInterval;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -101,8 +101,8 @@ public class EarlyTerminationPolicy implements JsonSerializable<EarlyTermination
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("policyType", this.policyType == null ? null : this.policyType.toString());
-        jsonWriter.writeNumberField("evaluationInterval", this.evaluationInterval);
         jsonWriter.writeNumberField("delayEvaluation", this.delayEvaluation);
+        jsonWriter.writeNumberField("evaluationInterval", this.evaluationInterval);
         return jsonWriter.writeEndObject();
     }
 
@@ -153,10 +153,10 @@ public class EarlyTerminationPolicy implements JsonSerializable<EarlyTermination
                 if ("policyType".equals(fieldName)) {
                     deserializedEarlyTerminationPolicy.policyType
                         = EarlyTerminationPolicyType.fromString(reader.getString());
-                } else if ("evaluationInterval".equals(fieldName)) {
-                    deserializedEarlyTerminationPolicy.evaluationInterval = reader.getNullable(JsonReader::getInt);
                 } else if ("delayEvaluation".equals(fieldName)) {
                     deserializedEarlyTerminationPolicy.delayEvaluation = reader.getNullable(JsonReader::getInt);
+                } else if ("evaluationInterval".equals(fieldName)) {
+                    deserializedEarlyTerminationPolicy.evaluationInterval = reader.getNullable(JsonReader::getInt);
                 } else {
                     reader.skipChildren();
                 }

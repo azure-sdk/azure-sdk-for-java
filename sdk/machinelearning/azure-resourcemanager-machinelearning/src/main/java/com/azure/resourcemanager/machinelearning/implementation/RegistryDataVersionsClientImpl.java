@@ -28,8 +28,10 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.machinelearning.fluent.RegistryDataVersionsClient;
@@ -87,10 +89,32 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/registries/{registryName}/data/{name}/versions")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DataVersionBaseResourceArmPaginatedResult> listSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("registryName") String registryName,
+            @PathParam("name") String name, @QueryParam("api-version") String apiVersion,
+            @QueryParam("$orderBy") String orderBy, @QueryParam("$top") Integer top, @QueryParam("$skip") String skip,
+            @QueryParam("$tags") String tags, @QueryParam("listViewType") ListViewType listViewType,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/registries/{registryName}/data/{name}/versions/{version}")
         @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("registryName") String registryName,
+            @PathParam("name") String name, @PathParam("version") String version,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/registries/{registryName}/data/{name}/versions/{version}")
+        @ExpectedResponses({ 200, 202, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> deleteSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("registryName") String registryName,
             @PathParam("name") String name, @PathParam("version") String version,
@@ -107,10 +131,31 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/registries/{registryName}/data/{name}/versions/{version}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DataVersionBaseInner> getSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("registryName") String registryName,
+            @PathParam("name") String name, @PathParam("version") String version,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/registries/{registryName}/data/{name}/versions/{version}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("registryName") String registryName,
+            @PathParam("name") String name, @PathParam("version") String version,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") DataVersionBaseInner body,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/registries/{registryName}/data/{name}/versions/{version}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> createOrUpdateSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("registryName") String registryName,
             @PathParam("name") String name, @PathParam("version") String version,
@@ -129,10 +174,29 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/registries/{registryName}/data/{name}/versions/{version}/startPendingUpload")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PendingUploadResponseDtoInner> createOrGetStartPendingUploadSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("registryName") String registryName,
+            @PathParam("name") String name, @PathParam("version") String version,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") PendingUploadRequestDto body,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DataVersionBaseResourceArmPaginatedResult>> listNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DataVersionBaseResourceArmPaginatedResult> listNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -200,57 +264,6 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
      * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      * including/excluding (for example) archived entities.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paginated list of DataVersionBase entities along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DataVersionBaseInner>> listSinglePageAsync(String resourceGroupName, String registryName,
-        String name, String orderBy, Integer top, String skip, String tags, ListViewType listViewType,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (registryName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter registryName is required and cannot be null."));
-        }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, registryName, name,
-                this.client.getApiVersion(), orderBy, top, skip, tags, listViewType, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * List data versions in the data container.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
-     * @param name Data container's name.
-     * @param orderBy Please choose OrderBy value from ['createdtime', 'modifiedtime'].
-     * @param top Top count of results, top count cannot be greater than the page size.
-     * If topCount &gt; page size, results with be default page size count will be returned.
-     * @param skip Continuation token for pagination.
-     * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
-     * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
-     * including/excluding (for example) archived entities.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -300,17 +313,93 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
      * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      * including/excluding (for example) archived entities.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a paginated list of DataVersionBase entities along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<DataVersionBaseInner> listSinglePage(String resourceGroupName, String registryName,
+        String name, String orderBy, Integer top, String skip, String tags, ListViewType listViewType) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (registryName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter registryName is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<DataVersionBaseResourceArmPaginatedResult> res = service.listSync(this.client.getEndpoint(),
+            this.client.getSubscriptionId(), resourceGroupName, registryName, name, this.client.getApiVersion(),
+            orderBy, top, skip, tags, listViewType, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * List data versions in the data container.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
+     * @param name Data container's name.
+     * @param orderBy Please choose OrderBy value from ['createdtime', 'modifiedtime'].
+     * @param top Top count of results, top count cannot be greater than the page size.
+     * If topCount &gt; page size, results with be default page size count will be returned.
+     * @param skip Continuation token for pagination.
+     * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
+     * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
+     * including/excluding (for example) archived entities.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paginated list of DataVersionBase entities as paginated response with {@link PagedFlux}.
+     * @return a paginated list of DataVersionBase entities along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DataVersionBaseInner> listAsync(String resourceGroupName, String registryName, String name,
-        String orderBy, Integer top, String skip, String tags, ListViewType listViewType, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, registryName, name, orderBy, top, skip,
-            tags, listViewType, context), nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<DataVersionBaseInner> listSinglePage(String resourceGroupName, String registryName,
+        String name, String orderBy, Integer top, String skip, String tags, ListViewType listViewType,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (registryName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter registryName is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<DataVersionBaseResourceArmPaginatedResult> res = service.listSync(this.client.getEndpoint(),
+            this.client.getSubscriptionId(), resourceGroupName, registryName, name, this.client.getApiVersion(),
+            orderBy, top, skip, tags, listViewType, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -332,7 +421,8 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
         final String tags = null;
         final ListViewType listViewType = null;
         return new PagedIterable<>(
-            listAsync(resourceGroupName, registryName, name, orderBy, top, skip, tags, listViewType));
+            () -> listSinglePage(resourceGroupName, registryName, name, orderBy, top, skip, tags, listViewType),
+            nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -357,8 +447,8 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<DataVersionBaseInner> list(String resourceGroupName, String registryName, String name,
         String orderBy, Integer top, String skip, String tags, ListViewType listViewType, Context context) {
-        return new PagedIterable<>(
-            listAsync(resourceGroupName, registryName, name, orderBy, top, skip, tags, listViewType, context));
+        return new PagedIterable<>(() -> listSinglePage(resourceGroupName, registryName, name, orderBy, top, skip, tags,
+            listViewType, context), nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -411,39 +501,87 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
      * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
      * @param name Container name.
      * @param version Version identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> deleteWithResponse(String resourceGroupName, String registryName, String name,
+        String version) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (registryName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter registryName is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (version == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter version is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.deleteSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            registryName, name, version, this.client.getApiVersion(), accept, Context.NONE);
+    }
+
+    /**
+     * Delete version.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
+     * @param name Container name.
+     * @param version Version identifier.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String registryName,
-        String name, String version, Context context) {
+    private Response<BinaryData> deleteWithResponse(String resourceGroupName, String registryName, String name,
+        String version, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (registryName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter registryName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter registryName is required and cannot be null."));
         }
         if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         if (version == null) {
-            return Mono.error(new IllegalArgumentException("Parameter version is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter version is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+        return service.deleteSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
             registryName, name, version, this.client.getApiVersion(), accept, context);
     }
 
@@ -474,29 +612,6 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
      * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
      * @param name Container name.
      * @param version Version identifier.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String registryName,
-        String name, String version, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, registryName, name, version, context);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            context);
-    }
-
-    /**
-     * Delete version.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
-     * @param name Container name.
-     * @param version Version identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -505,7 +620,8 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String registryName, String name,
         String version) {
-        return this.beginDeleteAsync(resourceGroupName, registryName, name, version).getSyncPoller();
+        Response<BinaryData> response = deleteWithResponse(resourceGroupName, registryName, name, version);
+        return this.client.<Void, Void>getLroResult(response, Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -524,7 +640,8 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String registryName, String name,
         String version, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, registryName, name, version, context).getSyncPoller();
+        Response<BinaryData> response = deleteWithResponse(resourceGroupName, registryName, name, version, context);
+        return this.client.<Void, Void>getLroResult(response, Void.class, Void.class, context);
     }
 
     /**
@@ -552,33 +669,13 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
      * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
      * @param name Container name.
      * @param version Version identifier.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String registryName, String name, String version,
-        Context context) {
-        return beginDeleteAsync(resourceGroupName, registryName, name, version, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Delete version.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
-     * @param name Container name.
-     * @param version Version identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String registryName, String name, String version) {
-        deleteAsync(resourceGroupName, registryName, name, version).block();
+        beginDelete(resourceGroupName, registryName, name, version).getFinalResult();
     }
 
     /**
@@ -595,7 +692,7 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String registryName, String name, String version, Context context) {
-        deleteAsync(resourceGroupName, registryName, name, version, context).block();
+        beginDelete(resourceGroupName, registryName, name, version, context).getFinalResult();
     }
 
     /**
@@ -648,49 +745,6 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
      * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
      * @param name Container name.
      * @param version Version identifier.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return version along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DataVersionBaseInner>> getWithResponseAsync(String resourceGroupName, String registryName,
-        String name, String version, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (registryName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter registryName is required and cannot be null."));
-        }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
-        }
-        if (version == null) {
-            return Mono.error(new IllegalArgumentException("Parameter version is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, registryName,
-            name, version, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Get version.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
-     * @param name Container name.
-     * @param version Version identifier.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -719,7 +773,34 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<DataVersionBaseInner> getWithResponse(String resourceGroupName, String registryName, String name,
         String version, Context context) {
-        return getWithResponseAsync(resourceGroupName, registryName, name, version, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (registryName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter registryName is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (version == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter version is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            registryName, name, version, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -797,45 +878,98 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
      * @param name Container name.
      * @param version Version identifier.
      * @param body Version entity to create or update.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Resource Manager resource envelope along with {@link Response} on successful completion of
-     * {@link Mono}.
+     * @return azure Resource Manager resource envelope along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String registryName, String name, String version, DataVersionBaseInner body, Context context) {
+    private Response<BinaryData> createOrUpdateWithResponse(String resourceGroupName, String registryName, String name,
+        String version, DataVersionBaseInner body) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (registryName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter registryName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter registryName is required and cannot be null."));
         }
         if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         if (version == null) {
-            return Mono.error(new IllegalArgumentException("Parameter version is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter version is required and cannot be null."));
         }
         if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
         } else {
             body.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+        return service.createOrUpdateSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            registryName, name, version, this.client.getApiVersion(), body, accept, Context.NONE);
+    }
+
+    /**
+     * Create or update version.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
+     * @param name Container name.
+     * @param version Version identifier.
+     * @param body Version entity to create or update.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azure Resource Manager resource envelope along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> createOrUpdateWithResponse(String resourceGroupName, String registryName, String name,
+        String version, DataVersionBaseInner body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (registryName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter registryName is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (version == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter version is required and cannot be null."));
+        }
+        if (body == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return service.createOrUpdateSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
             registryName, name, version, this.client.getApiVersion(), body, accept, context);
     }
 
@@ -869,31 +1003,6 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
      * @param name Container name.
      * @param version Version identifier.
      * @param body Version entity to create or update.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of azure Resource Manager resource envelope.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DataVersionBaseInner>, DataVersionBaseInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String registryName, String name, String version, DataVersionBaseInner body,
-        Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, registryName, name, version, body, context);
-        return this.client.<DataVersionBaseInner, DataVersionBaseInner>getLroResult(mono, this.client.getHttpPipeline(),
-            DataVersionBaseInner.class, DataVersionBaseInner.class, context);
-    }
-
-    /**
-     * Create or update version.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
-     * @param name Container name.
-     * @param version Version identifier.
-     * @param body Version entity to create or update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -902,7 +1011,10 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DataVersionBaseInner>, DataVersionBaseInner> beginCreateOrUpdate(
         String resourceGroupName, String registryName, String name, String version, DataVersionBaseInner body) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, registryName, name, version, body).getSyncPoller();
+        Response<BinaryData> response
+            = createOrUpdateWithResponse(resourceGroupName, registryName, name, version, body);
+        return this.client.<DataVersionBaseInner, DataVersionBaseInner>getLroResult(response,
+            DataVersionBaseInner.class, DataVersionBaseInner.class, Context.NONE);
     }
 
     /**
@@ -923,8 +1035,10 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
     public SyncPoller<PollResult<DataVersionBaseInner>, DataVersionBaseInner> beginCreateOrUpdate(
         String resourceGroupName, String registryName, String name, String version, DataVersionBaseInner body,
         Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, registryName, name, version, body, context)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = createOrUpdateWithResponse(resourceGroupName, registryName, name, version, body, context);
+        return this.client.<DataVersionBaseInner, DataVersionBaseInner>getLroResult(response,
+            DataVersionBaseInner.class, DataVersionBaseInner.class, context);
     }
 
     /**
@@ -955,27 +1069,6 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
      * @param name Container name.
      * @param version Version identifier.
      * @param body Version entity to create or update.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Resource Manager resource envelope on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DataVersionBaseInner> createOrUpdateAsync(String resourceGroupName, String registryName, String name,
-        String version, DataVersionBaseInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, registryName, name, version, body, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Create or update version.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
-     * @param name Container name.
-     * @param version Version identifier.
-     * @param body Version entity to create or update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -984,7 +1077,7 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DataVersionBaseInner createOrUpdate(String resourceGroupName, String registryName, String name,
         String version, DataVersionBaseInner body) {
-        return createOrUpdateAsync(resourceGroupName, registryName, name, version, body).block();
+        return beginCreateOrUpdate(resourceGroupName, registryName, name, version, body).getFinalResult();
     }
 
     /**
@@ -1004,7 +1097,7 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DataVersionBaseInner createOrUpdate(String resourceGroupName, String registryName, String name,
         String version, DataVersionBaseInner body, Context context) {
-        return createOrUpdateAsync(resourceGroupName, registryName, name, version, body, context).block();
+        return beginCreateOrUpdate(resourceGroupName, registryName, name, version, body, context).getFinalResult();
     }
 
     /**
@@ -1065,56 +1158,6 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
      * @param name Data asset name. This is case-sensitive.
      * @param version Version identifier. This is case-sensitive.
      * @param body Pending upload request object.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PendingUploadResponseDtoInner>> createOrGetStartPendingUploadWithResponseAsync(
-        String resourceGroupName, String registryName, String name, String version, PendingUploadRequestDto body,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (registryName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter registryName is required and cannot be null."));
-        }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
-        }
-        if (version == null) {
-            return Mono.error(new IllegalArgumentException("Parameter version is required and cannot be null."));
-        }
-        if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
-        } else {
-            body.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrGetStartPendingUpload(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, registryName, name, version, this.client.getApiVersion(), body, accept, context);
-    }
-
-    /**
-     * Generate a storage location and credential for the client to upload a data asset to.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
-     * @param name Data asset name. This is case-sensitive.
-     * @param version Version identifier. This is case-sensitive.
-     * @param body Pending upload request object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1144,8 +1187,39 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PendingUploadResponseDtoInner> createOrGetStartPendingUploadWithResponse(String resourceGroupName,
         String registryName, String name, String version, PendingUploadRequestDto body, Context context) {
-        return createOrGetStartPendingUploadWithResponseAsync(resourceGroupName, registryName, name, version, body,
-            context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (registryName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter registryName is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (version == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter version is required and cannot be null."));
+        }
+        if (body == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return service.createOrGetStartPendingUploadSync(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, registryName, name, version, this.client.getApiVersion(), body, accept, context);
     }
 
     /**
@@ -1198,26 +1272,56 @@ public final class RegistryDataVersionsClientImpl implements RegistryDataVersion
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a paginated list of DataVersionBase entities along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<DataVersionBaseInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<DataVersionBaseResourceArmPaginatedResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paginated list of DataVersionBase entities along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a paginated list of DataVersionBase entities along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DataVersionBaseInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<DataVersionBaseInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<DataVersionBaseResourceArmPaginatedResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(RegistryDataVersionsClientImpl.class);
 }
