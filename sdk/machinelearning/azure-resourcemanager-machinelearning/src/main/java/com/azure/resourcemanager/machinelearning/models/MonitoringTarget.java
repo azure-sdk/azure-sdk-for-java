@@ -18,14 +18,14 @@ import java.io.IOException;
 @Fluent
 public final class MonitoringTarget implements JsonSerializable<MonitoringTarget> {
     /*
-     * Reference to the model asset targeted by this monitor.
-     */
-    private String modelId;
-
-    /*
      * Reference to the deployment asset targeted by this monitor.
      */
     private String deploymentId;
+
+    /*
+     * Reference to the model asset targeted by this monitor.
+     */
+    private String modelId;
 
     /*
      * [Required] The machine learning task type of the monitored model.
@@ -36,26 +36,6 @@ public final class MonitoringTarget implements JsonSerializable<MonitoringTarget
      * Creates an instance of MonitoringTarget class.
      */
     public MonitoringTarget() {
-    }
-
-    /**
-     * Get the modelId property: Reference to the model asset targeted by this monitor.
-     * 
-     * @return the modelId value.
-     */
-    public String modelId() {
-        return this.modelId;
-    }
-
-    /**
-     * Set the modelId property: Reference to the model asset targeted by this monitor.
-     * 
-     * @param modelId the modelId value to set.
-     * @return the MonitoringTarget object itself.
-     */
-    public MonitoringTarget withModelId(String modelId) {
-        this.modelId = modelId;
-        return this;
     }
 
     /**
@@ -75,6 +55,26 @@ public final class MonitoringTarget implements JsonSerializable<MonitoringTarget
      */
     public MonitoringTarget withDeploymentId(String deploymentId) {
         this.deploymentId = deploymentId;
+        return this;
+    }
+
+    /**
+     * Get the modelId property: Reference to the model asset targeted by this monitor.
+     * 
+     * @return the modelId value.
+     */
+    public String modelId() {
+        return this.modelId;
+    }
+
+    /**
+     * Set the modelId property: Reference to the model asset targeted by this monitor.
+     * 
+     * @param modelId the modelId value to set.
+     * @return the MonitoringTarget object itself.
+     */
+    public MonitoringTarget withModelId(String modelId) {
+        this.modelId = modelId;
         return this;
     }
 
@@ -119,8 +119,8 @@ public final class MonitoringTarget implements JsonSerializable<MonitoringTarget
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("taskType", this.taskType == null ? null : this.taskType.toString());
-        jsonWriter.writeStringField("modelId", this.modelId);
         jsonWriter.writeStringField("deploymentId", this.deploymentId);
+        jsonWriter.writeStringField("modelId", this.modelId);
         return jsonWriter.writeEndObject();
     }
 
@@ -142,10 +142,10 @@ public final class MonitoringTarget implements JsonSerializable<MonitoringTarget
 
                 if ("taskType".equals(fieldName)) {
                     deserializedMonitoringTarget.taskType = ModelTaskType.fromString(reader.getString());
-                } else if ("modelId".equals(fieldName)) {
-                    deserializedMonitoringTarget.modelId = reader.getString();
                 } else if ("deploymentId".equals(fieldName)) {
                     deserializedMonitoringTarget.deploymentId = reader.getString();
+                } else if ("modelId".equals(fieldName)) {
+                    deserializedMonitoringTarget.modelId = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

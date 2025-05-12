@@ -31,6 +31,11 @@ public final class InferenceContainerProperties implements JsonSerializable<Infe
      */
     private Route scoringRoute;
 
+    /*
+     * The route to check the startup of the application in the container.
+     */
+    private Route startupRoute;
+
     /**
      * Creates an instance of InferenceContainerProperties class.
      */
@@ -98,6 +103,26 @@ public final class InferenceContainerProperties implements JsonSerializable<Infe
     }
 
     /**
+     * Get the startupRoute property: The route to check the startup of the application in the container.
+     * 
+     * @return the startupRoute value.
+     */
+    public Route startupRoute() {
+        return this.startupRoute;
+    }
+
+    /**
+     * Set the startupRoute property: The route to check the startup of the application in the container.
+     * 
+     * @param startupRoute the startupRoute value to set.
+     * @return the InferenceContainerProperties object itself.
+     */
+    public InferenceContainerProperties withStartupRoute(Route startupRoute) {
+        this.startupRoute = startupRoute;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -112,6 +137,9 @@ public final class InferenceContainerProperties implements JsonSerializable<Infe
         if (scoringRoute() != null) {
             scoringRoute().validate();
         }
+        if (startupRoute() != null) {
+            startupRoute().validate();
+        }
     }
 
     /**
@@ -123,6 +151,7 @@ public final class InferenceContainerProperties implements JsonSerializable<Infe
         jsonWriter.writeJsonField("livenessRoute", this.livenessRoute);
         jsonWriter.writeJsonField("readinessRoute", this.readinessRoute);
         jsonWriter.writeJsonField("scoringRoute", this.scoringRoute);
+        jsonWriter.writeJsonField("startupRoute", this.startupRoute);
         return jsonWriter.writeEndObject();
     }
 
@@ -147,6 +176,8 @@ public final class InferenceContainerProperties implements JsonSerializable<Infe
                     deserializedInferenceContainerProperties.readinessRoute = Route.fromJson(reader);
                 } else if ("scoringRoute".equals(fieldName)) {
                     deserializedInferenceContainerProperties.scoringRoute = Route.fromJson(reader);
+                } else if ("startupRoute".equals(fieldName)) {
+                    deserializedInferenceContainerProperties.startupRoute = Route.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }

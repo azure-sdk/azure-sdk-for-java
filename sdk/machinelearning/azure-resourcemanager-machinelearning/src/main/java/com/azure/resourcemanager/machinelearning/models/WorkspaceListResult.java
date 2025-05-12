@@ -19,20 +19,42 @@ import java.util.List;
 @Fluent
 public final class WorkspaceListResult implements JsonSerializable<WorkspaceListResult> {
     /*
+     * The link to the next page constructed using the continuationToken. If null, there are no additional pages.
+     */
+    private String nextLink;
+
+    /*
      * The list of machine learning workspaces. Since this list may be incomplete, the nextLink field should be used to
      * request the next list of machine learning workspaces.
      */
     private List<WorkspaceInner> value;
 
-    /*
-     * The URI that can be used to request the next list of machine learning workspaces.
-     */
-    private String nextLink;
-
     /**
      * Creates an instance of WorkspaceListResult class.
      */
     public WorkspaceListResult() {
+    }
+
+    /**
+     * Get the nextLink property: The link to the next page constructed using the continuationToken. If null, there are
+     * no additional pages.
+     * 
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
+    }
+
+    /**
+     * Set the nextLink property: The link to the next page constructed using the continuationToken. If null, there are
+     * no additional pages.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the WorkspaceListResult object itself.
+     */
+    public WorkspaceListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
     }
 
     /**
@@ -58,26 +80,6 @@ public final class WorkspaceListResult implements JsonSerializable<WorkspaceList
     }
 
     /**
-     * Get the nextLink property: The URI that can be used to request the next list of machine learning workspaces.
-     * 
-     * @return the nextLink value.
-     */
-    public String nextLink() {
-        return this.nextLink;
-    }
-
-    /**
-     * Set the nextLink property: The URI that can be used to request the next list of machine learning workspaces.
-     * 
-     * @param nextLink the nextLink value to set.
-     * @return the WorkspaceListResult object itself.
-     */
-    public WorkspaceListResult withNextLink(String nextLink) {
-        this.nextLink = nextLink;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -94,8 +96,8 @@ public final class WorkspaceListResult implements JsonSerializable<WorkspaceList
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("nextLink", this.nextLink);
+        jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -114,11 +116,11 @@ public final class WorkspaceListResult implements JsonSerializable<WorkspaceList
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("value".equals(fieldName)) {
+                if ("nextLink".equals(fieldName)) {
+                    deserializedWorkspaceListResult.nextLink = reader.getString();
+                } else if ("value".equals(fieldName)) {
                     List<WorkspaceInner> value = reader.readArray(reader1 -> WorkspaceInner.fromJson(reader1));
                     deserializedWorkspaceListResult.value = value;
-                } else if ("nextLink".equals(fieldName)) {
-                    deserializedWorkspaceListResult.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
