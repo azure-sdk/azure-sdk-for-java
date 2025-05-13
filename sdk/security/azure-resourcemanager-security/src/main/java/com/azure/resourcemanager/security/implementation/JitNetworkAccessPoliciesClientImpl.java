@@ -29,6 +29,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.JitNetworkAccessPoliciesClient;
 import com.azure.resourcemanager.security.fluent.models.JitNetworkAccessPolicyInner;
 import com.azure.resourcemanager.security.fluent.models.JitNetworkAccessRequestInner;
@@ -77,6 +78,14 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Security/jitNetworkAccessPolicies")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<JitNetworkAccessPoliciesList> listSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Security/locations/{ascLocation}/jitNetworkAccessPolicies")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -85,10 +94,27 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Security/locations/{ascLocation}/jitNetworkAccessPolicies")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<JitNetworkAccessPoliciesList> listByRegionSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("ascLocation") String ascLocation,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/jitNetworkAccessPolicies")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<JitNetworkAccessPoliciesList>> listByResourceGroup(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/jitNetworkAccessPolicies")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<JitNetworkAccessPoliciesList> listByResourceGroupSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept, Context context);
@@ -103,10 +129,29 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/locations/{ascLocation}/jitNetworkAccessPolicies")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<JitNetworkAccessPoliciesList> listByResourceGroupAndRegionSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("ascLocation") String ascLocation,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/locations/{ascLocation}/jitNetworkAccessPolicies/{jitNetworkAccessPolicyName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<JitNetworkAccessPolicyInner>> get(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("ascLocation") String ascLocation,
+            @PathParam("jitNetworkAccessPolicyName") String jitNetworkAccessPolicyName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/locations/{ascLocation}/jitNetworkAccessPolicies/{jitNetworkAccessPolicyName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<JitNetworkAccessPolicyInner> getSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("ascLocation") String ascLocation,
             @PathParam("jitNetworkAccessPolicyName") String jitNetworkAccessPolicyName,
@@ -125,6 +170,18 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/locations/{ascLocation}/jitNetworkAccessPolicies/{jitNetworkAccessPolicyName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<JitNetworkAccessPolicyInner> createOrUpdateSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("ascLocation") String ascLocation,
+            @PathParam("jitNetworkAccessPolicyName") String jitNetworkAccessPolicyName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") JitNetworkAccessPolicyInner body, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/locations/{ascLocation}/jitNetworkAccessPolicies/{jitNetworkAccessPolicyName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -135,10 +192,33 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/locations/{ascLocation}/jitNetworkAccessPolicies/{jitNetworkAccessPolicyName}")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Void> deleteSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("ascLocation") String ascLocation,
+            @PathParam("jitNetworkAccessPolicyName") String jitNetworkAccessPolicyName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/locations/{ascLocation}/jitNetworkAccessPolicies/{jitNetworkAccessPolicyName}/{jitNetworkAccessPolicyInitiateType}")
         @ExpectedResponses({ 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<JitNetworkAccessRequestInner>> initiate(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("ascLocation") String ascLocation,
+            @PathParam("jitNetworkAccessPolicyName") String jitNetworkAccessPolicyName,
+            @PathParam("jitNetworkAccessPolicyInitiateType") String jitNetworkAccessPolicyInitiateType,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") JitNetworkAccessPolicyInitiateRequest body,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/locations/{ascLocation}/jitNetworkAccessPolicies/{jitNetworkAccessPolicyName}/{jitNetworkAccessPolicyInitiateType}")
+        @ExpectedResponses({ 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<JitNetworkAccessRequestInner> initiateSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("ascLocation") String ascLocation,
             @PathParam("jitNetworkAccessPolicyName") String jitNetworkAccessPolicyName,
@@ -159,7 +239,23 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<JitNetworkAccessPoliciesList> listNextSync(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<JitNetworkAccessPoliciesList>> listByRegionNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<JitNetworkAccessPoliciesList> listByRegionNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -175,7 +271,23 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<JitNetworkAccessPoliciesList> listByResourceGroupNextSync(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<JitNetworkAccessPoliciesList>> listByResourceGroupAndRegionNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<JitNetworkAccessPoliciesList> listByResourceGroupAndRegionNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -210,33 +322,6 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
     /**
      * Policies for protecting resources using Just-in-Time access control.
      * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<JitNetworkAccessPolicyInner>> listSinglePageAsync(Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String apiVersion = "2020-01-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Policies for protecting resources using Just-in-Time access control.
-     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated response with {@link PagedFlux}.
@@ -249,16 +334,57 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
     /**
      * Policies for protecting resources using Just-in-Time access control.
      * 
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<JitNetworkAccessPolicyInner> listSinglePage() {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01";
+        final String accept = "application/json";
+        Response<JitNetworkAccessPoliciesList> res = service.listSync(this.client.getEndpoint(),
+            this.client.getSubscriptionId(), apiVersion, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Policies for protecting resources using Just-in-Time access control.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return the response body along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<JitNetworkAccessPolicyInner> listAsync(Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<JitNetworkAccessPolicyInner> listSinglePage(Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01";
+        final String accept = "application/json";
+        Response<JitNetworkAccessPoliciesList> res
+            = service.listSync(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -270,7 +396,7 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<JitNetworkAccessPolicyInner> list() {
-        return new PagedIterable<>(listAsync());
+        return new PagedIterable<>(() -> listSinglePage(), nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -284,7 +410,7 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<JitNetworkAccessPolicyInner> list(Context context) {
-        return new PagedIterable<>(listAsync(context));
+        return new PagedIterable<>(() -> listSinglePage(context), nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -325,41 +451,6 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      * 
      * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
      * locations.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<JitNetworkAccessPolicyInner>> listByRegionSinglePageAsync(String ascLocation,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (ascLocation == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
-        }
-        final String apiVersion = "2020-01-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByRegion(this.client.getEndpoint(), this.client.getSubscriptionId(), ascLocation, apiVersion, accept,
-                context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Policies for protecting resources using Just-in-Time access control for the subscription, location.
-     * 
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     * locations.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -376,16 +467,68 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      * 
      * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
      * locations.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<JitNetworkAccessPolicyInner> listByRegionSinglePage(String ascLocation) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (ascLocation == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01";
+        final String accept = "application/json";
+        Response<JitNetworkAccessPoliciesList> res = service.listByRegionSync(this.client.getEndpoint(),
+            this.client.getSubscriptionId(), ascLocation, apiVersion, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Policies for protecting resources using Just-in-Time access control for the subscription, location.
+     * 
+     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
+     * locations.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return the response body along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<JitNetworkAccessPolicyInner> listByRegionAsync(String ascLocation, Context context) {
-        return new PagedFlux<>(() -> listByRegionSinglePageAsync(ascLocation, context),
-            nextLink -> listByRegionNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<JitNetworkAccessPolicyInner> listByRegionSinglePage(String ascLocation, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (ascLocation == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01";
+        final String accept = "application/json";
+        Response<JitNetworkAccessPoliciesList> res = service.listByRegionSync(this.client.getEndpoint(),
+            this.client.getSubscriptionId(), ascLocation, apiVersion, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -400,7 +543,8 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<JitNetworkAccessPolicyInner> listByRegion(String ascLocation) {
-        return new PagedIterable<>(listByRegionAsync(ascLocation));
+        return new PagedIterable<>(() -> listByRegionSinglePage(ascLocation),
+            nextLink -> listByRegionNextSinglePage(nextLink));
     }
 
     /**
@@ -416,7 +560,8 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<JitNetworkAccessPolicyInner> listByRegion(String ascLocation, Context context) {
-        return new PagedIterable<>(listByRegionAsync(ascLocation, context));
+        return new PagedIterable<>(() -> listByRegionSinglePage(ascLocation, context),
+            nextLink -> listByRegionNextSinglePage(nextLink, context));
     }
 
     /**
@@ -459,42 +604,6 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<JitNetworkAccessPolicyInner>>
-        listByResourceGroupSinglePageAsync(String resourceGroupName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-01-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                apiVersion, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Policies for protecting resources using Just-in-Time access control for the subscription, location.
-     * 
-     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
-     * insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -511,16 +620,69 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      * 
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
      * insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<JitNetworkAccessPolicyInner> listByResourceGroupSinglePage(String resourceGroupName) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01";
+        final String accept = "application/json";
+        Response<JitNetworkAccessPoliciesList> res = service.listByResourceGroupSync(this.client.getEndpoint(),
+            this.client.getSubscriptionId(), resourceGroupName, apiVersion, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Policies for protecting resources using Just-in-Time access control for the subscription, location.
+     * 
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     * insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return the response body along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<JitNetworkAccessPolicyInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
-        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
-            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<JitNetworkAccessPolicyInner> listByResourceGroupSinglePage(String resourceGroupName,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01";
+        final String accept = "application/json";
+        Response<JitNetworkAccessPoliciesList> res = service.listByResourceGroupSync(this.client.getEndpoint(),
+            this.client.getSubscriptionId(), resourceGroupName, apiVersion, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -535,7 +697,8 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<JitNetworkAccessPolicyInner> listByResourceGroup(String resourceGroupName) {
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName));
+        return new PagedIterable<>(() -> listByResourceGroupSinglePage(resourceGroupName),
+            nextLink -> listByResourceGroupNextSinglePage(nextLink));
     }
 
     /**
@@ -551,7 +714,8 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<JitNetworkAccessPolicyInner> listByResourceGroup(String resourceGroupName, Context context) {
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, context));
+        return new PagedIterable<>(() -> listByResourceGroupSinglePage(resourceGroupName, context),
+            nextLink -> listByResourceGroupNextSinglePage(nextLink, context));
     }
 
     /**
@@ -601,47 +765,6 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      * insensitive.
      * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
      * locations.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<JitNetworkAccessPolicyInner>>
-        listByResourceGroupAndRegionSinglePageAsync(String resourceGroupName, String ascLocation, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (ascLocation == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
-        }
-        final String apiVersion = "2020-01-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroupAndRegion(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                ascLocation, apiVersion, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Policies for protecting resources using Just-in-Time access control for the subscription, location.
-     * 
-     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
-     * insensitive.
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     * locations.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -661,18 +784,80 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      * insensitive.
      * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
      * locations.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<JitNetworkAccessPolicyInner> listByResourceGroupAndRegionSinglePage(String resourceGroupName,
+        String ascLocation) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (ascLocation == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01";
+        final String accept = "application/json";
+        Response<JitNetworkAccessPoliciesList> res = service.listByResourceGroupAndRegionSync(this.client.getEndpoint(),
+            this.client.getSubscriptionId(), resourceGroupName, ascLocation, apiVersion, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Policies for protecting resources using Just-in-Time access control for the subscription, location.
+     * 
+     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
+     * insensitive.
+     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
+     * locations.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return the response body along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<JitNetworkAccessPolicyInner> listByResourceGroupAndRegionAsync(String resourceGroupName,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<JitNetworkAccessPolicyInner> listByResourceGroupAndRegionSinglePage(String resourceGroupName,
         String ascLocation, Context context) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupAndRegionSinglePageAsync(resourceGroupName, ascLocation, context),
-            nextLink -> listByResourceGroupAndRegionNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (ascLocation == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01";
+        final String accept = "application/json";
+        Response<JitNetworkAccessPoliciesList> res = service.listByResourceGroupAndRegionSync(this.client.getEndpoint(),
+            this.client.getSubscriptionId(), resourceGroupName, ascLocation, apiVersion, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -690,7 +875,8 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<JitNetworkAccessPolicyInner> listByResourceGroupAndRegion(String resourceGroupName,
         String ascLocation) {
-        return new PagedIterable<>(listByResourceGroupAndRegionAsync(resourceGroupName, ascLocation));
+        return new PagedIterable<>(() -> listByResourceGroupAndRegionSinglePage(resourceGroupName, ascLocation),
+            nextLink -> listByResourceGroupAndRegionNextSinglePage(nextLink));
     }
 
     /**
@@ -709,7 +895,9 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<JitNetworkAccessPolicyInner> listByResourceGroupAndRegion(String resourceGroupName,
         String ascLocation, Context context) {
-        return new PagedIterable<>(listByResourceGroupAndRegionAsync(resourceGroupName, ascLocation, context));
+        return new PagedIterable<>(
+            () -> listByResourceGroupAndRegionSinglePage(resourceGroupName, ascLocation, context),
+            nextLink -> listByResourceGroupAndRegionNextSinglePage(nextLink, context));
     }
 
     /**
@@ -763,49 +951,6 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
      * locations.
      * @param jitNetworkAccessPolicyName Name of a Just-in-Time access configuration policy.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<JitNetworkAccessPolicyInner>> getWithResponseAsync(String resourceGroupName,
-        String ascLocation, String jitNetworkAccessPolicyName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (ascLocation == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
-        }
-        if (jitNetworkAccessPolicyName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter jitNetworkAccessPolicyName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-01-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, ascLocation,
-            jitNetworkAccessPolicyName, apiVersion, accept, context);
-    }
-
-    /**
-     * Policies for protecting resources using Just-in-Time access control for the subscription, location.
-     * 
-     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
-     * insensitive.
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     * locations.
-     * @param jitNetworkAccessPolicyName Name of a Just-in-Time access configuration policy.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -835,7 +980,33 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<JitNetworkAccessPolicyInner> getWithResponse(String resourceGroupName, String ascLocation,
         String jitNetworkAccessPolicyName, Context context) {
-        return getWithResponseAsync(resourceGroupName, ascLocation, jitNetworkAccessPolicyName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (ascLocation == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
+        }
+        if (jitNetworkAccessPolicyName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter jitNetworkAccessPolicyName is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01";
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            ascLocation, jitNetworkAccessPolicyName, apiVersion, accept, context);
     }
 
     /**
@@ -915,55 +1086,6 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      * locations.
      * @param jitNetworkAccessPolicyName Name of a Just-in-Time access configuration policy.
      * @param body The body parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<JitNetworkAccessPolicyInner>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String ascLocation, String jitNetworkAccessPolicyName, JitNetworkAccessPolicyInner body, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (ascLocation == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
-        }
-        if (jitNetworkAccessPolicyName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter jitNetworkAccessPolicyName is required and cannot be null."));
-        }
-        if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
-        } else {
-            body.validate();
-        }
-        final String apiVersion = "2020-01-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            ascLocation, jitNetworkAccessPolicyName, apiVersion, body, accept, context);
-    }
-
-    /**
-     * Create a policy for protecting resources using Just-in-Time access control.
-     * 
-     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
-     * insensitive.
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     * locations.
-     * @param jitNetworkAccessPolicyName Name of a Just-in-Time access configuration policy.
-     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -994,8 +1116,38 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<JitNetworkAccessPolicyInner> createOrUpdateWithResponse(String resourceGroupName,
         String ascLocation, String jitNetworkAccessPolicyName, JitNetworkAccessPolicyInner body, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, ascLocation, jitNetworkAccessPolicyName, body,
-            context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (ascLocation == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
+        }
+        if (jitNetworkAccessPolicyName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter jitNetworkAccessPolicyName is required and cannot be null."));
+        }
+        if (body == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String apiVersion = "2020-01-01";
+        final String accept = "application/json";
+        return service.createOrUpdateSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            ascLocation, jitNetworkAccessPolicyName, apiVersion, body, accept, context);
     }
 
     /**
@@ -1070,49 +1222,6 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
      * locations.
      * @param jitNetworkAccessPolicyName Name of a Just-in-Time access configuration policy.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String ascLocation,
-        String jitNetworkAccessPolicyName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (ascLocation == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
-        }
-        if (jitNetworkAccessPolicyName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter jitNetworkAccessPolicyName is required and cannot be null."));
-        }
-        final String apiVersion = "2020-01-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            ascLocation, jitNetworkAccessPolicyName, apiVersion, accept, context);
-    }
-
-    /**
-     * Delete a Just-in-Time access control policy.
-     * 
-     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
-     * insensitive.
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     * locations.
-     * @param jitNetworkAccessPolicyName Name of a Just-in-Time access configuration policy.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1141,7 +1250,33 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(String resourceGroupName, String ascLocation,
         String jitNetworkAccessPolicyName, Context context) {
-        return deleteWithResponseAsync(resourceGroupName, ascLocation, jitNetworkAccessPolicyName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (ascLocation == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
+        }
+        if (jitNetworkAccessPolicyName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter jitNetworkAccessPolicyName is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01";
+        final String accept = "application/json";
+        return service.deleteSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            ascLocation, jitNetworkAccessPolicyName, apiVersion, accept, context);
     }
 
     /**
@@ -1221,58 +1356,6 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      * locations.
      * @param jitNetworkAccessPolicyName Name of a Just-in-Time access configuration policy.
      * @param body The body parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<JitNetworkAccessRequestInner>> initiateWithResponseAsync(String resourceGroupName,
-        String ascLocation, String jitNetworkAccessPolicyName, JitNetworkAccessPolicyInitiateRequest body,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (ascLocation == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
-        }
-        if (jitNetworkAccessPolicyName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter jitNetworkAccessPolicyName is required and cannot be null."));
-        }
-        if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
-        } else {
-            body.validate();
-        }
-        final String jitNetworkAccessPolicyInitiateType = "initiate";
-        final String apiVersion = "2020-01-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.initiate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            ascLocation, jitNetworkAccessPolicyName, jitNetworkAccessPolicyInitiateType, apiVersion, body, accept,
-            context);
-    }
-
-    /**
-     * Initiate a JIT access from a specific Just-in-Time policy configuration.
-     * 
-     * @param resourceGroupName The name of the resource group within the user's subscription. The name is case
-     * insensitive.
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     * locations.
-     * @param jitNetworkAccessPolicyName Name of a Just-in-Time access configuration policy.
-     * @param body The body parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1303,8 +1386,40 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<JitNetworkAccessRequestInner> initiateWithResponse(String resourceGroupName, String ascLocation,
         String jitNetworkAccessPolicyName, JitNetworkAccessPolicyInitiateRequest body, Context context) {
-        return initiateWithResponseAsync(resourceGroupName, ascLocation, jitNetworkAccessPolicyName, body, context)
-            .block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (ascLocation == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
+        }
+        if (jitNetworkAccessPolicyName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter jitNetworkAccessPolicyName is required and cannot be null."));
+        }
+        if (body == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String jitNetworkAccessPolicyInitiateType = "initiate";
+        final String apiVersion = "2020-01-01";
+        final String accept = "application/json";
+        return service.initiateSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            ascLocation, jitNetworkAccessPolicyName, jitNetworkAccessPolicyInitiateType, apiVersion, body, accept,
+            context);
     }
 
     /**
@@ -1357,26 +1472,55 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<JitNetworkAccessPolicyInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<JitNetworkAccessPoliciesList> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response body along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<JitNetworkAccessPolicyInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<JitNetworkAccessPolicyInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<JitNetworkAccessPoliciesList> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -1409,27 +1553,55 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<JitNetworkAccessPolicyInner> listByRegionNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<JitNetworkAccessPoliciesList> res
+            = service.listByRegionNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response body along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<JitNetworkAccessPolicyInner>> listByRegionNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<JitNetworkAccessPolicyInner> listByRegionNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByRegionNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<JitNetworkAccessPoliciesList> res
+            = service.listByRegionNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -1463,27 +1635,56 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<JitNetworkAccessPolicyInner> listByResourceGroupNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<JitNetworkAccessPoliciesList> res
+            = service.listByResourceGroupNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response body along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<JitNetworkAccessPolicyInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
+    private PagedResponse<JitNetworkAccessPolicyInner> listByResourceGroupNextSinglePage(String nextLink,
         Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<JitNetworkAccessPoliciesList> res
+            = service.listByResourceGroupNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -1517,26 +1718,57 @@ public final class JitNetworkAccessPoliciesClientImpl implements JitNetworkAcces
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<JitNetworkAccessPolicyInner> listByResourceGroupAndRegionNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<JitNetworkAccessPoliciesList> res
+            = service.listByResourceGroupAndRegionNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the response body along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<JitNetworkAccessPolicyInner>>
-        listByResourceGroupAndRegionNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<JitNetworkAccessPolicyInner> listByResourceGroupAndRegionNextSinglePage(String nextLink,
+        Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByResourceGroupAndRegionNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<JitNetworkAccessPoliciesList> res
+            = service.listByResourceGroupAndRegionNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(JitNetworkAccessPoliciesClientImpl.class);
 }

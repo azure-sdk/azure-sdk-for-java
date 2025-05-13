@@ -28,6 +28,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.CustomRecommendationsClient;
 import com.azure.resourcemanager.security.fluent.models.CustomRecommendationInner;
 import com.azure.resourcemanager.security.models.CustomRecommendationsList;
@@ -74,10 +75,27 @@ public final class CustomRecommendationsClientImpl implements CustomRecommendati
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/{scope}/providers/Microsoft.Security/customRecommendations")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<CustomRecommendationsList> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("scope") String scope,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/{scope}/providers/Microsoft.Security/customRecommendations/{customRecommendationName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CustomRecommendationInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("scope") String scope,
+            @PathParam("customRecommendationName") String customRecommendationName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/{scope}/providers/Microsoft.Security/customRecommendations/{customRecommendationName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<CustomRecommendationInner> getSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("scope") String scope,
             @PathParam("customRecommendationName") String customRecommendationName,
             @HeaderParam("Accept") String accept, Context context);
@@ -93,10 +111,28 @@ public final class CustomRecommendationsClientImpl implements CustomRecommendati
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Put("/{scope}/providers/Microsoft.Security/customRecommendations/{customRecommendationName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<CustomRecommendationInner> createOrUpdateSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("scope") String scope,
+            @PathParam("customRecommendationName") String customRecommendationName,
+            @BodyParam("application/json") CustomRecommendationInner customRecommendationBody,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Delete("/{scope}/providers/Microsoft.Security/customRecommendations/{customRecommendationName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("scope") String scope, @PathParam("customRecommendationName") String customRecommendationName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/{scope}/providers/Microsoft.Security/customRecommendations/{customRecommendationName}")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Void> deleteSync(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("scope") String scope, @PathParam("customRecommendationName") String customRecommendationName,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -107,6 +143,13 @@ public final class CustomRecommendationsClientImpl implements CustomRecommendati
         Mono<Response<CustomRecommendationsList>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<CustomRecommendationsList> listNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
@@ -147,37 +190,6 @@ public final class CustomRecommendationsClientImpl implements CustomRecommendati
      * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
      * 'subscriptions/{subscriptionId}'), or security connector (format:
      * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant custom recommendations over a scope along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CustomRecommendationInner>> listSinglePageAsync(String scope, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        final String apiVersion = "2024-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, scope, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Get a list of all relevant custom recommendations over a scope.
-     * 
-     * @param scope The scope of the custom recommendation. Valid scopes are: management group (format:
-     * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     * 'subscriptions/{subscriptionId}'), or security connector (format:
-     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -195,16 +207,58 @@ public final class CustomRecommendationsClientImpl implements CustomRecommendati
      * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
      * 'subscriptions/{subscriptionId}'), or security connector (format:
      * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of all relevant custom recommendations over a scope along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<CustomRecommendationInner> listSinglePage(String scope) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        final String apiVersion = "2024-08-01";
+        final String accept = "application/json";
+        Response<CustomRecommendationsList> res
+            = service.listSync(this.client.getEndpoint(), apiVersion, scope, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get a list of all relevant custom recommendations over a scope.
+     * 
+     * @param scope The scope of the custom recommendation. Valid scopes are: management group (format:
+     * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant custom recommendations over a scope as paginated response with {@link PagedFlux}.
+     * @return a list of all relevant custom recommendations over a scope along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<CustomRecommendationInner> listAsync(String scope, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(scope, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<CustomRecommendationInner> listSinglePage(String scope, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        final String apiVersion = "2024-08-01";
+        final String accept = "application/json";
+        Response<CustomRecommendationsList> res
+            = service.listSync(this.client.getEndpoint(), apiVersion, scope, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -222,7 +276,7 @@ public final class CustomRecommendationsClientImpl implements CustomRecommendati
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<CustomRecommendationInner> list(String scope) {
-        return new PagedIterable<>(listAsync(scope));
+        return new PagedIterable<>(() -> listSinglePage(scope), nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -241,7 +295,8 @@ public final class CustomRecommendationsClientImpl implements CustomRecommendati
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<CustomRecommendationInner> list(String scope, Context context) {
-        return new PagedIterable<>(listAsync(scope, context));
+        return new PagedIterable<>(() -> listSinglePage(scope, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -288,41 +343,6 @@ public final class CustomRecommendationsClientImpl implements CustomRecommendati
      * 'subscriptions/{subscriptionId}'), or security connector (format:
      * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param customRecommendationName Name of the Custom Recommendation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific custom recommendation for the requested scope by customRecommendationName along with
-     * {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CustomRecommendationInner>> getWithResponseAsync(String scope,
-        String customRecommendationName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (customRecommendationName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customRecommendationName is required and cannot be null."));
-        }
-        final String apiVersion = "2024-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, scope, customRecommendationName, accept, context);
-    }
-
-    /**
-     * Get a specific custom recommendation for the requested scope by customRecommendationName.
-     * 
-     * @param scope The scope of the custom recommendation. Valid scopes are: management group (format:
-     * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     * 'subscriptions/{subscriptionId}'), or security connector (format:
-     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
-     * @param customRecommendationName Name of the Custom Recommendation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -352,7 +372,22 @@ public final class CustomRecommendationsClientImpl implements CustomRecommendati
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CustomRecommendationInner> getWithResponse(String scope, String customRecommendationName,
         Context context) {
-        return getWithResponseAsync(scope, customRecommendationName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (customRecommendationName == null) {
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Parameter customRecommendationName is required and cannot be null."));
+        }
+        final String apiVersion = "2024-08-01";
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), apiVersion, scope, customRecommendationName, accept, context);
     }
 
     /**
@@ -424,48 +459,6 @@ public final class CustomRecommendationsClientImpl implements CustomRecommendati
      * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param customRecommendationName Name of the Custom Recommendation.
      * @param customRecommendationBody Custom Recommendation body.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom Recommendation along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CustomRecommendationInner>> createOrUpdateWithResponseAsync(String scope,
-        String customRecommendationName, CustomRecommendationInner customRecommendationBody, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (customRecommendationName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customRecommendationName is required and cannot be null."));
-        }
-        if (customRecommendationBody == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customRecommendationBody is required and cannot be null."));
-        } else {
-            customRecommendationBody.validate();
-        }
-        final String apiVersion = "2024-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, scope, customRecommendationName,
-            customRecommendationBody, accept, context);
-    }
-
-    /**
-     * Creates or updates a custom recommendation over a given scope.
-     * 
-     * @param scope The scope of the custom recommendation. Valid scopes are: management group (format:
-     * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     * 'subscriptions/{subscriptionId}'), or security connector (format:
-     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
-     * @param customRecommendationName Name of the Custom Recommendation.
-     * @param customRecommendationBody Custom Recommendation body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -496,8 +489,30 @@ public final class CustomRecommendationsClientImpl implements CustomRecommendati
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CustomRecommendationInner> createOrUpdateWithResponse(String scope, String customRecommendationName,
         CustomRecommendationInner customRecommendationBody, Context context) {
-        return createOrUpdateWithResponseAsync(scope, customRecommendationName, customRecommendationBody, context)
-            .block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (customRecommendationName == null) {
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Parameter customRecommendationName is required and cannot be null."));
+        }
+        if (customRecommendationBody == null) {
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Parameter customRecommendationBody is required and cannot be null."));
+        } else {
+            customRecommendationBody.validate();
+        }
+        final String apiVersion = "2024-08-01";
+        final String accept = "application/json";
+        return service.createOrUpdateSync(this.client.getEndpoint(), apiVersion, scope, customRecommendationName,
+            customRecommendationBody, accept, context);
     }
 
     /**
@@ -563,40 +578,6 @@ public final class CustomRecommendationsClientImpl implements CustomRecommendati
      * 'subscriptions/{subscriptionId}'), or security connector (format:
      * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param customRecommendationName Name of the Custom Recommendation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String scope, String customRecommendationName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        if (customRecommendationName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter customRecommendationName is required and cannot be null."));
-        }
-        final String apiVersion = "2024-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, scope, customRecommendationName, accept, context);
-    }
-
-    /**
-     * Delete a custom recommendation over a given scope.
-     * 
-     * @param scope The scope of the custom recommendation. Valid scopes are: management group (format:
-     * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     * 'subscriptions/{subscriptionId}'), or security connector (format:
-     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
-     * @param customRecommendationName Name of the Custom Recommendation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -623,7 +604,23 @@ public final class CustomRecommendationsClientImpl implements CustomRecommendati
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(String scope, String customRecommendationName, Context context) {
-        return deleteWithResponseAsync(scope, customRecommendationName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (customRecommendationName == null) {
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Parameter customRecommendationName is required and cannot be null."));
+        }
+        final String apiVersion = "2024-08-01";
+        final String accept = "application/json";
+        return service.deleteSync(this.client.getEndpoint(), apiVersion, scope, customRecommendationName, accept,
+            context);
     }
 
     /**
@@ -673,26 +670,56 @@ public final class CustomRecommendationsClientImpl implements CustomRecommendati
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of Custom Recommendations along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<CustomRecommendationInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<CustomRecommendationsList> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Custom Recommendations along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a list of Custom Recommendations along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CustomRecommendationInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<CustomRecommendationInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<CustomRecommendationsList> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(CustomRecommendationsClientImpl.class);
 }

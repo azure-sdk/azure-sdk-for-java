@@ -28,6 +28,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.DeviceSecurityGroupsClient;
 import com.azure.resourcemanager.security.fluent.models.DeviceSecurityGroupInner;
 import com.azure.resourcemanager.security.models.DeviceSecurityGroupList;
@@ -75,10 +76,29 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/{resourceId}/providers/Microsoft.Security/deviceSecurityGroups")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DeviceSecurityGroupList> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceId", encoded = true) String resourceId, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/{resourceId}/providers/Microsoft.Security/deviceSecurityGroups/{deviceSecurityGroupName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DeviceSecurityGroupInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceId", encoded = true) String resourceId,
+            @PathParam("deviceSecurityGroupName") String deviceSecurityGroupName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/{resourceId}/providers/Microsoft.Security/deviceSecurityGroups/{deviceSecurityGroupName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DeviceSecurityGroupInner> getSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam(value = "resourceId", encoded = true) String resourceId,
             @PathParam("deviceSecurityGroupName") String deviceSecurityGroupName, @HeaderParam("Accept") String accept,
@@ -96,6 +116,17 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Put("/{resourceId}/providers/Microsoft.Security/deviceSecurityGroups/{deviceSecurityGroupName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DeviceSecurityGroupInner> createOrUpdateSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceId", encoded = true) String resourceId,
+            @PathParam("deviceSecurityGroupName") String deviceSecurityGroupName,
+            @BodyParam("application/json") DeviceSecurityGroupInner deviceSecurityGroup,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Delete("/{resourceId}/providers/Microsoft.Security/deviceSecurityGroups/{deviceSecurityGroupName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -105,10 +136,26 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Delete("/{resourceId}/providers/Microsoft.Security/deviceSecurityGroups/{deviceSecurityGroupName}")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Void> deleteSync(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceId", encoded = true) String resourceId,
+            @PathParam("deviceSecurityGroupName") String deviceSecurityGroupName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DeviceSecurityGroupList>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DeviceSecurityGroupList> listNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
@@ -143,33 +190,6 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
      * Use this method get the list of device security groups for the specified IoT Hub resource.
      * 
      * @param resourceId The identifier of the resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of device security groups along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeviceSecurityGroupInner>> listSinglePageAsync(String resourceId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
-        }
-        final String apiVersion = "2019-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, resourceId, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Use this method get the list of device security groups for the specified IoT Hub resource.
-     * 
-     * @param resourceId The identifier of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -184,16 +204,57 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
      * Use this method get the list of device security groups for the specified IoT Hub resource.
      * 
      * @param resourceId The identifier of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of device security groups along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<DeviceSecurityGroupInner> listSinglePage(String resourceId) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
+        }
+        final String apiVersion = "2019-08-01";
+        final String accept = "application/json";
+        Response<DeviceSecurityGroupList> res
+            = service.listSync(this.client.getEndpoint(), apiVersion, resourceId, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Use this method get the list of device security groups for the specified IoT Hub resource.
+     * 
+     * @param resourceId The identifier of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of device security groups as paginated response with {@link PagedFlux}.
+     * @return list of device security groups along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DeviceSecurityGroupInner> listAsync(String resourceId, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceId, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<DeviceSecurityGroupInner> listSinglePage(String resourceId, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
+        }
+        final String apiVersion = "2019-08-01";
+        final String accept = "application/json";
+        Response<DeviceSecurityGroupList> res
+            = service.listSync(this.client.getEndpoint(), apiVersion, resourceId, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -207,7 +268,7 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<DeviceSecurityGroupInner> list(String resourceId) {
-        return new PagedIterable<>(listAsync(resourceId));
+        return new PagedIterable<>(() -> listSinglePage(resourceId), nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -222,7 +283,8 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<DeviceSecurityGroupInner> list(String resourceId, Context context) {
-        return new PagedIterable<>(listAsync(resourceId, context));
+        return new PagedIterable<>(() -> listSinglePage(resourceId, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -264,38 +326,6 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
      * @param resourceId The identifier of the resource.
      * @param deviceSecurityGroupName The name of the device security group. Note that the name of the device security
      * group is case insensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the device security group resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DeviceSecurityGroupInner>> getWithResponseAsync(String resourceId,
-        String deviceSecurityGroupName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
-        }
-        if (deviceSecurityGroupName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter deviceSecurityGroupName is required and cannot be null."));
-        }
-        final String apiVersion = "2019-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), apiVersion, resourceId, deviceSecurityGroupName, accept, context);
-    }
-
-    /**
-     * Use this method to get the device security group for the specified IoT Hub resource.
-     * 
-     * @param resourceId The identifier of the resource.
-     * @param deviceSecurityGroupName The name of the device security group. Note that the name of the device security
-     * group is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -322,7 +352,23 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<DeviceSecurityGroupInner> getWithResponse(String resourceId, String deviceSecurityGroupName,
         Context context) {
-        return getWithResponseAsync(resourceId, deviceSecurityGroupName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
+        }
+        if (deviceSecurityGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter deviceSecurityGroupName is required and cannot be null."));
+        }
+        final String apiVersion = "2019-08-01";
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), apiVersion, resourceId, deviceSecurityGroupName, accept,
+            context);
     }
 
     /**
@@ -388,46 +434,6 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
      * @param deviceSecurityGroupName The name of the device security group. Note that the name of the device security
      * group is case insensitive.
      * @param deviceSecurityGroup Security group object.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the device security group resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DeviceSecurityGroupInner>> createOrUpdateWithResponseAsync(String resourceId,
-        String deviceSecurityGroupName, DeviceSecurityGroupInner deviceSecurityGroup, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
-        }
-        if (deviceSecurityGroupName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter deviceSecurityGroupName is required and cannot be null."));
-        }
-        if (deviceSecurityGroup == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter deviceSecurityGroup is required and cannot be null."));
-        } else {
-            deviceSecurityGroup.validate();
-        }
-        final String apiVersion = "2019-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, resourceId, deviceSecurityGroupName,
-            deviceSecurityGroup, accept, context);
-    }
-
-    /**
-     * Use this method to creates or updates the device security group on a specified IoT Hub resource.
-     * 
-     * @param resourceId The identifier of the resource.
-     * @param deviceSecurityGroupName The name of the device security group. Note that the name of the device security
-     * group is case insensitive.
-     * @param deviceSecurityGroup Security group object.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -456,8 +462,29 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<DeviceSecurityGroupInner> createOrUpdateWithResponse(String resourceId,
         String deviceSecurityGroupName, DeviceSecurityGroupInner deviceSecurityGroup, Context context) {
-        return createOrUpdateWithResponseAsync(resourceId, deviceSecurityGroupName, deviceSecurityGroup, context)
-            .block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
+        }
+        if (deviceSecurityGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter deviceSecurityGroupName is required and cannot be null."));
+        }
+        if (deviceSecurityGroup == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter deviceSecurityGroup is required and cannot be null."));
+        } else {
+            deviceSecurityGroup.validate();
+        }
+        final String apiVersion = "2019-08-01";
+        final String accept = "application/json";
+        return service.createOrUpdateSync(this.client.getEndpoint(), apiVersion, resourceId, deviceSecurityGroupName,
+            deviceSecurityGroup, accept, context);
     }
 
     /**
@@ -517,39 +544,6 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
      * @param resourceId The identifier of the resource.
      * @param deviceSecurityGroupName The name of the device security group. Note that the name of the device security
      * group is case insensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceId, String deviceSecurityGroupName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
-        }
-        if (deviceSecurityGroupName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter deviceSecurityGroupName is required and cannot be null."));
-        }
-        final String apiVersion = "2019-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), apiVersion, resourceId, deviceSecurityGroupName, accept,
-            context);
-    }
-
-    /**
-     * User this method to deletes the device security group.
-     * 
-     * @param resourceId The identifier of the resource.
-     * @param deviceSecurityGroupName The name of the device security group. Note that the name of the device security
-     * group is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -574,7 +568,23 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(String resourceId, String deviceSecurityGroupName, Context context) {
-        return deleteWithResponseAsync(resourceId, deviceSecurityGroupName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
+        }
+        if (deviceSecurityGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter deviceSecurityGroupName is required and cannot be null."));
+        }
+        final String apiVersion = "2019-08-01";
+        final String accept = "application/json";
+        return service.deleteSync(this.client.getEndpoint(), apiVersion, resourceId, deviceSecurityGroupName, accept,
+            context);
     }
 
     /**
@@ -621,25 +631,56 @@ public final class DeviceSecurityGroupsClientImpl implements DeviceSecurityGroup
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of device security groups along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<DeviceSecurityGroupInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<DeviceSecurityGroupList> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of device security groups along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of device security groups along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeviceSecurityGroupInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<DeviceSecurityGroupInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<DeviceSecurityGroupList> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DeviceSecurityGroupsClientImpl.class);
 }
