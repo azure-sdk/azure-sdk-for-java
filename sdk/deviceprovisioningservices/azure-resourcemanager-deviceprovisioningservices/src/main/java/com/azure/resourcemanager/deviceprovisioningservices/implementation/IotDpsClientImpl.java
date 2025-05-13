@@ -15,12 +15,15 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.SyncPollerFactory;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.DpsCertificatesClient;
@@ -42,12 +45,12 @@ import reactor.core.publisher.Mono;
 @ServiceClient(builder = IotDpsClientBuilder.class)
 public final class IotDpsClientImpl implements IotDpsClient {
     /**
-     * The subscription identifier.
+     * The ID of the target subscription.
      */
     private final String subscriptionId;
 
     /**
-     * Gets The subscription identifier.
+     * Gets The ID of the target subscription.
      * 
      * @return the subscriptionId value.
      */
@@ -140,20 +143,6 @@ public final class IotDpsClientImpl implements IotDpsClient {
     }
 
     /**
-     * The DpsCertificatesClient object to access its operations.
-     */
-    private final DpsCertificatesClient dpsCertificates;
-
-    /**
-     * Gets the DpsCertificatesClient object to access its operations.
-     * 
-     * @return the DpsCertificatesClient object.
-     */
-    public DpsCertificatesClient getDpsCertificates() {
-        return this.dpsCertificates;
-    }
-
-    /**
      * The IotDpsResourcesClient object to access its operations.
      */
     private final IotDpsResourcesClient iotDpsResources;
@@ -168,13 +157,27 @@ public final class IotDpsClientImpl implements IotDpsClient {
     }
 
     /**
+     * The DpsCertificatesClient object to access its operations.
+     */
+    private final DpsCertificatesClient dpsCertificates;
+
+    /**
+     * Gets the DpsCertificatesClient object to access its operations.
+     * 
+     * @return the DpsCertificatesClient object.
+     */
+    public DpsCertificatesClient getDpsCertificates() {
+        return this.dpsCertificates;
+    }
+
+    /**
      * Initializes an instance of IotDpsClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
-     * @param subscriptionId The subscription identifier.
+     * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
     IotDpsClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, Duration defaultPollInterval,
@@ -184,10 +187,10 @@ public final class IotDpsClientImpl implements IotDpsClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-02-05";
+        this.apiVersion = "2025-02-01-preview";
         this.operations = new OperationsClientImpl(this);
-        this.dpsCertificates = new DpsCertificatesClientImpl(this);
         this.iotDpsResources = new IotDpsResourcesClientImpl(this);
+        this.dpsCertificates = new DpsCertificatesClientImpl(this);
     }
 
     /**
@@ -225,6 +228,23 @@ public final class IotDpsClientImpl implements IotDpsClient {
         HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
         return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
             defaultPollInterval, activationResponse, context);
+    }
+
+    /**
+     * Gets long running operation result.
+     * 
+     * @param activationResponse the response of activation operation.
+     * @param pollResultType type of poll result.
+     * @param finalResultType type of final result.
+     * @param context the context shared by all requests.
+     * @param <T> type of poll result.
+     * @param <U> type of final result.
+     * @return SyncPoller for poll result and final result.
+     */
+    public <T, U> SyncPoller<PollResult<T>, U> getLroResult(Response<BinaryData> activationResponse,
+        Type pollResultType, Type finalResultType, Context context) {
+        return SyncPollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, () -> activationResponse, context);
     }
 
     /**

@@ -14,7 +14,7 @@ import com.azure.resourcemanager.deviceprovisioningservices.models.PrivateLinkSe
 public final class IotDpsResourceCreateOrUpdatePrivateEndpointConnection {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
      * DPSCreateOrUpdatePrivateEndpointConnection.json
      */
     /**
@@ -26,7 +26,7 @@ public final class IotDpsResourceCreateOrUpdatePrivateEndpointConnection {
         com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
         manager.iotDpsResources()
             .definePrivateEndpointConnection("myPrivateEndpointConnection")
-            .withExistingProvisioningService("myResourceGroup", "myFirstProvisioningService")
+            .withExistingProvisioningService("myResourceGroup", null)
             .withProperties(new PrivateEndpointConnectionProperties().withPrivateLinkServiceConnectionState(
                 new PrivateLinkServiceConnectionState().withStatus(PrivateLinkServiceConnectionStatus.APPROVED)
                     .withDescription("Approved by johndoe@contoso.com")))

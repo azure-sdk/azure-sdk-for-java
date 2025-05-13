@@ -73,7 +73,14 @@ public interface ProvisioningServiceDescription {
     IotDpsSkuInfo sku();
 
     /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Gets the identity property: The managed service identities assigned to this resource.
+     * 
+     * @return the identity value.
+     */
+    ManagedServiceIdentity identity();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -154,7 +161,7 @@ public interface ProvisioningServiceDescription {
             /**
              * Specifies resourceGroupName.
              * 
-             * @param resourceGroupName Resource group identifier.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
             WithProperties withExistingResourceGroup(String resourceGroupName);
@@ -190,7 +197,8 @@ public interface ProvisioningServiceDescription {
          * The stage of the ProvisioningServiceDescription definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithEtag {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithEtag, DefinitionStages.WithIdentity {
             /**
              * Executes the create request.
              * 
@@ -233,6 +241,19 @@ public interface ProvisioningServiceDescription {
              * @return the next definition stage.
              */
             WithCreate withEtag(String etag);
+        }
+
+        /**
+         * The stage of the ProvisioningServiceDescription definition allowing to specify identity.
+         */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The managed service identities assigned to this resource..
+             * 
+             * @param identity The managed service identities assigned to this resource.
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(ManagedServiceIdentity identity);
         }
     }
 
@@ -297,8 +318,6 @@ public interface ProvisioningServiceDescription {
     ProvisioningServiceDescription refresh(Context context);
 
     /**
-     * Get the security metadata for a provisioning service.
-     * 
      * List the primary and secondary keys for a provisioning service.
      * 
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
@@ -306,11 +325,9 @@ public interface ProvisioningServiceDescription {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of shared access keys as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<SharedAccessSignatureAuthorizationRule> listKeys();
+    PagedIterable<SharedAccessSignatureAuthorizationRuleAccessRightsDescription> listKeys();
 
     /**
-     * Get the security metadata for a provisioning service.
-     * 
      * List the primary and secondary keys for a provisioning service.
      * 
      * @param context The context to associate with this operation.
@@ -320,5 +337,5 @@ public interface ProvisioningServiceDescription {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of shared access keys as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<SharedAccessSignatureAuthorizationRule> listKeys(Context context);
+    PagedIterable<SharedAccessSignatureAuthorizationRuleAccessRightsDescription> listKeys(Context context);
 }

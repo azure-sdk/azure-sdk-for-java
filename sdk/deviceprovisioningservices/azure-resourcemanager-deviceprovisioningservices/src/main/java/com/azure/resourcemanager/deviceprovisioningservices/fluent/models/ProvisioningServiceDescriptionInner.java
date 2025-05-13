@@ -13,6 +13,7 @@ import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsPropertiesDescription;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsSkuInfo;
+import com.azure.resourcemanager.deviceprovisioningservices.models.ManagedServiceIdentity;
 import java.io.IOException;
 import java.util.Map;
 
@@ -38,7 +39,12 @@ public final class ProvisioningServiceDescriptionInner extends Resource {
     private IotDpsSkuInfo sku;
 
     /*
-     * Metadata pertaining to creation and last modification of the resource.
+     * The managed service identities assigned to this resource.
+     */
+    private ManagedServiceIdentity identity;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
 
@@ -126,7 +132,27 @@ public final class ProvisioningServiceDescriptionInner extends Resource {
     }
 
     /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Get the identity property: The managed service identities assigned to this resource.
+     * 
+     * @return the identity value.
+     */
+    public ManagedServiceIdentity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The managed service identities assigned to this resource.
+     * 
+     * @param identity the identity value to set.
+     * @return the ProvisioningServiceDescriptionInner object itself.
+     */
+    public ProvisioningServiceDescriptionInner withIdentity(ManagedServiceIdentity identity) {
+        this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
@@ -202,6 +228,9 @@ public final class ProvisioningServiceDescriptionInner extends Resource {
         } else {
             sku().validate();
         }
+        if (identity() != null) {
+            identity().validate();
+        }
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(ProvisioningServiceDescriptionInner.class);
@@ -217,6 +246,7 @@ public final class ProvisioningServiceDescriptionInner extends Resource {
         jsonWriter.writeJsonField("properties", this.properties);
         jsonWriter.writeJsonField("sku", this.sku);
         jsonWriter.writeStringField("etag", this.etag);
+        jsonWriter.writeJsonField("identity", this.identity);
         return jsonWriter.writeEndObject();
     }
 
@@ -255,6 +285,8 @@ public final class ProvisioningServiceDescriptionInner extends Resource {
                     deserializedProvisioningServiceDescriptionInner.sku = IotDpsSkuInfo.fromJson(reader);
                 } else if ("etag".equals(fieldName)) {
                     deserializedProvisioningServiceDescriptionInner.etag = reader.getString();
+                } else if ("identity".equals(fieldName)) {
+                    deserializedProvisioningServiceDescriptionInner.identity = ManagedServiceIdentity.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedProvisioningServiceDescriptionInner.systemData = SystemData.fromJson(reader);
                 } else {

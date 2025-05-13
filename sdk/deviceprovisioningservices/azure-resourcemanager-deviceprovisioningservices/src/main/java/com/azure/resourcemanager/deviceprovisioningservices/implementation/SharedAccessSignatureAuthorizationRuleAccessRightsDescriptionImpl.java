@@ -4,16 +4,18 @@
 
 package com.azure.resourcemanager.deviceprovisioningservices.implementation;
 
-import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.SharedAccessSignatureAuthorizationRuleInner;
+import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner;
 import com.azure.resourcemanager.deviceprovisioningservices.models.AccessRightsDescription;
-import com.azure.resourcemanager.deviceprovisioningservices.models.SharedAccessSignatureAuthorizationRule;
+import com.azure.resourcemanager.deviceprovisioningservices.models.SharedAccessSignatureAuthorizationRuleAccessRightsDescription;
 
-public final class SharedAccessSignatureAuthorizationRuleImpl implements SharedAccessSignatureAuthorizationRule {
-    private SharedAccessSignatureAuthorizationRuleInner innerObject;
+public final class SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionImpl
+    implements SharedAccessSignatureAuthorizationRuleAccessRightsDescription {
+    private SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner innerObject;
 
     private final com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager serviceManager;
 
-    SharedAccessSignatureAuthorizationRuleImpl(SharedAccessSignatureAuthorizationRuleInner innerObject,
+    SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionImpl(
+        SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner innerObject,
         com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -35,7 +37,7 @@ public final class SharedAccessSignatureAuthorizationRuleImpl implements SharedA
         return this.innerModel().rights();
     }
 
-    public SharedAccessSignatureAuthorizationRuleInner innerModel() {
+    public SharedAccessSignatureAuthorizationRuleAccessRightsDescriptionInner innerModel() {
         return this.innerObject;
     }
 

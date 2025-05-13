@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.deviceprovisioningservices.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,18 +14,17 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Result of the request to list provisioning service operations. It contains a list of operations and a URL link to get
- * the next set of results.
+ * The OperationListResult model.
  */
-@Immutable
+@Fluent
 public final class OperationListResult implements JsonSerializable<OperationListResult> {
     /*
-     * Provisioning service operations supported by the Microsoft.Devices resource provider.
+     * [Placeholder] Description for value property
      */
     private List<OperationInner> value;
 
     /*
-     * URL to get the next set of operation list results if there are any.
+     * [Placeholder] Description for nextLink property.
      */
     private String nextLink;
 
@@ -36,7 +35,7 @@ public final class OperationListResult implements JsonSerializable<OperationList
     }
 
     /**
-     * Get the value property: Provisioning service operations supported by the Microsoft.Devices resource provider.
+     * Get the value property: [Placeholder] Description for value property.
      * 
      * @return the value value.
      */
@@ -45,12 +44,23 @@ public final class OperationListResult implements JsonSerializable<OperationList
     }
 
     /**
-     * Get the nextLink property: URL to get the next set of operation list results if there are any.
+     * Get the nextLink property: [Placeholder] Description for nextLink property.
      * 
      * @return the nextLink value.
      */
     public String nextLink() {
         return this.nextLink;
+    }
+
+    /**
+     * Set the nextLink property: [Placeholder] Description for nextLink property.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the OperationListResult object itself.
+     */
+    public OperationListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
     }
 
     /**
@@ -70,6 +80,7 @@ public final class OperationListResult implements JsonSerializable<OperationList
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("nextLink", this.nextLink);
         return jsonWriter.writeEndObject();
     }
 
@@ -79,6 +90,7 @@ public final class OperationListResult implements JsonSerializable<OperationList
      * @param jsonReader The JsonReader being read.
      * @return An instance of OperationListResult if the JsonReader was pointing to an instance of it, or null if it was
      * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the OperationListResult.
      */
     public static OperationListResult fromJson(JsonReader jsonReader) throws IOException {

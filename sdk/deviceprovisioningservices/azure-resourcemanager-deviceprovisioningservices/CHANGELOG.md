@@ -1,14 +1,68 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-05-13)
 
-### Features Added
+- Azure Resource Manager IotDps client library for Java. This package contains Microsoft Azure SDK for IotDps Management SDK. API for using the Azure IoT Hub Device Provisioning Service features. Package tag package-preview-2025-02. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.SharedAccessSignatureAuthorizationRule` was removed
 
-### Other Changes
+#### `models.IotDpsResources` was modified
+
+* `models.SharedAccessSignatureAuthorizationRule listKeysForKeyName(java.lang.String,java.lang.String,java.lang.String)` -> `models.SharedAccessSignatureAuthorizationRuleAccessRightsDescription listKeysForKeyName(java.lang.String,java.lang.String,java.lang.String)`
+
+### Features Added
+
+* `models.UserAssignedIdentity` was added
+
+* `models.SharedAccessSignatureAuthorizationRuleAccessRightsDescription` was added
+
+* `models.ManagedServiceIdentity` was added
+
+* `models.ManagedServiceIdentityType` was added
+
+* `models.IotHubAuthenticationType` was added
+
+#### `models.IotHubDefinitionDescription` was modified
+
+* `authenticationType()` was added
+* `selectedUserAssignedIdentityResourceId()` was added
+* `withAuthenticationType(models.IotHubAuthenticationType)` was added
+* `withSelectedUserAssignedIdentityResourceId(java.lang.String)` was added
+
+#### `models.GroupIdInformation` was modified
+
+* `systemData()` was added
+
+#### `models.IotDpsPropertiesDescription` was modified
+
+* `portalOperationsHostname()` was added
+* `withPortalOperationsHostname(java.lang.String)` was added
+
+#### `models.ProvisioningServiceDescriptionListResult` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.ProvisioningServiceDescription` was modified
+
+* `identity()` was added
+
+#### `models.ProvisioningServiceDescription$Definition` was modified
+
+* `withIdentity(models.ManagedServiceIdentity)` was added
+
+#### `models.OperationListResult` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.IotDpsSkuDefinitionListResult` was modified
+
+* `withNextLink(java.lang.String)` was added
+
+#### `models.SharedAccessSignatureAuthorizationRuleListResult` was modified
+
+* `withNextLink(java.lang.String)` was added
 
 ## 1.1.0 (2025-01-03)
 

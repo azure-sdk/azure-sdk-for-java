@@ -20,12 +20,12 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = { IotDpsClientImpl.class })
 public final class IotDpsClientBuilder {
     /*
-     * The subscription identifier.
+     * The ID of the target subscription.
      */
     private String subscriptionId;
 
     /**
-     * Sets The subscription identifier.
+     * Sets The ID of the target subscription.
      * 
      * @param subscriptionId the subscriptionId value.
      * @return the IotDpsClientBuilder.

@@ -12,7 +12,7 @@ import java.time.Duration;
  */
 public interface IotDpsClient {
     /**
-     * Gets The subscription identifier.
+     * Gets The ID of the target subscription.
      * 
      * @return the subscriptionId value.
      */
@@ -54,16 +54,16 @@ public interface IotDpsClient {
     OperationsClient getOperations();
 
     /**
-     * Gets the DpsCertificatesClient object to access its operations.
-     * 
-     * @return the DpsCertificatesClient object.
-     */
-    DpsCertificatesClient getDpsCertificates();
-
-    /**
      * Gets the IotDpsResourcesClient object to access its operations.
      * 
      * @return the IotDpsResourcesClient object.
      */
     IotDpsResourcesClient getIotDpsResources();
+
+    /**
+     * Gets the DpsCertificatesClient object to access its operations.
+     * 
+     * @return the DpsCertificatesClient object.
+     */
+    DpsCertificatesClient getDpsCertificates();
 }

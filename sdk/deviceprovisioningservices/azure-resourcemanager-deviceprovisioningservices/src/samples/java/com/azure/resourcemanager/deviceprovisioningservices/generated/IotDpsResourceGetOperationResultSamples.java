@@ -10,7 +10,7 @@ package com.azure.resourcemanager.deviceprovisioningservices.generated;
 public final class IotDpsResourceGetOperationResultSamples {
     /*
      * x-ms-original-file:
-     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/
+     * specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2025-02-01-preview/examples/
      * DPSGetOperationResult.json
      */
     /**
@@ -21,7 +21,7 @@ public final class IotDpsResourceGetOperationResultSamples {
     public static void
         dPSGetOperationResult(com.azure.resourcemanager.deviceprovisioningservices.IotDpsManager manager) {
         manager.iotDpsResources()
-            .getOperationResultWithResponse("MTY5OTNmZDctODI5Yy00N2E2LTkxNDQtMDU1NGIyYzY1ZjRl", "myResourceGroup",
-                "myFirstProvisioningService", "1508265712453", com.azure.core.util.Context.NONE);
+            .getOperationResultWithResponse("myResourceGroup", "myFirstProvisioningService",
+                "MTY5OTNmZDctODI5Yy00N2E2LTkxNDQtMDU1NGIyYzY1ZjRl", "1508265712453", com.azure.core.util.Context.NONE);
     }
 }

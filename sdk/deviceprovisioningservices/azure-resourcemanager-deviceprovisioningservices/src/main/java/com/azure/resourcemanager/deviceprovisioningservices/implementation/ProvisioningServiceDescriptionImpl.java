@@ -11,8 +11,9 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.ProvisioningServiceDescriptionInner;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsPropertiesDescription;
 import com.azure.resourcemanager.deviceprovisioningservices.models.IotDpsSkuInfo;
+import com.azure.resourcemanager.deviceprovisioningservices.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.deviceprovisioningservices.models.ProvisioningServiceDescription;
-import com.azure.resourcemanager.deviceprovisioningservices.models.SharedAccessSignatureAuthorizationRule;
+import com.azure.resourcemanager.deviceprovisioningservices.models.SharedAccessSignatureAuthorizationRuleAccessRightsDescription;
 import com.azure.resourcemanager.deviceprovisioningservices.models.TagsResource;
 import java.util.Collections;
 import java.util.Map;
@@ -58,6 +59,10 @@ public final class ProvisioningServiceDescriptionImpl implements ProvisioningSer
 
     public IotDpsSkuInfo sku() {
         return this.innerModel().sku();
+    }
+
+    public ManagedServiceIdentity identity() {
+        return this.innerModel().identity();
     }
 
     public SystemData systemData() {
@@ -160,12 +165,12 @@ public final class ProvisioningServiceDescriptionImpl implements ProvisioningSer
         return this;
     }
 
-    public PagedIterable<SharedAccessSignatureAuthorizationRule> listKeys() {
-        return serviceManager.iotDpsResources().listKeys(provisioningServiceName, resourceGroupName);
+    public PagedIterable<SharedAccessSignatureAuthorizationRuleAccessRightsDescription> listKeys() {
+        return serviceManager.iotDpsResources().listKeys(resourceGroupName, provisioningServiceName);
     }
 
-    public PagedIterable<SharedAccessSignatureAuthorizationRule> listKeys(Context context) {
-        return serviceManager.iotDpsResources().listKeys(provisioningServiceName, resourceGroupName, context);
+    public PagedIterable<SharedAccessSignatureAuthorizationRuleAccessRightsDescription> listKeys(Context context) {
+        return serviceManager.iotDpsResources().listKeys(resourceGroupName, provisioningServiceName, context);
     }
 
     public ProvisioningServiceDescriptionImpl withRegion(Region location) {
@@ -200,6 +205,11 @@ public final class ProvisioningServiceDescriptionImpl implements ProvisioningSer
 
     public ProvisioningServiceDescriptionImpl withEtag(String etag) {
         this.innerModel().withEtag(etag);
+        return this;
+    }
+
+    public ProvisioningServiceDescriptionImpl withIdentity(ManagedServiceIdentity identity) {
+        this.innerModel().withIdentity(identity);
         return this;
     }
 
