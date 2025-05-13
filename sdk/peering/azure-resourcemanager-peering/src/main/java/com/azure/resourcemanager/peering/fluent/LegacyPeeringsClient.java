@@ -9,6 +9,7 @@ import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.peering.fluent.models.PeeringInner;
+import com.azure.resourcemanager.peering.models.DirectPeeringType;
 import com.azure.resourcemanager.peering.models.LegacyPeeringsKind;
 
 /**
@@ -34,6 +35,7 @@ public interface LegacyPeeringsClient {
      * @param peeringLocation The location of the peering.
      * @param kind The kind of the peering.
      * @param asn The ASN number associated with a legacy peering.
+     * @param directPeeringType The direct peering type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -41,5 +43,6 @@ public interface LegacyPeeringsClient {
      * @return the paginated list of peerings as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<PeeringInner> list(String peeringLocation, LegacyPeeringsKind kind, Integer asn, Context context);
+    PagedIterable<PeeringInner> list(String peeringLocation, LegacyPeeringsKind kind, Integer asn,
+        DirectPeeringType directPeeringType, Context context);
 }

@@ -5,11 +5,15 @@
 package com.azure.resourcemanager.peering.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.CoreUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 /**
  * The properties that define an exchange connection.
@@ -32,6 +36,17 @@ public final class ExchangeConnection implements JsonSerializable<ExchangeConnec
     private BgpSession bgpSession;
 
     /*
+     * The old V4 BGP session associated with the connection during migration on the same device. Will be used for
+     * Work-Window validation
+     */
+    private Map<String, Enum13> migrationWorkWindowBgpSessionSameDevice;
+
+    /*
+     * Gets or sets the time corresponding to when the connection was last set to ProvisioningFailed.
+     */
+    private OffsetDateTime lastFailureTimeUtc;
+
+    /*
      * The unique identifier (GUID) for the connection.
      */
     private String connectionIdentifier;
@@ -40,6 +55,16 @@ public final class ExchangeConnection implements JsonSerializable<ExchangeConnec
      * The error message related to the connection state, if any.
      */
     private String errorMessage;
+
+    /*
+     * The previous connection provisioning state, used to resume provisioning after connection has been blocked.
+     */
+    private PreviousConnectionProvisioningState previousConnectionProvisioningState;
+
+    /*
+     * Gets or sets the migration work window tracker. Format = "DateTime String Format|WorkWindowInitiator Email ID"
+     */
+    private String migrationWorkWindowTracker;
 
     /**
      * Creates an instance of ExchangeConnection class.
@@ -99,6 +124,51 @@ public final class ExchangeConnection implements JsonSerializable<ExchangeConnec
     }
 
     /**
+     * Get the migrationWorkWindowBgpSessionSameDevice property: The old V4 BGP session associated with the connection
+     * during migration on the same device. Will be used for Work-Window validation.
+     * 
+     * @return the migrationWorkWindowBgpSessionSameDevice value.
+     */
+    public Map<String, Enum13> migrationWorkWindowBgpSessionSameDevice() {
+        return this.migrationWorkWindowBgpSessionSameDevice;
+    }
+
+    /**
+     * Set the migrationWorkWindowBgpSessionSameDevice property: The old V4 BGP session associated with the connection
+     * during migration on the same device. Will be used for Work-Window validation.
+     * 
+     * @param migrationWorkWindowBgpSessionSameDevice the migrationWorkWindowBgpSessionSameDevice value to set.
+     * @return the ExchangeConnection object itself.
+     */
+    public ExchangeConnection
+        withMigrationWorkWindowBgpSessionSameDevice(Map<String, Enum13> migrationWorkWindowBgpSessionSameDevice) {
+        this.migrationWorkWindowBgpSessionSameDevice = migrationWorkWindowBgpSessionSameDevice;
+        return this;
+    }
+
+    /**
+     * Get the lastFailureTimeUtc property: Gets or sets the time corresponding to when the connection was last set to
+     * ProvisioningFailed.
+     * 
+     * @return the lastFailureTimeUtc value.
+     */
+    public OffsetDateTime lastFailureTimeUtc() {
+        return this.lastFailureTimeUtc;
+    }
+
+    /**
+     * Set the lastFailureTimeUtc property: Gets or sets the time corresponding to when the connection was last set to
+     * ProvisioningFailed.
+     * 
+     * @param lastFailureTimeUtc the lastFailureTimeUtc value to set.
+     * @return the ExchangeConnection object itself.
+     */
+    public ExchangeConnection withLastFailureTimeUtc(OffsetDateTime lastFailureTimeUtc) {
+        this.lastFailureTimeUtc = lastFailureTimeUtc;
+        return this;
+    }
+
+    /**
      * Get the connectionIdentifier property: The unique identifier (GUID) for the connection.
      * 
      * @return the connectionIdentifier value.
@@ -128,6 +198,51 @@ public final class ExchangeConnection implements JsonSerializable<ExchangeConnec
     }
 
     /**
+     * Get the previousConnectionProvisioningState property: The previous connection provisioning state, used to resume
+     * provisioning after connection has been blocked.
+     * 
+     * @return the previousConnectionProvisioningState value.
+     */
+    public PreviousConnectionProvisioningState previousConnectionProvisioningState() {
+        return this.previousConnectionProvisioningState;
+    }
+
+    /**
+     * Set the previousConnectionProvisioningState property: The previous connection provisioning state, used to resume
+     * provisioning after connection has been blocked.
+     * 
+     * @param previousConnectionProvisioningState the previousConnectionProvisioningState value to set.
+     * @return the ExchangeConnection object itself.
+     */
+    public ExchangeConnection withPreviousConnectionProvisioningState(
+        PreviousConnectionProvisioningState previousConnectionProvisioningState) {
+        this.previousConnectionProvisioningState = previousConnectionProvisioningState;
+        return this;
+    }
+
+    /**
+     * Get the migrationWorkWindowTracker property: Gets or sets the migration work window tracker. Format = "DateTime
+     * String Format|WorkWindowInitiator Email ID".
+     * 
+     * @return the migrationWorkWindowTracker value.
+     */
+    public String migrationWorkWindowTracker() {
+        return this.migrationWorkWindowTracker;
+    }
+
+    /**
+     * Set the migrationWorkWindowTracker property: Gets or sets the migration work window tracker. Format = "DateTime
+     * String Format|WorkWindowInitiator Email ID".
+     * 
+     * @param migrationWorkWindowTracker the migrationWorkWindowTracker value to set.
+     * @return the ExchangeConnection object itself.
+     */
+    public ExchangeConnection withMigrationWorkWindowTracker(String migrationWorkWindowTracker) {
+        this.migrationWorkWindowTracker = migrationWorkWindowTracker;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -146,7 +261,19 @@ public final class ExchangeConnection implements JsonSerializable<ExchangeConnec
         jsonWriter.writeStartObject();
         jsonWriter.writeNumberField("peeringDBFacilityId", this.peeringDBFacilityId);
         jsonWriter.writeJsonField("bgpSession", this.bgpSession);
+        jsonWriter.writeMapField("migrationWorkWindowBgpSessionSameDevice",
+            this.migrationWorkWindowBgpSessionSameDevice,
+            (writer, element) -> writer.writeString(element == null ? null : element.toString()));
+        jsonWriter.writeStringField("lastFailureTimeUtc",
+            this.lastFailureTimeUtc == null
+                ? null
+                : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.lastFailureTimeUtc));
         jsonWriter.writeStringField("connectionIdentifier", this.connectionIdentifier);
+        jsonWriter.writeStringField("previousConnectionProvisioningState",
+            this.previousConnectionProvisioningState == null
+                ? null
+                : this.previousConnectionProvisioningState.toString());
+        jsonWriter.writeStringField("migrationWorkWindowTracker", this.migrationWorkWindowTracker);
         return jsonWriter.writeEndObject();
     }
 
@@ -171,10 +298,23 @@ public final class ExchangeConnection implements JsonSerializable<ExchangeConnec
                     deserializedExchangeConnection.connectionState = ConnectionState.fromString(reader.getString());
                 } else if ("bgpSession".equals(fieldName)) {
                     deserializedExchangeConnection.bgpSession = BgpSession.fromJson(reader);
+                } else if ("migrationWorkWindowBgpSessionSameDevice".equals(fieldName)) {
+                    Map<String, Enum13> migrationWorkWindowBgpSessionSameDevice
+                        = reader.readMap(reader1 -> Enum13.fromString(reader1.getString()));
+                    deserializedExchangeConnection.migrationWorkWindowBgpSessionSameDevice
+                        = migrationWorkWindowBgpSessionSameDevice;
+                } else if ("lastFailureTimeUtc".equals(fieldName)) {
+                    deserializedExchangeConnection.lastFailureTimeUtc = reader
+                        .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
                 } else if ("connectionIdentifier".equals(fieldName)) {
                     deserializedExchangeConnection.connectionIdentifier = reader.getString();
                 } else if ("errorMessage".equals(fieldName)) {
                     deserializedExchangeConnection.errorMessage = reader.getString();
+                } else if ("previousConnectionProvisioningState".equals(fieldName)) {
+                    deserializedExchangeConnection.previousConnectionProvisioningState
+                        = PreviousConnectionProvisioningState.fromString(reader.getString());
+                } else if ("migrationWorkWindowTracker".equals(fieldName)) {
+                    deserializedExchangeConnection.migrationWorkWindowTracker = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

@@ -21,7 +21,7 @@ import java.util.Arrays;
  */
 public final class PeeringsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/
+     * x-ms-original-file: specification/peering/resource-manager/Microsoft.Peering/stable/2025-05-01/examples/
      * CreatePeeringWithExchangeRouteServer.json
      */
     /**
@@ -50,13 +50,14 @@ public final class PeeringsCreateOrUpdateSamples {
                 .withPeerAsn(
                     new SubResource().withId("/subscriptions/subId/providers/Microsoft.Peering/peerAsns/myAsn1"))
                 .withDirectPeeringType(DirectPeeringType.IX_RS))
+            .withConnectivityProbes(Arrays.asList())
             .withPeeringLocation("peeringLocation0")
             .create();
     }
 
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/CreateExchangePeering.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2025-05-01/examples/CreateExchangePeering.json
      */
     /**
      * Sample code: Create an exchange peering.
@@ -88,13 +89,14 @@ public final class PeeringsCreateOrUpdateSamples {
                         .withConnectionIdentifier("CDD8E673-CB07-47E6-84DE-3739F778762B")))
                 .withPeerAsn(
                     new SubResource().withId("/subscriptions/subId/providers/Microsoft.Peering/peerAsns/myAsn1")))
+            .withConnectivityProbes(Arrays.asList())
             .withPeeringLocation("peeringLocation0")
             .create();
     }
 
     /*
      * x-ms-original-file:
-     * specification/peering/resource-manager/Microsoft.Peering/stable/2021-01-01/examples/CreateDirectPeering.json
+     * specification/peering/resource-manager/Microsoft.Peering/stable/2025-05-01/examples/CreateDirectPeering.json
      */
     /**
      * Sample code: Create a direct peering.
@@ -128,6 +130,7 @@ public final class PeeringsCreateOrUpdateSamples {
                 .withPeerAsn(
                     new SubResource().withId("/subscriptions/subId/providers/Microsoft.Peering/peerAsns/myAsn1"))
                 .withDirectPeeringType(DirectPeeringType.EDGE))
+            .withConnectivityProbes(Arrays.asList())
             .withPeeringLocation("peeringLocation0")
             .create();
     }

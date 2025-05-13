@@ -72,17 +72,6 @@ public final class PeeringSku implements JsonSerializable<PeeringSku> {
     }
 
     /**
-     * Set the tier property: The tier of the peering SKU.
-     * 
-     * @param tier the tier value to set.
-     * @return the PeeringSku object itself.
-     */
-    public PeeringSku withTier(Tier tier) {
-        this.tier = tier;
-        return this;
-    }
-
-    /**
      * Get the family property: The family of the peering SKU.
      * 
      * @return the family value.
@@ -92,34 +81,12 @@ public final class PeeringSku implements JsonSerializable<PeeringSku> {
     }
 
     /**
-     * Set the family property: The family of the peering SKU.
-     * 
-     * @param family the family value to set.
-     * @return the PeeringSku object itself.
-     */
-    public PeeringSku withFamily(Family family) {
-        this.family = family;
-        return this;
-    }
-
-    /**
      * Get the size property: The size of the peering SKU.
      * 
      * @return the size value.
      */
     public Size size() {
         return this.size;
-    }
-
-    /**
-     * Set the size property: The size of the peering SKU.
-     * 
-     * @param size the size value to set.
-     * @return the PeeringSku object itself.
-     */
-    public PeeringSku withSize(Size size) {
-        this.size = size;
-        return this;
     }
 
     /**
@@ -137,9 +104,6 @@ public final class PeeringSku implements JsonSerializable<PeeringSku> {
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("name", this.name);
-        jsonWriter.writeStringField("tier", this.tier == null ? null : this.tier.toString());
-        jsonWriter.writeStringField("family", this.family == null ? null : this.family.toString());
-        jsonWriter.writeStringField("size", this.size == null ? null : this.size.toString());
         return jsonWriter.writeEndObject();
     }
 

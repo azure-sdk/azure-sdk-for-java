@@ -9,6 +9,7 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
+import com.azure.resourcemanager.peering.models.LogAnalyticsWorkspaceProperties;
 import com.azure.resourcemanager.peering.models.ProvisioningState;
 import java.io.IOException;
 
@@ -41,6 +42,11 @@ public final class PeeringServiceProperties implements JsonSerializable<PeeringS
      * The backup peering (Microsoft/service provider) location to be used for customer traffic.
      */
     private String providerBackupPeeringLocation;
+
+    /*
+     * The Log Analytics Workspace Properties
+     */
+    private LogAnalyticsWorkspaceProperties logAnalyticsWorkspaceProperties;
 
     /**
      * Creates an instance of PeeringServiceProperties class.
@@ -142,11 +148,35 @@ public final class PeeringServiceProperties implements JsonSerializable<PeeringS
     }
 
     /**
+     * Get the logAnalyticsWorkspaceProperties property: The Log Analytics Workspace Properties.
+     * 
+     * @return the logAnalyticsWorkspaceProperties value.
+     */
+    public LogAnalyticsWorkspaceProperties logAnalyticsWorkspaceProperties() {
+        return this.logAnalyticsWorkspaceProperties;
+    }
+
+    /**
+     * Set the logAnalyticsWorkspaceProperties property: The Log Analytics Workspace Properties.
+     * 
+     * @param logAnalyticsWorkspaceProperties the logAnalyticsWorkspaceProperties value to set.
+     * @return the PeeringServiceProperties object itself.
+     */
+    public PeeringServiceProperties
+        withLogAnalyticsWorkspaceProperties(LogAnalyticsWorkspaceProperties logAnalyticsWorkspaceProperties) {
+        this.logAnalyticsWorkspaceProperties = logAnalyticsWorkspaceProperties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (logAnalyticsWorkspaceProperties() != null) {
+            logAnalyticsWorkspaceProperties().validate();
+        }
     }
 
     /**
@@ -159,6 +189,7 @@ public final class PeeringServiceProperties implements JsonSerializable<PeeringS
         jsonWriter.writeStringField("peeringServiceProvider", this.peeringServiceProvider);
         jsonWriter.writeStringField("providerPrimaryPeeringLocation", this.providerPrimaryPeeringLocation);
         jsonWriter.writeStringField("providerBackupPeeringLocation", this.providerBackupPeeringLocation);
+        jsonWriter.writeJsonField("logAnalyticsWorkspaceProperties", this.logAnalyticsWorkspaceProperties);
         return jsonWriter.writeEndObject();
     }
 
@@ -188,6 +219,9 @@ public final class PeeringServiceProperties implements JsonSerializable<PeeringS
                     deserializedPeeringServiceProperties.providerPrimaryPeeringLocation = reader.getString();
                 } else if ("providerBackupPeeringLocation".equals(fieldName)) {
                     deserializedPeeringServiceProperties.providerBackupPeeringLocation = reader.getString();
+                } else if ("logAnalyticsWorkspaceProperties".equals(fieldName)) {
+                    deserializedPeeringServiceProperties.logAnalyticsWorkspaceProperties
+                        = LogAnalyticsWorkspaceProperties.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
