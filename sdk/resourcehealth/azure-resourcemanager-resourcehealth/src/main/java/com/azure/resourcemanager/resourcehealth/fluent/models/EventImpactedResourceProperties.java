@@ -34,31 +34,6 @@ public final class EventImpactedResourceProperties implements JsonSerializable<E
     private String targetRegion;
 
     /*
-     * Resource name of the impacted resource.
-     */
-    private String resourceName;
-
-    /*
-     * Resource group name of the impacted resource.
-     */
-    private String resourceGroup;
-
-    /*
-     * Status of the impacted resource.
-     */
-    private String status;
-
-    /*
-     * Start time of maintenance for the impacted resource.
-     */
-    private String maintenanceStartTime;
-
-    /*
-     * End time of maintenance for the impacted resource.
-     */
-    private String maintenanceEndTime;
-
-    /*
      * Additional information.
      */
     private List<KeyValueItem> info;
@@ -94,51 +69,6 @@ public final class EventImpactedResourceProperties implements JsonSerializable<E
      */
     public String targetRegion() {
         return this.targetRegion;
-    }
-
-    /**
-     * Get the resourceName property: Resource name of the impacted resource.
-     * 
-     * @return the resourceName value.
-     */
-    public String resourceName() {
-        return this.resourceName;
-    }
-
-    /**
-     * Get the resourceGroup property: Resource group name of the impacted resource.
-     * 
-     * @return the resourceGroup value.
-     */
-    public String resourceGroup() {
-        return this.resourceGroup;
-    }
-
-    /**
-     * Get the status property: Status of the impacted resource.
-     * 
-     * @return the status value.
-     */
-    public String status() {
-        return this.status;
-    }
-
-    /**
-     * Get the maintenanceStartTime property: Start time of maintenance for the impacted resource.
-     * 
-     * @return the maintenanceStartTime value.
-     */
-    public String maintenanceStartTime() {
-        return this.maintenanceStartTime;
-    }
-
-    /**
-     * Get the maintenanceEndTime property: End time of maintenance for the impacted resource.
-     * 
-     * @return the maintenanceEndTime value.
-     */
-    public String maintenanceEndTime() {
-        return this.maintenanceEndTime;
     }
 
     /**
@@ -204,16 +134,6 @@ public final class EventImpactedResourceProperties implements JsonSerializable<E
                     deserializedEventImpactedResourceProperties.targetResourceId = reader.getString();
                 } else if ("targetRegion".equals(fieldName)) {
                     deserializedEventImpactedResourceProperties.targetRegion = reader.getString();
-                } else if ("resourceName".equals(fieldName)) {
-                    deserializedEventImpactedResourceProperties.resourceName = reader.getString();
-                } else if ("resourceGroup".equals(fieldName)) {
-                    deserializedEventImpactedResourceProperties.resourceGroup = reader.getString();
-                } else if ("status".equals(fieldName)) {
-                    deserializedEventImpactedResourceProperties.status = reader.getString();
-                } else if ("maintenanceStartTime".equals(fieldName)) {
-                    deserializedEventImpactedResourceProperties.maintenanceStartTime = reader.getString();
-                } else if ("maintenanceEndTime".equals(fieldName)) {
-                    deserializedEventImpactedResourceProperties.maintenanceEndTime = reader.getString();
                 } else if ("info".equals(fieldName)) {
                     List<KeyValueItem> info = reader.readArray(reader1 -> KeyValueItem.fromJson(reader1));
                     deserializedEventImpactedResourceProperties.info = info;

@@ -175,7 +175,9 @@ public final class Link implements JsonSerializable<Link> {
         jsonWriter.writeJsonField("displayText", this.displayText);
         jsonWriter.writeStringField("extensionName", this.extensionName);
         jsonWriter.writeStringField("bladeName", this.bladeName);
-        jsonWriter.writeUntypedField("parameters", this.parameters);
+        if (this.parameters != null) {
+            jsonWriter.writeUntypedField("parameters", this.parameters);
+        }
         return jsonWriter.writeEndObject();
     }
 

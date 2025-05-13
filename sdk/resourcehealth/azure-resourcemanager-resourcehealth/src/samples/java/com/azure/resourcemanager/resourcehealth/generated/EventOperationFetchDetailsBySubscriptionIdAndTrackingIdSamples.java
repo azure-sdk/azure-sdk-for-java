@@ -10,7 +10,7 @@ package com.azure.resourcemanager.resourcehealth.generated;
 public final class EventOperationFetchDetailsBySubscriptionIdAndTrackingIdSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-05-01/examples/
      * Event_fetchDetailsBySubscriptionIdAndTrackingId.json
      */
     /**

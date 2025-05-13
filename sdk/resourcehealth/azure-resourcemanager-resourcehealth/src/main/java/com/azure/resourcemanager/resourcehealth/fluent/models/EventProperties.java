@@ -16,7 +16,6 @@ import com.azure.resourcemanager.resourcehealth.models.EventPropertiesArticle;
 import com.azure.resourcemanager.resourcehealth.models.EventPropertiesRecommendedActions;
 import com.azure.resourcemanager.resourcehealth.models.EventSourceValues;
 import com.azure.resourcemanager.resourcehealth.models.EventStatusValues;
-import com.azure.resourcemanager.resourcehealth.models.EventSubTypeValues;
 import com.azure.resourcemanager.resourcehealth.models.EventTypeValues;
 import com.azure.resourcemanager.resourcehealth.models.Faq;
 import com.azure.resourcemanager.resourcehealth.models.Impact;
@@ -38,11 +37,6 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     private EventTypeValues eventType;
 
     /*
-     * Sub type of the event. Currently used to determine retirement communications for health advisory events
-     */
-    private EventSubTypeValues eventSubType;
-
-    /*
      * Source of event.
      */
     private EventSourceValues eventSource;
@@ -58,7 +52,7 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     private String title;
 
     /*
-     * Summary text of event.
+     * Summary text of event. Use fetchEventDetails endpoint to get summary of sensitive events.
      */
     private String summary;
 
@@ -76,6 +70,13 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
      * Level of event.
      */
     private EventLevelValues eventLevel;
+
+    /*
+     * If true the event may contains sensitive data. Use the post events/{trackingId}/fetchEventDetails endpoint to
+     * fetch sensitive data see
+     * https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access
+     */
+    private Boolean isEventSensitive;
 
     /*
      * The id of the Incident
@@ -133,7 +134,8 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     private Boolean enableMicrosoftSupport;
 
     /*
-     * Contains the communication message for the event, that could include summary, root cause and other details.
+     * Contains the communication message for the event, that could include summary, root cause and other details. Use
+     * fetchEventDetails endpoint to get description of sensitive events.
      */
     private String description;
 
@@ -180,19 +182,19 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     private String impactType;
 
     /*
-     * Unique identifier for planned maintenance event.
+     * A list of metadata tags associated with the event. Possible values include:
+     * -Action Recommended: Action may be required by you to avoid possible disruptions or mitigate risks for your
+     * services. It is recommended to evaluate these actions and the potential impact on your services.
+     * - False Positive: After investigation, we've determined your service is healthy and service issues did not impact
+     * your services as originally communicated.
+     * - Preliminary PIR: For our largest, most impactful service issues a Preliminary Post Incident Review (PIR) is
+     * published generally within 72 hours of mitigation, to summarize what we have learned so far from the
+     * still-in-progress investigation.
+     * - Final PIR: For service issues, a Final Post Incident Review (PIR) may be published to provide additional
+     * details or learnings. Sometimes this requires us to complete an internal retrospective, generally within 14 days
+     * of mitigation.
      */
-    private String maintenanceId;
-
-    /*
-     * The type of planned maintenance event.
-     */
-    private String maintenanceType;
-
-    /*
-     * Azure Resource Graph query to fetch the affected resources from their existing Azure Resource Graph locations.
-     */
-    private String argQuery;
+    private List<String> eventTags;
 
     /**
      * Creates an instance of EventProperties class.
@@ -217,28 +219,6 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
      */
     public EventProperties withEventType(EventTypeValues eventType) {
         this.eventType = eventType;
-        return this;
-    }
-
-    /**
-     * Get the eventSubType property: Sub type of the event. Currently used to determine retirement communications for
-     * health advisory events.
-     * 
-     * @return the eventSubType value.
-     */
-    public EventSubTypeValues eventSubType() {
-        return this.eventSubType;
-    }
-
-    /**
-     * Set the eventSubType property: Sub type of the event. Currently used to determine retirement communications for
-     * health advisory events.
-     * 
-     * @param eventSubType the eventSubType value to set.
-     * @return the EventProperties object itself.
-     */
-    public EventProperties withEventSubType(EventSubTypeValues eventSubType) {
-        this.eventSubType = eventSubType;
         return this;
     }
 
@@ -303,7 +283,8 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     }
 
     /**
-     * Get the summary property: Summary text of event.
+     * Get the summary property: Summary text of event. Use fetchEventDetails endpoint to get summary of sensitive
+     * events.
      * 
      * @return the summary value.
      */
@@ -312,7 +293,8 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     }
 
     /**
-     * Set the summary property: Summary text of event.
+     * Set the summary property: Summary text of event. Use fetchEventDetails endpoint to get summary of sensitive
+     * events.
      * 
      * @param summary the summary value to set.
      * @return the EventProperties object itself.
@@ -379,6 +361,30 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
      */
     public EventProperties withEventLevel(EventLevelValues eventLevel) {
         this.eventLevel = eventLevel;
+        return this;
+    }
+
+    /**
+     * Get the isEventSensitive property: If true the event may contains sensitive data. Use the post
+     * events/{trackingId}/fetchEventDetails endpoint to fetch sensitive data see
+     * https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access.
+     * 
+     * @return the isEventSensitive value.
+     */
+    public Boolean isEventSensitive() {
+        return this.isEventSensitive;
+    }
+
+    /**
+     * Set the isEventSensitive property: If true the event may contains sensitive data. Use the post
+     * events/{trackingId}/fetchEventDetails endpoint to fetch sensitive data see
+     * https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access.
+     * 
+     * @param isEventSensitive the isEventSensitive value to set.
+     * @return the EventProperties object itself.
+     */
+    public EventProperties withIsEventSensitive(Boolean isEventSensitive) {
+        this.isEventSensitive = isEventSensitive;
         return this;
     }
 
@@ -604,7 +610,7 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
 
     /**
      * Get the description property: Contains the communication message for the event, that could include summary, root
-     * cause and other details.
+     * cause and other details. Use fetchEventDetails endpoint to get description of sensitive events.
      * 
      * @return the description value.
      */
@@ -614,7 +620,7 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
 
     /**
      * Set the description property: Contains the communication message for the event, that could include summary, root
-     * cause and other details.
+     * cause and other details. Use fetchEventDetails endpoint to get description of sensitive events.
      * 
      * @param description the description value to set.
      * @return the EventProperties object itself.
@@ -791,64 +797,42 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     }
 
     /**
-     * Get the maintenanceId property: Unique identifier for planned maintenance event.
+     * Get the eventTags property: A list of metadata tags associated with the event. Possible values include:
+     * -Action Recommended: Action may be required by you to avoid possible disruptions or mitigate risks for your
+     * services. It is recommended to evaluate these actions and the potential impact on your services.
+     * - False Positive: After investigation, we've determined your service is healthy and service issues did not impact
+     * your services as originally communicated.
+     * - Preliminary PIR: For our largest, most impactful service issues a Preliminary Post Incident Review (PIR) is
+     * published generally within 72 hours of mitigation, to summarize what we have learned so far from the
+     * still-in-progress investigation.
+     * - Final PIR: For service issues, a Final Post Incident Review (PIR) may be published to provide additional
+     * details or learnings. Sometimes this requires us to complete an internal retrospective, generally within 14 days
+     * of mitigation.
      * 
-     * @return the maintenanceId value.
+     * @return the eventTags value.
      */
-    public String maintenanceId() {
-        return this.maintenanceId;
+    public List<String> eventTags() {
+        return this.eventTags;
     }
 
     /**
-     * Set the maintenanceId property: Unique identifier for planned maintenance event.
+     * Set the eventTags property: A list of metadata tags associated with the event. Possible values include:
+     * -Action Recommended: Action may be required by you to avoid possible disruptions or mitigate risks for your
+     * services. It is recommended to evaluate these actions and the potential impact on your services.
+     * - False Positive: After investigation, we've determined your service is healthy and service issues did not impact
+     * your services as originally communicated.
+     * - Preliminary PIR: For our largest, most impactful service issues a Preliminary Post Incident Review (PIR) is
+     * published generally within 72 hours of mitigation, to summarize what we have learned so far from the
+     * still-in-progress investigation.
+     * - Final PIR: For service issues, a Final Post Incident Review (PIR) may be published to provide additional
+     * details or learnings. Sometimes this requires us to complete an internal retrospective, generally within 14 days
+     * of mitigation.
      * 
-     * @param maintenanceId the maintenanceId value to set.
+     * @param eventTags the eventTags value to set.
      * @return the EventProperties object itself.
      */
-    public EventProperties withMaintenanceId(String maintenanceId) {
-        this.maintenanceId = maintenanceId;
-        return this;
-    }
-
-    /**
-     * Get the maintenanceType property: The type of planned maintenance event.
-     * 
-     * @return the maintenanceType value.
-     */
-    public String maintenanceType() {
-        return this.maintenanceType;
-    }
-
-    /**
-     * Set the maintenanceType property: The type of planned maintenance event.
-     * 
-     * @param maintenanceType the maintenanceType value to set.
-     * @return the EventProperties object itself.
-     */
-    public EventProperties withMaintenanceType(String maintenanceType) {
-        this.maintenanceType = maintenanceType;
-        return this;
-    }
-
-    /**
-     * Get the argQuery property: Azure Resource Graph query to fetch the affected resources from their existing Azure
-     * Resource Graph locations.
-     * 
-     * @return the argQuery value.
-     */
-    public String argQuery() {
-        return this.argQuery;
-    }
-
-    /**
-     * Set the argQuery property: Azure Resource Graph query to fetch the affected resources from their existing Azure
-     * Resource Graph locations.
-     * 
-     * @param argQuery the argQuery value to set.
-     * @return the EventProperties object itself.
-     */
-    public EventProperties withArgQuery(String argQuery) {
-        this.argQuery = argQuery;
+    public EventProperties withEventTags(List<String> eventTags) {
+        this.eventTags = eventTags;
         return this;
     }
 
@@ -885,7 +869,6 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("eventType", this.eventType == null ? null : this.eventType.toString());
-        jsonWriter.writeStringField("eventSubType", this.eventSubType == null ? null : this.eventSubType.toString());
         jsonWriter.writeStringField("eventSource", this.eventSource == null ? null : this.eventSource.toString());
         jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
         jsonWriter.writeStringField("title", this.title);
@@ -893,6 +876,7 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
         jsonWriter.writeStringField("header", this.headerProperty);
         jsonWriter.writeStringField("level", this.level == null ? null : this.level.toString());
         jsonWriter.writeStringField("eventLevel", this.eventLevel == null ? null : this.eventLevel.toString());
+        jsonWriter.writeBooleanField("isEventSensitive", this.isEventSensitive);
         jsonWriter.writeStringField("externalIncidentId", this.externalIncidentId);
         jsonWriter.writeStringField("reason", this.reason);
         jsonWriter.writeJsonField("article", this.article);
@@ -918,9 +902,7 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
         jsonWriter.writeJsonField("additionalInformation", this.additionalInformation);
         jsonWriter.writeNumberField("duration", this.duration);
         jsonWriter.writeStringField("impactType", this.impactType);
-        jsonWriter.writeStringField("maintenanceId", this.maintenanceId);
-        jsonWriter.writeStringField("maintenanceType", this.maintenanceType);
-        jsonWriter.writeStringField("argQuery", this.argQuery);
+        jsonWriter.writeArrayField("eventTags", this.eventTags, (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -941,8 +923,6 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
 
                 if ("eventType".equals(fieldName)) {
                     deserializedEventProperties.eventType = EventTypeValues.fromString(reader.getString());
-                } else if ("eventSubType".equals(fieldName)) {
-                    deserializedEventProperties.eventSubType = EventSubTypeValues.fromString(reader.getString());
                 } else if ("eventSource".equals(fieldName)) {
                     deserializedEventProperties.eventSource = EventSourceValues.fromString(reader.getString());
                 } else if ("status".equals(fieldName)) {
@@ -957,6 +937,8 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
                     deserializedEventProperties.level = LevelValues.fromString(reader.getString());
                 } else if ("eventLevel".equals(fieldName)) {
                     deserializedEventProperties.eventLevel = EventLevelValues.fromString(reader.getString());
+                } else if ("isEventSensitive".equals(fieldName)) {
+                    deserializedEventProperties.isEventSensitive = reader.getNullable(JsonReader::getBoolean);
                 } else if ("externalIncidentId".equals(fieldName)) {
                     deserializedEventProperties.externalIncidentId = reader.getString();
                 } else if ("reason".equals(fieldName)) {
@@ -1004,12 +986,9 @@ public final class EventProperties implements JsonSerializable<EventProperties> 
                     deserializedEventProperties.duration = reader.getNullable(JsonReader::getInt);
                 } else if ("impactType".equals(fieldName)) {
                     deserializedEventProperties.impactType = reader.getString();
-                } else if ("maintenanceId".equals(fieldName)) {
-                    deserializedEventProperties.maintenanceId = reader.getString();
-                } else if ("maintenanceType".equals(fieldName)) {
-                    deserializedEventProperties.maintenanceType = reader.getString();
-                } else if ("argQuery".equals(fieldName)) {
-                    deserializedEventProperties.argQuery = reader.getString();
+                } else if ("eventTags".equals(fieldName)) {
+                    List<String> eventTags = reader.readArray(reader1 -> reader1.getString());
+                    deserializedEventProperties.eventTags = eventTags;
                 } else {
                     reader.skipChildren();
                 }

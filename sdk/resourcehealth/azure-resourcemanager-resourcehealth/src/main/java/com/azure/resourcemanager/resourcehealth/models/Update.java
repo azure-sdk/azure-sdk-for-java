@@ -13,6 +13,7 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 /**
  * Update for service health event.
@@ -28,6 +29,21 @@ public final class Update implements JsonSerializable<Update> {
      * It provides the Timestamp for the given update for the service health event.
      */
     private OffsetDateTime updateDateTime;
+
+    /*
+     * A list of metadata tags associated with the event. Possible values include:
+     * -Action Recommended: Action may be required by you to avoid possible disruptions or mitigate risks for your
+     * services. It is recommended to evaluate these actions and the potential impact on your services.
+     * - False Positive: After investigation, we've determined your service is healthy and service issues did not impact
+     * your services as originally communicated.
+     * - Preliminary PIR: For our largest, most impactful service issues a Preliminary Post Incident Review (PIR) is
+     * published generally within 72 hours of mitigation, to summarize what we have learned so far from the
+     * still-in-progress investigation.
+     * - Final PIR: For service issues, a Final Post Incident Review (PIR) may be published to provide additional
+     * details or learnings. Sometimes this requires us to complete an internal retrospective, generally within 14 days
+     * of mitigation.
+     */
+    private List<String> eventTags;
 
     /**
      * Creates an instance of Update class.
@@ -76,6 +92,46 @@ public final class Update implements JsonSerializable<Update> {
     }
 
     /**
+     * Get the eventTags property: A list of metadata tags associated with the event. Possible values include:
+     * -Action Recommended: Action may be required by you to avoid possible disruptions or mitigate risks for your
+     * services. It is recommended to evaluate these actions and the potential impact on your services.
+     * - False Positive: After investigation, we've determined your service is healthy and service issues did not impact
+     * your services as originally communicated.
+     * - Preliminary PIR: For our largest, most impactful service issues a Preliminary Post Incident Review (PIR) is
+     * published generally within 72 hours of mitigation, to summarize what we have learned so far from the
+     * still-in-progress investigation.
+     * - Final PIR: For service issues, a Final Post Incident Review (PIR) may be published to provide additional
+     * details or learnings. Sometimes this requires us to complete an internal retrospective, generally within 14 days
+     * of mitigation.
+     * 
+     * @return the eventTags value.
+     */
+    public List<String> eventTags() {
+        return this.eventTags;
+    }
+
+    /**
+     * Set the eventTags property: A list of metadata tags associated with the event. Possible values include:
+     * -Action Recommended: Action may be required by you to avoid possible disruptions or mitigate risks for your
+     * services. It is recommended to evaluate these actions and the potential impact on your services.
+     * - False Positive: After investigation, we've determined your service is healthy and service issues did not impact
+     * your services as originally communicated.
+     * - Preliminary PIR: For our largest, most impactful service issues a Preliminary Post Incident Review (PIR) is
+     * published generally within 72 hours of mitigation, to summarize what we have learned so far from the
+     * still-in-progress investigation.
+     * - Final PIR: For service issues, a Final Post Incident Review (PIR) may be published to provide additional
+     * details or learnings. Sometimes this requires us to complete an internal retrospective, generally within 14 days
+     * of mitigation.
+     * 
+     * @param eventTags the eventTags value to set.
+     * @return the Update object itself.
+     */
+    public Update withEventTags(List<String> eventTags) {
+        this.eventTags = eventTags;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -92,6 +148,7 @@ public final class Update implements JsonSerializable<Update> {
         jsonWriter.writeStringField("summary", this.summary);
         jsonWriter.writeStringField("updateDateTime",
             this.updateDateTime == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.updateDateTime));
+        jsonWriter.writeArrayField("eventTags", this.eventTags, (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject();
     }
 
@@ -115,6 +172,9 @@ public final class Update implements JsonSerializable<Update> {
                 } else if ("updateDateTime".equals(fieldName)) {
                     deserializedUpdate.updateDateTime = reader
                         .getNullable(nonNullReader -> CoreUtils.parseBestOffsetDateTime(nonNullReader.getString()));
+                } else if ("eventTags".equals(fieldName)) {
+                    List<String> eventTags = reader.readArray(reader1 -> reader1.getString());
+                    deserializedUpdate.eventTags = eventTags;
                 } else {
                     reader.skipChildren();
                 }

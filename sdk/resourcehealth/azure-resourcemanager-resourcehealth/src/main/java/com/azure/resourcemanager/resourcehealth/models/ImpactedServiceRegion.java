@@ -46,7 +46,8 @@ public final class ImpactedServiceRegion implements JsonSerializable<ImpactedSer
     private OffsetDateTime lastUpdateTime;
 
     /*
-     * List of updates for given service health event.
+     * List of updates for given service health event. Use fetchEventDetails endpoint to get updates of sensitive
+     * events.
      */
     private List<Update> updates;
 
@@ -157,7 +158,8 @@ public final class ImpactedServiceRegion implements JsonSerializable<ImpactedSer
     }
 
     /**
-     * Get the updates property: List of updates for given service health event.
+     * Get the updates property: List of updates for given service health event. Use fetchEventDetails endpoint to get
+     * updates of sensitive events.
      * 
      * @return the updates value.
      */
@@ -166,7 +168,8 @@ public final class ImpactedServiceRegion implements JsonSerializable<ImpactedSer
     }
 
     /**
-     * Set the updates property: List of updates for given service health event.
+     * Set the updates property: List of updates for given service health event. Use fetchEventDetails endpoint to get
+     * updates of sensitive events.
      * 
      * @param updates the updates value to set.
      * @return the ImpactedServiceRegion object itself.

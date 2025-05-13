@@ -10,7 +10,7 @@ package com.azure.resourcemanager.resourcehealth.generated;
 public final class EventsOperationListSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-05-01/examples/
      * Events_ListBySubscriptionId.json
      */
     /**
@@ -21,7 +21,7 @@ public final class EventsOperationListSamples {
     public static void
         listEventsBySubscriptionId(com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
         manager.eventsOperations()
-            .list("service eq 'Virtual Machines' or region eq 'West US'", "7/24/2020",
+            .list("service eq 'Virtual Machines' or region eq 'West US'", "5/12/2025",
                 com.azure.core.util.Context.NONE);
     }
 }

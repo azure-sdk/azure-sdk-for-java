@@ -10,7 +10,7 @@ package com.azure.resourcemanager.resourcehealth.generated;
 public final class EventOperationGetBySubscriptionIdAndTrackingIdSamples {
     /*
      * x-ms-original-file:
-     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2025-05-01/examples/
      * Event_GetBySubscriptionIdAndTrackingId.json
      */
     /**
@@ -22,6 +22,6 @@ public final class EventOperationGetBySubscriptionIdAndTrackingIdSamples {
         com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
         manager.eventOperations()
             .getBySubscriptionIdAndTrackingIdWithResponse("eventTrackingId", "properties/status eq 'Active'",
-                "7/10/2022", com.azure.core.util.Context.NONE);
+                "5/12/2025", com.azure.core.util.Context.NONE);
     }
 }

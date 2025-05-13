@@ -22,6 +22,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resourcehealth.fluent.EventOperationsClient;
 import com.azure.resourcemanager.resourcehealth.fluent.models.EventInner;
 import reactor.core.publisher.Mono;
@@ -69,10 +70,29 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.ResourceHealth/events/{eventTrackingId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<EventInner> getBySubscriptionIdAndTrackingIdSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @QueryParam("$filter") String filter,
+            @QueryParam("queryStartTime") String queryStartTime, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("eventTrackingId") String eventTrackingId, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/fetchEventDetails")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EventInner>> fetchDetailsBySubscriptionIdAndTrackingId(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("eventTrackingId") String eventTrackingId, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/fetchEventDetails")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<EventInner> fetchDetailsBySubscriptionIdAndTrackingIdSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("eventTrackingId") String eventTrackingId, @HeaderParam("Accept") String accept,
             Context context);
@@ -87,10 +107,27 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.ResourceHealth/events/{eventTrackingId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<EventInner> getByTenantIdAndTrackingIdSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @QueryParam("$filter") String filter,
+            @QueryParam("queryStartTime") String queryStartTime, @PathParam("eventTrackingId") String eventTrackingId,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Post("/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/fetchEventDetails")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EventInner>> fetchDetailsByTenantIdAndTrackingId(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("eventTrackingId") String eventTrackingId,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/providers/Microsoft.ResourceHealth/events/{eventTrackingId}/fetchEventDetails")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<EventInner> fetchDetailsByTenantIdAndTrackingIdSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("eventTrackingId") String eventTrackingId,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -101,8 +138,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @param filter The filter to apply on the operation. For more information please see
      * https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
-     * @param queryStartTime Specifies from when to return events, based on the lastUpdateTime property. For example,
-     * queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
+     * @param queryStartTime Specifies from when to return events (default is 3 days), based on the lastUpdateTime
+     * property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -135,41 +172,6 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
      * Service health event in the subscription by event tracking id.
      * 
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
-     * @param filter The filter to apply on the operation. For more information please see
-     * https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
-     * @param queryStartTime Specifies from when to return events, based on the lastUpdateTime property. For example,
-     * queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service health event along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<EventInner>> getBySubscriptionIdAndTrackingIdWithResponseAsync(String eventTrackingId,
-        String filter, String queryStartTime, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (eventTrackingId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getBySubscriptionIdAndTrackingId(this.client.getEndpoint(), this.client.getApiVersion(), filter,
-            queryStartTime, this.client.getSubscriptionId(), eventTrackingId, accept, context);
-    }
-
-    /**
-     * Service health event in the subscription by event tracking id.
-     * 
-     * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -189,8 +191,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @param filter The filter to apply on the operation. For more information please see
      * https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
-     * @param queryStartTime Specifies from when to return events, based on the lastUpdateTime property. For example,
-     * queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
+     * @param queryStartTime Specifies from when to return events (default is 3 days), based on the lastUpdateTime
+     * property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -200,8 +202,23 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<EventInner> getBySubscriptionIdAndTrackingIdWithResponse(String eventTrackingId, String filter,
         String queryStartTime, Context context) {
-        return getBySubscriptionIdAndTrackingIdWithResponseAsync(eventTrackingId, filter, queryStartTime, context)
-            .block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (eventTrackingId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getBySubscriptionIdAndTrackingIdSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            filter, queryStartTime, this.client.getSubscriptionId(), eventTrackingId, accept, context);
     }
 
     /**
@@ -223,7 +240,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
 
     /**
      * Service health event details in the subscription by event tracking id. This can be used to fetch sensitive
-     * properties for Security Advisory events.
+     * properties for Security Advisory events. Please see
+     * https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access.
      * 
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -255,39 +273,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
 
     /**
      * Service health event details in the subscription by event tracking id. This can be used to fetch sensitive
-     * properties for Security Advisory events.
-     * 
-     * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service health event along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<EventInner>>
-        fetchDetailsBySubscriptionIdAndTrackingIdWithResponseAsync(String eventTrackingId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (eventTrackingId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.fetchDetailsBySubscriptionIdAndTrackingId(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), eventTrackingId, accept, context);
-    }
-
-    /**
-     * Service health event details in the subscription by event tracking id. This can be used to fetch sensitive
-     * properties for Security Advisory events.
+     * properties for Security Advisory events. Please see
+     * https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access.
      * 
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -303,7 +290,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
 
     /**
      * Service health event details in the subscription by event tracking id. This can be used to fetch sensitive
-     * properties for Security Advisory events.
+     * properties for Security Advisory events. Please see
+     * https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access.
      * 
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @param context The context to associate with this operation.
@@ -315,12 +303,29 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<EventInner> fetchDetailsBySubscriptionIdAndTrackingIdWithResponse(String eventTrackingId,
         Context context) {
-        return fetchDetailsBySubscriptionIdAndTrackingIdWithResponseAsync(eventTrackingId, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (eventTrackingId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.fetchDetailsBySubscriptionIdAndTrackingIdSync(this.client.getEndpoint(),
+            this.client.getApiVersion(), this.client.getSubscriptionId(), eventTrackingId, accept, context);
     }
 
     /**
      * Service health event details in the subscription by event tracking id. This can be used to fetch sensitive
-     * properties for Security Advisory events.
+     * properties for Security Advisory events. Please see
+     * https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access.
      * 
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -339,8 +344,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @param filter The filter to apply on the operation. For more information please see
      * https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
-     * @param queryStartTime Specifies from when to return events, based on the lastUpdateTime property. For example,
-     * queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
+     * @param queryStartTime Specifies from when to return events (default is 3 days), based on the lastUpdateTime
+     * property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -368,37 +373,6 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
      * Service health event in the tenant by event tracking id.
      * 
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
-     * @param filter The filter to apply on the operation. For more information please see
-     * https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
-     * @param queryStartTime Specifies from when to return events, based on the lastUpdateTime property. For example,
-     * queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service health event along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<EventInner>> getByTenantIdAndTrackingIdWithResponseAsync(String eventTrackingId,
-        String filter, String queryStartTime, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (eventTrackingId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getByTenantIdAndTrackingId(this.client.getEndpoint(), this.client.getApiVersion(), filter,
-            queryStartTime, eventTrackingId, accept, context);
-    }
-
-    /**
-     * Service health event in the tenant by event tracking id.
-     * 
-     * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -418,8 +392,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @param filter The filter to apply on the operation. For more information please see
      * https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
-     * @param queryStartTime Specifies from when to return events, based on the lastUpdateTime property. For example,
-     * queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
+     * @param queryStartTime Specifies from when to return events (default is 3 days), based on the lastUpdateTime
+     * property. For example, queryStartTime = 7/24/2020 OR queryStartTime=7%2F24%2F2020.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -429,7 +403,18 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<EventInner> getByTenantIdAndTrackingIdWithResponse(String eventTrackingId, String filter,
         String queryStartTime, Context context) {
-        return getByTenantIdAndTrackingIdWithResponseAsync(eventTrackingId, filter, queryStartTime, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (eventTrackingId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getByTenantIdAndTrackingIdSync(this.client.getEndpoint(), this.client.getApiVersion(), filter,
+            queryStartTime, eventTrackingId, accept, context);
     }
 
     /**
@@ -450,7 +435,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
 
     /**
      * Service health event details in the tenant by event tracking id. This can be used to fetch sensitive properties
-     * for Security Advisory events.
+     * for Security Advisory events. Please see
+     * https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access.
      * 
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -477,35 +463,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
 
     /**
      * Service health event details in the tenant by event tracking id. This can be used to fetch sensitive properties
-     * for Security Advisory events.
-     * 
-     * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service health event along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<EventInner>> fetchDetailsByTenantIdAndTrackingIdWithResponseAsync(String eventTrackingId,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (eventTrackingId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.fetchDetailsByTenantIdAndTrackingId(this.client.getEndpoint(), this.client.getApiVersion(),
-            eventTrackingId, accept, context);
-    }
-
-    /**
-     * Service health event details in the tenant by event tracking id. This can be used to fetch sensitive properties
-     * for Security Advisory events.
+     * for Security Advisory events. Please see
+     * https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access.
      * 
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -521,7 +480,8 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
 
     /**
      * Service health event details in the tenant by event tracking id. This can be used to fetch sensitive properties
-     * for Security Advisory events.
+     * for Security Advisory events. Please see
+     * https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access.
      * 
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @param context The context to associate with this operation.
@@ -533,12 +493,24 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<EventInner> fetchDetailsByTenantIdAndTrackingIdWithResponse(String eventTrackingId,
         Context context) {
-        return fetchDetailsByTenantIdAndTrackingIdWithResponseAsync(eventTrackingId, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (eventTrackingId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter eventTrackingId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.fetchDetailsByTenantIdAndTrackingIdSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            eventTrackingId, accept, context);
     }
 
     /**
      * Service health event details in the tenant by event tracking id. This can be used to fetch sensitive properties
-     * for Security Advisory events.
+     * for Security Advisory events. Please see
+     * https://learn.microsoft.com/en-us/azure/service-health/security-advisories-elevated-access.
      * 
      * @param eventTrackingId Event Id which uniquely identifies ServiceHealth event.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -550,4 +522,6 @@ public final class EventOperationsClientImpl implements EventOperationsClient {
     public EventInner fetchDetailsByTenantIdAndTrackingId(String eventTrackingId) {
         return fetchDetailsByTenantIdAndTrackingIdWithResponse(eventTrackingId, Context.NONE).getValue();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(EventOperationsClientImpl.class);
 }

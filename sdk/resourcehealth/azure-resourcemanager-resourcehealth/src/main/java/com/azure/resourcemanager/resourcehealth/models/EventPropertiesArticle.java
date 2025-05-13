@@ -113,7 +113,9 @@ public final class EventPropertiesArticle implements JsonSerializable<EventPrope
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("articleContent", this.articleContent);
         jsonWriter.writeStringField("articleId", this.articleId);
-        jsonWriter.writeUntypedField("parameters", this.parameters);
+        if (this.parameters != null) {
+            jsonWriter.writeUntypedField("parameters", this.parameters);
+        }
         return jsonWriter.writeEndObject();
     }
 
