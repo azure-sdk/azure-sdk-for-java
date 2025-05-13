@@ -49,7 +49,7 @@ import com.azure.resourcemanager.iotoperations.models.TlsProperties;
  */
 public final class DataflowEndpointCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: 2025-04-01/DataflowEndpoint_CreateOrUpdate_EventGrid.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_EventGrid.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_EventGrid.
@@ -61,8 +61,6 @@ public final class DataflowEndpointCreateOrUpdateSamples {
         manager.dataflowEndpoints()
             .define("event-grid-endpoint")
             .withExistingInstance("rgiotoperations", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.MQTT)
                 .withMqttSettings(new DataflowEndpointMqtt()
                     .withAuthentication(new DataflowEndpointMqttAuthentication()
@@ -71,11 +69,13 @@ public final class DataflowEndpointCreateOrUpdateSamples {
                             new DataflowEndpointAuthenticationSystemAssignedManagedIdentity()))
                     .withHost("example.westeurope-1.ts.eventgrid.azure.net:8883")
                     .withTls(new TlsProperties().withMode(OperationalMode.ENABLED))))
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2025-04-01/DataflowEndpoint_CreateOrUpdate_ADLSv2.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_ADLSv2.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_ADLSv2.
@@ -87,8 +87,6 @@ public final class DataflowEndpointCreateOrUpdateSamples {
         manager.dataflowEndpoints()
             .define("adlsv2-endpoint")
             .withExistingInstance("rgiotoperations", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.DATA_LAKE_STORAGE)
                 .withDataLakeStorageSettings(
                     new DataflowEndpointDataLakeStorage()
@@ -98,11 +96,13 @@ public final class DataflowEndpointCreateOrUpdateSamples {
                                 .withAccessTokenSettings(new DataflowEndpointAuthenticationAccessToken()
                                     .withSecretRef("fakeTokenPlaceholder")))
                         .withHost("example.blob.core.windows.net")))
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2025-04-01/DataflowEndpoint_CreateOrUpdate_EventHub.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_EventHub.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_EventHub.
@@ -114,8 +114,6 @@ public final class DataflowEndpointCreateOrUpdateSamples {
         manager.dataflowEndpoints()
             .define("event-hub-endpoint")
             .withExistingInstance("rgiotoperations", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.KAFKA)
                 .withKafkaSettings(new DataflowEndpointKafka()
                     .withAuthentication(new DataflowEndpointKafkaAuthentication()
@@ -125,11 +123,13 @@ public final class DataflowEndpointCreateOrUpdateSamples {
                     .withConsumerGroupId("aiodataflows")
                     .withHost("example.servicebus.windows.net:9093")
                     .withTls(new TlsProperties().withMode(OperationalMode.ENABLED))))
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2025-04-01/DataflowEndpoint_CreateOrUpdate_MaximumSet_Gen.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate.
@@ -141,8 +141,6 @@ public final class DataflowEndpointCreateOrUpdateSamples {
         manager.dataflowEndpoints()
             .define("resource-name123")
             .withExistingInstance("rgiotoperations", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .withProperties(
                 new DataflowEndpointProperties().withEndpointType(EndpointType.DATA_EXPLORER)
                     .withDataExplorerSettings(
@@ -250,11 +248,13 @@ public final class DataflowEndpointCreateOrUpdateSamples {
                         .withTls(new TlsProperties().withMode(OperationalMode.ENABLED)
                             .withTrustedCaCertificateConfigMapRef("tectjjvukvelsreihwadh"))
                         .withCloudEventAttributes(CloudEventAttributeType.fromString("PassThrough"))))
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2025-04-01/DataflowEndpoint_CreateOrUpdate_ADX.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_ADX.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_ADX.
@@ -266,8 +266,6 @@ public final class DataflowEndpointCreateOrUpdateSamples {
         manager.dataflowEndpoints()
             .define("adx-endpoint")
             .withExistingInstance("rgiotoperations", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.DATA_EXPLORER)
                 .withDataExplorerSettings(new DataflowEndpointDataExplorer()
                     .withAuthentication(new DataflowEndpointDataExplorerAuthentication()
@@ -277,11 +275,13 @@ public final class DataflowEndpointCreateOrUpdateSamples {
                     .withDatabase("example-database")
                     .withHost("example.westeurope.kusto.windows.net")
                     .withBatching(new BatchingConfiguration().withLatencySeconds(9312).withMaxMessages(9028))))
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2025-04-01/DataflowEndpoint_CreateOrUpdate_Fabric.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_Fabric.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_Fabric.
@@ -293,8 +293,6 @@ public final class DataflowEndpointCreateOrUpdateSamples {
         manager.dataflowEndpoints()
             .define("fabric-endpoint")
             .withExistingInstance("rgiotoperations", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.FABRIC_ONE_LAKE)
                 .withFabricOneLakeSettings(new DataflowEndpointFabricOneLake()
                     .withAuthentication(new DataflowEndpointFabricOneLakeAuthentication()
@@ -305,11 +303,13 @@ public final class DataflowEndpointCreateOrUpdateSamples {
                         .withWorkspaceName("example-workspace"))
                     .withOneLakePathType(DataflowEndpointFabricPathType.TABLES)
                     .withHost("onelake.dfs.fabric.microsoft.com")))
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2025-04-01/DataflowEndpoint_CreateOrUpdate_LocalStorage.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_LocalStorage.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_LocalStorage.
@@ -321,16 +321,16 @@ public final class DataflowEndpointCreateOrUpdateSamples {
         manager.dataflowEndpoints()
             .define("local-storage-endpoint")
             .withExistingInstance("rgiotoperations", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.LOCAL_STORAGE)
                 .withLocalStorageSettings(
                     new DataflowEndpointLocalStorage().withPersistentVolumeClaimRef("example-pvc")))
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2025-04-01/DataflowEndpoint_CreateOrUpdate_AIO.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_AIO.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_AIO.
@@ -342,8 +342,6 @@ public final class DataflowEndpointCreateOrUpdateSamples {
         manager.dataflowEndpoints()
             .define("aio-builtin-broker-endpoint")
             .withExistingInstance("rgiotoperations", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .withProperties(
                 new DataflowEndpointProperties().withEndpointType(EndpointType.MQTT)
                     .withMqttSettings(new DataflowEndpointMqtt()
@@ -354,11 +352,13 @@ public final class DataflowEndpointCreateOrUpdateSamples {
                         .withHost("aio-broker:18883")
                         .withTls(new TlsProperties().withMode(OperationalMode.ENABLED)
                             .withTrustedCaCertificateConfigMapRef("aio-ca-trust-bundle-test-only"))))
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2025-04-01/DataflowEndpoint_CreateOrUpdate_MQTT.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_MQTT.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_MQTT.
@@ -370,8 +370,6 @@ public final class DataflowEndpointCreateOrUpdateSamples {
         manager.dataflowEndpoints()
             .define("generic-mqtt-broker-endpoint")
             .withExistingInstance("rgiotoperations", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.MQTT)
                 .withMqttSettings(new DataflowEndpointMqtt()
                     .withAuthentication(
@@ -387,11 +385,13 @@ public final class DataflowEndpointCreateOrUpdateSamples {
                     .withQos(1)
                     .withSessionExpirySeconds(3600)
                     .withTls(new TlsProperties().withMode(OperationalMode.DISABLED))))
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .create();
     }
 
     /*
-     * x-ms-original-file: 2025-04-01/DataflowEndpoint_CreateOrUpdate_Kafka.json
+     * x-ms-original-file: 2025-07-01-preview/DataflowEndpoint_CreateOrUpdate_Kafka.json
      */
     /**
      * Sample code: DataflowEndpoint_CreateOrUpdate_Kafka.
@@ -403,8 +403,6 @@ public final class DataflowEndpointCreateOrUpdateSamples {
         manager.dataflowEndpoints()
             .define("generic-kafka-endpoint")
             .withExistingInstance("rgiotoperations", "resource-name123")
-            .withExtendedLocation(
-                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .withProperties(new DataflowEndpointProperties().withEndpointType(EndpointType.KAFKA)
                 .withKafkaSettings(new DataflowEndpointKafka()
                     .withAuthentication(new DataflowEndpointKafkaAuthentication().withMethod(KafkaAuthMethod.SASL)
@@ -424,6 +422,8 @@ public final class DataflowEndpointCreateOrUpdateSamples {
                     .withTls(new TlsProperties().withMode(OperationalMode.ENABLED)
                         .withTrustedCaCertificateConfigMapRef("ca-certificates"))
                     .withCloudEventAttributes(CloudEventAttributeType.PROPAGATE)))
+            .withExtendedLocation(
+                new ExtendedLocation().withName("qmbrfwcpwwhggszhrdjv").withType(ExtendedLocationType.CUSTOM_LOCATION))
             .create();
     }
 }

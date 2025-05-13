@@ -27,7 +27,7 @@ public final class DataflowProfilesCreateOrUpdateMockTests {
     @Test
     public void testCreateOrUpdate() throws Exception {
         String responseStr
-            = "{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"wqfbumlkxtrqjfsm\"},\"metrics\":{\"prometheusPort\":1888053234}},\"instanceCount\":2023709214,\"provisioningState\":\"Succeeded\"},\"extendedLocation\":{\"name\":\"fwsrtawcoezbrhu\",\"type\":\"CustomLocation\"},\"id\":\"hud\",\"name\":\"goo\",\"type\":\"kkqfqjbvle\"}";
+            = "{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"xfrk\"},\"metrics\":{\"prometheusPort\":1398865751}},\"instanceCount\":1304309240,\"provisioningState\":\"Succeeded\"},\"extendedLocation\":{\"name\":\"rpmpdnqqskaw\",\"type\":\"CustomLocation\"},\"id\":\"vmm\",\"name\":\"npqfrtqlkzmeg\",\"type\":\"itgvkx\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -36,24 +36,23 @@ public final class DataflowProfilesCreateOrUpdateMockTests {
             .authenticate(tokenRequestContext -> Mono.just(new AccessToken("this_is_a_token", OffsetDateTime.MAX)),
                 new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
-        DataflowProfileResource response
-            = manager.dataflowProfiles()
-                .define("hmkxmaehvbb")
-                .withExistingInstance("jyxgtczh", "ydbsd")
-                .withExtendedLocation(
-                    new ExtendedLocation().withName("lyhpluodpvruud").withType(ExtendedLocationType.CUSTOM_LOCATION))
-                .withProperties(
-                    new DataflowProfileProperties()
-                        .withDiagnostics(
-                            new ProfileDiagnostics().withLogs(new DiagnosticsLogs().withLevel("ltfnhtbaxkgx"))
-                                .withMetrics(new Metrics().withPrometheusPort(674255307)))
-                        .withInstanceCount(1619197472))
-                .create();
+        DataflowProfileResource response = manager.dataflowProfiles()
+            .define("ms")
+            .withExistingInstance("gpmuneqsxvmhfbuz", "yihsasbhudypohyu")
+            .withProperties(
+                new DataflowProfileProperties()
+                    .withDiagnostics(
+                        new ProfileDiagnostics().withLogs(new DiagnosticsLogs().withLevel("yrpfoobrlttymsj"))
+                            .withMetrics(new Metrics().withPrometheusPort(46352269)))
+                    .withInstanceCount(1753734199))
+            .withExtendedLocation(
+                new ExtendedLocation().withName("zdzgtilaxhnfhqly").withType(ExtendedLocationType.CUSTOM_LOCATION))
+            .create();
 
-        Assertions.assertEquals("wqfbumlkxtrqjfsm", response.properties().diagnostics().logs().level());
-        Assertions.assertEquals(1888053234, response.properties().diagnostics().metrics().prometheusPort());
-        Assertions.assertEquals(2023709214, response.properties().instanceCount());
-        Assertions.assertEquals("fwsrtawcoezbrhu", response.extendedLocation().name());
+        Assertions.assertEquals("xfrk", response.properties().diagnostics().logs().level());
+        Assertions.assertEquals(1398865751, response.properties().diagnostics().metrics().prometheusPort());
+        Assertions.assertEquals(1304309240, response.properties().instanceCount());
+        Assertions.assertEquals("rpmpdnqqskaw", response.extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION, response.extendedLocation().type());
     }
 }

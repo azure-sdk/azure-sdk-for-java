@@ -22,7 +22,7 @@ public final class DataflowProfilesGetWithResponseMockTests {
     @Test
     public void testGetWithResponse() throws Exception {
         String responseStr
-            = "{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"hqnrn\"},\"metrics\":{\"prometheusPort\":2099945195}},\"instanceCount\":1644281123,\"provisioningState\":\"Deleting\"},\"extendedLocation\":{\"name\":\"ykqgaifmvik\",\"type\":\"CustomLocation\"},\"id\":\"dvk\",\"name\":\"bejdznxcv\",\"type\":\"srhnjivo\"}";
+            = "{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"iwrxgkn\"},\"metrics\":{\"prometheusPort\":942321971}},\"instanceCount\":119423972,\"provisioningState\":\"Provisioning\"},\"extendedLocation\":{\"name\":\"dfvpg\",\"type\":\"CustomLocation\"},\"id\":\"xgsg\",\"name\":\"p\",\"type\":\"gzdjtxvzf\"}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -32,13 +32,13 @@ public final class DataflowProfilesGetWithResponseMockTests {
                 new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
         DataflowProfileResource response = manager.dataflowProfiles()
-            .getWithResponse("ftumrtwnawjslbiw", "ojgcyzt", "fmznba", com.azure.core.util.Context.NONE)
+            .getWithResponse("javftjuhdqa", "k", "tgguwpijrajcivmm", com.azure.core.util.Context.NONE)
             .getValue();
 
-        Assertions.assertEquals("hqnrn", response.properties().diagnostics().logs().level());
-        Assertions.assertEquals(2099945195, response.properties().diagnostics().metrics().prometheusPort());
-        Assertions.assertEquals(1644281123, response.properties().instanceCount());
-        Assertions.assertEquals("ykqgaifmvik", response.extendedLocation().name());
+        Assertions.assertEquals("iwrxgkn", response.properties().diagnostics().logs().level());
+        Assertions.assertEquals(942321971, response.properties().diagnostics().metrics().prometheusPort());
+        Assertions.assertEquals(119423972, response.properties().instanceCount());
+        Assertions.assertEquals("dfvpg", response.extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION, response.extendedLocation().type());
     }
 }

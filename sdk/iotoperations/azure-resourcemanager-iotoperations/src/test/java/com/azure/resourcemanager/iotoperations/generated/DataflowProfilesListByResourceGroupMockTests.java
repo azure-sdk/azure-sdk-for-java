@@ -23,7 +23,7 @@ public final class DataflowProfilesListByResourceGroupMockTests {
     @Test
     public void testListByResourceGroup() throws Exception {
         String responseStr
-            = "{\"value\":[{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"uljltduceamtmcz\"},\"metrics\":{\"prometheusPort\":289279485}},\"instanceCount\":733943203,\"provisioningState\":\"Deleting\"},\"extendedLocation\":{\"name\":\"wqiok\",\"type\":\"CustomLocation\"},\"id\":\"xmojmsvpkjp\",\"name\":\"vk\",\"type\":\"cfzq\"}]}";
+            = "{\"value\":[{\"properties\":{\"diagnostics\":{\"logs\":{\"level\":\"t\"},\"metrics\":{\"prometheusPort\":89870573}},\"instanceCount\":1022807330,\"provisioningState\":\"Provisioning\"},\"extendedLocation\":{\"name\":\"lduycv\",\"type\":\"CustomLocation\"},\"id\":\"yrmewipmvekdx\",\"name\":\"kuqgsjjxundxgket\",\"type\":\"zhhzjhfjmhvvmu\"}]}";
 
         HttpClient httpClient
             = response -> Mono.just(new MockHttpResponse(response, 200, responseStr.getBytes(StandardCharsets.UTF_8)));
@@ -33,14 +33,13 @@ public final class DataflowProfilesListByResourceGroupMockTests {
                 new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
         PagedIterable<DataflowProfileResource> response
-            = manager.dataflowProfiles().listByResourceGroup("v", "novqfzge", com.azure.core.util.Context.NONE);
+            = manager.dataflowProfiles().listByResourceGroup("bqvgaqv", "gafcqu", com.azure.core.util.Context.NONE);
 
-        Assertions.assertEquals("uljltduceamtmcz",
-            response.iterator().next().properties().diagnostics().logs().level());
-        Assertions.assertEquals(289279485,
+        Assertions.assertEquals("t", response.iterator().next().properties().diagnostics().logs().level());
+        Assertions.assertEquals(89870573,
             response.iterator().next().properties().diagnostics().metrics().prometheusPort());
-        Assertions.assertEquals(733943203, response.iterator().next().properties().instanceCount());
-        Assertions.assertEquals("wqiok", response.iterator().next().extendedLocation().name());
+        Assertions.assertEquals(1022807330, response.iterator().next().properties().instanceCount());
+        Assertions.assertEquals("lduycv", response.iterator().next().extendedLocation().name());
         Assertions.assertEquals(ExtendedLocationType.CUSTOM_LOCATION,
             response.iterator().next().extendedLocation().type());
     }
