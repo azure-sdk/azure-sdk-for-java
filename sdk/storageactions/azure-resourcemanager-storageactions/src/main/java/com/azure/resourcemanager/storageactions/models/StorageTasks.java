@@ -14,57 +14,30 @@ import com.azure.resourcemanager.storageactions.fluent.models.StorageTaskPreview
  */
 public interface StorageTasks {
     /**
-     * Delete the storage task resource.
+     * Runs the input conditions against input object metadata properties and designates matched objects in response.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
-     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void deleteByResourceGroup(String resourceGroupName, String storageTaskName);
-
-    /**
-     * Delete the storage task resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
-     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
+     * @param location The location parameter.
+     * @param parameters The parameters to preview action condition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return storage Task Preview Action along with {@link Response}.
      */
-    void delete(String resourceGroupName, String storageTaskName, Context context);
+    Response<StorageTaskPreviewAction> previewActionsWithResponse(String location,
+        StorageTaskPreviewActionInner parameters, Context context);
 
     /**
-     * Get the storage task properties.
+     * Runs the input conditions against input object metadata properties and designates matched objects in response.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
-     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
-     * @param context The context to associate with this operation.
+     * @param location The location parameter.
+     * @param parameters The parameters to preview action condition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the storage task properties along with {@link Response}.
+     * @return storage Task Preview Action.
      */
-    Response<StorageTask> getByResourceGroupWithResponse(String resourceGroupName, String storageTaskName,
-        Context context);
-
-    /**
-     * Get the storage task properties.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
-     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the storage task properties.
-     */
-    StorageTask getByResourceGroup(String resourceGroupName, String storageTaskName);
+    StorageTaskPreviewAction previewActions(String location, StorageTaskPreviewActionInner parameters);
 
     /**
      * Lists all the storage tasks available under the subscription.
@@ -110,30 +83,57 @@ public interface StorageTasks {
     PagedIterable<StorageTask> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
-     * Runs the input conditions against input object metadata properties and designates matched objects in response.
+     * Get the storage task properties.
      * 
-     * @param location The location to perform preview of the actions.
-     * @param parameters The parameters to preview action condition.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
+     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return storage Task Preview Action along with {@link Response}.
+     * @return the storage task properties along with {@link Response}.
      */
-    Response<StorageTaskPreviewAction> previewActionsWithResponse(String location,
-        StorageTaskPreviewActionInner parameters, Context context);
+    Response<StorageTask> getByResourceGroupWithResponse(String resourceGroupName, String storageTaskName,
+        Context context);
 
     /**
-     * Runs the input conditions against input object metadata properties and designates matched objects in response.
+     * Get the storage task properties.
      * 
-     * @param location The location to perform preview of the actions.
-     * @param parameters The parameters to preview action condition.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
+     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return storage Task Preview Action.
+     * @return the storage task properties.
      */
-    StorageTaskPreviewAction previewActions(String location, StorageTaskPreviewActionInner parameters);
+    StorageTask getByResourceGroup(String resourceGroupName, String storageTaskName);
+
+    /**
+     * Delete the storage task resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
+     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void deleteByResourceGroup(String resourceGroupName, String storageTaskName);
+
+    /**
+     * Delete the storage task resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
+     * be between 3 and 18 characters in length and use numbers and lower-case letters only.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String storageTaskName, Context context);
 
     /**
      * Get the storage task properties.

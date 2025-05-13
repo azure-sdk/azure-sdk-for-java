@@ -24,8 +24,7 @@ public final class StorageTasksListResult implements JsonSerializable<StorageTas
     private List<StorageTaskInner> value;
 
     /*
-     * Request URL that can be used to query next page of storage tasks. Returned when total number of requested storage
-     * tasks exceed maximum page size.
+     * The link to the next page of items
      */
     private String nextLink;
 
@@ -45,8 +44,7 @@ public final class StorageTasksListResult implements JsonSerializable<StorageTas
     }
 
     /**
-     * Get the nextLink property: Request URL that can be used to query next page of storage tasks. Returned when total
-     * number of requested storage tasks exceed maximum page size.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -80,6 +78,7 @@ public final class StorageTasksListResult implements JsonSerializable<StorageTas
      * @param jsonReader The JsonReader being read.
      * @return An instance of StorageTasksListResult if the JsonReader was pointing to an instance of it, or null if it
      * was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the StorageTasksListResult.
      */
     public static StorageTasksListResult fromJson(JsonReader jsonReader) throws IOException {

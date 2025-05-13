@@ -51,9 +51,9 @@ public final class StorageActionsManager {
 
     private StorageTasks storageTasks;
 
-    private StorageTaskAssignments storageTaskAssignments;
-
     private StorageTasksReports storageTasksReports;
+
+    private StorageTaskAssignments storageTaskAssignments;
 
     private final StorageActionsMgmtClient clientObject;
 
@@ -295,6 +295,18 @@ public final class StorageActionsManager {
     }
 
     /**
+     * Gets the resource collection API of StorageTasksReports.
+     * 
+     * @return Resource collection API of StorageTasksReports.
+     */
+    public StorageTasksReports storageTasksReports() {
+        if (this.storageTasksReports == null) {
+            this.storageTasksReports = new StorageTasksReportsImpl(clientObject.getStorageTasksReports(), this);
+        }
+        return storageTasksReports;
+    }
+
+    /**
      * Gets the resource collection API of StorageTaskAssignments.
      * 
      * @return Resource collection API of StorageTaskAssignments.
@@ -305,18 +317,6 @@ public final class StorageActionsManager {
                 = new StorageTaskAssignmentsImpl(clientObject.getStorageTaskAssignments(), this);
         }
         return storageTaskAssignments;
-    }
-
-    /**
-     * Gets the resource collection API of StorageTasksReports.
-     * 
-     * @return Resource collection API of StorageTasksReports.
-     */
-    public StorageTasksReports storageTasksReports() {
-        if (this.storageTasksReports == null) {
-            this.storageTasksReports = new StorageTasksReportsImpl(clientObject.getStorageTasksReports(), this);
-        }
-        return storageTasksReports;
     }
 
     /**
