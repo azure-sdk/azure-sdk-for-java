@@ -21,6 +21,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.SecuritySolutionsReferenceDatasClient;
 import com.azure.resourcemanager.security.fluent.models.SecuritySolutionsReferenceDataListInner;
 import reactor.core.publisher.Mono;
@@ -66,10 +67,26 @@ public final class SecuritySolutionsReferenceDatasClientImpl implements Security
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Security/securitySolutionsReferenceData")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SecuritySolutionsReferenceDataListInner> listSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Security/locations/{ascLocation}/securitySolutionsReferenceData")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SecuritySolutionsReferenceDataListInner>> listByHomeRegion(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @PathParam("ascLocation") String ascLocation,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Security/locations/{ascLocation}/securitySolutionsReferenceData")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SecuritySolutionsReferenceDataListInner> listByHomeRegionSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId, @PathParam("ascLocation") String ascLocation,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
     }
@@ -103,32 +120,6 @@ public final class SecuritySolutionsReferenceDatasClientImpl implements Security
     /**
      * Gets a list of all supported Security Solutions for the subscription.
      * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all supported Security Solutions for the subscription along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SecuritySolutionsReferenceDataListInner>> listWithResponseAsync(Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String apiVersion = "2020-01-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion, accept, context);
-    }
-
-    /**
-     * Gets a list of all supported Security Solutions for the subscription.
-     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of all supported Security Solutions for the subscription on successful completion of {@link Mono}.
@@ -149,7 +140,20 @@ public final class SecuritySolutionsReferenceDatasClientImpl implements Security
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SecuritySolutionsReferenceDataListInner> listWithResponse(Context context) {
-        return listWithResponseAsync(context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01";
+        final String accept = "application/json";
+        return service.listSync(this.client.getEndpoint(), this.client.getSubscriptionId(), apiVersion, accept,
+            context);
     }
 
     /**
@@ -202,39 +206,6 @@ public final class SecuritySolutionsReferenceDatasClientImpl implements Security
      * 
      * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
      * locations.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all supported Security Solutions for subscription and location along with {@link Response} on
-     * successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SecuritySolutionsReferenceDataListInner>>
-        listByHomeRegionWithResponseAsync(String ascLocation, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (ascLocation == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
-        }
-        final String apiVersion = "2020-01-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByHomeRegion(this.client.getEndpoint(), this.client.getSubscriptionId(), ascLocation,
-            apiVersion, accept, context);
-    }
-
-    /**
-     * Gets list of all supported Security Solutions for subscription and location.
-     * 
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     * locations.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -260,7 +231,24 @@ public final class SecuritySolutionsReferenceDatasClientImpl implements Security
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SecuritySolutionsReferenceDataListInner> listByHomeRegionWithResponse(String ascLocation,
         Context context) {
-        return listByHomeRegionWithResponseAsync(ascLocation, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (ascLocation == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01";
+        final String accept = "application/json";
+        return service.listByHomeRegionSync(this.client.getEndpoint(), this.client.getSubscriptionId(), ascLocation,
+            apiVersion, accept, context);
     }
 
     /**
@@ -277,4 +265,6 @@ public final class SecuritySolutionsReferenceDatasClientImpl implements Security
     public SecuritySolutionsReferenceDataListInner listByHomeRegion(String ascLocation) {
         return listByHomeRegionWithResponse(ascLocation, Context.NONE).getValue();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SecuritySolutionsReferenceDatasClientImpl.class);
 }

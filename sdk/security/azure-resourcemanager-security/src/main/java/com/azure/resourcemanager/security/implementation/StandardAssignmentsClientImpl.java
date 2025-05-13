@@ -28,6 +28,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.security.fluent.StandardAssignmentsClient;
 import com.azure.resourcemanager.security.fluent.models.StandardAssignmentInner;
 import com.azure.resourcemanager.security.models.StandardAssignmentsList;
@@ -75,10 +76,30 @@ public final class StandardAssignmentsClientImpl implements StandardAssignmentsC
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/{resourceId}/providers/Microsoft.Security/standardAssignments/{standardAssignmentName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<StandardAssignmentInner> getSync(@HostParam("$host") String endpoint,
+            @PathParam(value = "resourceId", encoded = true) String resourceId,
+            @PathParam("standardAssignmentName") String standardAssignmentName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Put("/{resourceId}/providers/Microsoft.Security/standardAssignments/{standardAssignmentName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<StandardAssignmentInner>> create(@HostParam("$host") String endpoint,
+            @PathParam(value = "resourceId", encoded = true) String resourceId,
+            @PathParam("standardAssignmentName") String standardAssignmentName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") StandardAssignmentInner standardAssignment,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/{resourceId}/providers/Microsoft.Security/standardAssignments/{standardAssignmentName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<StandardAssignmentInner> createSync(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceId", encoded = true) String resourceId,
             @PathParam("standardAssignmentName") String standardAssignmentName,
             @QueryParam("api-version") String apiVersion,
@@ -95,6 +116,15 @@ public final class StandardAssignmentsClientImpl implements StandardAssignmentsC
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Delete("/{resourceId}/providers/Microsoft.Security/standardAssignments/{standardAssignmentName}")
+        @ExpectedResponses({ 200, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Void> deleteSync(@HostParam("$host") String endpoint,
+            @PathParam(value = "resourceId", encoded = true) String resourceId,
+            @PathParam("standardAssignmentName") String standardAssignmentName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/{scope}/providers/Microsoft.Security/standardAssignments")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -103,10 +133,25 @@ public final class StandardAssignmentsClientImpl implements StandardAssignmentsC
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/{scope}/providers/Microsoft.Security/standardAssignments")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<StandardAssignmentsList> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("scope") String scope,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<StandardAssignmentsList>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<StandardAssignmentsList> listNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
@@ -152,40 +197,6 @@ public final class StandardAssignmentsClientImpl implements StandardAssignmentsC
      * 
      * @param resourceId The identifier of the resource.
      * @param standardAssignmentName The standard assignments assignment key - unique key for the standard assignment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return security Assignment on a resource group over a given scope along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<StandardAssignmentInner>> getWithResponseAsync(String resourceId,
-        String standardAssignmentName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
-        }
-        if (standardAssignmentName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter standardAssignmentName is required and cannot be null."));
-        }
-        final String apiVersion = "2024-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), resourceId, standardAssignmentName, apiVersion, accept, context);
-    }
-
-    /**
-     * Retrieves a standard assignment.
-     * 
-     * This operation retrieves a single standard assignment, given its name and the scope it was created at.
-     * 
-     * @param resourceId The identifier of the resource.
-     * @param standardAssignmentName The standard assignments assignment key - unique key for the standard assignment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -213,7 +224,23 @@ public final class StandardAssignmentsClientImpl implements StandardAssignmentsC
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<StandardAssignmentInner> getWithResponse(String resourceId, String standardAssignmentName,
         Context context) {
-        return getWithResponseAsync(resourceId, standardAssignmentName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
+        }
+        if (standardAssignmentName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter standardAssignmentName is required and cannot be null."));
+        }
+        final String apiVersion = "2024-08-01";
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), resourceId, standardAssignmentName, apiVersion, accept,
+            context);
     }
 
     /**
@@ -287,50 +314,6 @@ public final class StandardAssignmentsClientImpl implements StandardAssignmentsC
      * @param resourceId The identifier of the resource.
      * @param standardAssignmentName The standard assignments assignment key - unique key for the standard assignment.
      * @param standardAssignment Custom standard assignment over a pre-defined scope.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return security Assignment on a resource group over a given scope along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<StandardAssignmentInner>> createWithResponseAsync(String resourceId,
-        String standardAssignmentName, StandardAssignmentInner standardAssignment, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
-        }
-        if (standardAssignmentName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter standardAssignmentName is required and cannot be null."));
-        }
-        if (standardAssignment == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter standardAssignment is required and cannot be null."));
-        } else {
-            standardAssignment.validate();
-        }
-        final String apiVersion = "2024-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), resourceId, standardAssignmentName, apiVersion,
-            standardAssignment, accept, context);
-    }
-
-    /**
-     * Creates or updates a standard assignment.
-     * 
-     * This operation creates or updates a standard assignment with the given scope and name. standard assignments apply
-     * to all resources contained within their scope. For example, when you assign a policy at resource group scope,
-     * that policy applies to all resources in the group.
-     * 
-     * @param resourceId The identifier of the resource.
-     * @param standardAssignmentName The standard assignments assignment key - unique key for the standard assignment.
-     * @param standardAssignment Custom standard assignment over a pre-defined scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -362,7 +345,29 @@ public final class StandardAssignmentsClientImpl implements StandardAssignmentsC
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<StandardAssignmentInner> createWithResponse(String resourceId, String standardAssignmentName,
         StandardAssignmentInner standardAssignment, Context context) {
-        return createWithResponseAsync(resourceId, standardAssignmentName, standardAssignment, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
+        }
+        if (standardAssignmentName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter standardAssignmentName is required and cannot be null."));
+        }
+        if (standardAssignment == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter standardAssignment is required and cannot be null."));
+        } else {
+            standardAssignment.validate();
+        }
+        final String apiVersion = "2024-08-01";
+        final String accept = "application/json";
+        return service.createSync(this.client.getEndpoint(), resourceId, standardAssignmentName, apiVersion,
+            standardAssignment, accept, context);
     }
 
     /**
@@ -430,42 +435,6 @@ public final class StandardAssignmentsClientImpl implements StandardAssignmentsC
      * 
      * @param resourceId The identifier of the resource.
      * @param standardAssignmentName The standard assignments assignment key - unique key for the standard assignment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceId, String standardAssignmentName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
-        }
-        if (standardAssignmentName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter standardAssignmentName is required and cannot be null."));
-        }
-        final String apiVersion = "2024-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), resourceId, standardAssignmentName, apiVersion, accept,
-            context);
-    }
-
-    /**
-     * Deletes a standard assignment.
-     * 
-     * This operation deletes a standard assignment, given its name and the scope it was created in. The scope of a
-     * standard assignment is the part of its ID preceding
-     * '/providers/Microsoft.Security/standardAssignments/{standardAssignmentName}'.
-     * 
-     * @param resourceId The identifier of the resource.
-     * @param standardAssignmentName The standard assignments assignment key - unique key for the standard assignment.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -493,7 +462,23 @@ public final class StandardAssignmentsClientImpl implements StandardAssignmentsC
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(String resourceId, String standardAssignmentName, Context context) {
-        return deleteWithResponseAsync(resourceId, standardAssignmentName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
+        }
+        if (standardAssignmentName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter standardAssignmentName is required and cannot be null."));
+        }
+        final String apiVersion = "2024-08-01";
+        final String accept = "application/json";
+        return service.deleteSync(this.client.getEndpoint(), resourceId, standardAssignmentName, apiVersion, accept,
+            context);
     }
 
     /**
@@ -552,37 +537,6 @@ public final class StandardAssignmentsClientImpl implements StandardAssignmentsC
      * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
      * 'subscriptions/{subscriptionId}'), or security connector (format:
      * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant standard assignments over a scope along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<StandardAssignmentInner>> listSinglePageAsync(String scope, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (scope == null) {
-            return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
-        }
-        final String apiVersion = "2024-08-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), apiVersion, scope, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Get a list of all relevant standard assignments over a scope.
-     * 
-     * @param scope The scope of the standard assignment. Valid scopes are: management group (format:
-     * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
-     * 'subscriptions/{subscriptionId}'), or security connector (format:
-     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -600,16 +554,58 @@ public final class StandardAssignmentsClientImpl implements StandardAssignmentsC
      * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
      * 'subscriptions/{subscriptionId}'), or security connector (format:
      * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of all relevant standard assignments over a scope along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<StandardAssignmentInner> listSinglePage(String scope) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        final String apiVersion = "2024-08-01";
+        final String accept = "application/json";
+        Response<StandardAssignmentsList> res
+            = service.listSync(this.client.getEndpoint(), apiVersion, scope, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get a list of all relevant standard assignments over a scope.
+     * 
+     * @param scope The scope of the standard assignment. Valid scopes are: management group (format:
+     * 'providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format:
+     * 'subscriptions/{subscriptionId}'), or security connector (format:
+     * 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName})'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all relevant standard assignments over a scope as paginated response with {@link PagedFlux}.
+     * @return a list of all relevant standard assignments over a scope along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<StandardAssignmentInner> listAsync(String scope, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(scope, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<StandardAssignmentInner> listSinglePage(String scope, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (scope == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        final String apiVersion = "2024-08-01";
+        final String accept = "application/json";
+        Response<StandardAssignmentsList> res
+            = service.listSync(this.client.getEndpoint(), apiVersion, scope, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -627,7 +623,7 @@ public final class StandardAssignmentsClientImpl implements StandardAssignmentsC
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<StandardAssignmentInner> list(String scope) {
-        return new PagedIterable<>(listAsync(scope));
+        return new PagedIterable<>(() -> listSinglePage(scope), nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -646,7 +642,8 @@ public final class StandardAssignmentsClientImpl implements StandardAssignmentsC
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<StandardAssignmentInner> list(String scope, Context context) {
-        return new PagedIterable<>(listAsync(scope, context));
+        return new PagedIterable<>(() -> listSinglePage(scope, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -679,26 +676,56 @@ public final class StandardAssignmentsClientImpl implements StandardAssignmentsC
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return page of a standard assignment list along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<StandardAssignmentInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<StandardAssignmentsList> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return page of a standard assignment list along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return page of a standard assignment list along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<StandardAssignmentInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<StandardAssignmentInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<StandardAssignmentsList> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(StandardAssignmentsClientImpl.class);
 }
