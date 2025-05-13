@@ -34,6 +34,10 @@ parameters:
     displayName: azure-resourcemanager-onlineexperimentation
     type: boolean
     default: false
+  - name: release_azureanalyticsonlineexperimentation
+    displayName: azure-analytics-onlineexperimentation
+    type: boolean
+    default: true
 
 extends:
   template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
@@ -44,3 +48,7 @@ extends:
         groupId: com.azure.resourcemanager
         safeName: azureresourcemanageronlineexperimentation
         releaseInBatch: ${{ parameters.release_azureresourcemanageronlineexperimentation }}
+      - name: azure-analytics-onlineexperimentation
+        groupId: com.azure
+        safeName: azureanalyticsonlineexperimentation
+        releaseInBatch: ${{ parameters.release_azureanalyticsonlineexperimentation }}
