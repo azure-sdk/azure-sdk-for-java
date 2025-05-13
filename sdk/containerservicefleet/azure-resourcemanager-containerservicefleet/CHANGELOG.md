@@ -1,21 +1,10 @@
 # Release History
 
-## 1.2.0 (2025-04-10)
+## 1.2.0 (2025-05-13)
 
 - Azure Resource Manager Container Service Fleet client library for Java. This package contains Microsoft Azure SDK for Container Service Fleet Management SDK. Azure Kubernetes Fleet Manager api client. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
-
-#### Serialization/Deserialization change
-
-- `Jackson` is removed from dependency and no longer supported.
-
-##### Migration Guide
-
-If you are using `Jackson`/`ObjectMapper` for manual serialization/deserialization, configure your `ObjectMapper` for backward compatibility:
-```java
-objectMapper.registerModule(com.azure.core.serializer.json.jackson.JacksonJsonProvider.getJsonSerializableDatabindModule());
-```
 
 #### `models.FleetMemberListResult` was removed
 
@@ -39,7 +28,11 @@ objectMapper.registerModule(com.azure.core.serializer.json.jackson.JacksonJsonPr
 
 ### Features Added
 
+* `models.GateConfiguration` was added
+
 * `models.UpgradeChannel` was added
+
+* `implementation.models.OperationListResult` was added
 
 * `models.AutoUpgradeProfile$Update` was added
 
@@ -47,11 +40,25 @@ objectMapper.registerModule(com.azure.core.serializer.json.jackson.JacksonJsonPr
 
 * `models.FleetStatus` was added
 
+* `models.UpdateRunGateStatus` was added
+
 * `models.AutoUpgradeProfileProvisioningState` was added
 
 * `models.FleetMemberStatus` was added
 
+* `models.GatePatch` was added
+
+* `models.Timing` was added
+
 * `models.AutoUpgradeNodeImageSelectionType` was added
+
+* `models.Gates` was added
+
+* `implementation.models.FleetMemberListResult` was added
+
+* `implementation.models.GateListResult` was added
+
+* `models.GateType` was added
 
 * `models.AutoUpgradeProfile$UpdateStages` was added
 
@@ -59,13 +66,33 @@ objectMapper.registerModule(com.azure.core.serializer.json.jackson.JacksonJsonPr
 
 * `models.AutoUpgradeProfile` was added
 
+* `implementation.models.UpdateRunListResult` was added
+
 * `models.AutoUpgradeNodeImageSelection` was added
+
+* `models.GatePatchProperties` was added
+
+* `implementation.models.FleetListResult` was added
+
+* `models.GateProvisioningState` was added
 
 * `models.AutoUpgradeProfile$DefinitionStages` was added
 
+* `models.UpdateRunGateTargetProperties` was added
+
+* `models.GateTarget` was added
+
 * `models.AutoUpgradeProfileOperations` was added
 
+* `implementation.models.AutoUpgradeProfileListResult` was added
+
+* `models.Gate` was added
+
 * `models.AutoUpgradeLastTriggerStatus` was added
+
+* `models.GateState` was added
+
+* `implementation.models.FleetUpdateStrategyListResult` was added
 
 * `models.GenerateResponse` was added
 
@@ -73,32 +100,175 @@ objectMapper.registerModule(com.azure.core.serializer.json.jackson.JacksonJsonPr
 
 #### `models.ApiServerAccessProfile` was modified
 
-* `withSubnetId(java.lang.String)` was added
-* `withEnableVnetIntegration(java.lang.Boolean)` was added
 * `enableVnetIntegration()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 * `subnetId()` was added
+* `withEnableVnetIntegration(java.lang.Boolean)` was added
+* `withSubnetId(java.lang.String)` was added
+
+#### `models.UserAssignedIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.WaitStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 #### `ContainerServiceFleetManager` was modified
 
-* `autoUpgradeProfiles()` was added
 * `autoUpgradeProfileOperations()` was added
+* `gates()` was added
+* `autoUpgradeProfiles()` was added
+
+#### `models.AgentProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
 
 #### `models.FleetMember` was modified
 
+* `labels()` was added
 * `status()` was added
+
+#### `models.UpdateStageStatus` was modified
+
+* `beforeGates()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `afterGates()` was added
+* `toJson(com.azure.json.JsonWriter)` was added
 
 #### `models.Fleet` was modified
 
 * `status()` was added
 
+#### `models.ManagedServiceIdentity` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UpdateGroupStatus` was modified
+
+* `beforeGates()` was added
+* `afterGates()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.FleetHubProfile` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UpdateRunStrategy` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
 #### `models.NodeImageSelection` was modified
 
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
 * `withCustomNodeImageVersions(java.util.List)` was added
 * `customNodeImageVersions()` was added
+
+#### `models.NodeImageSelectionStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FleetMember$Definition` was modified
+
+* `withLabels(java.util.Map)` was added
+
+#### `models.FleetMemberUpdate` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+* `withLabels(java.util.Map)` was added
+* `labels()` was added
+
+#### `models.UpdateStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FleetPatch` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.UpdateGroup` was modified
+
+* `afterGates()` was added
+* `beforeGates()` was added
+* `withAfterGates(java.util.List)` was added
+* `withBeforeGates(java.util.List)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedClusterUpgradeSpec` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UpdateStage` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `beforeGates()` was added
+* `withAfterGates(java.util.List)` was added
+* `afterGates()` was added
+* `withBeforeGates(java.util.List)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.SkipProperties` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.MemberUpdateStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FleetCredentialResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationDisplay` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.ManagedClusterUpdate` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 #### `models.UpdateRun` was modified
 
 * `autoUpgradeProfileId()` was added
+
+#### `models.SkipTarget` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.NodeImageVersion` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.FleetMember$Update` was modified
+
+* `withLabels(java.util.Map)` was added
+
+#### `models.UpdateRunStatus` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
 
 ## 1.2.0-beta.1 (2024-10-17)
 

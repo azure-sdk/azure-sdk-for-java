@@ -28,7 +28,7 @@ public final class UpdateRunsDeleteMockTests {
                 new AzureProfile("", "", AzureCloud.AZURE_PUBLIC_CLOUD));
 
         manager.updateRuns()
-            .delete("euojgjrwju", "iotwmcdytdxwit", "nrjawgqwg", "hniskxfbkpyc", com.azure.core.util.Context.NONE);
+            .delete("stvlzywemhzrnc", "dtclusiypb", "fgytguslfeadcyg", "ukyhejhzis", com.azure.core.util.Context.NONE);
 
     }
 }
