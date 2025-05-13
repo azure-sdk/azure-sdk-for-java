@@ -10,13 +10,14 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.oracledatabase.fluent.models.GiVersionInner;
+import com.azure.resourcemanager.oracledatabase.models.SystemShapes;
 
 /**
  * An instance of this class provides access to all the operations defined in GiVersionsClient.
  */
 public interface GiVersionsClient {
     /**
-     * List GiVersion resources by Location.
+     * List GiVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -28,9 +29,11 @@ public interface GiVersionsClient {
     PagedIterable<GiVersionInner> listByLocation(String location);
 
     /**
-     * List GiVersion resources by Location.
+     * List GiVersion resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
+     * @param shape If provided, filters the results for the given shape.
+     * @param zone Filters the result for the given Azure Availability Zone.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -38,7 +41,7 @@ public interface GiVersionsClient {
      * @return the response of a GiVersion list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<GiVersionInner> listByLocation(String location, Context context);
+    PagedIterable<GiVersionInner> listByLocation(String location, SystemShapes shape, String zone, Context context);
 
     /**
      * Get a GiVersion.

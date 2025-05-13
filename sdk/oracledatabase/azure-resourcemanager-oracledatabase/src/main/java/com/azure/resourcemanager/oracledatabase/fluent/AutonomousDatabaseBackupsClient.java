@@ -30,8 +30,7 @@ public interface AutonomousDatabaseBackupsClient {
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<AutonomousDatabaseBackupInner> listByAutonomousDatabase(String resourceGroupName,
-        String autonomousdatabasename);
+    PagedIterable<AutonomousDatabaseBackupInner> listByParent(String resourceGroupName, String autonomousdatabasename);
 
     /**
      * List AutonomousDatabaseBackup resources by AutonomousDatabase.
@@ -46,8 +45,8 @@ public interface AutonomousDatabaseBackupsClient {
      * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<AutonomousDatabaseBackupInner> listByAutonomousDatabase(String resourceGroupName,
-        String autonomousdatabasename, Context context);
+    PagedIterable<AutonomousDatabaseBackupInner> listByParent(String resourceGroupName, String autonomousdatabasename,
+        Context context);
 
     /**
      * Get a AutonomousDatabaseBackup.

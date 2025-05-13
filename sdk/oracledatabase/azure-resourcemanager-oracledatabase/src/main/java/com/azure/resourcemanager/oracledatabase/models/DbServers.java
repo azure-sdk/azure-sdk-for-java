@@ -22,8 +22,7 @@ public interface DbServers {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a DbServer list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<DbServer> listByCloudExadataInfrastructure(String resourceGroupName,
-        String cloudexadatainfrastructurename);
+    PagedIterable<DbServer> listByParent(String resourceGroupName, String cloudexadatainfrastructurename);
 
     /**
      * List DbServer resources by CloudExadataInfrastructure.
@@ -36,8 +35,8 @@ public interface DbServers {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a DbServer list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<DbServer> listByCloudExadataInfrastructure(String resourceGroupName,
-        String cloudexadatainfrastructurename, Context context);
+    PagedIterable<DbServer> listByParent(String resourceGroupName, String cloudexadatainfrastructurename,
+        Context context);
 
     /**
      * Get a DbServer.

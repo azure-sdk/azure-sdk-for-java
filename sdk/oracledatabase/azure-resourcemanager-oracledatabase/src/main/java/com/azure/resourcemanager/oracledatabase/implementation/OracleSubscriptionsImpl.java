@@ -15,10 +15,11 @@ import com.azure.resourcemanager.oracledatabase.fluent.models.CloudAccountDetail
 import com.azure.resourcemanager.oracledatabase.fluent.models.OracleSubscriptionInner;
 import com.azure.resourcemanager.oracledatabase.fluent.models.SaasSubscriptionDetailsInner;
 import com.azure.resourcemanager.oracledatabase.models.ActivationLinks;
+import com.azure.resourcemanager.oracledatabase.models.AzureSubscriptions;
 import com.azure.resourcemanager.oracledatabase.models.CloudAccountDetails;
 import com.azure.resourcemanager.oracledatabase.models.OracleSubscription;
-import com.azure.resourcemanager.oracledatabase.models.OracleSubscriptions;
 import com.azure.resourcemanager.oracledatabase.models.OracleSubscriptionUpdate;
+import com.azure.resourcemanager.oracledatabase.models.OracleSubscriptions;
 import com.azure.resourcemanager.oracledatabase.models.SaasSubscriptionDetails;
 
 public final class OracleSubscriptionsImpl implements OracleSubscriptions {
@@ -105,6 +106,14 @@ public final class OracleSubscriptionsImpl implements OracleSubscriptions {
 
     public void delete(Context context) {
         this.serviceClient().delete(context);
+    }
+
+    public void addAzureSubscriptions(AzureSubscriptions body) {
+        this.serviceClient().addAzureSubscriptions(body);
+    }
+
+    public void addAzureSubscriptions(AzureSubscriptions body, Context context) {
+        this.serviceClient().addAzureSubscriptions(body, context);
     }
 
     public ActivationLinks listActivationLinks() {

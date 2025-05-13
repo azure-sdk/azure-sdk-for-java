@@ -41,6 +41,11 @@ public final class CloudVmClusterProperties implements JsonSerializable<CloudVmC
     private Integer storageSizeInGbs;
 
     /*
+     * Array of mount path and size.
+     */
+    private List<FileSystemConfigurationDetails> fileSystemConfigurationDetails;
+
+    /*
      * The data disk group size to be allocated in TBs.
      */
     private Double dataStorageSizeInTbs;
@@ -276,6 +281,11 @@ public final class CloudVmClusterProperties implements JsonSerializable<CloudVmC
      */
     private String subnetOcid;
 
+    /*
+     * The compute model of the VM Cluster.
+     */
+    private ComputeModel computeModel;
+
     /**
      * Creates an instance of CloudVmClusterProperties class.
      */
@@ -326,6 +336,27 @@ public final class CloudVmClusterProperties implements JsonSerializable<CloudVmC
      */
     public CloudVmClusterProperties withStorageSizeInGbs(Integer storageSizeInGbs) {
         this.storageSizeInGbs = storageSizeInGbs;
+        return this;
+    }
+
+    /**
+     * Get the fileSystemConfigurationDetails property: Array of mount path and size.
+     * 
+     * @return the fileSystemConfigurationDetails value.
+     */
+    public List<FileSystemConfigurationDetails> fileSystemConfigurationDetails() {
+        return this.fileSystemConfigurationDetails;
+    }
+
+    /**
+     * Set the fileSystemConfigurationDetails property: Array of mount path and size.
+     * 
+     * @param fileSystemConfigurationDetails the fileSystemConfigurationDetails value to set.
+     * @return the CloudVmClusterProperties object itself.
+     */
+    public CloudVmClusterProperties
+        withFileSystemConfigurationDetails(List<FileSystemConfigurationDetails> fileSystemConfigurationDetails) {
+        this.fileSystemConfigurationDetails = fileSystemConfigurationDetails;
         return this;
     }
 
@@ -1074,11 +1105,23 @@ public final class CloudVmClusterProperties implements JsonSerializable<CloudVmC
     }
 
     /**
+     * Get the computeModel property: The compute model of the VM Cluster.
+     * 
+     * @return the computeModel value.
+     */
+    public ComputeModel computeModel() {
+        return this.computeModel;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (fileSystemConfigurationDetails() != null) {
+            fileSystemConfigurationDetails().forEach(e -> e.validate());
+        }
         if (hostname() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(
@@ -1143,6 +1186,8 @@ public final class CloudVmClusterProperties implements JsonSerializable<CloudVmC
         jsonWriter.writeStringField("subnetId", this.subnetId);
         jsonWriter.writeStringField("displayName", this.displayName);
         jsonWriter.writeNumberField("storageSizeInGbs", this.storageSizeInGbs);
+        jsonWriter.writeArrayField("fileSystemConfigurationDetails", this.fileSystemConfigurationDetails,
+            (writer, element) -> writer.writeJson(element));
         jsonWriter.writeNumberField("dataStorageSizeInTbs", this.dataStorageSizeInTbs);
         jsonWriter.writeNumberField("dbNodeStorageSizeInGbs", this.dbNodeStorageSizeInGbs);
         jsonWriter.writeNumberField("memorySizeInGbs", this.memorySizeInGbs);
@@ -1207,6 +1252,11 @@ public final class CloudVmClusterProperties implements JsonSerializable<CloudVmC
                     deserializedCloudVmClusterProperties.nodeCount = reader.getNullable(JsonReader::getInt);
                 } else if ("storageSizeInGbs".equals(fieldName)) {
                     deserializedCloudVmClusterProperties.storageSizeInGbs = reader.getNullable(JsonReader::getInt);
+                } else if ("fileSystemConfigurationDetails".equals(fieldName)) {
+                    List<FileSystemConfigurationDetails> fileSystemConfigurationDetails
+                        = reader.readArray(reader1 -> FileSystemConfigurationDetails.fromJson(reader1));
+                    deserializedCloudVmClusterProperties.fileSystemConfigurationDetails
+                        = fileSystemConfigurationDetails;
                 } else if ("dataStorageSizeInTbs".equals(fieldName)) {
                     deserializedCloudVmClusterProperties.dataStorageSizeInTbs
                         = reader.getNullable(JsonReader::getDouble);
@@ -1292,6 +1342,8 @@ public final class CloudVmClusterProperties implements JsonSerializable<CloudVmC
                     deserializedCloudVmClusterProperties.compartmentId = reader.getString();
                 } else if ("subnetOcid".equals(fieldName)) {
                     deserializedCloudVmClusterProperties.subnetOcid = reader.getString();
+                } else if ("computeModel".equals(fieldName)) {
+                    deserializedCloudVmClusterProperties.computeModel = ComputeModel.fromString(reader.getString());
                 } else {
                     reader.skipChildren();
                 }

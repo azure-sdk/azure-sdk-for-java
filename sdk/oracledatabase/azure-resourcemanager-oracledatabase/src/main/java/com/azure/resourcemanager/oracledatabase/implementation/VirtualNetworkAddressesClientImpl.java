@@ -27,8 +27,10 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.oracledatabase.fluent.VirtualNetworkAddressesClient;
@@ -74,7 +76,17 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudVmClusters/{cloudvmclustername}/virtualNetworkAddresses")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualNetworkAddressListResult>> listByCloudVmCluster(@HostParam("$host") String endpoint,
+        Mono<Response<VirtualNetworkAddressListResult>> listByParent(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("cloudvmclustername") String cloudvmclustername, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudVmClusters/{cloudvmclustername}/virtualNetworkAddresses")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<VirtualNetworkAddressListResult> listByParentSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("cloudvmclustername") String cloudvmclustername, @HeaderParam("Accept") String accept,
@@ -85,6 +97,17 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VirtualNetworkAddressInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("cloudvmclustername") String cloudvmclustername,
+            @PathParam("virtualnetworkaddressname") String virtualnetworkaddressname,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudVmClusters/{cloudvmclustername}/virtualNetworkAddresses/{virtualnetworkaddressname}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<VirtualNetworkAddressInner> getSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("cloudvmclustername") String cloudvmclustername,
@@ -104,6 +127,18 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudVmClusters/{cloudvmclustername}/virtualNetworkAddresses/{virtualnetworkaddressname}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> createOrUpdateSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("cloudvmclustername") String cloudvmclustername,
+            @PathParam("virtualnetworkaddressname") String virtualnetworkaddressname,
+            @BodyParam("application/json") VirtualNetworkAddressInner resource, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudVmClusters/{cloudvmclustername}/virtualNetworkAddresses/{virtualnetworkaddressname}")
         @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -115,10 +150,29 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudVmClusters/{cloudvmclustername}/virtualNetworkAddresses/{virtualnetworkaddressname}")
+        @ExpectedResponses({ 202, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> deleteSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("cloudvmclustername") String cloudvmclustername,
+            @PathParam("virtualnetworkaddressname") String virtualnetworkaddressname,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualNetworkAddressListResult>> listByCloudVmClusterNext(
+        Mono<Response<VirtualNetworkAddressListResult>> listByParentNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<VirtualNetworkAddressListResult> listByParentNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -135,8 +189,8 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualNetworkAddressInner>>
-        listByCloudVmClusterSinglePageAsync(String resourceGroupName, String cloudvmclustername) {
+    private Mono<PagedResponse<VirtualNetworkAddressInner>> listByParentSinglePageAsync(String resourceGroupName,
+        String cloudvmclustername) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -155,7 +209,7 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByCloudVmCluster(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.listByParent(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, cloudvmclustername, accept, context))
             .<PagedResponse<VirtualNetworkAddressInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -167,56 +221,55 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudvmclustername CloudVmCluster name.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a VirtualNetworkAddress list operation along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<VirtualNetworkAddressInner> listByParentAsync(String resourceGroupName,
+        String cloudvmclustername) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, cloudvmclustername),
+            nextLink -> listByParentNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List VirtualNetworkAddress resources by CloudVmCluster.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudvmclustername CloudVmCluster name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a VirtualNetworkAddress list operation along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualNetworkAddressInner>>
-        listByCloudVmClusterSinglePageAsync(String resourceGroupName, String cloudvmclustername, Context context) {
+    private PagedResponse<VirtualNetworkAddressInner> listByParentSinglePage(String resourceGroupName,
+        String cloudvmclustername) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (cloudvmclustername == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter cloudvmclustername is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter cloudvmclustername is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByCloudVmCluster(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, cloudvmclustername, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * List VirtualNetworkAddress resources by CloudVmCluster.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cloudvmclustername CloudVmCluster name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<VirtualNetworkAddressInner> listByCloudVmClusterAsync(String resourceGroupName,
-        String cloudvmclustername) {
-        return new PagedFlux<>(() -> listByCloudVmClusterSinglePageAsync(resourceGroupName, cloudvmclustername),
-            nextLink -> listByCloudVmClusterNextSinglePageAsync(nextLink));
+        Response<VirtualNetworkAddressListResult> res
+            = service.listByParentSync(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, cloudvmclustername, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -228,14 +281,35 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedFlux}.
+     * @return the response of a VirtualNetworkAddress list operation along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<VirtualNetworkAddressInner> listByCloudVmClusterAsync(String resourceGroupName,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<VirtualNetworkAddressInner> listByParentSinglePage(String resourceGroupName,
         String cloudvmclustername, Context context) {
-        return new PagedFlux<>(
-            () -> listByCloudVmClusterSinglePageAsync(resourceGroupName, cloudvmclustername, context),
-            nextLink -> listByCloudVmClusterNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (cloudvmclustername == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter cloudvmclustername is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<VirtualNetworkAddressListResult> res
+            = service.listByParentSync(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, cloudvmclustername, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -249,9 +323,9 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<VirtualNetworkAddressInner> listByCloudVmCluster(String resourceGroupName,
-        String cloudvmclustername) {
-        return new PagedIterable<>(listByCloudVmClusterAsync(resourceGroupName, cloudvmclustername));
+    public PagedIterable<VirtualNetworkAddressInner> listByParent(String resourceGroupName, String cloudvmclustername) {
+        return new PagedIterable<>(() -> listByParentSinglePage(resourceGroupName, cloudvmclustername),
+            nextLink -> listByParentNextSinglePage(nextLink));
     }
 
     /**
@@ -266,9 +340,10 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<VirtualNetworkAddressInner> listByCloudVmCluster(String resourceGroupName,
-        String cloudvmclustername, Context context) {
-        return new PagedIterable<>(listByCloudVmClusterAsync(resourceGroupName, cloudvmclustername, context));
+    public PagedIterable<VirtualNetworkAddressInner> listByParent(String resourceGroupName, String cloudvmclustername,
+        Context context) {
+        return new PagedIterable<>(() -> listByParentSinglePage(resourceGroupName, cloudvmclustername, context),
+            nextLink -> listByParentNextSinglePage(nextLink, context));
     }
 
     /**
@@ -319,47 +394,6 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudvmclustername CloudVmCluster name.
      * @param virtualnetworkaddressname Virtual IP address hostname.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a VirtualNetworkAddress along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<VirtualNetworkAddressInner>> getWithResponseAsync(String resourceGroupName,
-        String cloudvmclustername, String virtualnetworkaddressname, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (cloudvmclustername == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter cloudvmclustername is required and cannot be null."));
-        }
-        if (virtualnetworkaddressname == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter virtualnetworkaddressname is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, cloudvmclustername, virtualnetworkaddressname, accept, context);
-    }
-
-    /**
-     * Get a VirtualNetworkAddress.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cloudvmclustername CloudVmCluster name.
-     * @param virtualnetworkaddressname Virtual IP address hostname.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -387,7 +421,32 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<VirtualNetworkAddressInner> getWithResponse(String resourceGroupName, String cloudvmclustername,
         String virtualnetworkaddressname, Context context) {
-        return getWithResponseAsync(resourceGroupName, cloudvmclustername, virtualnetworkaddressname, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (cloudvmclustername == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter cloudvmclustername is required and cannot be null."));
+        }
+        if (virtualnetworkaddressname == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter virtualnetworkaddressname is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, cloudvmclustername, virtualnetworkaddressname, accept, context);
     }
 
     /**
@@ -464,45 +523,96 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * @param cloudvmclustername CloudVmCluster name.
      * @param virtualnetworkaddressname Virtual IP address hostname.
      * @param resource Resource create parameters.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual IP resource belonging to a vm cluster resource along with {@link Response} on successful
-     * completion of {@link Mono}.
+     * @return virtual IP resource belonging to a vm cluster resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String cloudvmclustername, String virtualnetworkaddressname, VirtualNetworkAddressInner resource,
-        Context context) {
+    private Response<BinaryData> createOrUpdateWithResponse(String resourceGroupName, String cloudvmclustername,
+        String virtualnetworkaddressname, VirtualNetworkAddressInner resource) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (cloudvmclustername == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter cloudvmclustername is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter cloudvmclustername is required and cannot be null."));
         }
         if (virtualnetworkaddressname == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter virtualnetworkaddressname is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter virtualnetworkaddressname is required and cannot be null."));
         }
         if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
             resource.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+        return service.createOrUpdateSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, cloudvmclustername, virtualnetworkaddressname, resource,
+            accept, Context.NONE);
+    }
+
+    /**
+     * Create a VirtualNetworkAddress.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudvmclustername CloudVmCluster name.
+     * @param virtualnetworkaddressname Virtual IP address hostname.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return virtual IP resource belonging to a vm cluster resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> createOrUpdateWithResponse(String resourceGroupName, String cloudvmclustername,
+        String virtualnetworkaddressname, VirtualNetworkAddressInner resource, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (cloudvmclustername == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter cloudvmclustername is required and cannot be null."));
+        }
+        if (virtualnetworkaddressname == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter virtualnetworkaddressname is required and cannot be null."));
+        }
+        if (resource == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        return service.createOrUpdateSync(this.client.getEndpoint(), this.client.getApiVersion(),
             this.client.getSubscriptionId(), resourceGroupName, cloudvmclustername, virtualnetworkaddressname, resource,
             accept, context);
     }
@@ -537,30 +647,6 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * @param cloudvmclustername CloudVmCluster name.
      * @param virtualnetworkaddressname Virtual IP address hostname.
      * @param resource Resource create parameters.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of virtual IP resource belonging to a vm cluster resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<VirtualNetworkAddressInner>, VirtualNetworkAddressInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String cloudvmclustername, String virtualnetworkaddressname,
-        VirtualNetworkAddressInner resource, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, cloudvmclustername,
-            virtualnetworkaddressname, resource, context);
-        return this.client.<VirtualNetworkAddressInner, VirtualNetworkAddressInner>getLroResult(mono,
-            this.client.getHttpPipeline(), VirtualNetworkAddressInner.class, VirtualNetworkAddressInner.class, context);
-    }
-
-    /**
-     * Create a VirtualNetworkAddress.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cloudvmclustername CloudVmCluster name.
-     * @param virtualnetworkaddressname Virtual IP address hostname.
-     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -570,8 +656,10 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
     public SyncPoller<PollResult<VirtualNetworkAddressInner>, VirtualNetworkAddressInner> beginCreateOrUpdate(
         String resourceGroupName, String cloudvmclustername, String virtualnetworkaddressname,
         VirtualNetworkAddressInner resource) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, cloudvmclustername, virtualnetworkaddressname, resource)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = createOrUpdateWithResponse(resourceGroupName, cloudvmclustername, virtualnetworkaddressname, resource);
+        return this.client.<VirtualNetworkAddressInner, VirtualNetworkAddressInner>getLroResult(response,
+            VirtualNetworkAddressInner.class, VirtualNetworkAddressInner.class, Context.NONE);
     }
 
     /**
@@ -591,10 +679,10 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
     public SyncPoller<PollResult<VirtualNetworkAddressInner>, VirtualNetworkAddressInner> beginCreateOrUpdate(
         String resourceGroupName, String cloudvmclustername, String virtualnetworkaddressname,
         VirtualNetworkAddressInner resource, Context context) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, cloudvmclustername, virtualnetworkaddressname, resource,
-                context)
-            .getSyncPoller();
+        Response<BinaryData> response = createOrUpdateWithResponse(resourceGroupName, cloudvmclustername,
+            virtualnetworkaddressname, resource, context);
+        return this.client.<VirtualNetworkAddressInner, VirtualNetworkAddressInner>getLroResult(response,
+            VirtualNetworkAddressInner.class, VirtualNetworkAddressInner.class, context);
     }
 
     /**
@@ -624,26 +712,6 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * @param cloudvmclustername CloudVmCluster name.
      * @param virtualnetworkaddressname Virtual IP address hostname.
      * @param resource Resource create parameters.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual IP resource belonging to a vm cluster resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualNetworkAddressInner> createOrUpdateAsync(String resourceGroupName, String cloudvmclustername,
-        String virtualnetworkaddressname, VirtualNetworkAddressInner resource, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, cloudvmclustername, virtualnetworkaddressname, resource,
-            context).last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Create a VirtualNetworkAddress.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cloudvmclustername CloudVmCluster name.
-     * @param virtualnetworkaddressname Virtual IP address hostname.
-     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -652,7 +720,8 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
     @ServiceMethod(returns = ReturnType.SINGLE)
     public VirtualNetworkAddressInner createOrUpdate(String resourceGroupName, String cloudvmclustername,
         String virtualnetworkaddressname, VirtualNetworkAddressInner resource) {
-        return createOrUpdateAsync(resourceGroupName, cloudvmclustername, virtualnetworkaddressname, resource).block();
+        return beginCreateOrUpdate(resourceGroupName, cloudvmclustername, virtualnetworkaddressname, resource)
+            .getFinalResult();
     }
 
     /**
@@ -671,8 +740,8 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
     @ServiceMethod(returns = ReturnType.SINGLE)
     public VirtualNetworkAddressInner createOrUpdate(String resourceGroupName, String cloudvmclustername,
         String virtualnetworkaddressname, VirtualNetworkAddressInner resource, Context context) {
-        return createOrUpdateAsync(resourceGroupName, cloudvmclustername, virtualnetworkaddressname, resource, context)
-            .block();
+        return beginCreateOrUpdate(resourceGroupName, cloudvmclustername, virtualnetworkaddressname, resource, context)
+            .getFinalResult();
     }
 
     /**
@@ -723,39 +792,85 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudvmclustername CloudVmCluster name.
      * @param virtualnetworkaddressname Virtual IP address hostname.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> deleteWithResponse(String resourceGroupName, String cloudvmclustername,
+        String virtualnetworkaddressname) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (cloudvmclustername == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter cloudvmclustername is required and cannot be null."));
+        }
+        if (virtualnetworkaddressname == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter virtualnetworkaddressname is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.deleteSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, cloudvmclustername, virtualnetworkaddressname, accept,
+            Context.NONE);
+    }
+
+    /**
+     * Delete a VirtualNetworkAddress.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudvmclustername CloudVmCluster name.
+     * @param virtualnetworkaddressname Virtual IP address hostname.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
-        String cloudvmclustername, String virtualnetworkaddressname, Context context) {
+    private Response<BinaryData> deleteWithResponse(String resourceGroupName, String cloudvmclustername,
+        String virtualnetworkaddressname, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (cloudvmclustername == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter cloudvmclustername is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter cloudvmclustername is required and cannot be null."));
         }
         if (virtualnetworkaddressname == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter virtualnetworkaddressname is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter virtualnetworkaddressname is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, cloudvmclustername, virtualnetworkaddressname, accept, context);
+        return service.deleteSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, cloudvmclustername, virtualnetworkaddressname, accept,
+            context);
     }
 
     /**
@@ -784,28 +899,6 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudvmclustername CloudVmCluster name.
      * @param virtualnetworkaddressname Virtual IP address hostname.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String cloudvmclustername,
-        String virtualnetworkaddressname, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = deleteWithResponseAsync(resourceGroupName, cloudvmclustername, virtualnetworkaddressname, context);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            context);
-    }
-
-    /**
-     * Delete a VirtualNetworkAddress.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cloudvmclustername CloudVmCluster name.
-     * @param virtualnetworkaddressname Virtual IP address hostname.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -814,7 +907,9 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String cloudvmclustername,
         String virtualnetworkaddressname) {
-        return this.beginDeleteAsync(resourceGroupName, cloudvmclustername, virtualnetworkaddressname).getSyncPoller();
+        Response<BinaryData> response
+            = deleteWithResponse(resourceGroupName, cloudvmclustername, virtualnetworkaddressname);
+        return this.client.<Void, Void>getLroResult(response, Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -832,8 +927,9 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String cloudvmclustername,
         String virtualnetworkaddressname, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, cloudvmclustername, virtualnetworkaddressname, context)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = deleteWithResponse(resourceGroupName, cloudvmclustername, virtualnetworkaddressname, context);
+        return this.client.<Void, Void>getLroResult(response, Void.class, Void.class, context);
     }
 
     /**
@@ -860,32 +956,13 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudvmclustername CloudVmCluster name.
      * @param virtualnetworkaddressname Virtual IP address hostname.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String cloudvmclustername,
-        String virtualnetworkaddressname, Context context) {
-        return beginDeleteAsync(resourceGroupName, cloudvmclustername, virtualnetworkaddressname, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Delete a VirtualNetworkAddress.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cloudvmclustername CloudVmCluster name.
-     * @param virtualnetworkaddressname Virtual IP address hostname.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String cloudvmclustername, String virtualnetworkaddressname) {
-        deleteAsync(resourceGroupName, cloudvmclustername, virtualnetworkaddressname).block();
+        beginDelete(resourceGroupName, cloudvmclustername, virtualnetworkaddressname).getFinalResult();
     }
 
     /**
@@ -902,7 +979,7 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String cloudvmclustername, String virtualnetworkaddressname,
         Context context) {
-        deleteAsync(resourceGroupName, cloudvmclustername, virtualnetworkaddressname, context).block();
+        beginDelete(resourceGroupName, cloudvmclustername, virtualnetworkaddressname, context).getFinalResult();
     }
 
     /**
@@ -916,7 +993,7 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualNetworkAddressInner>> listByCloudVmClusterNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<VirtualNetworkAddressInner>> listByParentNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -926,11 +1003,37 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listByCloudVmClusterNext(nextLink, this.client.getEndpoint(), accept, context))
+            .withContext(context -> service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<VirtualNetworkAddressInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a VirtualNetworkAddress list operation along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<VirtualNetworkAddressInner> listByParentNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<VirtualNetworkAddressListResult> res
+            = service.listByParentNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -941,23 +1044,25 @@ public final class VirtualNetworkAddressesClientImpl implements VirtualNetworkAd
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a VirtualNetworkAddress list operation along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return the response of a VirtualNetworkAddress list operation along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualNetworkAddressInner>> listByCloudVmClusterNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<VirtualNetworkAddressInner> listByParentNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByCloudVmClusterNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<VirtualNetworkAddressListResult> res
+            = service.listByParentNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(VirtualNetworkAddressesClientImpl.class);
 }

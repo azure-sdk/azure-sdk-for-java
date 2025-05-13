@@ -12,7 +12,7 @@ import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabase;
 public final class AutonomousDatabasesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_patch.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_patch.json
      */
     /**
      * Sample code: Patch Autonomous Database.

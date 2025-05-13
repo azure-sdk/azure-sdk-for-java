@@ -13,7 +13,7 @@ import com.azure.core.util.Context;
  */
 public interface AutonomousDatabaseNationalCharacterSets {
     /**
-     * List AutonomousDatabaseNationalCharacterSet resources by Location.
+     * List AutonomousDatabaseNationalCharacterSet resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -25,7 +25,7 @@ public interface AutonomousDatabaseNationalCharacterSets {
     PagedIterable<AutonomousDatabaseNationalCharacterSet> listByLocation(String location);
 
     /**
-     * List AutonomousDatabaseNationalCharacterSet resources by Location.
+     * List AutonomousDatabaseNationalCharacterSet resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.

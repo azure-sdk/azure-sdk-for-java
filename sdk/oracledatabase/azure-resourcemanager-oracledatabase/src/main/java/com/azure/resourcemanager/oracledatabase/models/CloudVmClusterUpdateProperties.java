@@ -23,6 +23,11 @@ public final class CloudVmClusterUpdateProperties implements JsonSerializable<Cl
     private Integer storageSizeInGbs;
 
     /*
+     * Array of mount path and size.
+     */
+    private List<FileSystemConfigurationDetails> fileSystemConfigurationDetails;
+
+    /*
      * The data disk group size to be allocated in TBs.
      */
     private Double dataStorageSizeInTbs;
@@ -97,6 +102,27 @@ public final class CloudVmClusterUpdateProperties implements JsonSerializable<Cl
      */
     public CloudVmClusterUpdateProperties withStorageSizeInGbs(Integer storageSizeInGbs) {
         this.storageSizeInGbs = storageSizeInGbs;
+        return this;
+    }
+
+    /**
+     * Get the fileSystemConfigurationDetails property: Array of mount path and size.
+     * 
+     * @return the fileSystemConfigurationDetails value.
+     */
+    public List<FileSystemConfigurationDetails> fileSystemConfigurationDetails() {
+        return this.fileSystemConfigurationDetails;
+    }
+
+    /**
+     * Set the fileSystemConfigurationDetails property: Array of mount path and size.
+     * 
+     * @param fileSystemConfigurationDetails the fileSystemConfigurationDetails value to set.
+     * @return the CloudVmClusterUpdateProperties object itself.
+     */
+    public CloudVmClusterUpdateProperties
+        withFileSystemConfigurationDetails(List<FileSystemConfigurationDetails> fileSystemConfigurationDetails) {
+        this.fileSystemConfigurationDetails = fileSystemConfigurationDetails;
         return this;
     }
 
@@ -314,6 +340,9 @@ public final class CloudVmClusterUpdateProperties implements JsonSerializable<Cl
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (fileSystemConfigurationDetails() != null) {
+            fileSystemConfigurationDetails().forEach(e -> e.validate());
+        }
         if (dataCollectionOptions() != null) {
             dataCollectionOptions().validate();
         }
@@ -326,6 +355,8 @@ public final class CloudVmClusterUpdateProperties implements JsonSerializable<Cl
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeNumberField("storageSizeInGbs", this.storageSizeInGbs);
+        jsonWriter.writeArrayField("fileSystemConfigurationDetails", this.fileSystemConfigurationDetails,
+            (writer, element) -> writer.writeJson(element));
         jsonWriter.writeNumberField("dataStorageSizeInTbs", this.dataStorageSizeInTbs);
         jsonWriter.writeNumberField("dbNodeStorageSizeInGbs", this.dbNodeStorageSizeInGbs);
         jsonWriter.writeNumberField("memorySizeInGbs", this.memorySizeInGbs);
@@ -359,6 +390,11 @@ public final class CloudVmClusterUpdateProperties implements JsonSerializable<Cl
                 if ("storageSizeInGbs".equals(fieldName)) {
                     deserializedCloudVmClusterUpdateProperties.storageSizeInGbs
                         = reader.getNullable(JsonReader::getInt);
+                } else if ("fileSystemConfigurationDetails".equals(fieldName)) {
+                    List<FileSystemConfigurationDetails> fileSystemConfigurationDetails
+                        = reader.readArray(reader1 -> FileSystemConfigurationDetails.fromJson(reader1));
+                    deserializedCloudVmClusterUpdateProperties.fileSystemConfigurationDetails
+                        = fileSystemConfigurationDetails;
                 } else if ("dataStorageSizeInTbs".equals(fieldName)) {
                     deserializedCloudVmClusterUpdateProperties.dataStorageSizeInTbs
                         = reader.getNullable(JsonReader::getDouble);

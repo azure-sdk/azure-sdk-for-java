@@ -11,24 +11,25 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLoggingPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
+import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.oracledatabase.fluent.OracleDatabaseResourceManager;
 import com.azure.resourcemanager.oracledatabase.implementation.AutonomousDatabaseBackupsImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.AutonomousDatabaseCharacterSetsImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.AutonomousDatabaseNationalCharacterSetsImpl;
-import com.azure.resourcemanager.oracledatabase.implementation.AutonomousDatabasesImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.AutonomousDatabaseVersionsImpl;
+import com.azure.resourcemanager.oracledatabase.implementation.AutonomousDatabasesImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.CloudExadataInfrastructuresImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.CloudVmClustersImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.DbNodesImpl;
@@ -36,6 +37,11 @@ import com.azure.resourcemanager.oracledatabase.implementation.DbServersImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.DbSystemShapesImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.DnsPrivateViewsImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.DnsPrivateZonesImpl;
+import com.azure.resourcemanager.oracledatabase.implementation.ExadbVmClustersImpl;
+import com.azure.resourcemanager.oracledatabase.implementation.ExascaleDbNodesImpl;
+import com.azure.resourcemanager.oracledatabase.implementation.ExascaleDbStorageVaultsImpl;
+import com.azure.resourcemanager.oracledatabase.implementation.FlexComponentsImpl;
+import com.azure.resourcemanager.oracledatabase.implementation.GiMinorVersionsImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.GiVersionsImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.OperationsImpl;
 import com.azure.resourcemanager.oracledatabase.implementation.OracleDatabaseResourceManagerBuilder;
@@ -45,8 +51,8 @@ import com.azure.resourcemanager.oracledatabase.implementation.VirtualNetworkAdd
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseBackups;
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseCharacterSets;
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseNationalCharacterSets;
-import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabases;
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseVersions;
+import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabases;
 import com.azure.resourcemanager.oracledatabase.models.CloudExadataInfrastructures;
 import com.azure.resourcemanager.oracledatabase.models.CloudVmClusters;
 import com.azure.resourcemanager.oracledatabase.models.DbNodes;
@@ -54,6 +60,11 @@ import com.azure.resourcemanager.oracledatabase.models.DbServers;
 import com.azure.resourcemanager.oracledatabase.models.DbSystemShapes;
 import com.azure.resourcemanager.oracledatabase.models.DnsPrivateViews;
 import com.azure.resourcemanager.oracledatabase.models.DnsPrivateZones;
+import com.azure.resourcemanager.oracledatabase.models.ExadbVmClusters;
+import com.azure.resourcemanager.oracledatabase.models.ExascaleDbNodes;
+import com.azure.resourcemanager.oracledatabase.models.ExascaleDbStorageVaults;
+import com.azure.resourcemanager.oracledatabase.models.FlexComponents;
+import com.azure.resourcemanager.oracledatabase.models.GiMinorVersions;
 import com.azure.resourcemanager.oracledatabase.models.GiVersions;
 import com.azure.resourcemanager.oracledatabase.models.Operations;
 import com.azure.resourcemanager.oracledatabase.models.OracleSubscriptions;
@@ -63,6 +74,7 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -78,6 +90,10 @@ public final class OracleDatabaseManager {
 
     private CloudVmClusters cloudVmClusters;
 
+    private ExadbVmClusters exadbVmClusters;
+
+    private ExascaleDbStorageVaults exascaleDbStorageVaults;
+
     private AutonomousDatabaseCharacterSets autonomousDatabaseCharacterSets;
 
     private AutonomousDatabaseNationalCharacterSets autonomousDatabaseNationalCharacterSets;
@@ -90,7 +106,11 @@ public final class OracleDatabaseManager {
 
     private DnsPrivateZones dnsPrivateZones;
 
+    private FlexComponents flexComponents;
+
     private GiVersions giVersions;
+
+    private GiMinorVersions giMinorVersions;
 
     private SystemVersions systemVersions;
 
@@ -103,6 +123,8 @@ public final class OracleDatabaseManager {
     private DbNodes dbNodes;
 
     private VirtualNetworkAddresses virtualNetworkAddresses;
+
+    private ExascaleDbNodes exascaleDbNodes;
 
     private final OracleDatabaseResourceManager clientObject;
 
@@ -156,6 +178,9 @@ public final class OracleDatabaseManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-oracledatabase.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -263,12 +288,14 @@ public final class OracleDatabaseManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.oracledatabase")
                 .append("/")
-                .append("1.0.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -301,7 +328,7 @@ public final class OracleDatabaseManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -361,6 +388,31 @@ public final class OracleDatabaseManager {
             this.cloudVmClusters = new CloudVmClustersImpl(clientObject.getCloudVmClusters(), this);
         }
         return cloudVmClusters;
+    }
+
+    /**
+     * Gets the resource collection API of ExadbVmClusters. It manages ExadbVmCluster.
+     * 
+     * @return Resource collection API of ExadbVmClusters.
+     */
+    public ExadbVmClusters exadbVmClusters() {
+        if (this.exadbVmClusters == null) {
+            this.exadbVmClusters = new ExadbVmClustersImpl(clientObject.getExadbVmClusters(), this);
+        }
+        return exadbVmClusters;
+    }
+
+    /**
+     * Gets the resource collection API of ExascaleDbStorageVaults. It manages ExascaleDbStorageVault.
+     * 
+     * @return Resource collection API of ExascaleDbStorageVaults.
+     */
+    public ExascaleDbStorageVaults exascaleDbStorageVaults() {
+        if (this.exascaleDbStorageVaults == null) {
+            this.exascaleDbStorageVaults
+                = new ExascaleDbStorageVaultsImpl(clientObject.getExascaleDbStorageVaults(), this);
+        }
+        return exascaleDbStorageVaults;
     }
 
     /**
@@ -439,6 +491,18 @@ public final class OracleDatabaseManager {
     }
 
     /**
+     * Gets the resource collection API of FlexComponents.
+     * 
+     * @return Resource collection API of FlexComponents.
+     */
+    public FlexComponents flexComponents() {
+        if (this.flexComponents == null) {
+            this.flexComponents = new FlexComponentsImpl(clientObject.getFlexComponents(), this);
+        }
+        return flexComponents;
+    }
+
+    /**
      * Gets the resource collection API of GiVersions.
      * 
      * @return Resource collection API of GiVersions.
@@ -448,6 +512,18 @@ public final class OracleDatabaseManager {
             this.giVersions = new GiVersionsImpl(clientObject.getGiVersions(), this);
         }
         return giVersions;
+    }
+
+    /**
+     * Gets the resource collection API of GiMinorVersions.
+     * 
+     * @return Resource collection API of GiMinorVersions.
+     */
+    public GiMinorVersions giMinorVersions() {
+        if (this.giMinorVersions == null) {
+            this.giMinorVersions = new GiMinorVersionsImpl(clientObject.getGiMinorVersions(), this);
+        }
+        return giMinorVersions;
     }
 
     /**
@@ -522,6 +598,18 @@ public final class OracleDatabaseManager {
                 = new VirtualNetworkAddressesImpl(clientObject.getVirtualNetworkAddresses(), this);
         }
         return virtualNetworkAddresses;
+    }
+
+    /**
+     * Gets the resource collection API of ExascaleDbNodes.
+     * 
+     * @return Resource collection API of ExascaleDbNodes.
+     */
+    public ExascaleDbNodes exascaleDbNodes() {
+        if (this.exascaleDbNodes == null) {
+            this.exascaleDbNodes = new ExascaleDbNodesImpl(clientObject.getExascaleDbNodes(), this);
+        }
+        return exascaleDbNodes;
     }
 
     /**

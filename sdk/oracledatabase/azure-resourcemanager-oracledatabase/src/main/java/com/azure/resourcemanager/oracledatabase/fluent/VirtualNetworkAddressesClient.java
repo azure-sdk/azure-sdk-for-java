@@ -28,7 +28,7 @@ public interface VirtualNetworkAddressesClient {
      * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<VirtualNetworkAddressInner> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername);
+    PagedIterable<VirtualNetworkAddressInner> listByParent(String resourceGroupName, String cloudvmclustername);
 
     /**
      * List VirtualNetworkAddress resources by CloudVmCluster.
@@ -42,7 +42,7 @@ public interface VirtualNetworkAddressesClient {
      * @return the response of a VirtualNetworkAddress list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<VirtualNetworkAddressInner> listByCloudVmCluster(String resourceGroupName, String cloudvmclustername,
+    PagedIterable<VirtualNetworkAddressInner> listByParent(String resourceGroupName, String cloudvmclustername,
         Context context);
 
     /**

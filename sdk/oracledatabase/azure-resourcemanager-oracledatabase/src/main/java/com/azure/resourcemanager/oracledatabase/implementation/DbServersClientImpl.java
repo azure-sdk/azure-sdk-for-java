@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.oracledatabase.fluent.DbServersClient;
 import com.azure.resourcemanager.oracledatabase.fluent.models.DbServerInner;
 import com.azure.resourcemanager.oracledatabase.models.DbServerListResult;
@@ -66,7 +67,17 @@ public final class DbServersClientImpl implements DbServersClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudExadataInfrastructures/{cloudexadatainfrastructurename}/dbServers")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DbServerListResult>> listByCloudExadataInfrastructure(@HostParam("$host") String endpoint,
+        Mono<Response<DbServerListResult>> listByParent(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("cloudexadatainfrastructurename") String cloudexadatainfrastructurename,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudExadataInfrastructures/{cloudexadatainfrastructurename}/dbServers")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DbServerListResult> listByParentSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("cloudexadatainfrastructurename") String cloudexadatainfrastructurename,
@@ -83,10 +94,28 @@ public final class DbServersClientImpl implements DbServersClient {
             @PathParam("dbserverocid") String dbserverocid, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Oracle.Database/cloudExadataInfrastructures/{cloudexadatainfrastructurename}/dbServers/{dbserverocid}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DbServerInner> getSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("cloudexadatainfrastructurename") String cloudexadatainfrastructurename,
+            @PathParam("dbserverocid") String dbserverocid, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DbServerListResult>> listByCloudExadataInfrastructureNext(
+        Mono<Response<DbServerListResult>> listByParentNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DbServerListResult> listByParentNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -103,7 +132,7 @@ public final class DbServersClientImpl implements DbServersClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DbServerInner>> listByCloudExadataInfrastructureSinglePageAsync(String resourceGroupName,
+    private Mono<PagedResponse<DbServerInner>> listByParentSinglePageAsync(String resourceGroupName,
         String cloudexadatainfrastructurename) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -123,9 +152,8 @@ public final class DbServersClientImpl implements DbServersClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByCloudExadataInfrastructure(this.client.getEndpoint(),
-                this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName,
-                cloudexadatainfrastructurename, accept, context))
+            .withContext(context -> service.listByParent(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, cloudexadatainfrastructurename, accept, context))
             .<PagedResponse<DbServerInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -136,57 +164,56 @@ public final class DbServersClientImpl implements DbServersClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudexadatainfrastructurename CloudExadataInfrastructure name.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a DbServer list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a DbServer list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<DbServerInner> listByParentAsync(String resourceGroupName,
+        String cloudexadatainfrastructurename) {
+        return new PagedFlux<>(() -> listByParentSinglePageAsync(resourceGroupName, cloudexadatainfrastructurename),
+            nextLink -> listByParentNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List DbServer resources by CloudExadataInfrastructure.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudexadatainfrastructurename CloudExadataInfrastructure name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a DbServer list operation along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DbServerInner>> listByCloudExadataInfrastructureSinglePageAsync(String resourceGroupName,
-        String cloudexadatainfrastructurename, Context context) {
+    private PagedResponse<DbServerInner> listByParentSinglePage(String resourceGroupName,
+        String cloudexadatainfrastructurename) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (cloudexadatainfrastructurename == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter cloudexadatainfrastructurename is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter cloudexadatainfrastructurename is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByCloudExadataInfrastructure(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, cloudexadatainfrastructurename, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * List DbServer resources by CloudExadataInfrastructure.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cloudexadatainfrastructurename CloudExadataInfrastructure name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a DbServer list operation as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DbServerInner> listByCloudExadataInfrastructureAsync(String resourceGroupName,
-        String cloudexadatainfrastructurename) {
-        return new PagedFlux<>(
-            () -> listByCloudExadataInfrastructureSinglePageAsync(resourceGroupName, cloudexadatainfrastructurename),
-            nextLink -> listByCloudExadataInfrastructureNextSinglePageAsync(nextLink));
+        Response<DbServerListResult> res = service.listByParentSync(this.client.getEndpoint(),
+            this.client.getApiVersion(), this.client.getSubscriptionId(), resourceGroupName,
+            cloudexadatainfrastructurename, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -198,14 +225,36 @@ public final class DbServersClientImpl implements DbServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a DbServer list operation as paginated response with {@link PagedFlux}.
+     * @return the response of a DbServer list operation along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DbServerInner> listByCloudExadataInfrastructureAsync(String resourceGroupName,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<DbServerInner> listByParentSinglePage(String resourceGroupName,
         String cloudexadatainfrastructurename, Context context) {
-        return new PagedFlux<>(() -> listByCloudExadataInfrastructureSinglePageAsync(resourceGroupName,
-            cloudexadatainfrastructurename, context),
-            nextLink -> listByCloudExadataInfrastructureNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (cloudexadatainfrastructurename == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter cloudexadatainfrastructurename is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<DbServerListResult> res
+            = service.listByParentSync(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, cloudexadatainfrastructurename, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -219,10 +268,9 @@ public final class DbServersClientImpl implements DbServersClient {
      * @return the response of a DbServer list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DbServerInner> listByCloudExadataInfrastructure(String resourceGroupName,
-        String cloudexadatainfrastructurename) {
-        return new PagedIterable<>(
-            listByCloudExadataInfrastructureAsync(resourceGroupName, cloudexadatainfrastructurename));
+    public PagedIterable<DbServerInner> listByParent(String resourceGroupName, String cloudexadatainfrastructurename) {
+        return new PagedIterable<>(() -> listByParentSinglePage(resourceGroupName, cloudexadatainfrastructurename),
+            nextLink -> listByParentNextSinglePage(nextLink));
     }
 
     /**
@@ -237,10 +285,11 @@ public final class DbServersClientImpl implements DbServersClient {
      * @return the response of a DbServer list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DbServerInner> listByCloudExadataInfrastructure(String resourceGroupName,
-        String cloudexadatainfrastructurename, Context context) {
+    public PagedIterable<DbServerInner> listByParent(String resourceGroupName, String cloudexadatainfrastructurename,
+        Context context) {
         return new PagedIterable<>(
-            listByCloudExadataInfrastructureAsync(resourceGroupName, cloudexadatainfrastructurename, context));
+            () -> listByParentSinglePage(resourceGroupName, cloudexadatainfrastructurename, context),
+            nextLink -> listByParentNextSinglePage(nextLink, context));
     }
 
     /**
@@ -290,46 +339,6 @@ public final class DbServersClientImpl implements DbServersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param cloudexadatainfrastructurename CloudExadataInfrastructure name.
      * @param dbserverocid DbServer OCID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a DbServer along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DbServerInner>> getWithResponseAsync(String resourceGroupName,
-        String cloudexadatainfrastructurename, String dbserverocid, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (cloudexadatainfrastructurename == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter cloudexadatainfrastructurename is required and cannot be null."));
-        }
-        if (dbserverocid == null) {
-            return Mono.error(new IllegalArgumentException("Parameter dbserverocid is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, cloudexadatainfrastructurename, dbserverocid, accept, context);
-    }
-
-    /**
-     * Get a DbServer.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param cloudexadatainfrastructurename CloudExadataInfrastructure name.
-     * @param dbserverocid DbServer OCID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -357,7 +366,32 @@ public final class DbServersClientImpl implements DbServersClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<DbServerInner> getWithResponse(String resourceGroupName, String cloudexadatainfrastructurename,
         String dbserverocid, Context context) {
-        return getWithResponseAsync(resourceGroupName, cloudexadatainfrastructurename, dbserverocid, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (cloudexadatainfrastructurename == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter cloudexadatainfrastructurename is required and cannot be null."));
+        }
+        if (dbserverocid == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter dbserverocid is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, cloudexadatainfrastructurename, dbserverocid, accept, context);
     }
 
     /**
@@ -388,7 +422,7 @@ public final class DbServersClientImpl implements DbServersClient {
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DbServerInner>> listByCloudExadataInfrastructureNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<DbServerInner>> listByParentNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -398,11 +432,37 @@ public final class DbServersClientImpl implements DbServersClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByCloudExadataInfrastructureNext(nextLink, this.client.getEndpoint(),
-                accept, context))
+            .withContext(context -> service.listByParentNext(nextLink, this.client.getEndpoint(), accept, context))
             .<PagedResponse<DbServerInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a DbServer list operation along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<DbServerInner> listByParentNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<DbServerListResult> res
+            = service.listByParentNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -413,23 +473,25 @@ public final class DbServersClientImpl implements DbServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a DbServer list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a DbServer list operation along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DbServerInner>> listByCloudExadataInfrastructureNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<DbServerInner> listByParentNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByCloudExadataInfrastructureNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<DbServerListResult> res
+            = service.listByParentNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DbServersClientImpl.class);
 }

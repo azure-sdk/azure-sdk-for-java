@@ -15,7 +15,7 @@ import java.util.Map;
 public final class CloudExadataInfrastructuresCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/exaInfra_create.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/exaInfra_create.json
      */
     /**
      * Sample code: Create Exadata Infrastructure.

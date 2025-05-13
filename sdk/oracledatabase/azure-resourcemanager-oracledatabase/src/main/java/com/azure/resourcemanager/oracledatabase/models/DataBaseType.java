@@ -22,6 +22,16 @@ public final class DataBaseType extends ExpandableStringEnum<DataBaseType> {
     public static final DataBaseType CLONE = fromString("Clone");
 
     /**
+     * Static value CloneFromBackupTimestamp for DataBaseType.
+     */
+    public static final DataBaseType CLONE_FROM_BACKUP_TIMESTAMP = fromString("CloneFromBackupTimestamp");
+
+    /**
+     * Static value CrossRegionDisasterRecovery for DataBaseType.
+     */
+    public static final DataBaseType CROSS_REGION_DISASTER_RECOVERY = fromString("CrossRegionDisasterRecovery");
+
+    /**
      * Creates a new instance of DataBaseType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

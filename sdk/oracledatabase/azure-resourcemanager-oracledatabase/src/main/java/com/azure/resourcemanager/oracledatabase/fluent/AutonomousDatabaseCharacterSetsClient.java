@@ -16,7 +16,7 @@ import com.azure.resourcemanager.oracledatabase.fluent.models.AutonomousDatabase
  */
 public interface AutonomousDatabaseCharacterSetsClient {
     /**
-     * List AutonomousDatabaseCharacterSet resources by Location.
+     * List AutonomousDatabaseCharacterSet resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -29,7 +29,7 @@ public interface AutonomousDatabaseCharacterSetsClient {
     PagedIterable<AutonomousDatabaseCharacterSetInner> listByLocation(String location);
 
     /**
-     * List AutonomousDatabaseCharacterSet resources by Location.
+     * List AutonomousDatabaseCharacterSet resources by SubscriptionLocationResource.
      * 
      * @param location The name of the Azure region.
      * @param context The context to associate with this operation.

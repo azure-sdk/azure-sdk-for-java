@@ -6,7 +6,7 @@
 - [CreateOrUpdate](#autonomousdatabasebackups_createorupdate)
 - [Delete](#autonomousdatabasebackups_delete)
 - [Get](#autonomousdatabasebackups_get)
-- [ListByAutonomousDatabase](#autonomousdatabasebackups_listbyautonomousdatabase)
+- [ListByParent](#autonomousdatabasebackups_listbyparent)
 - [Update](#autonomousdatabasebackups_update)
 
 ## AutonomousDatabaseCharacterSets
@@ -26,6 +26,7 @@
 
 ## AutonomousDatabases
 
+- [ChangeDisasterRecoveryConfiguration](#autonomousdatabases_changedisasterrecoveryconfiguration)
 - [CreateOrUpdate](#autonomousdatabases_createorupdate)
 - [Delete](#autonomousdatabases_delete)
 - [Failover](#autonomousdatabases_failover)
@@ -64,12 +65,12 @@
 
 - [Action](#dbnodes_action)
 - [Get](#dbnodes_get)
-- [ListByCloudVmCluster](#dbnodes_listbycloudvmcluster)
+- [ListByParent](#dbnodes_listbyparent)
 
 ## DbServers
 
 - [Get](#dbservers_get)
-- [ListByCloudExadataInfrastructure](#dbservers_listbycloudexadatainfrastructure)
+- [ListByParent](#dbservers_listbyparent)
 
 ## DbSystemShapes
 
@@ -86,6 +87,41 @@
 - [Get](#dnsprivatezones_get)
 - [ListByLocation](#dnsprivatezones_listbylocation)
 
+## ExadbVmClusters
+
+- [CreateOrUpdate](#exadbvmclusters_createorupdate)
+- [Delete](#exadbvmclusters_delete)
+- [GetByResourceGroup](#exadbvmclusters_getbyresourcegroup)
+- [List](#exadbvmclusters_list)
+- [ListByResourceGroup](#exadbvmclusters_listbyresourcegroup)
+- [RemoveVms](#exadbvmclusters_removevms)
+- [Update](#exadbvmclusters_update)
+
+## ExascaleDbNodes
+
+- [Action](#exascaledbnodes_action)
+- [Get](#exascaledbnodes_get)
+- [ListByParent](#exascaledbnodes_listbyparent)
+
+## ExascaleDbStorageVaults
+
+- [Create](#exascaledbstoragevaults_create)
+- [Delete](#exascaledbstoragevaults_delete)
+- [GetByResourceGroup](#exascaledbstoragevaults_getbyresourcegroup)
+- [List](#exascaledbstoragevaults_list)
+- [ListByResourceGroup](#exascaledbstoragevaults_listbyresourcegroup)
+- [Update](#exascaledbstoragevaults_update)
+
+## FlexComponents
+
+- [Get](#flexcomponents_get)
+- [ListByParent](#flexcomponents_listbyparent)
+
+## GiMinorVersions
+
+- [Get](#giminorversions_get)
+- [ListByParent](#giminorversions_listbyparent)
+
 ## GiVersions
 
 - [Get](#giversions_get)
@@ -97,6 +133,7 @@
 
 ## OracleSubscriptions
 
+- [AddAzureSubscriptions](#oraclesubscriptions_addazuresubscriptions)
 - [CreateOrUpdate](#oraclesubscriptions_createorupdate)
 - [Delete](#oraclesubscriptions_delete)
 - [Get](#oraclesubscriptions_get)
@@ -116,54 +153,45 @@
 - [CreateOrUpdate](#virtualnetworkaddresses_createorupdate)
 - [Delete](#virtualnetworkaddresses_delete)
 - [Get](#virtualnetworkaddresses_get)
-- [ListByCloudVmCluster](#virtualnetworkaddresses_listbycloudvmcluster)
+- [ListByParent](#virtualnetworkaddresses_listbyparent)
 ### AutonomousDatabaseBackups_CreateOrUpdate
 
 ```java
-import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseBackupProperties;
+import com.azure.resourcemanager.oracledatabase.models.ExascaleDbStorageVault;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Samples for AutonomousDatabaseBackups CreateOrUpdate.
+ * Samples for ExascaleDbStorageVaults Update.
  */
-public final class AutonomousDatabaseBackupsCreateOrUpdateSamples {
+public final class ExascaleDbStorageVaultsUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseBackup_create.
-     * json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExascaleDbStorageVaults_Update_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Create Autonomous Database Backup.
+     * Sample code: ExascaleDbStorageVaults_Update_MaximumSet.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void
-        createAutonomousDatabaseBackup(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabaseBackups()
-            .define("1711644130")
-            .withExistingAutonomousDatabase("rg000", "databasedb1")
-            .withProperties(new AutonomousDatabaseBackupProperties().withDisplayName("Nightly Backup")
-                .withRetentionPeriodInDays(365))
-            .create();
+    public static void exascaleDbStorageVaultsUpdateMaximumSet(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        ExascaleDbStorageVault resource = manager.exascaleDbStorageVaults()
+            .getByResourceGroupWithResponse("rgopenapi", "vmClusterName", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().withTags(mapOf("key6179", "fakeTokenPlaceholder")).apply();
     }
 
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseBackup_create.
-     * json
-     */
-    /**
-     * Sample code: AutonomousDatabaseBackups_CreateOrUpdate.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void autonomousDatabaseBackupsCreateOrUpdate(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabaseBackups()
-            .define("1711644130")
-            .withExistingAutonomousDatabase("rg000", "databasedb1")
-            .withProperties(new AutonomousDatabaseBackupProperties().withDisplayName("Nightly Backup")
-                .withRetentionPeriodInDays(365))
-            .create();
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
@@ -172,39 +200,21 @@ public final class AutonomousDatabaseBackupsCreateOrUpdateSamples {
 
 ```java
 /**
- * Samples for AutonomousDatabaseBackups Delete.
+ * Samples for DnsPrivateViews Get.
  */
-public final class AutonomousDatabaseBackupsDeleteSamples {
+public final class DnsPrivateViewsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseBackup_delete.
-     * json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/dnsPrivateViews_get.json
      */
     /**
-     * Sample code: Delete Autonomous Database Backup.
+     * Sample code: Get a DnsPrivateView by name.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
     public static void
-        deleteAutonomousDatabaseBackup(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabaseBackups()
-            .delete("rg000", "databasedb1", "1711644130", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseBackup_delete.
-     * json
-     */
-    /**
-     * Sample code: AutonomousDatabaseBackups_Delete.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        autonomousDatabaseBackupsDelete(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabaseBackups()
-            .delete("rg000", "databasedb1", "1711644130", com.azure.core.util.Context.NONE);
+        getADnsPrivateViewByName(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.dnsPrivateViews().getWithResponse("eastus", "ocid1....aaaaaa", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -213,12 +223,35 @@ public final class AutonomousDatabaseBackupsDeleteSamples {
 
 ```java
 /**
+ * Samples for AutonomousDatabaseCharacterSets ListByLocation.
+ */
+public final class AutonomousDatabaseCharacterSetsListByLocationSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * autonomousDatabaseCharacterSet_listByLocation.json
+     */
+    /**
+     * Sample code: List autonomous db character sets by location.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void listAutonomousDbCharacterSetsByLocation(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabaseCharacterSets().listByLocation("eastus", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AutonomousDatabaseBackups_ListByParent
+
+```java
+/**
  * Samples for AutonomousDatabaseBackups Get.
  */
 public final class AutonomousDatabaseBackupsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseBackup_get.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabaseBackup_get.
      * json
      */
     /**
@@ -234,7 +267,7 @@ public final class AutonomousDatabaseBackupsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseBackup_get.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabaseBackup_get.
      * json
      */
     /**
@@ -250,88 +283,25 @@ public final class AutonomousDatabaseBackupsGetSamples {
 }
 ```
 
-### AutonomousDatabaseBackups_ListByAutonomousDatabase
-
-```java
-/**
- * Samples for AutonomousDatabaseBackups ListByAutonomousDatabase.
- */
-public final class AutonomousDatabaseBackupsListByAutonomousDatabaseSamples {
-    /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * autonomousDatabaseBackup_listByParent.json
-     */
-    /**
-     * Sample code: List Autonomous Database Backups by Autonomous Database.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void listAutonomousDatabaseBackupsByAutonomousDatabase(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabaseBackups()
-            .listByAutonomousDatabase("rg000", "databasedb1", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * autonomousDatabaseBackup_listByParent.json
-     */
-    /**
-     * Sample code: AutonomousDatabaseBackups_ListByAutonomousDatabase.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void autonomousDatabaseBackupsListByAutonomousDatabase(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabaseBackups()
-            .listByAutonomousDatabase("rg000", "databasedb1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### AutonomousDatabaseBackups_Update
 
 ```java
-import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseBackup;
-
 /**
- * Samples for AutonomousDatabaseBackups Update.
+ * Samples for ExascaleDbStorageVaults List.
  */
-public final class AutonomousDatabaseBackupsUpdateSamples {
+public final class ExascaleDbStorageVaultsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseBackup_patch.
-     * json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExascaleDbStorageVaults_ListBySubscription_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Patch Autonomous Database Backup.
+     * Sample code: ExascaleDbStorageVaults_ListBySubscription_MaximumSet.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void
-        patchAutonomousDatabaseBackup(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        AutonomousDatabaseBackup resource = manager.autonomousDatabaseBackups()
-            .getWithResponse("rg000", "databasedb1", "1711644130", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().apply();
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseBackup_patch.
-     * json
-     */
-    /**
-     * Sample code: AutonomousDatabaseBackups_Update.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        autonomousDatabaseBackupsUpdate(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        AutonomousDatabaseBackup resource = manager.autonomousDatabaseBackups()
-            .getWithResponse("rg000", "databasedb1", "1711644130", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().apply();
+    public static void exascaleDbStorageVaultsListBySubscriptionMaximumSet(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.exascaleDbStorageVaults().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -340,22 +310,35 @@ public final class AutonomousDatabaseBackupsUpdateSamples {
 
 ```java
 /**
- * Samples for AutonomousDatabaseCharacterSets Get.
+ * Samples for AutonomousDatabases GetByResourceGroup.
  */
-public final class AutonomousDatabaseCharacterSetsGetSamples {
+public final class AutonomousDatabasesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * autonomousDatabaseCharacterSet_get.json
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_get.json
      */
     /**
-     * Sample code: Get autonomous db character set.
+     * Sample code: Get Autonomous Database.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void
-        getAutonomousDbCharacterSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabaseCharacterSets()
-            .getWithResponse("eastus", "DATABASE", com.azure.core.util.Context.NONE);
+    public static void getAutonomousDatabase(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases()
+            .getByResourceGroupWithResponse("rg000", "databasedb1", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_get.json
+     */
+    /**
+     * Sample code: AutonomousDatabases_Get.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void autonomousDatabasesGet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases()
+            .getByResourceGroupWithResponse("rg000", "databasedb1", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -363,126 +346,12 @@ public final class AutonomousDatabaseCharacterSetsGetSamples {
 ### AutonomousDatabaseCharacterSets_ListByLocation
 
 ```java
-/**
- * Samples for AutonomousDatabaseCharacterSets ListByLocation.
- */
-public final class AutonomousDatabaseCharacterSetsListByLocationSamples {
-    /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * autonomousDatabaseCharacterSet_listByLocation.json
-     */
-    /**
-     * Sample code: List autonomous db character sets by location.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void listAutonomousDbCharacterSetsByLocation(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabaseCharacterSets().listByLocation("eastus", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AutonomousDatabaseNationalCharacterSets_Get
-
-```java
-/**
- * Samples for AutonomousDatabaseNationalCharacterSets Get.
- */
-public final class AutonomousDatabaseNationalCharacterSetsGetSamples {
-    /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * autonomousDatabaseNationalCharacterSet_get.json
-     */
-    /**
-     * Sample code: Get autonomous db national character set.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        getAutonomousDbNationalCharacterSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabaseNationalCharacterSets()
-            .getWithResponse("eastus", "NATIONAL", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AutonomousDatabaseNationalCharacterSets_ListByLocation
-
-```java
-/**
- * Samples for AutonomousDatabaseNationalCharacterSets ListByLocation.
- */
-public final class AutonomousDatabaseNationalCharacterSetsListByLocationSamples {
-    /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * autonomousDatabaseNationalCharacterSet_listByLocation.json
-     */
-    /**
-     * Sample code: List autonomous db national character sets by location.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void listAutonomousDbNationalCharacterSetsByLocation(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabaseNationalCharacterSets().listByLocation("eastus", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AutonomousDatabaseVersions_Get
-
-```java
-/**
- * Samples for AutonomousDatabaseVersions Get.
- */
-public final class AutonomousDatabaseVersionsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseVersion_get.
-     * json
-     */
-    /**
-     * Sample code: Get an autonomous version.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void getAnAutonomousVersion(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabaseVersions().getWithResponse("eastus", "18.4.0.0", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AutonomousDatabaseVersions_ListByLocation
-
-```java
-/**
- * Samples for AutonomousDatabaseVersions ListByLocation.
- */
-public final class AutonomousDatabaseVersionsListByLocationSamples {
-    /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * autonomousDatabaseVersion_listByLocation.json
-     */
-    /**
-     * Sample code: List an autonomous versions by location.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        listAnAutonomousVersionsByLocation(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabaseVersions().listByLocation("eastus", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AutonomousDatabases_CreateOrUpdate
-
-```java
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseCloneProperties;
+import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseCrossRegionDisasterRecoveryProperties;
 import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseProperties;
 import com.azure.resourcemanager.oracledatabase.models.CloneType;
 import com.azure.resourcemanager.oracledatabase.models.ComputeModel;
+import com.azure.resourcemanager.oracledatabase.models.DisasterRecoveryType;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -492,7 +361,7 @@ import java.util.Map;
 public final class AutonomousDatabasesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_create.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_create.json
      */
     /**
      * Sample code: AutonomousDatabases_CreateOrUpdate.
@@ -522,8 +391,37 @@ public final class AutonomousDatabasesCreateOrUpdateSamples {
     }
 
     /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * autonomousDatabaseCrossRegionPeer_create.json
+     */
+    /**
+     * Sample code: AutonomousDatabases_CreateOrUpdate_CrossRegionPeer.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void autonomousDatabasesCreateOrUpdateCrossRegionPeer(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases()
+            .define("databasedb1")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg000")
+            .withTags(mapOf("tagK1", "tagV1"))
+            .withProperties(new AutonomousDatabaseCrossRegionDisasterRecoveryProperties().withSubnetId(
+                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg000/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet1")
+                .withVnetId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg000/providers/Microsoft.Network/virtualNetworks/vnet1")
+                .withSourceId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg000/providers/Oracle.Database/autonomousDatabases/databasedb1")
+                .withSourceLocation("germanywestcentral")
+                .withSourceOcid("ocid1..aaaaa")
+                .withRemoteDisasterRecoveryType(DisasterRecoveryType.ADG)
+                .withIsReplicateAutomaticBackups(false))
+            .create();
+    }
+
+    /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_create.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_create.json
      */
     /**
      * Sample code: Create Autonomous Database.
@@ -554,7 +452,7 @@ public final class AutonomousDatabasesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseClone_create.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabaseClone_create.
      * json
      */
     /**
@@ -588,7 +486,7 @@ public final class AutonomousDatabasesCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabaseClone_create.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabaseClone_create.
      * json
      */
     /**
@@ -634,551 +532,104 @@ public final class AutonomousDatabasesCreateOrUpdateSamples {
 }
 ```
 
-### AutonomousDatabases_Delete
+### AutonomousDatabaseNationalCharacterSets_Get
 
 ```java
 /**
- * Samples for AutonomousDatabases Delete.
+ * Samples for CloudVmClusters Delete.
  */
-public final class AutonomousDatabasesDeleteSamples {
+public final class CloudVmClustersDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_delete.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/vmClusters_delete.json
      */
     /**
-     * Sample code: Delete Autonomous Database.
+     * Sample code: Delete VM Cluster.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void
-        deleteAutonomousDatabase(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabases().delete("rg000", "databasedb1", com.azure.core.util.Context.NONE);
+    public static void deleteVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.cloudVmClusters().delete("rg000", "cluster1", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### AutonomousDatabases_Failover
+### AutonomousDatabaseNationalCharacterSets_ListByLocation
 
 ```java
-import com.azure.resourcemanager.oracledatabase.models.PeerDbDetails;
-
-/**
- * Samples for AutonomousDatabases Failover.
- */
-public final class AutonomousDatabasesFailoverSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_failover.json
-     */
-    /**
-     * Sample code: AutonomousDatabases_Failover.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        autonomousDatabasesFailover(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabases()
-            .failover("rg000", "databasedb1", new PeerDbDetails().withPeerDbId("peerDbId"),
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_failover.json
-     */
-    /**
-     * Sample code: Perform failover action on Autonomous Database.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void performFailoverActionOnAutonomousDatabase(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabases()
-            .failover("rg000", "databasedb1", new PeerDbDetails().withPeerDbId("peerDbId"),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AutonomousDatabases_GenerateWallet
-
-```java
-import com.azure.resourcemanager.oracledatabase.models.GenerateAutonomousDatabaseWalletDetails;
-import com.azure.resourcemanager.oracledatabase.models.GenerateType;
-
-/**
- * Samples for AutonomousDatabases GenerateWallet.
- */
-public final class AutonomousDatabasesGenerateWalletSamples {
-    /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * autonomousDatabase_generateWallet.json
-     */
-    /**
-     * Sample code: Generate wallet action on Autonomous Database.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void generateWalletActionOnAutonomousDatabase(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabases()
-            .generateWalletWithResponse("rg000", "databasedb1",
-                new GenerateAutonomousDatabaseWalletDetails().withGenerateType(GenerateType.SINGLE)
-                    .withIsRegional(false)
-                    .withPassword("fakeTokenPlaceholder"),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AutonomousDatabases_GetByResourceGroup
-
-```java
-/**
- * Samples for AutonomousDatabases GetByResourceGroup.
- */
-public final class AutonomousDatabasesGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_get.json
-     */
-    /**
-     * Sample code: Get Autonomous Database.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void getAutonomousDatabase(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabases()
-            .getByResourceGroupWithResponse("rg000", "databasedb1", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_get.json
-     */
-    /**
-     * Sample code: AutonomousDatabases_Get.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void autonomousDatabasesGet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabases()
-            .getByResourceGroupWithResponse("rg000", "databasedb1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AutonomousDatabases_List
-
-```java
-/**
- * Samples for AutonomousDatabases List.
- */
-public final class AutonomousDatabasesListSamples {
-    /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * autonomousDatabase_listBySubscription.json
-     */
-    /**
-     * Sample code: List Autonomous Database by subscription.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        listAutonomousDatabaseBySubscription(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabases().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AutonomousDatabases_ListByResourceGroup
-
-```java
-/**
- * Samples for AutonomousDatabases ListByResourceGroup.
- */
-public final class AutonomousDatabasesListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * autonomousDatabase_listByResourceGroup.json
-     */
-    /**
-     * Sample code: List Autonomous Database by resource group.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        listAutonomousDatabaseByResourceGroup(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabases().listByResourceGroup("rg000", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AutonomousDatabases_Restore
-
-```java
-import com.azure.resourcemanager.oracledatabase.models.RestoreAutonomousDatabaseDetails;
-import java.time.OffsetDateTime;
-
-/**
- * Samples for AutonomousDatabases Restore.
- */
-public final class AutonomousDatabasesRestoreSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_restore.json
-     */
-    /**
-     * Sample code: AutonomousDatabases_Restore.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        autonomousDatabasesRestore(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabases()
-            .restore("rg000", "databasedb1",
-                new RestoreAutonomousDatabaseDetails().withTimestamp(OffsetDateTime.parse("2024-04-23T00:00:00.000Z")),
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_restore.json
-     */
-    /**
-     * Sample code: Perform restore action on Autonomous Database.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void performRestoreActionOnAutonomousDatabase(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabases()
-            .restore("rg000", "databasedb1",
-                new RestoreAutonomousDatabaseDetails().withTimestamp(OffsetDateTime.parse("2024-04-23T00:00:00.000Z")),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AutonomousDatabases_Shrink
-
-```java
-/**
- * Samples for AutonomousDatabases Shrink.
- */
-public final class AutonomousDatabasesShrinkSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_shrink.json
-     */
-    /**
-     * Sample code: Perform shrink action on Autonomous Database.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void performShrinkActionOnAutonomousDatabase(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabases().shrink("rg000", "databasedb1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AutonomousDatabases_Switchover
-
-```java
-import com.azure.resourcemanager.oracledatabase.models.PeerDbDetails;
-
-/**
- * Samples for AutonomousDatabases Switchover.
- */
-public final class AutonomousDatabasesSwitchoverSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_switchover.
-     * json
-     */
-    /**
-     * Sample code: Perform switchover action on Autonomous Database.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void performSwitchoverActionOnAutonomousDatabase(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabases()
-            .switchover("rg000", "databasedb1", new PeerDbDetails().withPeerDbId("peerDbId"),
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_switchover.
-     * json
-     */
-    /**
-     * Sample code: AutonomousDatabases_Switchover.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        autonomousDatabasesSwitchover(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.autonomousDatabases()
-            .switchover("rg000", "databasedb1", new PeerDbDetails().withPeerDbId("peerDbId"),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### AutonomousDatabases_Update
-
-```java
-import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabase;
-
-/**
- * Samples for AutonomousDatabases Update.
- */
-public final class AutonomousDatabasesUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/autonomousDatabase_patch.json
-     */
-    /**
-     * Sample code: Patch Autonomous Database.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void patchAutonomousDatabase(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        AutonomousDatabase resource = manager.autonomousDatabases()
-            .getByResourceGroupWithResponse("rg000", "databasedb1", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().apply();
-    }
-}
-```
-
-### CloudExadataInfrastructures_AddStorageCapacity
-
-```java
-/**
- * Samples for CloudExadataInfrastructures AddStorageCapacity.
- */
-public final class CloudExadataInfrastructuresAddStorageCapacitySamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/exaInfra_addStorageCapacity.json
-     */
-    /**
-     * Sample code: Perform add storage capacity on exadata infra.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void performAddStorageCapacityOnExadataInfra(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.cloudExadataInfrastructures().addStorageCapacity("rg000", "infra1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### CloudExadataInfrastructures_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.oracledatabase.models.CloudExadataInfrastructureProperties;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * Samples for CloudExadataInfrastructures CreateOrUpdate.
- */
-public final class CloudExadataInfrastructuresCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/exaInfra_create.json
-     */
-    /**
-     * Sample code: Create Exadata Infrastructure.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        createExadataInfrastructure(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.cloudExadataInfrastructures()
-            .define("infra1")
-            .withRegion("eastus")
-            .withExistingResourceGroup("rg000")
-            .withZones(Arrays.asList("1"))
-            .withTags(mapOf("tagK1", "tagV1"))
-            .withProperties(new CloudExadataInfrastructureProperties().withComputeCount(100)
-                .withStorageCount(10)
-                .withShape("EXADATA.X9M")
-                .withDisplayName("infra 1"))
-            .create();
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### CloudExadataInfrastructures_Delete
-
-```java
-/**
- * Samples for CloudExadataInfrastructures Delete.
- */
-public final class CloudExadataInfrastructuresDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/exaInfra_delete.json
-     */
-    /**
-     * Sample code: Delete Exadata Infrastructure.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        deleteExadataInfrastructure(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.cloudExadataInfrastructures().delete("rg000", "infra1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### CloudExadataInfrastructures_GetByResourceGroup
-
-```java
-/**
- * Samples for CloudExadataInfrastructures GetByResourceGroup.
- */
-public final class CloudExadataInfrastructuresGetByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/exaInfra_get.json
-     */
-    /**
-     * Sample code: Get Exadata Infrastructure.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        getExadataInfrastructure(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.cloudExadataInfrastructures()
-            .getByResourceGroupWithResponse("rg000", "infra1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### CloudExadataInfrastructures_List
-
-```java
-/**
- * Samples for CloudExadataInfrastructures List.
- */
-public final class CloudExadataInfrastructuresListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/exaInfra_listBySubscription.json
-     */
-    /**
-     * Sample code: List Exadata Infrastructure by subscription.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void listExadataInfrastructureBySubscription(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.cloudExadataInfrastructures().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### CloudExadataInfrastructures_ListByResourceGroup
-
-```java
-/**
- * Samples for CloudExadataInfrastructures ListByResourceGroup.
- */
-public final class CloudExadataInfrastructuresListByResourceGroupSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/exaInfra_listByResourceGroup.
-     * json
-     */
-    /**
-     * Sample code: List Exadata Infrastructure by resource group.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void listExadataInfrastructureByResourceGroup(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.cloudExadataInfrastructures().listByResourceGroup("rg000", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### CloudExadataInfrastructures_Update
-
-```java
-import com.azure.resourcemanager.oracledatabase.models.CloudExadataInfrastructure;
-
-/**
- * Samples for CloudExadataInfrastructures Update.
- */
-public final class CloudExadataInfrastructuresUpdateSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/exaInfra_patch.json
-     */
-    /**
-     * Sample code: Patch Exadata Infrastructure.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        patchExadataInfrastructure(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        CloudExadataInfrastructure resource = manager.cloudExadataInfrastructures()
-            .getByResourceGroupWithResponse("rg000", "infra1", com.azure.core.util.Context.NONE)
-            .getValue();
-        resource.update().apply();
-    }
-}
-```
-
-### CloudVmClusters_AddVms
-
-```java
-import com.azure.resourcemanager.oracledatabase.models.AddRemoveDbNode;
+import com.azure.resourcemanager.oracledatabase.models.AzureSubscriptions;
 import java.util.Arrays;
 
 /**
- * Samples for CloudVmClusters AddVms.
+ * Samples for OracleSubscriptions AddAzureSubscriptions.
  */
-public final class CloudVmClustersAddVmsSamples {
+public final class OracleSubscriptionsAddAzureSubscriptionsSamples {
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/vmClusters_addVms.json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * oracleSubscriptions_addAzureSubscriptions.json
      */
     /**
-     * Sample code: Add VMs to VM Cluster.
+     * Sample code: Add Azure Subscriptions to the OracleSubscription.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void addVMsToVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.cloudVmClusters()
-            .addVms("rg000", "cluster1",
-                new AddRemoveDbNode().withDbServers(Arrays.asList("ocid1..aaaa", "ocid1..aaaaaa")),
-                com.azure.core.util.Context.NONE);
+    public static void addAzureSubscriptionsToTheOracleSubscription(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.oracleSubscriptions()
+            .addAzureSubscriptions(new AzureSubscriptions().withAzureSubscriptionIds(
+                Arrays.asList("00000000-0000-0000-0000-000000000001")), com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### CloudVmClusters_CreateOrUpdate
+### AutonomousDatabaseVersions_Get
+
+```java
+/**
+ * Samples for VirtualNetworkAddresses Get.
+ */
+public final class VirtualNetworkAddressesGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/virtualNetworkAddresses_get.json
+     */
+    /**
+     * Sample code: Get Virtual Network Address.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        getVirtualNetworkAddress(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.virtualNetworkAddresses()
+            .getWithResponse("rg000", "cluster1", "hostname1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AutonomousDatabaseVersions_ListByLocation
+
+```java
+/**
+ * Samples for ExascaleDbStorageVaults ListByResourceGroup.
+ */
+public final class ExascaleDbStorageVaultsListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExascaleDbStorageVaults_ListByResourceGroup_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: ExascaleDbStorageVaults_ListByResourceGroup_MaximumSet.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void exascaleDbStorageVaultsListByResourceGroupMaximumSet(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.exascaleDbStorageVaults().listByResourceGroup("rgopenapi", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AutonomousDatabases_ChangeDisasterRecoveryConfiguration
 
 ```java
 import com.azure.resourcemanager.oracledatabase.models.CloudVmClusterProperties;
@@ -1196,7 +647,7 @@ import java.util.Map;
 public final class CloudVmClustersCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/vmClusters_create.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/vmClusters_create.json
      */
     /**
      * Sample code: Create VM Cluster.
@@ -1259,24 +710,682 @@ public final class CloudVmClustersCreateOrUpdateSamples {
 }
 ```
 
-### CloudVmClusters_Delete
+### AutonomousDatabases_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.oracledatabase.models.DbNodeAction;
+import com.azure.resourcemanager.oracledatabase.models.DbNodeActionEnum;
+
 /**
- * Samples for CloudVmClusters Delete.
+ * Samples for ExascaleDbNodes Action.
  */
-public final class CloudVmClustersDeleteSamples {
+public final class ExascaleDbNodesActionSamples {
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/vmClusters_delete.json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExascaleDbNodes_Action_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Delete VM Cluster.
+     * Sample code: ExascaleDbNodes_Action_MaximumSet.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void deleteVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.cloudVmClusters().delete("rg000", "cluster1", com.azure.core.util.Context.NONE);
+    public static void
+        exascaleDbNodesActionMaximumSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.exascaleDbNodes()
+            .action("rgopenapi", "vmClusterName", "dbNodeName", new DbNodeAction().withAction(DbNodeActionEnum.START),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AutonomousDatabases_Delete
+
+```java
+/**
+ * Samples for OracleSubscriptions ListSaasSubscriptionDetails.
+ */
+public final class OracleSubscriptionsListSaasSubscriptionDetailsSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * oracleSubscriptions_listSaasSubscriptionDetails.json
+     */
+    /**
+     * Sample code: List Saas Subscription details for the Oracle Subscription.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void listSaasSubscriptionDetailsForTheOracleSubscription(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.oracleSubscriptions().listSaasSubscriptionDetails(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AutonomousDatabases_Failover
+
+```java
+/**
+ * Samples for GiVersions Get.
+ */
+public final class GiVersionsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/GiVersions_Get_MinimumSet_Gen.
+     * json
+     */
+    /**
+     * Sample code: Get a GiVersion by name - generated by [MinimumSet] rule.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void getAGiVersionByNameGeneratedByMinimumSetRule(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.giVersions().getWithResponse("eastus", "giVersionName", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/giVersions_get.json
+     */
+    /**
+     * Sample code: Get a GiVersion by name.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void getAGiVersionByName(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.giVersions().getWithResponse("eastus", "19.0.0.0", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/GiVersions_Get_MaximumSet_Gen.
+     * json
+     */
+    /**
+     * Sample code: Get a GiVersion by name - generated by [MaximumSet] rule.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void getAGiVersionByNameGeneratedByMaximumSetRule(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.giVersions().getWithResponse("eastus", "giVersionName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AutonomousDatabases_GenerateWallet
+
+```java
+/**
+ * Samples for ExascaleDbStorageVaults GetByResourceGroup.
+ */
+public final class ExascaleDbStorageVaultsGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExascaleDbStorageVaults_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: ExascaleDbStorageVaults_Get_MaximumSet.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        exascaleDbStorageVaultsGetMaximumSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.exascaleDbStorageVaults()
+            .getByResourceGroupWithResponse("rgopenapi", "vmClusterName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AutonomousDatabases_GetByResourceGroup
+
+```java
+/**
+ * Samples for CloudExadataInfrastructures GetByResourceGroup.
+ */
+public final class CloudExadataInfrastructuresGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/exaInfra_get.json
+     */
+    /**
+     * Sample code: Get Exadata Infrastructure.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        getExadataInfrastructure(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.cloudExadataInfrastructures()
+            .getByResourceGroupWithResponse("rg000", "infra1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AutonomousDatabases_List
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.ExadbVmCluster;
+import com.azure.resourcemanager.oracledatabase.models.ExadbVmClusterUpdateProperties;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for ExadbVmClusters Update.
+ */
+public final class ExadbVmClustersUpdateSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExadbVmClusters_Update_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: ExadbVmClusters_Update_MaximumSet.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        exadbVmClustersUpdateMaximumSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        ExadbVmCluster resource = manager.exadbVmClusters()
+            .getByResourceGroupWithResponse("rgopenapi", "vmClusterName", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("key6027", "fakeTokenPlaceholder"))
+            .withZones(Arrays.asList("zcqfxmpauiqjphmhwwt"))
+            .withProperties(new ExadbVmClusterUpdateProperties().withNodeCount(9))
+            .apply();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### AutonomousDatabases_ListByResourceGroup
+
+```java
+/**
+ * Samples for DbServers ListByParent.
+ */
+public final class DbServersListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/dbServers_listByParent.json
+     */
+    /**
+     * Sample code: List DbServers by Exadata Infrastructure.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        listDbServersByExadataInfrastructure(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.dbServers().listByParent("rg000", "infra1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AutonomousDatabases_Restore
+
+```java
+/**
+ * Samples for AutonomousDatabaseVersions ListByLocation.
+ */
+public final class AutonomousDatabaseVersionsListByLocationSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * autonomousDatabaseVersion_listByLocation.json
+     */
+    /**
+     * Sample code: List an autonomous versions by location.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        listAnAutonomousVersionsByLocation(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabaseVersions().listByLocation("eastus", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AutonomousDatabases_Shrink
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.DisasterRecoveryConfigurationDetails;
+import com.azure.resourcemanager.oracledatabase.models.DisasterRecoveryType;
+
+/**
+ * Samples for AutonomousDatabases ChangeDisasterRecoveryConfiguration.
+ */
+public final class AutonomousDatabasesChangeDisasterRecoveryConfigurationSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * autonomousDatabase_changeDisasterRecoveryConfiguration.json
+     */
+    /**
+     * Sample code: Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void performChangeDisasterRecoveryConfigurationActionOnAutonomousDatabase(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases()
+            .changeDisasterRecoveryConfiguration("rg000", "databasedb1",
+                new DisasterRecoveryConfigurationDetails().withDisasterRecoveryType(DisasterRecoveryType.ADG)
+                    .withIsReplicateAutomaticBackups(false),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * autonomousDatabase_changeDisasterRecoveryConfiguration.json
+     */
+    /**
+     * Sample code: AutonomousDatabases_ChangeDisasterRecoveryConfiguration.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void autonomousDatabasesChangeDisasterRecoveryConfiguration(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases()
+            .changeDisasterRecoveryConfiguration("rg000", "databasedb1",
+                new DisasterRecoveryConfigurationDetails().withDisasterRecoveryType(DisasterRecoveryType.ADG)
+                    .withIsReplicateAutomaticBackups(false),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AutonomousDatabases_Switchover
+
+```java
+/**
+ * Samples for OracleSubscriptions ListActivationLinks.
+ */
+public final class OracleSubscriptionsListActivationLinksSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * oracleSubscriptions_listActivationLinks.json
+     */
+    /**
+     * Sample code: List Activation Links for the Oracle Subscription.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void listActivationLinksForTheOracleSubscription(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.oracleSubscriptions().listActivationLinks(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AutonomousDatabases_Update
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.CloudVmCluster;
+
+/**
+ * Samples for CloudVmClusters Update.
+ */
+public final class CloudVmClustersUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/vmClusters_patch.json
+     */
+    /**
+     * Sample code: Patch VM Cluster.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void patchVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        CloudVmCluster resource = manager.cloudVmClusters()
+            .getByResourceGroupWithResponse("rg000", "cluster1", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().apply();
+    }
+}
+```
+
+### CloudExadataInfrastructures_AddStorageCapacity
+
+```java
+/**
+ * Samples for ExadbVmClusters ListByResourceGroup.
+ */
+public final class ExadbVmClustersListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExadbVmClusters_ListByResourceGroup_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: ExadbVmClusters_ListByResourceGroup_MaximumSet.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void exadbVmClustersListByResourceGroupMaximumSet(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.exadbVmClusters().listByResourceGroup("rgopenapi", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CloudExadataInfrastructures_CreateOrUpdate
+
+```java
+/**
+ * Samples for ExascaleDbStorageVaults Delete.
+ */
+public final class ExascaleDbStorageVaultsDeleteSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExascaleDbStorageVaults_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: ExascaleDbStorageVaults_Delete_MaximumSet.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void exascaleDbStorageVaultsDeleteMaximumSet(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.exascaleDbStorageVaults().delete("rgopenapi", "vmClusterName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CloudExadataInfrastructures_Delete
+
+```java
+/**
+ * Samples for SystemVersions Get.
+ */
+public final class SystemVersionsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/systemVersions_get.json
+     */
+    /**
+     * Sample code: systemVersions_listSystemVersions.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        systemVersionsListSystemVersions(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.systemVersions().getWithResponse("eastus", "22.x", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/systemVersions_get.json
+     */
+    /**
+     * Sample code: Get Exadata System Version.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void getExadataSystemVersion(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.systemVersions().getWithResponse("eastus", "22.x", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CloudExadataInfrastructures_GetByResourceGroup
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.ExascaleDbStorageInputDetails;
+import com.azure.resourcemanager.oracledatabase.models.ExascaleDbStorageVaultProperties;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for ExascaleDbStorageVaults Create.
+ */
+public final class ExascaleDbStorageVaultsCreateSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExascaleDbStorageVaults_Create_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: ExascaleDbStorageVaults_Create_MaximumSet.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void exascaleDbStorageVaultsCreateMaximumSet(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.exascaleDbStorageVaults()
+            .define("vmClusterName")
+            .withRegion("ltguhzffucaytqg")
+            .withExistingResourceGroup("rgopenapi")
+            .withTags(mapOf("key7827", "fakeTokenPlaceholder"))
+            .withProperties(new ExascaleDbStorageVaultProperties().withAdditionalFlashCacheInPercent(0)
+                .withDescription("dmnvnnduldfmrmkkvvsdtuvmsmruxzzpsfdydgytlckutfozephjygjetrauvbdfcwmti")
+                .withDisplayName(
+                    "hbsybtelyvhpalemszcvartlhwvskrnpiveqfblvkdihoytqaotdgsgauvgivzaftfgeiwlyeqzssicwrrnlxtsmeakbcsxabjlt")
+                .withHighCapacityDatabaseStorageInput(new ExascaleDbStorageInputDetails().withTotalSizeInGbs(21))
+                .withTimeZone(
+                    "ltrbozwxjunncicrtzjrpqnqrcjgghohztrdlbfjrbkpenopyldwolslwgrgumjfkyovvkzcuxjujuxtjjzubvqvnhrswnbdgcbslopeofmtepbrrlymqwwszvsglmyuvlcuejshtpokirwklnwpcykhyinjmlqvxtyixlthtdishhmtipbygsayvgqzfrprgppylydlcskbmvwctxifdltippfvsxiughqbojqpqrekxsotnqsk"))
+            .withZones(Arrays.asList("qk"))
+            .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### CloudExadataInfrastructures_List
+
+```java
+/**
+ * Samples for AutonomousDatabases Shrink.
+ */
+public final class AutonomousDatabasesShrinkSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_shrink.json
+     */
+    /**
+     * Sample code: Perform shrink action on Autonomous Database.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void performShrinkActionOnAutonomousDatabase(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases().shrink("rg000", "databasedb1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CloudExadataInfrastructures_ListByResourceGroup
+
+```java
+/**
+ * Samples for DbNodes ListByParent.
+ */
+public final class DbNodesListByParentSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/dbNodes_listByParent.json
+     */
+    /**
+     * Sample code: List DbNodes by VM Cluster.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void listDbNodesByVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.dbNodes().listByParent("rg000", "cluster1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CloudExadataInfrastructures_Update
+
+```java
+/**
+ * Samples for CloudExadataInfrastructures Delete.
+ */
+public final class CloudExadataInfrastructuresDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/exaInfra_delete.json
+     */
+    /**
+     * Sample code: Delete Exadata Infrastructure.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        deleteExadataInfrastructure(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.cloudExadataInfrastructures().delete("rg000", "infra1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CloudVmClusters_AddVms
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabase;
+
+/**
+ * Samples for AutonomousDatabases Update.
+ */
+public final class AutonomousDatabasesUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_patch.json
+     */
+    /**
+     * Sample code: Patch Autonomous Database.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void patchAutonomousDatabase(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        AutonomousDatabase resource = manager.autonomousDatabases()
+            .getByResourceGroupWithResponse("rg000", "databasedb1", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().apply();
+    }
+}
+```
+
+### CloudVmClusters_CreateOrUpdate
+
+```java
+/**
+ * Samples for OracleSubscriptions ListCloudAccountDetails.
+ */
+public final class OracleSubscriptionsListCloudAccountDetailsSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * oracleSubscriptions_listCloudAccountDetails.json
+     */
+    /**
+     * Sample code: List Cloud Account details for the Oracle Subscription.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void listCloudAccountDetailsForTheOracleSubscription(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.oracleSubscriptions().listCloudAccountDetails(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CloudVmClusters_Delete
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.DataCollectionOptions;
+import com.azure.resourcemanager.oracledatabase.models.ExadbVmClusterProperties;
+import com.azure.resourcemanager.oracledatabase.models.ExadbVmClusterStorageDetails;
+import com.azure.resourcemanager.oracledatabase.models.LicenseModel;
+import com.azure.resourcemanager.oracledatabase.models.NsgCidr;
+import com.azure.resourcemanager.oracledatabase.models.PortRange;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for ExadbVmClusters CreateOrUpdate.
+ */
+public final class ExadbVmClustersCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExadbVmClusters_CreateOrUpdate_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: ExadbVmClusters_CreateOrUpdate_MaximumSet.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void exadbVmClustersCreateOrUpdateMaximumSet(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.exadbVmClusters()
+            .define("clusterName")
+            .withRegion("xojp")
+            .withExistingResourceGroup("rgopenapi")
+            .withTags(mapOf("key9683", "fakeTokenPlaceholder"))
+            .withProperties(new ExadbVmClusterProperties().withClusterName("hssswln")
+                .withBackupSubnetCidr("fr")
+                .withVnetId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg000/providers/Microsoft.Network/virtualNetworks/vnet1")
+                .withSubnetId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg000/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet1")
+                .withDataCollectionOptions(new DataCollectionOptions().withIsDiagnosticsEventsEnabled(true)
+                    .withIsHealthMonitoringEnabled(true)
+                    .withIsIncidentLogsEnabled(true))
+                .withDisplayName(
+                    "dyhkncxzzgcwlfkfygvqlvqbxekvkbhjprmuxtaukewjnfrrnfqgrqsjfgsayrezkspqplrduuomuvtpkqurcoqjdnadlvedgfngglcgafbxtcewxlgckvehhqgfwkokbjoqftunjsgfjwbdaftxoytsphydwogtlnfxxuzzjvqcrin")
+                .withDomain("vzfak")
+                .withEnabledEcpuCount(0)
+                .withExascaleDbStorageVaultId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Oracle.Database/exascaleDbStorageVaults/storageVaultName")
+                .withGridImageOcid("ocid1.dbpatch.oc1..aaaaa3klq")
+                .withHostname("tdn")
+                .withLicenseModel(LicenseModel.LICENSE_INCLUDED)
+                .withNodeCount(8)
+                .withNsgCidrs(Arrays.asList(new NsgCidr().withSource("10.0.0.0/16")
+                    .withDestinationPortRange(new PortRange().withMin(1520).withMax(1522))))
+                .withPrivateZoneOcid("ocid1.autonomousdatabase.oc1..aaaaa3klq")
+                .withScanListenerPortTcp(9)
+                .withScanListenerPortTcpSsl(18)
+                .withShape("evenjblxxfsztdxlcr")
+                .withSshPublicKeys(Arrays.asList("wiseakllkohemfmnoyteg"))
+                .withSystemVersion(
+                    "udwsykstqawwjrvzebfyyccnjzhxtijvywlgnrkqxnboibyppistnbvqqsnsxmjnzeumgnatmarzfnjhglmtrknszthrxtwewwqjbkwytbhtjbgondtktkpvjmxdcuyjupr")
+                .withTimeZone(
+                    "ayuqnpfkasdzmxlfnkjzrenyogbvcysdbkstjhyjdgxygitlykihtwdiktilukyplgxovaonrqcqaviyaqgyrqfrklqvqyobnxgmzpqbgjhdtjdquhyqnvhavnqpfupaqhdedgdvfomeueeuwjjfiqiyxspybpyj")
+                .withTotalEcpuCount(56)
+                .withVmFileSystemStorage(new ExadbVmClusterStorageDetails().withTotalSizeInGbs(10)))
+            .withZones(Arrays.asList("iupjvcfsbvfhrebwf"))
+            .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
@@ -1285,20 +1394,20 @@ public final class CloudVmClustersDeleteSamples {
 
 ```java
 /**
- * Samples for CloudVmClusters GetByResourceGroup.
+ * Samples for OracleSubscriptions Get.
  */
-public final class CloudVmClustersGetByResourceGroupSamples {
+public final class OracleSubscriptionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/vmClusters_get.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/oracleSubscriptions_get.json
      */
     /**
-     * Sample code: Get VM Cluster.
+     * Sample code: Get Oracle Subscription.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void getVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.cloudVmClusters().getByResourceGroupWithResponse("rg000", "cluster1", com.azure.core.util.Context.NONE);
+    public static void getOracleSubscription(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.oracleSubscriptions().getWithResponse(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1307,22 +1416,22 @@ public final class CloudVmClustersGetByResourceGroupSamples {
 
 ```java
 /**
- * Samples for CloudVmClusters List.
+ * Samples for AutonomousDatabaseCharacterSets Get.
  */
-public final class CloudVmClustersListSamples {
+public final class AutonomousDatabaseCharacterSetsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/vmClusters_listBySubscription.
-     * json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * autonomousDatabaseCharacterSet_get.json
      */
     /**
-     * Sample code: List VM Clusters by subscription.
+     * Sample code: Get autonomous db character set.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
     public static void
-        listVMClustersBySubscription(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.cloudVmClusters().list(com.azure.core.util.Context.NONE);
+        getAutonomousDbCharacterSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabaseCharacterSets()
+            .getWithResponse("eastus", "DATABASE", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1336,7 +1445,7 @@ public final class CloudVmClustersListSamples {
 public final class CloudVmClustersListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/vmClusters_listByResourceGroup.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/vmClusters_listByResourceGroup.
      * json
      */
     /**
@@ -1354,6 +1463,500 @@ public final class CloudVmClustersListByResourceGroupSamples {
 ### CloudVmClusters_ListPrivateIpAddresses
 
 ```java
+/**
+ * Samples for GiMinorVersions Get.
+ */
+public final class GiMinorVersionsGetSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * GiMinorVersions_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: GiMinorVersions_Get_MaximumSet.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        giMinorVersionsGetMaximumSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.giMinorVersions()
+            .getWithResponse("eastus", "giVersionName", "giMinorVersionName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CloudVmClusters_RemoveVms
+
+```java
+/**
+ * Samples for CloudExadataInfrastructures AddStorageCapacity.
+ */
+public final class CloudExadataInfrastructuresAddStorageCapacitySamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/exaInfra_addStorageCapacity.json
+     */
+    /**
+     * Sample code: Perform add storage capacity on exadata infra.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void performAddStorageCapacityOnExadataInfra(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.cloudExadataInfrastructures().addStorageCapacity("rg000", "infra1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### CloudVmClusters_Update
+
+```java
+/**
+ * Samples for OracleSubscriptions List.
+ */
+public final class OracleSubscriptionsListSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * oracleSubscriptions_listBySubscription.json
+     */
+    /**
+     * Sample code: List Oracle Subscriptions by subscription.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        listOracleSubscriptionsBySubscription(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.oracleSubscriptions().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DbNodes_Action
+
+```java
+/**
+ * Samples for CloudExadataInfrastructures List.
+ */
+public final class CloudExadataInfrastructuresListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/exaInfra_listBySubscription.json
+     */
+    /**
+     * Sample code: List Exadata Infrastructure by subscription.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void listExadataInfrastructureBySubscription(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.cloudExadataInfrastructures().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DbNodes_Get
+
+```java
+/**
+ * Samples for VirtualNetworkAddresses ListByParent.
+ */
+public final class VirtualNetworkAddressesListByParentSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * virtualNetworkAddresses_listByParent.json
+     */
+    /**
+     * Sample code: List Virtual Network Addresses by VM Cluster.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        listVirtualNetworkAddressesByVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.virtualNetworkAddresses().listByParent("rg000", "cluster1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DbNodes_ListByParent
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseBackup;
+
+/**
+ * Samples for AutonomousDatabaseBackups Update.
+ */
+public final class AutonomousDatabaseBackupsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabaseBackup_patch.
+     * json
+     */
+    /**
+     * Sample code: Patch Autonomous Database Backup.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        patchAutonomousDatabaseBackup(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        AutonomousDatabaseBackup resource = manager.autonomousDatabaseBackups()
+            .getWithResponse("rg000", "databasedb1", "1711644130", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().apply();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabaseBackup_patch.
+     * json
+     */
+    /**
+     * Sample code: AutonomousDatabaseBackups_Update.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        autonomousDatabaseBackupsUpdate(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        AutonomousDatabaseBackup resource = manager.autonomousDatabaseBackups()
+            .getWithResponse("rg000", "databasedb1", "1711644130", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().apply();
+    }
+}
+```
+
+### DbServers_Get
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.GenerateAutonomousDatabaseWalletDetails;
+import com.azure.resourcemanager.oracledatabase.models.GenerateType;
+
+/**
+ * Samples for AutonomousDatabases GenerateWallet.
+ */
+public final class AutonomousDatabasesGenerateWalletSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * autonomousDatabase_generateWallet.json
+     */
+    /**
+     * Sample code: Generate wallet action on Autonomous Database.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void generateWalletActionOnAutonomousDatabase(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases()
+            .generateWalletWithResponse("rg000", "databasedb1",
+                new GenerateAutonomousDatabaseWalletDetails().withGenerateType(GenerateType.SINGLE)
+                    .withIsRegional(false)
+                    .withPassword("fakeTokenPlaceholder"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DbServers_ListByParent
+
+```java
+/**
+ * Samples for ExadbVmClusters Delete.
+ */
+public final class ExadbVmClustersDeleteSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExadbVmClusters_Delete_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: ExadbVmClusters_Delete_MaximumSet.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        exadbVmClustersDeleteMaximumSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.exadbVmClusters().delete("rgopenapi", "vmClusterName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DbSystemShapes_Get
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.DbNodeAction;
+import com.azure.resourcemanager.oracledatabase.models.DbNodeActionEnum;
+
+/**
+ * Samples for DbNodes Action.
+ */
+public final class DbNodesActionSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/dbNodes_action.json
+     */
+    /**
+     * Sample code: DbNodes_Action.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void dbNodesAction(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.dbNodes()
+            .action("rg000", "cluster1", "ocid1....aaaaaa", new DbNodeAction().withAction(DbNodeActionEnum.START),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/dbNodes_action.json
+     */
+    /**
+     * Sample code: VM actions on DbNodes of VM Cluster.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        vmActionsOnDbNodesOfVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.dbNodes()
+            .action("rg000", "cluster1", "ocid1....aaaaaa", new DbNodeAction().withAction(DbNodeActionEnum.START),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DbSystemShapes_ListByLocation
+
+```java
+/**
+ * Samples for VirtualNetworkAddresses Delete.
+ */
+public final class VirtualNetworkAddressesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/virtualNetworkAddresses_delete.
+     * json
+     */
+    /**
+     * Sample code: Delete Virtual Network Address.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        deleteVirtualNetworkAddress(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.virtualNetworkAddresses().delete("rg000", "cluster1", "hostname1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DnsPrivateViews_Get
+
+```java
+/**
+ * Samples for CloudVmClusters GetByResourceGroup.
+ */
+public final class CloudVmClustersGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/vmClusters_get.json
+     */
+    /**
+     * Sample code: Get VM Cluster.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void getVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.cloudVmClusters().getByResourceGroupWithResponse("rg000", "cluster1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DnsPrivateViews_ListByLocation
+
+```java
+/**
+ * Samples for DbSystemShapes ListByLocation.
+ */
+public final class DbSystemShapesListByLocationSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/dbSystemShapes_listByLocation.
+     * json
+     */
+    /**
+     * Sample code: List DbSystemShapes by location.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        listDbSystemShapesByLocation(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.dbSystemShapes().listByLocation("eastus", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DnsPrivateZones_Get
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.VirtualNetworkAddressProperties;
+
+/**
+ * Samples for VirtualNetworkAddresses CreateOrUpdate.
+ */
+public final class VirtualNetworkAddressesCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/virtualNetworkAddresses_create.
+     * json
+     */
+    /**
+     * Sample code: Create Virtual Network Address.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        createVirtualNetworkAddress(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.virtualNetworkAddresses()
+            .define("hostname1")
+            .withExistingCloudVmCluster("rg000", "cluster1")
+            .withProperties(
+                new VirtualNetworkAddressProperties().withIpAddress("192.168.0.1").withVmOcid("ocid1..aaaa"))
+            .create();
+    }
+}
+```
+
+### DnsPrivateZones_ListByLocation
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.OracleSubscriptionUpdate;
+
+/**
+ * Samples for OracleSubscriptions Update.
+ */
+public final class OracleSubscriptionsUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/oracleSubscriptions_patch.json
+     */
+    /**
+     * Sample code: Patch Oracle Subscription.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void patchOracleSubscription(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.oracleSubscriptions().update(new OracleSubscriptionUpdate(), com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ExadbVmClusters_CreateOrUpdate
+
+```java
+/**
+ * Samples for AutonomousDatabaseVersions Get.
+ */
+public final class AutonomousDatabaseVersionsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabaseVersion_get.
+     * json
+     */
+    /**
+     * Sample code: Get an autonomous version.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void getAnAutonomousVersion(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabaseVersions().getWithResponse("eastus", "18.4.0.0", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ExadbVmClusters_Delete
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.AddRemoveDbNode;
+import java.util.Arrays;
+
+/**
+ * Samples for CloudVmClusters RemoveVms.
+ */
+public final class CloudVmClustersRemoveVmsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/vmClusters_removeVms.json
+     */
+    /**
+     * Sample code: Remove VMs from VM Cluster.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void removeVMsFromVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.cloudVmClusters()
+            .removeVms("rg000", "cluster1", new AddRemoveDbNode().withDbServers(Arrays.asList("ocid1..aaaa")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ExadbVmClusters_GetByResourceGroup
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.DbNodeDetails;
+import com.azure.resourcemanager.oracledatabase.models.RemoveVirtualMachineFromExadbVmClusterDetails;
+import java.util.Arrays;
+
+/**
+ * Samples for ExadbVmClusters RemoveVms.
+ */
+public final class ExadbVmClustersRemoveVmsSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExadbVmClusters_RemoveVms_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: ExadbVmClusters_RemoveVms_MaximumSet.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        exadbVmClustersRemoveVmsMaximumSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.exadbVmClusters()
+            .removeVms("rgopenapi", "vmClusterName", new RemoveVirtualMachineFromExadbVmClusterDetails()
+                .withDbNodes(Arrays.asList(new DbNodeDetails().withDbNodeId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Oracle.Database/exadbVmClusters/vmCluster/dbNodes/dbNodeName"))),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ExadbVmClusters_List
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.AddRemoveDbNode;
+import java.util.Arrays;
+
+/**
+ * Samples for CloudVmClusters AddVms.
+ */
+public final class CloudVmClustersAddVmsSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/vmClusters_addVms.json
+     */
+    /**
+     * Sample code: Add VMs to VM Cluster.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void addVMsToVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.cloudVmClusters()
+            .addVms("rg000", "cluster1",
+                new AddRemoveDbNode().withDbServers(Arrays.asList("ocid1..aaaa", "ocid1..aaaaaa")),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ExadbVmClusters_ListByResourceGroup
+
+```java
 import com.azure.resourcemanager.oracledatabase.models.PrivateIpAddressesFilter;
 
 /**
@@ -1361,7 +1964,7 @@ import com.azure.resourcemanager.oracledatabase.models.PrivateIpAddressesFilter;
  */
 public final class CloudVmClustersListPrivateIpAddressesSamples {
     /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
      * vmClusters_listPrivateIpAddresses.json
      */
     /**
@@ -1379,193 +1982,298 @@ public final class CloudVmClustersListPrivateIpAddressesSamples {
 }
 ```
 
-### CloudVmClusters_RemoveVms
+### ExadbVmClusters_RemoveVms
 
 ```java
-import com.azure.resourcemanager.oracledatabase.models.AddRemoveDbNode;
-import java.util.Arrays;
-
 /**
- * Samples for CloudVmClusters RemoveVms.
+ * Samples for ExadbVmClusters GetByResourceGroup.
  */
-public final class CloudVmClustersRemoveVmsSamples {
+public final class ExadbVmClustersGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/vmClusters_removeVms.json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExadbVmClusters_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Remove VMs from VM Cluster.
+     * Sample code: ExadbVmClusters_Get_MaximumSet.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void removeVMsFromVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.cloudVmClusters()
-            .removeVms("rg000", "cluster1", new AddRemoveDbNode().withDbServers(Arrays.asList("ocid1..aaaa")),
-                com.azure.core.util.Context.NONE);
+    public static void
+        exadbVmClustersGetMaximumSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.exadbVmClusters()
+            .getByResourceGroupWithResponse("rgopenapi", "vmClusterName", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### CloudVmClusters_Update
+### ExadbVmClusters_Update
 
 ```java
-import com.azure.resourcemanager.oracledatabase.models.CloudVmCluster;
-
 /**
- * Samples for CloudVmClusters Update.
+ * Samples for AutonomousDatabaseBackups ListByParent.
  */
-public final class CloudVmClustersUpdateSamples {
+public final class AutonomousDatabaseBackupsListByParentSamples {
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/vmClusters_patch.json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * autonomousDatabaseBackup_listByParent.json
      */
     /**
-     * Sample code: Patch VM Cluster.
+     * Sample code: List Autonomous Database Backups by Autonomous Database.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void patchVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        CloudVmCluster resource = manager.cloudVmClusters()
-            .getByResourceGroupWithResponse("rg000", "cluster1", com.azure.core.util.Context.NONE)
+    public static void listAutonomousDatabaseBackupsByAutonomousDatabase(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabaseBackups().listByParent("rg000", "databasedb1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ExascaleDbNodes_Action
+
+```java
+/**
+ * Samples for AutonomousDatabaseNationalCharacterSets ListByLocation.
+ */
+public final class AutonomousDatabaseNationalCharacterSetsListByLocationSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * autonomousDatabaseNationalCharacterSet_listByLocation.json
+     */
+    /**
+     * Sample code: List autonomous db national character sets by location.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void listAutonomousDbNationalCharacterSetsByLocation(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabaseNationalCharacterSets().listByLocation("eastus", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ExascaleDbNodes_Get
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.CloudExadataInfrastructureProperties;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Samples for CloudExadataInfrastructures CreateOrUpdate.
+ */
+public final class CloudExadataInfrastructuresCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/exaInfra_create.json
+     */
+    /**
+     * Sample code: Create Exadata Infrastructure.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        createExadataInfrastructure(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.cloudExadataInfrastructures()
+            .define("infra1")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg000")
+            .withZones(Arrays.asList("1"))
+            .withTags(mapOf("tagK1", "tagV1"))
+            .withProperties(new CloudExadataInfrastructureProperties().withComputeCount(100)
+                .withStorageCount(10)
+                .withShape("EXADATA.X9M")
+                .withDisplayName("infra 1"))
+            .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### ExascaleDbNodes_ListByParent
+
+```java
+/**
+ * Samples for AutonomousDatabases ListByResourceGroup.
+ */
+public final class AutonomousDatabasesListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * autonomousDatabase_listByResourceGroup.json
+     */
+    /**
+     * Sample code: List Autonomous Database by resource group.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        listAutonomousDatabaseByResourceGroup(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases().listByResourceGroup("rg000", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ExascaleDbStorageVaults_Create
+
+```java
+/**
+ * Samples for ExadbVmClusters List.
+ */
+public final class ExadbVmClustersListSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExadbVmClusters_ListBySubscription_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: ExadbVmClusters_ListBySubscription_MaximumSet.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void exadbVmClustersListBySubscriptionMaximumSet(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.exadbVmClusters().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ExascaleDbStorageVaults_Delete
+
+```java
+/**
+ * Samples for AutonomousDatabases Delete.
+ */
+public final class AutonomousDatabasesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_delete.json
+     */
+    /**
+     * Sample code: Delete Autonomous Database.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        deleteAutonomousDatabase(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases().delete("rg000", "databasedb1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ExascaleDbStorageVaults_GetByResourceGroup
+
+```java
+/**
+ * Samples for AutonomousDatabases List.
+ */
+public final class AutonomousDatabasesListSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * autonomousDatabase_listBySubscription.json
+     */
+    /**
+     * Sample code: List Autonomous Database by subscription.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        listAutonomousDatabaseBySubscription(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ExascaleDbStorageVaults_List
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.AutonomousDatabaseBackupProperties;
+
+/**
+ * Samples for AutonomousDatabaseBackups CreateOrUpdate.
+ */
+public final class AutonomousDatabaseBackupsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabaseBackup_create.
+     * json
+     */
+    /**
+     * Sample code: Create Autonomous Database Backup.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        createAutonomousDatabaseBackup(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabaseBackups()
+            .define("1711644130")
+            .withExistingAutonomousDatabase("rg000", "databasedb1")
+            .withProperties(new AutonomousDatabaseBackupProperties().withDisplayName("Nightly Backup")
+                .withRetentionPeriodInDays(365))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabaseBackup_create.
+     * json
+     */
+    /**
+     * Sample code: AutonomousDatabaseBackups_CreateOrUpdate.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void autonomousDatabaseBackupsCreateOrUpdate(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabaseBackups()
+            .define("1711644130")
+            .withExistingAutonomousDatabase("rg000", "databasedb1")
+            .withProperties(new AutonomousDatabaseBackupProperties().withDisplayName("Nightly Backup")
+                .withRetentionPeriodInDays(365))
+            .create();
+    }
+}
+```
+
+### ExascaleDbStorageVaults_ListByResourceGroup
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.CloudExadataInfrastructure;
+
+/**
+ * Samples for CloudExadataInfrastructures Update.
+ */
+public final class CloudExadataInfrastructuresUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/exaInfra_patch.json
+     */
+    /**
+     * Sample code: Patch Exadata Infrastructure.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        patchExadataInfrastructure(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        CloudExadataInfrastructure resource = manager.cloudExadataInfrastructures()
+            .getByResourceGroupWithResponse("rg000", "infra1", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update().apply();
     }
 }
 ```
 
-### DbNodes_Action
-
-```java
-import com.azure.resourcemanager.oracledatabase.models.DbNodeAction;
-import com.azure.resourcemanager.oracledatabase.models.DbNodeActionEnum;
-
-/**
- * Samples for DbNodes Action.
- */
-public final class DbNodesActionSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dbNodes_action.json
-     */
-    /**
-     * Sample code: DbNodes_Action.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void dbNodesAction(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.dbNodes()
-            .action("rg000", "cluster1", "ocid1....aaaaaa", new DbNodeAction().withAction(DbNodeActionEnum.START),
-                com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dbNodes_action.json
-     */
-    /**
-     * Sample code: VM actions on DbNodes of VM Cluster.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        vmActionsOnDbNodesOfVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.dbNodes()
-            .action("rg000", "cluster1", "ocid1....aaaaaa", new DbNodeAction().withAction(DbNodeActionEnum.START),
-                com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DbNodes_Get
-
-```java
-/**
- * Samples for DbNodes Get.
- */
-public final class DbNodesGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dbNodes_get.json
-     */
-    /**
-     * Sample code: Get DbNode.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void getDbNode(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.dbNodes().getWithResponse("rg000", "cluster1", "ocid1....aaaaaa", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DbNodes_ListByCloudVmCluster
-
-```java
-/**
- * Samples for DbNodes ListByCloudVmCluster.
- */
-public final class DbNodesListByCloudVmClusterSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dbNodes_listByParent.json
-     */
-    /**
-     * Sample code: List DbNodes by VM Cluster.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void listDbNodesByVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.dbNodes().listByCloudVmCluster("rg000", "cluster1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DbServers_Get
-
-```java
-/**
- * Samples for DbServers Get.
- */
-public final class DbServersGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dbServers_get.json
-     */
-    /**
-     * Sample code: Get DbServer by parent.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void getDbServerByParent(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.dbServers().getWithResponse("rg000", "infra1", "ocid1....aaaaaa", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DbServers_ListByCloudExadataInfrastructure
-
-```java
-/**
- * Samples for DbServers ListByCloudExadataInfrastructure.
- */
-public final class DbServersListByCloudExadataInfrastructureSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dbServers_listByParent.json
-     */
-    /**
-     * Sample code: List DbServers by Exadata Infrastructure.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        listDbServersByExadataInfrastructure(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.dbServers().listByCloudExadataInfrastructure("rg000", "infra1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DbSystemShapes_Get
+### ExascaleDbStorageVaults_Update
 
 ```java
 /**
@@ -1574,7 +2282,7 @@ public final class DbServersListByCloudExadataInfrastructureSamples {
 public final class DbSystemShapesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dbSystemShapes_get.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/dbSystemShapes_get.json
      */
     /**
      * Sample code: Get a DbSystemShape by name.
@@ -1587,102 +2295,182 @@ public final class DbSystemShapesGetSamples {
 }
 ```
 
-### DbSystemShapes_ListByLocation
+### FlexComponents_Get
 
 ```java
 /**
- * Samples for DbSystemShapes ListByLocation.
+ * Samples for ExascaleDbNodes Get.
  */
-public final class DbSystemShapesListByLocationSamples {
+public final class ExascaleDbNodesGetSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExascaleDbNodes_Get_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: ExascaleDbNodes_Get_MaximumSet.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        exascaleDbNodesGetMaximumSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.exascaleDbNodes()
+            .getWithResponse("rgopenapi", "vmClusterName", "dbNodeName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### FlexComponents_ListByParent
+
+```java
+/**
+ * Samples for ExascaleDbNodes ListByParent.
+ */
+public final class ExascaleDbNodesListByParentSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * ExascaleDbNodes_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: ExascaleDbNodes_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        exascaleDbNodesListByParentMaximumSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.exascaleDbNodes().listByParent("rgopenapi", "vmClusterName", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### GiMinorVersions_Get
+
+```java
+/**
+ * Samples for CloudExadataInfrastructures ListByResourceGroup.
+ */
+public final class CloudExadataInfrastructuresListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dbSystemShapes_listByLocation.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/exaInfra_listByResourceGroup.
      * json
      */
     /**
-     * Sample code: List DbSystemShapes by location.
+     * Sample code: List Exadata Infrastructure by resource group.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void
-        listDbSystemShapesByLocation(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.dbSystemShapes().listByLocation("eastus", com.azure.core.util.Context.NONE);
+    public static void listExadataInfrastructureByResourceGroup(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.cloudExadataInfrastructures().listByResourceGroup("rg000", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### DnsPrivateViews_Get
+### GiMinorVersions_ListByParent
 
 ```java
 /**
- * Samples for DnsPrivateViews Get.
+ * Samples for AutonomousDatabaseBackups Delete.
  */
-public final class DnsPrivateViewsGetSamples {
+public final class AutonomousDatabaseBackupsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dnsPrivateViews_get.json
-     */
-    /**
-     * Sample code: Get a DnsPrivateView by name.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        getADnsPrivateViewByName(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.dnsPrivateViews().getWithResponse("eastus", "ocid1....aaaaaa", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DnsPrivateViews_ListByLocation
-
-```java
-/**
- * Samples for DnsPrivateViews ListByLocation.
- */
-public final class DnsPrivateViewsListByLocationSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dnsPrivateViews_listByLocation.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabaseBackup_delete.
      * json
      */
     /**
-     * Sample code: List DnsPrivateViews by location.
+     * Sample code: Delete Autonomous Database Backup.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
     public static void
-        listDnsPrivateViewsByLocation(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.dnsPrivateViews().listByLocation("eastus", com.azure.core.util.Context.NONE);
+        deleteAutonomousDatabaseBackup(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabaseBackups()
+            .delete("rg000", "databasedb1", "1711644130", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabaseBackup_delete.
+     * json
+     */
+    /**
+     * Sample code: AutonomousDatabaseBackups_Delete.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        autonomousDatabaseBackupsDelete(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabaseBackups()
+            .delete("rg000", "databasedb1", "1711644130", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### DnsPrivateZones_Get
+### GiVersions_Get
 
 ```java
 /**
- * Samples for DnsPrivateZones Get.
+ * Samples for AutonomousDatabaseNationalCharacterSets Get.
  */
-public final class DnsPrivateZonesGetSamples {
+public final class AutonomousDatabaseNationalCharacterSetsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dnsPrivateZones_get.json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * autonomousDatabaseNationalCharacterSet_get.json
      */
     /**
-     * Sample code: Get a DnsPrivateZone by name.
+     * Sample code: Get autonomous db national character set.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
     public static void
-        getADnsPrivateZoneByName(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.dnsPrivateZones()
-            .getWithResponse("eastus", "example-dns-private-zone", com.azure.core.util.Context.NONE);
+        getAutonomousDbNationalCharacterSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabaseNationalCharacterSets()
+            .getWithResponse("eastus", "NATIONAL", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### DnsPrivateZones_ListByLocation
+### GiVersions_ListByLocation
+
+```java
+/**
+ * Samples for SystemVersions ListByLocation.
+ */
+public final class SystemVersionsListByLocationSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/systemVersions_listByLocation.
+     * json
+     */
+    /**
+     * Sample code: List Exadata System Versions by the provided filter.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void listExadataSystemVersionsByTheProvidedFilter(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.systemVersions().listByLocation("eastus", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/systemVersions_listByLocation.
+     * json
+     */
+    /**
+     * Sample code: systemVersions_listByLocation.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        systemVersionsListByLocation(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.systemVersions().listByLocation("eastus", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Operations_List
 
 ```java
 /**
@@ -1691,7 +2479,7 @@ public final class DnsPrivateZonesGetSamples {
 public final class DnsPrivateZonesListByLocationSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/dnsPrivateZones_listByLocation.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/dnsPrivateZones_listByLocation.
      * json
      */
     /**
@@ -1706,74 +2494,79 @@ public final class DnsPrivateZonesListByLocationSamples {
 }
 ```
 
-### GiVersions_Get
+### OracleSubscriptions_AddAzureSubscriptions
 
 ```java
 /**
- * Samples for GiVersions Get.
+ * Samples for CloudVmClusters List.
  */
-public final class GiVersionsGetSamples {
+public final class CloudVmClustersListSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/giVersions_get.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/vmClusters_listBySubscription.
+     * json
      */
     /**
-     * Sample code: Get a GiVersion by name.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void getAGiVersionByName(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.giVersions().getWithResponse("eastus", "19.0.0.0", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### GiVersions_ListByLocation
-
-```java
-/**
- * Samples for GiVersions ListByLocation.
- */
-public final class GiVersionsListByLocationSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/giVersions_listByLocation.json
-     */
-    /**
-     * Sample code: List GiVersions by location.
+     * Sample code: List VM Clusters by subscription.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
     public static void
-        listGiVersionsByLocation(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.giVersions().listByLocation("eastus", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/operations_list.json
-     */
-    /**
-     * Sample code: List Operations.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void listOperations(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
+        listVMClustersBySubscription(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.cloudVmClusters().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### OracleSubscriptions_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.oracledatabase.models.SystemShapes;
+
+/**
+ * Samples for FlexComponents ListByParent.
+ */
+public final class FlexComponentsListByParentSamples {
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * FlexComponents_ListByParent_MaximumSet_Gen.json
+     */
+    /**
+     * Sample code: FlexComponents_ListByParent_MaximumSet.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        flexComponentsListByParentMaximumSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.flexComponents().listByParent("eastus", SystemShapes.EXADATA_X11M, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### OracleSubscriptions_Delete
+
+```java
+/**
+ * Samples for OracleSubscriptions Delete.
+ */
+public final class OracleSubscriptionsDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/oracleSubscriptions_delete.json
+     */
+    /**
+     * Sample code: Delete Oracle Subscription.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void
+        deleteOracleSubscription(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.oracleSubscriptions().delete(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### OracleSubscriptions_Get
 
 ```java
 import com.azure.resourcemanager.oracledatabase.fluent.models.OracleSubscriptionInner;
@@ -1786,7 +2579,7 @@ import com.azure.resourcemanager.oracledatabase.models.Plan;
 public final class OracleSubscriptionsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/oracleSubscriptions_create.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/oracleSubscriptions_create.json
      */
     /**
      * Sample code: Create or Update Oracle Subscription.
@@ -1807,70 +2600,44 @@ public final class OracleSubscriptionsCreateOrUpdateSamples {
 }
 ```
 
-### OracleSubscriptions_Delete
-
-```java
-/**
- * Samples for OracleSubscriptions Delete.
- */
-public final class OracleSubscriptionsDeleteSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/oracleSubscriptions_delete.json
-     */
-    /**
-     * Sample code: Delete Oracle Subscription.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void
-        deleteOracleSubscription(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.oracleSubscriptions().delete(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### OracleSubscriptions_Get
-
-```java
-/**
- * Samples for OracleSubscriptions Get.
- */
-public final class OracleSubscriptionsGetSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/oracleSubscriptions_get.json
-     */
-    /**
-     * Sample code: Get Oracle Subscription.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void getOracleSubscription(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.oracleSubscriptions().getWithResponse(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### OracleSubscriptions_List
 
 ```java
+import com.azure.resourcemanager.oracledatabase.models.SystemShapes;
+
 /**
- * Samples for OracleSubscriptions List.
+ * Samples for GiVersions ListByLocation.
  */
-public final class OracleSubscriptionsListSamples {
+public final class GiVersionsListByLocationSamples {
     /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * oracleSubscriptions_listBySubscription.json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * GiVersions_ListByLocation_MaximumSet_Gen.json
      */
     /**
-     * Sample code: List Oracle Subscriptions by subscription.
+     * Sample code: List GiVersions by location - generated by [MaximumSet] rule.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void
-        listOracleSubscriptionsBySubscription(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.oracleSubscriptions().list(com.azure.core.util.Context.NONE);
+    public static void listGiVersionsByLocationGeneratedByMaximumSetRule(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.giVersions()
+            .listByLocation("eastus", SystemShapes.fromString(
+                "osixsklyaauhoqnkxvnvsqeqenhzogntqnpubldrrfvqncwetdtwqwjjcvspwhgecbimdlulwcubikebrdzmidrucgtsuqvytkqutmbyrvvyioxpocpmuwiivyanjzucaegihztluuvpznzaoakfsselumhhsvrtrbzwpjhcihsvyouonlxdluwhqfxoqvgthkaxppbydtqjntscgzbivfdcaobbkthrbdjwpejirqmbly"),
+                null, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * GiVersions_ListByLocation_MinimumSet_Gen.json
+     */
+    /**
+     * Sample code: List GiVersions by location - generated by [MinimumSet] rule.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void listGiVersionsByLocationGeneratedByMinimumSetRule(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.giVersions().listByLocation("eastus", null, null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1879,21 +2646,20 @@ public final class OracleSubscriptionsListSamples {
 
 ```java
 /**
- * Samples for OracleSubscriptions ListActivationLinks.
+ * Samples for DbNodes Get.
  */
-public final class OracleSubscriptionsListActivationLinksSamples {
+public final class DbNodesGetSamples {
     /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * oracleSubscriptions_listActivationLinks.json
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/dbNodes_get.json
      */
     /**
-     * Sample code: List Activation Links for the Oracle Subscription.
+     * Sample code: Get DbNode.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void listActivationLinksForTheOracleSubscription(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.oracleSubscriptions().listActivationLinks(com.azure.core.util.Context.NONE);
+    public static void getDbNode(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.dbNodes().getWithResponse("rg000", "cluster1", "ocid1....aaaaaa", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1902,21 +2668,22 @@ public final class OracleSubscriptionsListActivationLinksSamples {
 
 ```java
 /**
- * Samples for OracleSubscriptions ListCloudAccountDetails.
+ * Samples for DnsPrivateViews ListByLocation.
  */
-public final class OracleSubscriptionsListCloudAccountDetailsSamples {
+public final class DnsPrivateViewsListByLocationSamples {
     /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * oracleSubscriptions_listCloudAccountDetails.json
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/dnsPrivateViews_listByLocation.
+     * json
      */
     /**
-     * Sample code: List Cloud Account details for the Oracle Subscription.
+     * Sample code: List DnsPrivateViews by location.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void listCloudAccountDetailsForTheOracleSubscription(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.oracleSubscriptions().listCloudAccountDetails(com.azure.core.util.Context.NONE);
+    public static void
+        listDnsPrivateViewsByLocation(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.dnsPrivateViews().listByLocation("eastus", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1925,21 +2692,22 @@ public final class OracleSubscriptionsListCloudAccountDetailsSamples {
 
 ```java
 /**
- * Samples for OracleSubscriptions ListSaasSubscriptionDetails.
+ * Samples for DnsPrivateZones Get.
  */
-public final class OracleSubscriptionsListSaasSubscriptionDetailsSamples {
+public final class DnsPrivateZonesGetSamples {
     /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * oracleSubscriptions_listSaasSubscriptionDetails.json
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/dnsPrivateZones_get.json
      */
     /**
-     * Sample code: List Saas Subscription details for the Oracle Subscription.
+     * Sample code: Get a DnsPrivateZone by name.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void listSaasSubscriptionDetailsForTheOracleSubscription(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.oracleSubscriptions().listSaasSubscriptionDetails(com.azure.core.util.Context.NONE);
+    public static void
+        getADnsPrivateZoneByName(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.dnsPrivateZones()
+            .getWithResponse("eastus", "example-dns-private-zone", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1947,23 +2715,45 @@ public final class OracleSubscriptionsListSaasSubscriptionDetailsSamples {
 ### OracleSubscriptions_Update
 
 ```java
-import com.azure.resourcemanager.oracledatabase.models.OracleSubscriptionUpdate;
+import com.azure.resourcemanager.oracledatabase.models.RestoreAutonomousDatabaseDetails;
+import java.time.OffsetDateTime;
 
 /**
- * Samples for OracleSubscriptions Update.
+ * Samples for AutonomousDatabases Restore.
  */
-public final class OracleSubscriptionsUpdateSamples {
+public final class AutonomousDatabasesRestoreSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/oracleSubscriptions_patch.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_restore.json
      */
     /**
-     * Sample code: Patch Oracle Subscription.
+     * Sample code: AutonomousDatabases_Restore.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void patchOracleSubscription(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.oracleSubscriptions().update(new OracleSubscriptionUpdate(), com.azure.core.util.Context.NONE);
+    public static void
+        autonomousDatabasesRestore(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases()
+            .restore("rg000", "databasedb1",
+                new RestoreAutonomousDatabaseDetails().withTimestamp(OffsetDateTime.parse("2024-04-23T00:00:00.000Z")),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_restore.json
+     */
+    /**
+     * Sample code: Perform restore action on Autonomous Database.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void performRestoreActionOnAutonomousDatabase(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases()
+            .restore("rg000", "databasedb1",
+                new RestoreAutonomousDatabaseDetails().withTimestamp(OffsetDateTime.parse("2024-04-23T00:00:00.000Z")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1972,34 +2762,20 @@ public final class OracleSubscriptionsUpdateSamples {
 
 ```java
 /**
- * Samples for SystemVersions Get.
+ * Samples for Operations List.
  */
-public final class SystemVersionsGetSamples {
+public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/systemVersions_get.json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/operations_list.json
      */
     /**
-     * Sample code: systemVersions_listSystemVersions.
+     * Sample code: List Operations.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void
-        systemVersionsListSystemVersions(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.systemVersions().getWithResponse("eastus", "22.x", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/systemVersions_get.json
-     */
-    /**
-     * Sample code: Get Exadata System Version.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void getExadataSystemVersion(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.systemVersions().getWithResponse("eastus", "22.x", com.azure.core.util.Context.NONE);
+    public static void listOperations(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2007,38 +2783,26 @@ public final class SystemVersionsGetSamples {
 ### SystemVersions_ListByLocation
 
 ```java
-/**
- * Samples for SystemVersions ListByLocation.
- */
-public final class SystemVersionsListByLocationSamples {
-    /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/systemVersions_listByLocation.
-     * json
-     */
-    /**
-     * Sample code: List Exadata System Versions by the provided filter.
-     * 
-     * @param manager Entry point to OracleDatabaseManager.
-     */
-    public static void listExadataSystemVersionsByTheProvidedFilter(
-        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.systemVersions().listByLocation("eastus", com.azure.core.util.Context.NONE);
-    }
+import com.azure.resourcemanager.oracledatabase.models.ShapeFamily;
 
+/**
+ * Samples for GiMinorVersions ListByParent.
+ */
+public final class GiMinorVersionsListByParentSamples {
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/systemVersions_listByLocation.
-     * json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * GiMinorVersions_ListByParent_MaximumSet_Gen.json
      */
     /**
-     * Sample code: systemVersions_listByLocation.
+     * Sample code: GiMinorVersions_ListByParent_MaximumSet.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
     public static void
-        systemVersionsListByLocation(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.systemVersions().listByLocation("eastus", com.azure.core.util.Context.NONE);
+        giMinorVersionsListByParentMaximumSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.giMinorVersions()
+            .listByParent("eastus", "giVersionName", ShapeFamily.fromString("rtfcosvtlpeeqoicsjqggtgc"), null,
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2046,30 +2810,44 @@ public final class SystemVersionsListByLocationSamples {
 ### VirtualNetworkAddresses_CreateOrUpdate
 
 ```java
-import com.azure.resourcemanager.oracledatabase.models.VirtualNetworkAddressProperties;
+import com.azure.resourcemanager.oracledatabase.models.PeerDbDetails;
 
 /**
- * Samples for VirtualNetworkAddresses CreateOrUpdate.
+ * Samples for AutonomousDatabases Switchover.
  */
-public final class VirtualNetworkAddressesCreateOrUpdateSamples {
+public final class AutonomousDatabasesSwitchoverSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/virtualNetworkAddresses_create.
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_switchover.
      * json
      */
     /**
-     * Sample code: Create Virtual Network Address.
+     * Sample code: Perform switchover action on Autonomous Database.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void performSwitchoverActionOnAutonomousDatabase(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases()
+            .switchover("rg000", "databasedb1", new PeerDbDetails().withPeerDbId("peerDbId"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_switchover.
+     * json
+     */
+    /**
+     * Sample code: AutonomousDatabases_Switchover.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
     public static void
-        createVirtualNetworkAddress(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.virtualNetworkAddresses()
-            .define("hostname1")
-            .withExistingCloudVmCluster("rg000", "cluster1")
-            .withProperties(
-                new VirtualNetworkAddressProperties().withIpAddress("192.168.0.1").withVmOcid("ocid1..aaaa"))
-            .create();
+        autonomousDatabasesSwitchover(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases()
+            .switchover("rg000", "databasedb1", new PeerDbDetails().withPeerDbId("peerDbId"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2077,23 +2855,42 @@ public final class VirtualNetworkAddressesCreateOrUpdateSamples {
 ### VirtualNetworkAddresses_Delete
 
 ```java
+import com.azure.resourcemanager.oracledatabase.models.PeerDbDetails;
+
 /**
- * Samples for VirtualNetworkAddresses Delete.
+ * Samples for AutonomousDatabases Failover.
  */
-public final class VirtualNetworkAddressesDeleteSamples {
+public final class AutonomousDatabasesFailoverSamples {
     /*
      * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/virtualNetworkAddresses_delete.
-     * json
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_failover.json
      */
     /**
-     * Sample code: Delete Virtual Network Address.
+     * Sample code: AutonomousDatabases_Failover.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
     public static void
-        deleteVirtualNetworkAddress(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.virtualNetworkAddresses().delete("rg000", "cluster1", "hostname1", com.azure.core.util.Context.NONE);
+        autonomousDatabasesFailover(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases()
+            .failover("rg000", "databasedb1", new PeerDbDetails().withPeerDbId("peerDbId"),
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/autonomousDatabase_failover.json
+     */
+    /**
+     * Sample code: Perform failover action on Autonomous Database.
+     * 
+     * @param manager Entry point to OracleDatabaseManager.
+     */
+    public static void performFailoverActionOnAutonomousDatabase(
+        com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.autonomousDatabases()
+            .failover("rg000", "databasedb1", new PeerDbDetails().withPeerDbId("peerDbId"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2102,45 +2899,43 @@ public final class VirtualNetworkAddressesDeleteSamples {
 
 ```java
 /**
- * Samples for VirtualNetworkAddresses Get.
+ * Samples for FlexComponents Get.
  */
-public final class VirtualNetworkAddressesGetSamples {
+public final class FlexComponentsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/virtualNetworkAddresses_get.json
+     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/
+     * FlexComponents_Get_MaximumSet_Gen.json
      */
     /**
-     * Sample code: Get Virtual Network Address.
+     * Sample code: FlexComponents_Get_MaximumSet.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
     public static void
-        getVirtualNetworkAddress(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.virtualNetworkAddresses()
-            .getWithResponse("rg000", "cluster1", "hostname1", com.azure.core.util.Context.NONE);
+        flexComponentsGetMaximumSet(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.flexComponents().getWithResponse("eastus", "flexComponent", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
-### VirtualNetworkAddresses_ListByCloudVmCluster
+### VirtualNetworkAddresses_ListByParent
 
 ```java
 /**
- * Samples for VirtualNetworkAddresses ListByCloudVmCluster.
+ * Samples for DbServers Get.
  */
-public final class VirtualNetworkAddressesListByCloudVmClusterSamples {
+public final class DbServersGetSamples {
     /*
-     * x-ms-original-file: specification/oracle/resource-manager/Oracle.Database/stable/2023-09-01/examples/
-     * virtualNetworkAddresses_listByParent.json
+     * x-ms-original-file:
+     * specification/oracle/resource-manager/Oracle.Database/stable/2025-03-01/examples/dbServers_get.json
      */
     /**
-     * Sample code: List Virtual Network Addresses by VM Cluster.
+     * Sample code: Get DbServer by parent.
      * 
      * @param manager Entry point to OracleDatabaseManager.
      */
-    public static void
-        listVirtualNetworkAddressesByVMCluster(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
-        manager.virtualNetworkAddresses().listByCloudVmCluster("rg000", "cluster1", com.azure.core.util.Context.NONE);
+    public static void getDbServerByParent(com.azure.resourcemanager.oracledatabase.OracleDatabaseManager manager) {
+        manager.dbServers().getWithResponse("rg000", "infra1", "ocid1....aaaaaa", com.azure.core.util.Context.NONE);
     }
 }
 ```

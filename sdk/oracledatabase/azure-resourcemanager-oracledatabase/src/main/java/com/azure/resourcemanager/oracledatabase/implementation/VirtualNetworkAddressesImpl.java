@@ -27,17 +27,16 @@ public final class VirtualNetworkAddressesImpl implements VirtualNetworkAddresse
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<VirtualNetworkAddress> listByCloudVmCluster(String resourceGroupName,
-        String cloudvmclustername) {
+    public PagedIterable<VirtualNetworkAddress> listByParent(String resourceGroupName, String cloudvmclustername) {
         PagedIterable<VirtualNetworkAddressInner> inner
-            = this.serviceClient().listByCloudVmCluster(resourceGroupName, cloudvmclustername);
+            = this.serviceClient().listByParent(resourceGroupName, cloudvmclustername);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new VirtualNetworkAddressImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<VirtualNetworkAddress> listByCloudVmCluster(String resourceGroupName,
-        String cloudvmclustername, Context context) {
+    public PagedIterable<VirtualNetworkAddress> listByParent(String resourceGroupName, String cloudvmclustername,
+        Context context) {
         PagedIterable<VirtualNetworkAddressInner> inner
-            = this.serviceClient().listByCloudVmCluster(resourceGroupName, cloudvmclustername, context);
+            = this.serviceClient().listByParent(resourceGroupName, cloudvmclustername, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new VirtualNetworkAddressImpl(inner1, this.manager()));
     }
 
