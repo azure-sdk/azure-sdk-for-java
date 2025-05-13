@@ -24,18 +24,24 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.computeschedule.fluent.ScheduledActionsClient;
 import com.azure.resourcemanager.computeschedule.fluent.models.CancelOperationsResponseInner;
+import com.azure.resourcemanager.computeschedule.fluent.models.CreateResourceOperationResponseInner;
 import com.azure.resourcemanager.computeschedule.fluent.models.DeallocateResourceOperationResponseInner;
+import com.azure.resourcemanager.computeschedule.fluent.models.DeleteResourceOperationResponseInner;
 import com.azure.resourcemanager.computeschedule.fluent.models.GetOperationErrorsResponseInner;
 import com.azure.resourcemanager.computeschedule.fluent.models.GetOperationStatusResponseInner;
 import com.azure.resourcemanager.computeschedule.fluent.models.HibernateResourceOperationResponseInner;
 import com.azure.resourcemanager.computeschedule.fluent.models.StartResourceOperationResponseInner;
 import com.azure.resourcemanager.computeschedule.models.CancelOperationsRequest;
+import com.azure.resourcemanager.computeschedule.models.ExecuteCreateRequest;
 import com.azure.resourcemanager.computeschedule.models.ExecuteDeallocateRequest;
+import com.azure.resourcemanager.computeschedule.models.ExecuteDeleteRequest;
 import com.azure.resourcemanager.computeschedule.models.ExecuteHibernateRequest;
 import com.azure.resourcemanager.computeschedule.models.ExecuteStartRequest;
 import com.azure.resourcemanager.computeschedule.models.GetOperationErrorsRequest;
 import com.azure.resourcemanager.computeschedule.models.GetOperationStatusRequest;
+import com.azure.resourcemanager.computeschedule.models.SubmitCreateRequest;
 import com.azure.resourcemanager.computeschedule.models.SubmitDeallocateRequest;
+import com.azure.resourcemanager.computeschedule.models.SubmitDeleteRequest;
 import com.azure.resourcemanager.computeschedule.models.SubmitHibernateRequest;
 import com.azure.resourcemanager.computeschedule.models.SubmitStartRequest;
 import reactor.core.publisher.Mono;
@@ -190,6 +196,86 @@ public final class ScheduledActionsClientImpl implements ScheduledActionsClient 
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("locationparameter") String locationparameter, @HeaderParam("Content-Type") String contentType,
             @HeaderParam("Accept") String accept, @BodyParam("application/json") ExecuteStartRequest requestBody,
+            Context context);
+
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.ComputeSchedule/locations/{locationparameter}/virtualMachinesExecuteCreate")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<CreateResourceOperationResponseInner>> virtualMachinesExecuteCreate(
+            @HostParam("endpoint") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("locationparameter") String locationparameter, @HeaderParam("Content-Type") String contentType,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") ExecuteCreateRequest requestBody,
+            Context context);
+
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.ComputeSchedule/locations/{locationparameter}/virtualMachinesExecuteCreate")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<CreateResourceOperationResponseInner> virtualMachinesExecuteCreateSync(
+            @HostParam("endpoint") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("locationparameter") String locationparameter, @HeaderParam("Content-Type") String contentType,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") ExecuteCreateRequest requestBody,
+            Context context);
+
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.ComputeSchedule/locations/{locationparameter}/virtualMachinesExecuteDelete")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<DeleteResourceOperationResponseInner>> virtualMachinesExecuteDelete(
+            @HostParam("endpoint") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("locationparameter") String locationparameter, @HeaderParam("Content-Type") String contentType,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") ExecuteDeleteRequest requestBody,
+            Context context);
+
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.ComputeSchedule/locations/{locationparameter}/virtualMachinesExecuteDelete")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DeleteResourceOperationResponseInner> virtualMachinesExecuteDeleteSync(
+            @HostParam("endpoint") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("locationparameter") String locationparameter, @HeaderParam("Content-Type") String contentType,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") ExecuteDeleteRequest requestBody,
+            Context context);
+
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.ComputeSchedule/locations/{locationparameter}/virtualMachinesSubmitCreate")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<CreateResourceOperationResponseInner>> virtualMachinesSubmitCreate(
+            @HostParam("endpoint") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("locationparameter") String locationparameter, @HeaderParam("Content-Type") String contentType,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") SubmitCreateRequest requestBody,
+            Context context);
+
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.ComputeSchedule/locations/{locationparameter}/virtualMachinesSubmitCreate")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<CreateResourceOperationResponseInner> virtualMachinesSubmitCreateSync(
+            @HostParam("endpoint") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("locationparameter") String locationparameter, @HeaderParam("Content-Type") String contentType,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") SubmitCreateRequest requestBody,
+            Context context);
+
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.ComputeSchedule/locations/{locationparameter}/virtualMachinesSubmitDelete")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<DeleteResourceOperationResponseInner>> virtualMachinesSubmitDelete(
+            @HostParam("endpoint") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("locationparameter") String locationparameter, @HeaderParam("Content-Type") String contentType,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") SubmitDeleteRequest requestBody,
+            Context context);
+
+        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.ComputeSchedule/locations/{locationparameter}/virtualMachinesSubmitDelete")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<DeleteResourceOperationResponseInner> virtualMachinesSubmitDeleteSync(
+            @HostParam("endpoint") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("locationparameter") String locationparameter, @HeaderParam("Content-Type") String contentType,
+            @HeaderParam("Accept") String accept, @BodyParam("application/json") SubmitDeleteRequest requestBody,
             Context context);
 
         @Post("/subscriptions/{subscriptionId}/providers/Microsoft.ComputeSchedule/locations/{locationparameter}/virtualMachinesGetOperationStatus")
@@ -947,6 +1033,462 @@ public final class ScheduledActionsClientImpl implements ScheduledActionsClient 
     public StartResourceOperationResponseInner virtualMachinesExecuteStart(String locationparameter,
         ExecuteStartRequest requestBody) {
         return virtualMachinesExecuteStartWithResponse(locationparameter, requestBody, Context.NONE).getValue();
+    }
+
+    /**
+     * VirtualMachinesExecuteCreate: Execute create operation for a batch of virtual machines, this operation is
+     * triggered as soon as Computeschedule receives it.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a create request along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<CreateResourceOperationResponseInner>>
+        virtualMachinesExecuteCreateWithResponseAsync(String locationparameter, ExecuteCreateRequest requestBody) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (locationparameter == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter locationparameter is required and cannot be null."));
+        }
+        if (requestBody == null) {
+            return Mono.error(new IllegalArgumentException("Parameter requestBody is required and cannot be null."));
+        } else {
+            requestBody.validate();
+        }
+        final String contentType = "application/json";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.virtualMachinesExecuteCreate(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), locationparameter, contentType, accept, requestBody, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * VirtualMachinesExecuteCreate: Execute create operation for a batch of virtual machines, this operation is
+     * triggered as soon as Computeschedule receives it.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a create request on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<CreateResourceOperationResponseInner> virtualMachinesExecuteCreateAsync(String locationparameter,
+        ExecuteCreateRequest requestBody) {
+        return virtualMachinesExecuteCreateWithResponseAsync(locationparameter, requestBody)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * VirtualMachinesExecuteCreate: Execute create operation for a batch of virtual machines, this operation is
+     * triggered as soon as Computeschedule receives it.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a create request along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<CreateResourceOperationResponseInner> virtualMachinesExecuteCreateWithResponse(
+        String locationparameter, ExecuteCreateRequest requestBody, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (locationparameter == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter locationparameter is required and cannot be null."));
+        }
+        if (requestBody == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter requestBody is required and cannot be null."));
+        } else {
+            requestBody.validate();
+        }
+        final String contentType = "application/json";
+        final String accept = "application/json";
+        return service.virtualMachinesExecuteCreateSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), locationparameter, contentType, accept, requestBody, context);
+    }
+
+    /**
+     * VirtualMachinesExecuteCreate: Execute create operation for a batch of virtual machines, this operation is
+     * triggered as soon as Computeschedule receives it.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a create request.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CreateResourceOperationResponseInner virtualMachinesExecuteCreate(String locationparameter,
+        ExecuteCreateRequest requestBody) {
+        return virtualMachinesExecuteCreateWithResponse(locationparameter, requestBody, Context.NONE).getValue();
+    }
+
+    /**
+     * VirtualMachinesExecuteDelete: Execute delete operation for a batch of virtual machines, this operation is
+     * triggered as soon as Computeschedule receives it.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a delete request along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<DeleteResourceOperationResponseInner>>
+        virtualMachinesExecuteDeleteWithResponseAsync(String locationparameter, ExecuteDeleteRequest requestBody) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (locationparameter == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter locationparameter is required and cannot be null."));
+        }
+        if (requestBody == null) {
+            return Mono.error(new IllegalArgumentException("Parameter requestBody is required and cannot be null."));
+        } else {
+            requestBody.validate();
+        }
+        final String contentType = "application/json";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.virtualMachinesExecuteDelete(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), locationparameter, contentType, accept, requestBody, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * VirtualMachinesExecuteDelete: Execute delete operation for a batch of virtual machines, this operation is
+     * triggered as soon as Computeschedule receives it.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a delete request on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DeleteResourceOperationResponseInner> virtualMachinesExecuteDeleteAsync(String locationparameter,
+        ExecuteDeleteRequest requestBody) {
+        return virtualMachinesExecuteDeleteWithResponseAsync(locationparameter, requestBody)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * VirtualMachinesExecuteDelete: Execute delete operation for a batch of virtual machines, this operation is
+     * triggered as soon as Computeschedule receives it.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a delete request along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<DeleteResourceOperationResponseInner> virtualMachinesExecuteDeleteWithResponse(
+        String locationparameter, ExecuteDeleteRequest requestBody, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (locationparameter == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter locationparameter is required and cannot be null."));
+        }
+        if (requestBody == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter requestBody is required and cannot be null."));
+        } else {
+            requestBody.validate();
+        }
+        final String contentType = "application/json";
+        final String accept = "application/json";
+        return service.virtualMachinesExecuteDeleteSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), locationparameter, contentType, accept, requestBody, context);
+    }
+
+    /**
+     * VirtualMachinesExecuteDelete: Execute delete operation for a batch of virtual machines, this operation is
+     * triggered as soon as Computeschedule receives it.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a delete request.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DeleteResourceOperationResponseInner virtualMachinesExecuteDelete(String locationparameter,
+        ExecuteDeleteRequest requestBody) {
+        return virtualMachinesExecuteDeleteWithResponse(locationparameter, requestBody, Context.NONE).getValue();
+    }
+
+    /**
+     * VirtualMachinesSubmitCreate: submit create operation for a batch of virtual machines, at datetime in future.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a create request along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<CreateResourceOperationResponseInner>>
+        virtualMachinesSubmitCreateWithResponseAsync(String locationparameter, SubmitCreateRequest requestBody) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (locationparameter == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter locationparameter is required and cannot be null."));
+        }
+        if (requestBody == null) {
+            return Mono.error(new IllegalArgumentException("Parameter requestBody is required and cannot be null."));
+        } else {
+            requestBody.validate();
+        }
+        final String contentType = "application/json";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.virtualMachinesSubmitCreate(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), locationparameter, contentType, accept, requestBody, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * VirtualMachinesSubmitCreate: submit create operation for a batch of virtual machines, at datetime in future.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a create request on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<CreateResourceOperationResponseInner> virtualMachinesSubmitCreateAsync(String locationparameter,
+        SubmitCreateRequest requestBody) {
+        return virtualMachinesSubmitCreateWithResponseAsync(locationparameter, requestBody)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * VirtualMachinesSubmitCreate: submit create operation for a batch of virtual machines, at datetime in future.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a create request along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<CreateResourceOperationResponseInner> virtualMachinesSubmitCreateWithResponse(
+        String locationparameter, SubmitCreateRequest requestBody, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (locationparameter == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter locationparameter is required and cannot be null."));
+        }
+        if (requestBody == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter requestBody is required and cannot be null."));
+        } else {
+            requestBody.validate();
+        }
+        final String contentType = "application/json";
+        final String accept = "application/json";
+        return service.virtualMachinesSubmitCreateSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), locationparameter, contentType, accept, requestBody, context);
+    }
+
+    /**
+     * VirtualMachinesSubmitCreate: submit create operation for a batch of virtual machines, at datetime in future.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a create request.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CreateResourceOperationResponseInner virtualMachinesSubmitCreate(String locationparameter,
+        SubmitCreateRequest requestBody) {
+        return virtualMachinesSubmitCreateWithResponse(locationparameter, requestBody, Context.NONE).getValue();
+    }
+
+    /**
+     * VirtualMachinesSubmitDelete: submit delete operation for a batch of virtual machines, at datetime in future.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a delete request along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<DeleteResourceOperationResponseInner>>
+        virtualMachinesSubmitDeleteWithResponseAsync(String locationparameter, SubmitDeleteRequest requestBody) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (locationparameter == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter locationparameter is required and cannot be null."));
+        }
+        if (requestBody == null) {
+            return Mono.error(new IllegalArgumentException("Parameter requestBody is required and cannot be null."));
+        } else {
+            requestBody.validate();
+        }
+        final String contentType = "application/json";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.virtualMachinesSubmitDelete(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), locationparameter, contentType, accept, requestBody, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * VirtualMachinesSubmitDelete: submit delete operation for a batch of virtual machines, at datetime in future.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a delete request on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DeleteResourceOperationResponseInner> virtualMachinesSubmitDeleteAsync(String locationparameter,
+        SubmitDeleteRequest requestBody) {
+        return virtualMachinesSubmitDeleteWithResponseAsync(locationparameter, requestBody)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * VirtualMachinesSubmitDelete: submit delete operation for a batch of virtual machines, at datetime in future.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a delete request along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<DeleteResourceOperationResponseInner> virtualMachinesSubmitDeleteWithResponse(
+        String locationparameter, SubmitDeleteRequest requestBody, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (locationparameter == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter locationparameter is required and cannot be null."));
+        }
+        if (requestBody == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter requestBody is required and cannot be null."));
+        } else {
+            requestBody.validate();
+        }
+        final String contentType = "application/json";
+        final String accept = "application/json";
+        return service.virtualMachinesSubmitDeleteSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), locationparameter, contentType, accept, requestBody, context);
+    }
+
+    /**
+     * VirtualMachinesSubmitDelete: submit delete operation for a batch of virtual machines, at datetime in future.
+     * 
+     * @param locationparameter The location name.
+     * @param requestBody The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response from a delete request.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DeleteResourceOperationResponseInner virtualMachinesSubmitDelete(String locationparameter,
+        SubmitDeleteRequest requestBody) {
+        return virtualMachinesSubmitDeleteWithResponse(locationparameter, requestBody, Context.NONE).getValue();
     }
 
     /**
