@@ -1,14 +1,187 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-05-13)
 
-### Features Added
+- Azure Resource Manager Advisor client library for Java. This package contains Microsoft Azure SDK for Advisor Management SDK. REST APIs for Azure Advisor. Package tag package-2024-11-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.OperationDisplayInfo` was removed
 
-### Other Changes
+#### `models.OperationEntityListResult` was removed
+
+#### `models.OperationEntity` was removed
+
+#### `models.RecommendationsGenerateHeaders` was modified
+
+* `withRetryAfter(java.lang.String)` was removed
+* `java.lang.String retryAfter()` -> `java.lang.Integer retryAfter()`
+* `location()` was removed
+* `withLocation(java.lang.String)` was removed
+
+#### `models.Recommendations` was modified
+
+* `com.azure.core.http.rest.Response getGenerateStatusWithResponse(java.util.UUID,com.azure.core.util.Context)` -> `models.RecommendationsGetGenerateStatusResponse getGenerateStatusWithResponse(java.util.UUID,com.azure.core.util.Context)`
+
+### Features Added
+
+* `models.Assessments` was added
+
+* `models.RecommendationPropertiesResourceWorkload` was added
+
+* `models.TriageResource` was added
+
+* `models.OperationListResult` was added
+
+* `models.ReviewStatus` was added
+
+* `models.RecommendationRejectBody` was added
+
+* `models.Workloads` was added
+
+* `models.Origin` was added
+
+* `models.RecommendationsGetGenerateStatusHeaders` was added
+
+* `models.TrackedRecommendationPropertiesPayloadProperties` was added
+
+* `models.Operation` was added
+
+* `models.PredictionType` was added
+
+* `models.AdvisorScoreResponse` was added
+
+* `models.WorkloadListResult` was added
+
+* `models.ScoreEntity` was added
+
+* `models.AssessmentResult$UpdateStages` was added
+
+* `models.PredictionRequest` was added
+
+* `models.AssessmentTypes` was added
+
+* `models.PredictionResponse` was added
+
+* `models.TriageRecommendation` was added
+
+* `models.AssessmentResult` was added
+
+* `models.AssessmentResult$DefinitionStages` was added
+
+* `models.State` was added
+
+* `models.ReasonForRejectionName` was added
+
+* `models.ResiliencyReviews` was added
+
+* `models.OperationDisplay` was added
+
+* `models.Priority` was added
+
+* `models.Risk` was added
+
+* `models.TrackedRecommendationPropertiesPayload` was added
+
+* `models.TriageRecommendations` was added
+
+* `models.ResiliencyReview` was added
+
+* `models.AssessmentResult$Definition` was added
+
+* `models.AssessmentResult$Update` was added
+
+* `models.AdvisorScores` was added
+
+* `models.TriageRecommendationCollection` was added
+
+* `models.AssessmentTypeListResult` was added
+
+* `models.TrackedRecommendationProperties` was added
+
+* `models.ActionType` was added
+
+* `models.RecommendationPropertiesReview` was added
+
+* `models.DurationModel` was added
+
+* `models.ResiliencyReviewCollection` was added
+
+* `models.AdvisorScoreEntity` was added
+
+* `models.RecommendationStatusName` was added
+
+* `models.AssessmentTypeResult` was added
+
+* `models.RecommendationsGetGenerateStatusResponse` was added
+
+* `models.ConfigDataListResult` was added
+
+* `models.Reason` was added
+
+* `models.TriageResourceCollection` was added
+
+* `models.AssessmentListResult` was added
+
+* `models.ResourceProviders` was added
+
+* `models.WorkloadResult` was added
+
+* `models.TimeSeriesEntityItem` was added
+
+* `models.PriorityName` was added
+
+* `models.Aggregated` was added
+
+* `models.TriageResources` was added
+
+#### `models.ConfigData` was modified
+
+* `systemData()` was added
+* `duration()` was added
+
+#### `models.RecommendationsGenerateHeaders` was modified
+
+* `withRetryAfter(java.lang.Integer)` was added
+
+#### `models.MetadataEntity` was modified
+
+* `systemData()` was added
+
+#### `models.Recommendations` was modified
+
+* `patchWithResponse(java.lang.String,java.lang.String,models.TrackedRecommendationPropertiesPayload,com.azure.core.util.Context)` was added
+* `patch(java.lang.String,java.lang.String,models.TrackedRecommendationPropertiesPayload)` was added
+
+#### `models.ConfigData$Definition` was modified
+
+* `withDuration(models.DurationModel)` was added
+
+#### `AdvisorManager` was modified
+
+* `assessmentTypes()` was added
+* `resiliencyReviews()` was added
+* `assessments()` was added
+* `triageRecommendations()` was added
+* `resourceProviders()` was added
+* `triageResources()` was added
+* `workloads()` was added
+* `advisorScores()` was added
+
+#### `models.SuppressionContract` was modified
+
+* `systemData()` was added
+
+#### `models.ResourceRecommendationBase` was modified
+
+* `review()` was added
+* `risk()` was added
+* `tracked()` was added
+* `resourceWorkload()` was added
+* `trackedProperties()` was added
+* `notes()` was added
+* `sourceSystem()` was added
+* `systemData()` was added
 
 ## 1.0.0 (2024-12-23)
 

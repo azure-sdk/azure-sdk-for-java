@@ -16,12 +16,7 @@ public final class RecommendationsGenerateHeaders {
     /*
      * The Retry-After property.
      */
-    private String retryAfter;
-
-    /*
-     * The Location property.
-     */
-    private String location;
+    private Integer retryAfter;
 
     // HttpHeaders containing the raw property values.
     /**
@@ -30,8 +25,12 @@ public final class RecommendationsGenerateHeaders {
      * @param rawHeaders The raw HttpHeaders that will be used to create the property values.
      */
     public RecommendationsGenerateHeaders(HttpHeaders rawHeaders) {
-        this.retryAfter = rawHeaders.getValue(HttpHeaderName.RETRY_AFTER);
-        this.location = rawHeaders.getValue(HttpHeaderName.LOCATION);
+        String retryAfter = rawHeaders.getValue(HttpHeaderName.RETRY_AFTER);
+        if (retryAfter != null) {
+            this.retryAfter = Integer.parseInt(retryAfter);
+        } else {
+            this.retryAfter = null;
+        }
     }
 
     /**
@@ -39,7 +38,7 @@ public final class RecommendationsGenerateHeaders {
      * 
      * @return the retryAfter value.
      */
-    public String retryAfter() {
+    public Integer retryAfter() {
         return this.retryAfter;
     }
 
@@ -49,28 +48,8 @@ public final class RecommendationsGenerateHeaders {
      * @param retryAfter the retryAfter value to set.
      * @return the RecommendationsGenerateHeaders object itself.
      */
-    public RecommendationsGenerateHeaders withRetryAfter(String retryAfter) {
+    public RecommendationsGenerateHeaders withRetryAfter(Integer retryAfter) {
         this.retryAfter = retryAfter;
-        return this;
-    }
-
-    /**
-     * Get the location property: The Location property.
-     * 
-     * @return the location value.
-     */
-    public String location() {
-        return this.location;
-    }
-
-    /**
-     * Set the location property: The Location property.
-     * 
-     * @param location the location value to set.
-     * @return the RecommendationsGenerateHeaders object itself.
-     */
-    public RecommendationsGenerateHeaders withLocation(String location) {
-        this.location = location;
         return this;
     }
 

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.advisor.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.advisor.fluent.models.MetadataEntityInner;
 import com.azure.resourcemanager.advisor.models.MetadataEntity;
 import com.azure.resourcemanager.advisor.models.MetadataSupportedValueDetail;
@@ -26,12 +27,16 @@ public final class MetadataEntityImpl implements MetadataEntity {
         return this.innerModel().id();
     }
 
+    public String name() {
+        return this.innerModel().name();
+    }
+
     public String type() {
         return this.innerModel().type();
     }
 
-    public String name() {
-        return this.innerModel().name();
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String displayName() {

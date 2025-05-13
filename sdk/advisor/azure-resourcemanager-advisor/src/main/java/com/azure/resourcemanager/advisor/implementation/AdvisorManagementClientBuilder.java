@@ -20,12 +20,12 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = { AdvisorManagementClientImpl.class })
 public final class AdvisorManagementClientBuilder {
     /*
-     * The Azure subscription ID.
+     * The ID of the target subscription. The value must be an UUID.
      */
     private String subscriptionId;
 
     /**
-     * Sets The Azure subscription ID.
+     * Sets The ID of the target subscription. The value must be an UUID.
      * 
      * @param subscriptionId the subscriptionId value.
      * @return the AdvisorManagementClientBuilder.

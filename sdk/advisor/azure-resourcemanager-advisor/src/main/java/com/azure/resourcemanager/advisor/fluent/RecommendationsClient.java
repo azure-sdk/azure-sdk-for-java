@@ -11,12 +11,73 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.advisor.fluent.models.ResourceRecommendationBaseInner;
 import com.azure.resourcemanager.advisor.models.RecommendationsGenerateResponse;
+import com.azure.resourcemanager.advisor.models.RecommendationsGetGenerateStatusResponse;
+import com.azure.resourcemanager.advisor.models.TrackedRecommendationPropertiesPayload;
 import java.util.UUID;
 
 /**
  * An instance of this class provides access to all the operations defined in RecommendationsClient.
  */
 public interface RecommendationsClient {
+    /**
+     * Obtains details of a cached recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param recommendationId The recommendation ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ResourceRecommendationBaseInner> getWithResponse(String resourceUri, String recommendationId,
+        Context context);
+
+    /**
+     * Obtains details of a cached recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param recommendationId The recommendation ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ResourceRecommendationBaseInner get(String resourceUri, String recommendationId);
+
+    /**
+     * Update the tracked properties of a Recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param recommendationId The recommendation ID.
+     * @param trackedProperties The properties to update on the recommendation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ResourceRecommendationBaseInner> patchWithResponse(String resourceUri, String recommendationId,
+        TrackedRecommendationPropertiesPayload trackedProperties, Context context);
+
+    /**
+     * Update the tracked properties of a Recommendation.
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
+     * @param recommendationId The recommendation ID.
+     * @param trackedProperties The properties to update on the recommendation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return advisor Recommendation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ResourceRecommendationBaseInner patch(String resourceUri, String recommendationId,
+        TrackedRecommendationPropertiesPayload trackedProperties);
+
     /**
      * Initiates the recommendation generation or computation process for a subscription. This operation is
      * asynchronous. The generated recommendations are stored in a cache in the Advisor service.
@@ -50,10 +111,10 @@ public interface RecommendationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> getGenerateStatusWithResponse(UUID operationId, Context context);
+    RecommendationsGetGenerateStatusResponse getGenerateStatusWithResponse(UUID operationId, Context context);
 
     /**
      * Retrieves the status of the recommendation computation or generation process. Invoke this API after calling the
@@ -74,7 +135,8 @@ public interface RecommendationsClient {
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor recommendations as paginated response with {@link PagedIterable}.
+     * @return the response of a ResourceRecommendationBase list operation as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ResourceRecommendationBaseInner> list();
@@ -92,38 +154,9 @@ public interface RecommendationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor recommendations as paginated response with {@link PagedIterable}.
+     * @return the response of a ResourceRecommendationBase list operation as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ResourceRecommendationBaseInner> list(String filter, Integer top, String skipToken, Context context);
-
-    /**
-     * Obtains details of a cached recommendation.
-     * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
-     * @param recommendationId The recommendation ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return advisor Recommendation along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ResourceRecommendationBaseInner> getWithResponse(String resourceUri, String recommendationId,
-        Context context);
-
-    /**
-     * Obtains details of a cached recommendation.
-     * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
-     * @param recommendationId The recommendation ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return advisor Recommendation.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ResourceRecommendationBaseInner get(String resourceUri, String recommendationId);
 }

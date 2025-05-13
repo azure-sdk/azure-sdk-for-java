@@ -28,6 +28,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.advisor.fluent.SuppressionsClient;
 import com.azure.resourcemanager.advisor.fluent.models.SuppressionContractInner;
 import com.azure.resourcemanager.advisor.models.SuppressionContractListResult;
@@ -68,21 +69,42 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
         @Headers({ "Content-Type: application/json" })
         @Get("/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}/suppressions/{name}")
         @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ManagementException.class, code = { 404 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SuppressionContractInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("resourceUri") String resourceUri, @PathParam("recommendationId") String recommendationId,
-            @PathParam("name") String name, @QueryParam("api-version") String apiVersion,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
+            @PathParam("recommendationId") String recommendationId, @PathParam("name") String name,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}/suppressions/{name}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SuppressionContractInner> getSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
+            @PathParam("recommendationId") String recommendationId, @PathParam("name") String name,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}/suppressions/{name}")
         @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(value = ManagementException.class, code = { 404 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SuppressionContractInner>> create(@HostParam("$host") String endpoint,
-            @PathParam("resourceUri") String resourceUri, @PathParam("recommendationId") String recommendationId,
-            @PathParam("name") String name, @QueryParam("api-version") String apiVersion,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
+            @PathParam("recommendationId") String recommendationId, @PathParam("name") String name,
+            @BodyParam("application/json") SuppressionContractInner suppressionContract,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}/suppressions/{name}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SuppressionContractInner> createSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
+            @PathParam("recommendationId") String recommendationId, @PathParam("name") String name,
             @BodyParam("application/json") SuppressionContractInner suppressionContract,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -90,16 +112,35 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
         @Delete("/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}/suppressions/{name}")
         @ExpectedResponses({ 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @PathParam("resourceUri") String resourceUri,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
             @PathParam("recommendationId") String recommendationId, @PathParam("name") String name,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}/suppressions/{name}")
+        @ExpectedResponses({ 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<Void> deleteSync(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
+            @PathParam("recommendationId") String recommendationId, @PathParam("name") String name,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Advisor/suppressions")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SuppressionContractListResult>> list(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("$top") Integer top, @QueryParam("$skipToken") String skipToken,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Advisor/suppressions")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SuppressionContractListResult> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @QueryParam("$top") Integer top, @QueryParam("$skipToken") String skipToken,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -110,18 +151,24 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
         Mono<Response<SuppressionContractListResult>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SuppressionContractListResult> listNextSync(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Obtains the details of a suppression.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      * the rule along with {@link Response} on successful completion of {@link Mono}.
@@ -145,59 +192,19 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), resourceUri, recommendationId, name,
-                this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+                recommendationId, name, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Obtains the details of a suppression.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
-     * @param recommendationId The recommendation ID.
-     * @param name The name of the suppression.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
-     * the rule along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SuppressionContractInner>> getWithResponseAsync(String resourceUri, String recommendationId,
-        String name, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceUri == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
-        }
-        if (recommendationId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter recommendationId is required and cannot be null."));
-        }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), resourceUri, recommendationId, name, this.client.getApiVersion(),
-            accept, context);
-    }
-
-    /**
-     * Obtains the details of a suppression.
-     * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      * the rule on successful completion of {@link Mono}.
@@ -211,14 +218,12 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
     /**
      * Obtains the details of a suppression.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      * the rule along with {@link Response}.
@@ -226,19 +231,35 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SuppressionContractInner> getWithResponse(String resourceUri, String recommendationId, String name,
         Context context) {
-        return getWithResponseAsync(resourceUri, recommendationId, name, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        if (recommendationId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter recommendationId is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, recommendationId,
+            name, accept, context);
     }
 
     /**
      * Obtains the details of a suppression.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      * the rule.
@@ -252,14 +273,12 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * Enables the snoozed or dismissed attribute of a recommendation. The snoozed or dismissed attribute is referred to
      * as a suppression. Use this API to create or update the snoozed or dismissed status of a recommendation.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @param suppressionContract The snoozed or dismissed attribute; for example, the snooze duration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      * the rule along with {@link Response} on successful completion of {@link Mono}.
@@ -289,8 +308,8 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.create(this.client.getEndpoint(), resourceUri, recommendationId, name,
-                this.client.getApiVersion(), suppressionContract, accept, context))
+            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+                recommendationId, name, suppressionContract, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -298,60 +317,12 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * Enables the snoozed or dismissed attribute of a recommendation. The snoozed or dismissed attribute is referred to
      * as a suppression. Use this API to create or update the snoozed or dismissed status of a recommendation.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
-     * @param recommendationId The recommendation ID.
-     * @param name The name of the suppression.
-     * @param suppressionContract The snoozed or dismissed attribute; for example, the snooze duration.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
-     * the rule along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SuppressionContractInner>> createWithResponseAsync(String resourceUri,
-        String recommendationId, String name, SuppressionContractInner suppressionContract, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceUri == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
-        }
-        if (recommendationId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter recommendationId is required and cannot be null."));
-        }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
-        }
-        if (suppressionContract == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter suppressionContract is required and cannot be null."));
-        } else {
-            suppressionContract.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), resourceUri, recommendationId, name,
-            this.client.getApiVersion(), suppressionContract, accept, context);
-    }
-
-    /**
-     * Enables the snoozed or dismissed attribute of a recommendation. The snoozed or dismissed attribute is referred to
-     * as a suppression. Use this API to create or update the snoozed or dismissed status of a recommendation.
-     * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @param suppressionContract The snoozed or dismissed attribute; for example, the snooze duration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      * the rule on successful completion of {@link Mono}.
@@ -367,15 +338,13 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * Enables the snoozed or dismissed attribute of a recommendation. The snoozed or dismissed attribute is referred to
      * as a suppression. Use this API to create or update the snoozed or dismissed status of a recommendation.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @param suppressionContract The snoozed or dismissed attribute; for example, the snooze duration.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      * the rule along with {@link Response}.
@@ -383,21 +352,43 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SuppressionContractInner> createWithResponse(String resourceUri, String recommendationId,
         String name, SuppressionContractInner suppressionContract, Context context) {
-        return createWithResponseAsync(resourceUri, recommendationId, name, suppressionContract, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        if (recommendationId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter recommendationId is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (suppressionContract == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter suppressionContract is required and cannot be null."));
+        } else {
+            suppressionContract.validate();
+        }
+        final String accept = "application/json";
+        return service.createSync(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, recommendationId,
+            name, suppressionContract, accept, context);
     }
 
     /**
      * Enables the snoozed or dismissed attribute of a recommendation. The snoozed or dismissed attribute is referred to
      * as a suppression. Use this API to create or update the snoozed or dismissed status of a recommendation.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @param suppressionContract The snoozed or dismissed attribute; for example, the snooze duration.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
-     * @throws ManagementException thrown if the request is rejected by server on status code 404.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
      * the rule.
@@ -412,8 +403,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * Enables the activation of a snoozed or dismissed recommendation. The snoozed or dismissed attribute of a
      * recommendation is referred to as a suppression.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -439,8 +429,8 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), resourceUri, recommendationId, name,
-                this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri,
+                recommendationId, name, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -448,45 +438,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * Enables the activation of a snoozed or dismissed recommendation. The snoozed or dismissed attribute of a
      * recommendation is referred to as a suppression.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
-     * @param recommendationId The recommendation ID.
-     * @param name The name of the suppression.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceUri, String recommendationId, String name,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceUri == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
-        }
-        if (recommendationId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter recommendationId is required and cannot be null."));
-        }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), resourceUri, recommendationId, name,
-            this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Enables the activation of a snoozed or dismissed recommendation. The snoozed or dismissed attribute of a
-     * recommendation is referred to as a suppression.
-     * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -503,8 +455,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * Enables the activation of a snoozed or dismissed recommendation. The snoozed or dismissed attribute of a
      * recommendation is referred to as a suppression.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @param context The context to associate with this operation.
@@ -516,15 +467,32 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(String resourceUri, String recommendationId, String name,
         Context context) {
-        return deleteWithResponseAsync(resourceUri, recommendationId, name, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceUri == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
+        }
+        if (recommendationId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter recommendationId is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.deleteSync(this.client.getEndpoint(), this.client.getApiVersion(), resourceUri, recommendationId,
+            name, accept, context);
     }
 
     /**
      * Enables the activation of a snoozed or dismissed recommendation. The snoozed or dismissed attribute of a
      * recommendation is referred to as a suppression.
      * 
-     * @param resourceUri The fully qualified Azure Resource Manager identifier of the resource to which the
-     * recommendation applies.
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource.
      * @param recommendationId The recommendation ID.
      * @param name The name of the suppression.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -545,8 +513,8 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a SuppressionContract list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SuppressionContractInner>> listSinglePageAsync(Integer top, String skipToken) {
@@ -560,8 +528,8 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                this.client.getApiVersion(), top, skipToken, accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), top, skipToken, accept, context))
             .<PagedResponse<SuppressionContractInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -573,43 +541,10 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * 
      * @param top The number of suppressions per page if a paged version of this API is being used.
      * @param skipToken The page-continuation token to use with a paged version of this API.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SuppressionContractInner>> listSinglePageAsync(Integer top, String skipToken,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), top,
-                skipToken, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Retrieves the list of snoozed or dismissed suppressions for a subscription. The snoozed or dismissed attribute of
-     * a recommendation is referred to as a suppression.
-     * 
-     * @param top The number of suppressions per page if a paged version of this API is being used.
-     * @param skipToken The page-continuation token to use with a paged version of this API.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions as paginated response with {@link PagedFlux}.
+     * @return the response of a SuppressionContract list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SuppressionContractInner> listAsync(Integer top, String skipToken) {
@@ -623,7 +558,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions as paginated response with {@link PagedFlux}.
+     * @return the response of a SuppressionContract list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SuppressionContractInner> listAsync() {
@@ -639,31 +574,28 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * 
      * @param top The number of suppressions per page if a paged version of this API is being used.
      * @param skipToken The page-continuation token to use with a paged version of this API.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions as paginated response with {@link PagedFlux}.
+     * @return the response of a SuppressionContract list operation along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SuppressionContractInner> listAsync(Integer top, String skipToken, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(top, skipToken, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Retrieves the list of snoozed or dismissed suppressions for a subscription. The snoozed or dismissed attribute of
-     * a recommendation is referred to as a suppression.
-     * 
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<SuppressionContractInner> list() {
-        final Integer top = null;
-        final String skipToken = null;
-        return new PagedIterable<>(listAsync(top, skipToken));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SuppressionContractInner> listSinglePage(Integer top, String skipToken) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<SuppressionContractListResult> res = service.listSync(this.client.getEndpoint(),
+            this.client.getApiVersion(), this.client.getSubscriptionId(), top, skipToken, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -676,11 +608,58 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions as paginated response with {@link PagedIterable}.
+     * @return the response of a SuppressionContract list operation along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SuppressionContractInner> listSinglePage(Integer top, String skipToken, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<SuppressionContractListResult> res = service.listSync(this.client.getEndpoint(),
+            this.client.getApiVersion(), this.client.getSubscriptionId(), top, skipToken, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Retrieves the list of snoozed or dismissed suppressions for a subscription. The snoozed or dismissed attribute of
+     * a recommendation is referred to as a suppression.
+     * 
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SuppressionContract list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<SuppressionContractInner> list() {
+        final Integer top = null;
+        final String skipToken = null;
+        return new PagedIterable<>(() -> listSinglePage(top, skipToken), nextLink -> listNextSinglePage(nextLink));
+    }
+
+    /**
+     * Retrieves the list of snoozed or dismissed suppressions for a subscription. The snoozed or dismissed attribute of
+     * a recommendation is referred to as a suppression.
+     * 
+     * @param top The number of suppressions per page if a paged version of this API is being used.
+     * @param skipToken The page-continuation token to use with a paged version of this API.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SuppressionContract list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SuppressionContractInner> list(Integer top, String skipToken, Context context) {
-        return new PagedIterable<>(listAsync(top, skipToken, context));
+        return new PagedIterable<>(() -> listSinglePage(top, skipToken, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -690,8 +669,8 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a SuppressionContract list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SuppressionContractInner>> listNextSinglePageAsync(String nextLink) {
@@ -713,26 +692,56 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a SuppressionContract list operation along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SuppressionContractInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<SuppressionContractListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a SuppressionContract list operation along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SuppressionContractInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<SuppressionContractInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<SuppressionContractListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SuppressionsClientImpl.class);
 }

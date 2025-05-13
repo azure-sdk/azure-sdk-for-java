@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.advisor.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.advisor.fluent.models.MetadataEntityInner;
 import java.util.List;
 
@@ -12,25 +13,32 @@ import java.util.List;
  */
 public interface MetadataEntity {
     /**
-     * Gets the id property: The resource Id of the metadata entity.
+     * Gets the id property: Fully qualified resource Id for the resource.
      * 
      * @return the id value.
      */
     String id();
 
     /**
-     * Gets the type property: The type of the metadata entity.
+     * Gets the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    String name();
+
+    /**
+     * Gets the type property: The type of the resource.
      * 
      * @return the type value.
      */
     String type();
 
     /**
-     * Gets the name property: The name of the metadata entity.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
-     * @return the name value.
+     * @return the systemData value.
      */
-    String name();
+    SystemData systemData();
 
     /**
      * Gets the displayName property: The display name.
