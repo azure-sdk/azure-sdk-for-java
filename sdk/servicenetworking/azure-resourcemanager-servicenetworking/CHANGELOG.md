@@ -1,7 +1,8 @@
 # Release History
 
-## 1.2.0-beta.1 (2025-04-24)
+## 1.2.0-beta.1 (2025-05-13)
 
+- Azure Resource Manager Traffic Controller client library for Java. This package contains Microsoft Azure SDK for Traffic Controller Management SDK. Traffic Controller Provider management API. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 - Azure Resource Manager Traffic Controller client library for Java. This package contains Microsoft Azure SDK for Traffic Controller Management SDK. Traffic Controller Provider management API. Package api-version 2025-03-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
@@ -22,13 +23,13 @@
 
 #### `models.SecurityPolicyProperties` was modified
 
-* `withIpAccessRulesPolicy(models.IpAccessRulesPolicy)` was added
 * `ipAccessRulesPolicy()` was added
+* `withIpAccessRulesPolicy(models.IpAccessRulesPolicy)` was added
 
 #### `models.SecurityPolicyConfigurations` was modified
 
-* `ipAccessRulesSecurityPolicy()` was added
 * `withIpAccessRulesSecurityPolicy(models.IpAccessRulesSecurityPolicy)` was added
+* `ipAccessRulesSecurityPolicy()` was added
 
 #### `models.FrontendUpdate` was modified
 
@@ -37,8 +38,8 @@
 
 #### `models.SecurityPolicyUpdateProperties` was modified
 
-* `ipAccessRulesPolicy()` was added
 * `withIpAccessRulesPolicy(models.IpAccessRulesPolicy)` was added
+* `ipAccessRulesPolicy()` was added
 
 #### `models.FrontendProperties` was modified
 
