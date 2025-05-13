@@ -10,17 +10,17 @@ package com.azure.resourcemanager.servicelinker.generated;
 public final class LinkerValidateSamples {
     /*
      * x-ms-original-file:
-     * specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/
-     * ValidateLinkSuccess.json
+     * specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2024-07-01-preview/examples/
+     * ValidateLinkerSuccess.json
      */
     /**
-     * Sample code: ValidateLinkSuccess.
+     * Sample code: ValidateLinkerSuccess.
      * 
      * @param manager Entry point to ServiceLinkerManager.
      */
-    public static void validateLinkSuccess(com.azure.resourcemanager.servicelinker.ServiceLinkerManager manager) {
+    public static void validateLinkerSuccess(com.azure.resourcemanager.servicelinker.ServiceLinkerManager manager) {
         manager.linkers()
-            .validate(
+            .validate(null, null,
                 "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.Web/sites/test-app",
                 "linkName", com.azure.core.util.Context.NONE);
     }

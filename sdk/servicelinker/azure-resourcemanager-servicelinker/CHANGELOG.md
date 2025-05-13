@@ -1,14 +1,257 @@
 # Release History
 
-## 1.1.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-05-07)
 
-### Features Added
+- Azure Resource Manager ServiceLinker client library for Java. This package contains Microsoft Azure SDK for ServiceLinker Management SDK. Microsoft.ServiceLinker provider. Package tag package-2024-07-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.LinkerList` was removed
 
-### Other Changes
+#### `models.SourceConfigurationResult` was removed
+
+#### `models.LinkerResource$DefinitionStages` was modified
+
+* `withExistingResourceUri(java.lang.String)` was removed in stage 1
+
+#### `models.LinkerResource$Definition` was modified
+
+* `withExistingResourceUri(java.lang.String)` was removed
+
+#### `models.LinkerResource` was modified
+
+* `listConfigurationsWithResponse(com.azure.core.util.Context)` was removed
+* `listConfigurations()` was removed
+
+#### `models.Linkers` was modified
+
+* `listConfigurations(java.lang.String,java.lang.String)` was removed
+* `validate(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteByResourceGroup(java.lang.String,java.lang.String)` was removed
+* `validate(java.lang.String,java.lang.String)` was removed
+* `get(java.lang.String,java.lang.String)` was removed
+* `delete(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `define(java.lang.String)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `list(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `list(java.lang.String)` was removed
+* `deleteById(java.lang.String)` was removed
+* `listConfigurationsWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getById(java.lang.String)` was removed
+* `getWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.AccessKeyInfoBase` was added
+
+* `models.ConfigurationNameItem` was added
+
+* `models.ConfigurationNamesOperations` was added
+
+* `models.CreateOrUpdateDryrunParameters` was added
+
+* `models.DryrunPrerequisiteResultType` was added
+
+* `models.ConfigurationName` was added
+
+* `models.DryrunResource$Update` was added
+
+* `models.SelfHostedServer` was added
+
+* `models.FirewallRules` was added
+
+* `models.ConfigurationInfo` was added
+
+* `models.DryrunParameters` was added
+
+* `models.DryrunList` was added
+
+* `models.UserAccountAuthInfo` was added
+
+* `models.DeleteOrUpdateBehavior` was added
+
+* `models.DryrunPatch` was added
+
+* `models.AllowType` was added
+
+* `models.DryrunPrerequisiteResult` was added
+
+* `models.PermissionsMissingDryrunPrerequisiteResult` was added
+
+* `models.DaprMetadataRequired` was added
+
+* `models.ConfigurationStore` was added
+
+* `models.EasyAuthMicrosoftEntraIdAuthInfo` was added
+
+* `models.AzureAppConfigProperties` was added
+
+* `models.Connectors` was added
+
+* `models.DaprMetadata` was added
+
+* `models.DryrunResource$DefinitionStages` was added
+
+* `models.SecretSourceType` was added
+
+* `models.DryrunOperationPreview` was added
+
+* `models.LinkersUpdateHeaders` was added
+
+* `models.ConfigurationResult` was added
+
+* `models.DryrunResource` was added
+
+* `models.LinkerConfigurationType` was added
+
+* `models.ResourceList` was added
+
+* `models.LinkersOperations` was added
+
+* `models.PublicNetworkSolution` was added
+
+* `models.AuthMode` was added
+
+* `models.DaprConfigurationResource` was added
+
+* `models.LinkersUpdateResponse` was added
+
+* `models.DaprBindingComponentDirection` was added
+
+* `models.ConfigurationNameResult` was added
+
+* `models.DryrunActionName` was added
+
+* `models.DryrunResource$Definition` was added
+
+* `models.DaprConfigurationList` was added
+
+* `models.AccessKeyPermissions` was added
+
+* `models.BasicErrorDryrunPrerequisiteResult` was added
+
+* `models.FabricPlatform` was added
+
+* `models.DryrunResource$UpdateStages` was added
+
+* `models.DaprProperties` was added
+
+* `models.DryrunPreviewOperationType` was added
+
+#### `ServiceLinkerManager` was modified
+
+* `linkersOperations()` was added
+* `configurationNamesOperations()` was added
+* `connectors()` was added
+
+#### `models.LinkerResource$Definition` was modified
+
+* `withPublicNetworkSolution(models.PublicNetworkSolution)` was added
+* `withConfigurationInfo(models.ConfigurationInfo)` was added
+* `withExistingLocation(java.lang.String,java.lang.String)` was added
+
+#### `models.LinkerResource` was modified
+
+* `generateConfigurationsWithResponse(models.ConfigurationInfo,com.azure.core.util.Context)` was added
+* `resourceGroupName()` was added
+* `configurationInfo()` was added
+* `generateConfigurations()` was added
+* `publicNetworkSolution()` was added
+
+#### `models.LinkerResource$Update` was modified
+
+* `withPublicNetworkSolution(models.PublicNetworkSolution)` was added
+* `withConfigurationInfo(models.ConfigurationInfo)` was added
+
+#### `models.VNetSolution` was modified
+
+* `deleteOrUpdateBehavior()` was added
+* `withDeleteOrUpdateBehavior(models.DeleteOrUpdateBehavior)` was added
+
+#### `models.LinkerPatch` was modified
+
+* `withConfigurationInfo(models.ConfigurationInfo)` was added
+* `configurationInfo()` was added
+* `publicNetworkSolution()` was added
+* `withPublicNetworkSolution(models.PublicNetworkSolution)` was added
+
+#### `models.ServicePrincipalCertificateAuthInfo` was modified
+
+* `deleteOrUpdateBehavior()` was added
+* `withAuthMode(models.AuthMode)` was added
+* `roles()` was added
+* `withRoles(java.util.List)` was added
+* `withDeleteOrUpdateBehavior(models.DeleteOrUpdateBehavior)` was added
+
+#### `models.Linkers` was modified
+
+* `validate(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `validate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `delete(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `get(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `update(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.LinkerPatch)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.LinkerResourceInner,com.azure.core.util.Context)` was added
+* `updateWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,models.LinkerPatch,com.azure.core.util.Context)` was added
+* `listConfigurationsWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `getWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `delete(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `list(java.lang.String,java.lang.String)` was added
+* `listConfigurations(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was added
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.LinkerResourceInner)` was added
+* `list(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+
+#### `models.SourceConfiguration` was modified
+
+* `withDescription(java.lang.String)` was added
+* `withKeyVaultReferenceIdentity(java.lang.String)` was added
+* `description()` was added
+* `keyVaultReferenceIdentity()` was added
+* `configType()` was added
+
+#### `models.ServicePrincipalSecretAuthInfo` was modified
+
+* `withRoles(java.util.List)` was added
+* `withAuthMode(models.AuthMode)` was added
+* `withUsername(java.lang.String)` was added
+* `deleteOrUpdateBehavior()` was added
+* `roles()` was added
+* `withDeleteOrUpdateBehavior(models.DeleteOrUpdateBehavior)` was added
+* `username()` was added
+
+#### `models.UserAssignedIdentityAuthInfo` was modified
+
+* `withAuthMode(models.AuthMode)` was added
+* `withUsername(java.lang.String)` was added
+* `username()` was added
+* `roles()` was added
+* `deleteOrUpdateBehavior()` was added
+* `withDeleteOrUpdateBehavior(models.DeleteOrUpdateBehavior)` was added
+* `withRoles(java.util.List)` was added
+
+#### `models.SecretStore` was modified
+
+* `keyVaultSecretName()` was added
+* `withKeyVaultSecretName(java.lang.String)` was added
+
+#### `models.SystemAssignedIdentityAuthInfo` was modified
+
+* `withAuthMode(models.AuthMode)` was added
+* `roles()` was added
+* `username()` was added
+* `withRoles(java.util.List)` was added
+* `deleteOrUpdateBehavior()` was added
+* `withUsername(java.lang.String)` was added
+* `withDeleteOrUpdateBehavior(models.DeleteOrUpdateBehavior)` was added
+
+#### `models.SecretAuthInfo` was modified
+
+* `withAuthMode(models.AuthMode)` was added
+
+#### `models.AuthInfoBase` was modified
+
+* `authMode()` was added
+* `withAuthMode(models.AuthMode)` was added
 
 ## 1.0.0 (2024-12-26)
 
