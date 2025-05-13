@@ -1,14 +1,69 @@
 # Release History
 
-## 1.1.0-beta.2 (Unreleased)
+## 1.1.0-beta.2 (2025-05-13)
 
-### Features Added
+- Azure Resource Manager Hybridkubernetes client library for Java. This package contains Microsoft Azure SDK for Hybridkubernetes Management SDK. Azure Connected Cluster Resource Provider API for onboarding a Kubernetes Cluster to Azure Arc. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ConnectedClusterList` was removed
 
-### Other Changes
+#### `HybridKubernetesManager$Configurable` was removed
+
+#### `models.OperationList` was removed
+
+#### `HybridKubernetesManager` was removed
+
+#### `models.OperationDisplay` was modified
+
+* `withResource(java.lang.String)` was removed
+* `withDescription(java.lang.String)` was removed
+* `withProvider(java.lang.String)` was removed
+* `withOperation(java.lang.String)` was removed
+
+#### `models.Operations` was modified
+
+* `get()` was removed
+* `get(com.azure.core.util.Context)` was removed
+
+#### `models.AadProfile` was modified
+
+* `withEnableAzureRbac(java.lang.Boolean)` was removed
+* `withTenantId(java.lang.String)` was removed
+* `enableAzureRbac()` was removed
+* `tenantId()` was removed
+
+### Features Added
+
+* `models.ActionType` was added
+
+* `HybridkubernetesManager` was added
+
+* `HybridkubernetesManager$Configurable` was added
+
+* `implementation.models.ConnectedClusterList` was added
+
+* `implementation.models.OperationList` was added
+
+* `models.Origin` was added
+
+#### `models.Operation` was modified
+
+* `actionType()` was added
+* `origin()` was added
+* `isDataAction()` was added
+
+#### `models.Operations` was modified
+
+* `list(com.azure.core.util.Context)` was added
+* `list()` was added
+
+#### `models.AadProfile` was modified
+
+* `withTenantID(java.lang.String)` was added
+* `tenantID()` was added
+* `withEnableAzureRBAC(java.lang.Boolean)` was added
+* `enableAzureRBAC()` was added
 
 ## 1.1.0-beta.1 (2025-03-25)
 
