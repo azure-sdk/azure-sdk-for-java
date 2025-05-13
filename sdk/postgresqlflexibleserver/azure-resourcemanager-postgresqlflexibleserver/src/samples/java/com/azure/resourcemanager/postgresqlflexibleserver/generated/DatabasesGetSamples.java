@@ -10,7 +10,8 @@ package com.azure.resourcemanager.postgresqlflexibleserver.generated;
 public final class DatabasesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2024-08-01/examples/DatabaseGet.json
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2025-03-15-privatepreview/examples/
+     * DatabaseGet.json
      */
     /**
      * Sample code: Get a database.

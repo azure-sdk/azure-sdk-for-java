@@ -14,7 +14,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.models.PrivateLinkServ
 public final class PrivateEndpointConnectionOperationUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2024-08-01/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2025-03-15-privatepreview/examples/
      * PrivateEndpointConnectionUpdate.json
      */
     /**

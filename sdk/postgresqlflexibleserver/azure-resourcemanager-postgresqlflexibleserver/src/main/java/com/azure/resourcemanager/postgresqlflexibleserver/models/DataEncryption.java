@@ -37,6 +37,16 @@ public final class DataEncryption implements JsonSerializable<DataEncryption> {
     private String geoBackupUserAssignedIdentityId;
 
     /*
+     * Client Id for the User assigned identity to be used for data encryption of the primary server.
+     */
+    private String primaryDelegatedIdentityClientId;
+
+    /*
+     * Client Id for the User assigned identity to be used for data encryption for geo-backup of server.
+     */
+    private String geoBackupDelegatedIdentityClientId;
+
+    /*
      * Data encryption type to depict if it is System Managed vs Azure Key vault.
      */
     private ArmServerKeyType type;
@@ -142,6 +152,50 @@ public final class DataEncryption implements JsonSerializable<DataEncryption> {
     }
 
     /**
+     * Get the primaryDelegatedIdentityClientId property: Client Id for the User assigned identity to be used for data
+     * encryption of the primary server.
+     * 
+     * @return the primaryDelegatedIdentityClientId value.
+     */
+    public String primaryDelegatedIdentityClientId() {
+        return this.primaryDelegatedIdentityClientId;
+    }
+
+    /**
+     * Set the primaryDelegatedIdentityClientId property: Client Id for the User assigned identity to be used for data
+     * encryption of the primary server.
+     * 
+     * @param primaryDelegatedIdentityClientId the primaryDelegatedIdentityClientId value to set.
+     * @return the DataEncryption object itself.
+     */
+    public DataEncryption withPrimaryDelegatedIdentityClientId(String primaryDelegatedIdentityClientId) {
+        this.primaryDelegatedIdentityClientId = primaryDelegatedIdentityClientId;
+        return this;
+    }
+
+    /**
+     * Get the geoBackupDelegatedIdentityClientId property: Client Id for the User assigned identity to be used for data
+     * encryption for geo-backup of server.
+     * 
+     * @return the geoBackupDelegatedIdentityClientId value.
+     */
+    public String geoBackupDelegatedIdentityClientId() {
+        return this.geoBackupDelegatedIdentityClientId;
+    }
+
+    /**
+     * Set the geoBackupDelegatedIdentityClientId property: Client Id for the User assigned identity to be used for data
+     * encryption for geo-backup of server.
+     * 
+     * @param geoBackupDelegatedIdentityClientId the geoBackupDelegatedIdentityClientId value to set.
+     * @return the DataEncryption object itself.
+     */
+    public DataEncryption withGeoBackupDelegatedIdentityClientId(String geoBackupDelegatedIdentityClientId) {
+        this.geoBackupDelegatedIdentityClientId = geoBackupDelegatedIdentityClientId;
+        return this;
+    }
+
+    /**
      * Get the type property: Data encryption type to depict if it is System Managed vs Azure Key vault.
      * 
      * @return the type value.
@@ -221,6 +275,8 @@ public final class DataEncryption implements JsonSerializable<DataEncryption> {
         jsonWriter.writeStringField("primaryUserAssignedIdentityId", this.primaryUserAssignedIdentityId);
         jsonWriter.writeStringField("geoBackupKeyURI", this.geoBackupKeyUri);
         jsonWriter.writeStringField("geoBackupUserAssignedIdentityId", this.geoBackupUserAssignedIdentityId);
+        jsonWriter.writeStringField("primaryDelegatedIdentityClientId", this.primaryDelegatedIdentityClientId);
+        jsonWriter.writeStringField("geoBackupDelegatedIdentityClientId", this.geoBackupDelegatedIdentityClientId);
         jsonWriter.writeStringField("type", this.type == null ? null : this.type.toString());
         jsonWriter.writeStringField("primaryEncryptionKeyStatus",
             this.primaryEncryptionKeyStatus == null ? null : this.primaryEncryptionKeyStatus.toString());
@@ -252,6 +308,10 @@ public final class DataEncryption implements JsonSerializable<DataEncryption> {
                     deserializedDataEncryption.geoBackupKeyUri = reader.getString();
                 } else if ("geoBackupUserAssignedIdentityId".equals(fieldName)) {
                     deserializedDataEncryption.geoBackupUserAssignedIdentityId = reader.getString();
+                } else if ("primaryDelegatedIdentityClientId".equals(fieldName)) {
+                    deserializedDataEncryption.primaryDelegatedIdentityClientId = reader.getString();
+                } else if ("geoBackupDelegatedIdentityClientId".equals(fieldName)) {
+                    deserializedDataEncryption.geoBackupDelegatedIdentityClientId = reader.getString();
                 } else if ("type".equals(fieldName)) {
                     deserializedDataEncryption.type = ArmServerKeyType.fromString(reader.getString());
                 } else if ("primaryEncryptionKeyStatus".equals(fieldName)) {

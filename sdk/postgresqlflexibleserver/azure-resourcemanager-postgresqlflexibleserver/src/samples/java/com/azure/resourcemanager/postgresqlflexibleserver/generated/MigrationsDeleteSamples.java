@@ -10,8 +10,8 @@ package com.azure.resourcemanager.postgresqlflexibleserver.generated;
 public final class MigrationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2024-08-01/examples/Migrations_Delete.
-     * json
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2025-03-15-privatepreview/examples/
+     * Migrations_Delete.json
      */
     /**
      * Sample code: Migrations_Delete.

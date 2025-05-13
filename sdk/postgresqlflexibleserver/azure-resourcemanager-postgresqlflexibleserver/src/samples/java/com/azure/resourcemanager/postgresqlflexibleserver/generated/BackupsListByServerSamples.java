@@ -10,8 +10,8 @@ package com.azure.resourcemanager.postgresqlflexibleserver.generated;
 public final class BackupsListByServerSamples {
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/stable/2024-08-01/examples/BackupListByServer
-     * .json
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2025-03-15-privatepreview/examples/
+     * BackupListByServer.json
      */
     /**
      * Sample code: List backups for a server.

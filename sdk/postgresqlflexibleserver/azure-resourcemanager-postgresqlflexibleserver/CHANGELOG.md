@@ -1,14 +1,156 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
+## 1.0.0-beta.1 (2025-05-13)
 
-### Features Added
+- Azure Resource Manager PostgreSql client library for Java. This package contains Microsoft Azure SDK for PostgreSql Management SDK. The Microsoft Azure management API provides create, read, update, and delete functionality for Azure PostgreSQL resources including servers, databases, firewall rules, VNET rules, security alert policies, log files and configurations with new business model. Package tag package-flexibleserver-2025-03-15-privatepreview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.OperationListResult` was modified
 
-### Other Changes
+* `java.util.List value()` -> `java.util.List value()`
+* `innerModel()` was removed
+* `java.lang.String nextLink()` -> `java.lang.String nextLink()`
+
+#### `models.Operation` was modified
+
+* `java.util.Map properties()` -> `java.util.Map properties()`
+* `java.lang.String name()` -> `java.lang.String name()`
+* `fromJson(com.azure.json.JsonReader)` was removed
+* `validate()` was removed
+* `models.OperationDisplay display()` -> `models.OperationDisplay display()`
+* `models.OperationOrigin origin()` -> `models.OperationOrigin origin()`
+* `toJson(com.azure.json.JsonWriter)` was removed
+* `java.lang.Boolean isDataAction()` -> `java.lang.Boolean isDataAction()`
+* `withIsDataAction(java.lang.Boolean)` was removed
+
+#### `models.Operations` was modified
+
+* `models.OperationListResult list()` -> `com.azure.core.http.rest.PagedIterable list()`
+* `listWithResponse(com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.SupportedFeatureStatusEnum` was added
+
+* `models.QuotaUsages` was added
+
+* `models.ConfigTuningRequestParameter` was added
+
+* `models.TuningOptionsListResult` was added
+
+* `models.SessionResource` was added
+
+* `models.QuotaUsage` was added
+
+* `models.IndexRecommendationListResult` was added
+
+* `models.ImpactRecord` was added
+
+* `models.SessionDetailsListResult` was added
+
+* `models.QuotaUsagesListResult` was added
+
+* `models.NameProperty` was added
+
+* `models.IndexRecommendationResourcePropertiesAnalyzedWorkload` was added
+
+* `models.TuningOptions` was added
+
+* `models.IndexRecommendationDetails` was added
+
+* `models.IndexRecommendationResource` was added
+
+* `models.RecommendationTypeEnum` was added
+
+* `models.SupportedFeature` was added
+
+* `models.IndexRecommendationResourcePropertiesImplementationDetails` was added
+
+* `models.SessionsListResult` was added
+
+* `models.RecommendationType` was added
+
+* `models.TuningOptionEnum` was added
+
+* `models.TuningConfigurations` was added
+
+* `models.DelegatedResources` was added
+
+* `models.Cluster` was added
+
+* `models.TuningIndexes` was added
+
+* `models.TuningOptionsResource` was added
+
+* `models.SessionDetailsResource` was added
+
+#### `models.OperationListResult` was modified
+
+* `withNextLink(java.lang.String)` was added
+* `validate()` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+* `withValue(java.util.List)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.UserAssignedIdentity` was modified
+
+* `principalId()` was added
+* `withDelegatedResources(java.util.Map)` was added
+* `delegatedResources()` was added
+* `withPrincipalId(java.lang.String)` was added
+
+#### `models.ServerForUpdate` was modified
+
+* `withCluster(models.Cluster)` was added
+* `cluster()` was added
+
+#### `models.FlexibleServerCapability` was modified
+
+* `supportedFeatures()` was added
+
+#### `models.DataEncryption` was modified
+
+* `geoBackupDelegatedIdentityClientId()` was added
+* `withGeoBackupDelegatedIdentityClientId(java.lang.String)` was added
+* `withPrimaryDelegatedIdentityClientId(java.lang.String)` was added
+* `primaryDelegatedIdentityClientId()` was added
+
+#### `models.ServerVersionCapability` was modified
+
+* `supportedFeatures()` was added
+
+#### `models.ServerSkuCapability` was modified
+
+* `supportedFeatures()` was added
+* `securityProfile()` was added
+
+#### `models.Operation` was modified
+
+* `innerModel()` was added
+
+#### `models.Operations` was modified
+
+* `list(com.azure.core.util.Context)` was added
+
+#### `models.Server$Update` was modified
+
+* `withCluster(models.Cluster)` was added
+
+#### `models.Server` was modified
+
+* `cluster()` was added
+
+#### `models.Server$Definition` was modified
+
+* `withCluster(models.Cluster)` was added
+
+#### `PostgreSqlManager` was modified
+
+* `tuningIndexes()` was added
+* `tuningConfigurations()` was added
+* `tuningOptions()` was added
+* `quotaUsages()` was added
 
 ## 1.1.0 (2025-01-06)
 
