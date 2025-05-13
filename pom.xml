@@ -130,6 +130,7 @@
     <module>sdk/iotoperations</module>
     <module>sdk/keyvault</module>
     <module>sdk/kubernetesconfiguration</module>
+    <module>sdk/kubernetesconfigurationextension</module>
     <module>sdk/kusto</module>
     <module>sdk/labservices</module>
     <module>sdk/lambdatesthyperexecute</module>
