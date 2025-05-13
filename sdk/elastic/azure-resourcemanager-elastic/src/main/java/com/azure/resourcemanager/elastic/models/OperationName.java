@@ -8,8 +8,6 @@ import com.azure.core.util.ExpandableStringEnum;
 import java.util.Collection;
 
 /**
- * OperationName
- * 
  * Operation to be performed on the given vm resource id.
  */
 public final class OperationName extends ExpandableStringEnum<OperationName> {

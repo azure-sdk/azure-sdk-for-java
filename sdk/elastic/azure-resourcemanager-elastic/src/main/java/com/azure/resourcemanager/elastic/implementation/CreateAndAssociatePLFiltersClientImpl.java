@@ -20,8 +20,10 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.elastic.fluent.CreateAndAssociatePLFiltersClient;
@@ -66,6 +68,17 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> create(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
+            @QueryParam("name") String name, @QueryParam("privateEndpointGuid") String privateEndpointGuid,
+            @QueryParam("privateEndpointName") String privateEndpointName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/createAndAssociatePLFilter")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> createSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
             @QueryParam("name") String name, @QueryParam("privateEndpointGuid") String privateEndpointGuid,
@@ -120,34 +133,77 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
      * @param name Name of the traffic filter.
      * @param privateEndpointGuid Guid of the private endpoint.
      * @param privateEndpointName Name of the private endpoint.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> createWithResponse(String resourceGroupName, String monitorName, String name,
+        String privateEndpointGuid, String privateEndpointName) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (monitorName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.createSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, monitorName, name, privateEndpointGuid,
+            privateEndpointName, accept, Context.NONE);
+    }
+
+    /**
+     * Create and Associate private link traffic filter for the given deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param name Name of the traffic filter.
+     * @param privateEndpointGuid Guid of the private endpoint.
+     * @param privateEndpointName Name of the private endpoint.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(String resourceGroupName, String monitorName,
-        String name, String privateEndpointGuid, String privateEndpointName, Context context) {
+    private Response<BinaryData> createWithResponse(String resourceGroupName, String monitorName, String name,
+        String privateEndpointGuid, String privateEndpointName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (monitorName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter monitorName is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.create(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName, accept, context);
+        return service.createSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, monitorName, name, privateEndpointGuid,
+            privateEndpointName, accept, context);
     }
 
     /**
@@ -201,20 +257,17 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
      * @param name Name of the traffic filter.
      * @param privateEndpointGuid Guid of the private endpoint.
      * @param privateEndpointName Name of the private endpoint.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginCreateAsync(String resourceGroupName, String monitorName,
-        String name, String privateEndpointGuid, String privateEndpointName, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = createWithResponseAsync(resourceGroupName, monitorName, name,
-            privateEndpointGuid, privateEndpointName, context);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            context);
+    public SyncPoller<PollResult<Void>, Void> beginCreate(String resourceGroupName, String monitorName, String name,
+        String privateEndpointGuid, String privateEndpointName) {
+        Response<BinaryData> response
+            = createWithResponse(resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName);
+        return this.client.<Void, Void>getLroResult(response, Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -232,8 +285,9 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
         final String name = null;
         final String privateEndpointGuid = null;
         final String privateEndpointName = null;
-        return this.beginCreateAsync(resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = createWithResponse(resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName);
+        return this.client.<Void, Void>getLroResult(response, Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -253,9 +307,9 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginCreate(String resourceGroupName, String monitorName, String name,
         String privateEndpointGuid, String privateEndpointName, Context context) {
-        return this
-            .beginCreateAsync(resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName, context)
-            .getSyncPoller();
+        Response<BinaryData> response = createWithResponse(resourceGroupName, monitorName, name, privateEndpointGuid,
+            privateEndpointName, context);
+        return this.client.<Void, Void>getLroResult(response, Void.class, Void.class, context);
     }
 
     /**
@@ -302,28 +356,6 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
-     * @param name Name of the traffic filter.
-     * @param privateEndpointGuid Guid of the private endpoint.
-     * @param privateEndpointName Name of the private endpoint.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> createAsync(String resourceGroupName, String monitorName, String name,
-        String privateEndpointGuid, String privateEndpointName, Context context) {
-        return beginCreateAsync(resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Create and Associate private link traffic filter for the given deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -333,7 +365,7 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
         final String name = null;
         final String privateEndpointGuid = null;
         final String privateEndpointName = null;
-        createAsync(resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName).block();
+        beginCreate(resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName).getFinalResult();
     }
 
     /**
@@ -352,6 +384,9 @@ public final class CreateAndAssociatePLFiltersClientImpl implements CreateAndAss
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void create(String resourceGroupName, String monitorName, String name, String privateEndpointGuid,
         String privateEndpointName, Context context) {
-        createAsync(resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName, context).block();
+        beginCreate(resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName, context)
+            .getFinalResult();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(CreateAndAssociatePLFiltersClientImpl.class);
 }

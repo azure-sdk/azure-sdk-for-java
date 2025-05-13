@@ -54,13 +54,6 @@ public interface ElasticManagementClient {
     OperationsClient getOperations();
 
     /**
-     * Gets the MonitorsClient object to access its operations.
-     * 
-     * @return the MonitorsClient object.
-     */
-    MonitorsClient getMonitors();
-
-    /**
      * Gets the ElasticVersionsClient object to access its operations.
      * 
      * @return the ElasticVersionsClient object.
@@ -68,102 +61,25 @@ public interface ElasticManagementClient {
     ElasticVersionsClient getElasticVersions();
 
     /**
-     * Gets the MonitoredResourcesClient object to access its operations.
+     * Gets the OrganizationsClient object to access its operations.
      * 
-     * @return the MonitoredResourcesClient object.
+     * @return the OrganizationsClient object.
      */
-    MonitoredResourcesClient getMonitoredResources();
+    OrganizationsClient getOrganizations();
 
     /**
-     * Gets the DeploymentInfoesClient object to access its operations.
+     * Gets the MonitorsClient object to access its operations.
      * 
-     * @return the DeploymentInfoesClient object.
+     * @return the MonitorsClient object.
      */
-    DeploymentInfoesClient getDeploymentInfoes();
+    MonitorsClient getMonitors();
 
     /**
-     * Gets the ExternalUsersClient object to access its operations.
+     * Gets the AssociateTrafficFiltersClient object to access its operations.
      * 
-     * @return the ExternalUsersClient object.
+     * @return the AssociateTrafficFiltersClient object.
      */
-    ExternalUsersClient getExternalUsers();
-
-    /**
-     * Gets the BillingInfoesClient object to access its operations.
-     * 
-     * @return the BillingInfoesClient object.
-     */
-    BillingInfoesClient getBillingInfoes();
-
-    /**
-     * Gets the ConnectedPartnerResourcesClient object to access its operations.
-     * 
-     * @return the ConnectedPartnerResourcesClient object.
-     */
-    ConnectedPartnerResourcesClient getConnectedPartnerResources();
-
-    /**
-     * Gets the OpenAIsClient object to access its operations.
-     * 
-     * @return the OpenAIsClient object.
-     */
-    OpenAIsClient getOpenAIs();
-
-    /**
-     * Gets the TagRulesClient object to access its operations.
-     * 
-     * @return the TagRulesClient object.
-     */
-    TagRulesClient getTagRules();
-
-    /**
-     * Gets the VMHostsClient object to access its operations.
-     * 
-     * @return the VMHostsClient object.
-     */
-    VMHostsClient getVMHosts();
-
-    /**
-     * Gets the VMIngestionsClient object to access its operations.
-     * 
-     * @return the VMIngestionsClient object.
-     */
-    VMIngestionsClient getVMIngestions();
-
-    /**
-     * Gets the VMCollectionsClient object to access its operations.
-     * 
-     * @return the VMCollectionsClient object.
-     */
-    VMCollectionsClient getVMCollections();
-
-    /**
-     * Gets the UpgradableVersionsClient object to access its operations.
-     * 
-     * @return the UpgradableVersionsClient object.
-     */
-    UpgradableVersionsClient getUpgradableVersions();
-
-    /**
-     * Gets the MonitorOperationsClient object to access its operations.
-     * 
-     * @return the MonitorOperationsClient object.
-     */
-    MonitorOperationsClient getMonitorOperations();
-
-    /**
-     * Gets the AllTrafficFiltersClient object to access its operations.
-     * 
-     * @return the AllTrafficFiltersClient object.
-     */
-    AllTrafficFiltersClient getAllTrafficFilters();
-
-    /**
-     * Gets the ListAssociatedTrafficFiltersClient object to access its operations.
-     * 
-     * @return the ListAssociatedTrafficFiltersClient object.
-     */
-    ListAssociatedTrafficFiltersClient getListAssociatedTrafficFilters();
+    AssociateTrafficFiltersClient getAssociateTrafficFilters();
 
     /**
      * Gets the CreateAndAssociateIpFiltersClient object to access its operations.
@@ -180,11 +96,18 @@ public interface ElasticManagementClient {
     CreateAndAssociatePLFiltersClient getCreateAndAssociatePLFilters();
 
     /**
-     * Gets the AssociateTrafficFiltersClient object to access its operations.
+     * Gets the ExternalUsersClient object to access its operations.
      * 
-     * @return the AssociateTrafficFiltersClient object.
+     * @return the ExternalUsersClient object.
      */
-    AssociateTrafficFiltersClient getAssociateTrafficFilters();
+    ExternalUsersClient getExternalUsers();
+
+    /**
+     * Gets the TrafficFiltersClient object to access its operations.
+     * 
+     * @return the TrafficFiltersClient object.
+     */
+    TrafficFiltersClient getTrafficFilters();
 
     /**
      * Gets the DetachAndDeleteTrafficFiltersClient object to access its operations.
@@ -201,16 +124,100 @@ public interface ElasticManagementClient {
     DetachTrafficFiltersClient getDetachTrafficFilters();
 
     /**
-     * Gets the TrafficFiltersClient object to access its operations.
+     * Gets the BillingInfoesClient object to access its operations.
      * 
-     * @return the TrafficFiltersClient object.
+     * @return the BillingInfoesClient object.
      */
-    TrafficFiltersClient getTrafficFilters();
+    BillingInfoesClient getBillingInfoes();
 
     /**
-     * Gets the OrganizationsClient object to access its operations.
+     * Gets the AllTrafficFiltersClient object to access its operations.
      * 
-     * @return the OrganizationsClient object.
+     * @return the AllTrafficFiltersClient object.
      */
-    OrganizationsClient getOrganizations();
+    AllTrafficFiltersClient getAllTrafficFilters();
+
+    /**
+     * Gets the ListAssociatedTrafficFiltersClient object to access its operations.
+     * 
+     * @return the ListAssociatedTrafficFiltersClient object.
+     */
+    ListAssociatedTrafficFiltersClient getListAssociatedTrafficFilters();
+
+    /**
+     * Gets the ConnectedPartnerResourcesClient object to access its operations.
+     * 
+     * @return the ConnectedPartnerResourcesClient object.
+     */
+    ConnectedPartnerResourcesClient getConnectedPartnerResources();
+
+    /**
+     * Gets the DeploymentInfoesClient object to access its operations.
+     * 
+     * @return the DeploymentInfoesClient object.
+     */
+    DeploymentInfoesClient getDeploymentInfoes();
+
+    /**
+     * Gets the MonitoredResourcesClient object to access its operations.
+     * 
+     * @return the MonitoredResourcesClient object.
+     */
+    MonitoredResourcesClient getMonitoredResources();
+
+    /**
+     * Gets the UpgradableVersionsClient object to access its operations.
+     * 
+     * @return the UpgradableVersionsClient object.
+     */
+    UpgradableVersionsClient getUpgradableVersions();
+
+    /**
+     * Gets the VMHostsClient object to access its operations.
+     * 
+     * @return the VMHostsClient object.
+     */
+    VMHostsClient getVMHosts();
+
+    /**
+     * Gets the MonitoredSubscriptionsClient object to access its operations.
+     * 
+     * @return the MonitoredSubscriptionsClient object.
+     */
+    MonitoredSubscriptionsClient getMonitoredSubscriptions();
+
+    /**
+     * Gets the OpenAIsClient object to access its operations.
+     * 
+     * @return the OpenAIsClient object.
+     */
+    OpenAIsClient getOpenAIs();
+
+    /**
+     * Gets the TagRulesClient object to access its operations.
+     * 
+     * @return the TagRulesClient object.
+     */
+    TagRulesClient getTagRules();
+
+    /**
+     * Gets the MonitorOperationsClient object to access its operations.
+     * 
+     * @return the MonitorOperationsClient object.
+     */
+    MonitorOperationsClient getMonitorOperations();
+
+    /**
+     * Gets the VMCollectionsClient object to access its operations.
+     * 
+     * @return the VMCollectionsClient object.
+     */
+    VMCollectionsClient getVMCollections();
+
+    /**
+     * Gets the VMIngestionsClient object to access its operations.
+     * 
+     * @return the VMIngestionsClient object.
+     */
+    VMIngestionsClient getVMIngestions();
 }

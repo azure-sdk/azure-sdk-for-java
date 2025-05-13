@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.elastic.implementation;
 
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.elastic.fluent.models.OpenAIIntegrationRPModelInner;
 import com.azure.resourcemanager.elastic.models.OpenAIIntegrationProperties;
@@ -31,6 +32,10 @@ public final class OpenAIIntegrationRPModelImpl
 
     public OpenAIIntegrationProperties properties() {
         return this.innerModel().properties();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String resourceGroupName() {

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.elastic.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,17 +15,17 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Result of GET request to list the Microsoft.Elastic operations.
+ * Represents a paginated list of operations.
  */
 @Fluent
 public final class OperationListResult implements JsonSerializable<OperationListResult> {
     /*
-     * List of operations supported by the Microsoft.Elastic provider.
+     * The list of operations.
      */
     private List<OperationResultInner> value;
 
     /*
-     * URL to get the next set of operation list results if there are any.
+     * The URL to get the next set of results, if any.
      */
     private String nextLink;
 
@@ -35,7 +36,7 @@ public final class OperationListResult implements JsonSerializable<OperationList
     }
 
     /**
-     * Get the value property: List of operations supported by the Microsoft.Elastic provider.
+     * Get the value property: The list of operations.
      * 
      * @return the value value.
      */
@@ -44,7 +45,7 @@ public final class OperationListResult implements JsonSerializable<OperationList
     }
 
     /**
-     * Set the value property: List of operations supported by the Microsoft.Elastic provider.
+     * Set the value property: The list of operations.
      * 
      * @param value the value value to set.
      * @return the OperationListResult object itself.
@@ -55,7 +56,7 @@ public final class OperationListResult implements JsonSerializable<OperationList
     }
 
     /**
-     * Get the nextLink property: URL to get the next set of operation list results if there are any.
+     * Get the nextLink property: The URL to get the next set of results, if any.
      * 
      * @return the nextLink value.
      */
@@ -64,7 +65,7 @@ public final class OperationListResult implements JsonSerializable<OperationList
     }
 
     /**
-     * Set the nextLink property: URL to get the next set of operation list results if there are any.
+     * Set the nextLink property: The URL to get the next set of results, if any.
      * 
      * @param nextLink the nextLink value to set.
      * @return the OperationListResult object itself.
@@ -80,10 +81,15 @@ public final class OperationListResult implements JsonSerializable<OperationList
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model OperationListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(OperationListResult.class);
 
     /**
      * {@inheritDoc}
@@ -102,6 +108,7 @@ public final class OperationListResult implements JsonSerializable<OperationList
      * @param jsonReader The JsonReader being read.
      * @return An instance of OperationListResult if the JsonReader was pointing to an instance of it, or null if it was
      * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the OperationListResult.
      */
     public static OperationListResult fromJson(JsonReader jsonReader) throws IOException {

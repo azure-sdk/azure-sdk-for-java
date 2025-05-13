@@ -15,12 +15,15 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.SyncPollerFactory;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.elastic.fluent.AllTrafficFiltersClient;
@@ -38,6 +41,7 @@ import com.azure.resourcemanager.elastic.fluent.ExternalUsersClient;
 import com.azure.resourcemanager.elastic.fluent.ListAssociatedTrafficFiltersClient;
 import com.azure.resourcemanager.elastic.fluent.MonitorOperationsClient;
 import com.azure.resourcemanager.elastic.fluent.MonitoredResourcesClient;
+import com.azure.resourcemanager.elastic.fluent.MonitoredSubscriptionsClient;
 import com.azure.resourcemanager.elastic.fluent.MonitorsClient;
 import com.azure.resourcemanager.elastic.fluent.OpenAIsClient;
 import com.azure.resourcemanager.elastic.fluent.OperationsClient;
@@ -161,20 +165,6 @@ public final class ElasticManagementClientImpl implements ElasticManagementClien
     }
 
     /**
-     * The MonitorsClient object to access its operations.
-     */
-    private final MonitorsClient monitors;
-
-    /**
-     * Gets the MonitorsClient object to access its operations.
-     * 
-     * @return the MonitorsClient object.
-     */
-    public MonitorsClient getMonitors() {
-        return this.monitors;
-    }
-
-    /**
      * The ElasticVersionsClient object to access its operations.
      */
     private final ElasticVersionsClient elasticVersions;
@@ -189,199 +179,45 @@ public final class ElasticManagementClientImpl implements ElasticManagementClien
     }
 
     /**
-     * The MonitoredResourcesClient object to access its operations.
+     * The OrganizationsClient object to access its operations.
      */
-    private final MonitoredResourcesClient monitoredResources;
+    private final OrganizationsClient organizations;
 
     /**
-     * Gets the MonitoredResourcesClient object to access its operations.
+     * Gets the OrganizationsClient object to access its operations.
      * 
-     * @return the MonitoredResourcesClient object.
+     * @return the OrganizationsClient object.
      */
-    public MonitoredResourcesClient getMonitoredResources() {
-        return this.monitoredResources;
+    public OrganizationsClient getOrganizations() {
+        return this.organizations;
     }
 
     /**
-     * The DeploymentInfoesClient object to access its operations.
+     * The MonitorsClient object to access its operations.
      */
-    private final DeploymentInfoesClient deploymentInfoes;
+    private final MonitorsClient monitors;
 
     /**
-     * Gets the DeploymentInfoesClient object to access its operations.
+     * Gets the MonitorsClient object to access its operations.
      * 
-     * @return the DeploymentInfoesClient object.
+     * @return the MonitorsClient object.
      */
-    public DeploymentInfoesClient getDeploymentInfoes() {
-        return this.deploymentInfoes;
+    public MonitorsClient getMonitors() {
+        return this.monitors;
     }
 
     /**
-     * The ExternalUsersClient object to access its operations.
+     * The AssociateTrafficFiltersClient object to access its operations.
      */
-    private final ExternalUsersClient externalUsers;
+    private final AssociateTrafficFiltersClient associateTrafficFilters;
 
     /**
-     * Gets the ExternalUsersClient object to access its operations.
+     * Gets the AssociateTrafficFiltersClient object to access its operations.
      * 
-     * @return the ExternalUsersClient object.
+     * @return the AssociateTrafficFiltersClient object.
      */
-    public ExternalUsersClient getExternalUsers() {
-        return this.externalUsers;
-    }
-
-    /**
-     * The BillingInfoesClient object to access its operations.
-     */
-    private final BillingInfoesClient billingInfoes;
-
-    /**
-     * Gets the BillingInfoesClient object to access its operations.
-     * 
-     * @return the BillingInfoesClient object.
-     */
-    public BillingInfoesClient getBillingInfoes() {
-        return this.billingInfoes;
-    }
-
-    /**
-     * The ConnectedPartnerResourcesClient object to access its operations.
-     */
-    private final ConnectedPartnerResourcesClient connectedPartnerResources;
-
-    /**
-     * Gets the ConnectedPartnerResourcesClient object to access its operations.
-     * 
-     * @return the ConnectedPartnerResourcesClient object.
-     */
-    public ConnectedPartnerResourcesClient getConnectedPartnerResources() {
-        return this.connectedPartnerResources;
-    }
-
-    /**
-     * The OpenAIsClient object to access its operations.
-     */
-    private final OpenAIsClient openAIs;
-
-    /**
-     * Gets the OpenAIsClient object to access its operations.
-     * 
-     * @return the OpenAIsClient object.
-     */
-    public OpenAIsClient getOpenAIs() {
-        return this.openAIs;
-    }
-
-    /**
-     * The TagRulesClient object to access its operations.
-     */
-    private final TagRulesClient tagRules;
-
-    /**
-     * Gets the TagRulesClient object to access its operations.
-     * 
-     * @return the TagRulesClient object.
-     */
-    public TagRulesClient getTagRules() {
-        return this.tagRules;
-    }
-
-    /**
-     * The VMHostsClient object to access its operations.
-     */
-    private final VMHostsClient vMHosts;
-
-    /**
-     * Gets the VMHostsClient object to access its operations.
-     * 
-     * @return the VMHostsClient object.
-     */
-    public VMHostsClient getVMHosts() {
-        return this.vMHosts;
-    }
-
-    /**
-     * The VMIngestionsClient object to access its operations.
-     */
-    private final VMIngestionsClient vMIngestions;
-
-    /**
-     * Gets the VMIngestionsClient object to access its operations.
-     * 
-     * @return the VMIngestionsClient object.
-     */
-    public VMIngestionsClient getVMIngestions() {
-        return this.vMIngestions;
-    }
-
-    /**
-     * The VMCollectionsClient object to access its operations.
-     */
-    private final VMCollectionsClient vMCollections;
-
-    /**
-     * Gets the VMCollectionsClient object to access its operations.
-     * 
-     * @return the VMCollectionsClient object.
-     */
-    public VMCollectionsClient getVMCollections() {
-        return this.vMCollections;
-    }
-
-    /**
-     * The UpgradableVersionsClient object to access its operations.
-     */
-    private final UpgradableVersionsClient upgradableVersions;
-
-    /**
-     * Gets the UpgradableVersionsClient object to access its operations.
-     * 
-     * @return the UpgradableVersionsClient object.
-     */
-    public UpgradableVersionsClient getUpgradableVersions() {
-        return this.upgradableVersions;
-    }
-
-    /**
-     * The MonitorOperationsClient object to access its operations.
-     */
-    private final MonitorOperationsClient monitorOperations;
-
-    /**
-     * Gets the MonitorOperationsClient object to access its operations.
-     * 
-     * @return the MonitorOperationsClient object.
-     */
-    public MonitorOperationsClient getMonitorOperations() {
-        return this.monitorOperations;
-    }
-
-    /**
-     * The AllTrafficFiltersClient object to access its operations.
-     */
-    private final AllTrafficFiltersClient allTrafficFilters;
-
-    /**
-     * Gets the AllTrafficFiltersClient object to access its operations.
-     * 
-     * @return the AllTrafficFiltersClient object.
-     */
-    public AllTrafficFiltersClient getAllTrafficFilters() {
-        return this.allTrafficFilters;
-    }
-
-    /**
-     * The ListAssociatedTrafficFiltersClient object to access its operations.
-     */
-    private final ListAssociatedTrafficFiltersClient listAssociatedTrafficFilters;
-
-    /**
-     * Gets the ListAssociatedTrafficFiltersClient object to access its operations.
-     * 
-     * @return the ListAssociatedTrafficFiltersClient object.
-     */
-    public ListAssociatedTrafficFiltersClient getListAssociatedTrafficFilters() {
-        return this.listAssociatedTrafficFilters;
+    public AssociateTrafficFiltersClient getAssociateTrafficFilters() {
+        return this.associateTrafficFilters;
     }
 
     /**
@@ -413,17 +249,31 @@ public final class ElasticManagementClientImpl implements ElasticManagementClien
     }
 
     /**
-     * The AssociateTrafficFiltersClient object to access its operations.
+     * The ExternalUsersClient object to access its operations.
      */
-    private final AssociateTrafficFiltersClient associateTrafficFilters;
+    private final ExternalUsersClient externalUsers;
 
     /**
-     * Gets the AssociateTrafficFiltersClient object to access its operations.
+     * Gets the ExternalUsersClient object to access its operations.
      * 
-     * @return the AssociateTrafficFiltersClient object.
+     * @return the ExternalUsersClient object.
      */
-    public AssociateTrafficFiltersClient getAssociateTrafficFilters() {
-        return this.associateTrafficFilters;
+    public ExternalUsersClient getExternalUsers() {
+        return this.externalUsers;
+    }
+
+    /**
+     * The TrafficFiltersClient object to access its operations.
+     */
+    private final TrafficFiltersClient trafficFilters;
+
+    /**
+     * Gets the TrafficFiltersClient object to access its operations.
+     * 
+     * @return the TrafficFiltersClient object.
+     */
+    public TrafficFiltersClient getTrafficFilters() {
+        return this.trafficFilters;
     }
 
     /**
@@ -455,31 +305,199 @@ public final class ElasticManagementClientImpl implements ElasticManagementClien
     }
 
     /**
-     * The TrafficFiltersClient object to access its operations.
+     * The BillingInfoesClient object to access its operations.
      */
-    private final TrafficFiltersClient trafficFilters;
+    private final BillingInfoesClient billingInfoes;
 
     /**
-     * Gets the TrafficFiltersClient object to access its operations.
+     * Gets the BillingInfoesClient object to access its operations.
      * 
-     * @return the TrafficFiltersClient object.
+     * @return the BillingInfoesClient object.
      */
-    public TrafficFiltersClient getTrafficFilters() {
-        return this.trafficFilters;
+    public BillingInfoesClient getBillingInfoes() {
+        return this.billingInfoes;
     }
 
     /**
-     * The OrganizationsClient object to access its operations.
+     * The AllTrafficFiltersClient object to access its operations.
      */
-    private final OrganizationsClient organizations;
+    private final AllTrafficFiltersClient allTrafficFilters;
 
     /**
-     * Gets the OrganizationsClient object to access its operations.
+     * Gets the AllTrafficFiltersClient object to access its operations.
      * 
-     * @return the OrganizationsClient object.
+     * @return the AllTrafficFiltersClient object.
      */
-    public OrganizationsClient getOrganizations() {
-        return this.organizations;
+    public AllTrafficFiltersClient getAllTrafficFilters() {
+        return this.allTrafficFilters;
+    }
+
+    /**
+     * The ListAssociatedTrafficFiltersClient object to access its operations.
+     */
+    private final ListAssociatedTrafficFiltersClient listAssociatedTrafficFilters;
+
+    /**
+     * Gets the ListAssociatedTrafficFiltersClient object to access its operations.
+     * 
+     * @return the ListAssociatedTrafficFiltersClient object.
+     */
+    public ListAssociatedTrafficFiltersClient getListAssociatedTrafficFilters() {
+        return this.listAssociatedTrafficFilters;
+    }
+
+    /**
+     * The ConnectedPartnerResourcesClient object to access its operations.
+     */
+    private final ConnectedPartnerResourcesClient connectedPartnerResources;
+
+    /**
+     * Gets the ConnectedPartnerResourcesClient object to access its operations.
+     * 
+     * @return the ConnectedPartnerResourcesClient object.
+     */
+    public ConnectedPartnerResourcesClient getConnectedPartnerResources() {
+        return this.connectedPartnerResources;
+    }
+
+    /**
+     * The DeploymentInfoesClient object to access its operations.
+     */
+    private final DeploymentInfoesClient deploymentInfoes;
+
+    /**
+     * Gets the DeploymentInfoesClient object to access its operations.
+     * 
+     * @return the DeploymentInfoesClient object.
+     */
+    public DeploymentInfoesClient getDeploymentInfoes() {
+        return this.deploymentInfoes;
+    }
+
+    /**
+     * The MonitoredResourcesClient object to access its operations.
+     */
+    private final MonitoredResourcesClient monitoredResources;
+
+    /**
+     * Gets the MonitoredResourcesClient object to access its operations.
+     * 
+     * @return the MonitoredResourcesClient object.
+     */
+    public MonitoredResourcesClient getMonitoredResources() {
+        return this.monitoredResources;
+    }
+
+    /**
+     * The UpgradableVersionsClient object to access its operations.
+     */
+    private final UpgradableVersionsClient upgradableVersions;
+
+    /**
+     * Gets the UpgradableVersionsClient object to access its operations.
+     * 
+     * @return the UpgradableVersionsClient object.
+     */
+    public UpgradableVersionsClient getUpgradableVersions() {
+        return this.upgradableVersions;
+    }
+
+    /**
+     * The VMHostsClient object to access its operations.
+     */
+    private final VMHostsClient vMHosts;
+
+    /**
+     * Gets the VMHostsClient object to access its operations.
+     * 
+     * @return the VMHostsClient object.
+     */
+    public VMHostsClient getVMHosts() {
+        return this.vMHosts;
+    }
+
+    /**
+     * The MonitoredSubscriptionsClient object to access its operations.
+     */
+    private final MonitoredSubscriptionsClient monitoredSubscriptions;
+
+    /**
+     * Gets the MonitoredSubscriptionsClient object to access its operations.
+     * 
+     * @return the MonitoredSubscriptionsClient object.
+     */
+    public MonitoredSubscriptionsClient getMonitoredSubscriptions() {
+        return this.monitoredSubscriptions;
+    }
+
+    /**
+     * The OpenAIsClient object to access its operations.
+     */
+    private final OpenAIsClient openAIs;
+
+    /**
+     * Gets the OpenAIsClient object to access its operations.
+     * 
+     * @return the OpenAIsClient object.
+     */
+    public OpenAIsClient getOpenAIs() {
+        return this.openAIs;
+    }
+
+    /**
+     * The TagRulesClient object to access its operations.
+     */
+    private final TagRulesClient tagRules;
+
+    /**
+     * Gets the TagRulesClient object to access its operations.
+     * 
+     * @return the TagRulesClient object.
+     */
+    public TagRulesClient getTagRules() {
+        return this.tagRules;
+    }
+
+    /**
+     * The MonitorOperationsClient object to access its operations.
+     */
+    private final MonitorOperationsClient monitorOperations;
+
+    /**
+     * Gets the MonitorOperationsClient object to access its operations.
+     * 
+     * @return the MonitorOperationsClient object.
+     */
+    public MonitorOperationsClient getMonitorOperations() {
+        return this.monitorOperations;
+    }
+
+    /**
+     * The VMCollectionsClient object to access its operations.
+     */
+    private final VMCollectionsClient vMCollections;
+
+    /**
+     * Gets the VMCollectionsClient object to access its operations.
+     * 
+     * @return the VMCollectionsClient object.
+     */
+    public VMCollectionsClient getVMCollections() {
+        return this.vMCollections;
+    }
+
+    /**
+     * The VMIngestionsClient object to access its operations.
+     */
+    private final VMIngestionsClient vMIngestions;
+
+    /**
+     * Gets the VMIngestionsClient object to access its operations.
+     * 
+     * @return the VMIngestionsClient object.
+     */
+    public VMIngestionsClient getVMIngestions() {
+        return this.vMIngestions;
     }
 
     /**
@@ -499,31 +517,32 @@ public final class ElasticManagementClientImpl implements ElasticManagementClien
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-03-01";
+        this.apiVersion = "2025-01-15-preview";
         this.operations = new OperationsClientImpl(this);
-        this.monitors = new MonitorsClientImpl(this);
         this.elasticVersions = new ElasticVersionsClientImpl(this);
-        this.monitoredResources = new MonitoredResourcesClientImpl(this);
-        this.deploymentInfoes = new DeploymentInfoesClientImpl(this);
-        this.externalUsers = new ExternalUsersClientImpl(this);
-        this.billingInfoes = new BillingInfoesClientImpl(this);
-        this.connectedPartnerResources = new ConnectedPartnerResourcesClientImpl(this);
-        this.openAIs = new OpenAIsClientImpl(this);
-        this.tagRules = new TagRulesClientImpl(this);
-        this.vMHosts = new VMHostsClientImpl(this);
-        this.vMIngestions = new VMIngestionsClientImpl(this);
-        this.vMCollections = new VMCollectionsClientImpl(this);
-        this.upgradableVersions = new UpgradableVersionsClientImpl(this);
-        this.monitorOperations = new MonitorOperationsClientImpl(this);
-        this.allTrafficFilters = new AllTrafficFiltersClientImpl(this);
-        this.listAssociatedTrafficFilters = new ListAssociatedTrafficFiltersClientImpl(this);
+        this.organizations = new OrganizationsClientImpl(this);
+        this.monitors = new MonitorsClientImpl(this);
+        this.associateTrafficFilters = new AssociateTrafficFiltersClientImpl(this);
         this.createAndAssociateIpFilters = new CreateAndAssociateIpFiltersClientImpl(this);
         this.createAndAssociatePLFilters = new CreateAndAssociatePLFiltersClientImpl(this);
-        this.associateTrafficFilters = new AssociateTrafficFiltersClientImpl(this);
+        this.externalUsers = new ExternalUsersClientImpl(this);
+        this.trafficFilters = new TrafficFiltersClientImpl(this);
         this.detachAndDeleteTrafficFilters = new DetachAndDeleteTrafficFiltersClientImpl(this);
         this.detachTrafficFilters = new DetachTrafficFiltersClientImpl(this);
-        this.trafficFilters = new TrafficFiltersClientImpl(this);
-        this.organizations = new OrganizationsClientImpl(this);
+        this.billingInfoes = new BillingInfoesClientImpl(this);
+        this.allTrafficFilters = new AllTrafficFiltersClientImpl(this);
+        this.listAssociatedTrafficFilters = new ListAssociatedTrafficFiltersClientImpl(this);
+        this.connectedPartnerResources = new ConnectedPartnerResourcesClientImpl(this);
+        this.deploymentInfoes = new DeploymentInfoesClientImpl(this);
+        this.monitoredResources = new MonitoredResourcesClientImpl(this);
+        this.upgradableVersions = new UpgradableVersionsClientImpl(this);
+        this.vMHosts = new VMHostsClientImpl(this);
+        this.monitoredSubscriptions = new MonitoredSubscriptionsClientImpl(this);
+        this.openAIs = new OpenAIsClientImpl(this);
+        this.tagRules = new TagRulesClientImpl(this);
+        this.monitorOperations = new MonitorOperationsClientImpl(this);
+        this.vMCollections = new VMCollectionsClientImpl(this);
+        this.vMIngestions = new VMIngestionsClientImpl(this);
     }
 
     /**
@@ -561,6 +580,23 @@ public final class ElasticManagementClientImpl implements ElasticManagementClien
         HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
         return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
             defaultPollInterval, activationResponse, context);
+    }
+
+    /**
+     * Gets long running operation result.
+     * 
+     * @param activationResponse the response of activation operation.
+     * @param pollResultType type of poll result.
+     * @param finalResultType type of final result.
+     * @param context the context shared by all requests.
+     * @param <T> type of poll result.
+     * @param <U> type of final result.
+     * @return SyncPoller for poll result and final result.
+     */
+    public <T, U> SyncPoller<PollResult<T>, U> getLroResult(Response<BinaryData> activationResponse,
+        Type pollResultType, Type finalResultType, Context context) {
+        return SyncPollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, () -> activationResponse, context);
     }
 
     /**

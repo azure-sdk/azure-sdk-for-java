@@ -13,12 +13,12 @@ import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
- * Microsoft.Elastic SKU.
+ * Represents the SKU of a resource.
  */
 @Fluent
 public final class ResourceSku implements JsonSerializable<ResourceSku> {
     /*
-     * Name of the SKU.
+     * The name of the SKU.
      */
     private String name;
 
@@ -29,7 +29,7 @@ public final class ResourceSku implements JsonSerializable<ResourceSku> {
     }
 
     /**
-     * Get the name property: Name of the SKU.
+     * Get the name property: The name of the SKU.
      * 
      * @return the name value.
      */
@@ -38,7 +38,7 @@ public final class ResourceSku implements JsonSerializable<ResourceSku> {
     }
 
     /**
-     * Set the name property: Name of the SKU.
+     * Set the name property: The name of the SKU.
      * 
      * @param name the name value to set.
      * @return the ResourceSku object itself.

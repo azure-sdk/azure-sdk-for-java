@@ -11,6 +11,7 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
@@ -19,9 +20,9 @@ import com.azure.core.http.policy.RequestIdPolicy;
 import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
-import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.elastic.fluent.ElasticManagementClient;
 import com.azure.resourcemanager.elastic.implementation.AllTrafficFiltersImpl;
@@ -39,6 +40,7 @@ import com.azure.resourcemanager.elastic.implementation.ExternalUsersImpl;
 import com.azure.resourcemanager.elastic.implementation.ListAssociatedTrafficFiltersImpl;
 import com.azure.resourcemanager.elastic.implementation.MonitorOperationsImpl;
 import com.azure.resourcemanager.elastic.implementation.MonitoredResourcesImpl;
+import com.azure.resourcemanager.elastic.implementation.MonitoredSubscriptionsImpl;
 import com.azure.resourcemanager.elastic.implementation.MonitorsImpl;
 import com.azure.resourcemanager.elastic.implementation.OpenAIsImpl;
 import com.azure.resourcemanager.elastic.implementation.OperationsImpl;
@@ -63,6 +65,7 @@ import com.azure.resourcemanager.elastic.models.ExternalUsers;
 import com.azure.resourcemanager.elastic.models.ListAssociatedTrafficFilters;
 import com.azure.resourcemanager.elastic.models.MonitorOperations;
 import com.azure.resourcemanager.elastic.models.MonitoredResources;
+import com.azure.resourcemanager.elastic.models.MonitoredSubscriptions;
 import com.azure.resourcemanager.elastic.models.Monitors;
 import com.azure.resourcemanager.elastic.models.OpenAIs;
 import com.azure.resourcemanager.elastic.models.Operations;
@@ -77,6 +80,7 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -86,51 +90,53 @@ import java.util.stream.Collectors;
 public final class ElasticManager {
     private Operations operations;
 
-    private Monitors monitors;
-
     private ElasticVersions elasticVersions;
 
-    private MonitoredResources monitoredResources;
+    private Organizations organizations;
 
-    private DeploymentInfoes deploymentInfoes;
+    private Monitors monitors;
 
-    private ExternalUsers externalUsers;
-
-    private BillingInfoes billingInfoes;
-
-    private ConnectedPartnerResources connectedPartnerResources;
-
-    private OpenAIs openAIs;
-
-    private TagRules tagRules;
-
-    private VMHosts vMHosts;
-
-    private VMIngestions vMIngestions;
-
-    private VMCollections vMCollections;
-
-    private UpgradableVersions upgradableVersions;
-
-    private MonitorOperations monitorOperations;
-
-    private AllTrafficFilters allTrafficFilters;
-
-    private ListAssociatedTrafficFilters listAssociatedTrafficFilters;
+    private AssociateTrafficFilters associateTrafficFilters;
 
     private CreateAndAssociateIpFilters createAndAssociateIpFilters;
 
     private CreateAndAssociatePLFilters createAndAssociatePLFilters;
 
-    private AssociateTrafficFilters associateTrafficFilters;
+    private ExternalUsers externalUsers;
+
+    private TrafficFilters trafficFilters;
 
     private DetachAndDeleteTrafficFilters detachAndDeleteTrafficFilters;
 
     private DetachTrafficFilters detachTrafficFilters;
 
-    private TrafficFilters trafficFilters;
+    private BillingInfoes billingInfoes;
 
-    private Organizations organizations;
+    private AllTrafficFilters allTrafficFilters;
+
+    private ListAssociatedTrafficFilters listAssociatedTrafficFilters;
+
+    private ConnectedPartnerResources connectedPartnerResources;
+
+    private DeploymentInfoes deploymentInfoes;
+
+    private MonitoredResources monitoredResources;
+
+    private UpgradableVersions upgradableVersions;
+
+    private VMHosts vMHosts;
+
+    private MonitoredSubscriptions monitoredSubscriptions;
+
+    private OpenAIs openAIs;
+
+    private TagRules tagRules;
+
+    private MonitorOperations monitorOperations;
+
+    private VMCollections vMCollections;
+
+    private VMIngestions vMIngestions;
 
     private final ElasticManagementClient clientObject;
 
@@ -184,6 +190,9 @@ public final class ElasticManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-elastic.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -291,12 +300,14 @@ public final class ElasticManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.elastic")
                 .append("/")
-                .append("1.0.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -329,7 +340,7 @@ public final class ElasticManager {
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
-            policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
+            policies.add(new BearerTokenAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
                 .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
                 .collect(Collectors.toList()));
@@ -355,18 +366,6 @@ public final class ElasticManager {
     }
 
     /**
-     * Gets the resource collection API of Monitors. It manages ElasticMonitorResource.
-     * 
-     * @return Resource collection API of Monitors.
-     */
-    public Monitors monitors() {
-        if (this.monitors == null) {
-            this.monitors = new MonitorsImpl(clientObject.getMonitors(), this);
-        }
-        return monitors;
-    }
-
-    /**
      * Gets the resource collection API of ElasticVersions.
      * 
      * @return Resource collection API of ElasticVersions.
@@ -379,173 +378,40 @@ public final class ElasticManager {
     }
 
     /**
-     * Gets the resource collection API of MonitoredResources.
+     * Gets the resource collection API of Organizations.
      * 
-     * @return Resource collection API of MonitoredResources.
+     * @return Resource collection API of Organizations.
      */
-    public MonitoredResources monitoredResources() {
-        if (this.monitoredResources == null) {
-            this.monitoredResources = new MonitoredResourcesImpl(clientObject.getMonitoredResources(), this);
+    public Organizations organizations() {
+        if (this.organizations == null) {
+            this.organizations = new OrganizationsImpl(clientObject.getOrganizations(), this);
         }
-        return monitoredResources;
+        return organizations;
     }
 
     /**
-     * Gets the resource collection API of DeploymentInfoes.
+     * Gets the resource collection API of Monitors. It manages ElasticMonitorResource.
      * 
-     * @return Resource collection API of DeploymentInfoes.
+     * @return Resource collection API of Monitors.
      */
-    public DeploymentInfoes deploymentInfoes() {
-        if (this.deploymentInfoes == null) {
-            this.deploymentInfoes = new DeploymentInfoesImpl(clientObject.getDeploymentInfoes(), this);
+    public Monitors monitors() {
+        if (this.monitors == null) {
+            this.monitors = new MonitorsImpl(clientObject.getMonitors(), this);
         }
-        return deploymentInfoes;
+        return monitors;
     }
 
     /**
-     * Gets the resource collection API of ExternalUsers.
+     * Gets the resource collection API of AssociateTrafficFilters.
      * 
-     * @return Resource collection API of ExternalUsers.
+     * @return Resource collection API of AssociateTrafficFilters.
      */
-    public ExternalUsers externalUsers() {
-        if (this.externalUsers == null) {
-            this.externalUsers = new ExternalUsersImpl(clientObject.getExternalUsers(), this);
+    public AssociateTrafficFilters associateTrafficFilters() {
+        if (this.associateTrafficFilters == null) {
+            this.associateTrafficFilters
+                = new AssociateTrafficFiltersImpl(clientObject.getAssociateTrafficFilters(), this);
         }
-        return externalUsers;
-    }
-
-    /**
-     * Gets the resource collection API of BillingInfoes.
-     * 
-     * @return Resource collection API of BillingInfoes.
-     */
-    public BillingInfoes billingInfoes() {
-        if (this.billingInfoes == null) {
-            this.billingInfoes = new BillingInfoesImpl(clientObject.getBillingInfoes(), this);
-        }
-        return billingInfoes;
-    }
-
-    /**
-     * Gets the resource collection API of ConnectedPartnerResources.
-     * 
-     * @return Resource collection API of ConnectedPartnerResources.
-     */
-    public ConnectedPartnerResources connectedPartnerResources() {
-        if (this.connectedPartnerResources == null) {
-            this.connectedPartnerResources
-                = new ConnectedPartnerResourcesImpl(clientObject.getConnectedPartnerResources(), this);
-        }
-        return connectedPartnerResources;
-    }
-
-    /**
-     * Gets the resource collection API of OpenAIs. It manages OpenAIIntegrationRPModel.
-     * 
-     * @return Resource collection API of OpenAIs.
-     */
-    public OpenAIs openAIs() {
-        if (this.openAIs == null) {
-            this.openAIs = new OpenAIsImpl(clientObject.getOpenAIs(), this);
-        }
-        return openAIs;
-    }
-
-    /**
-     * Gets the resource collection API of TagRules. It manages MonitoringTagRules.
-     * 
-     * @return Resource collection API of TagRules.
-     */
-    public TagRules tagRules() {
-        if (this.tagRules == null) {
-            this.tagRules = new TagRulesImpl(clientObject.getTagRules(), this);
-        }
-        return tagRules;
-    }
-
-    /**
-     * Gets the resource collection API of VMHosts.
-     * 
-     * @return Resource collection API of VMHosts.
-     */
-    public VMHosts vMHosts() {
-        if (this.vMHosts == null) {
-            this.vMHosts = new VMHostsImpl(clientObject.getVMHosts(), this);
-        }
-        return vMHosts;
-    }
-
-    /**
-     * Gets the resource collection API of VMIngestions.
-     * 
-     * @return Resource collection API of VMIngestions.
-     */
-    public VMIngestions vMIngestions() {
-        if (this.vMIngestions == null) {
-            this.vMIngestions = new VMIngestionsImpl(clientObject.getVMIngestions(), this);
-        }
-        return vMIngestions;
-    }
-
-    /**
-     * Gets the resource collection API of VMCollections.
-     * 
-     * @return Resource collection API of VMCollections.
-     */
-    public VMCollections vMCollections() {
-        if (this.vMCollections == null) {
-            this.vMCollections = new VMCollectionsImpl(clientObject.getVMCollections(), this);
-        }
-        return vMCollections;
-    }
-
-    /**
-     * Gets the resource collection API of UpgradableVersions.
-     * 
-     * @return Resource collection API of UpgradableVersions.
-     */
-    public UpgradableVersions upgradableVersions() {
-        if (this.upgradableVersions == null) {
-            this.upgradableVersions = new UpgradableVersionsImpl(clientObject.getUpgradableVersions(), this);
-        }
-        return upgradableVersions;
-    }
-
-    /**
-     * Gets the resource collection API of MonitorOperations.
-     * 
-     * @return Resource collection API of MonitorOperations.
-     */
-    public MonitorOperations monitorOperations() {
-        if (this.monitorOperations == null) {
-            this.monitorOperations = new MonitorOperationsImpl(clientObject.getMonitorOperations(), this);
-        }
-        return monitorOperations;
-    }
-
-    /**
-     * Gets the resource collection API of AllTrafficFilters.
-     * 
-     * @return Resource collection API of AllTrafficFilters.
-     */
-    public AllTrafficFilters allTrafficFilters() {
-        if (this.allTrafficFilters == null) {
-            this.allTrafficFilters = new AllTrafficFiltersImpl(clientObject.getAllTrafficFilters(), this);
-        }
-        return allTrafficFilters;
-    }
-
-    /**
-     * Gets the resource collection API of ListAssociatedTrafficFilters.
-     * 
-     * @return Resource collection API of ListAssociatedTrafficFilters.
-     */
-    public ListAssociatedTrafficFilters listAssociatedTrafficFilters() {
-        if (this.listAssociatedTrafficFilters == null) {
-            this.listAssociatedTrafficFilters
-                = new ListAssociatedTrafficFiltersImpl(clientObject.getListAssociatedTrafficFilters(), this);
-        }
-        return listAssociatedTrafficFilters;
+        return associateTrafficFilters;
     }
 
     /**
@@ -575,16 +441,27 @@ public final class ElasticManager {
     }
 
     /**
-     * Gets the resource collection API of AssociateTrafficFilters.
+     * Gets the resource collection API of ExternalUsers.
      * 
-     * @return Resource collection API of AssociateTrafficFilters.
+     * @return Resource collection API of ExternalUsers.
      */
-    public AssociateTrafficFilters associateTrafficFilters() {
-        if (this.associateTrafficFilters == null) {
-            this.associateTrafficFilters
-                = new AssociateTrafficFiltersImpl(clientObject.getAssociateTrafficFilters(), this);
+    public ExternalUsers externalUsers() {
+        if (this.externalUsers == null) {
+            this.externalUsers = new ExternalUsersImpl(clientObject.getExternalUsers(), this);
         }
-        return associateTrafficFilters;
+        return externalUsers;
+    }
+
+    /**
+     * Gets the resource collection API of TrafficFilters.
+     * 
+     * @return Resource collection API of TrafficFilters.
+     */
+    public TrafficFilters trafficFilters() {
+        if (this.trafficFilters == null) {
+            this.trafficFilters = new TrafficFiltersImpl(clientObject.getTrafficFilters(), this);
+        }
+        return trafficFilters;
     }
 
     /**
@@ -613,27 +490,174 @@ public final class ElasticManager {
     }
 
     /**
-     * Gets the resource collection API of TrafficFilters.
+     * Gets the resource collection API of BillingInfoes.
      * 
-     * @return Resource collection API of TrafficFilters.
+     * @return Resource collection API of BillingInfoes.
      */
-    public TrafficFilters trafficFilters() {
-        if (this.trafficFilters == null) {
-            this.trafficFilters = new TrafficFiltersImpl(clientObject.getTrafficFilters(), this);
+    public BillingInfoes billingInfoes() {
+        if (this.billingInfoes == null) {
+            this.billingInfoes = new BillingInfoesImpl(clientObject.getBillingInfoes(), this);
         }
-        return trafficFilters;
+        return billingInfoes;
     }
 
     /**
-     * Gets the resource collection API of Organizations.
+     * Gets the resource collection API of AllTrafficFilters.
      * 
-     * @return Resource collection API of Organizations.
+     * @return Resource collection API of AllTrafficFilters.
      */
-    public Organizations organizations() {
-        if (this.organizations == null) {
-            this.organizations = new OrganizationsImpl(clientObject.getOrganizations(), this);
+    public AllTrafficFilters allTrafficFilters() {
+        if (this.allTrafficFilters == null) {
+            this.allTrafficFilters = new AllTrafficFiltersImpl(clientObject.getAllTrafficFilters(), this);
         }
-        return organizations;
+        return allTrafficFilters;
+    }
+
+    /**
+     * Gets the resource collection API of ListAssociatedTrafficFilters.
+     * 
+     * @return Resource collection API of ListAssociatedTrafficFilters.
+     */
+    public ListAssociatedTrafficFilters listAssociatedTrafficFilters() {
+        if (this.listAssociatedTrafficFilters == null) {
+            this.listAssociatedTrafficFilters
+                = new ListAssociatedTrafficFiltersImpl(clientObject.getListAssociatedTrafficFilters(), this);
+        }
+        return listAssociatedTrafficFilters;
+    }
+
+    /**
+     * Gets the resource collection API of ConnectedPartnerResources.
+     * 
+     * @return Resource collection API of ConnectedPartnerResources.
+     */
+    public ConnectedPartnerResources connectedPartnerResources() {
+        if (this.connectedPartnerResources == null) {
+            this.connectedPartnerResources
+                = new ConnectedPartnerResourcesImpl(clientObject.getConnectedPartnerResources(), this);
+        }
+        return connectedPartnerResources;
+    }
+
+    /**
+     * Gets the resource collection API of DeploymentInfoes.
+     * 
+     * @return Resource collection API of DeploymentInfoes.
+     */
+    public DeploymentInfoes deploymentInfoes() {
+        if (this.deploymentInfoes == null) {
+            this.deploymentInfoes = new DeploymentInfoesImpl(clientObject.getDeploymentInfoes(), this);
+        }
+        return deploymentInfoes;
+    }
+
+    /**
+     * Gets the resource collection API of MonitoredResources.
+     * 
+     * @return Resource collection API of MonitoredResources.
+     */
+    public MonitoredResources monitoredResources() {
+        if (this.monitoredResources == null) {
+            this.monitoredResources = new MonitoredResourcesImpl(clientObject.getMonitoredResources(), this);
+        }
+        return monitoredResources;
+    }
+
+    /**
+     * Gets the resource collection API of UpgradableVersions.
+     * 
+     * @return Resource collection API of UpgradableVersions.
+     */
+    public UpgradableVersions upgradableVersions() {
+        if (this.upgradableVersions == null) {
+            this.upgradableVersions = new UpgradableVersionsImpl(clientObject.getUpgradableVersions(), this);
+        }
+        return upgradableVersions;
+    }
+
+    /**
+     * Gets the resource collection API of VMHosts.
+     * 
+     * @return Resource collection API of VMHosts.
+     */
+    public VMHosts vMHosts() {
+        if (this.vMHosts == null) {
+            this.vMHosts = new VMHostsImpl(clientObject.getVMHosts(), this);
+        }
+        return vMHosts;
+    }
+
+    /**
+     * Gets the resource collection API of MonitoredSubscriptions. It manages MonitoredSubscriptionProperties.
+     * 
+     * @return Resource collection API of MonitoredSubscriptions.
+     */
+    public MonitoredSubscriptions monitoredSubscriptions() {
+        if (this.monitoredSubscriptions == null) {
+            this.monitoredSubscriptions
+                = new MonitoredSubscriptionsImpl(clientObject.getMonitoredSubscriptions(), this);
+        }
+        return monitoredSubscriptions;
+    }
+
+    /**
+     * Gets the resource collection API of OpenAIs. It manages OpenAIIntegrationRPModel.
+     * 
+     * @return Resource collection API of OpenAIs.
+     */
+    public OpenAIs openAIs() {
+        if (this.openAIs == null) {
+            this.openAIs = new OpenAIsImpl(clientObject.getOpenAIs(), this);
+        }
+        return openAIs;
+    }
+
+    /**
+     * Gets the resource collection API of TagRules. It manages MonitoringTagRules.
+     * 
+     * @return Resource collection API of TagRules.
+     */
+    public TagRules tagRules() {
+        if (this.tagRules == null) {
+            this.tagRules = new TagRulesImpl(clientObject.getTagRules(), this);
+        }
+        return tagRules;
+    }
+
+    /**
+     * Gets the resource collection API of MonitorOperations.
+     * 
+     * @return Resource collection API of MonitorOperations.
+     */
+    public MonitorOperations monitorOperations() {
+        if (this.monitorOperations == null) {
+            this.monitorOperations = new MonitorOperationsImpl(clientObject.getMonitorOperations(), this);
+        }
+        return monitorOperations;
+    }
+
+    /**
+     * Gets the resource collection API of VMCollections.
+     * 
+     * @return Resource collection API of VMCollections.
+     */
+    public VMCollections vMCollections() {
+        if (this.vMCollections == null) {
+            this.vMCollections = new VMCollectionsImpl(clientObject.getVMCollections(), this);
+        }
+        return vMCollections;
+    }
+
+    /**
+     * Gets the resource collection API of VMIngestions.
+     * 
+     * @return Resource collection API of VMIngestions.
+     */
+    public VMIngestions vMIngestions() {
+        if (this.vMIngestions == null) {
+            this.vMIngestions = new VMIngestionsImpl(clientObject.getVMIngestions(), this);
+        }
+        return vMIngestions;
     }
 
     /**
