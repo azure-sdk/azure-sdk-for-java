@@ -62,7 +62,7 @@ public interface ContactProfile {
      * 
      * @return the provisioningState value.
      */
-    ContactProfilesPropertiesProvisioningState provisioningState();
+    ProvisioningState provisioningState();
 
     /**
      * Gets the minimumViableContactDuration property: Minimum viable contact duration in ISO 8601 format. Used for
@@ -272,7 +272,7 @@ public interface ContactProfile {
              * @param provisioningState The current state of the resource's creation, deletion, or modification.
              * @return the next definition stage.
              */
-            WithCreate withProvisioningState(ContactProfilesPropertiesProvisioningState provisioningState);
+            WithCreate withProvisioningState(ProvisioningState provisioningState);
         }
 
         /**

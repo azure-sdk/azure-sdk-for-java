@@ -17,7 +17,7 @@ public interface Spacecrafts {
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListSpacecrafts API service call as paginated response with {@link PagedIterable}.
+     * @return the response of a Spacecraft list operation as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Spacecraft> list();
 
@@ -32,7 +32,7 @@ public interface Spacecrafts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListSpacecrafts API service call as paginated response with {@link PagedIterable}.
+     * @return the response of a Spacecraft list operation as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Spacecraft> list(String skiptoken, Context context);
 
@@ -43,7 +43,7 @@ public interface Spacecrafts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListSpacecrafts API service call as paginated response with {@link PagedIterable}.
+     * @return the response of a Spacecraft list operation as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Spacecraft> listByResourceGroup(String resourceGroupName);
 
@@ -59,7 +59,7 @@ public interface Spacecrafts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListSpacecrafts API service call as paginated response with {@link PagedIterable}.
+     * @return the response of a Spacecraft list operation as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Spacecraft> listByResourceGroup(String resourceGroupName, String skiptoken, Context context);
 

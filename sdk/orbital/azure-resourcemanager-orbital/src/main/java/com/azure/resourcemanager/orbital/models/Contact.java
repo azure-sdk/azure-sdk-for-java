@@ -46,7 +46,7 @@ public interface Contact {
      * 
      * @return the provisioningState value.
      */
-    ContactsPropertiesProvisioningState provisioningState();
+    ProvisioningState provisioningState();
 
     /**
      * Gets the status property: Status of a contact.
@@ -159,7 +159,7 @@ public interface Contact {
      * 
      * @return the contactProfile value.
      */
-    ContactsPropertiesContactProfile contactProfile();
+    ResourceReference contactProfile();
 
     /**
      * Gets the inner com.azure.resourcemanager.orbital.fluent.models.ContactInner object.
@@ -250,7 +250,7 @@ public interface Contact {
              * @param contactProfile The reference to the contact profile resource.
              * @return the next definition stage.
              */
-            WithCreate withContactProfile(ContactsPropertiesContactProfile contactProfile);
+            WithCreate withContactProfile(ResourceReference contactProfile);
         }
 
         /**
@@ -285,7 +285,7 @@ public interface Contact {
              * @param provisioningState The current state of the resource's creation, deletion, or modification.
              * @return the next definition stage.
              */
-            WithCreate withProvisioningState(ContactsPropertiesProvisioningState provisioningState);
+            WithCreate withProvisioningState(ProvisioningState provisioningState);
         }
     }
 

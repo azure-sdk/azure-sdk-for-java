@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.orbital.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
 /**
@@ -15,23 +16,23 @@ public interface OperationsResults {
      * 
      * @param location The name of Azure region.
      * @param operationId The ID of an ongoing async operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation Result Entity.
-     */
-    OperationResult get(String location, String operationId);
-
-    /**
-     * Returns operation results.
-     * 
-     * @param location The name of Azure region.
-     * @param operationId The ID of an ongoing async operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return operation Result Entity.
      */
-    OperationResult get(String location, String operationId, Context context);
+    Response<OperationResult> getWithResponse(String location, String operationId, Context context);
+
+    /**
+     * Returns operation results.
+     * 
+     * @param location The name of Azure region.
+     * @param operationId The ID of an ongoing async operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return operation Result Entity.
+     */
+    OperationResult get(String location, String operationId);
 }

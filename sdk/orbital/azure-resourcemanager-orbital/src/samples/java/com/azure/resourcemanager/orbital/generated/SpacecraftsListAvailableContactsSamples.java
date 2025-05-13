@@ -5,7 +5,7 @@
 package com.azure.resourcemanager.orbital.generated;
 
 import com.azure.resourcemanager.orbital.models.ContactParameters;
-import com.azure.resourcemanager.orbital.models.ContactParametersContactProfile;
+import com.azure.resourcemanager.orbital.models.ResourceReference;
 import java.time.OffsetDateTime;
 
 /**
@@ -24,7 +24,7 @@ public final class SpacecraftsListAvailableContactsSamples {
     public static void listOfContact(com.azure.resourcemanager.orbital.OrbitalManager manager) {
         manager.spacecrafts()
             .listAvailableContacts("contoso-Rgp", "CONTOSO_SAT",
-                new ContactParameters().withContactProfile(new ContactParametersContactProfile().withId(
+                new ContactParameters().withContactProfile(new ResourceReference().withId(
                     "/subscriptions/c1be1141-a7c9-4aac-9608-3c2e2f1152c3/resourceGroups/contoso-Rgp/providers/Microsoft.Orbital/contactProfiles/CONTOSO-CP"))
                     .withGroundStationName("EASTUS2_0")
                     .withStartTime(OffsetDateTime.parse("2022-11-01T11:30:00Z"))

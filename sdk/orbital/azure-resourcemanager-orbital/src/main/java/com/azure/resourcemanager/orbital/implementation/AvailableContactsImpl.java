@@ -6,7 +6,7 @@ package com.azure.resourcemanager.orbital.implementation;
 
 import com.azure.resourcemanager.orbital.fluent.models.AvailableContactsInner;
 import com.azure.resourcemanager.orbital.models.AvailableContacts;
-import com.azure.resourcemanager.orbital.models.AvailableContactsSpacecraft;
+import com.azure.resourcemanager.orbital.models.ResourceReference;
 import java.time.OffsetDateTime;
 
 public final class AvailableContactsImpl implements AvailableContacts {
@@ -20,7 +20,7 @@ public final class AvailableContactsImpl implements AvailableContacts {
         this.serviceManager = serviceManager;
     }
 
-    public AvailableContactsSpacecraft spacecraft() {
+    public ResourceReference spacecraft() {
         return this.innerModel().spacecraft();
     }
 

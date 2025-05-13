@@ -19,6 +19,6 @@ public final class OperationsResultsGetSamples {
      */
     public static void kustoOperationResultsGet(com.azure.resourcemanager.orbital.OrbitalManager manager) {
         manager.operationsResults()
-            .get("eastus2", "30972f1b-b61d-4fd8-bd34-3dcfa24670f3", com.azure.core.util.Context.NONE);
+            .getWithResponse("eastus2", "30972f1b-b61d-4fd8-bd34-3dcfa24670f3", com.azure.core.util.Context.NONE);
     }
 }

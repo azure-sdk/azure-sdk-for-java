@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.orbital.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,17 +15,17 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Response for the ListContactProfiles API service call.
+ * The response of a ContactProfile list operation.
  */
 @Fluent
 public final class ContactProfileListResult implements JsonSerializable<ContactProfileListResult> {
     /*
-     * A list of contact profile resources in a resource group.
+     * The ContactProfile items on this page
      */
     private List<ContactProfileInner> value;
 
     /*
-     * The URL to get the next set of results.
+     * The link to the next page of items
      */
     private String nextLink;
 
@@ -35,7 +36,7 @@ public final class ContactProfileListResult implements JsonSerializable<ContactP
     }
 
     /**
-     * Get the value property: A list of contact profile resources in a resource group.
+     * Get the value property: The ContactProfile items on this page.
      * 
      * @return the value value.
      */
@@ -44,7 +45,7 @@ public final class ContactProfileListResult implements JsonSerializable<ContactP
     }
 
     /**
-     * Set the value property: A list of contact profile resources in a resource group.
+     * Set the value property: The ContactProfile items on this page.
      * 
      * @param value the value value to set.
      * @return the ContactProfileListResult object itself.
@@ -55,7 +56,7 @@ public final class ContactProfileListResult implements JsonSerializable<ContactP
     }
 
     /**
-     * Get the nextLink property: The URL to get the next set of results.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -64,15 +65,31 @@ public final class ContactProfileListResult implements JsonSerializable<ContactP
     }
 
     /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the ContactProfileListResult object itself.
+     */
+    public ContactProfileListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model ContactProfileListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ContactProfileListResult.class);
 
     /**
      * {@inheritDoc}
@@ -81,6 +98,7 @@ public final class ContactProfileListResult implements JsonSerializable<ContactP
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
         return jsonWriter.writeEndObject();
     }
 
@@ -90,6 +108,7 @@ public final class ContactProfileListResult implements JsonSerializable<ContactP
      * @param jsonReader The JsonReader being read.
      * @return An instance of ContactProfileListResult if the JsonReader was pointing to an instance of it, or null if
      * it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the ContactProfileListResult.
      */
     public static ContactProfileListResult fromJson(JsonReader jsonReader) throws IOException {

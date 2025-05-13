@@ -16,7 +16,7 @@ public interface AvailableContacts {
      * 
      * @return the spacecraft value.
      */
-    AvailableContactsSpacecraft spacecraft();
+    ResourceReference spacecraft();
 
     /**
      * Gets the groundStationName property: Name of Azure Ground Station.

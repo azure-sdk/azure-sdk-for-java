@@ -12,9 +12,9 @@ import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import com.azure.resourcemanager.orbital.models.ContactsPropertiesAntennaConfiguration;
-import com.azure.resourcemanager.orbital.models.ContactsPropertiesContactProfile;
-import com.azure.resourcemanager.orbital.models.ContactsPropertiesProvisioningState;
 import com.azure.resourcemanager.orbital.models.ContactsStatus;
+import com.azure.resourcemanager.orbital.models.ProvisioningState;
+import com.azure.resourcemanager.orbital.models.ResourceReference;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 
@@ -107,7 +107,7 @@ public final class ContactInner extends ProxyResource {
      * 
      * @return the provisioningState value.
      */
-    public ContactsPropertiesProvisioningState provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
     }
 
@@ -117,7 +117,7 @@ public final class ContactInner extends ProxyResource {
      * @param provisioningState the provisioningState value to set.
      * @return the ContactInner object itself.
      */
-    public ContactInner withProvisioningState(ContactsPropertiesProvisioningState provisioningState) {
+    public ContactInner withProvisioningState(ProvisioningState provisioningState) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ContactsProperties();
         }
@@ -307,7 +307,7 @@ public final class ContactInner extends ProxyResource {
      * 
      * @return the contactProfile value.
      */
-    public ContactsPropertiesContactProfile contactProfile() {
+    public ResourceReference contactProfile() {
         return this.innerProperties() == null ? null : this.innerProperties().contactProfile();
     }
 
@@ -317,7 +317,7 @@ public final class ContactInner extends ProxyResource {
      * @param contactProfile the contactProfile value to set.
      * @return the ContactInner object itself.
      */
-    public ContactInner withContactProfile(ContactsPropertiesContactProfile contactProfile) {
+    public ContactInner withContactProfile(ResourceReference contactProfile) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ContactsProperties();
         }

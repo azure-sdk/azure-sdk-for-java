@@ -15,7 +15,7 @@ import com.azure.resourcemanager.orbital.models.AutoTrackingConfiguration;
 import com.azure.resourcemanager.orbital.models.ContactProfileLink;
 import com.azure.resourcemanager.orbital.models.ContactProfileThirdPartyConfiguration;
 import com.azure.resourcemanager.orbital.models.ContactProfilesPropertiesNetworkConfiguration;
-import com.azure.resourcemanager.orbital.models.ContactProfilesPropertiesProvisioningState;
+import com.azure.resourcemanager.orbital.models.ProvisioningState;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +29,7 @@ public final class ContactProfileInner extends Resource {
     /*
      * Properties of the contact profile resource.
      */
-    private ContactProfileProperties innerProperties = new ContactProfileProperties();
+    private ContactProfilesProperties innerProperties = new ContactProfilesProperties();
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -62,7 +62,7 @@ public final class ContactProfileInner extends Resource {
      * 
      * @return the innerProperties value.
      */
-    private ContactProfileProperties innerProperties() {
+    private ContactProfilesProperties innerProperties() {
         return this.innerProperties;
     }
 
@@ -128,7 +128,7 @@ public final class ContactProfileInner extends Resource {
      * 
      * @return the provisioningState value.
      */
-    public ContactProfilesPropertiesProvisioningState provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
     }
 
@@ -138,9 +138,9 @@ public final class ContactProfileInner extends Resource {
      * @param provisioningState the provisioningState value to set.
      * @return the ContactProfileInner object itself.
      */
-    public ContactProfileInner withProvisioningState(ContactProfilesPropertiesProvisioningState provisioningState) {
+    public ContactProfileInner withProvisioningState(ProvisioningState provisioningState) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ContactProfileProperties();
+            this.innerProperties = new ContactProfilesProperties();
         }
         this.innerProperties().withProvisioningState(provisioningState);
         return this;
@@ -165,7 +165,7 @@ public final class ContactProfileInner extends Resource {
      */
     public ContactProfileInner withMinimumViableContactDuration(String minimumViableContactDuration) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ContactProfileProperties();
+            this.innerProperties = new ContactProfilesProperties();
         }
         this.innerProperties().withMinimumViableContactDuration(minimumViableContactDuration);
         return this;
@@ -190,7 +190,7 @@ public final class ContactProfileInner extends Resource {
      */
     public ContactProfileInner withMinimumElevationDegrees(Float minimumElevationDegrees) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ContactProfileProperties();
+            this.innerProperties = new ContactProfilesProperties();
         }
         this.innerProperties().withMinimumElevationDegrees(minimumElevationDegrees);
         return this;
@@ -213,7 +213,7 @@ public final class ContactProfileInner extends Resource {
      */
     public ContactProfileInner withAutoTrackingConfiguration(AutoTrackingConfiguration autoTrackingConfiguration) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ContactProfileProperties();
+            this.innerProperties = new ContactProfilesProperties();
         }
         this.innerProperties().withAutoTrackingConfiguration(autoTrackingConfiguration);
         return this;
@@ -238,7 +238,7 @@ public final class ContactProfileInner extends Resource {
      */
     public ContactProfileInner withEventHubUri(String eventHubUri) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ContactProfileProperties();
+            this.innerProperties = new ContactProfilesProperties();
         }
         this.innerProperties().withEventHubUri(eventHubUri);
         return this;
@@ -262,7 +262,7 @@ public final class ContactProfileInner extends Resource {
     public ContactProfileInner
         withNetworkConfiguration(ContactProfilesPropertiesNetworkConfiguration networkConfiguration) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ContactProfileProperties();
+            this.innerProperties = new ContactProfilesProperties();
         }
         this.innerProperties().withNetworkConfiguration(networkConfiguration);
         return this;
@@ -288,7 +288,7 @@ public final class ContactProfileInner extends Resource {
     public ContactProfileInner
         withThirdPartyConfigurations(List<ContactProfileThirdPartyConfiguration> thirdPartyConfigurations) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ContactProfileProperties();
+            this.innerProperties = new ContactProfilesProperties();
         }
         this.innerProperties().withThirdPartyConfigurations(thirdPartyConfigurations);
         return this;
@@ -311,7 +311,7 @@ public final class ContactProfileInner extends Resource {
      */
     public ContactProfileInner withLinks(List<ContactProfileLink> links) {
         if (this.innerProperties() == null) {
-            this.innerProperties = new ContactProfileProperties();
+            this.innerProperties = new ContactProfilesProperties();
         }
         this.innerProperties().withLinks(links);
         return this;
@@ -374,7 +374,7 @@ public final class ContactProfileInner extends Resource {
                     Map<String, String> tags = reader.readMap(reader1 -> reader1.getString());
                     deserializedContactProfileInner.withTags(tags);
                 } else if ("properties".equals(fieldName)) {
-                    deserializedContactProfileInner.innerProperties = ContactProfileProperties.fromJson(reader);
+                    deserializedContactProfileInner.innerProperties = ContactProfilesProperties.fromJson(reader);
                 } else if ("systemData".equals(fieldName)) {
                     deserializedContactProfileInner.systemData = SystemData.fromJson(reader);
                 } else {

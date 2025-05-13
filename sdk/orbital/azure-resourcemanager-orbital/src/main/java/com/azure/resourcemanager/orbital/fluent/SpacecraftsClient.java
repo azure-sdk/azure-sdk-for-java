@@ -25,7 +25,7 @@ public interface SpacecraftsClient {
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListSpacecrafts API service call as paginated response with {@link PagedIterable}.
+     * @return the response of a Spacecraft list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SpacecraftInner> list();
@@ -41,7 +41,7 @@ public interface SpacecraftsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListSpacecrafts API service call as paginated response with {@link PagedIterable}.
+     * @return the response of a Spacecraft list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SpacecraftInner> list(String skiptoken, Context context);
@@ -53,7 +53,7 @@ public interface SpacecraftsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListSpacecrafts API service call as paginated response with {@link PagedIterable}.
+     * @return the response of a Spacecraft list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SpacecraftInner> listByResourceGroup(String resourceGroupName);
@@ -70,7 +70,7 @@ public interface SpacecraftsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListSpacecrafts API service call as paginated response with {@link PagedIterable}.
+     * @return the response of a Spacecraft list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SpacecraftInner> listByResourceGroup(String resourceGroupName, String skiptoken, Context context);
@@ -165,58 +165,6 @@ public interface SpacecraftsClient {
         Context context);
 
     /**
-     * Deletes a specified spacecraft resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param spacecraftName Spacecraft ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String spacecraftName);
-
-    /**
-     * Deletes a specified spacecraft resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param spacecraftName Spacecraft ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String spacecraftName, Context context);
-
-    /**
-     * Deletes a specified spacecraft resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param spacecraftName Spacecraft ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String spacecraftName);
-
-    /**
-     * Deletes a specified spacecraft resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param spacecraftName Spacecraft ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String spacecraftName, Context context);
-
-    /**
      * Updates the specified spacecraft tags.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -275,6 +223,58 @@ public interface SpacecraftsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     SpacecraftInner updateTags(String resourceGroupName, String spacecraftName, TagsObject parameters, Context context);
+
+    /**
+     * Deletes a specified spacecraft resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param spacecraftName Spacecraft ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String spacecraftName);
+
+    /**
+     * Deletes a specified spacecraft resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param spacecraftName Spacecraft ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String spacecraftName, Context context);
+
+    /**
+     * Deletes a specified spacecraft resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param spacecraftName Spacecraft ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String spacecraftName);
+
+    /**
+     * Deletes a specified spacecraft resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param spacecraftName Spacecraft ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String spacecraftName, Context context);
 
     /**
      * Returns list of available contacts. A contact is available if the spacecraft is visible from the ground station

@@ -13,7 +13,7 @@ import com.azure.resourcemanager.orbital.models.ContactProfile;
 import com.azure.resourcemanager.orbital.models.ContactProfileLink;
 import com.azure.resourcemanager.orbital.models.ContactProfileThirdPartyConfiguration;
 import com.azure.resourcemanager.orbital.models.ContactProfilesPropertiesNetworkConfiguration;
-import com.azure.resourcemanager.orbital.models.ContactProfilesPropertiesProvisioningState;
+import com.azure.resourcemanager.orbital.models.ProvisioningState;
 import com.azure.resourcemanager.orbital.models.TagsObject;
 import java.util.Collections;
 import java.util.List;
@@ -53,7 +53,7 @@ public final class ContactProfileImpl implements ContactProfile, ContactProfile.
         return this.innerModel().systemData();
     }
 
-    public ContactProfilesPropertiesProvisioningState provisioningState() {
+    public ProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
     }
 
@@ -220,7 +220,7 @@ public final class ContactProfileImpl implements ContactProfile, ContactProfile.
         }
     }
 
-    public ContactProfileImpl withProvisioningState(ContactProfilesPropertiesProvisioningState provisioningState) {
+    public ContactProfileImpl withProvisioningState(ProvisioningState provisioningState) {
         this.innerModel().withProvisioningState(provisioningState);
         return this;
     }

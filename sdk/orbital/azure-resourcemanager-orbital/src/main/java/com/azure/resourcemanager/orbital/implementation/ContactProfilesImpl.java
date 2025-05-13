@@ -27,6 +27,28 @@ public final class ContactProfilesImpl implements ContactProfiles {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<ContactProfile> list() {
+        PagedIterable<ContactProfileInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ContactProfileImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ContactProfile> list(String skiptoken, Context context) {
+        PagedIterable<ContactProfileInner> inner = this.serviceClient().list(skiptoken, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ContactProfileImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ContactProfile> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<ContactProfileInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ContactProfileImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<ContactProfile> listByResourceGroup(String resourceGroupName, String skiptoken,
+        Context context) {
+        PagedIterable<ContactProfileInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, skiptoken, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ContactProfileImpl(inner1, this.manager()));
+    }
+
     public Response<ContactProfile> getByResourceGroupWithResponse(String resourceGroupName, String contactProfileName,
         Context context) {
         Response<ContactProfileInner> inner
@@ -54,28 +76,6 @@ public final class ContactProfilesImpl implements ContactProfiles {
 
     public void delete(String resourceGroupName, String contactProfileName, Context context) {
         this.serviceClient().delete(resourceGroupName, contactProfileName, context);
-    }
-
-    public PagedIterable<ContactProfile> list() {
-        PagedIterable<ContactProfileInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ContactProfileImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<ContactProfile> list(String skiptoken, Context context) {
-        PagedIterable<ContactProfileInner> inner = this.serviceClient().list(skiptoken, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ContactProfileImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<ContactProfile> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<ContactProfileInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ContactProfileImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<ContactProfile> listByResourceGroup(String resourceGroupName, String skiptoken,
-        Context context) {
-        PagedIterable<ContactProfileInner> inner
-            = this.serviceClient().listByResourceGroup(resourceGroupName, skiptoken, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ContactProfileImpl(inner1, this.manager()));
     }
 
     public ContactProfile getById(String id) {
