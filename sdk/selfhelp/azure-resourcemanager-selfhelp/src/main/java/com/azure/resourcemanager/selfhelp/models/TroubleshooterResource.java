@@ -101,8 +101,7 @@ public interface TroubleshooterResource {
             /**
              * Specifies scope.
              * 
-             * @param scope scope = resourceUri of affected resource.&lt;br/&gt; For example:
-             * /subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read.
+             * @param scope The fully qualified Azure Resource manager identifier of the resource.
              * @return the next definition stage.
              */
             WithCreate withExistingScope(String scope);
@@ -182,10 +181,9 @@ public interface TroubleshooterResource {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
-    TroubleshootersContinueMethodResponse continueMethodWithResponse(ContinueRequestBody continueRequestBody,
-        Context context);
+    Response<Void> continueMethodWithResponse(ContinueRequestBody continueRequestBody, Context context);
 
     /**
      * Uses ‘stepId’ and ‘responses’ as the trigger to continue the troubleshooting steps for the respective
@@ -205,9 +203,9 @@ public interface TroubleshooterResource {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
-    TroubleshootersEndResponse endWithResponse(Context context);
+    Response<Void> endWithResponse(Context context);
 
     /**
      * Ends the troubleshooter action.
@@ -226,7 +224,7 @@ public interface TroubleshooterResource {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return troubleshooter restart response.
+     * @return troubleshooter restart response along with {@link Response}.
      */
     Response<RestartTroubleshooterResponse> restartWithResponse(Context context);
 

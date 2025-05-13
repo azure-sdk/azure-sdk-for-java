@@ -39,8 +39,8 @@ public final class DiscoverySolutionNlpsImpl implements DiscoverySolutionNlps {
         }
     }
 
-    public DiscoveryNlpResponse discoverSolutions() {
-        DiscoveryNlpResponseInner inner = this.serviceClient().discoverSolutions();
+    public DiscoveryNlpResponse discoverSolutions(DiscoveryNlpRequest discoverSolutionRequest) {
+        DiscoveryNlpResponseInner inner = this.serviceClient().discoverSolutions(discoverSolutionRequest);
         if (inner != null) {
             return new DiscoveryNlpResponseImpl(inner, this.manager());
         } else {
@@ -48,10 +48,10 @@ public final class DiscoverySolutionNlpsImpl implements DiscoverySolutionNlps {
         }
     }
 
-    public Response<DiscoveryNlpResponse> discoverSolutionsBySubscriptionWithResponse(String subscriptionId,
-        DiscoveryNlpRequest discoverSolutionRequest, Context context) {
-        Response<DiscoveryNlpResponseInner> inner = this.serviceClient()
-            .discoverSolutionsBySubscriptionWithResponse(subscriptionId, discoverSolutionRequest, context);
+    public Response<DiscoveryNlpResponse>
+        discoverSolutionsBySubscriptionWithResponse(DiscoveryNlpRequest discoverSolutionRequest, Context context) {
+        Response<DiscoveryNlpResponseInner> inner
+            = this.serviceClient().discoverSolutionsBySubscriptionWithResponse(discoverSolutionRequest, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new DiscoveryNlpResponseImpl(inner.getValue(), this.manager()));
@@ -60,8 +60,8 @@ public final class DiscoverySolutionNlpsImpl implements DiscoverySolutionNlps {
         }
     }
 
-    public DiscoveryNlpResponse discoverSolutionsBySubscription(String subscriptionId) {
-        DiscoveryNlpResponseInner inner = this.serviceClient().discoverSolutionsBySubscription(subscriptionId);
+    public DiscoveryNlpResponse discoverSolutionsBySubscription(DiscoveryNlpRequest discoverSolutionRequest) {
+        DiscoveryNlpResponseInner inner = this.serviceClient().discoverSolutionsBySubscription(discoverSolutionRequest);
         if (inner != null) {
             return new DiscoveryNlpResponseImpl(inner, this.manager());
         } else {

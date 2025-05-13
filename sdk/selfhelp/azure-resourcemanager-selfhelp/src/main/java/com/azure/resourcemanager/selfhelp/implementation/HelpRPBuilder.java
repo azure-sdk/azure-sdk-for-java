@@ -20,6 +20,22 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = { HelpRPImpl.class })
 public final class HelpRPBuilder {
     /*
+     * The ID of the target subscription. The value must be an UUID.
+     */
+    private String subscriptionId;
+
+    /**
+     * Sets The ID of the target subscription. The value must be an UUID.
+     * 
+     * @param subscriptionId the subscriptionId value.
+     * @return the HelpRPBuilder.
+     */
+    public HelpRPBuilder subscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
+        return this;
+    }
+
+    /*
      * server parameter
      */
     private String endpoint;
@@ -116,7 +132,7 @@ public final class HelpRPBuilder {
             ? serializerAdapter
             : SerializerFactory.createDefaultManagementSerializerAdapter();
         HelpRPImpl client = new HelpRPImpl(localPipeline, localSerializerAdapter, localDefaultPollInterval,
-            localEnvironment, localEndpoint);
+            localEnvironment, this.subscriptionId, localEndpoint);
         return client;
     }
 }

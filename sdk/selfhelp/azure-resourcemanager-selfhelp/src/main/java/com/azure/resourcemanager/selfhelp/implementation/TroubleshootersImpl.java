@@ -15,9 +15,6 @@ import com.azure.resourcemanager.selfhelp.models.ContinueRequestBody;
 import com.azure.resourcemanager.selfhelp.models.RestartTroubleshooterResponse;
 import com.azure.resourcemanager.selfhelp.models.TroubleshooterResource;
 import com.azure.resourcemanager.selfhelp.models.Troubleshooters;
-import com.azure.resourcemanager.selfhelp.models.TroubleshootersContinueMethodResponse;
-import com.azure.resourcemanager.selfhelp.models.TroubleshootersEndResponse;
-import com.azure.resourcemanager.selfhelp.models.TroubleshootersRestartResponse;
 
 public final class TroubleshootersImpl implements Troubleshooters {
     private static final ClientLogger LOGGER = new ClientLogger(TroubleshootersImpl.class);
@@ -52,7 +49,7 @@ public final class TroubleshootersImpl implements Troubleshooters {
         }
     }
 
-    public TroubleshootersContinueMethodResponse continueMethodWithResponse(String scope, String troubleshooterName,
+    public Response<Void> continueMethodWithResponse(String scope, String troubleshooterName,
         ContinueRequestBody continueRequestBody, Context context) {
         return this.serviceClient().continueMethodWithResponse(scope, troubleshooterName, continueRequestBody, context);
     }
@@ -61,7 +58,7 @@ public final class TroubleshootersImpl implements Troubleshooters {
         this.serviceClient().continueMethod(scope, troubleshooterName);
     }
 
-    public TroubleshootersEndResponse endWithResponse(String scope, String troubleshooterName, Context context) {
+    public Response<Void> endWithResponse(String scope, String troubleshooterName, Context context) {
         return this.serviceClient().endWithResponse(scope, troubleshooterName, context);
     }
 
@@ -71,7 +68,7 @@ public final class TroubleshootersImpl implements Troubleshooters {
 
     public Response<RestartTroubleshooterResponse> restartWithResponse(String scope, String troubleshooterName,
         Context context) {
-        TroubleshootersRestartResponse inner
+        Response<RestartTroubleshooterResponseInner> inner
             = this.serviceClient().restartWithResponse(scope, troubleshooterName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),

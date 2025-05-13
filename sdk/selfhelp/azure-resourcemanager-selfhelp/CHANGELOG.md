@@ -1,14 +1,217 @@
 # Release History
 
-## 1.1.0-beta.6 (Unreleased)
+## 1.0.0-beta.1 (2025-05-09)
 
-### Features Added
+- Azure Resource Manager Self Help client library for Java. This package contains Microsoft Azure SDK for Self Help Management SDK. Help RP provider. Package tag package-2024-03-01-preview. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.ProvisioningState` was removed
 
-### Other Changes
+#### `models.Diagnostics` was modified
+
+* `checkNameAvailability(java.lang.String)` was removed
+* `checkNameAvailabilityWithResponse(java.lang.String,models.CheckNameAvailabilityRequest,com.azure.core.util.Context)` was removed
+
+#### `models.SolutionMetadataResource` was modified
+
+* `requiredParameterSets()` was removed
+* `solutionId()` was removed
+* `solutionType()` was removed
+* `description()` was removed
+
+#### `models.DiagnosticResource` was modified
+
+* `models.ProvisioningState provisioningState()` -> `models.DiagnosticProvisioningState provisioningState()`
+
+#### `models.DiscoverySolutions` was modified
+
+* `list(java.lang.String)` was removed
+* `list(java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.SolutionResourceSelfHelp` was added
+
+* `models.DiscoveryNlpRequest` was added
+
+* `models.TroubleshooterProvisioningState` was added
+
+* `models.Type` was added
+
+* `models.ValidationScope` was added
+
+* `models.AggregationType` was added
+
+* `models.SimplifiedSolutionsResource$Definition` was added
+
+* `models.TroubleshooterResource` was added
+
+* `models.AutomatedCheckResultType` was added
+
+* `models.MetricsBasedChart` was added
+
+* `models.TriggerCriterion` was added
+
+* `models.TroubleshooterResource$DefinitionStages` was added
+
+* `models.Confidence` was added
+
+* `models.SolutionMetadataProperties` was added
+
+* `models.DiscoveryNlpResponse` was added
+
+* `models.ResponseValidationProperties` was added
+
+* `models.SolutionResource$Update` was added
+
+* `models.SolutionWarmUpRequestBody` was added
+
+* `models.Video` was added
+
+* `models.StepInput` was added
+
+* `models.VideoGroup` was added
+
+* `models.SolutionOperations` was added
+
+* `models.SolutionResource$UpdateStages` was added
+
+* `models.ResponseOption` was added
+
+* `models.ClassificationService` was added
+
+* `models.ContinueRequestBody` was added
+
+* `models.QuestionType` was added
+
+* `models.SolutionPatchRequestBody` was added
+
+* `models.Section` was added
+
+* `models.SolutionResource` was added
+
+* `models.DiagnosticProvisioningState` was added
+
+* `models.SectionSelfHelp` was added
+
+* `models.ExecutionStatus` was added
+
+* `models.QuestionContentType` was added
+
+* `models.SimplifiedSolutionsResource$DefinitionStages` was added
+
+* `models.SolutionSelfHelps` was added
+
+* `models.AutomatedCheckResult` was added
+
+* `models.SolutionResource$Definition` was added
+
+* `models.DiscoverySolutionNlps` was added
+
+* `models.SolutionNlpMetadataResource` was added
+
+* `models.Troubleshooters` was added
+
+* `models.Name` was added
+
+* `models.CheckNameAvailabilities` was added
+
+* `models.FilterGroup` was added
+
+* `models.SolutionsDiagnostic` was added
+
+* `models.SolutionProvisioningState` was added
+
+* `models.SimplifiedSolutions` was added
+
+* `models.SolutionType` was added
+
+* `models.WebResult` was added
+
+* `models.SolutionResource$DefinitionStages` was added
+
+* `models.ReplacementMapsSelfHelp` was added
+
+* `models.ResultType` was added
+
+* `models.SolutionsTroubleshooters` was added
+
+* `models.ReplacementMaps` was added
+
+* `models.SearchResult` was added
+
+* `models.TroubleshooterResponse` was added
+
+* `models.Step` was added
+
+* `models.TroubleshooterResource$Definition` was added
+
+* `models.VideoGroupVideo` was added
+
+* `models.RestartTroubleshooterResponse` was added
+
+* `models.SimplifiedSolutionsResource` was added
+
+* `models.Filter` was added
+
+#### `models.SolutionMetadataResource` was modified
+
+* `solutions()` was added
+
+#### `models.OperationDisplay` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.DiagnosticInvocation` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.Insight` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.Error` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DiscoverySolutions` was modified
+
+* `list(java.lang.String,java.lang.String,com.azure.core.util.Context)` was added
+* `list()` was added
+
+#### `models.Diagnostic` was modified
+
+* `fromJson(com.azure.json.JsonReader)` was added
+* `toJson(com.azure.json.JsonWriter)` was added
+
+#### `models.DiscoveryResponse` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.CheckNameAvailabilityRequest` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `models.OperationListResult` was modified
+
+* `toJson(com.azure.json.JsonWriter)` was added
+* `fromJson(com.azure.json.JsonReader)` was added
+
+#### `SelfHelpManager` was modified
+
+* `troubleshooters()` was added
+* `checkNameAvailabilities()` was added
+* `discoverySolutionNlps()` was added
+* `simplifiedSolutions()` was added
+* `solutionOperations()` was added
+* `solutionSelfHelps()` was added
 
 ## 1.1.0-beta.5 (2024-06-21)
 

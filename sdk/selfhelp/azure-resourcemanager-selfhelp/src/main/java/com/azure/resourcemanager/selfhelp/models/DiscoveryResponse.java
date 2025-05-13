@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.selfhelp.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -19,12 +20,12 @@ import java.util.List;
 @Fluent
 public final class DiscoveryResponse implements JsonSerializable<DiscoveryResponse> {
     /*
-     * The list of metadata.
+     * The SolutionMetadataResource items on this page
      */
     private List<SolutionMetadataResourceInner> value;
 
     /*
-     * The link used to get the next page of solution metadata.
+     * The link to the next page of items
      */
     private String nextLink;
 
@@ -35,7 +36,7 @@ public final class DiscoveryResponse implements JsonSerializable<DiscoveryRespon
     }
 
     /**
-     * Get the value property: The list of metadata.
+     * Get the value property: The SolutionMetadataResource items on this page.
      * 
      * @return the value value.
      */
@@ -44,7 +45,7 @@ public final class DiscoveryResponse implements JsonSerializable<DiscoveryRespon
     }
 
     /**
-     * Set the value property: The list of metadata.
+     * Set the value property: The SolutionMetadataResource items on this page.
      * 
      * @param value the value value to set.
      * @return the DiscoveryResponse object itself.
@@ -55,7 +56,7 @@ public final class DiscoveryResponse implements JsonSerializable<DiscoveryRespon
     }
 
     /**
-     * Get the nextLink property: The link used to get the next page of solution metadata.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -64,7 +65,7 @@ public final class DiscoveryResponse implements JsonSerializable<DiscoveryRespon
     }
 
     /**
-     * Set the nextLink property: The link used to get the next page of solution metadata.
+     * Set the nextLink property: The link to the next page of items.
      * 
      * @param nextLink the nextLink value to set.
      * @return the DiscoveryResponse object itself.
@@ -80,10 +81,15 @@ public final class DiscoveryResponse implements JsonSerializable<DiscoveryRespon
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model DiscoveryResponse"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DiscoveryResponse.class);
 
     /**
      * {@inheritDoc}
@@ -102,6 +108,7 @@ public final class DiscoveryResponse implements JsonSerializable<DiscoveryRespon
      * @param jsonReader The JsonReader being read.
      * @return An instance of DiscoveryResponse if the JsonReader was pointing to an instance of it, or null if it was
      * pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the DiscoveryResponse.
      */
     public static DiscoveryResponse fromJson(JsonReader jsonReader) throws IOException {
