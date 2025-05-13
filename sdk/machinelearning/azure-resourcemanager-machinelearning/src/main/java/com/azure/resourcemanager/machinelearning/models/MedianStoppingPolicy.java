@@ -40,8 +40,8 @@ public final class MedianStoppingPolicy extends EarlyTerminationPolicy {
      * {@inheritDoc}
      */
     @Override
-    public MedianStoppingPolicy withEvaluationInterval(Integer evaluationInterval) {
-        super.withEvaluationInterval(evaluationInterval);
+    public MedianStoppingPolicy withDelayEvaluation(Integer delayEvaluation) {
+        super.withDelayEvaluation(delayEvaluation);
         return this;
     }
 
@@ -49,8 +49,8 @@ public final class MedianStoppingPolicy extends EarlyTerminationPolicy {
      * {@inheritDoc}
      */
     @Override
-    public MedianStoppingPolicy withDelayEvaluation(Integer delayEvaluation) {
-        super.withDelayEvaluation(delayEvaluation);
+    public MedianStoppingPolicy withEvaluationInterval(Integer evaluationInterval) {
+        super.withEvaluationInterval(evaluationInterval);
         return this;
     }
 
@@ -61,7 +61,6 @@ public final class MedianStoppingPolicy extends EarlyTerminationPolicy {
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -70,8 +69,8 @@ public final class MedianStoppingPolicy extends EarlyTerminationPolicy {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
-        jsonWriter.writeNumberField("evaluationInterval", evaluationInterval());
         jsonWriter.writeNumberField("delayEvaluation", delayEvaluation());
+        jsonWriter.writeNumberField("evaluationInterval", evaluationInterval());
         jsonWriter.writeStringField("policyType", this.policyType == null ? null : this.policyType.toString());
         return jsonWriter.writeEndObject();
     }
@@ -91,10 +90,10 @@ public final class MedianStoppingPolicy extends EarlyTerminationPolicy {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
 
-                if ("evaluationInterval".equals(fieldName)) {
-                    deserializedMedianStoppingPolicy.withEvaluationInterval(reader.getNullable(JsonReader::getInt));
-                } else if ("delayEvaluation".equals(fieldName)) {
+                if ("delayEvaluation".equals(fieldName)) {
                     deserializedMedianStoppingPolicy.withDelayEvaluation(reader.getNullable(JsonReader::getInt));
+                } else if ("evaluationInterval".equals(fieldName)) {
+                    deserializedMedianStoppingPolicy.withEvaluationInterval(reader.getNullable(JsonReader::getInt));
                 } else if ("policyType".equals(fieldName)) {
                     deserializedMedianStoppingPolicy.policyType
                         = EarlyTerminationPolicyType.fromString(reader.getString());

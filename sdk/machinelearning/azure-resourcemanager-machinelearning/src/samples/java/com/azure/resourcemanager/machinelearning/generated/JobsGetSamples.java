@@ -10,7 +10,7 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class JobsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Job/CommandJob/get.json
      */
     /**
@@ -24,7 +24,21 @@ public final class JobsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
+     * examples/Job/DistillationJob/get.json
+     */
+    /**
+     * Sample code: Get Distillation Job.
+     * 
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void getDistillationJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.jobs().getWithResponse("test-rg", "my-aml-workspace", "string", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Job/AutoMLJob/get.json
      */
     /**
@@ -38,7 +52,7 @@ public final class JobsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Job/SweepJob/get.json
      */
     /**
@@ -52,7 +66,7 @@ public final class JobsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Job/PipelineJob/get.json
      */
     /**
@@ -61,6 +75,20 @@ public final class JobsGetSamples {
      * @param manager Entry point to MachineLearningManager.
      */
     public static void getPipelineJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.jobs().getWithResponse("test-rg", "my-aml-workspace", "string", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
+     * examples/Job/FineTuningJob/get.json
+     */
+    /**
+     * Sample code: Get FineTuning Job.
+     * 
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void getFineTuningJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.jobs().getWithResponse("test-rg", "my-aml-workspace", "string", com.azure.core.util.Context.NONE);
     }
 }

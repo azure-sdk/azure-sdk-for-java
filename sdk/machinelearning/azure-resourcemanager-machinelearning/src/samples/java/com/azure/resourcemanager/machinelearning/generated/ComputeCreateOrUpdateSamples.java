@@ -12,6 +12,7 @@ import com.azure.resourcemanager.machinelearning.models.ApplicationSharingPolicy
 import com.azure.resourcemanager.machinelearning.models.AssignedUser;
 import com.azure.resourcemanager.machinelearning.models.ComputeInstance;
 import com.azure.resourcemanager.machinelearning.models.ComputeInstanceAuthorizationType;
+import com.azure.resourcemanager.machinelearning.models.ComputeInstanceAutologgerSettings;
 import com.azure.resourcemanager.machinelearning.models.ComputeInstanceProperties;
 import com.azure.resourcemanager.machinelearning.models.ComputeInstanceSshSettings;
 import com.azure.resourcemanager.machinelearning.models.ComputePowerAction;
@@ -29,8 +30,10 @@ import com.azure.resourcemanager.machinelearning.models.Image;
 import com.azure.resourcemanager.machinelearning.models.ImageType;
 import com.azure.resourcemanager.machinelearning.models.InstanceTypeSchema;
 import com.azure.resourcemanager.machinelearning.models.InstanceTypeSchemaResources;
+import com.azure.resourcemanager.machinelearning.models.JupyterKernelConfig;
 import com.azure.resourcemanager.machinelearning.models.Kubernetes;
 import com.azure.resourcemanager.machinelearning.models.KubernetesProperties;
+import com.azure.resourcemanager.machinelearning.models.MlflowAutologger;
 import com.azure.resourcemanager.machinelearning.models.OsType;
 import com.azure.resourcemanager.machinelearning.models.PersonalComputeInstanceSettings;
 import com.azure.resourcemanager.machinelearning.models.Protocol;
@@ -54,7 +57,7 @@ import java.util.Map;
 public final class ComputeCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Compute/createOrUpdate/BasicAKSCompute.json
      */
     /**
@@ -73,7 +76,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Compute/createOrUpdate/AKSCompute.json
      */
     /**
@@ -95,7 +98,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Compute/createOrUpdate/KubernetesCompute.json
      */
     /**
@@ -123,7 +126,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Compute/createOrUpdate/ComputeInstanceWithSchedules.json
      */
     /**
@@ -157,7 +160,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Compute/createOrUpdate/BasicAmlCompute.json
      */
     /**
@@ -186,7 +189,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Compute/createOrUpdate/ComputeInstance.json
      */
     /**
@@ -204,26 +207,35 @@ public final class ComputeCreateOrUpdateSamples {
                 new ComputeInstance().withProperties(new ComputeInstanceProperties().withVmSize("STANDARD_NC6")
                     .withSubnet(new ResourceId().withId("test-subnet-resource-id"))
                     .withApplicationSharingPolicy(ApplicationSharingPolicy.PERSONAL)
+                    .withAutologgerSettings(
+                        new ComputeInstanceAutologgerSettings().withMlflowAutologger(MlflowAutologger.ENABLED))
                     .withSshSettings(new ComputeInstanceSshSettings().withSshPublicAccess(SshPublicAccess.DISABLED))
-                    .withCustomServices(Arrays.asList(new CustomService().withName("rstudio")
+                    .withCustomServices(Arrays.asList(new CustomService().withName("rstudio-workbench")
                         .withImage(new Image().withType(ImageType.DOCKER)
-                            .withReference("ghcr.io/azure/rocker-rstudio-ml-verse:latest")
+                            .withReference("ghcr.io/azure/rstudio-workbench:latest")
                             .withAdditionalProperties(mapOf()))
-                        .withEnvironmentVariables(mapOf("test_variable",
+                        .withEnvironmentVariables(mapOf("RSP_LICENSE",
                             new EnvironmentVariable().withType(EnvironmentVariableType.LOCAL)
-                                .withValue("test_value")
+                                .withValue("XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX")
                                 .withAdditionalProperties(mapOf())))
                         .withDocker(new Docker().withPrivileged(true).withAdditionalProperties(mapOf()))
                         .withEndpoints(Arrays.asList(new Endpoint().withProtocol(Protocol.HTTP)
                             .withName("connect")
                             .withTarget(8787)
-                            .withPublished(8787)))
+                            .withPublished(4444)))
                         .withVolumes(Arrays.asList(new VolumeDefinition().withType(VolumeDefinitionType.BIND)
-                            .withReadOnly(false)
-                            .withSource("/home/azureuser/cloudfiles")
-                            .withTarget("/home/azureuser/cloudfiles")))
+                            .withReadOnly(true)
+                            .withSource("/mnt/azureuser/")
+                            .withTarget("/home/testuser/")))
+                        .withKernel(new JupyterKernelConfig().withArgv(Arrays.asList("option1", "option2", "option3"))
+                            .withDisplayName("TestKernel")
+                            .withLanguage("python"))
                         .withAdditionalProperties(mapOf())))
                     .withComputeInstanceAuthorizationType(ComputeInstanceAuthorizationType.PERSONAL)
+                    .withEnableOSPatching(true)
+                    .withEnableRootAccess(true)
+                    .withEnableSso(true)
+                    .withReleaseQuotaOnStop(true)
                     .withPersonalComputeInstanceSettings(new PersonalComputeInstanceSettings()
                         .withAssignedUser(new AssignedUser().withObjectId("00000000-0000-0000-0000-000000000000")
                             .withTenantId("00000000-0000-0000-0000-000000000000")))))
@@ -232,7 +244,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Compute/createOrUpdate/ComputeInstanceMinimal.json
      */
     /**
@@ -253,7 +265,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Compute/createOrUpdate/AmlCompute.json
      */
     /**
@@ -275,7 +287,7 @@ public final class ComputeCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Compute/createOrUpdate/BasicDataFactoryCompute.json
      */
     /**

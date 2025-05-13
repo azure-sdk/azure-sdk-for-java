@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearning.fluent.FeaturesClient;
 import com.azure.resourcemanager.machinelearning.fluent.models.FeatureInner;
 import com.azure.resourcemanager.machinelearning.models.FeatureResourceArmPaginatedResult;
@@ -77,6 +78,20 @@ public final class FeaturesClientImpl implements FeaturesClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/featuresets/{featuresetName}/versions/{featuresetVersion}/features")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<FeatureResourceArmPaginatedResult> listSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("featuresetName") String featuresetName,
+            @PathParam("featuresetVersion") String featuresetVersion, @QueryParam("api-version") String apiVersion,
+            @QueryParam("$skip") String skip, @QueryParam("tags") String tags,
+            @QueryParam("featureName") String featureName, @QueryParam("description") String description,
+            @QueryParam("listViewType") ListViewType listViewType, @QueryParam("pageSize") Integer pageSize,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/featuresets/{featuresetName}/versions/{featuresetVersion}/features/{featureName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -88,10 +103,29 @@ public final class FeaturesClientImpl implements FeaturesClient {
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/featuresets/{featuresetName}/versions/{featuresetVersion}/features/{featureName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<FeatureInner> getSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("featuresetName") String featuresetName,
+            @PathParam("featuresetVersion") String featuresetVersion, @PathParam("featureName") String featureName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FeatureResourceArmPaginatedResult>> listNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<FeatureResourceArmPaginatedResult> listNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -166,63 +200,6 @@ public final class FeaturesClientImpl implements FeaturesClient {
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      * including/excluding (for example) archived entities.
      * @param pageSize Page size.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paginated list of Feature entities along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FeatureInner>> listSinglePageAsync(String resourceGroupName, String workspaceName,
-        String featuresetName, String featuresetVersion, String skip, String tags, String featureName,
-        String description, ListViewType listViewType, Integer pageSize, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (featuresetName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter featuresetName is required and cannot be null."));
-        }
-        if (featuresetVersion == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter featuresetVersion is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workspaceName,
-                featuresetName, featuresetVersion, this.client.getApiVersion(), skip, tags, featureName, description,
-                listViewType, pageSize, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * List Features.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param featuresetName Featureset name. This is case-sensitive.
-     * @param featuresetVersion Featureset Version identifier. This is case-sensitive.
-     * @param skip Continuation token for pagination.
-     * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
-     * @param featureName feature name.
-     * @param description Description of the featureset.
-     * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
-     * including/excluding (for example) archived entities.
-     * @param pageSize Page size.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -277,20 +254,106 @@ public final class FeaturesClientImpl implements FeaturesClient {
      * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
      * including/excluding (for example) archived entities.
      * @param pageSize Page size.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a paginated list of Feature entities along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<FeatureInner> listSinglePage(String resourceGroupName, String workspaceName,
+        String featuresetName, String featuresetVersion, String skip, String tags, String featureName,
+        String description, ListViewType listViewType, Integer pageSize) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (featuresetName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter featuresetName is required and cannot be null."));
+        }
+        if (featuresetVersion == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter featuresetVersion is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<FeatureResourceArmPaginatedResult> res
+            = service.listSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                workspaceName, featuresetName, featuresetVersion, this.client.getApiVersion(), skip, tags, featureName,
+                description, listViewType, pageSize, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * List Features.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param featuresetName Featureset name. This is case-sensitive.
+     * @param featuresetVersion Featureset Version identifier. This is case-sensitive.
+     * @param skip Continuation token for pagination.
+     * @param tags Comma-separated list of tag names (and optionally values). Example: tag1,tag2=value2.
+     * @param featureName feature name.
+     * @param description Description of the featureset.
+     * @param listViewType [ListViewType.ActiveOnly, ListViewType.ArchivedOnly, ListViewType.All]View type for
+     * including/excluding (for example) archived entities.
+     * @param pageSize Page size.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paginated list of Feature entities as paginated response with {@link PagedFlux}.
+     * @return a paginated list of Feature entities along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<FeatureInner> listAsync(String resourceGroupName, String workspaceName, String featuresetName,
-        String featuresetVersion, String skip, String tags, String featureName, String description,
-        ListViewType listViewType, Integer pageSize, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, workspaceName, featuresetName, featuresetVersion, skip, tags,
-                featureName, description, listViewType, pageSize, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<FeatureInner> listSinglePage(String resourceGroupName, String workspaceName,
+        String featuresetName, String featuresetVersion, String skip, String tags, String featureName,
+        String description, ListViewType listViewType, Integer pageSize, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (featuresetName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter featuresetName is required and cannot be null."));
+        }
+        if (featuresetVersion == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter featuresetVersion is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<FeatureResourceArmPaginatedResult> res = service.listSync(this.client.getEndpoint(),
+            this.client.getSubscriptionId(), resourceGroupName, workspaceName, featuresetName, featuresetVersion,
+            this.client.getApiVersion(), skip, tags, featureName, description, listViewType, pageSize, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -314,8 +377,9 @@ public final class FeaturesClientImpl implements FeaturesClient {
         final String description = null;
         final ListViewType listViewType = null;
         final Integer pageSize = null;
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, featuresetName, featuresetVersion, skip,
-            tags, featureName, description, listViewType, pageSize));
+        return new PagedIterable<>(() -> listSinglePage(resourceGroupName, workspaceName, featuresetName,
+            featuresetVersion, skip, tags, featureName, description, listViewType, pageSize),
+            nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -342,8 +406,10 @@ public final class FeaturesClientImpl implements FeaturesClient {
     public PagedIterable<FeatureInner> list(String resourceGroupName, String workspaceName, String featuresetName,
         String featuresetVersion, String skip, String tags, String featureName, String description,
         ListViewType listViewType, Integer pageSize, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, workspaceName, featuresetName, featuresetVersion, skip,
-            tags, featureName, description, listViewType, pageSize, context));
+        return new PagedIterable<>(
+            () -> listSinglePage(resourceGroupName, workspaceName, featuresetName, featuresetVersion, skip, tags,
+                featureName, description, listViewType, pageSize, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -403,54 +469,6 @@ public final class FeaturesClientImpl implements FeaturesClient {
      * @param featuresetName Feature set name. This is case-sensitive.
      * @param featuresetVersion Feature set version identifier. This is case-sensitive.
      * @param featureName Feature Name. This is case-sensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return feature along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FeatureInner>> getWithResponseAsync(String resourceGroupName, String workspaceName,
-        String featuresetName, String featuresetVersion, String featureName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (featuresetName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter featuresetName is required and cannot be null."));
-        }
-        if (featuresetVersion == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter featuresetVersion is required and cannot be null."));
-        }
-        if (featureName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter featureName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, workspaceName,
-            featuresetName, featuresetVersion, featureName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Get feature.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param featuresetName Feature set name. This is case-sensitive.
-     * @param featuresetVersion Feature set version identifier. This is case-sensitive.
-     * @param featureName Feature Name. This is case-sensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -480,8 +498,40 @@ public final class FeaturesClientImpl implements FeaturesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<FeatureInner> getWithResponse(String resourceGroupName, String workspaceName, String featuresetName,
         String featuresetVersion, String featureName, Context context) {
-        return getWithResponseAsync(resourceGroupName, workspaceName, featuresetName, featuresetVersion, featureName,
-            context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (featuresetName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter featuresetName is required and cannot be null."));
+        }
+        if (featuresetVersion == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter featuresetVersion is required and cannot be null."));
+        }
+        if (featureName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter featureName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, featuresetName, featuresetVersion, featureName, this.client.getApiVersion(), accept,
+            context);
     }
 
     /**
@@ -534,26 +584,56 @@ public final class FeaturesClientImpl implements FeaturesClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a paginated list of Feature entities along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<FeatureInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<FeatureResourceArmPaginatedResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paginated list of Feature entities along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a paginated list of Feature entities along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<FeatureInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<FeatureInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<FeatureResourceArmPaginatedResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(FeaturesClientImpl.class);
 }

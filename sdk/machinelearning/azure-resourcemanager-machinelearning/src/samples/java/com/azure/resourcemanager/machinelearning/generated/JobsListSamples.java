@@ -4,13 +4,15 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
+import com.azure.resourcemanager.machinelearning.models.ListViewType;
+
 /**
  * Samples for Jobs List.
  */
 public final class JobsListSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Job/CommandJob/list.json
      */
     /**
@@ -26,7 +28,7 @@ public final class JobsListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Job/PipelineJob/list.json
      */
     /**
@@ -42,7 +44,23 @@ public final class JobsListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
+     * examples/Job/FineTuningJob/list.json
+     */
+    /**
+     * Sample code: List FineTuning Job.
+     * 
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void listFineTuningJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.jobs()
+            .list("test-rg", "my-aml-workspace", null, "string", "string", ListViewType.ALL, null,
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Job/SweepJob/list.json
      */
     /**
@@ -58,7 +76,7 @@ public final class JobsListSamples {
 
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/Job/AutoMLJob/list.json
      */
     /**
@@ -69,5 +87,21 @@ public final class JobsListSamples {
     public static void listAutoMLJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.jobs()
             .list("test-rg", "my-aml-workspace", null, null, null, null, null, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
+     * examples/Job/DistillationJob/list.json
+     */
+    /**
+     * Sample code: List Distillation Job.
+     * 
+     * @param manager Entry point to MachineLearningManager.
+     */
+    public static void listDistillationJob(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.jobs()
+            .list("test-rg", "my-aml-workspace", null, "string", "string", ListViewType.ALL, null,
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -22,6 +22,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearning.fluent.RegistryDataReferencesClient;
 import com.azure.resourcemanager.machinelearning.fluent.models.GetBlobReferenceSasResponseDtoInner;
 import com.azure.resourcemanager.machinelearning.models.GetBlobReferenceSasRequestDto;
@@ -64,6 +65,18 @@ public final class RegistryDataReferencesClientImpl implements RegistryDataRefer
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<GetBlobReferenceSasResponseDtoInner>> getBlobReferenceSas(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("registryName") String registryName,
+            @PathParam("name") String name, @PathParam("version") String version,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") GetBlobReferenceSasRequestDto body, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/registries/{registryName}/datareferences/{name}/versions/{version}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<GetBlobReferenceSasResponseDtoInner> getBlobReferenceSasSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("registryName") String registryName,
             @PathParam("name") String name, @PathParam("version") String version,
@@ -131,56 +144,6 @@ public final class RegistryDataReferencesClientImpl implements RegistryDataRefer
      * @param name Data reference name.
      * @param version Version identifier.
      * @param body Asset id and blob uri.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return blob reference SAS Uri along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<GetBlobReferenceSasResponseDtoInner>> getBlobReferenceSasWithResponseAsync(
-        String resourceGroupName, String registryName, String name, String version, GetBlobReferenceSasRequestDto body,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (registryName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter registryName is required and cannot be null."));
-        }
-        if (name == null) {
-            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
-        }
-        if (version == null) {
-            return Mono.error(new IllegalArgumentException("Parameter version is required and cannot be null."));
-        }
-        if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
-        } else {
-            body.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getBlobReferenceSas(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            resourceGroupName, registryName, name, version, this.client.getApiVersion(), body, accept, context);
-    }
-
-    /**
-     * Get blob reference SAS Uri.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param registryName Name of Azure Machine Learning registry. This is case-insensitive.
-     * @param name Data reference name.
-     * @param version Version identifier.
-     * @param body Asset id and blob uri.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -210,8 +173,39 @@ public final class RegistryDataReferencesClientImpl implements RegistryDataRefer
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<GetBlobReferenceSasResponseDtoInner> getBlobReferenceSasWithResponse(String resourceGroupName,
         String registryName, String name, String version, GetBlobReferenceSasRequestDto body, Context context) {
-        return getBlobReferenceSasWithResponseAsync(resourceGroupName, registryName, name, version, body, context)
-            .block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (registryName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter registryName is required and cannot be null."));
+        }
+        if (name == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter name is required and cannot be null."));
+        }
+        if (version == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter version is required and cannot be null."));
+        }
+        if (body == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return service.getBlobReferenceSasSync(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, registryName, name, version, this.client.getApiVersion(), body, accept, context);
     }
 
     /**
@@ -233,4 +227,6 @@ public final class RegistryDataReferencesClientImpl implements RegistryDataRefer
         return getBlobReferenceSasWithResponse(resourceGroupName, registryName, name, version, body, Context.NONE)
             .getValue();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(RegistryDataReferencesClientImpl.class);
 }

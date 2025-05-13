@@ -16,13 +16,19 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
+import com.azure.core.http.rest.PagedFlux;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.PagedResponse;
+import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearning.fluent.PrivateLinkResourcesClient;
-import com.azure.resourcemanager.machinelearning.fluent.models.PrivateLinkResourceListResultInner;
+import com.azure.resourcemanager.machinelearning.fluent.models.PrivateLinkResourceInner;
+import com.azure.resourcemanager.machinelearning.models.PrivateLinkResourceListResult;
 import reactor.core.publisher.Mono;
 
 /**
@@ -61,25 +67,38 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/privateLinkResources")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PrivateLinkResourceListResultInner>> list(@HostParam("$host") String endpoint,
+        Mono<Response<PrivateLinkResourceListResult>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/privateLinkResources")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PrivateLinkResourceListResult> listSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * Gets the private link resources that need to be created for a workspace.
+     * Called by Client (Portal, CLI, etc) to get available "private link resources" for the workspace.
+     * Each "private link resource" is a connection endpoint (IP address) to the resource.
+     * Pre single connection endpoint per workspace: the Data Plane IP address, returned by DNS resolution.
+     * Other RPs, such as Azure Storage, have multiple - one for Blobs, other for Queues, etc.
+     * Defined in the "[NRP] Private Endpoint Design" doc, topic "GET API for GroupIds".
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a workspace along with {@link Response} on
-     * successful completion of {@link Mono}.
+     * @return a list of private link resources along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PrivateLinkResourceListResultInner>> listWithResponseAsync(String resourceGroupName,
+    private Mono<PagedResponse<PrivateLinkResourceInner>> listSinglePageAsync(String resourceGroupName,
         String workspaceName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -100,90 +119,155 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
                 resourceGroupName, workspaceName, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<PrivateLinkResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets the private link resources that need to be created for a workspace.
+     * Called by Client (Portal, CLI, etc) to get available "private link resources" for the workspace.
+     * Each "private link resource" is a connection endpoint (IP address) to the resource.
+     * Pre single connection endpoint per workspace: the Data Plane IP address, returned by DNS resolution.
+     * Other RPs, such as Azure Storage, have multiple - one for Blobs, other for Queues, etc.
+     * Defined in the "[NRP] Private Endpoint Design" doc, topic "GET API for GroupIds".
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param context The context to associate with this operation.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a workspace along with {@link Response} on
-     * successful completion of {@link Mono}.
+     * @return a list of private link resources as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<PrivateLinkResourceInner> listAsync(String resourceGroupName, String workspaceName) {
+        return new PagedFlux<>(() -> listSinglePageAsync(resourceGroupName, workspaceName));
+    }
+
+    /**
+     * Called by Client (Portal, CLI, etc) to get available "private link resources" for the workspace.
+     * Each "private link resource" is a connection endpoint (IP address) to the resource.
+     * Pre single connection endpoint per workspace: the Data Plane IP address, returned by DNS resolution.
+     * Other RPs, such as Azure Storage, have multiple - one for Blobs, other for Queues, etc.
+     * Defined in the "[NRP] Private Endpoint Design" doc, topic "GET API for GroupIds".
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Azure Machine Learning Workspace Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of private link resources along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PrivateLinkResourceListResultInner>> listWithResponseAsync(String resourceGroupName,
-        String workspaceName, Context context) {
+    private PagedResponse<PrivateLinkResourceInner> listSinglePage(String resourceGroupName, String workspaceName) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            workspaceName, this.client.getApiVersion(), accept, context);
+        Response<PrivateLinkResourceListResult> res
+            = service.listSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                workspaceName, this.client.getApiVersion(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            null, null);
     }
 
     /**
-     * Gets the private link resources that need to be created for a workspace.
+     * Called by Client (Portal, CLI, etc) to get available "private link resources" for the workspace.
+     * Each "private link resource" is a connection endpoint (IP address) to the resource.
+     * Pre single connection endpoint per workspace: the Data Plane IP address, returned by DNS resolution.
+     * Other RPs, such as Azure Storage, have multiple - one for Blobs, other for Queues, etc.
+     * Defined in the "[NRP] Private Endpoint Design" doc, topic "GET API for GroupIds".
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a workspace on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PrivateLinkResourceListResultInner> listAsync(String resourceGroupName, String workspaceName) {
-        return listWithResponseAsync(resourceGroupName, workspaceName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets the private link resources that need to be created for a workspace.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a workspace along with {@link Response}.
+     * @return a list of private link resources along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<PrivateLinkResourceListResultInner> listWithResponse(String resourceGroupName, String workspaceName,
+    private PagedResponse<PrivateLinkResourceInner> listSinglePage(String resourceGroupName, String workspaceName,
         Context context) {
-        return listWithResponseAsync(resourceGroupName, workspaceName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PrivateLinkResourceListResult> res
+            = service.listSync(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                workspaceName, this.client.getApiVersion(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            null, null);
     }
 
     /**
-     * Gets the private link resources that need to be created for a workspace.
+     * Called by Client (Portal, CLI, etc) to get available "private link resources" for the workspace.
+     * Each "private link resource" is a connection endpoint (IP address) to the resource.
+     * Pre single connection endpoint per workspace: the Data Plane IP address, returned by DNS resolution.
+     * Other RPs, such as Azure Storage, have multiple - one for Blobs, other for Queues, etc.
+     * Defined in the "[NRP] Private Endpoint Design" doc, topic "GET API for GroupIds".
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param workspaceName Azure Machine Learning Workspace Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a workspace.
+     * @return a list of private link resources as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceListResultInner list(String resourceGroupName, String workspaceName) {
-        return listWithResponse(resourceGroupName, workspaceName, Context.NONE).getValue();
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<PrivateLinkResourceInner> list(String resourceGroupName, String workspaceName) {
+        return new PagedIterable<>(() -> listSinglePage(resourceGroupName, workspaceName));
     }
+
+    /**
+     * Called by Client (Portal, CLI, etc) to get available "private link resources" for the workspace.
+     * Each "private link resource" is a connection endpoint (IP address) to the resource.
+     * Pre single connection endpoint per workspace: the Data Plane IP address, returned by DNS resolution.
+     * Other RPs, such as Azure Storage, have multiple - one for Blobs, other for Queues, etc.
+     * Defined in the "[NRP] Private Endpoint Design" doc, topic "GET API for GroupIds".
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Azure Machine Learning Workspace Name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of private link resources as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<PrivateLinkResourceInner> list(String resourceGroupName, String workspaceName,
+        Context context) {
+        return new PagedIterable<>(() -> listSinglePage(resourceGroupName, workspaceName, context));
+    }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PrivateLinkResourcesClientImpl.class);
 }

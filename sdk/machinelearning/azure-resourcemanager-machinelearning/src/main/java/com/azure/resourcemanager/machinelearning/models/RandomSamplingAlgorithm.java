@@ -21,14 +21,14 @@ public final class RandomSamplingAlgorithm extends SamplingAlgorithm {
     private SamplingAlgorithmType samplingAlgorithmType = SamplingAlgorithmType.RANDOM;
 
     /*
-     * An optional integer to use as the seed for random number generation
-     */
-    private Integer seed;
-
-    /*
      * The specific type of random algorithm
      */
     private RandomSamplingAlgorithmRule rule;
+
+    /*
+     * An optional integer to use as the seed for random number generation
+     */
+    private Integer seed;
 
     /**
      * Creates an instance of RandomSamplingAlgorithm class.
@@ -45,26 +45,6 @@ public final class RandomSamplingAlgorithm extends SamplingAlgorithm {
     @Override
     public SamplingAlgorithmType samplingAlgorithmType() {
         return this.samplingAlgorithmType;
-    }
-
-    /**
-     * Get the seed property: An optional integer to use as the seed for random number generation.
-     * 
-     * @return the seed value.
-     */
-    public Integer seed() {
-        return this.seed;
-    }
-
-    /**
-     * Set the seed property: An optional integer to use as the seed for random number generation.
-     * 
-     * @param seed the seed value to set.
-     * @return the RandomSamplingAlgorithm object itself.
-     */
-    public RandomSamplingAlgorithm withSeed(Integer seed) {
-        this.seed = seed;
-        return this;
     }
 
     /**
@@ -88,13 +68,32 @@ public final class RandomSamplingAlgorithm extends SamplingAlgorithm {
     }
 
     /**
+     * Get the seed property: An optional integer to use as the seed for random number generation.
+     * 
+     * @return the seed value.
+     */
+    public Integer seed() {
+        return this.seed;
+    }
+
+    /**
+     * Set the seed property: An optional integer to use as the seed for random number generation.
+     * 
+     * @param seed the seed value to set.
+     * @return the RandomSamplingAlgorithm object itself.
+     */
+    public RandomSamplingAlgorithm withSeed(Integer seed) {
+        this.seed = seed;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
-        super.validate();
     }
 
     /**
@@ -105,8 +104,8 @@ public final class RandomSamplingAlgorithm extends SamplingAlgorithm {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("samplingAlgorithmType",
             this.samplingAlgorithmType == null ? null : this.samplingAlgorithmType.toString());
-        jsonWriter.writeNumberField("seed", this.seed);
         jsonWriter.writeStringField("rule", this.rule == null ? null : this.rule.toString());
+        jsonWriter.writeNumberField("seed", this.seed);
         return jsonWriter.writeEndObject();
     }
 
@@ -128,11 +127,11 @@ public final class RandomSamplingAlgorithm extends SamplingAlgorithm {
                 if ("samplingAlgorithmType".equals(fieldName)) {
                     deserializedRandomSamplingAlgorithm.samplingAlgorithmType
                         = SamplingAlgorithmType.fromString(reader.getString());
-                } else if ("seed".equals(fieldName)) {
-                    deserializedRandomSamplingAlgorithm.seed = reader.getNullable(JsonReader::getInt);
                 } else if ("rule".equals(fieldName)) {
                     deserializedRandomSamplingAlgorithm.rule
                         = RandomSamplingAlgorithmRule.fromString(reader.getString());
+                } else if ("seed".equals(fieldName)) {
+                    deserializedRandomSamplingAlgorithm.seed = reader.getNullable(JsonReader::getInt);
                 } else {
                     reader.skipChildren();
                 }

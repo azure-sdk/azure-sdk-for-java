@@ -10,7 +10,7 @@ package com.azure.resourcemanager.machinelearning.generated;
 public final class PrivateLinkResourcesListSamples {
     /*
      * x-ms-original-file:
-     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2024-04-01/
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2025-06-01/
      * examples/PrivateLinkResource/list.json
      */
     /**
@@ -20,6 +20,6 @@ public final class PrivateLinkResourcesListSamples {
      */
     public static void
         workspaceListPrivateLinkResources(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager.privateLinkResources().listWithResponse("rg-1234", "testworkspace", com.azure.core.util.Context.NONE);
+        manager.privateLinkResources().list("rg-1234", "testworkspace", com.azure.core.util.Context.NONE);
     }
 }
