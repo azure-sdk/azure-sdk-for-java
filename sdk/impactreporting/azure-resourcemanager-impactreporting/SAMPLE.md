@@ -34,125 +34,26 @@
 ### Connectors_CreateOrUpdate
 
 ```java
-import com.azure.resourcemanager.impactreporting.models.ConnectorProperties;
-import com.azure.resourcemanager.impactreporting.models.Platform;
-
 /**
- * Samples for Connectors CreateOrUpdate.
+ * Samples for Insights Delete.
  */
-public final class ConnectorsCreateOrUpdateSamples {
+public final class InsightsDeleteSamples {
     /*
-     * x-ms-original-file: 2024-05-01-preview/Connectors_CreateOrUpdate.json
+     * x-ms-original-file: 2024-05-01-preview/Insights_Delete.json
      */
     /**
-     * Sample code: Connectors_CreateOrUpdate.
+     * Sample code: Delete an Insight.
      * 
      * @param manager Entry point to ImpactReportingManager.
      */
-    public static void
-        connectorsCreateOrUpdate(com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
-        manager.connectors()
-            .define("testconnector1")
-            .withProperties(new ConnectorProperties().withConnectorType(Platform.AZURE_MONITOR))
-            .create();
+    public static void deleteAnInsight(com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
+        manager.insights()
+            .deleteByResourceGroupWithResponse("impactid22", "insightId12", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### Connectors_Delete
-
-```java
-/**
- * Samples for Connectors Delete.
- */
-public final class ConnectorsDeleteSamples {
-    /*
-     * x-ms-original-file: 2024-05-01-preview/Connectors_Delete.json
-     */
-    /**
-     * Sample code: Connectors_Delete.
-     * 
-     * @param manager Entry point to ImpactReportingManager.
-     */
-    public static void connectorsDelete(com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
-        manager.connectors().deleteWithResponse("testconnector1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Connectors_Get
-
-```java
-/**
- * Samples for Connectors Get.
- */
-public final class ConnectorsGetSamples {
-    /*
-     * x-ms-original-file: 2024-05-01-preview/Connectors_Get.json
-     */
-    /**
-     * Sample code: Connectors_Get.
-     * 
-     * @param manager Entry point to ImpactReportingManager.
-     */
-    public static void connectorsGet(com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
-        manager.connectors().getWithResponse("testconnector1", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Connectors_List
-
-```java
-/**
- * Samples for Connectors List.
- */
-public final class ConnectorsListSamples {
-    /*
-     * x-ms-original-file: 2024-05-01-preview/Connectors_ListBySubscription.json
-     */
-    /**
-     * Sample code: Connectors_ListBySubscription.
-     * 
-     * @param manager Entry point to ImpactReportingManager.
-     */
-    public static void
-        connectorsListBySubscription(com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
-        manager.connectors().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Connectors_Update
-
-```java
-import com.azure.resourcemanager.impactreporting.models.Connector;
-import com.azure.resourcemanager.impactreporting.models.ConnectorUpdateProperties;
-import com.azure.resourcemanager.impactreporting.models.Platform;
-
-/**
- * Samples for Connectors Update.
- */
-public final class ConnectorsUpdateSamples {
-    /*
-     * x-ms-original-file: 2024-05-01-preview/Connectors_Update.json
-     */
-    /**
-     * Sample code: Connectors_Update.
-     * 
-     * @param manager Entry point to ImpactReportingManager.
-     */
-    public static void connectorsUpdate(com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
-        Connector resource
-            = manager.connectors().getWithResponse("testconnector1", com.azure.core.util.Context.NONE).getValue();
-        resource.update()
-            .withProperties(new ConnectorUpdateProperties().withConnectorType(Platform.AZURE_MONITOR))
-            .apply();
-    }
-}
-```
-
-### ImpactCategories_Get
 
 ```java
 /**
@@ -174,7 +75,71 @@ public final class ImpactCategoriesGetSamples {
 }
 ```
 
-### ImpactCategories_List
+### Connectors_Get
+
+```java
+/**
+ * Samples for Insights ListBySubscription.
+ */
+public final class InsightsListBySubscriptionSamples {
+    /*
+     * x-ms-original-file: 2024-05-01-preview/Insights_ListBySubscription.json
+     */
+    /**
+     * Sample code: List Insight resources by workloadImpactName.
+     * 
+     * @param manager Entry point to ImpactReportingManager.
+     */
+    public static void listInsightResourcesByWorkloadImpactName(
+        com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
+        manager.insights().listBySubscription("impactid22", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Connectors_List
+
+```java
+/**
+ * Samples for Operations List.
+ */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file: 2024-05-01-preview/Operations_List.json
+     */
+    /**
+     * Sample code: OperationsList.
+     * 
+     * @param manager Entry point to ImpactReportingManager.
+     */
+    public static void operationsList(com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Connectors_Update
+
+```java
+/**
+ * Samples for Connectors Get.
+ */
+public final class ConnectorsGetSamples {
+    /*
+     * x-ms-original-file: 2024-05-01-preview/Connectors_Get.json
+     */
+    /**
+     * Sample code: Connectors_Get.
+     * 
+     * @param manager Entry point to ImpactReportingManager.
+     */
+    public static void connectorsGet(com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
+        manager.connectors().getWithResponse("testconnector1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ImpactCategories_Get
 
 ```java
 /**
@@ -192,6 +157,28 @@ public final class ImpactCategoriesListSamples {
     public static void getImpactCategoriesListBySubscription(
         com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
         manager.impactCategories().list("microsoft.compute/virtualmachines", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### ImpactCategories_List
+
+```java
+/**
+ * Samples for Connectors List.
+ */
+public final class ConnectorsListSamples {
+    /*
+     * x-ms-original-file: 2024-05-01-preview/Connectors_ListBySubscription.json
+     */
+    /**
+     * Sample code: Connectors_ListBySubscription.
+     * 
+     * @param manager Entry point to ImpactReportingManager.
+     */
+    public static void
+        connectorsListBySubscription(com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
+        manager.connectors().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -240,21 +227,28 @@ public final class InsightsCreateSamples {
 ### Insights_Delete
 
 ```java
+import com.azure.resourcemanager.impactreporting.models.Connector;
+import com.azure.resourcemanager.impactreporting.models.ConnectorUpdateProperties;
+import com.azure.resourcemanager.impactreporting.models.Platform;
+
 /**
- * Samples for Insights Delete.
+ * Samples for Connectors Update.
  */
-public final class InsightsDeleteSamples {
+public final class ConnectorsUpdateSamples {
     /*
-     * x-ms-original-file: 2024-05-01-preview/Insights_Delete.json
+     * x-ms-original-file: 2024-05-01-preview/Connectors_Update.json
      */
     /**
-     * Sample code: Delete an Insight.
+     * Sample code: Connectors_Update.
      * 
      * @param manager Entry point to ImpactReportingManager.
      */
-    public static void deleteAnInsight(com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
-        manager.insights()
-            .deleteByResourceGroupWithResponse("impactid22", "insightId12", com.azure.core.util.Context.NONE);
+    public static void connectorsUpdate(com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
+        Connector resource
+            = manager.connectors().getWithResponse("testconnector1", com.azure.core.util.Context.NONE).getValue();
+        resource.update()
+            .withProperties(new ConnectorUpdateProperties().withConnectorType(Platform.AZURE_MONITOR))
+            .apply();
     }
 }
 ```
@@ -263,94 +257,25 @@ public final class InsightsDeleteSamples {
 
 ```java
 /**
- * Samples for Insights Get.
+ * Samples for WorkloadImpacts Get.
  */
-public final class InsightsGetSamples {
+public final class WorkloadImpactsGetSamples {
     /*
-     * x-ms-original-file: 2024-05-01-preview/Insights_Get_mitigationAction.json
+     * x-ms-original-file: 2024-05-01-preview/WorkloadImpact_Get.json
      */
     /**
-     * Sample code: Get Insight sample for MitigationAction category.
+     * Sample code: Get WorkloadImpact Resource by name example.
      * 
      * @param manager Entry point to ImpactReportingManager.
      */
-    public static void getInsightSampleForMitigationActionCategory(
+    public static void getWorkloadImpactResourceByNameExample(
         com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
-        manager.insights().getWithResponse("impactId", "HPCUASucceeded", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: 2024-05-01-preview/Insights_Get_diagnostics.json
-     */
-    /**
-     * Sample code: Get Insight sample for Diagnostics category.
-     * 
-     * @param manager Entry point to ImpactReportingManager.
-     */
-    public static void getInsightSampleForDiagnosticsCategory(
-        com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
-        manager.insights().getWithResponse("impactid", "insight1", com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: 2024-05-01-preview/Insights_Get_servicehealth.json
-     */
-    /**
-     * Sample code: Get Insight sample for service health category.
-     * 
-     * @param manager Entry point to ImpactReportingManager.
-     */
-    public static void getInsightSampleForServiceHealthCategory(
-        com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
-        manager.insights().getWithResponse("impactid", "insightname", com.azure.core.util.Context.NONE);
+        manager.workloadImpacts().getWithResponse("impact-001", com.azure.core.util.Context.NONE);
     }
 }
 ```
 
 ### Insights_ListBySubscription
-
-```java
-/**
- * Samples for Insights ListBySubscription.
- */
-public final class InsightsListBySubscriptionSamples {
-    /*
-     * x-ms-original-file: 2024-05-01-preview/Insights_ListBySubscription.json
-     */
-    /**
-     * Sample code: List Insight resources by workloadImpactName.
-     * 
-     * @param manager Entry point to ImpactReportingManager.
-     */
-    public static void listInsightResourcesByWorkloadImpactName(
-        com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
-        manager.insights().listBySubscription("impactid22", com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file: 2024-05-01-preview/Operations_List.json
-     */
-    /**
-     * Sample code: OperationsList.
-     * 
-     * @param manager Entry point to ImpactReportingManager.
-     */
-    public static void operationsList(com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### WorkloadImpacts_Create
 
 ```java
 import com.azure.resourcemanager.impactreporting.models.ClientIncidentDetails;
@@ -479,7 +404,35 @@ public final class WorkloadImpactsCreateSamples {
 }
 ```
 
-### WorkloadImpacts_Delete
+### Operations_List
+
+```java
+import com.azure.resourcemanager.impactreporting.models.ConnectorProperties;
+import com.azure.resourcemanager.impactreporting.models.Platform;
+
+/**
+ * Samples for Connectors CreateOrUpdate.
+ */
+public final class ConnectorsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: 2024-05-01-preview/Connectors_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: Connectors_CreateOrUpdate.
+     * 
+     * @param manager Entry point to ImpactReportingManager.
+     */
+    public static void
+        connectorsCreateOrUpdate(com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
+        manager.connectors()
+            .define("testconnector1")
+            .withProperties(new ConnectorProperties().withConnectorType(Platform.AZURE_MONITOR))
+            .create();
+    }
+}
+```
+
+### WorkloadImpacts_Create
 
 ```java
 /**
@@ -501,24 +454,71 @@ public final class WorkloadImpactsDeleteSamples {
 }
 ```
 
+### WorkloadImpacts_Delete
+
+```java
+/**
+ * Samples for Connectors Delete.
+ */
+public final class ConnectorsDeleteSamples {
+    /*
+     * x-ms-original-file: 2024-05-01-preview/Connectors_Delete.json
+     */
+    /**
+     * Sample code: Connectors_Delete.
+     * 
+     * @param manager Entry point to ImpactReportingManager.
+     */
+    public static void connectorsDelete(com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
+        manager.connectors().deleteWithResponse("testconnector1", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### WorkloadImpacts_Get
 
 ```java
 /**
- * Samples for WorkloadImpacts Get.
+ * Samples for Insights Get.
  */
-public final class WorkloadImpactsGetSamples {
+public final class InsightsGetSamples {
     /*
-     * x-ms-original-file: 2024-05-01-preview/WorkloadImpact_Get.json
+     * x-ms-original-file: 2024-05-01-preview/Insights_Get_mitigationAction.json
      */
     /**
-     * Sample code: Get WorkloadImpact Resource by name example.
+     * Sample code: Get Insight sample for MitigationAction category.
      * 
      * @param manager Entry point to ImpactReportingManager.
      */
-    public static void getWorkloadImpactResourceByNameExample(
+    public static void getInsightSampleForMitigationActionCategory(
         com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
-        manager.workloadImpacts().getWithResponse("impact-001", com.azure.core.util.Context.NONE);
+        manager.insights().getWithResponse("impactId", "HPCUASucceeded", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: 2024-05-01-preview/Insights_Get_diagnostics.json
+     */
+    /**
+     * Sample code: Get Insight sample for Diagnostics category.
+     * 
+     * @param manager Entry point to ImpactReportingManager.
+     */
+    public static void getInsightSampleForDiagnosticsCategory(
+        com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
+        manager.insights().getWithResponse("impactid", "insight1", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: 2024-05-01-preview/Insights_Get_servicehealth.json
+     */
+    /**
+     * Sample code: Get Insight sample for service health category.
+     * 
+     * @param manager Entry point to ImpactReportingManager.
+     */
+    public static void getInsightSampleForServiceHealthCategory(
+        com.azure.resourcemanager.impactreporting.ImpactReportingManager manager) {
+        manager.insights().getWithResponse("impactid", "insightname", com.azure.core.util.Context.NONE);
     }
 }
 ```
