@@ -23,6 +23,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.BillingPropertiesClient;
 import com.azure.resourcemanager.billing.fluent.models.BillingPropertyInner;
 import reactor.core.publisher.Mono;
@@ -70,10 +71,29 @@ public final class BillingPropertiesClientImpl implements BillingPropertiesClien
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Billing/billingProperty/default")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BillingPropertyInner> getSync(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("includeBillingCountry") Boolean includeBillingCountry,
+            @QueryParam("includeTransitionStatus") Boolean includeTransitionStatus,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/providers/Microsoft.Billing/billingProperty/default")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BillingPropertyInner>> update(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") BillingPropertyInner parameters, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/providers/Microsoft.Billing/billingProperty/default")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BillingPropertyInner> updateSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") BillingPropertyInner parameters, @HeaderParam("Accept") String accept,
             Context context);
@@ -112,36 +132,6 @@ public final class BillingPropertiesClientImpl implements BillingPropertiesClien
     /**
      * Gets the billing properties for a subscription.
      * 
-     * @param includeBillingCountry A flag that specifies whether or not to include billing country.
-     * @param includeTransitionStatus A flag that specifies whether or not to include transition status for billing
-     * accounts with agreement type Microsoft Customer Agreement.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the billing properties for a subscription along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingPropertyInner>> getWithResponseAsync(Boolean includeBillingCountry,
-        Boolean includeTransitionStatus, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), includeBillingCountry,
-            includeTransitionStatus, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Gets the billing properties for a subscription.
-     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the billing properties for a subscription on successful completion of {@link Mono}.
@@ -169,7 +159,19 @@ public final class BillingPropertiesClientImpl implements BillingPropertiesClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BillingPropertyInner> getWithResponse(Boolean includeBillingCountry,
         Boolean includeTransitionStatus, Context context) {
-        return getWithResponseAsync(includeBillingCountry, includeTransitionStatus, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), this.client.getSubscriptionId(), includeBillingCountry,
+            includeTransitionStatus, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -225,40 +227,6 @@ public final class BillingPropertiesClientImpl implements BillingPropertiesClien
      * accounts with agreement type Microsoft Online Service Program.
      * 
      * @param parameters A billing property.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing property along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingPropertyInner>> updateWithResponseAsync(BillingPropertyInner parameters,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(),
-            parameters, accept, context);
-    }
-
-    /**
-     * Updates the billing property of a subscription. Currently, cost center can be updated for billing accounts with
-     * agreement type Microsoft Customer Agreement and subscription service usage address can be updated for billing
-     * accounts with agreement type Microsoft Online Service Program.
-     * 
-     * @param parameters A billing property.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -283,7 +251,25 @@ public final class BillingPropertiesClientImpl implements BillingPropertiesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BillingPropertyInner> updateWithResponse(BillingPropertyInner parameters, Context context) {
-        return updateWithResponseAsync(parameters, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return service.updateSync(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
@@ -301,4 +287,6 @@ public final class BillingPropertiesClientImpl implements BillingPropertiesClien
     public BillingPropertyInner update(BillingPropertyInner parameters) {
         return updateWithResponse(parameters, Context.NONE).getValue();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(BillingPropertiesClientImpl.class);
 }

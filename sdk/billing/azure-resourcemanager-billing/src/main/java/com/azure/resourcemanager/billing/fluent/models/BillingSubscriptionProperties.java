@@ -150,7 +150,7 @@ public class BillingSubscriptionProperties implements JsonSerializable<BillingSu
 
     /*
      * The offer ID for the subscription. This field is only available for the Microsoft Online Services Program billing
-     * accounts.
+     * accounts or billing accounts with agreement type Enterprise Agreement.
      */
     private String offerId;
 
@@ -727,7 +727,7 @@ public class BillingSubscriptionProperties implements JsonSerializable<BillingSu
 
     /**
      * Get the offerId property: The offer ID for the subscription. This field is only available for the Microsoft
-     * Online Services Program billing accounts.
+     * Online Services Program billing accounts or billing accounts with agreement type Enterprise Agreement.
      * 
      * @return the offerId value.
      */
@@ -737,7 +737,7 @@ public class BillingSubscriptionProperties implements JsonSerializable<BillingSu
 
     /**
      * Set the offerId property: The offer ID for the subscription. This field is only available for the Microsoft
-     * Online Services Program billing accounts.
+     * Online Services Program billing accounts or billing accounts with agreement type Enterprise Agreement.
      * 
      * @param offerId the offerId value to set.
      * @return the BillingSubscriptionProperties object itself.

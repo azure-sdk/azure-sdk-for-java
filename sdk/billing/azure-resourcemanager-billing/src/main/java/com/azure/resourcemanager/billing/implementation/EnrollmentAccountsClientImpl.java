@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.EnrollmentAccountsClient;
 import com.azure.resourcemanager.billing.fluent.models.EnrollmentAccountInner;
 import com.azure.resourcemanager.billing.models.EnrollmentAccountListResult;
@@ -73,10 +74,31 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/departments/{departmentName}/enrollmentAccounts/{enrollmentAccountName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<EnrollmentAccountInner> getByDepartmentSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("departmentName") String departmentName,
+            @PathParam("enrollmentAccountName") String enrollmentAccountName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/departments/{departmentName}/enrollmentAccounts")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EnrollmentAccountListResult>> listByDepartment(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("departmentName") String departmentName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("filter") String filter, @QueryParam("orderBy") String orderBy, @QueryParam("top") Long top,
+            @QueryParam("skip") Long skip, @QueryParam("count") Boolean count, @QueryParam("search") String search,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/departments/{departmentName}/enrollmentAccounts")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<EnrollmentAccountListResult> listByDepartmentSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName,
             @PathParam("departmentName") String departmentName, @QueryParam("api-version") String apiVersion,
             @QueryParam("filter") String filter, @QueryParam("orderBy") String orderBy, @QueryParam("top") Long top,
@@ -93,10 +115,29 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/enrollmentAccounts/{enrollmentAccountName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<EnrollmentAccountInner> getSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("enrollmentAccountName") String enrollmentAccountName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/enrollmentAccounts")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EnrollmentAccountListResult>> listByBillingAccount(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("filter") String filter, @QueryParam("orderBy") String orderBy, @QueryParam("top") Long top,
+            @QueryParam("skip") Long skip, @QueryParam("count") Boolean count, @QueryParam("search") String search,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/enrollmentAccounts")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<EnrollmentAccountListResult> listByBillingAccountSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
             @QueryParam("filter") String filter, @QueryParam("orderBy") String orderBy, @QueryParam("top") Long top,
             @QueryParam("skip") Long skip, @QueryParam("count") Boolean count, @QueryParam("search") String search,
@@ -114,7 +155,23 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<EnrollmentAccountListResult> listByDepartmentNextSync(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<EnrollmentAccountListResult>> listByBillingAccountNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<EnrollmentAccountListResult> listByBillingAccountNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -163,43 +220,6 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param departmentName The name of the department.
      * @param enrollmentAccountName The name of the enrollment account.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an enrollment account by department along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<EnrollmentAccountInner>> getByDepartmentWithResponseAsync(String billingAccountName,
-        String departmentName, String enrollmentAccountName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (departmentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter departmentName is required and cannot be null."));
-        }
-        if (enrollmentAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter enrollmentAccountName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getByDepartment(this.client.getEndpoint(), billingAccountName, departmentName,
-            enrollmentAccountName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Gets an enrollment account by department. The operation is supported only for billing accounts with agreement
-     * type Enterprise Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param departmentName The name of the department.
-     * @param enrollmentAccountName The name of the enrollment account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -228,8 +248,26 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<EnrollmentAccountInner> getByDepartmentWithResponse(String billingAccountName,
         String departmentName, String enrollmentAccountName, Context context) {
-        return getByDepartmentWithResponseAsync(billingAccountName, departmentName, enrollmentAccountName, context)
-            .block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (departmentName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter departmentName is required and cannot be null."));
+        }
+        if (enrollmentAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter enrollmentAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getByDepartmentSync(this.client.getEndpoint(), billingAccountName, departmentName,
+            enrollmentAccountName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -315,54 +353,6 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
      * resources in the response.
      * @param search The search query option allows clients to request items within a collection matching a free-text
      * search expression. search is only supported for string fields.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<EnrollmentAccountInner>> listByDepartmentSinglePageAsync(String billingAccountName,
-        String departmentName, String filter, String orderBy, Long top, Long skip, Boolean count, String search,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (departmentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter departmentName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByDepartment(this.client.getEndpoint(), billingAccountName, departmentName,
-                this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the enrollment accounts for a department. The operation is supported only for billing accounts with
-     * agreement type Enterprise Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param departmentName The name of the department.
-     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
-     * request URL.
-     * @param orderBy The orderby query option allows clients to request resources in a particular order.
-     * @param top The top query option requests the number of items in the queried collection to be included in the
-     * result. The maximum supported value for top is 50.
-     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
-     * and not included in the result.
-     * @param count The count query option allows clients to request a count of the matching resources included with the
-     * resources in the response.
-     * @param search The search query option allows clients to request items within a collection matching a free-text
-     * search expression. search is only supported for string fields.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -415,18 +405,81 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
      * resources in the response.
      * @param search The search query option allows clients to request items within a collection matching a free-text
      * search expression. search is only supported for string fields.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<EnrollmentAccountInner> listByDepartmentSinglePage(String billingAccountName,
+        String departmentName, String filter, String orderBy, Long top, Long skip, Boolean count, String search) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (departmentName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter departmentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<EnrollmentAccountListResult> res
+            = service.listByDepartmentSync(this.client.getEndpoint(), billingAccountName, departmentName,
+                this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the enrollment accounts for a department. The operation is supported only for billing accounts with
+     * agreement type Enterprise Agreement.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param departmentName The name of the department.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     * request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     * result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     * and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     * resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     * search expression. search is only supported for string fields.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<EnrollmentAccountInner> listByDepartmentAsync(String billingAccountName, String departmentName,
-        String filter, String orderBy, Long top, Long skip, Boolean count, String search, Context context) {
-        return new PagedFlux<>(() -> listByDepartmentSinglePageAsync(billingAccountName, departmentName, filter,
-            orderBy, top, skip, count, search, context),
-            nextLink -> listByDepartmentNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<EnrollmentAccountInner> listByDepartmentSinglePage(String billingAccountName,
+        String departmentName, String filter, String orderBy, Long top, Long skip, Boolean count, String search,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (departmentName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter departmentName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<EnrollmentAccountListResult> res
+            = service.listByDepartmentSync(this.client.getEndpoint(), billingAccountName, departmentName,
+                this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -448,8 +501,8 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
         final Long skip = null;
         final Boolean count = null;
         final String search = null;
-        return new PagedIterable<>(
-            listByDepartmentAsync(billingAccountName, departmentName, filter, orderBy, top, skip, count, search));
+        return new PagedIterable<>(() -> listByDepartmentSinglePage(billingAccountName, departmentName, filter, orderBy,
+            top, skip, count, search), nextLink -> listByDepartmentNextSinglePage(nextLink));
     }
 
     /**
@@ -478,8 +531,8 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<EnrollmentAccountInner> listByDepartment(String billingAccountName, String departmentName,
         String filter, String orderBy, Long top, Long skip, Boolean count, String search, Context context) {
-        return new PagedIterable<>(listByDepartmentAsync(billingAccountName, departmentName, filter, orderBy, top, skip,
-            count, search, context));
+        return new PagedIterable<>(() -> listByDepartmentSinglePage(billingAccountName, departmentName, filter, orderBy,
+            top, skip, count, search, context), nextLink -> listByDepartmentNextSinglePage(nextLink, context));
     }
 
     /**
@@ -521,39 +574,6 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param enrollmentAccountName The name of the enrollment account.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an enrollment account by ID along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<EnrollmentAccountInner>> getWithResponseAsync(String billingAccountName,
-        String enrollmentAccountName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (enrollmentAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter enrollmentAccountName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), billingAccountName, enrollmentAccountName,
-            this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Gets an enrollment account by ID. The operation is supported only for billing accounts with agreement type
-     * Enterprise Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param enrollmentAccountName The name of the enrollment account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -580,7 +600,22 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<EnrollmentAccountInner> getWithResponse(String billingAccountName, String enrollmentAccountName,
         Context context) {
-        return getWithResponseAsync(billingAccountName, enrollmentAccountName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (enrollmentAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter enrollmentAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), billingAccountName, enrollmentAccountName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -657,49 +692,6 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
      * resources in the response.
      * @param search The search query option allows clients to request items within a collection matching a free-text
      * search expression. search is only supported for string fields.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<EnrollmentAccountInner>> listByBillingAccountSinglePageAsync(String billingAccountName,
-        String filter, String orderBy, Long top, Long skip, Boolean count, String search, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByBillingAccount(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(), filter,
-                orderBy, top, skip, count, search, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the enrollment accounts for a billing account. The operation is supported only for billing accounts with
-     * agreement type Enterprise Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
-     * request URL.
-     * @param orderBy The orderby query option allows clients to request resources in a particular order.
-     * @param top The top query option requests the number of items in the queried collection to be included in the
-     * result. The maximum supported value for top is 50.
-     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
-     * and not included in the result.
-     * @param count The count query option allows clients to request a count of the matching resources included with the
-     * resources in the response.
-     * @param search The search query option allows clients to request items within a collection matching a free-text
-     * search expression. search is only supported for string fields.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -752,17 +744,71 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
      * resources in the response.
      * @param search The search query option allows clients to request items within a collection matching a free-text
      * search expression. search is only supported for string fields.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<EnrollmentAccountInner> listByBillingAccountSinglePage(String billingAccountName,
+        String filter, String orderBy, Long top, Long skip, Boolean count, String search) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<EnrollmentAccountListResult> res
+            = service.listByBillingAccountSync(this.client.getEndpoint(), billingAccountName,
+                this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the enrollment accounts for a billing account. The operation is supported only for billing accounts with
+     * agreement type Enterprise Agreement.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     * request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     * result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     * and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     * resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     * search expression. search is only supported for string fields.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<EnrollmentAccountInner> listByBillingAccountAsync(String billingAccountName, String filter,
-        String orderBy, Long top, Long skip, Boolean count, String search, Context context) {
-        return new PagedFlux<>(() -> listByBillingAccountSinglePageAsync(billingAccountName, filter, orderBy, top, skip,
-            count, search, context), nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<EnrollmentAccountInner> listByBillingAccountSinglePage(String billingAccountName,
+        String filter, String orderBy, Long top, Long skip, Boolean count, String search, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<EnrollmentAccountListResult> res
+            = service.listByBillingAccountSync(this.client.getEndpoint(), billingAccountName,
+                this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -784,7 +830,8 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
         final Boolean count = null;
         final String search = null;
         return new PagedIterable<>(
-            listByBillingAccountAsync(billingAccountName, filter, orderBy, top, skip, count, search));
+            () -> listByBillingAccountSinglePage(billingAccountName, filter, orderBy, top, skip, count, search),
+            nextLink -> listByBillingAccountNextSinglePage(nextLink));
     }
 
     /**
@@ -812,8 +859,8 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<EnrollmentAccountInner> listByBillingAccount(String billingAccountName, String filter,
         String orderBy, Long top, Long skip, Boolean count, String search, Context context) {
-        return new PagedIterable<>(
-            listByBillingAccountAsync(billingAccountName, filter, orderBy, top, skip, count, search, context));
+        return new PagedIterable<>(() -> listByBillingAccountSinglePage(billingAccountName, filter, orderBy, top, skip,
+            count, search, context), nextLink -> listByBillingAccountNextSinglePage(nextLink, context));
     }
 
     /**
@@ -847,28 +894,55 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<EnrollmentAccountInner> listByDepartmentNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<EnrollmentAccountListResult> res
+            = service.listByDepartmentNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<EnrollmentAccountInner>> listByDepartmentNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<EnrollmentAccountInner> listByDepartmentNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByDepartmentNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<EnrollmentAccountListResult> res
+            = service.listByDepartmentNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -903,27 +977,56 @@ public final class EnrollmentAccountsClientImpl implements EnrollmentAccountsCli
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<EnrollmentAccountInner> listByBillingAccountNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<EnrollmentAccountListResult> res
+            = service.listByBillingAccountNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<EnrollmentAccountInner>> listByBillingAccountNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<EnrollmentAccountInner> listByBillingAccountNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<EnrollmentAccountListResult> res
+            = service.listByBillingAccountNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(EnrollmentAccountsClientImpl.class);
 }

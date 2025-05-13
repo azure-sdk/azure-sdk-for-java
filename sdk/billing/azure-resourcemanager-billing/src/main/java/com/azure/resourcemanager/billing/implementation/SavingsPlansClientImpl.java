@@ -27,8 +27,10 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.billing.fluent.SavingsPlansClient;
@@ -84,10 +86,30 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SavingsPlanModelList> listBySavingsPlanOrderSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("savingsPlanOrderId") String savingsPlanOrderId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/savingsPlans")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SavingsPlanModelListResult>> listByBillingAccount(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("filter") String filter, @QueryParam("orderBy") String orderBy,
+            @QueryParam("skiptoken") Float skiptoken, @QueryParam("take") Float take,
+            @QueryParam("selectedState") String selectedState, @QueryParam("refreshSummary") String refreshSummary,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/savingsPlans")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SavingsPlanModelListResult> listByBillingAccountSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
             @QueryParam("filter") String filter, @QueryParam("orderBy") String orderBy,
             @QueryParam("skiptoken") Float skiptoken, @QueryParam("take") Float take,
@@ -105,10 +127,31 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
             @QueryParam("expand") String expand, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SavingsPlanModelInner> getByBillingAccountSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("savingsPlanOrderId") String savingsPlanOrderId,
+            @PathParam("savingsPlanId") String savingsPlanId, @QueryParam("api-version") String apiVersion,
+            @QueryParam("expand") String expand, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Patch("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}")
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> updateByBillingAccount(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("savingsPlanOrderId") String savingsPlanOrderId,
+            @PathParam("savingsPlanId") String savingsPlanId, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") SavingsPlanUpdateRequest body, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> updateByBillingAccountSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName,
             @PathParam("savingsPlanOrderId") String savingsPlanOrderId,
             @PathParam("savingsPlanId") String savingsPlanId, @QueryParam("api-version") String apiVersion,
@@ -127,6 +170,17 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/savingsPlanOrders/{savingsPlanOrderId}/savingsPlans/{savingsPlanId}/validate")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SavingsPlanValidateResponseInner> validateUpdateByBillingAccountSync(
+            @HostParam("$host") String endpoint, @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("savingsPlanOrderId") String savingsPlanOrderId,
+            @PathParam("savingsPlanId") String savingsPlanId, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") SavingsPlanUpdateValidateRequest body, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -138,7 +192,23 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SavingsPlanModelList> listBySavingsPlanOrderNextSync(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SavingsPlanModelListResult>> listByBillingAccountNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SavingsPlanModelListResult> listByBillingAccountNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -182,41 +252,6 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param savingsPlanOrderId Order ID of the savings plan.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of savings plans along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SavingsPlanModelInner>> listBySavingsPlanOrderSinglePageAsync(String billingAccountName,
-        String savingsPlanOrderId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (savingsPlanOrderId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter savingsPlanOrderId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listBySavingsPlanOrder(this.client.getEndpoint(), billingAccountName, savingsPlanOrderId,
-                this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * List savings plans in an order by billing account.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param savingsPlanOrderId Order ID of the savings plan.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -234,18 +269,66 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param savingsPlanOrderId Order ID of the savings plan.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of savings plans along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SavingsPlanModelInner> listBySavingsPlanOrderSinglePage(String billingAccountName,
+        String savingsPlanOrderId) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (savingsPlanOrderId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter savingsPlanOrderId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<SavingsPlanModelList> res = service.listBySavingsPlanOrderSync(this.client.getEndpoint(),
+            billingAccountName, savingsPlanOrderId, this.client.getApiVersion(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * List savings plans in an order by billing account.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param savingsPlanOrderId Order ID of the savings plan.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of savings plans as paginated response with {@link PagedFlux}.
+     * @return list of savings plans along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SavingsPlanModelInner> listBySavingsPlanOrderAsync(String billingAccountName,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SavingsPlanModelInner> listBySavingsPlanOrderSinglePage(String billingAccountName,
         String savingsPlanOrderId, Context context) {
-        return new PagedFlux<>(
-            () -> listBySavingsPlanOrderSinglePageAsync(billingAccountName, savingsPlanOrderId, context),
-            nextLink -> listBySavingsPlanOrderNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (savingsPlanOrderId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter savingsPlanOrderId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<SavingsPlanModelList> res = service.listBySavingsPlanOrderSync(this.client.getEndpoint(),
+            billingAccountName, savingsPlanOrderId, this.client.getApiVersion(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -261,7 +344,8 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SavingsPlanModelInner> listBySavingsPlanOrder(String billingAccountName,
         String savingsPlanOrderId) {
-        return new PagedIterable<>(listBySavingsPlanOrderAsync(billingAccountName, savingsPlanOrderId));
+        return new PagedIterable<>(() -> listBySavingsPlanOrderSinglePage(billingAccountName, savingsPlanOrderId),
+            nextLink -> listBySavingsPlanOrderNextSinglePage(nextLink));
     }
 
     /**
@@ -278,7 +362,9 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SavingsPlanModelInner> listBySavingsPlanOrder(String billingAccountName,
         String savingsPlanOrderId, Context context) {
-        return new PagedIterable<>(listBySavingsPlanOrderAsync(billingAccountName, savingsPlanOrderId, context));
+        return new PagedIterable<>(
+            () -> listBySavingsPlanOrderSinglePage(billingAccountName, savingsPlanOrderId, context),
+            nextLink -> listBySavingsPlanOrderNextSinglePage(nextLink, context));
     }
 
     /**
@@ -317,45 +403,6 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
             .<PagedResponse<SavingsPlanModelInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * List savings plans by billing account.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
-     * request URL.
-     * @param orderBy The orderby query option allows clients to request resources in a particular order.
-     * @param skiptoken The number of savings plans to skip from the list before returning results.
-     * @param take The number of savings plans to return.
-     * @param selectedState The selected provisioning state.
-     * @param refreshSummary To indicate whether to refresh the roll up counts of the savings plans group by
-     * provisioning states.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of savings plans along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SavingsPlanModelInner>> listByBillingAccountSinglePageAsync(String billingAccountName,
-        String filter, String orderBy, Float skiptoken, Float take, String selectedState, String refreshSummary,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByBillingAccount(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(), filter,
-                orderBy, skiptoken, take, selectedState, refreshSummary, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -415,19 +462,68 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param selectedState The selected provisioning state.
      * @param refreshSummary To indicate whether to refresh the roll up counts of the savings plans group by
      * provisioning states.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of savings plans along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SavingsPlanModelInner> listByBillingAccountSinglePage(String billingAccountName,
+        String filter, String orderBy, Float skiptoken, Float take, String selectedState, String refreshSummary) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<SavingsPlanModelListResult> res = service.listByBillingAccountSync(this.client.getEndpoint(),
+            billingAccountName, this.client.getApiVersion(), filter, orderBy, skiptoken, take, selectedState,
+            refreshSummary, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * List savings plans by billing account.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     * request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param skiptoken The number of savings plans to skip from the list before returning results.
+     * @param take The number of savings plans to return.
+     * @param selectedState The selected provisioning state.
+     * @param refreshSummary To indicate whether to refresh the roll up counts of the savings plans group by
+     * provisioning states.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of savings plans as paginated response with {@link PagedFlux}.
+     * @return list of savings plans along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<SavingsPlanModelInner> listByBillingAccountAsync(String billingAccountName, String filter,
-        String orderBy, Float skiptoken, Float take, String selectedState, String refreshSummary, Context context) {
-        return new PagedFlux<>(
-            () -> listByBillingAccountSinglePageAsync(billingAccountName, filter, orderBy, skiptoken, take,
-                selectedState, refreshSummary, context),
-            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SavingsPlanModelInner> listByBillingAccountSinglePage(String billingAccountName,
+        String filter, String orderBy, Float skiptoken, Float take, String selectedState, String refreshSummary,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<SavingsPlanModelListResult> res = service.listByBillingAccountSync(this.client.getEndpoint(),
+            billingAccountName, this.client.getApiVersion(), filter, orderBy, skiptoken, take, selectedState,
+            refreshSummary, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -447,8 +543,8 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
         final Float take = null;
         final String selectedState = null;
         final String refreshSummary = null;
-        return new PagedIterable<>(listByBillingAccountAsync(billingAccountName, filter, orderBy, skiptoken, take,
-            selectedState, refreshSummary));
+        return new PagedIterable<>(() -> listByBillingAccountSinglePage(billingAccountName, filter, orderBy, skiptoken,
+            take, selectedState, refreshSummary), nextLink -> listByBillingAccountNextSinglePage(nextLink));
     }
 
     /**
@@ -472,8 +568,9 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SavingsPlanModelInner> listByBillingAccount(String billingAccountName, String filter,
         String orderBy, Float skiptoken, Float take, String selectedState, String refreshSummary, Context context) {
-        return new PagedIterable<>(listByBillingAccountAsync(billingAccountName, filter, orderBy, skiptoken, take,
-            selectedState, refreshSummary, context));
+        return new PagedIterable<>(() -> listByBillingAccountSinglePage(billingAccountName, filter, orderBy, skiptoken,
+            take, selectedState, refreshSummary, context),
+            nextLink -> listByBillingAccountNextSinglePage(nextLink, context));
     }
 
     /**
@@ -519,43 +616,6 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param savingsPlanOrderId Order ID of the savings plan.
      * @param savingsPlanId ID of the savings plan.
-     * @param expand May be used to expand the planInformation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return savings plan by billing account along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SavingsPlanModelInner>> getByBillingAccountWithResponseAsync(String billingAccountName,
-        String savingsPlanOrderId, String savingsPlanId, String expand, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (savingsPlanOrderId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter savingsPlanOrderId is required and cannot be null."));
-        }
-        if (savingsPlanId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter savingsPlanId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getByBillingAccount(this.client.getEndpoint(), billingAccountName, savingsPlanOrderId,
-            savingsPlanId, this.client.getApiVersion(), expand, accept, context);
-    }
-
-    /**
-     * Get savings plan by billing account.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param savingsPlanOrderId Order ID of the savings plan.
-     * @param savingsPlanId ID of the savings plan.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -585,8 +645,26 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SavingsPlanModelInner> getByBillingAccountWithResponse(String billingAccountName,
         String savingsPlanOrderId, String savingsPlanId, String expand, Context context) {
-        return getByBillingAccountWithResponseAsync(billingAccountName, savingsPlanOrderId, savingsPlanId, expand,
-            context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (savingsPlanOrderId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter savingsPlanOrderId is required and cannot be null."));
+        }
+        if (savingsPlanId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter savingsPlanId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getByBillingAccountSync(this.client.getEndpoint(), billingAccountName, savingsPlanOrderId,
+            savingsPlanId, this.client.getApiVersion(), expand, accept, context);
     }
 
     /**
@@ -657,38 +735,81 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param savingsPlanOrderId Order ID of the savings plan.
      * @param savingsPlanId ID of the savings plan.
      * @param body Request body for patching a savings plan order alias.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return savings plan along with {@link Response} on successful completion of {@link Mono}.
+     * @return savings plan along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateByBillingAccountWithResponseAsync(String billingAccountName,
-        String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body, Context context) {
+    private Response<BinaryData> updateByBillingAccountWithResponse(String billingAccountName,
+        String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
         if (savingsPlanOrderId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter savingsPlanOrderId is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter savingsPlanOrderId is required and cannot be null."));
         }
         if (savingsPlanId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter savingsPlanId is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter savingsPlanId is required and cannot be null."));
         }
         if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
         } else {
             body.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.updateByBillingAccount(this.client.getEndpoint(), billingAccountName, savingsPlanOrderId,
+        return service.updateByBillingAccountSync(this.client.getEndpoint(), billingAccountName, savingsPlanOrderId,
+            savingsPlanId, this.client.getApiVersion(), body, accept, Context.NONE);
+    }
+
+    /**
+     * Update savings plan by billing account.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param savingsPlanOrderId Order ID of the savings plan.
+     * @param savingsPlanId ID of the savings plan.
+     * @param body Request body for patching a savings plan order alias.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return savings plan along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> updateByBillingAccountWithResponse(String billingAccountName,
+        String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (savingsPlanOrderId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter savingsPlanOrderId is required and cannot be null."));
+        }
+        if (savingsPlanId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter savingsPlanId is required and cannot be null."));
+        }
+        if (body == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return service.updateByBillingAccountSync(this.client.getEndpoint(), billingAccountName, savingsPlanOrderId,
             savingsPlanId, this.client.getApiVersion(), body, accept, context);
     }
 
@@ -721,30 +842,6 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param savingsPlanOrderId Order ID of the savings plan.
      * @param savingsPlanId ID of the savings plan.
      * @param body Request body for patching a savings plan order alias.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of savings plan.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<SavingsPlanModelInner>, SavingsPlanModelInner> beginUpdateByBillingAccountAsync(
-        String billingAccountName, String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body,
-        Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = updateByBillingAccountWithResponseAsync(billingAccountName,
-            savingsPlanOrderId, savingsPlanId, body, context);
-        return this.client.<SavingsPlanModelInner, SavingsPlanModelInner>getLroResult(mono,
-            this.client.getHttpPipeline(), SavingsPlanModelInner.class, SavingsPlanModelInner.class, context);
-    }
-
-    /**
-     * Update savings plan by billing account.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param savingsPlanOrderId Order ID of the savings plan.
-     * @param savingsPlanId ID of the savings plan.
-     * @param body Request body for patching a savings plan order alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -753,8 +850,10 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SavingsPlanModelInner>, SavingsPlanModelInner> beginUpdateByBillingAccount(
         String billingAccountName, String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body) {
-        return this.beginUpdateByBillingAccountAsync(billingAccountName, savingsPlanOrderId, savingsPlanId, body)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = updateByBillingAccountWithResponse(billingAccountName, savingsPlanOrderId, savingsPlanId, body);
+        return this.client.<SavingsPlanModelInner, SavingsPlanModelInner>getLroResult(response,
+            SavingsPlanModelInner.class, SavingsPlanModelInner.class, Context.NONE);
     }
 
     /**
@@ -774,9 +873,10 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
     public SyncPoller<PollResult<SavingsPlanModelInner>, SavingsPlanModelInner> beginUpdateByBillingAccount(
         String billingAccountName, String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body,
         Context context) {
-        return this
-            .beginUpdateByBillingAccountAsync(billingAccountName, savingsPlanOrderId, savingsPlanId, body, context)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = updateByBillingAccountWithResponse(billingAccountName, savingsPlanOrderId, savingsPlanId, body, context);
+        return this.client.<SavingsPlanModelInner, SavingsPlanModelInner>getLroResult(response,
+            SavingsPlanModelInner.class, SavingsPlanModelInner.class, context);
     }
 
     /**
@@ -805,27 +905,6 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param savingsPlanOrderId Order ID of the savings plan.
      * @param savingsPlanId ID of the savings plan.
      * @param body Request body for patching a savings plan order alias.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return savings plan on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SavingsPlanModelInner> updateByBillingAccountAsync(String billingAccountName,
-        String savingsPlanOrderId, String savingsPlanId, SavingsPlanUpdateRequest body, Context context) {
-        return beginUpdateByBillingAccountAsync(billingAccountName, savingsPlanOrderId, savingsPlanId, body, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Update savings plan by billing account.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param savingsPlanOrderId Order ID of the savings plan.
-     * @param savingsPlanId ID of the savings plan.
-     * @param body Request body for patching a savings plan order alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -834,7 +913,8 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SavingsPlanModelInner updateByBillingAccount(String billingAccountName, String savingsPlanOrderId,
         String savingsPlanId, SavingsPlanUpdateRequest body) {
-        return updateByBillingAccountAsync(billingAccountName, savingsPlanOrderId, savingsPlanId, body).block();
+        return beginUpdateByBillingAccount(billingAccountName, savingsPlanOrderId, savingsPlanId, body)
+            .getFinalResult();
     }
 
     /**
@@ -853,8 +933,8 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SavingsPlanModelInner updateByBillingAccount(String billingAccountName, String savingsPlanOrderId,
         String savingsPlanId, SavingsPlanUpdateRequest body, Context context) {
-        return updateByBillingAccountAsync(billingAccountName, savingsPlanOrderId, savingsPlanId, body, context)
-            .block();
+        return beginUpdateByBillingAccount(billingAccountName, savingsPlanOrderId, savingsPlanId, body, context)
+            .getFinalResult();
     }
 
     /**
@@ -909,50 +989,6 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * @param savingsPlanOrderId Order ID of the savings plan.
      * @param savingsPlanId ID of the savings plan.
      * @param body Request body for patching a savings plan order alias.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return savings plan update validate response along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SavingsPlanValidateResponseInner>> validateUpdateByBillingAccountWithResponseAsync(
-        String billingAccountName, String savingsPlanOrderId, String savingsPlanId,
-        SavingsPlanUpdateValidateRequest body, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (savingsPlanOrderId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter savingsPlanOrderId is required and cannot be null."));
-        }
-        if (savingsPlanId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter savingsPlanId is required and cannot be null."));
-        }
-        if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
-        } else {
-            body.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.validateUpdateByBillingAccount(this.client.getEndpoint(), billingAccountName, savingsPlanOrderId,
-            savingsPlanId, this.client.getApiVersion(), body, accept, context);
-    }
-
-    /**
-     * Validate savings plan patch by billing account.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param savingsPlanOrderId Order ID of the savings plan.
-     * @param savingsPlanId ID of the savings plan.
-     * @param body Request body for patching a savings plan order alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -982,8 +1018,31 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
     public Response<SavingsPlanValidateResponseInner> validateUpdateByBillingAccountWithResponse(
         String billingAccountName, String savingsPlanOrderId, String savingsPlanId,
         SavingsPlanUpdateValidateRequest body, Context context) {
-        return validateUpdateByBillingAccountWithResponseAsync(billingAccountName, savingsPlanOrderId, savingsPlanId,
-            body, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (savingsPlanOrderId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter savingsPlanOrderId is required and cannot be null."));
+        }
+        if (savingsPlanId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter savingsPlanId is required and cannot be null."));
+        }
+        if (body == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return service.validateUpdateByBillingAccountSync(this.client.getEndpoint(), billingAccountName,
+            savingsPlanOrderId, savingsPlanId, this.client.getApiVersion(), body, accept, context);
     }
 
     /**
@@ -1036,27 +1095,56 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of savings plans along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SavingsPlanModelInner> listBySavingsPlanOrderNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<SavingsPlanModelList> res
+            = service.listBySavingsPlanOrderNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of savings plans along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of savings plans along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SavingsPlanModelInner>> listBySavingsPlanOrderNextSinglePageAsync(String nextLink,
+    private PagedResponse<SavingsPlanModelInner> listBySavingsPlanOrderNextSinglePage(String nextLink,
         Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listBySavingsPlanOrderNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<SavingsPlanModelList> res
+            = service.listBySavingsPlanOrderNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -1090,26 +1178,56 @@ public final class SavingsPlansClientImpl implements SavingsPlansClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of savings plans along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<SavingsPlanModelInner> listByBillingAccountNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<SavingsPlanModelListResult> res
+            = service.listByBillingAccountNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of savings plans along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of savings plans along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<SavingsPlanModelInner>> listByBillingAccountNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<SavingsPlanModelInner> listByBillingAccountNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<SavingsPlanModelListResult> res
+            = service.listByBillingAccountNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SavingsPlansClientImpl.class);
 }

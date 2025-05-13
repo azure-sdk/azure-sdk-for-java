@@ -27,6 +27,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.RecipientTransfersClient;
 import com.azure.resourcemanager.billing.fluent.models.RecipientTransferDetailsInner;
 import com.azure.resourcemanager.billing.fluent.models.ValidateTransferListResponseInner;
@@ -76,10 +77,28 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/providers/Microsoft.Billing/transfers/{transferName}/accept")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<RecipientTransferDetailsInner> acceptSync(@HostParam("$host") String endpoint,
+            @PathParam("transferName") String transferName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") AcceptTransferRequest parameters, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Post("/providers/Microsoft.Billing/transfers/{transferName}/validate")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ValidateTransferListResponseInner>> validate(@HostParam("$host") String endpoint,
+            @PathParam("transferName") String transferName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") AcceptTransferRequest parameters, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/providers/Microsoft.Billing/transfers/{transferName}/validate")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ValidateTransferListResponseInner> validateSync(@HostParam("$host") String endpoint,
             @PathParam("transferName") String transferName, @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") AcceptTransferRequest parameters, @HeaderParam("Accept") String accept,
             Context context);
@@ -93,10 +112,26 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/providers/Microsoft.Billing/transfers/{transferName}/decline")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<RecipientTransferDetailsInner> declineSync(@HostParam("$host") String endpoint,
+            @PathParam("transferName") String transferName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/transfers/{transferName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RecipientTransferDetailsInner>> get(@HostParam("$host") String endpoint,
+            @PathParam("transferName") String transferName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/transfers/{transferName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<RecipientTransferDetailsInner> getSync(@HostParam("$host") String endpoint,
             @PathParam("transferName") String transferName, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -108,10 +143,25 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/transfers")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<RecipientTransferDetailsListResult> listSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<RecipientTransferDetailsListResult>> listNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<RecipientTransferDetailsListResult> listNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -153,38 +203,6 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
      * 
      * @param transferName The ID that uniquely identifies a transfer request.
      * @param parameters Request parameters that are provided to the accept transfer operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the transfer along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RecipientTransferDetailsInner>> acceptWithResponseAsync(String transferName,
-        AcceptTransferRequest parameters, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (transferName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter transferName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.accept(this.client.getEndpoint(), transferName, this.client.getApiVersion(), parameters, accept,
-            context);
-    }
-
-    /**
-     * Accepts a transfer request.
-     * 
-     * @param transferName The ID that uniquely identifies a transfer request.
-     * @param parameters Request parameters that are provided to the accept transfer operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -209,7 +227,24 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<RecipientTransferDetailsInner> acceptWithResponse(String transferName,
         AcceptTransferRequest parameters, Context context) {
-        return acceptWithResponseAsync(transferName, parameters, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (transferName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter transferName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return service.acceptSync(this.client.getEndpoint(), transferName, this.client.getApiVersion(), parameters,
+            accept, context);
     }
 
     /**
@@ -266,39 +301,6 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
      * 
      * @param transferName The ID that uniquely identifies a transfer request.
      * @param parameters Request parameters that are provided to the validate transfer operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of transfer validation along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ValidateTransferListResponseInner>> validateWithResponseAsync(String transferName,
-        AcceptTransferRequest parameters, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (transferName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter transferName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.validate(this.client.getEndpoint(), transferName, this.client.getApiVersion(), parameters,
-            accept, context);
-    }
-
-    /**
-     * Validates if a subscription or a reservation can be transferred. Use this operation to validate your
-     * subscriptions or reservation before using the accept transfer operation.
-     * 
-     * @param transferName The ID that uniquely identifies a transfer request.
-     * @param parameters Request parameters that are provided to the validate transfer operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -325,7 +327,24 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ValidateTransferListResponseInner> validateWithResponse(String transferName,
         AcceptTransferRequest parameters, Context context) {
-        return validateWithResponseAsync(transferName, parameters, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (transferName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter transferName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return service.validateSync(this.client.getEndpoint(), transferName, this.client.getApiVersion(), parameters,
+            accept, context);
     }
 
     /**
@@ -373,31 +392,6 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
      * Declines a transfer request.
      * 
      * @param transferName The ID that uniquely identifies a transfer request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the transfer along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RecipientTransferDetailsInner>> declineWithResponseAsync(String transferName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (transferName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter transferName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.decline(this.client.getEndpoint(), transferName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Declines a transfer request.
-     * 
-     * @param transferName The ID that uniquely identifies a transfer request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -420,7 +414,18 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<RecipientTransferDetailsInner> declineWithResponse(String transferName, Context context) {
-        return declineWithResponseAsync(transferName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (transferName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter transferName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.declineSync(this.client.getEndpoint(), transferName, this.client.getApiVersion(), accept,
+            context);
     }
 
     /**
@@ -466,30 +471,6 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
      * Gets a transfer request by ID. The caller must be the recipient of the transfer request.
      * 
      * @param transferName The ID that uniquely identifies a transfer request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a transfer request by ID along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<RecipientTransferDetailsInner>> getWithResponseAsync(String transferName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (transferName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter transferName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), transferName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Gets a transfer request by ID. The caller must be the recipient of the transfer request.
-     * 
-     * @param transferName The ID that uniquely identifies a transfer request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -512,7 +493,17 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<RecipientTransferDetailsInner> getWithResponse(String transferName, Context context) {
-        return getWithResponseAsync(transferName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (transferName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter transferName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), transferName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -555,29 +546,6 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
     /**
      * Lists the transfer requests received by the caller.
      * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of transfers received by caller along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RecipientTransferDetailsInner>> listSinglePageAsync(Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the transfer requests received by the caller.
-     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of transfers received by caller as paginated response with {@link PagedFlux}.
@@ -590,16 +558,45 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
     /**
      * Lists the transfer requests received by the caller.
      * 
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of transfers received by caller along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<RecipientTransferDetailsInner> listSinglePage() {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<RecipientTransferDetailsListResult> res
+            = service.listSync(this.client.getEndpoint(), this.client.getApiVersion(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the transfer requests received by the caller.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of transfers received by caller as paginated response with {@link PagedFlux}.
+     * @return the list of transfers received by caller along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<RecipientTransferDetailsInner> listAsync(Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<RecipientTransferDetailsInner> listSinglePage(Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<RecipientTransferDetailsListResult> res
+            = service.listSync(this.client.getEndpoint(), this.client.getApiVersion(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -611,7 +608,7 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RecipientTransferDetailsInner> list() {
-        return new PagedIterable<>(listAsync());
+        return new PagedIterable<>(() -> listSinglePage(), nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -625,7 +622,7 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RecipientTransferDetailsInner> list(Context context) {
-        return new PagedIterable<>(listAsync(context));
+        return new PagedIterable<>(() -> listSinglePage(context), nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -658,27 +655,56 @@ public final class RecipientTransfersClientImpl implements RecipientTransfersCli
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of transfers received by caller along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<RecipientTransferDetailsInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<RecipientTransferDetailsListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of transfers received by caller along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the list of transfers received by caller along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<RecipientTransferDetailsInner>> listNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<RecipientTransferDetailsInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<RecipientTransferDetailsListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(RecipientTransfersClientImpl.class);
 }

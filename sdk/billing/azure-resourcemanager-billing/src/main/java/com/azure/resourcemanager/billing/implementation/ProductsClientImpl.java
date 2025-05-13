@@ -27,8 +27,10 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.billing.fluent.ProductsClient;
@@ -85,10 +87,33 @@ public final class ProductsClientImpl implements ProductsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}/products")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ProductListResult> listByInvoiceSectionSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName,
+            @PathParam("invoiceSectionName") String invoiceSectionName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("filter") String filter, @QueryParam("orderBy") String orderBy, @QueryParam("top") Long top,
+            @QueryParam("skip") Long skip, @QueryParam("count") Boolean count, @QueryParam("search") String search,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/products")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ProductListResult>> listByBillingProfile(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("filter") String filter, @QueryParam("orderBy") String orderBy, @QueryParam("top") Long top,
+            @QueryParam("skip") Long skip, @QueryParam("count") Boolean count, @QueryParam("search") String search,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/products")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ProductListResult> listByBillingProfileSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName, @QueryParam("api-version") String apiVersion,
             @QueryParam("filter") String filter, @QueryParam("orderBy") String orderBy, @QueryParam("top") Long top,
@@ -107,10 +132,30 @@ public final class ProductsClientImpl implements ProductsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/customers/{customerName}/products")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ProductListResult> listByCustomerSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @PathParam("customerName") String customerName,
+            @QueryParam("api-version") String apiVersion, @QueryParam("filter") String filter,
+            @QueryParam("orderBy") String orderBy, @QueryParam("top") Long top, @QueryParam("skip") Long skip,
+            @QueryParam("count") Boolean count, @QueryParam("search") String search,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/products/{productName}/move")
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> move(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @PathParam("productName") String productName,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") MoveProductRequest parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/products/{productName}/move")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> moveSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName, @PathParam("productName") String productName,
             @QueryParam("api-version") String apiVersion, @BodyParam("application/json") MoveProductRequest parameters,
             @HeaderParam("Accept") String accept, Context context);
@@ -125,10 +170,27 @@ public final class ProductsClientImpl implements ProductsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/products/{productName}/validateMoveEligibility")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<MoveProductEligibilityResultInner> validateMoveEligibilitySync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @PathParam("productName") String productName,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") MoveProductRequest parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/products/{productName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ProductInner>> get(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @PathParam("productName") String productName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/products/{productName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ProductInner> getSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName, @PathParam("productName") String productName,
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
@@ -142,10 +204,29 @@ public final class ProductsClientImpl implements ProductsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Patch("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/products/{productName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ProductInner> updateSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @PathParam("productName") String productName,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") ProductPatch parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/products")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ProductListResult>> listByBillingAccount(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("filter") String filter, @QueryParam("orderBy") String orderBy, @QueryParam("top") Long top,
+            @QueryParam("skip") Long skip, @QueryParam("count") Boolean count, @QueryParam("search") String search,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/products")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ProductListResult> listByBillingAccountSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
             @QueryParam("filter") String filter, @QueryParam("orderBy") String orderBy, @QueryParam("top") Long top,
             @QueryParam("skip") Long skip, @QueryParam("count") Boolean count, @QueryParam("search") String search,
@@ -163,7 +244,23 @@ public final class ProductsClientImpl implements ProductsClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ProductListResult> listByInvoiceSectionNextSync(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ProductListResult>> listByBillingProfileNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ProductListResult> listByBillingProfileNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -179,7 +276,23 @@ public final class ProductsClientImpl implements ProductsClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ProductListResult> listByCustomerNextSync(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ProductListResult>> listByBillingAccountNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ProductListResult> listByBillingAccountNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -236,60 +349,6 @@ public final class ProductsClientImpl implements ProductsClient {
             .<PagedResponse<ProductInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the products for an invoice section. These don't include products billed based on usage. The operation is
-     * supported only for billing accounts with agreement type Microsoft Customer Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
-     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
-     * request URL.
-     * @param orderBy The orderby query option allows clients to request resources in a particular order.
-     * @param top The top query option requests the number of items in the queried collection to be included in the
-     * result. The maximum supported value for top is 50.
-     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
-     * and not included in the result.
-     * @param count The count query option allows clients to request a count of the matching resources included with the
-     * resources in the response.
-     * @param search The search query option allows clients to request items within a collection matching a free-text
-     * search expression. search is only supported for string fields.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProductInner>> listByInvoiceSectionSinglePageAsync(String billingAccountName,
-        String billingProfileName, String invoiceSectionName, String filter, String orderBy, Long top, Long skip,
-        Boolean count, String search, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        if (invoiceSectionName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByInvoiceSection(this.client.getEndpoint(), billingAccountName, billingProfileName, invoiceSectionName,
-                this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -369,20 +428,91 @@ public final class ProductsClientImpl implements ProductsClient {
      * resources in the response.
      * @param search The search query option allows clients to request items within a collection matching a free-text
      * search expression. search is only supported for string fields.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ProductInner> listByInvoiceSectionSinglePage(String billingAccountName,
+        String billingProfileName, String invoiceSectionName, String filter, String orderBy, Long top, Long skip,
+        Boolean count, String search) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (invoiceSectionName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ProductListResult> res = service.listByInvoiceSectionSync(this.client.getEndpoint(),
+            billingAccountName, billingProfileName, invoiceSectionName, this.client.getApiVersion(), filter, orderBy,
+            top, skip, count, search, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the products for an invoice section. These don't include products billed based on usage. The operation is
+     * supported only for billing accounts with agreement type Microsoft Customer Agreement.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param invoiceSectionName The ID that uniquely identifies an invoice section.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     * request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     * result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     * and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     * resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     * search expression. search is only supported for string fields.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ProductInner> listByInvoiceSectionAsync(String billingAccountName, String billingProfileName,
-        String invoiceSectionName, String filter, String orderBy, Long top, Long skip, Boolean count, String search,
-        Context context) {
-        return new PagedFlux<>(
-            () -> listByInvoiceSectionSinglePageAsync(billingAccountName, billingProfileName, invoiceSectionName,
-                filter, orderBy, top, skip, count, search, context),
-            nextLink -> listByInvoiceSectionNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ProductInner> listByInvoiceSectionSinglePage(String billingAccountName,
+        String billingProfileName, String invoiceSectionName, String filter, String orderBy, Long top, Long skip,
+        Boolean count, String search, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (invoiceSectionName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ProductListResult> res = service.listByInvoiceSectionSync(this.client.getEndpoint(),
+            billingAccountName, billingProfileName, invoiceSectionName, this.client.getApiVersion(), filter, orderBy,
+            top, skip, count, search, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -406,8 +536,9 @@ public final class ProductsClientImpl implements ProductsClient {
         final Long skip = null;
         final Boolean count = null;
         final String search = null;
-        return new PagedIterable<>(listByInvoiceSectionAsync(billingAccountName, billingProfileName, invoiceSectionName,
-            filter, orderBy, top, skip, count, search));
+        return new PagedIterable<>(() -> listByInvoiceSectionSinglePage(billingAccountName, billingProfileName,
+            invoiceSectionName, filter, orderBy, top, skip, count, search),
+            nextLink -> listByInvoiceSectionNextSinglePage(nextLink));
     }
 
     /**
@@ -438,8 +569,10 @@ public final class ProductsClientImpl implements ProductsClient {
     public PagedIterable<ProductInner> listByInvoiceSection(String billingAccountName, String billingProfileName,
         String invoiceSectionName, String filter, String orderBy, Long top, Long skip, Boolean count, String search,
         Context context) {
-        return new PagedIterable<>(listByInvoiceSectionAsync(billingAccountName, billingProfileName, invoiceSectionName,
-            filter, orderBy, top, skip, count, search, context));
+        return new PagedIterable<>(
+            () -> listByInvoiceSectionSinglePage(billingAccountName, billingProfileName, invoiceSectionName, filter,
+                orderBy, top, skip, count, search, context),
+            nextLink -> listByInvoiceSectionNextSinglePage(nextLink, context));
     }
 
     /**
@@ -488,55 +621,6 @@ public final class ProductsClientImpl implements ProductsClient {
             .<PagedResponse<ProductInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the products for a billing profile. These don't include products billed based on usage. The operation is
-     * supported for billing accounts with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
-     * request URL.
-     * @param orderBy The orderby query option allows clients to request resources in a particular order.
-     * @param top The top query option requests the number of items in the queried collection to be included in the
-     * result. The maximum supported value for top is 50.
-     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
-     * and not included in the result.
-     * @param count The count query option allows clients to request a count of the matching resources included with the
-     * resources in the response.
-     * @param search The search query option allows clients to request items within a collection matching a free-text
-     * search expression. search is only supported for string fields.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProductInner>> listByBillingProfileSinglePageAsync(String billingAccountName,
-        String billingProfileName, String filter, String orderBy, Long top, Long skip, Boolean count, String search,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByBillingProfile(this.client.getEndpoint(), billingAccountName, billingProfileName,
-                this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -608,18 +692,81 @@ public final class ProductsClientImpl implements ProductsClient {
      * resources in the response.
      * @param search The search query option allows clients to request items within a collection matching a free-text
      * search expression. search is only supported for string fields.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ProductInner> listByBillingProfileSinglePage(String billingAccountName,
+        String billingProfileName, String filter, String orderBy, Long top, Long skip, Boolean count, String search) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ProductListResult> res
+            = service.listByBillingProfileSync(this.client.getEndpoint(), billingAccountName, billingProfileName,
+                this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the products for a billing profile. These don't include products billed based on usage. The operation is
+     * supported for billing accounts with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     * request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     * result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     * and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     * resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     * search expression. search is only supported for string fields.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ProductInner> listByBillingProfileAsync(String billingAccountName, String billingProfileName,
-        String filter, String orderBy, Long top, Long skip, Boolean count, String search, Context context) {
-        return new PagedFlux<>(() -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName, filter,
-            orderBy, top, skip, count, search, context),
-            nextLink -> listByBillingProfileNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ProductInner> listByBillingProfileSinglePage(String billingAccountName,
+        String billingProfileName, String filter, String orderBy, Long top, Long skip, Boolean count, String search,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ProductListResult> res
+            = service.listByBillingProfileSync(this.client.getEndpoint(), billingAccountName, billingProfileName,
+                this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -641,8 +788,8 @@ public final class ProductsClientImpl implements ProductsClient {
         final Long skip = null;
         final Boolean count = null;
         final String search = null;
-        return new PagedIterable<>(listByBillingProfileAsync(billingAccountName, billingProfileName, filter, orderBy,
-            top, skip, count, search));
+        return new PagedIterable<>(() -> listByBillingProfileSinglePage(billingAccountName, billingProfileName, filter,
+            orderBy, top, skip, count, search), nextLink -> listByBillingProfileNextSinglePage(nextLink));
     }
 
     /**
@@ -671,8 +818,9 @@ public final class ProductsClientImpl implements ProductsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ProductInner> listByBillingProfile(String billingAccountName, String billingProfileName,
         String filter, String orderBy, Long top, Long skip, Boolean count, String search, Context context) {
-        return new PagedIterable<>(listByBillingProfileAsync(billingAccountName, billingProfileName, filter, orderBy,
-            top, skip, count, search, context));
+        return new PagedIterable<>(() -> listByBillingProfileSinglePage(billingAccountName, billingProfileName, filter,
+            orderBy, top, skip, count, search, context),
+            nextLink -> listByBillingProfileNextSinglePage(nextLink, context));
     }
 
     /**
@@ -719,54 +867,6 @@ public final class ProductsClientImpl implements ProductsClient {
             .<PagedResponse<ProductInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the products for a customer. These don't include products billed based on usage.The operation is supported
-     * only for billing accounts with agreement type Microsoft Partner Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
-     * request URL.
-     * @param orderBy The orderby query option allows clients to request resources in a particular order.
-     * @param top The top query option requests the number of items in the queried collection to be included in the
-     * result. The maximum supported value for top is 50.
-     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
-     * and not included in the result.
-     * @param count The count query option allows clients to request a count of the matching resources included with the
-     * resources in the response.
-     * @param search The search query option allows clients to request items within a collection matching a free-text
-     * search expression. search is only supported for string fields.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProductInner>> listByCustomerSinglePageAsync(String billingAccountName,
-        String customerName, String filter, String orderBy, Long top, Long skip, Boolean count, String search,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (customerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByCustomer(this.client.getEndpoint(), billingAccountName, customerName, this.client.getApiVersion(),
-                filter, orderBy, top, skip, count, search, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -838,17 +938,78 @@ public final class ProductsClientImpl implements ProductsClient {
      * resources in the response.
      * @param search The search query option allows clients to request items within a collection matching a free-text
      * search expression. search is only supported for string fields.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ProductInner> listByCustomerSinglePage(String billingAccountName, String customerName,
+        String filter, String orderBy, Long top, Long skip, Boolean count, String search) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (customerName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ProductListResult> res = service.listByCustomerSync(this.client.getEndpoint(), billingAccountName,
+            customerName, this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the products for a customer. These don't include products billed based on usage.The operation is supported
+     * only for billing accounts with agreement type Microsoft Partner Agreement.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param customerName The ID that uniquely identifies a customer.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     * request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     * result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     * and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     * resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     * search expression. search is only supported for string fields.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ProductInner> listByCustomerAsync(String billingAccountName, String customerName, String filter,
-        String orderBy, Long top, Long skip, Boolean count, String search, Context context) {
-        return new PagedFlux<>(() -> listByCustomerSinglePageAsync(billingAccountName, customerName, filter, orderBy,
-            top, skip, count, search, context), nextLink -> listByCustomerNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ProductInner> listByCustomerSinglePage(String billingAccountName, String customerName,
+        String filter, String orderBy, Long top, Long skip, Boolean count, String search, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (customerName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ProductListResult> res = service.listByCustomerSync(this.client.getEndpoint(), billingAccountName,
+            customerName, this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -871,7 +1032,8 @@ public final class ProductsClientImpl implements ProductsClient {
         final Boolean count = null;
         final String search = null;
         return new PagedIterable<>(
-            listByCustomerAsync(billingAccountName, customerName, filter, orderBy, top, skip, count, search));
+            () -> listByCustomerSinglePage(billingAccountName, customerName, filter, orderBy, top, skip, count, search),
+            nextLink -> listByCustomerNextSinglePage(nextLink));
     }
 
     /**
@@ -900,8 +1062,8 @@ public final class ProductsClientImpl implements ProductsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ProductInner> listByCustomer(String billingAccountName, String customerName, String filter,
         String orderBy, Long top, Long skip, Boolean count, String search, Context context) {
-        return new PagedIterable<>(
-            listByCustomerAsync(billingAccountName, customerName, filter, orderBy, top, skip, count, search, context));
+        return new PagedIterable<>(() -> listByCustomerSinglePage(billingAccountName, customerName, filter, orderBy,
+            top, skip, count, search, context), nextLink -> listByCustomerNextSinglePage(nextLink, context));
     }
 
     /**
@@ -951,34 +1113,76 @@ public final class ProductsClientImpl implements ProductsClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param productName The ID that uniquely identifies a product.
      * @param parameters The properties of the product to initiate a transfer.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a product along with {@link Response} on successful completion of {@link Mono}.
+     * @return a product along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> moveWithResponseAsync(String billingAccountName, String productName,
-        MoveProductRequest parameters, Context context) {
+    private Response<BinaryData> moveWithResponse(String billingAccountName, String productName,
+        MoveProductRequest parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
         if (productName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter productName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter productName is required and cannot be null."));
         }
         if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
         } else {
             parameters.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.move(this.client.getEndpoint(), billingAccountName, productName, this.client.getApiVersion(),
+        return service.moveSync(this.client.getEndpoint(), billingAccountName, productName, this.client.getApiVersion(),
+            parameters, accept, Context.NONE);
+    }
+
+    /**
+     * Moves a product's charges to a new invoice section. The new invoice section must belong to the same billing
+     * profile as the existing invoice section. This operation is supported only for products that are purchased with a
+     * recurring charge and for billing accounts with agreement type Microsoft Customer Agreement.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param productName The ID that uniquely identifies a product.
+     * @param parameters The properties of the product to initiate a transfer.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a product along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> moveWithResponse(String billingAccountName, String productName,
+        MoveProductRequest parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (productName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter productName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return service.moveSync(this.client.getEndpoint(), billingAccountName, productName, this.client.getApiVersion(),
             parameters, accept, context);
     }
 
@@ -1011,30 +1215,6 @@ public final class ProductsClientImpl implements ProductsClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param productName The ID that uniquely identifies a product.
      * @param parameters The properties of the product to initiate a transfer.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a product.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ProductInner>, ProductInner> beginMoveAsync(String billingAccountName,
-        String productName, MoveProductRequest parameters, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = moveWithResponseAsync(billingAccountName, productName, parameters, context);
-        return this.client.<ProductInner, ProductInner>getLroResult(mono, this.client.getHttpPipeline(),
-            ProductInner.class, ProductInner.class, context);
-    }
-
-    /**
-     * Moves a product's charges to a new invoice section. The new invoice section must belong to the same billing
-     * profile as the existing invoice section. This operation is supported only for products that are purchased with a
-     * recurring charge and for billing accounts with agreement type Microsoft Customer Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param productName The ID that uniquely identifies a product.
-     * @param parameters The properties of the product to initiate a transfer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1043,7 +1223,9 @@ public final class ProductsClientImpl implements ProductsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ProductInner>, ProductInner> beginMove(String billingAccountName, String productName,
         MoveProductRequest parameters) {
-        return this.beginMoveAsync(billingAccountName, productName, parameters).getSyncPoller();
+        Response<BinaryData> response = moveWithResponse(billingAccountName, productName, parameters);
+        return this.client.<ProductInner, ProductInner>getLroResult(response, ProductInner.class, ProductInner.class,
+            Context.NONE);
     }
 
     /**
@@ -1063,7 +1245,9 @@ public final class ProductsClientImpl implements ProductsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ProductInner>, ProductInner> beginMove(String billingAccountName, String productName,
         MoveProductRequest parameters, Context context) {
-        return this.beginMoveAsync(billingAccountName, productName, parameters, context).getSyncPoller();
+        Response<BinaryData> response = moveWithResponse(billingAccountName, productName, parameters, context);
+        return this.client.<ProductInner, ProductInner>getLroResult(response, ProductInner.class, ProductInner.class,
+            context);
     }
 
     /**
@@ -1093,27 +1277,6 @@ public final class ProductsClientImpl implements ProductsClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param productName The ID that uniquely identifies a product.
      * @param parameters The properties of the product to initiate a transfer.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a product on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProductInner> moveAsync(String billingAccountName, String productName, MoveProductRequest parameters,
-        Context context) {
-        return beginMoveAsync(billingAccountName, productName, parameters, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Moves a product's charges to a new invoice section. The new invoice section must belong to the same billing
-     * profile as the existing invoice section. This operation is supported only for products that are purchased with a
-     * recurring charge and for billing accounts with agreement type Microsoft Customer Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param productName The ID that uniquely identifies a product.
-     * @param parameters The properties of the product to initiate a transfer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1121,7 +1284,7 @@ public final class ProductsClientImpl implements ProductsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ProductInner move(String billingAccountName, String productName, MoveProductRequest parameters) {
-        return moveAsync(billingAccountName, productName, parameters).block();
+        return beginMove(billingAccountName, productName, parameters).getFinalResult();
     }
 
     /**
@@ -1141,7 +1304,7 @@ public final class ProductsClientImpl implements ProductsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ProductInner move(String billingAccountName, String productName, MoveProductRequest parameters,
         Context context) {
-        return moveAsync(billingAccountName, productName, parameters, context).block();
+        return beginMove(billingAccountName, productName, parameters, context).getFinalResult();
     }
 
     /**
@@ -1192,46 +1355,6 @@ public final class ProductsClientImpl implements ProductsClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param productName The ID that uniquely identifies a product.
      * @param parameters The properties of the product to initiate a transfer.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the transfer eligibility validation along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<MoveProductEligibilityResultInner>> validateMoveEligibilityWithResponseAsync(
-        String billingAccountName, String productName, MoveProductRequest parameters, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (productName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter productName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.validateMoveEligibility(this.client.getEndpoint(), billingAccountName, productName,
-            this.client.getApiVersion(), parameters, accept, context);
-    }
-
-    /**
-     * Validates if a product's charges can be moved to a new invoice section. This operation is supported only for
-     * products that are purchased with a recurring charge and for billing accounts with agreement type Microsoft
-     * Customer Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param productName The ID that uniquely identifies a product.
-     * @param parameters The properties of the product to initiate a transfer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1261,7 +1384,28 @@ public final class ProductsClientImpl implements ProductsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MoveProductEligibilityResultInner> validateMoveEligibilityWithResponse(String billingAccountName,
         String productName, MoveProductRequest parameters, Context context) {
-        return validateMoveEligibilityWithResponseAsync(billingAccountName, productName, parameters, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (productName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter productName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return service.validateMoveEligibilitySync(this.client.getEndpoint(), billingAccountName, productName,
+            this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
@@ -1321,38 +1465,6 @@ public final class ProductsClientImpl implements ProductsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param productName The ID that uniquely identifies a product.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a product by ID along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ProductInner>> getWithResponseAsync(String billingAccountName, String productName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (productName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter productName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), billingAccountName, productName, this.client.getApiVersion(),
-            accept, context);
-    }
-
-    /**
-     * Gets a product by ID. The operation is supported only for billing accounts with agreement type Microsoft Customer
-     * Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param productName The ID that uniquely identifies a product.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1377,7 +1489,22 @@ public final class ProductsClientImpl implements ProductsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ProductInner> getWithResponse(String billingAccountName, String productName, Context context) {
-        return getWithResponseAsync(billingAccountName, productName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (productName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter productName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), billingAccountName, productName, this.client.getApiVersion(),
+            accept, context);
     }
 
     /**
@@ -1441,44 +1568,6 @@ public final class ProductsClientImpl implements ProductsClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param productName The ID that uniquely identifies a product.
      * @param parameters A product.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a product along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ProductInner>> updateWithResponseAsync(String billingAccountName, String productName,
-        ProductPatch parameters, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (productName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter productName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), billingAccountName, productName, this.client.getApiVersion(),
-            parameters, accept, context);
-    }
-
-    /**
-     * Updates the properties of a Product. Currently, auto renew can be updated. The operation is supported only for
-     * billing accounts with agreement type Microsoft Customer Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param productName The ID that uniquely identifies a product.
-     * @param parameters A product.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1506,7 +1595,28 @@ public final class ProductsClientImpl implements ProductsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ProductInner> updateWithResponse(String billingAccountName, String productName,
         ProductPatch parameters, Context context) {
-        return updateWithResponseAsync(billingAccountName, productName, parameters, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (productName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter productName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return service.updateSync(this.client.getEndpoint(), billingAccountName, productName,
+            this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
@@ -1584,49 +1694,6 @@ public final class ProductsClientImpl implements ProductsClient {
      * resources in the response.
      * @param search The search query option allows clients to request items within a collection matching a free-text
      * search expression. search is only supported for string fields.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProductInner>> listByBillingAccountSinglePageAsync(String billingAccountName,
-        String filter, String orderBy, Long top, Long skip, Boolean count, String search, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByBillingAccount(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(), filter,
-                orderBy, top, skip, count, search, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the products for a billing account. These don't include products billed based on usage. The operation is
-     * supported for billing accounts with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
-     * request URL.
-     * @param orderBy The orderby query option allows clients to request resources in a particular order.
-     * @param top The top query option requests the number of items in the queried collection to be included in the
-     * result. The maximum supported value for top is 50.
-     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
-     * and not included in the result.
-     * @param count The count query option allows clients to request a count of the matching resources included with the
-     * resources in the response.
-     * @param search The search query option allows clients to request items within a collection matching a free-text
-     * search expression. search is only supported for string fields.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1679,17 +1746,71 @@ public final class ProductsClientImpl implements ProductsClient {
      * resources in the response.
      * @param search The search query option allows clients to request items within a collection matching a free-text
      * search expression. search is only supported for string fields.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ProductInner> listByBillingAccountSinglePage(String billingAccountName, String filter,
+        String orderBy, Long top, Long skip, Boolean count, String search) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ProductListResult> res
+            = service.listByBillingAccountSync(this.client.getEndpoint(), billingAccountName,
+                this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the products for a billing account. These don't include products billed based on usage. The operation is
+     * supported for billing accounts with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     * request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     * result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     * and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     * resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     * search expression. search is only supported for string fields.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ProductInner> listByBillingAccountAsync(String billingAccountName, String filter, String orderBy,
-        Long top, Long skip, Boolean count, String search, Context context) {
-        return new PagedFlux<>(() -> listByBillingAccountSinglePageAsync(billingAccountName, filter, orderBy, top, skip,
-            count, search, context), nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ProductInner> listByBillingAccountSinglePage(String billingAccountName, String filter,
+        String orderBy, Long top, Long skip, Boolean count, String search, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ProductListResult> res
+            = service.listByBillingAccountSync(this.client.getEndpoint(), billingAccountName,
+                this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -1711,7 +1832,8 @@ public final class ProductsClientImpl implements ProductsClient {
         final Boolean count = null;
         final String search = null;
         return new PagedIterable<>(
-            listByBillingAccountAsync(billingAccountName, filter, orderBy, top, skip, count, search));
+            () -> listByBillingAccountSinglePage(billingAccountName, filter, orderBy, top, skip, count, search),
+            nextLink -> listByBillingAccountNextSinglePage(nextLink));
     }
 
     /**
@@ -1739,8 +1861,8 @@ public final class ProductsClientImpl implements ProductsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ProductInner> listByBillingAccount(String billingAccountName, String filter, String orderBy,
         Long top, Long skip, Boolean count, String search, Context context) {
-        return new PagedIterable<>(
-            listByBillingAccountAsync(billingAccountName, filter, orderBy, top, skip, count, search, context));
+        return new PagedIterable<>(() -> listByBillingAccountSinglePage(billingAccountName, filter, orderBy, top, skip,
+            count, search, context), nextLink -> listByBillingAccountNextSinglePage(nextLink, context));
     }
 
     /**
@@ -1775,28 +1897,55 @@ public final class ProductsClientImpl implements ProductsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ProductInner> listByInvoiceSectionNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ProductListResult> res
+            = service.listByInvoiceSectionNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProductInner>> listByInvoiceSectionNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<ProductInner> listByInvoiceSectionNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByInvoiceSectionNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<ProductListResult> res
+            = service.listByInvoiceSectionNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -1831,28 +1980,55 @@ public final class ProductsClientImpl implements ProductsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ProductInner> listByBillingProfileNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ProductListResult> res
+            = service.listByBillingProfileNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProductInner>> listByBillingProfileNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<ProductInner> listByBillingProfileNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<ProductListResult> res
+            = service.listByBillingProfileNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -1886,27 +2062,55 @@ public final class ProductsClientImpl implements ProductsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ProductInner> listByCustomerNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ProductListResult> res
+            = service.listByCustomerNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProductInner>> listByCustomerNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<ProductInner> listByCustomerNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByCustomerNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<ProductListResult> res
+            = service.listByCustomerNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -1941,27 +2145,56 @@ public final class ProductsClientImpl implements ProductsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ProductInner> listByBillingAccountNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ProductListResult> res
+            = service.listByBillingAccountNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ProductInner>> listByBillingAccountNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<ProductInner> listByBillingAccountNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<ProductListResult> res
+            = service.listByBillingAccountNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ProductsClientImpl.class);
 }

@@ -22,8 +22,10 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.billing.fluent.PoliciesClient;
@@ -78,10 +80,30 @@ public final class PoliciesClientImpl implements PoliciesClient {
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/customers/{customerName}/policies/{policyName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<CustomerPolicyInner> getByCustomerSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName, @PathParam("customerName") String customerName,
+            @PathParam("policyName") ServiceDefinedResourceName policyName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Put("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/customers/{customerName}/policies/default")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdateByCustomer(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName, @PathParam("customerName") String customerName,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") CustomerPolicyInner parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/customers/{customerName}/policies/default")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> createOrUpdateByCustomerSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName, @PathParam("customerName") String customerName,
             @QueryParam("api-version") String apiVersion, @BodyParam("application/json") CustomerPolicyInner parameters,
@@ -97,10 +119,29 @@ public final class PoliciesClientImpl implements PoliciesClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/policies/default")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BillingProfilePolicyInner> getByBillingProfileSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Put("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/policies/default")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdateByBillingProfile(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") BillingProfilePolicyInner parameters, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/policies/default")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> createOrUpdateByBillingProfileSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName, @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") BillingProfilePolicyInner parameters, @HeaderParam("Accept") String accept,
@@ -115,10 +156,27 @@ public final class PoliciesClientImpl implements PoliciesClient {
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/customers/{customerName}/policies/default")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<CustomerPolicyInner> getByCustomerAtBillingAccountSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @PathParam("customerName") String customerName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Put("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/customers/{customerName}/policies/default")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdateByCustomerAtBillingAccount(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @PathParam("customerName") String customerName,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") CustomerPolicyInner parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/customers/{customerName}/policies/default")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> createOrUpdateByCustomerAtBillingAccountSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName, @PathParam("customerName") String customerName,
             @QueryParam("api-version") String apiVersion, @BodyParam("application/json") CustomerPolicyInner parameters,
             @HeaderParam("Accept") String accept, Context context);
@@ -132,6 +190,14 @@ public final class PoliciesClientImpl implements PoliciesClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/policies/default")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BillingAccountPolicyInner> getByBillingAccountSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Put("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/policies/default")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -141,10 +207,27 @@ public final class PoliciesClientImpl implements PoliciesClient {
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Put("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/policies/default")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> createOrUpdateByBillingAccountSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") BillingAccountPolicyInner parameters, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Billing/policies/default")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SubscriptionPolicyInner>> getBySubscription(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Billing/policies/default")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<SubscriptionPolicyInner> getBySubscriptionSync(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -198,47 +281,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param customerName The ID that uniquely identifies a customer.
      * @param policyName Service-defined resource names such as 'default' which are reserved resource names.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a policy at customer scope along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CustomerPolicyInner>> getByCustomerWithResponseAsync(String billingAccountName,
-        String billingProfileName, String customerName, ServiceDefinedResourceName policyName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        if (customerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
-        }
-        if (policyName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter policyName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getByCustomer(this.client.getEndpoint(), billingAccountName, billingProfileName, customerName,
-            policyName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Lists the policies for a customer. This operation is supported only for billing accounts with agreement type
-     * Microsoft Partner Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @param policyName Service-defined resource names such as 'default' which are reserved resource names.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -268,8 +310,30 @@ public final class PoliciesClientImpl implements PoliciesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CustomerPolicyInner> getByCustomerWithResponse(String billingAccountName, String billingProfileName,
         String customerName, ServiceDefinedResourceName policyName, Context context) {
-        return getByCustomerWithResponseAsync(billingAccountName, billingProfileName, customerName, policyName, context)
-            .block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (customerName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
+        }
+        if (policyName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter policyName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getByCustomerSync(this.client.getEndpoint(), billingAccountName, billingProfileName,
+            customerName, policyName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -343,38 +407,84 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param customerName The ID that uniquely identifies a customer.
      * @param parameters A policy at customer scope.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a policy at customer scope along with {@link Response} on successful completion of {@link Mono}.
+     * @return a policy at customer scope along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateByCustomerWithResponseAsync(String billingAccountName,
-        String billingProfileName, String customerName, CustomerPolicyInner parameters, Context context) {
+    private Response<BinaryData> createOrUpdateByCustomerWithResponse(String billingAccountName,
+        String billingProfileName, String customerName, CustomerPolicyInner parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
         if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
         if (customerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
         }
         if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
         } else {
             parameters.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdateByCustomer(this.client.getEndpoint(), billingAccountName, billingProfileName,
+        return service.createOrUpdateByCustomerSync(this.client.getEndpoint(), billingAccountName, billingProfileName,
+            customerName, this.client.getApiVersion(), parameters, accept, Context.NONE);
+    }
+
+    /**
+     * Updates the policies for a customer. This operation is supported only for billing accounts with agreement type
+     * Microsoft Partner Agreement.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param customerName The ID that uniquely identifies a customer.
+     * @param parameters A policy at customer scope.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a policy at customer scope along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> createOrUpdateByCustomerWithResponse(String billingAccountName,
+        String billingProfileName, String customerName, CustomerPolicyInner parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (customerName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return service.createOrUpdateByCustomerSync(this.client.getEndpoint(), billingAccountName, billingProfileName,
             customerName, this.client.getApiVersion(), parameters, accept, context);
     }
 
@@ -408,31 +518,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param customerName The ID that uniquely identifies a customer.
      * @param parameters A policy at customer scope.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a policy at customer scope.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<CustomerPolicyInner>, CustomerPolicyInner> beginCreateOrUpdateByCustomerAsync(
-        String billingAccountName, String billingProfileName, String customerName, CustomerPolicyInner parameters,
-        Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateByCustomerWithResponseAsync(billingAccountName,
-            billingProfileName, customerName, parameters, context);
-        return this.client.<CustomerPolicyInner, CustomerPolicyInner>getLroResult(mono, this.client.getHttpPipeline(),
-            CustomerPolicyInner.class, CustomerPolicyInner.class, context);
-    }
-
-    /**
-     * Updates the policies for a customer. This operation is supported only for billing accounts with agreement type
-     * Microsoft Partner Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @param parameters A policy at customer scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -441,8 +526,10 @@ public final class PoliciesClientImpl implements PoliciesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CustomerPolicyInner>, CustomerPolicyInner> beginCreateOrUpdateByCustomer(
         String billingAccountName, String billingProfileName, String customerName, CustomerPolicyInner parameters) {
-        return this.beginCreateOrUpdateByCustomerAsync(billingAccountName, billingProfileName, customerName, parameters)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = createOrUpdateByCustomerWithResponse(billingAccountName, billingProfileName, customerName, parameters);
+        return this.client.<CustomerPolicyInner, CustomerPolicyInner>getLroResult(response, CustomerPolicyInner.class,
+            CustomerPolicyInner.class, Context.NONE);
     }
 
     /**
@@ -463,10 +550,10 @@ public final class PoliciesClientImpl implements PoliciesClient {
     public SyncPoller<PollResult<CustomerPolicyInner>, CustomerPolicyInner> beginCreateOrUpdateByCustomer(
         String billingAccountName, String billingProfileName, String customerName, CustomerPolicyInner parameters,
         Context context) {
-        return this
-            .beginCreateOrUpdateByCustomerAsync(billingAccountName, billingProfileName, customerName, parameters,
-                context)
-            .getSyncPoller();
+        Response<BinaryData> response = createOrUpdateByCustomerWithResponse(billingAccountName, billingProfileName,
+            customerName, parameters, context);
+        return this.client.<CustomerPolicyInner, CustomerPolicyInner>getLroResult(response, CustomerPolicyInner.class,
+            CustomerPolicyInner.class, context);
     }
 
     /**
@@ -498,27 +585,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param customerName The ID that uniquely identifies a customer.
      * @param parameters A policy at customer scope.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a policy at customer scope on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CustomerPolicyInner> createOrUpdateByCustomerAsync(String billingAccountName,
-        String billingProfileName, String customerName, CustomerPolicyInner parameters, Context context) {
-        return beginCreateOrUpdateByCustomerAsync(billingAccountName, billingProfileName, customerName, parameters,
-            context).last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Updates the policies for a customer. This operation is supported only for billing accounts with agreement type
-     * Microsoft Partner Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @param parameters A policy at customer scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -527,7 +593,8 @@ public final class PoliciesClientImpl implements PoliciesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CustomerPolicyInner createOrUpdateByCustomer(String billingAccountName, String billingProfileName,
         String customerName, CustomerPolicyInner parameters) {
-        return createOrUpdateByCustomerAsync(billingAccountName, billingProfileName, customerName, parameters).block();
+        return beginCreateOrUpdateByCustomer(billingAccountName, billingProfileName, customerName, parameters)
+            .getFinalResult();
     }
 
     /**
@@ -547,8 +614,8 @@ public final class PoliciesClientImpl implements PoliciesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CustomerPolicyInner createOrUpdateByCustomer(String billingAccountName, String billingProfileName,
         String customerName, CustomerPolicyInner parameters, Context context) {
-        return createOrUpdateByCustomerAsync(billingAccountName, billingProfileName, customerName, parameters, context)
-            .block();
+        return beginCreateOrUpdateByCustomer(billingAccountName, billingProfileName, customerName, parameters, context)
+            .getFinalResult();
     }
 
     /**
@@ -590,39 +657,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a policy at billing profile scope along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingProfilePolicyInner>> getByBillingProfileWithResponseAsync(String billingAccountName,
-        String billingProfileName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getByBillingProfile(this.client.getEndpoint(), billingAccountName, billingProfileName,
-            this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Lists the policies for a billing profile. This operation is supported only for billing accounts with agreement
-     * type Microsoft Customer Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -650,7 +684,22 @@ public final class PoliciesClientImpl implements PoliciesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BillingProfilePolicyInner> getByBillingProfileWithResponse(String billingAccountName,
         String billingProfileName, Context context) {
-        return getByBillingProfileWithResponseAsync(billingAccountName, billingProfileName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getByBillingProfileSync(this.client.getEndpoint(), billingAccountName, billingProfileName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -715,36 +764,76 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param parameters A policy at billing profile scope.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a policy at billing profile scope along with {@link Response} on successful completion of {@link Mono}.
+     * @return a policy at billing profile scope along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateByBillingProfileWithResponseAsync(String billingAccountName,
-        String billingProfileName, BillingProfilePolicyInner parameters, Context context) {
+    private Response<BinaryData> createOrUpdateByBillingProfileWithResponse(String billingAccountName,
+        String billingProfileName, BillingProfilePolicyInner parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
         if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
         if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
         } else {
             parameters.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdateByBillingProfile(this.client.getEndpoint(), billingAccountName, billingProfileName,
-            this.client.getApiVersion(), parameters, accept, context);
+        return service.createOrUpdateByBillingProfileSync(this.client.getEndpoint(), billingAccountName,
+            billingProfileName, this.client.getApiVersion(), parameters, accept, Context.NONE);
+    }
+
+    /**
+     * Updates the policies for a billing profile. This operation is supported only for billing accounts with agreement
+     * type Microsoft Customer Agreement.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param parameters A policy at billing profile scope.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a policy at billing profile scope along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> createOrUpdateByBillingProfileWithResponse(String billingAccountName,
+        String billingProfileName, BillingProfilePolicyInner parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return service.createOrUpdateByBillingProfileSync(this.client.getEndpoint(), billingAccountName,
+            billingProfileName, this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
@@ -777,30 +866,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param parameters A policy at billing profile scope.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a policy at billing profile scope.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<BillingProfilePolicyInner>, BillingProfilePolicyInner>
-        beginCreateOrUpdateByBillingProfileAsync(String billingAccountName, String billingProfileName,
-            BillingProfilePolicyInner parameters, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateByBillingProfileWithResponseAsync(billingAccountName,
-            billingProfileName, parameters, context);
-        return this.client.<BillingProfilePolicyInner, BillingProfilePolicyInner>getLroResult(mono,
-            this.client.getHttpPipeline(), BillingProfilePolicyInner.class, BillingProfilePolicyInner.class, context);
-    }
-
-    /**
-     * Updates the policies for a billing profile. This operation is supported only for billing accounts with agreement
-     * type Microsoft Customer Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param parameters A policy at billing profile scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -810,8 +875,10 @@ public final class PoliciesClientImpl implements PoliciesClient {
     public SyncPoller<PollResult<BillingProfilePolicyInner>, BillingProfilePolicyInner>
         beginCreateOrUpdateByBillingProfile(String billingAccountName, String billingProfileName,
             BillingProfilePolicyInner parameters) {
-        return this.beginCreateOrUpdateByBillingProfileAsync(billingAccountName, billingProfileName, parameters)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = createOrUpdateByBillingProfileWithResponse(billingAccountName, billingProfileName, parameters);
+        return this.client.<BillingProfilePolicyInner, BillingProfilePolicyInner>getLroResult(response,
+            BillingProfilePolicyInner.class, BillingProfilePolicyInner.class, Context.NONE);
     }
 
     /**
@@ -831,9 +898,10 @@ public final class PoliciesClientImpl implements PoliciesClient {
     public SyncPoller<PollResult<BillingProfilePolicyInner>, BillingProfilePolicyInner>
         beginCreateOrUpdateByBillingProfile(String billingAccountName, String billingProfileName,
             BillingProfilePolicyInner parameters, Context context) {
-        return this
-            .beginCreateOrUpdateByBillingProfileAsync(billingAccountName, billingProfileName, parameters, context)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = createOrUpdateByBillingProfileWithResponse(billingAccountName, billingProfileName, parameters, context);
+        return this.client.<BillingProfilePolicyInner, BillingProfilePolicyInner>getLroResult(response,
+            BillingProfilePolicyInner.class, BillingProfilePolicyInner.class, context);
     }
 
     /**
@@ -862,27 +930,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param parameters A policy at billing profile scope.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a policy at billing profile scope on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BillingProfilePolicyInner> createOrUpdateByBillingProfileAsync(String billingAccountName,
-        String billingProfileName, BillingProfilePolicyInner parameters, Context context) {
-        return beginCreateOrUpdateByBillingProfileAsync(billingAccountName, billingProfileName, parameters, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Updates the policies for a billing profile. This operation is supported only for billing accounts with agreement
-     * type Microsoft Customer Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param parameters A policy at billing profile scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -891,7 +938,7 @@ public final class PoliciesClientImpl implements PoliciesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BillingProfilePolicyInner createOrUpdateByBillingProfile(String billingAccountName,
         String billingProfileName, BillingProfilePolicyInner parameters) {
-        return createOrUpdateByBillingProfileAsync(billingAccountName, billingProfileName, parameters).block();
+        return beginCreateOrUpdateByBillingProfile(billingAccountName, billingProfileName, parameters).getFinalResult();
     }
 
     /**
@@ -910,7 +957,8 @@ public final class PoliciesClientImpl implements PoliciesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BillingProfilePolicyInner createOrUpdateByBillingProfile(String billingAccountName,
         String billingProfileName, BillingProfilePolicyInner parameters, Context context) {
-        return createOrUpdateByBillingProfileAsync(billingAccountName, billingProfileName, parameters, context).block();
+        return beginCreateOrUpdateByBillingProfile(billingAccountName, billingProfileName, parameters, context)
+            .getFinalResult();
     }
 
     /**
@@ -951,38 +999,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param customerName The ID that uniquely identifies a customer.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a policy at customer scope along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CustomerPolicyInner>> getByCustomerAtBillingAccountWithResponseAsync(
-        String billingAccountName, String customerName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (customerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getByCustomerAtBillingAccount(this.client.getEndpoint(), billingAccountName, customerName,
-            this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Lists the policies for a customer at billing account scope. This operation is supported only for billing accounts
-     * with agreement type Microsoft Partner Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param customerName The ID that uniquely identifies a customer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1010,7 +1026,22 @@ public final class PoliciesClientImpl implements PoliciesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CustomerPolicyInner> getByCustomerAtBillingAccountWithResponse(String billingAccountName,
         String customerName, Context context) {
-        return getByCustomerAtBillingAccountWithResponseAsync(billingAccountName, customerName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (customerName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getByCustomerAtBillingAccountSync(this.client.getEndpoint(), billingAccountName, customerName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -1074,34 +1105,75 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param customerName The ID that uniquely identifies a customer.
      * @param parameters A policy at customer scope.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a policy at customer scope along with {@link Response} on successful completion of {@link Mono}.
+     * @return a policy at customer scope along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateByCustomerAtBillingAccountWithResponseAsync(
-        String billingAccountName, String customerName, CustomerPolicyInner parameters, Context context) {
+    private Response<BinaryData> createOrUpdateByCustomerAtBillingAccountWithResponse(String billingAccountName,
+        String customerName, CustomerPolicyInner parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
         if (customerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
         }
         if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
         } else {
             parameters.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdateByCustomerAtBillingAccount(this.client.getEndpoint(), billingAccountName,
+        return service.createOrUpdateByCustomerAtBillingAccountSync(this.client.getEndpoint(), billingAccountName,
+            customerName, this.client.getApiVersion(), parameters, accept, Context.NONE);
+    }
+
+    /**
+     * Updates the policies for a customer at billing account scope. This operation is supported only for billing
+     * accounts with agreement type Microsoft Partner Agreement.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param customerName The ID that uniquely identifies a customer.
+     * @param parameters A policy at customer scope.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a policy at customer scope along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> createOrUpdateByCustomerAtBillingAccountWithResponse(String billingAccountName,
+        String customerName, CustomerPolicyInner parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (customerName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return service.createOrUpdateByCustomerAtBillingAccountSync(this.client.getEndpoint(), billingAccountName,
             customerName, this.client.getApiVersion(), parameters, accept, context);
     }
 
@@ -1134,30 +1206,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param customerName The ID that uniquely identifies a customer.
      * @param parameters A policy at customer scope.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a policy at customer scope.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<CustomerPolicyInner>, CustomerPolicyInner>
-        beginCreateOrUpdateByCustomerAtBillingAccountAsync(String billingAccountName, String customerName,
-            CustomerPolicyInner parameters, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateByCustomerAtBillingAccountWithResponseAsync(
-            billingAccountName, customerName, parameters, context);
-        return this.client.<CustomerPolicyInner, CustomerPolicyInner>getLroResult(mono, this.client.getHttpPipeline(),
-            CustomerPolicyInner.class, CustomerPolicyInner.class, context);
-    }
-
-    /**
-     * Updates the policies for a customer at billing account scope. This operation is supported only for billing
-     * accounts with agreement type Microsoft Partner Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @param parameters A policy at customer scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1167,8 +1215,10 @@ public final class PoliciesClientImpl implements PoliciesClient {
     public SyncPoller<PollResult<CustomerPolicyInner>, CustomerPolicyInner>
         beginCreateOrUpdateByCustomerAtBillingAccount(String billingAccountName, String customerName,
             CustomerPolicyInner parameters) {
-        return this.beginCreateOrUpdateByCustomerAtBillingAccountAsync(billingAccountName, customerName, parameters)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = createOrUpdateByCustomerAtBillingAccountWithResponse(billingAccountName, customerName, parameters);
+        return this.client.<CustomerPolicyInner, CustomerPolicyInner>getLroResult(response, CustomerPolicyInner.class,
+            CustomerPolicyInner.class, Context.NONE);
     }
 
     /**
@@ -1188,9 +1238,10 @@ public final class PoliciesClientImpl implements PoliciesClient {
     public SyncPoller<PollResult<CustomerPolicyInner>, CustomerPolicyInner>
         beginCreateOrUpdateByCustomerAtBillingAccount(String billingAccountName, String customerName,
             CustomerPolicyInner parameters, Context context) {
-        return this
-            .beginCreateOrUpdateByCustomerAtBillingAccountAsync(billingAccountName, customerName, parameters, context)
-            .getSyncPoller();
+        Response<BinaryData> response = createOrUpdateByCustomerAtBillingAccountWithResponse(billingAccountName,
+            customerName, parameters, context);
+        return this.client.<CustomerPolicyInner, CustomerPolicyInner>getLroResult(response, CustomerPolicyInner.class,
+            CustomerPolicyInner.class, context);
     }
 
     /**
@@ -1219,27 +1270,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param customerName The ID that uniquely identifies a customer.
      * @param parameters A policy at customer scope.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a policy at customer scope on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CustomerPolicyInner> createOrUpdateByCustomerAtBillingAccountAsync(String billingAccountName,
-        String customerName, CustomerPolicyInner parameters, Context context) {
-        return beginCreateOrUpdateByCustomerAtBillingAccountAsync(billingAccountName, customerName, parameters, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Updates the policies for a customer at billing account scope. This operation is supported only for billing
-     * accounts with agreement type Microsoft Partner Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @param parameters A policy at customer scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1248,7 +1278,8 @@ public final class PoliciesClientImpl implements PoliciesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CustomerPolicyInner createOrUpdateByCustomerAtBillingAccount(String billingAccountName, String customerName,
         CustomerPolicyInner parameters) {
-        return createOrUpdateByCustomerAtBillingAccountAsync(billingAccountName, customerName, parameters).block();
+        return beginCreateOrUpdateByCustomerAtBillingAccount(billingAccountName, customerName, parameters)
+            .getFinalResult();
     }
 
     /**
@@ -1267,8 +1298,8 @@ public final class PoliciesClientImpl implements PoliciesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public CustomerPolicyInner createOrUpdateByCustomerAtBillingAccount(String billingAccountName, String customerName,
         CustomerPolicyInner parameters, Context context) {
-        return createOrUpdateByCustomerAtBillingAccountAsync(billingAccountName, customerName, parameters, context)
-            .block();
+        return beginCreateOrUpdateByCustomerAtBillingAccount(billingAccountName, customerName, parameters, context)
+            .getFinalResult();
     }
 
     /**
@@ -1302,34 +1333,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * Get the policies for a billing account of Enterprise Agreement type.
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the policies for a billing account of Enterprise Agreement type along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingAccountPolicyInner>> getByBillingAccountWithResponseAsync(String billingAccountName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getByBillingAccount(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(),
-            accept, context);
-    }
-
-    /**
-     * Get the policies for a billing account of Enterprise Agreement type.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1354,7 +1357,18 @@ public final class PoliciesClientImpl implements PoliciesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BillingAccountPolicyInner> getByBillingAccountWithResponse(String billingAccountName,
         Context context) {
-        return getByBillingAccountWithResponseAsync(billingAccountName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getByBillingAccountSync(this.client.getEndpoint(), billingAccountName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -1409,31 +1423,65 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters A policy at billing account scope.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a policy at billing account scope along with {@link Response} on successful completion of {@link Mono}.
+     * @return a policy at billing account scope along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateByBillingAccountWithResponseAsync(String billingAccountName,
-        BillingAccountPolicyInner parameters, Context context) {
+    private Response<BinaryData> createOrUpdateByBillingAccountWithResponse(String billingAccountName,
+        BillingAccountPolicyInner parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
         if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
         } else {
             parameters.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdateByBillingAccount(this.client.getEndpoint(), billingAccountName,
+        return service.createOrUpdateByBillingAccountSync(this.client.getEndpoint(), billingAccountName,
+            this.client.getApiVersion(), parameters, accept, Context.NONE);
+    }
+
+    /**
+     * Update the policies for a billing account of Enterprise Agreement type.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param parameters A policy at billing account scope.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a policy at billing account scope along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> createOrUpdateByBillingAccountWithResponse(String billingAccountName,
+        BillingAccountPolicyInner parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return service.createOrUpdateByBillingAccountSync(this.client.getEndpoint(), billingAccountName,
             this.client.getApiVersion(), parameters, accept, context);
     }
 
@@ -1462,28 +1510,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters A policy at billing account scope.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a policy at billing account scope.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<BillingAccountPolicyInner>, BillingAccountPolicyInner>
-        beginCreateOrUpdateByBillingAccountAsync(String billingAccountName, BillingAccountPolicyInner parameters,
-            Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateByBillingAccountWithResponseAsync(billingAccountName, parameters, context);
-        return this.client.<BillingAccountPolicyInner, BillingAccountPolicyInner>getLroResult(mono,
-            this.client.getHttpPipeline(), BillingAccountPolicyInner.class, BillingAccountPolicyInner.class, context);
-    }
-
-    /**
-     * Update the policies for a billing account of Enterprise Agreement type.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param parameters A policy at billing account scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1492,7 +1518,9 @@ public final class PoliciesClientImpl implements PoliciesClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BillingAccountPolicyInner>, BillingAccountPolicyInner>
         beginCreateOrUpdateByBillingAccount(String billingAccountName, BillingAccountPolicyInner parameters) {
-        return this.beginCreateOrUpdateByBillingAccountAsync(billingAccountName, parameters).getSyncPoller();
+        Response<BinaryData> response = createOrUpdateByBillingAccountWithResponse(billingAccountName, parameters);
+        return this.client.<BillingAccountPolicyInner, BillingAccountPolicyInner>getLroResult(response,
+            BillingAccountPolicyInner.class, BillingAccountPolicyInner.class, Context.NONE);
     }
 
     /**
@@ -1510,7 +1538,10 @@ public final class PoliciesClientImpl implements PoliciesClient {
     public SyncPoller<PollResult<BillingAccountPolicyInner>, BillingAccountPolicyInner>
         beginCreateOrUpdateByBillingAccount(String billingAccountName, BillingAccountPolicyInner parameters,
             Context context) {
-        return this.beginCreateOrUpdateByBillingAccountAsync(billingAccountName, parameters, context).getSyncPoller();
+        Response<BinaryData> response
+            = createOrUpdateByBillingAccountWithResponse(billingAccountName, parameters, context);
+        return this.client.<BillingAccountPolicyInner, BillingAccountPolicyInner>getLroResult(response,
+            BillingAccountPolicyInner.class, BillingAccountPolicyInner.class, context);
     }
 
     /**
@@ -1535,24 +1566,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters A policy at billing account scope.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a policy at billing account scope on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BillingAccountPolicyInner> createOrUpdateByBillingAccountAsync(String billingAccountName,
-        BillingAccountPolicyInner parameters, Context context) {
-        return beginCreateOrUpdateByBillingAccountAsync(billingAccountName, parameters, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Update the policies for a billing account of Enterprise Agreement type.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param parameters A policy at billing account scope.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1561,7 +1574,7 @@ public final class PoliciesClientImpl implements PoliciesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BillingAccountPolicyInner createOrUpdateByBillingAccount(String billingAccountName,
         BillingAccountPolicyInner parameters) {
-        return createOrUpdateByBillingAccountAsync(billingAccountName, parameters).block();
+        return beginCreateOrUpdateByBillingAccount(billingAccountName, parameters).getFinalResult();
     }
 
     /**
@@ -1578,7 +1591,7 @@ public final class PoliciesClientImpl implements PoliciesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BillingAccountPolicyInner createOrUpdateByBillingAccount(String billingAccountName,
         BillingAccountPolicyInner parameters, Context context) {
-        return createOrUpdateByBillingAccountAsync(billingAccountName, parameters, context).block();
+        return beginCreateOrUpdateByBillingAccount(billingAccountName, parameters, context).getFinalResult();
     }
 
     /**
@@ -1610,32 +1623,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
      * Lists the policies that are managed by the Billing Admin for the defined subscriptions. This is supported for
      * Microsoft Online Services Program, Microsoft Customer Agreement and Microsoft Partner Agreement.
      * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a policy at subscription scope along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SubscriptionPolicyInner>> getBySubscriptionWithResponseAsync(Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getBySubscription(this.client.getEndpoint(), this.client.getSubscriptionId(),
-            this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Lists the policies that are managed by the Billing Admin for the defined subscriptions. This is supported for
-     * Microsoft Online Services Program, Microsoft Customer Agreement and Microsoft Partner Agreement.
-     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a policy at subscription scope on successful completion of {@link Mono}.
@@ -1657,7 +1644,19 @@ public final class PoliciesClientImpl implements PoliciesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SubscriptionPolicyInner> getBySubscriptionWithResponse(Context context) {
-        return getBySubscriptionWithResponseAsync(context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getBySubscriptionSync(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -1672,4 +1671,6 @@ public final class PoliciesClientImpl implements PoliciesClient {
     public SubscriptionPolicyInner getBySubscription() {
         return getBySubscriptionWithResponse(Context.NONE).getValue();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PoliciesClientImpl.class);
 }

@@ -26,8 +26,10 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.billing.fluent.BillingSubscriptionsAliasesClient;
@@ -78,10 +80,28 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptionAliases/{aliasName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BillingSubscriptionAliasInner> getSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @PathParam("aliasName") String aliasName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Put("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptionAliases/{aliasName}")
         @ExpectedResponses({ 200, 201, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @PathParam("aliasName") String aliasName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") BillingSubscriptionAliasInner parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptionAliases/{aliasName}")
+        @ExpectedResponses({ 200, 201, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> createOrUpdateSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName, @PathParam("aliasName") String aliasName,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") BillingSubscriptionAliasInner parameters,
@@ -99,10 +119,29 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingSubscriptionAliases")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BillingSubscriptionAliasListResult> listByBillingAccountSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @QueryParam("includeDeleted") Boolean includeDeleted, @QueryParam("api-version") String apiVersion,
+            @QueryParam("filter") String filter, @QueryParam("orderBy") String orderBy, @QueryParam("top") Long top,
+            @QueryParam("skip") Long skip, @QueryParam("count") Boolean count, @QueryParam("search") String search,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BillingSubscriptionAliasListResult>> listByBillingAccountNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BillingSubscriptionAliasListResult> listByBillingAccountNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -143,37 +182,6 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param aliasName The ID that uniquely identifies a subscription alias.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a subscription by its alias ID along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingSubscriptionAliasInner>> getWithResponseAsync(String billingAccountName,
-        String aliasName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (aliasName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter aliasName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), billingAccountName, aliasName, this.client.getApiVersion(),
-            accept, context);
-    }
-
-    /**
-     * Gets a subscription by its alias ID. The operation is supported for seat based billing subscriptions.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param aliasName The ID that uniquely identifies a subscription alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -198,7 +206,22 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BillingSubscriptionAliasInner> getWithResponse(String billingAccountName, String aliasName,
         Context context) {
-        return getWithResponseAsync(billingAccountName, aliasName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (aliasName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter aliasName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), billingAccountName, aliasName, this.client.getApiVersion(),
+            accept, context);
     }
 
     /**
@@ -261,34 +284,75 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param aliasName The ID that uniquely identifies a subscription alias.
      * @param parameters A billing subscription alias.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing subscription alias along with {@link Response} on successful completion of {@link Mono}.
+     * @return a billing subscription alias along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String billingAccountName,
-        String aliasName, BillingSubscriptionAliasInner parameters, Context context) {
+    private Response<BinaryData> createOrUpdateWithResponse(String billingAccountName, String aliasName,
+        BillingSubscriptionAliasInner parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
         if (aliasName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter aliasName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter aliasName is required and cannot be null."));
         }
         if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
         } else {
             parameters.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), billingAccountName, aliasName,
+        return service.createOrUpdateSync(this.client.getEndpoint(), billingAccountName, aliasName,
+            this.client.getApiVersion(), parameters, accept, Context.NONE);
+    }
+
+    /**
+     * Creates or updates a billing subscription by its alias ID. The operation is supported for seat based billing
+     * subscriptions.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param aliasName The ID that uniquely identifies a subscription alias.
+     * @param parameters A billing subscription alias.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a billing subscription alias along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> createOrUpdateWithResponse(String billingAccountName, String aliasName,
+        BillingSubscriptionAliasInner parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (aliasName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter aliasName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return service.createOrUpdateSync(this.client.getEndpoint(), billingAccountName, aliasName,
             this.client.getApiVersion(), parameters, accept, context);
     }
 
@@ -322,31 +386,6 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param aliasName The ID that uniquely identifies a subscription alias.
      * @param parameters A billing subscription alias.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a billing subscription alias.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<BillingSubscriptionAliasInner>, BillingSubscriptionAliasInner>
-        beginCreateOrUpdateAsync(String billingAccountName, String aliasName, BillingSubscriptionAliasInner parameters,
-            Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(billingAccountName, aliasName, parameters, context);
-        return this.client.<BillingSubscriptionAliasInner, BillingSubscriptionAliasInner>getLroResult(mono,
-            this.client.getHttpPipeline(), BillingSubscriptionAliasInner.class, BillingSubscriptionAliasInner.class,
-            context);
-    }
-
-    /**
-     * Creates or updates a billing subscription by its alias ID. The operation is supported for seat based billing
-     * subscriptions.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param aliasName The ID that uniquely identifies a subscription alias.
-     * @param parameters A billing subscription alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -355,7 +394,9 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BillingSubscriptionAliasInner>, BillingSubscriptionAliasInner>
         beginCreateOrUpdate(String billingAccountName, String aliasName, BillingSubscriptionAliasInner parameters) {
-        return this.beginCreateOrUpdateAsync(billingAccountName, aliasName, parameters).getSyncPoller();
+        Response<BinaryData> response = createOrUpdateWithResponse(billingAccountName, aliasName, parameters);
+        return this.client.<BillingSubscriptionAliasInner, BillingSubscriptionAliasInner>getLroResult(response,
+            BillingSubscriptionAliasInner.class, BillingSubscriptionAliasInner.class, Context.NONE);
     }
 
     /**
@@ -374,7 +415,9 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BillingSubscriptionAliasInner>, BillingSubscriptionAliasInner> beginCreateOrUpdate(
         String billingAccountName, String aliasName, BillingSubscriptionAliasInner parameters, Context context) {
-        return this.beginCreateOrUpdateAsync(billingAccountName, aliasName, parameters, context).getSyncPoller();
+        Response<BinaryData> response = createOrUpdateWithResponse(billingAccountName, aliasName, parameters, context);
+        return this.client.<BillingSubscriptionAliasInner, BillingSubscriptionAliasInner>getLroResult(response,
+            BillingSubscriptionAliasInner.class, BillingSubscriptionAliasInner.class, context);
     }
 
     /**
@@ -403,26 +446,6 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param aliasName The ID that uniquely identifies a subscription alias.
      * @param parameters A billing subscription alias.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing subscription alias on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BillingSubscriptionAliasInner> createOrUpdateAsync(String billingAccountName, String aliasName,
-        BillingSubscriptionAliasInner parameters, Context context) {
-        return beginCreateOrUpdateAsync(billingAccountName, aliasName, parameters, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Creates or updates a billing subscription by its alias ID. The operation is supported for seat based billing
-     * subscriptions.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param aliasName The ID that uniquely identifies a subscription alias.
-     * @param parameters A billing subscription alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -431,7 +454,7 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BillingSubscriptionAliasInner createOrUpdate(String billingAccountName, String aliasName,
         BillingSubscriptionAliasInner parameters) {
-        return createOrUpdateAsync(billingAccountName, aliasName, parameters).block();
+        return beginCreateOrUpdate(billingAccountName, aliasName, parameters).getFinalResult();
     }
 
     /**
@@ -450,7 +473,7 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BillingSubscriptionAliasInner createOrUpdate(String billingAccountName, String aliasName,
         BillingSubscriptionAliasInner parameters, Context context) {
-        return createOrUpdateAsync(billingAccountName, aliasName, parameters, context).block();
+        return beginCreateOrUpdate(billingAccountName, aliasName, parameters, context).getFinalResult();
     }
 
     /**
@@ -496,51 +519,6 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
             .<PagedResponse<BillingSubscriptionAliasInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the subscription aliases for a billing account. The operation is supported for seat based billing
-     * subscriptions.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param includeDeleted Can be used to get deleted billing subscriptions.
-     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
-     * request URL.
-     * @param orderBy The orderby query option allows clients to request resources in a particular order.
-     * @param top The top query option requests the number of items in the queried collection to be included in the
-     * result. The maximum supported value for top is 50.
-     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
-     * and not included in the result.
-     * @param count The count query option allows clients to request a count of the matching resources included with the
-     * resources in the response.
-     * @param search The search query option allows clients to request items within a collection matching a free-text
-     * search expression. search is only supported for string fields.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingSubscriptionAliasInner>> listByBillingAccountSinglePageAsync(
-        String billingAccountName, Boolean includeDeleted, String filter, String orderBy, Long top, Long skip,
-        Boolean count, String search, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByBillingAccount(this.client.getEndpoint(), billingAccountName, includeDeleted,
-                this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -612,19 +590,73 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
      * resources in the response.
      * @param search The search query option allows clients to request items within a collection matching a free-text
      * search expression. search is only supported for string fields.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BillingSubscriptionAliasInner> listByBillingAccountSinglePage(String billingAccountName,
+        Boolean includeDeleted, String filter, String orderBy, Long top, Long skip, Boolean count, String search) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<BillingSubscriptionAliasListResult> res
+            = service.listByBillingAccountSync(this.client.getEndpoint(), billingAccountName, includeDeleted,
+                this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the subscription aliases for a billing account. The operation is supported for seat based billing
+     * subscriptions.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param includeDeleted Can be used to get deleted billing subscriptions.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     * request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     * result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     * and not included in the result.
+     * @param count The count query option allows clients to request a count of the matching resources included with the
+     * resources in the response.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     * search expression. search is only supported for string fields.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingSubscriptionAliasInner> listByBillingAccountAsync(String billingAccountName,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BillingSubscriptionAliasInner> listByBillingAccountSinglePage(String billingAccountName,
         Boolean includeDeleted, String filter, String orderBy, Long top, Long skip, Boolean count, String search,
         Context context) {
-        return new PagedFlux<>(() -> listByBillingAccountSinglePageAsync(billingAccountName, includeDeleted, filter,
-            orderBy, top, skip, count, search, context),
-            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<BillingSubscriptionAliasListResult> res
+            = service.listByBillingAccountSync(this.client.getEndpoint(), billingAccountName, includeDeleted,
+                this.client.getApiVersion(), filter, orderBy, top, skip, count, search, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -646,8 +678,8 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
         final Long skip = null;
         final Boolean count = null;
         final String search = null;
-        return new PagedIterable<>(
-            listByBillingAccountAsync(billingAccountName, includeDeleted, filter, orderBy, top, skip, count, search));
+        return new PagedIterable<>(() -> listByBillingAccountSinglePage(billingAccountName, includeDeleted, filter,
+            orderBy, top, skip, count, search), nextLink -> listByBillingAccountNextSinglePage(nextLink));
     }
 
     /**
@@ -677,8 +709,9 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
     public PagedIterable<BillingSubscriptionAliasInner> listByBillingAccount(String billingAccountName,
         Boolean includeDeleted, String filter, String orderBy, Long top, Long skip, Boolean count, String search,
         Context context) {
-        return new PagedIterable<>(listByBillingAccountAsync(billingAccountName, includeDeleted, filter, orderBy, top,
-            skip, count, search, context));
+        return new PagedIterable<>(() -> listByBillingAccountSinglePage(billingAccountName, includeDeleted, filter,
+            orderBy, top, skip, count, search, context),
+            nextLink -> listByBillingAccountNextSinglePage(nextLink, context));
     }
 
     /**
@@ -714,27 +747,57 @@ public final class BillingSubscriptionsAliasesClientImpl implements BillingSubsc
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BillingSubscriptionAliasInner> listByBillingAccountNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<BillingSubscriptionAliasListResult> res
+            = service.listByBillingAccountNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingSubscriptionAliasInner>> listByBillingAccountNextSinglePageAsync(String nextLink,
+    private PagedResponse<BillingSubscriptionAliasInner> listByBillingAccountNextSinglePage(String nextLink,
         Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<BillingSubscriptionAliasListResult> res
+            = service.listByBillingAccountNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(BillingSubscriptionsAliasesClientImpl.class);
 }

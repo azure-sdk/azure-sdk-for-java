@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.AgreementsClient;
 import com.azure.resourcemanager.billing.fluent.models.AgreementInner;
 import com.azure.resourcemanager.billing.models.AgreementListResult;
@@ -72,6 +73,15 @@ public final class AgreementsClientImpl implements AgreementsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/agreements/{agreementName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<AgreementInner> getSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("agreementName") String agreementName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/agreements")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -80,10 +90,26 @@ public final class AgreementsClientImpl implements AgreementsClient {
             @QueryParam("expand") String expand, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/agreements")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<AgreementListResult> listByBillingAccountSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("expand") String expand, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AgreementListResult>> listByBillingAccountNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<AgreementListResult> listByBillingAccountNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -123,37 +149,6 @@ public final class AgreementsClientImpl implements AgreementsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param agreementName The ID that uniquely identifies an agreement.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an agreement by ID along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AgreementInner>> getWithResponseAsync(String billingAccountName, String agreementName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (agreementName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter agreementName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), billingAccountName, agreementName, this.client.getApiVersion(),
-            accept, context);
-    }
-
-    /**
-     * Gets an agreement by ID.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param agreementName The ID that uniquely identifies an agreement.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -177,7 +172,22 @@ public final class AgreementsClientImpl implements AgreementsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AgreementInner> getWithResponse(String billingAccountName, String agreementName, Context context) {
-        return getWithResponseAsync(billingAccountName, agreementName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (agreementName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter agreementName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), billingAccountName, agreementName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -231,38 +241,6 @@ public final class AgreementsClientImpl implements AgreementsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param expand May be used to expand the participants.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AgreementInner>> listByBillingAccountSinglePageAsync(String billingAccountName,
-        String expand, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByBillingAccount(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(), expand,
-                accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the agreements for a billing account.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param expand May be used to expand the participants.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -295,17 +273,57 @@ public final class AgreementsClientImpl implements AgreementsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param expand May be used to expand the participants.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<AgreementInner> listByBillingAccountSinglePage(String billingAccountName, String expand) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<AgreementListResult> res = service.listByBillingAccountSync(this.client.getEndpoint(),
+            billingAccountName, this.client.getApiVersion(), expand, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the agreements for a billing account.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param expand May be used to expand the participants.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<AgreementInner> listByBillingAccountAsync(String billingAccountName, String expand,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<AgreementInner> listByBillingAccountSinglePage(String billingAccountName, String expand,
         Context context) {
-        return new PagedFlux<>(() -> listByBillingAccountSinglePageAsync(billingAccountName, expand, context),
-            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<AgreementListResult> res = service.listByBillingAccountSync(this.client.getEndpoint(),
+            billingAccountName, this.client.getApiVersion(), expand, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -320,7 +338,8 @@ public final class AgreementsClientImpl implements AgreementsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AgreementInner> listByBillingAccount(String billingAccountName) {
         final String expand = null;
-        return new PagedIterable<>(listByBillingAccountAsync(billingAccountName, expand));
+        return new PagedIterable<>(() -> listByBillingAccountSinglePage(billingAccountName, expand),
+            nextLink -> listByBillingAccountNextSinglePage(nextLink));
     }
 
     /**
@@ -337,7 +356,8 @@ public final class AgreementsClientImpl implements AgreementsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AgreementInner> listByBillingAccount(String billingAccountName, String expand,
         Context context) {
-        return new PagedIterable<>(listByBillingAccountAsync(billingAccountName, expand, context));
+        return new PagedIterable<>(() -> listByBillingAccountSinglePage(billingAccountName, expand, context),
+            nextLink -> listByBillingAccountNextSinglePage(nextLink, context));
     }
 
     /**
@@ -372,27 +392,56 @@ public final class AgreementsClientImpl implements AgreementsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<AgreementInner> listByBillingAccountNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<AgreementListResult> res
+            = service.listByBillingAccountNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<AgreementInner>> listByBillingAccountNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<AgreementInner> listByBillingAccountNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<AgreementListResult> res
+            = service.listByBillingAccountNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AgreementsClientImpl.class);
 }

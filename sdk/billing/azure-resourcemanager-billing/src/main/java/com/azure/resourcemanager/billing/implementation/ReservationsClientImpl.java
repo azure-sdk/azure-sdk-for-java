@@ -26,8 +26,10 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.billing.fluent.ReservationsClient;
@@ -83,10 +85,32 @@ public final class ReservationsClientImpl implements ReservationsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/reservations")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ReservationsListResult> listByBillingAccountSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
+            @QueryParam("filter") String filter, @QueryParam("orderBy") String orderBy,
+            @QueryParam("skiptoken") Float skiptoken, @QueryParam("refreshSummary") String refreshSummary,
+            @QueryParam("selectedState") String selectedState, @QueryParam("take") Float take,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/reservations")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ReservationsListResult>> listByBillingProfile(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName, @QueryParam("filter") String filter,
+            @QueryParam("orderBy") String orderBy, @QueryParam("skiptoken") Float skiptoken,
+            @QueryParam("refreshSummary") String refreshSummary, @QueryParam("selectedState") String selectedState,
+            @QueryParam("take") Float take, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/reservations")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ReservationsListResult> listByBillingProfileSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName, @QueryParam("filter") String filter,
             @QueryParam("orderBy") String orderBy, @QueryParam("skiptoken") Float skiptoken,
@@ -104,6 +128,16 @@ public final class ReservationsClientImpl implements ReservationsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/reservationOrders/{reservationOrderId}/reservations/{reservationId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ReservationInner> getByReservationOrderSync(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("reservationOrderId") String reservationOrderId,
+            @PathParam("reservationId") String reservationId, @QueryParam("expand") String expand,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Patch("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/reservationOrders/{reservationOrderId}/reservations/{reservationId}")
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -114,10 +148,29 @@ public final class ReservationsClientImpl implements ReservationsClient {
             @BodyParam("application/json") PatchModel body, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Patch("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/reservationOrders/{reservationOrderId}/reservations/{reservationId}")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> updateByBillingAccountSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("reservationOrderId") String reservationOrderId,
+            @PathParam("reservationId") String reservationId, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") PatchModel body, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/reservationOrders/{reservationOrderId}/reservations")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ReservationList>> listByReservationOrder(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("reservationOrderId") String reservationOrderId, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/reservationOrders/{reservationOrderId}/reservations")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ReservationList> listByReservationOrderSync(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
             @PathParam("reservationOrderId") String reservationOrderId, @HeaderParam("Accept") String accept,
             Context context);
@@ -134,6 +187,14 @@ public final class ReservationsClientImpl implements ReservationsClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ReservationsListResult> listByBillingAccountNextSync(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ReservationsListResult>> listByBillingProfileNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
@@ -142,7 +203,23 @@ public final class ReservationsClientImpl implements ReservationsClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ReservationsListResult> listByBillingProfileNextSync(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ReservationList>> listByReservationOrderNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<ReservationList> listByReservationOrderNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -184,47 +261,6 @@ public final class ReservationsClientImpl implements ReservationsClient {
             .<PagedResponse<ReservationInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the reservations in the billing account and the roll up counts of reservations group by provisioning
-     * states.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
-     * request URL.
-     * @param orderBy The orderby query option allows clients to request resources in a particular order.
-     * @param skiptoken The number of reservations to skip from the list before returning results.
-     * @param refreshSummary To indicate whether to refresh the roll up counts of the reservations group by provisioning
-     * states.
-     * @param selectedState The selected provisioning state.
-     * @param take The number of reservations to return in API response.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of reservations and summary of roll out count of reservations in each state along with
-     * {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationInner>> listByBillingAccountSinglePageAsync(String billingAccountName,
-        String filter, String orderBy, Float skiptoken, String refreshSummary, String selectedState, Float take,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByBillingAccount(this.client.getEndpoint(), this.client.getApiVersion(), billingAccountName, filter,
-                orderBy, skiptoken, refreshSummary, selectedState, take, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -289,19 +325,70 @@ public final class ReservationsClientImpl implements ReservationsClient {
      * states.
      * @param selectedState The selected provisioning state.
      * @param take The number of reservations to return in API response.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of reservations and summary of roll out count of reservations in each state along with
+     * {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationInner> listByBillingAccountSinglePage(String billingAccountName, String filter,
+        String orderBy, Float skiptoken, String refreshSummary, String selectedState, Float take) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationsListResult> res = service.listByBillingAccountSync(this.client.getEndpoint(),
+            this.client.getApiVersion(), billingAccountName, filter, orderBy, skiptoken, refreshSummary, selectedState,
+            take, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the reservations in the billing account and the roll up counts of reservations group by provisioning
+     * states.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     * request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param skiptoken The number of reservations to skip from the list before returning results.
+     * @param refreshSummary To indicate whether to refresh the roll up counts of the reservations group by provisioning
+     * states.
+     * @param selectedState The selected provisioning state.
+     * @param take The number of reservations to return in API response.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of reservations and summary of roll out count of reservations in each state as paginated
-     * response with {@link PagedFlux}.
+     * @return the list of reservations and summary of roll out count of reservations in each state along with
+     * {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ReservationInner> listByBillingAccountAsync(String billingAccountName, String filter,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationInner> listByBillingAccountSinglePage(String billingAccountName, String filter,
         String orderBy, Float skiptoken, String refreshSummary, String selectedState, Float take, Context context) {
-        return new PagedFlux<>(() -> listByBillingAccountSinglePageAsync(billingAccountName, filter, orderBy, skiptoken,
-            refreshSummary, selectedState, take, context),
-            nextLink -> listByBillingAccountNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationsListResult> res
+            = service.listByBillingAccountSync(this.client.getEndpoint(), this.client.getApiVersion(),
+                billingAccountName, filter, orderBy, skiptoken, refreshSummary, selectedState, take, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -323,8 +410,8 @@ public final class ReservationsClientImpl implements ReservationsClient {
         final String refreshSummary = null;
         final String selectedState = null;
         final Float take = null;
-        return new PagedIterable<>(listByBillingAccountAsync(billingAccountName, filter, orderBy, skiptoken,
-            refreshSummary, selectedState, take));
+        return new PagedIterable<>(() -> listByBillingAccountSinglePage(billingAccountName, filter, orderBy, skiptoken,
+            refreshSummary, selectedState, take), nextLink -> listByBillingAccountNextSinglePage(nextLink));
     }
 
     /**
@@ -350,8 +437,9 @@ public final class ReservationsClientImpl implements ReservationsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ReservationInner> listByBillingAccount(String billingAccountName, String filter,
         String orderBy, Float skiptoken, String refreshSummary, String selectedState, Float take, Context context) {
-        return new PagedIterable<>(listByBillingAccountAsync(billingAccountName, filter, orderBy, skiptoken,
-            refreshSummary, selectedState, take, context));
+        return new PagedIterable<>(() -> listByBillingAccountSinglePage(billingAccountName, filter, orderBy, skiptoken,
+            refreshSummary, selectedState, take, context),
+            nextLink -> listByBillingAccountNextSinglePage(nextLink, context));
     }
 
     /**
@@ -397,51 +485,6 @@ public final class ReservationsClientImpl implements ReservationsClient {
             .<PagedResponse<ReservationInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the reservations for a billing profile and the roll up counts of reservations group by provisioning state.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
-     * request URL.
-     * @param orderBy The orderby query option allows clients to request resources in a particular order.
-     * @param skiptoken The number of reservations to skip from the list before returning results.
-     * @param refreshSummary To indicate whether to refresh the roll up counts of the reservations group by provisioning
-     * states.
-     * @param selectedState The selected provisioning state.
-     * @param take The number of reservations to return in API response.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of reservations and summary of roll out count of reservations in each state along with
-     * {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationInner>> listByBillingProfileSinglePageAsync(String billingAccountName,
-        String billingProfileName, String filter, String orderBy, Float skiptoken, String refreshSummary,
-        String selectedState, Float take, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByBillingProfile(this.client.getEndpoint(), this.client.getApiVersion(), billingAccountName,
-                billingProfileName, filter, orderBy, skiptoken, refreshSummary, selectedState, take, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -511,21 +554,80 @@ public final class ReservationsClientImpl implements ReservationsClient {
      * states.
      * @param selectedState The selected provisioning state.
      * @param take The number of reservations to return in API response.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of reservations and summary of roll out count of reservations in each state along with
+     * {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationInner> listByBillingProfileSinglePage(String billingAccountName,
+        String billingProfileName, String filter, String orderBy, Float skiptoken, String refreshSummary,
+        String selectedState, Float take) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationsListResult> res = service.listByBillingProfileSync(this.client.getEndpoint(),
+            this.client.getApiVersion(), billingAccountName, billingProfileName, filter, orderBy, skiptoken,
+            refreshSummary, selectedState, take, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the reservations for a billing profile and the roll up counts of reservations group by provisioning state.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     * request URL.
+     * @param orderBy The orderby query option allows clients to request resources in a particular order.
+     * @param skiptoken The number of reservations to skip from the list before returning results.
+     * @param refreshSummary To indicate whether to refresh the roll up counts of the reservations group by provisioning
+     * states.
+     * @param selectedState The selected provisioning state.
+     * @param take The number of reservations to return in API response.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of reservations and summary of roll out count of reservations in each state as paginated
-     * response with {@link PagedFlux}.
+     * @return the list of reservations and summary of roll out count of reservations in each state along with
+     * {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ReservationInner> listByBillingProfileAsync(String billingAccountName, String billingProfileName,
-        String filter, String orderBy, Float skiptoken, String refreshSummary, String selectedState, Float take,
-        Context context) {
-        return new PagedFlux<>(
-            () -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName, filter, orderBy,
-                skiptoken, refreshSummary, selectedState, take, context),
-            nextLink -> listByBillingProfileNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationInner> listByBillingProfileSinglePage(String billingAccountName,
+        String billingProfileName, String filter, String orderBy, Float skiptoken, String refreshSummary,
+        String selectedState, Float take, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationsListResult> res = service.listByBillingProfileSync(this.client.getEndpoint(),
+            this.client.getApiVersion(), billingAccountName, billingProfileName, filter, orderBy, skiptoken,
+            refreshSummary, selectedState, take, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -547,8 +649,9 @@ public final class ReservationsClientImpl implements ReservationsClient {
         final String refreshSummary = null;
         final String selectedState = null;
         final Float take = null;
-        return new PagedIterable<>(listByBillingProfileAsync(billingAccountName, billingProfileName, filter, orderBy,
-            skiptoken, refreshSummary, selectedState, take));
+        return new PagedIterable<>(() -> listByBillingProfileSinglePage(billingAccountName, billingProfileName, filter,
+            orderBy, skiptoken, refreshSummary, selectedState, take),
+            nextLink -> listByBillingProfileNextSinglePage(nextLink));
     }
 
     /**
@@ -575,8 +678,10 @@ public final class ReservationsClientImpl implements ReservationsClient {
     public PagedIterable<ReservationInner> listByBillingProfile(String billingAccountName, String billingProfileName,
         String filter, String orderBy, Float skiptoken, String refreshSummary, String selectedState, Float take,
         Context context) {
-        return new PagedIterable<>(listByBillingProfileAsync(billingAccountName, billingProfileName, filter, orderBy,
-            skiptoken, refreshSummary, selectedState, take, context));
+        return new PagedIterable<>(
+            () -> listByBillingProfileSinglePage(billingAccountName, billingProfileName, filter, orderBy, skiptoken,
+                refreshSummary, selectedState, take, context),
+            nextLink -> listByBillingProfileNextSinglePage(nextLink, context));
     }
 
     /**
@@ -628,46 +733,6 @@ public final class ReservationsClientImpl implements ReservationsClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation item.
-     * @param expand May be used to expand the detail information of some properties.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specific Reservation details in the billing account along with {@link Response} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ReservationInner>> getByReservationOrderWithResponseAsync(String billingAccountName,
-        String reservationOrderId, String reservationId, String expand, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (reservationOrderId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter reservationOrderId is required and cannot be null."));
-        }
-        if (reservationId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter reservationId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getByReservationOrder(this.client.getEndpoint(), this.client.getApiVersion(), billingAccountName,
-            reservationOrderId, reservationId, expand, accept, context);
-    }
-
-    /**
-     * Get Reservation details in the billing account.
-     * 
-     * Get specific Reservation details in the billing account.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param reservationOrderId Order Id of the reservation.
-     * @param reservationId Id of the reservation item.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -699,8 +764,26 @@ public final class ReservationsClientImpl implements ReservationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ReservationInner> getByReservationOrderWithResponse(String billingAccountName,
         String reservationOrderId, String reservationId, String expand, Context context) {
-        return getByReservationOrderWithResponseAsync(billingAccountName, reservationOrderId, reservationId, expand,
-            context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (reservationOrderId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter reservationOrderId is required and cannot be null."));
+        }
+        if (reservationId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter reservationId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getByReservationOrderSync(this.client.getEndpoint(), this.client.getApiVersion(),
+            billingAccountName, reservationOrderId, reservationId, expand, accept, context);
     }
 
     /**
@@ -773,38 +856,81 @@ public final class ReservationsClientImpl implements ReservationsClient {
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation item.
      * @param body Request body for patching a reservation.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the definition of the reservation along with {@link Response} on successful completion of {@link Mono}.
+     * @return the definition of the reservation along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateByBillingAccountWithResponseAsync(String billingAccountName,
-        String reservationOrderId, String reservationId, PatchModel body, Context context) {
+    private Response<BinaryData> updateByBillingAccountWithResponse(String billingAccountName,
+        String reservationOrderId, String reservationId, PatchModel body) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
         if (reservationOrderId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter reservationOrderId is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter reservationOrderId is required and cannot be null."));
         }
         if (reservationId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter reservationId is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter reservationId is required and cannot be null."));
         }
         if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
         } else {
             body.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.updateByBillingAccount(this.client.getEndpoint(), billingAccountName, reservationOrderId,
+        return service.updateByBillingAccountSync(this.client.getEndpoint(), billingAccountName, reservationOrderId,
+            reservationId, this.client.getApiVersion(), body, accept, Context.NONE);
+    }
+
+    /**
+     * Update reservation by billing account.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param reservationOrderId Order Id of the reservation.
+     * @param reservationId Id of the reservation item.
+     * @param body Request body for patching a reservation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the definition of the reservation along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> updateByBillingAccountWithResponse(String billingAccountName,
+        String reservationOrderId, String reservationId, PatchModel body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (reservationOrderId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter reservationOrderId is required and cannot be null."));
+        }
+        if (reservationId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter reservationId is required and cannot be null."));
+        }
+        if (body == null) {
+            throw LOGGER.atError().log(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        } else {
+            body.validate();
+        }
+        final String accept = "application/json";
+        return service.updateByBillingAccountSync(this.client.getEndpoint(), billingAccountName, reservationOrderId,
             reservationId, this.client.getApiVersion(), body, accept, context);
     }
 
@@ -836,29 +962,6 @@ public final class ReservationsClientImpl implements ReservationsClient {
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation item.
      * @param body Request body for patching a reservation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the definition of the reservation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ReservationInner>, ReservationInner> beginUpdateByBillingAccountAsync(
-        String billingAccountName, String reservationOrderId, String reservationId, PatchModel body, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = updateByBillingAccountWithResponseAsync(billingAccountName,
-            reservationOrderId, reservationId, body, context);
-        return this.client.<ReservationInner, ReservationInner>getLroResult(mono, this.client.getHttpPipeline(),
-            ReservationInner.class, ReservationInner.class, context);
-    }
-
-    /**
-     * Update reservation by billing account.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param reservationOrderId Order Id of the reservation.
-     * @param reservationId Id of the reservation item.
-     * @param body Request body for patching a reservation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -867,8 +970,10 @@ public final class ReservationsClientImpl implements ReservationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ReservationInner>, ReservationInner> beginUpdateByBillingAccount(
         String billingAccountName, String reservationOrderId, String reservationId, PatchModel body) {
-        return this.beginUpdateByBillingAccountAsync(billingAccountName, reservationOrderId, reservationId, body)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = updateByBillingAccountWithResponse(billingAccountName, reservationOrderId, reservationId, body);
+        return this.client.<ReservationInner, ReservationInner>getLroResult(response, ReservationInner.class,
+            ReservationInner.class, Context.NONE);
     }
 
     /**
@@ -887,9 +992,10 @@ public final class ReservationsClientImpl implements ReservationsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ReservationInner>, ReservationInner> beginUpdateByBillingAccount(
         String billingAccountName, String reservationOrderId, String reservationId, PatchModel body, Context context) {
-        return this
-            .beginUpdateByBillingAccountAsync(billingAccountName, reservationOrderId, reservationId, body, context)
-            .getSyncPoller();
+        Response<BinaryData> response
+            = updateByBillingAccountWithResponse(billingAccountName, reservationOrderId, reservationId, body, context);
+        return this.client.<ReservationInner, ReservationInner>getLroResult(response, ReservationInner.class,
+            ReservationInner.class, context);
     }
 
     /**
@@ -918,27 +1024,6 @@ public final class ReservationsClientImpl implements ReservationsClient {
      * @param reservationOrderId Order Id of the reservation.
      * @param reservationId Id of the reservation item.
      * @param body Request body for patching a reservation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the definition of the reservation on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ReservationInner> updateByBillingAccountAsync(String billingAccountName, String reservationOrderId,
-        String reservationId, PatchModel body, Context context) {
-        return beginUpdateByBillingAccountAsync(billingAccountName, reservationOrderId, reservationId, body, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Update reservation by billing account.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param reservationOrderId Order Id of the reservation.
-     * @param reservationId Id of the reservation item.
-     * @param body Request body for patching a reservation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -947,7 +1032,8 @@ public final class ReservationsClientImpl implements ReservationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ReservationInner updateByBillingAccount(String billingAccountName, String reservationOrderId,
         String reservationId, PatchModel body) {
-        return updateByBillingAccountAsync(billingAccountName, reservationOrderId, reservationId, body).block();
+        return beginUpdateByBillingAccount(billingAccountName, reservationOrderId, reservationId, body)
+            .getFinalResult();
     }
 
     /**
@@ -966,8 +1052,8 @@ public final class ReservationsClientImpl implements ReservationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ReservationInner updateByBillingAccount(String billingAccountName, String reservationOrderId,
         String reservationId, PatchModel body, Context context) {
-        return updateByBillingAccountAsync(billingAccountName, reservationOrderId, reservationId, body, context)
-            .block();
+        return beginUpdateByBillingAccount(billingAccountName, reservationOrderId, reservationId, body, context)
+            .getFinalResult();
     }
 
     /**
@@ -1013,43 +1099,6 @@ public final class ReservationsClientImpl implements ReservationsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param reservationOrderId Order Id of the reservation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of `Reservations along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationInner>> listByReservationOrderSinglePageAsync(String billingAccountName,
-        String reservationOrderId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (reservationOrderId == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter reservationOrderId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByReservationOrder(this.client.getEndpoint(), this.client.getApiVersion(), billingAccountName,
-                reservationOrderId, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Get Reservations in a given reservation Order in the billing account
-     * 
-     * List Reservations within a single ReservationOrder in the billing account.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param reservationOrderId Order Id of the reservation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1069,18 +1118,68 @@ public final class ReservationsClientImpl implements ReservationsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param reservationOrderId Order Id of the reservation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of `Reservations along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationInner> listByReservationOrderSinglePage(String billingAccountName,
+        String reservationOrderId) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (reservationOrderId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter reservationOrderId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationList> res = service.listByReservationOrderSync(this.client.getEndpoint(),
+            this.client.getApiVersion(), billingAccountName, reservationOrderId, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get Reservations in a given reservation Order in the billing account
+     * 
+     * List Reservations within a single ReservationOrder in the billing account.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param reservationOrderId Order Id of the reservation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of `Reservations as paginated response with {@link PagedFlux}.
+     * @return list of `Reservations along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ReservationInner> listByReservationOrderAsync(String billingAccountName,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationInner> listByReservationOrderSinglePage(String billingAccountName,
         String reservationOrderId, Context context) {
-        return new PagedFlux<>(
-            () -> listByReservationOrderSinglePageAsync(billingAccountName, reservationOrderId, context),
-            nextLink -> listByReservationOrderNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (reservationOrderId == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter reservationOrderId is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationList> res = service.listByReservationOrderSync(this.client.getEndpoint(),
+            this.client.getApiVersion(), billingAccountName, reservationOrderId, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -1098,7 +1197,8 @@ public final class ReservationsClientImpl implements ReservationsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ReservationInner> listByReservationOrder(String billingAccountName,
         String reservationOrderId) {
-        return new PagedIterable<>(listByReservationOrderAsync(billingAccountName, reservationOrderId));
+        return new PagedIterable<>(() -> listByReservationOrderSinglePage(billingAccountName, reservationOrderId),
+            nextLink -> listByReservationOrderNextSinglePage(nextLink));
     }
 
     /**
@@ -1117,7 +1217,9 @@ public final class ReservationsClientImpl implements ReservationsClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ReservationInner> listByReservationOrder(String billingAccountName, String reservationOrderId,
         Context context) {
-        return new PagedIterable<>(listByReservationOrderAsync(billingAccountName, reservationOrderId, context));
+        return new PagedIterable<>(
+            () -> listByReservationOrderSinglePage(billingAccountName, reservationOrderId, context),
+            nextLink -> listByReservationOrderNextSinglePage(nextLink, context));
     }
 
     /**
@@ -1152,28 +1254,57 @@ public final class ReservationsClientImpl implements ReservationsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of reservations and summary of roll out count of reservations in each state along with
+     * {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationInner> listByBillingAccountNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationsListResult> res
+            = service.listByBillingAccountNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of reservations and summary of roll out count of reservations in each state along with
-     * {@link PagedResponse} on successful completion of {@link Mono}.
+     * {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationInner>> listByBillingAccountNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<ReservationInner> listByBillingAccountNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByBillingAccountNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<ReservationsListResult> res
+            = service.listByBillingAccountNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -1208,28 +1339,57 @@ public final class ReservationsClientImpl implements ReservationsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of reservations and summary of roll out count of reservations in each state along with
+     * {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationInner> listByBillingProfileNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationsListResult> res
+            = service.listByBillingProfileNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of reservations and summary of roll out count of reservations in each state along with
-     * {@link PagedResponse} on successful completion of {@link Mono}.
+     * {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationInner>> listByBillingProfileNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<ReservationInner> listByBillingProfileNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<ReservationsListResult> res
+            = service.listByBillingProfileNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -1263,26 +1423,56 @@ public final class ReservationsClientImpl implements ReservationsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of `Reservations along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<ReservationInner> listByReservationOrderNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<ReservationList> res
+            = service.listByReservationOrderNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of `Reservations along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return list of `Reservations along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ReservationInner>> listByReservationOrderNextSinglePageAsync(String nextLink,
-        Context context) {
+    private PagedResponse<ReservationInner> listByReservationOrderNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listByReservationOrderNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<ReservationList> res
+            = service.listByReservationOrderNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ReservationsClientImpl.class);
 }

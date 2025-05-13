@@ -28,6 +28,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.PartnerTransfersClient;
 import com.azure.resourcemanager.billing.fluent.models.PartnerTransferDetailsInner;
 import com.azure.resourcemanager.billing.models.PartnerInitiateTransferRequest;
@@ -77,10 +78,31 @@ public final class PartnerTransfersClientImpl implements PartnerTransfersClient 
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/customers/{customerName}/transfers/{transferName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PartnerTransferDetailsInner> getSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName, @PathParam("customerName") String customerName,
+            @PathParam("transferName") String transferName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Put("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/customers/{customerName}/transfers/{transferName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PartnerTransferDetailsInner>> initiate(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName, @PathParam("customerName") String customerName,
+            @PathParam("transferName") String transferName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") PartnerInitiateTransferRequest parameters,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/customers/{customerName}/transfers/{transferName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PartnerTransferDetailsInner> initiateSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName, @PathParam("customerName") String customerName,
             @PathParam("transferName") String transferName, @QueryParam("api-version") String apiVersion,
@@ -98,6 +120,16 @@ public final class PartnerTransfersClientImpl implements PartnerTransfersClient 
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/customers/{customerName}/transfers/{transferName}/cancel")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PartnerTransferDetailsInner> cancelSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName, @PathParam("customerName") String customerName,
+            @PathParam("transferName") String transferName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/customers/{customerName}/transfers")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -107,10 +139,27 @@ public final class PartnerTransfersClientImpl implements PartnerTransfersClient 
             @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/customers/{customerName}/transfers")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PartnerTransferDetailsListResult> listSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName, @PathParam("customerName") String customerName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PartnerTransferDetailsListResult>> listNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PartnerTransferDetailsListResult> listNextSync(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
@@ -164,47 +213,6 @@ public final class PartnerTransfersClientImpl implements PartnerTransfersClient 
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param customerName The ID that uniquely identifies a customer.
      * @param transferName The ID that uniquely identifies a transfer request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a transfer request by ID along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PartnerTransferDetailsInner>> getWithResponseAsync(String billingAccountName,
-        String billingProfileName, String customerName, String transferName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        if (customerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
-        }
-        if (transferName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter transferName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), billingAccountName, billingProfileName, customerName,
-            transferName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Gets a transfer request by ID. The operation is supported only for billing accounts with agreement type Microsoft
-     * Partner Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @param transferName The ID that uniquely identifies a transfer request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -234,8 +242,30 @@ public final class PartnerTransfersClientImpl implements PartnerTransfersClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PartnerTransferDetailsInner> getWithResponse(String billingAccountName, String billingProfileName,
         String customerName, String transferName, Context context) {
-        return getWithResponseAsync(billingAccountName, billingProfileName, customerName, transferName, context)
-            .block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (customerName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
+        }
+        if (transferName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter transferName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), billingAccountName, billingProfileName, customerName,
+            transferName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -315,54 +345,6 @@ public final class PartnerTransfersClientImpl implements PartnerTransfersClient 
      * @param customerName The ID that uniquely identifies a customer.
      * @param transferName The ID that uniquely identifies a transfer request.
      * @param parameters Request parameters that are provided to the initiate transfer operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the transfer along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PartnerTransferDetailsInner>> initiateWithResponseAsync(String billingAccountName,
-        String billingProfileName, String customerName, String transferName, PartnerInitiateTransferRequest parameters,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        if (customerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
-        }
-        if (transferName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter transferName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.initiate(this.client.getEndpoint(), billingAccountName, billingProfileName, customerName,
-            transferName, this.client.getApiVersion(), parameters, accept, context);
-    }
-
-    /**
-     * Sends a request to a user in a customer's billing account to transfer billing ownership of their subscriptions.
-     * The operation is supported only for billing accounts with agreement type Microsoft Partner Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @param transferName The ID that uniquely identifies a transfer request.
-     * @param parameters Request parameters that are provided to the initiate transfer operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -394,8 +376,36 @@ public final class PartnerTransfersClientImpl implements PartnerTransfersClient 
     public Response<PartnerTransferDetailsInner> initiateWithResponse(String billingAccountName,
         String billingProfileName, String customerName, String transferName, PartnerInitiateTransferRequest parameters,
         Context context) {
-        return initiateWithResponseAsync(billingAccountName, billingProfileName, customerName, transferName, parameters,
-            context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (customerName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
+        }
+        if (transferName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter transferName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return service.initiateSync(this.client.getEndpoint(), billingAccountName, billingProfileName, customerName,
+            transferName, this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
@@ -468,47 +478,6 @@ public final class PartnerTransfersClientImpl implements PartnerTransfersClient 
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param customerName The ID that uniquely identifies a customer.
      * @param transferName The ID that uniquely identifies a transfer request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the transfer along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PartnerTransferDetailsInner>> cancelWithResponseAsync(String billingAccountName,
-        String billingProfileName, String customerName, String transferName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        if (customerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
-        }
-        if (transferName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter transferName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.cancel(this.client.getEndpoint(), billingAccountName, billingProfileName, customerName,
-            transferName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Cancels a transfer request. The operation is supported only for billing accounts with agreement type Microsoft
-     * Partner Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param customerName The ID that uniquely identifies a customer.
-     * @param transferName The ID that uniquely identifies a transfer request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -538,8 +507,30 @@ public final class PartnerTransfersClientImpl implements PartnerTransfersClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PartnerTransferDetailsInner> cancelWithResponse(String billingAccountName,
         String billingProfileName, String customerName, String transferName, Context context) {
-        return cancelWithResponseAsync(billingAccountName, billingProfileName, customerName, transferName, context)
-            .block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (customerName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
+        }
+        if (transferName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter transferName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.cancelSync(this.client.getEndpoint(), billingAccountName, billingProfileName, customerName,
+            transferName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -609,47 +600,6 @@ public final class PartnerTransfersClientImpl implements PartnerTransfersClient 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param customerName The ID that uniquely identifies a customer.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of transfers initiated by partner along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PartnerTransferDetailsInner>> listSinglePageAsync(String billingAccountName,
-        String billingProfileName, String customerName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        if (customerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), billingAccountName, billingProfileName, customerName,
-                this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the transfer requests sent to a customer. The operation is supported only for billing accounts with
-     * agreement type Microsoft Partner Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param customerName The ID that uniquely identifies a customer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -669,17 +619,76 @@ public final class PartnerTransfersClientImpl implements PartnerTransfersClient 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param customerName The ID that uniquely identifies a customer.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of transfers initiated by partner along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<PartnerTransferDetailsInner> listSinglePage(String billingAccountName,
+        String billingProfileName, String customerName) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (customerName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PartnerTransferDetailsListResult> res = service.listSync(this.client.getEndpoint(), billingAccountName,
+            billingProfileName, customerName, this.client.getApiVersion(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the transfer requests sent to a customer. The operation is supported only for billing accounts with
+     * agreement type Microsoft Partner Agreement.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param customerName The ID that uniquely identifies a customer.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of transfers initiated by partner as paginated response with {@link PagedFlux}.
+     * @return the list of transfers initiated by partner along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PartnerTransferDetailsInner> listAsync(String billingAccountName, String billingProfileName,
-        String customerName, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(billingAccountName, billingProfileName, customerName, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<PartnerTransferDetailsInner> listSinglePage(String billingAccountName,
+        String billingProfileName, String customerName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        if (customerName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter customerName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PartnerTransferDetailsListResult> res = service.listSync(this.client.getEndpoint(), billingAccountName,
+            billingProfileName, customerName, this.client.getApiVersion(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -697,7 +706,8 @@ public final class PartnerTransfersClientImpl implements PartnerTransfersClient 
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PartnerTransferDetailsInner> list(String billingAccountName, String billingProfileName,
         String customerName) {
-        return new PagedIterable<>(listAsync(billingAccountName, billingProfileName, customerName));
+        return new PagedIterable<>(() -> listSinglePage(billingAccountName, billingProfileName, customerName),
+            nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -716,7 +726,8 @@ public final class PartnerTransfersClientImpl implements PartnerTransfersClient 
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PartnerTransferDetailsInner> list(String billingAccountName, String billingProfileName,
         String customerName, Context context) {
-        return new PagedIterable<>(listAsync(billingAccountName, billingProfileName, customerName, context));
+        return new PagedIterable<>(() -> listSinglePage(billingAccountName, billingProfileName, customerName, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -749,26 +760,56 @@ public final class PartnerTransfersClientImpl implements PartnerTransfersClient 
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of transfers initiated by partner along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<PartnerTransferDetailsInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<PartnerTransferDetailsListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of transfers initiated by partner along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the list of transfers initiated by partner along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PartnerTransferDetailsInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<PartnerTransferDetailsInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<PartnerTransferDetailsListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PartnerTransfersClientImpl.class);
 }

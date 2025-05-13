@@ -21,6 +21,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.AvailableBalancesClient;
 import com.azure.resourcemanager.billing.fluent.models.AvailableBalanceInner;
 import reactor.core.publisher.Mono;
@@ -66,10 +67,27 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/availableBalance/default")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<AvailableBalanceInner> getByBillingAccountSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/availableBalance/default")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<AvailableBalanceInner>> getByBillingProfile(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/availableBalance/default")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<AvailableBalanceInner> getByBillingProfileSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept, Context context);
@@ -112,37 +130,6 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
      * Customer Agreement or Microsoft Online Services Program.
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Available Credit or Payment on Account Balance along with {@link Response} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AvailableBalanceInner>> getByBillingAccountWithResponseAsync(String billingAccountName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getByBillingAccount(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(),
-            accept, context);
-    }
-
-    /**
-     * The Available Credit or Payment on Account Balance for a billing account. The credit balance can be used to
-     * settle due or past due invoices and is supported for billing accounts with agreement type Microsoft Customer
-     * Agreement. The payment on account balance is supported for billing accounts with agreement type Microsoft
-     * Customer Agreement or Microsoft Online Services Program.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -169,7 +156,18 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AvailableBalanceInner> getByBillingAccountWithResponse(String billingAccountName, Context context) {
-        return getByBillingAccountWithResponseAsync(billingAccountName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getByBillingAccountSync(this.client.getEndpoint(), billingAccountName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -233,42 +231,6 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Available Credit or Payment on Account Balance along with {@link Response} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AvailableBalanceInner>> getByBillingProfileWithResponseAsync(String billingAccountName,
-        String billingProfileName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (billingProfileName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.getByBillingProfile(this.client.getEndpoint(), billingAccountName, billingProfileName,
-            this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * The Available Credit or Payment on Account Balance for a billing profile. The credit balance can be used to
-     * settle due or past due invoices and is supported for billing accounts with agreement type Microsoft Customer
-     * Agreement. The payment on account balance is supported for billing accounts with agreement type Microsoft
-     * Customer Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -297,7 +259,22 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AvailableBalanceInner> getByBillingProfileWithResponse(String billingAccountName,
         String billingProfileName, Context context) {
-        return getByBillingProfileWithResponseAsync(billingAccountName, billingProfileName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getByBillingProfileSync(this.client.getEndpoint(), billingAccountName, billingProfileName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -317,4 +294,6 @@ public final class AvailableBalancesClientImpl implements AvailableBalancesClien
     public AvailableBalanceInner getByBillingProfile(String billingAccountName, String billingProfileName) {
         return getByBillingProfileWithResponse(billingAccountName, billingProfileName, Context.NONE).getValue();
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AvailableBalancesClientImpl.class);
 }

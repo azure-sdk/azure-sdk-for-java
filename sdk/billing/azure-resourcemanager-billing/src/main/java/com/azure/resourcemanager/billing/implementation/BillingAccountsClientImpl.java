@@ -27,8 +27,10 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.billing.fluent.BillingAccountsClient;
@@ -88,6 +90,15 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/addPaymentTerms")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> addPaymentTermsSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") List<PaymentTerm> parameters, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/cancelPaymentTerms")
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -97,10 +108,27 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/cancelPaymentTerms")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> cancelPaymentTermsSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") OffsetDateTime parameters, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/confirmTransition")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<TransitionDetailsInner>> confirmTransition(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/confirmTransition")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<TransitionDetailsInner> confirmTransitionSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -115,10 +143,28 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
                 @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/listInvoiceSectionsWithCreateSubscriptionPermission")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<InvoiceSectionWithCreateSubPermissionListResult> listInvoiceSectionsByCreateSubscriptionPermissionSync(
+            @HostParam("$host") String endpoint, @PathParam("billingAccountName") String billingAccountName,
+            @QueryParam("api-version") String apiVersion, @QueryParam("filter") String filter,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/validatePaymentTerms")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PaymentTermsEligibilityResultInner>> validatePaymentTerms(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") List<PaymentTerm> parameters, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/validatePaymentTerms")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<PaymentTermsEligibilityResultInner> validatePaymentTermsSync(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") List<PaymentTerm> parameters, @HeaderParam("Accept") String accept,
             Context context);
@@ -132,6 +178,14 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BillingAccountInner> getSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Patch("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}")
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -141,10 +195,34 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Patch("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BinaryData> updateSync(@HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") BillingAccountPatch parameters, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.Billing/billingAccounts")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BillingAccountListResult>> list(@HostParam("$host") String endpoint,
+            @QueryParam("includeAll") Boolean includeAll,
+            @QueryParam("includeAllWithoutBillingProfiles") Boolean includeAllWithoutBillingProfiles,
+            @QueryParam("includeDeleted") Boolean includeDeleted,
+            @QueryParam("includePendingAgreement") Boolean includePendingAgreement,
+            @QueryParam("includeResellee") Boolean includeResellee, @QueryParam("legalOwnerTID") String legalOwnerTid,
+            @QueryParam("legalOwnerOID") String legalOwnerOid, @QueryParam("api-version") String apiVersion,
+            @QueryParam("filter") String filter, @QueryParam("expand") String expand, @QueryParam("top") Long top,
+            @QueryParam("skip") Long skip, @QueryParam("search") String search, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BillingAccountListResult> listSync(@HostParam("$host") String endpoint,
             @QueryParam("includeAll") Boolean includeAll,
             @QueryParam("includeAllWithoutBillingProfiles") Boolean includeAllWithoutBillingProfiles,
             @QueryParam("includeDeleted") Boolean includeDeleted,
@@ -168,9 +246,25 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<InvoiceSectionWithCreateSubPermissionListResult>
+            listInvoiceSectionsByCreateSubscriptionPermissionNextSync(
+                @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+                @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<BillingAccountListResult>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Response<BillingAccountListResult> listNextSync(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
@@ -217,31 +311,67 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters The properties of payment term.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing account along with {@link Response} on successful completion of {@link Mono}.
+     * @return a billing account along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> addPaymentTermsWithResponseAsync(String billingAccountName,
-        List<PaymentTerm> parameters, Context context) {
+    private Response<BinaryData> addPaymentTermsWithResponse(String billingAccountName, List<PaymentTerm> parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
         if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
         } else {
             parameters.forEach(e -> e.validate());
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.addPaymentTerms(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(),
+        return service.addPaymentTermsSync(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(),
+            parameters, accept, Context.NONE);
+    }
+
+    /**
+     * Adds payment terms to all the billing profiles under the billing account. Currently, payment terms can be added
+     * only on billing accounts that have Agreement Type as 'Microsoft Customer Agreement' and AccountType as
+     * 'Enterprise'. This action needs pre-authorization and only Field Sellers are authorized to add the payment terms
+     * and is not a self-serve action.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param parameters The properties of payment term.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a billing account along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> addPaymentTermsWithResponse(String billingAccountName, List<PaymentTerm> parameters,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.forEach(e -> e.validate());
+        }
+        final String accept = "application/json";
+        return service.addPaymentTermsSync(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(),
             parameters, accept, context);
     }
 
@@ -274,30 +404,6 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters The properties of payment term.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a billing account.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<BillingAccountInner>, BillingAccountInner>
-        beginAddPaymentTermsAsync(String billingAccountName, List<PaymentTerm> parameters, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = addPaymentTermsWithResponseAsync(billingAccountName, parameters, context);
-        return this.client.<BillingAccountInner, BillingAccountInner>getLroResult(mono, this.client.getHttpPipeline(),
-            BillingAccountInner.class, BillingAccountInner.class, context);
-    }
-
-    /**
-     * Adds payment terms to all the billing profiles under the billing account. Currently, payment terms can be added
-     * only on billing accounts that have Agreement Type as 'Microsoft Customer Agreement' and AccountType as
-     * 'Enterprise'. This action needs pre-authorization and only Field Sellers are authorized to add the payment terms
-     * and is not a self-serve action.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param parameters The properties of payment term.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -306,7 +412,9 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BillingAccountInner>, BillingAccountInner>
         beginAddPaymentTerms(String billingAccountName, List<PaymentTerm> parameters) {
-        return this.beginAddPaymentTermsAsync(billingAccountName, parameters).getSyncPoller();
+        Response<BinaryData> response = addPaymentTermsWithResponse(billingAccountName, parameters);
+        return this.client.<BillingAccountInner, BillingAccountInner>getLroResult(response, BillingAccountInner.class,
+            BillingAccountInner.class, Context.NONE);
     }
 
     /**
@@ -326,7 +434,9 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BillingAccountInner>, BillingAccountInner>
         beginAddPaymentTerms(String billingAccountName, List<PaymentTerm> parameters, Context context) {
-        return this.beginAddPaymentTermsAsync(billingAccountName, parameters, context).getSyncPoller();
+        Response<BinaryData> response = addPaymentTermsWithResponse(billingAccountName, parameters, context);
+        return this.client.<BillingAccountInner, BillingAccountInner>getLroResult(response, BillingAccountInner.class,
+            BillingAccountInner.class, context);
     }
 
     /**
@@ -356,27 +466,6 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters The properties of payment term.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing account on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BillingAccountInner> addPaymentTermsAsync(String billingAccountName, List<PaymentTerm> parameters,
-        Context context) {
-        return beginAddPaymentTermsAsync(billingAccountName, parameters, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Adds payment terms to all the billing profiles under the billing account. Currently, payment terms can be added
-     * only on billing accounts that have Agreement Type as 'Microsoft Customer Agreement' and AccountType as
-     * 'Enterprise'. This action needs pre-authorization and only Field Sellers are authorized to add the payment terms
-     * and is not a self-serve action.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param parameters The properties of payment term.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -384,7 +473,7 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BillingAccountInner addPaymentTerms(String billingAccountName, List<PaymentTerm> parameters) {
-        return addPaymentTermsAsync(billingAccountName, parameters).block();
+        return beginAddPaymentTerms(billingAccountName, parameters).getFinalResult();
     }
 
     /**
@@ -404,7 +493,7 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BillingAccountInner addPaymentTerms(String billingAccountName, List<PaymentTerm> parameters,
         Context context) {
-        return addPaymentTermsAsync(billingAccountName, parameters, context).block();
+        return beginAddPaymentTerms(billingAccountName, parameters, context).getFinalResult();
     }
 
     /**
@@ -445,30 +534,62 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters Date after which any payment terms that needs to be cancelled.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a billing account along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> cancelPaymentTermsWithResponse(String billingAccountName, OffsetDateTime parameters) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.cancelPaymentTermsSync(this.client.getEndpoint(), billingAccountName,
+            this.client.getApiVersion(), parameters, accept, Context.NONE);
+    }
+
+    /**
+     * Cancels all the payment terms on billing account that falls after the cancellation date in the request.
+     * Currently, cancel payment terms is only served by admin actions and is not a self-serve action.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param parameters Date after which any payment terms that needs to be cancelled.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing account along with {@link Response} on successful completion of {@link Mono}.
+     * @return a billing account along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> cancelPaymentTermsWithResponseAsync(String billingAccountName,
-        OffsetDateTime parameters, Context context) {
+    private Response<BinaryData> cancelPaymentTermsWithResponse(String billingAccountName, OffsetDateTime parameters,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
         if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.cancelPaymentTerms(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(),
-            parameters, accept, context);
+        return service.cancelPaymentTermsSync(this.client.getEndpoint(), billingAccountName,
+            this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
@@ -496,28 +617,6 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters Date after which any payment terms that needs to be cancelled.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a billing account.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<BillingAccountInner>, BillingAccountInner>
-        beginCancelPaymentTermsAsync(String billingAccountName, OffsetDateTime parameters, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = cancelPaymentTermsWithResponseAsync(billingAccountName, parameters, context);
-        return this.client.<BillingAccountInner, BillingAccountInner>getLroResult(mono, this.client.getHttpPipeline(),
-            BillingAccountInner.class, BillingAccountInner.class, context);
-    }
-
-    /**
-     * Cancels all the payment terms on billing account that falls after the cancellation date in the request.
-     * Currently, cancel payment terms is only served by admin actions and is not a self-serve action.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param parameters Date after which any payment terms that needs to be cancelled.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -526,7 +625,9 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BillingAccountInner>, BillingAccountInner>
         beginCancelPaymentTerms(String billingAccountName, OffsetDateTime parameters) {
-        return this.beginCancelPaymentTermsAsync(billingAccountName, parameters).getSyncPoller();
+        Response<BinaryData> response = cancelPaymentTermsWithResponse(billingAccountName, parameters);
+        return this.client.<BillingAccountInner, BillingAccountInner>getLroResult(response, BillingAccountInner.class,
+            BillingAccountInner.class, Context.NONE);
     }
 
     /**
@@ -544,7 +645,9 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BillingAccountInner>, BillingAccountInner>
         beginCancelPaymentTerms(String billingAccountName, OffsetDateTime parameters, Context context) {
-        return this.beginCancelPaymentTermsAsync(billingAccountName, parameters, context).getSyncPoller();
+        Response<BinaryData> response = cancelPaymentTermsWithResponse(billingAccountName, parameters, context);
+        return this.client.<BillingAccountInner, BillingAccountInner>getLroResult(response, BillingAccountInner.class,
+            BillingAccountInner.class, context);
     }
 
     /**
@@ -570,25 +673,6 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters Date after which any payment terms that needs to be cancelled.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing account on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BillingAccountInner> cancelPaymentTermsAsync(String billingAccountName, OffsetDateTime parameters,
-        Context context) {
-        return beginCancelPaymentTermsAsync(billingAccountName, parameters, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Cancels all the payment terms on billing account that falls after the cancellation date in the request.
-     * Currently, cancel payment terms is only served by admin actions and is not a self-serve action.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param parameters Date after which any payment terms that needs to be cancelled.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -596,7 +680,7 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BillingAccountInner cancelPaymentTerms(String billingAccountName, OffsetDateTime parameters) {
-        return cancelPaymentTermsAsync(billingAccountName, parameters).block();
+        return beginCancelPaymentTerms(billingAccountName, parameters).getFinalResult();
     }
 
     /**
@@ -614,7 +698,7 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BillingAccountInner cancelPaymentTerms(String billingAccountName, OffsetDateTime parameters,
         Context context) {
-        return cancelPaymentTermsAsync(billingAccountName, parameters, context).block();
+        return beginCancelPaymentTerms(billingAccountName, parameters, context).getFinalResult();
     }
 
     /**
@@ -651,36 +735,6 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * Services Program to agreement type Microsoft Customer Agreement.
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the transition details for a billing account that has transitioned from agreement type Microsoft Online
-     * Services Program to agreement type Microsoft Customer Agreement along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<TransitionDetailsInner>> confirmTransitionWithResponseAsync(String billingAccountName,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.confirmTransition(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(),
-            accept, context);
-    }
-
-    /**
-     * Gets the transition details for a billing account that has transitioned from agreement type Microsoft Online
-     * Services Program to agreement type Microsoft Customer Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -706,7 +760,18 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TransitionDetailsInner> confirmTransitionWithResponse(String billingAccountName, Context context) {
-        return confirmTransitionWithResponseAsync(billingAccountName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.confirmTransitionSync(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(),
+            accept, context);
     }
 
     /**
@@ -766,41 +831,6 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
      * request URL.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<InvoiceSectionWithCreateSubPermissionInner>>
-        listInvoiceSectionsByCreateSubscriptionPermissionSinglePageAsync(String billingAccountName, String filter,
-            Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listInvoiceSectionsByCreateSubscriptionPermission(this.client.getEndpoint(), billingAccountName,
-                this.client.getApiVersion(), filter, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists the invoice sections for which the user has permission to create Azure subscriptions. The operation is
-     * supported only for billing accounts with agreement type Microsoft Customer Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
-     * request URL.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -840,19 +870,63 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
      * request URL.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<InvoiceSectionWithCreateSubPermissionInner>
+        listInvoiceSectionsByCreateSubscriptionPermissionSinglePage(String billingAccountName, String filter) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<InvoiceSectionWithCreateSubPermissionListResult> res
+            = service.listInvoiceSectionsByCreateSubscriptionPermissionSync(this.client.getEndpoint(),
+                billingAccountName, this.client.getApiVersion(), filter, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the invoice sections for which the user has permission to create Azure subscriptions. The operation is
+     * supported only for billing accounts with agreement type Microsoft Customer Agreement.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     * request URL.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<InvoiceSectionWithCreateSubPermissionInner>
-        listInvoiceSectionsByCreateSubscriptionPermissionAsync(String billingAccountName, String filter,
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<InvoiceSectionWithCreateSubPermissionInner>
+        listInvoiceSectionsByCreateSubscriptionPermissionSinglePage(String billingAccountName, String filter,
             Context context) {
-        return new PagedFlux<>(
-            () -> listInvoiceSectionsByCreateSubscriptionPermissionSinglePageAsync(billingAccountName, filter, context),
-            nextLink -> listInvoiceSectionsByCreateSubscriptionPermissionNextSinglePageAsync(nextLink, context));
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<InvoiceSectionWithCreateSubPermissionListResult> res
+            = service.listInvoiceSectionsByCreateSubscriptionPermissionSync(this.client.getEndpoint(),
+                billingAccountName, this.client.getApiVersion(), filter, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -869,7 +943,9 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
     public PagedIterable<InvoiceSectionWithCreateSubPermissionInner>
         listInvoiceSectionsByCreateSubscriptionPermission(String billingAccountName) {
         final String filter = null;
-        return new PagedIterable<>(listInvoiceSectionsByCreateSubscriptionPermissionAsync(billingAccountName, filter));
+        return new PagedIterable<>(
+            () -> listInvoiceSectionsByCreateSubscriptionPermissionSinglePage(billingAccountName, filter),
+            nextLink -> listInvoiceSectionsByCreateSubscriptionPermissionNextSinglePage(nextLink));
     }
 
     /**
@@ -889,7 +965,8 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
     public PagedIterable<InvoiceSectionWithCreateSubPermissionInner>
         listInvoiceSectionsByCreateSubscriptionPermission(String billingAccountName, String filter, Context context) {
         return new PagedIterable<>(
-            listInvoiceSectionsByCreateSubscriptionPermissionAsync(billingAccountName, filter, context));
+            () -> listInvoiceSectionsByCreateSubscriptionPermissionSinglePage(billingAccountName, filter, context),
+            nextLink -> listInvoiceSectionsByCreateSubscriptionPermissionNextSinglePage(nextLink, context));
     }
 
     /**
@@ -933,41 +1010,6 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters The properties of payment term.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the payment terms eligibility along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PaymentTermsEligibilityResultInner>> validatePaymentTermsWithResponseAsync(
-        String billingAccountName, List<PaymentTerm> parameters, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.forEach(e -> e.validate());
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.validatePaymentTerms(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(),
-            parameters, accept, context);
-    }
-
-    /**
-     * Validates payment terms on a billing account with agreement type 'Microsoft Customer Agreement' and account type
-     * 'Enterprise'.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param parameters The properties of payment term.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -995,7 +1037,24 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PaymentTermsEligibilityResultInner> validatePaymentTermsWithResponse(String billingAccountName,
         List<PaymentTerm> parameters, Context context) {
-        return validatePaymentTermsWithResponseAsync(billingAccountName, parameters, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.forEach(e -> e.validate());
+        }
+        final String accept = "application/json";
+        return service.validatePaymentTermsSync(this.client.getEndpoint(), billingAccountName,
+            this.client.getApiVersion(), parameters, accept, context);
     }
 
     /**
@@ -1045,31 +1104,6 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * Gets a billing account by its ID.
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing account by its ID along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<BillingAccountInner>> getWithResponseAsync(String billingAccountName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Gets a billing account by its ID.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1092,7 +1126,18 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BillingAccountInner> getWithResponse(String billingAccountName, Context context) {
-        return getWithResponseAsync(billingAccountName, context).block();
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return service.getSync(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(), accept,
+            context);
     }
 
     /**
@@ -1153,32 +1198,68 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters A billing account.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing account along with {@link Response} on successful completion of {@link Mono}.
+     * @return a billing account along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String billingAccountName,
-        BillingAccountPatch parameters, Context context) {
+    private Response<BinaryData> updateWithResponse(String billingAccountName, BillingAccountPatch parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
         }
         if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
         } else {
             parameters.validate();
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(), parameters,
-            accept, context);
+        return service.updateSync(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(),
+            parameters, accept, Context.NONE);
+    }
+
+    /**
+     * Updates the properties of a billing account. Currently, displayName and address can be updated for billing
+     * accounts with agreement type Microsoft Customer Agreement. Currently address and notification email address can
+     * be updated for billing accounts with agreement type Microsoft Online Services Agreement. Currently, purchase
+     * order number can be edited for billing accounts with agreement type Enterprise Agreement.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param parameters A billing account.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a billing account along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Response<BinaryData> updateWithResponse(String billingAccountName, BillingAccountPatch parameters,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return service.updateSync(this.client.getEndpoint(), billingAccountName, this.client.getApiVersion(),
+            parameters, accept, context);
     }
 
     /**
@@ -1210,29 +1291,6 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters A billing account.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a billing account.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<BillingAccountInner>, BillingAccountInner> beginUpdateAsync(String billingAccountName,
-        BillingAccountPatch parameters, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(billingAccountName, parameters, context);
-        return this.client.<BillingAccountInner, BillingAccountInner>getLroResult(mono, this.client.getHttpPipeline(),
-            BillingAccountInner.class, BillingAccountInner.class, context);
-    }
-
-    /**
-     * Updates the properties of a billing account. Currently, displayName and address can be updated for billing
-     * accounts with agreement type Microsoft Customer Agreement. Currently address and notification email address can
-     * be updated for billing accounts with agreement type Microsoft Online Services Agreement. Currently, purchase
-     * order number can be edited for billing accounts with agreement type Enterprise Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param parameters A billing account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1241,7 +1299,9 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BillingAccountInner>, BillingAccountInner> beginUpdate(String billingAccountName,
         BillingAccountPatch parameters) {
-        return this.beginUpdateAsync(billingAccountName, parameters).getSyncPoller();
+        Response<BinaryData> response = updateWithResponse(billingAccountName, parameters);
+        return this.client.<BillingAccountInner, BillingAccountInner>getLroResult(response, BillingAccountInner.class,
+            BillingAccountInner.class, Context.NONE);
     }
 
     /**
@@ -1261,7 +1321,9 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BillingAccountInner>, BillingAccountInner> beginUpdate(String billingAccountName,
         BillingAccountPatch parameters, Context context) {
-        return this.beginUpdateAsync(billingAccountName, parameters, context).getSyncPoller();
+        Response<BinaryData> response = updateWithResponse(billingAccountName, parameters, context);
+        return this.client.<BillingAccountInner, BillingAccountInner>getLroResult(response, BillingAccountInner.class,
+            BillingAccountInner.class, context);
     }
 
     /**
@@ -1290,27 +1352,6 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters A billing account.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing account on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<BillingAccountInner> updateAsync(String billingAccountName, BillingAccountPatch parameters,
-        Context context) {
-        return beginUpdateAsync(billingAccountName, parameters, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Updates the properties of a billing account. Currently, displayName and address can be updated for billing
-     * accounts with agreement type Microsoft Customer Agreement. Currently address and notification email address can
-     * be updated for billing accounts with agreement type Microsoft Online Services Agreement. Currently, purchase
-     * order number can be edited for billing accounts with agreement type Enterprise Agreement.
-     * 
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param parameters A billing account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1318,7 +1359,7 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BillingAccountInner update(String billingAccountName, BillingAccountPatch parameters) {
-        return updateAsync(billingAccountName, parameters).block();
+        return beginUpdate(billingAccountName, parameters).getFinalResult();
     }
 
     /**
@@ -1337,7 +1378,7 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BillingAccountInner update(String billingAccountName, BillingAccountPatch parameters, Context context) {
-        return updateAsync(billingAccountName, parameters, context).block();
+        return beginUpdate(billingAccountName, parameters, context).getFinalResult();
     }
 
     /**
@@ -1391,59 +1432,6 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
             .<PagedResponse<BillingAccountInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists the billing accounts that a user has access to.
-     * 
-     * @param includeAll When true, results will include Billing Accounts that the user does not have a direct role
-     * assignment on if the user has one of the following AAD roles: Global Administrator, Global Reader, Billing
-     * Administrator.
-     * @param includeAllWithoutBillingProfiles When true, results will include Billing Accounts that are not fully
-     * created if the user has one of the following AAD roles: Global Administrator, Global Reader, Billing
-     * Administrator.
-     * @param includeDeleted When true, results will include any billing accounts in a deleted state.
-     * @param includePendingAgreement Includes billing accounts with agreement pending signature that the user has
-     * access to.
-     * @param includeResellee Includes the customer's billing account of Microsoft Partner Agreement that the user has
-     * access to.
-     * @param legalOwnerTid Must be combined with legalOwnerOID, results will only include Billing Accounts for whom is
-     * legally responsible for the Billing Accounts. Optional.
-     * @param legalOwnerOid Must be combined with legalOwnerTID, results will only include Billing Accounts for whom is
-     * legally responsible for the Billing Accounts. Optional.
-     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
-     * request URL.
-     * @param expand Expand is allowed for SoldTo and EnrollmentDetails/PONumber.
-     * @param top The top query option requests the number of items in the queried collection to be included in the
-     * result. The maximum supported value for top is 50.
-     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
-     * and not included in the result.
-     * @param search The search query option allows clients to request items within a collection matching a free-text
-     * search expression. search is only supported for string fields.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingAccountInner>> listSinglePageAsync(Boolean includeAll,
-        Boolean includeAllWithoutBillingProfiles, Boolean includeDeleted, Boolean includePendingAgreement,
-        Boolean includeResellee, String legalOwnerTid, String legalOwnerOid, String filter, String expand, Long top,
-        Long skip, String search, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), includeAll, includeAllWithoutBillingProfiles, includeDeleted,
-                includePendingAgreement, includeResellee, legalOwnerTid, legalOwnerOid, this.client.getApiVersion(),
-                filter, expand, top, skip, search, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
@@ -1540,19 +1528,78 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * and not included in the result.
      * @param search The search query option allows clients to request items within a collection matching a free-text
      * search expression. search is only supported for string fields.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BillingAccountInner> listSinglePage(Boolean includeAll,
+        Boolean includeAllWithoutBillingProfiles, Boolean includeDeleted, Boolean includePendingAgreement,
+        Boolean includeResellee, String legalOwnerTid, String legalOwnerOid, String filter, String expand, Long top,
+        Long skip, String search) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<BillingAccountListResult> res = service.listSync(this.client.getEndpoint(), includeAll,
+            includeAllWithoutBillingProfiles, includeDeleted, includePendingAgreement, includeResellee, legalOwnerTid,
+            legalOwnerOid, this.client.getApiVersion(), filter, expand, top, skip, search, accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Lists the billing accounts that a user has access to.
+     * 
+     * @param includeAll When true, results will include Billing Accounts that the user does not have a direct role
+     * assignment on if the user has one of the following AAD roles: Global Administrator, Global Reader, Billing
+     * Administrator.
+     * @param includeAllWithoutBillingProfiles When true, results will include Billing Accounts that are not fully
+     * created if the user has one of the following AAD roles: Global Administrator, Global Reader, Billing
+     * Administrator.
+     * @param includeDeleted When true, results will include any billing accounts in a deleted state.
+     * @param includePendingAgreement Includes billing accounts with agreement pending signature that the user has
+     * access to.
+     * @param includeResellee Includes the customer's billing account of Microsoft Partner Agreement that the user has
+     * access to.
+     * @param legalOwnerTid Must be combined with legalOwnerOID, results will only include Billing Accounts for whom is
+     * legally responsible for the Billing Accounts. Optional.
+     * @param legalOwnerOid Must be combined with legalOwnerTID, results will only include Billing Accounts for whom is
+     * legally responsible for the Billing Accounts. Optional.
+     * @param filter The filter query option allows clients to filter a collection of resources that are addressed by a
+     * request URL.
+     * @param expand Expand is allowed for SoldTo and EnrollmentDetails/PONumber.
+     * @param top The top query option requests the number of items in the queried collection to be included in the
+     * result. The maximum supported value for top is 50.
+     * @param skip The skip query option requests the number of items in the queried collection that are to be skipped
+     * and not included in the result.
+     * @param search The search query option allows clients to request items within a collection matching a free-text
+     * search expression. search is only supported for string fields.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources as paginated response with {@link PagedFlux}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<BillingAccountInner> listAsync(Boolean includeAll, Boolean includeAllWithoutBillingProfiles,
-        Boolean includeDeleted, Boolean includePendingAgreement, Boolean includeResellee, String legalOwnerTid,
-        String legalOwnerOid, String filter, String expand, Long top, Long skip, String search, Context context) {
-        return new PagedFlux<>(() -> listSinglePageAsync(includeAll, includeAllWithoutBillingProfiles, includeDeleted,
-            includePendingAgreement, includeResellee, legalOwnerTid, legalOwnerOid, filter, expand, top, skip, search,
-            context), nextLink -> listNextSinglePageAsync(nextLink, context));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BillingAccountInner> listSinglePage(Boolean includeAll,
+        Boolean includeAllWithoutBillingProfiles, Boolean includeDeleted, Boolean includePendingAgreement,
+        Boolean includeResellee, String legalOwnerTid, String legalOwnerOid, String filter, String expand, Long top,
+        Long skip, String search, Context context) {
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<BillingAccountListResult> res = service.listSync(this.client.getEndpoint(), includeAll,
+            includeAllWithoutBillingProfiles, includeDeleted, includePendingAgreement, includeResellee, legalOwnerTid,
+            legalOwnerOid, this.client.getApiVersion(), filter, expand, top, skip, search, accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -1576,8 +1623,10 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
         final Long top = null;
         final Long skip = null;
         final String search = null;
-        return new PagedIterable<>(listAsync(includeAll, includeAllWithoutBillingProfiles, includeDeleted,
-            includePendingAgreement, includeResellee, legalOwnerTid, legalOwnerOid, filter, expand, top, skip, search));
+        return new PagedIterable<>(
+            () -> listSinglePage(includeAll, includeAllWithoutBillingProfiles, includeDeleted, includePendingAgreement,
+                includeResellee, legalOwnerTid, legalOwnerOid, filter, expand, top, skip, search),
+            nextLink -> listNextSinglePage(nextLink));
     }
 
     /**
@@ -1618,8 +1667,9 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
         Boolean includeDeleted, Boolean includePendingAgreement, Boolean includeResellee, String legalOwnerTid,
         String legalOwnerOid, String filter, String expand, Long top, Long skip, String search, Context context) {
         return new PagedIterable<>(
-            listAsync(includeAll, includeAllWithoutBillingProfiles, includeDeleted, includePendingAgreement,
-                includeResellee, legalOwnerTid, legalOwnerOid, filter, expand, top, skip, search, context));
+            () -> listSinglePage(includeAll, includeAllWithoutBillingProfiles, includeDeleted, includePendingAgreement,
+                includeResellee, legalOwnerTid, legalOwnerOid, filter, expand, top, skip, search, context),
+            nextLink -> listNextSinglePage(nextLink, context));
     }
 
     /**
@@ -1656,29 +1706,59 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<InvoiceSectionWithCreateSubPermissionInner>
+        listInvoiceSectionsByCreateSubscriptionPermissionNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<InvoiceSectionWithCreateSubPermissionListResult> res
+            = service.listInvoiceSectionsByCreateSubscriptionPermissionNextSync(nextLink, this.client.getEndpoint(),
+                accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<InvoiceSectionWithCreateSubPermissionInner>>
-        listInvoiceSectionsByCreateSubscriptionPermissionNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<InvoiceSectionWithCreateSubPermissionInner>
+        listInvoiceSectionsByCreateSubscriptionPermissionNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listInvoiceSectionsByCreateSubscriptionPermissionNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<InvoiceSectionWithCreateSubPermissionListResult> res
+            = service.listInvoiceSectionsByCreateSubscriptionPermissionNextSync(nextLink, this.client.getEndpoint(),
+                accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
 
     /**
@@ -1711,26 +1791,56 @@ public final class BillingAccountsClientImpl implements BillingAccountsClient {
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a container for a list of resources along with {@link PagedResponse}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PagedResponse<BillingAccountInner> listNextSinglePage(String nextLink) {
+        if (nextLink == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        Response<BillingAccountListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, Context.NONE);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a container for a list of resources along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return a container for a list of resources along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<BillingAccountInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private PagedResponse<BillingAccountInner> listNextSinglePage(String nextLink, Context context) {
         if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
+        Response<BillingAccountListResult> res
+            = service.listNextSync(nextLink, this.client.getEndpoint(), accept, context);
+        return new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(),
+            res.getValue().nextLink(), null);
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(BillingAccountsClientImpl.class);
 }

@@ -1064,7 +1064,9 @@ public final class TransactionProperties implements JsonSerializable<Transaction
         jsonWriter.writeJsonField("azureCreditApplied", this.azureCreditApplied);
         jsonWriter.writeStringField("azurePlan", this.azurePlan);
         jsonWriter.writeStringField("billingCurrency", this.billingCurrency);
-        jsonWriter.writeUntypedField("billingProfileDisplayName", this.billingProfileDisplayName);
+        if (this.billingProfileDisplayName != null) {
+            jsonWriter.writeUntypedField("billingProfileDisplayName", this.billingProfileDisplayName);
+        }
         jsonWriter.writeStringField("billingProfileId", this.billingProfileId);
         jsonWriter.writeJsonField("consumptionCommitmentDecremented", this.consumptionCommitmentDecremented);
         jsonWriter.writeStringField("customerDisplayName", this.customerDisplayName);
