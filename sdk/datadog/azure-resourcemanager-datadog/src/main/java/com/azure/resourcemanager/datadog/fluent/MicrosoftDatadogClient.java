@@ -47,18 +47,18 @@ public interface MicrosoftDatadogClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
+
+    /**
      * Gets the MarketplaceAgreementsClient object to access its operations.
      * 
      * @return the MarketplaceAgreementsClient object.
      */
     MarketplaceAgreementsClient getMarketplaceAgreements();
-
-    /**
-     * Gets the CreationSupportedsClient object to access its operations.
-     * 
-     * @return the CreationSupportedsClient object.
-     */
-    CreationSupportedsClient getCreationSupporteds();
 
     /**
      * Gets the MonitorsClient object to access its operations.
@@ -68,18 +68,25 @@ public interface MicrosoftDatadogClient {
     MonitorsClient getMonitors();
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the CreationSupportedsClient object to access its operations.
      * 
-     * @return the OperationsClient object.
+     * @return the CreationSupportedsClient object.
      */
-    OperationsClient getOperations();
+    CreationSupportedsClient getCreationSupporteds();
 
     /**
-     * Gets the TagRulesClient object to access its operations.
+     * Gets the BillingInfoesClient object to access its operations.
      * 
-     * @return the TagRulesClient object.
+     * @return the BillingInfoesClient object.
      */
-    TagRulesClient getTagRules();
+    BillingInfoesClient getBillingInfoes();
+
+    /**
+     * Gets the MonitoredSubscriptionsClient object to access its operations.
+     * 
+     * @return the MonitoredSubscriptionsClient object.
+     */
+    MonitoredSubscriptionsClient getMonitoredSubscriptions();
 
     /**
      * Gets the SingleSignOnConfigurationsClient object to access its operations.
@@ -89,9 +96,9 @@ public interface MicrosoftDatadogClient {
     SingleSignOnConfigurationsClient getSingleSignOnConfigurations();
 
     /**
-     * Gets the MonitoredSubscriptionsClient object to access its operations.
+     * Gets the TagRulesClient object to access its operations.
      * 
-     * @return the MonitoredSubscriptionsClient object.
+     * @return the TagRulesClient object.
      */
-    MonitoredSubscriptionsClient getMonitoredSubscriptions();
+    TagRulesClient getTagRules();
 }

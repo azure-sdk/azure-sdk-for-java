@@ -22,7 +22,7 @@ import java.util.Arrays;
 public final class MonitoredSubscriptionsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-01-01/examples/MonitoredSubscriptions_Update
+     * specification/datadog/resource-manager/Microsoft.Datadog/stable/2023-10-20/examples/MonitoredSubscriptions_Update
      * .json
      */
     /**

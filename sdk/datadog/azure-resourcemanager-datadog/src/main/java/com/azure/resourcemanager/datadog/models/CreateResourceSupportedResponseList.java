@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.datadog.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -14,15 +15,20 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The CreateResourceSupportedResponseList model.
+ * Paged collection of CreateResourceSupportedResponse items.
  */
 @Fluent
 public final class CreateResourceSupportedResponseList
     implements JsonSerializable<CreateResourceSupportedResponseList> {
     /*
-     * The value property.
+     * The CreateResourceSupportedResponse items on this page
      */
     private List<CreateResourceSupportedResponseInner> value;
+
+    /*
+     * The link to the next page of items
+     */
+    private String nextLink;
 
     /**
      * Creates an instance of CreateResourceSupportedResponseList class.
@@ -31,7 +37,7 @@ public final class CreateResourceSupportedResponseList
     }
 
     /**
-     * Get the value property: The value property.
+     * Get the value property: The CreateResourceSupportedResponse items on this page.
      * 
      * @return the value value.
      */
@@ -40,7 +46,7 @@ public final class CreateResourceSupportedResponseList
     }
 
     /**
-     * Set the value property: The value property.
+     * Set the value property: The CreateResourceSupportedResponse items on this page.
      * 
      * @param value the value value to set.
      * @return the CreateResourceSupportedResponseList object itself.
@@ -51,15 +57,41 @@ public final class CreateResourceSupportedResponseList
     }
 
     /**
+     * Get the nextLink property: The link to the next page of items.
+     * 
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
+    }
+
+    /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the CreateResourceSupportedResponseList object itself.
+     */
+    public CreateResourceSupportedResponseList withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model CreateResourceSupportedResponseList"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(CreateResourceSupportedResponseList.class);
 
     /**
      * {@inheritDoc}
@@ -68,6 +100,7 @@ public final class CreateResourceSupportedResponseList
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeArrayField("value", this.value, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeStringField("nextLink", this.nextLink);
         return jsonWriter.writeEndObject();
     }
 
@@ -77,6 +110,7 @@ public final class CreateResourceSupportedResponseList
      * @param jsonReader The JsonReader being read.
      * @return An instance of CreateResourceSupportedResponseList if the JsonReader was pointing to an instance of it,
      * or null if it was pointing to JSON null.
+     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      * @throws IOException If an error occurs while reading the CreateResourceSupportedResponseList.
      */
     public static CreateResourceSupportedResponseList fromJson(JsonReader jsonReader) throws IOException {
@@ -91,6 +125,8 @@ public final class CreateResourceSupportedResponseList
                     List<CreateResourceSupportedResponseInner> value
                         = reader.readArray(reader1 -> CreateResourceSupportedResponseInner.fromJson(reader1));
                     deserializedCreateResourceSupportedResponseList.value = value;
+                } else if ("nextLink".equals(fieldName)) {
+                    deserializedCreateResourceSupportedResponseList.nextLink = reader.getString();
                 } else {
                     reader.skipChildren();
                 }

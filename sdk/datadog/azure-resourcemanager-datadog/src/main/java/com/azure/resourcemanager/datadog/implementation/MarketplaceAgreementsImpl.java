@@ -48,8 +48,8 @@ public final class MarketplaceAgreementsImpl implements MarketplaceAgreements {
         }
     }
 
-    public DatadogAgreementResource createOrUpdate() {
-        DatadogAgreementResourceInner inner = this.serviceClient().createOrUpdate();
+    public DatadogAgreementResource createOrUpdate(DatadogAgreementResourceInner body) {
+        DatadogAgreementResourceInner inner = this.serviceClient().createOrUpdate(body);
         if (inner != null) {
             return new DatadogAgreementResourceImpl(inner, this.manager());
         } else {

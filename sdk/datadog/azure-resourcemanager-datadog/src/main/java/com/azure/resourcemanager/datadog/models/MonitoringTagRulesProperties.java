@@ -36,6 +36,11 @@ public final class MonitoringTagRulesProperties implements JsonSerializable<Moni
      */
     private Boolean automuting;
 
+    /*
+     * Configuration to enable/disable custom metrics. If enabled, custom metrics from app insights will be sent.
+     */
+    private Boolean customMetrics;
+
     /**
      * Creates an instance of MonitoringTagRulesProperties class.
      */
@@ -112,6 +117,28 @@ public final class MonitoringTagRulesProperties implements JsonSerializable<Moni
     }
 
     /**
+     * Get the customMetrics property: Configuration to enable/disable custom metrics. If enabled, custom metrics from
+     * app insights will be sent.
+     * 
+     * @return the customMetrics value.
+     */
+    public Boolean customMetrics() {
+        return this.customMetrics;
+    }
+
+    /**
+     * Set the customMetrics property: Configuration to enable/disable custom metrics. If enabled, custom metrics from
+     * app insights will be sent.
+     * 
+     * @param customMetrics the customMetrics value to set.
+     * @return the MonitoringTagRulesProperties object itself.
+     */
+    public MonitoringTagRulesProperties withCustomMetrics(Boolean customMetrics) {
+        this.customMetrics = customMetrics;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -134,6 +161,7 @@ public final class MonitoringTagRulesProperties implements JsonSerializable<Moni
         jsonWriter.writeJsonField("logRules", this.logRules);
         jsonWriter.writeJsonField("metricRules", this.metricRules);
         jsonWriter.writeBooleanField("automuting", this.automuting);
+        jsonWriter.writeBooleanField("customMetrics", this.customMetrics);
         return jsonWriter.writeEndObject();
     }
 
@@ -161,6 +189,8 @@ public final class MonitoringTagRulesProperties implements JsonSerializable<Moni
                     deserializedMonitoringTagRulesProperties.metricRules = MetricRules.fromJson(reader);
                 } else if ("automuting".equals(fieldName)) {
                     deserializedMonitoringTagRulesProperties.automuting = reader.getNullable(JsonReader::getBoolean);
+                } else if ("customMetrics".equals(fieldName)) {
+                    deserializedMonitoringTagRulesProperties.customMetrics = reader.getNullable(JsonReader::getBoolean);
                 } else {
                     reader.skipChildren();
                 }

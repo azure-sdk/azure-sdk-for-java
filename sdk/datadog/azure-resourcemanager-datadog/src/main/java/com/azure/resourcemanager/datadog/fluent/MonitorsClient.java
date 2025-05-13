@@ -24,23 +24,18 @@ import com.azure.resourcemanager.datadog.models.DatadogMonitorResourceUpdatePara
  */
 public interface MonitorsClient {
     /**
-     * List the api keys for a given monitor resource.
+     * List all monitors under the specified subscription.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DatadogApiKeyInner> listApiKeys(String resourceGroupName, String monitorName);
+    PagedIterable<DatadogMonitorResourceInner> list();
 
     /**
-     * List the api keys for a given monitor resource.
+     * List all monitors under the specified subscription.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -48,7 +43,235 @@ public interface MonitorsClient {
      * @return response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DatadogApiKeyInner> listApiKeys(String resourceGroupName, String monitorName, Context context);
+    PagedIterable<DatadogMonitorResourceInner> list(Context context);
+
+    /**
+     * List all monitors under the specified resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response of a list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<DatadogMonitorResourceInner> listByResourceGroup(String resourceGroupName);
+
+    /**
+     * List all monitors under the specified resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response of a list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<DatadogMonitorResourceInner> listByResourceGroup(String resourceGroupName, Context context);
+
+    /**
+     * Get the properties of a specific monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of a specific monitor resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<DatadogMonitorResourceInner> getByResourceGroupWithResponse(String resourceGroupName, String monitorName,
+        Context context);
+
+    /**
+     * Get the properties of a specific monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of a specific monitor resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    DatadogMonitorResourceInner getByResourceGroup(String resourceGroupName, String monitorName);
+
+    /**
+     * Create a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<DatadogMonitorResourceInner>, DatadogMonitorResourceInner>
+        beginCreate(String resourceGroupName, String monitorName, DatadogMonitorResourceInner body);
+
+    /**
+     * Create a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body The body parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<DatadogMonitorResourceInner>, DatadogMonitorResourceInner>
+        beginCreate(String resourceGroupName, String monitorName, DatadogMonitorResourceInner body, Context context);
+
+    /**
+     * Create a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    DatadogMonitorResourceInner create(String resourceGroupName, String monitorName, DatadogMonitorResourceInner body);
+
+    /**
+     * Create a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body The body parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    DatadogMonitorResourceInner create(String resourceGroupName, String monitorName, DatadogMonitorResourceInner body,
+        Context context);
+
+    /**
+     * Update a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<DatadogMonitorResourceInner>, DatadogMonitorResourceInner>
+        beginUpdate(String resourceGroupName, String monitorName, DatadogMonitorResourceUpdateParameters body);
+
+    /**
+     * Update a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body The body parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<DatadogMonitorResourceInner>, DatadogMonitorResourceInner> beginUpdate(
+        String resourceGroupName, String monitorName, DatadogMonitorResourceUpdateParameters body, Context context);
+
+    /**
+     * Update a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    DatadogMonitorResourceInner update(String resourceGroupName, String monitorName,
+        DatadogMonitorResourceUpdateParameters body);
+
+    /**
+     * Update a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body The body parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    DatadogMonitorResourceInner update(String resourceGroupName, String monitorName,
+        DatadogMonitorResourceUpdateParameters body, Context context);
+
+    /**
+     * Delete a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String monitorName);
+
+    /**
+     * Delete a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String monitorName, Context context);
+
+    /**
+     * Delete a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String monitorName);
+
+    /**
+     * Delete a monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String monitorName, Context context);
 
     /**
      * Get the default api key.
@@ -79,32 +302,31 @@ public interface MonitorsClient {
     DatadogApiKeyInner getDefaultKey(String resourceGroupName, String monitorName);
 
     /**
-     * Set the default api key.
+     * List the api keys for a given monitor resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
-     * @param body The body parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response of a list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<DatadogApiKeyInner> listApiKeys(String resourceGroupName, String monitorName);
+
+    /**
+     * List the api keys for a given monitor resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return response of a list operation as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> setDefaultKeyWithResponse(String resourceGroupName, String monitorName, DatadogApiKeyInner body,
-        Context context);
-
-    /**
-     * Set the default api key.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void setDefaultKey(String resourceGroupName, String monitorName);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<DatadogApiKeyInner> listApiKeys(String resourceGroupName, String monitorName, Context context);
 
     /**
      * List the hosts for a given monitor resource.
@@ -190,251 +412,6 @@ public interface MonitorsClient {
         Context context);
 
     /**
-     * List all monitors under the specified subscription.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DatadogMonitorResourceInner> list();
-
-    /**
-     * List all monitors under the specified subscription.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DatadogMonitorResourceInner> list(Context context);
-
-    /**
-     * List all monitors under the specified resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DatadogMonitorResourceInner> listByResourceGroup(String resourceGroupName);
-
-    /**
-     * List all monitors under the specified resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DatadogMonitorResourceInner> listByResourceGroup(String resourceGroupName, Context context);
-
-    /**
-     * Get the properties of a specific monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a specific monitor resource along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<DatadogMonitorResourceInner> getByResourceGroupWithResponse(String resourceGroupName, String monitorName,
-        Context context);
-
-    /**
-     * Get the properties of a specific monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a specific monitor resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    DatadogMonitorResourceInner getByResourceGroup(String resourceGroupName, String monitorName);
-
-    /**
-     * Create a monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<DatadogMonitorResourceInner>, DatadogMonitorResourceInner>
-        beginCreate(String resourceGroupName, String monitorName);
-
-    /**
-     * Create a monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param body The body parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<DatadogMonitorResourceInner>, DatadogMonitorResourceInner>
-        beginCreate(String resourceGroupName, String monitorName, DatadogMonitorResourceInner body, Context context);
-
-    /**
-     * Create a monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    DatadogMonitorResourceInner create(String resourceGroupName, String monitorName);
-
-    /**
-     * Create a monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param body The body parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    DatadogMonitorResourceInner create(String resourceGroupName, String monitorName, DatadogMonitorResourceInner body,
-        Context context);
-
-    /**
-     * Update a monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<DatadogMonitorResourceInner>, DatadogMonitorResourceInner>
-        beginUpdate(String resourceGroupName, String monitorName);
-
-    /**
-     * Update a monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param body The body parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<DatadogMonitorResourceInner>, DatadogMonitorResourceInner> beginUpdate(
-        String resourceGroupName, String monitorName, DatadogMonitorResourceUpdateParameters body, Context context);
-
-    /**
-     * Update a monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    DatadogMonitorResourceInner update(String resourceGroupName, String monitorName);
-
-    /**
-     * Update a monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param body The body parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    DatadogMonitorResourceInner update(String resourceGroupName, String monitorName,
-        DatadogMonitorResourceUpdateParameters body, Context context);
-
-    /**
-     * Delete a monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String monitorName);
-
-    /**
-     * Delete a monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String monitorName, Context context);
-
-    /**
-     * Delete a monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String monitorName);
-
-    /**
-     * Delete a monitor resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String monitorName, Context context);
-
-    /**
      * Refresh the set password link and return a latest one.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -461,4 +438,32 @@ public interface MonitorsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     DatadogSetPasswordLinkInner refreshSetPasswordLink(String resourceGroupName, String monitorName);
+
+    /**
+     * Set the default api key.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param body The body parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<Void> setDefaultKeyWithResponse(String resourceGroupName, String monitorName, DatadogApiKeyInner body,
+        Context context);
+
+    /**
+     * Set the default api key.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void setDefaultKey(String resourceGroupName, String monitorName);
 }

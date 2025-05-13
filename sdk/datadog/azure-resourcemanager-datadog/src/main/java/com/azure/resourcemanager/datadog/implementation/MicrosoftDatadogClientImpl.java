@@ -15,14 +15,18 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.SyncPollerFactory;
+import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
+import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.datadog.fluent.BillingInfoesClient;
 import com.azure.resourcemanager.datadog.fluent.CreationSupportedsClient;
 import com.azure.resourcemanager.datadog.fluent.MarketplaceAgreementsClient;
 import com.azure.resourcemanager.datadog.fluent.MicrosoftDatadogClient;
@@ -130,6 +134,20 @@ public final class MicrosoftDatadogClientImpl implements MicrosoftDatadogClient 
     }
 
     /**
+     * The OperationsClient object to access its operations.
+     */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
+    }
+
+    /**
      * The MarketplaceAgreementsClient object to access its operations.
      */
     private final MarketplaceAgreementsClient marketplaceAgreements;
@@ -141,20 +159,6 @@ public final class MicrosoftDatadogClientImpl implements MicrosoftDatadogClient 
      */
     public MarketplaceAgreementsClient getMarketplaceAgreements() {
         return this.marketplaceAgreements;
-    }
-
-    /**
-     * The CreationSupportedsClient object to access its operations.
-     */
-    private final CreationSupportedsClient creationSupporteds;
-
-    /**
-     * Gets the CreationSupportedsClient object to access its operations.
-     * 
-     * @return the CreationSupportedsClient object.
-     */
-    public CreationSupportedsClient getCreationSupporteds() {
-        return this.creationSupporteds;
     }
 
     /**
@@ -172,31 +176,45 @@ public final class MicrosoftDatadogClientImpl implements MicrosoftDatadogClient 
     }
 
     /**
-     * The OperationsClient object to access its operations.
+     * The CreationSupportedsClient object to access its operations.
      */
-    private final OperationsClient operations;
+    private final CreationSupportedsClient creationSupporteds;
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the CreationSupportedsClient object to access its operations.
      * 
-     * @return the OperationsClient object.
+     * @return the CreationSupportedsClient object.
      */
-    public OperationsClient getOperations() {
-        return this.operations;
+    public CreationSupportedsClient getCreationSupporteds() {
+        return this.creationSupporteds;
     }
 
     /**
-     * The TagRulesClient object to access its operations.
+     * The BillingInfoesClient object to access its operations.
      */
-    private final TagRulesClient tagRules;
+    private final BillingInfoesClient billingInfoes;
 
     /**
-     * Gets the TagRulesClient object to access its operations.
+     * Gets the BillingInfoesClient object to access its operations.
      * 
-     * @return the TagRulesClient object.
+     * @return the BillingInfoesClient object.
      */
-    public TagRulesClient getTagRules() {
-        return this.tagRules;
+    public BillingInfoesClient getBillingInfoes() {
+        return this.billingInfoes;
+    }
+
+    /**
+     * The MonitoredSubscriptionsClient object to access its operations.
+     */
+    private final MonitoredSubscriptionsClient monitoredSubscriptions;
+
+    /**
+     * Gets the MonitoredSubscriptionsClient object to access its operations.
+     * 
+     * @return the MonitoredSubscriptionsClient object.
+     */
+    public MonitoredSubscriptionsClient getMonitoredSubscriptions() {
+        return this.monitoredSubscriptions;
     }
 
     /**
@@ -214,17 +232,17 @@ public final class MicrosoftDatadogClientImpl implements MicrosoftDatadogClient 
     }
 
     /**
-     * The MonitoredSubscriptionsClient object to access its operations.
+     * The TagRulesClient object to access its operations.
      */
-    private final MonitoredSubscriptionsClient monitoredSubscriptions;
+    private final TagRulesClient tagRules;
 
     /**
-     * Gets the MonitoredSubscriptionsClient object to access its operations.
+     * Gets the TagRulesClient object to access its operations.
      * 
-     * @return the MonitoredSubscriptionsClient object.
+     * @return the TagRulesClient object.
      */
-    public MonitoredSubscriptionsClient getMonitoredSubscriptions() {
-        return this.monitoredSubscriptions;
+    public TagRulesClient getTagRules() {
+        return this.tagRules;
     }
 
     /**
@@ -244,14 +262,15 @@ public final class MicrosoftDatadogClientImpl implements MicrosoftDatadogClient 
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-01-01";
-        this.marketplaceAgreements = new MarketplaceAgreementsClientImpl(this);
-        this.creationSupporteds = new CreationSupportedsClientImpl(this);
-        this.monitors = new MonitorsClientImpl(this);
+        this.apiVersion = "2023-10-20";
         this.operations = new OperationsClientImpl(this);
-        this.tagRules = new TagRulesClientImpl(this);
-        this.singleSignOnConfigurations = new SingleSignOnConfigurationsClientImpl(this);
+        this.marketplaceAgreements = new MarketplaceAgreementsClientImpl(this);
+        this.monitors = new MonitorsClientImpl(this);
+        this.creationSupporteds = new CreationSupportedsClientImpl(this);
+        this.billingInfoes = new BillingInfoesClientImpl(this);
         this.monitoredSubscriptions = new MonitoredSubscriptionsClientImpl(this);
+        this.singleSignOnConfigurations = new SingleSignOnConfigurationsClientImpl(this);
+        this.tagRules = new TagRulesClientImpl(this);
     }
 
     /**
@@ -289,6 +308,23 @@ public final class MicrosoftDatadogClientImpl implements MicrosoftDatadogClient 
         HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
         return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
             defaultPollInterval, activationResponse, context);
+    }
+
+    /**
+     * Gets long running operation result.
+     * 
+     * @param activationResponse the response of activation operation.
+     * @param pollResultType type of poll result.
+     * @param finalResultType type of final result.
+     * @param context the context shared by all requests.
+     * @param <T> type of poll result.
+     * @param <U> type of final result.
+     * @return SyncPoller for poll result and final result.
+     */
+    public <T, U> SyncPoller<PollResult<T>, U> getLroResult(Response<BinaryData> activationResponse,
+        Type pollResultType, Type finalResultType, Context context) {
+        return SyncPollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, () -> activationResponse, context);
     }
 
     /**

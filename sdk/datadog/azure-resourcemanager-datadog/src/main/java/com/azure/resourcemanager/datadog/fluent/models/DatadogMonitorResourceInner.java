@@ -22,7 +22,7 @@ import java.util.Map;
 @Fluent
 public final class DatadogMonitorResourceInner extends Resource {
     /*
-     * The sku property.
+     * Represents the SKU of a resource.
      */
     private ResourceSku sku;
 
@@ -37,7 +37,7 @@ public final class DatadogMonitorResourceInner extends Resource {
     private IdentityProperties identity;
 
     /*
-     * Metadata pertaining to creation and last modification of the resource.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     private SystemData systemData;
 
@@ -63,7 +63,7 @@ public final class DatadogMonitorResourceInner extends Resource {
     }
 
     /**
-     * Get the sku property: The sku property.
+     * Get the sku property: Represents the SKU of a resource.
      * 
      * @return the sku value.
      */
@@ -72,7 +72,7 @@ public final class DatadogMonitorResourceInner extends Resource {
     }
 
     /**
-     * Set the sku property: The sku property.
+     * Set the sku property: Represents the SKU of a resource.
      * 
      * @param sku the sku value to set.
      * @return the DatadogMonitorResourceInner object itself.
@@ -123,7 +123,7 @@ public final class DatadogMonitorResourceInner extends Resource {
     }
 
     /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
