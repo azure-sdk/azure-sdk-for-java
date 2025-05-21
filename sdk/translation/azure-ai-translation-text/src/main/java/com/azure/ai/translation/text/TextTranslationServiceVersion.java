@@ -11,9 +11,14 @@ import com.azure.core.util.ServiceVersion;
  */
 public enum TextTranslationServiceVersion implements ServiceVersion {
     /**
-     * Enum value 3.0.
+     * Enum value v3.0.
      */
-    V3_0("3.0");
+    V3_0("v3.0"),
+
+    /**
+     * Enum value 2025-05-01-preview.
+     */
+    V2025_05_01_PREVIEW("2025-05-01-preview");
 
     private final String version;
 
@@ -35,6 +40,6 @@ public enum TextTranslationServiceVersion implements ServiceVersion {
      * @return The latest {@link TextTranslationServiceVersion}.
      */
     public static TextTranslationServiceVersion getLatest() {
-        return V3_0;
+        return V2025_05_01_PREVIEW;
     }
 }
