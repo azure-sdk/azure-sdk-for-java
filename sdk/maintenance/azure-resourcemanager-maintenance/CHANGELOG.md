@@ -1,14 +1,163 @@
 # Release History
 
-## 1.1.0-beta.3 (Unreleased)
+## 1.1.0-beta.3 (2025-05-12)
 
-### Features Added
+- Azure Resource Manager Maintenance client library for Java. This package contains Microsoft Azure SDK for Maintenance Management SDK. Azure Maintenance Management Client. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Breaking Changes
 
-### Bugs Fixed
+#### `models.OperationInfo` was removed
 
-### Other Changes
+#### `models.ScheduledEvents` was removed
+
+#### `models.Updates` was removed
+
+#### `models.MaintenanceConfigurationsForResourceGroups` was removed
+
+#### `models.PublicMaintenanceConfigurations` was removed
+
+#### `models.ListMaintenanceConfigurationsResult` was removed
+
+#### `models.ListApplyUpdate` was removed
+
+#### `models.OperationsListResult` was removed
+
+#### `models.ConfigurationAssignmentsWithinSubscriptions` was removed
+
+#### `models.ApplyUpdateForResourceGroups` was removed
+
+#### `models.ListConfigurationAssignmentsResult` was removed
+
+#### `models.ListUpdatesResult` was removed
+
+#### `models.MaintenanceConfigurations` was modified
+
+* `define(java.lang.String)` was removed
+* `getByResourceGroup(java.lang.String,java.lang.String)` was removed
+* `deleteById(java.lang.String)` was removed
+* `deleteByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `deleteByResourceGroup(java.lang.String,java.lang.String)` was removed
+* `getByResourceGroupWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getByIdWithResponse(java.lang.String,com.azure.core.util.Context)` was removed
+* `getById(java.lang.String)` was removed
+* `deleteByResourceGroupWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.ConfigurationAssignments` was modified
+
+* `delete(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was removed
+* `list(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was removed
+* `deleteWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `get(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ConfigurationAssignmentInner)` was removed
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ConfigurationAssignmentInner,com.azure.core.util.Context)` was removed
+* `getWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `list(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+
+#### `models.Operation` was modified
+
+* `java.lang.String origin()` -> `models.Origin origin()`
+* `properties()` was removed
+* `models.OperationInfo display()` -> `models.OperationDisplay display()`
+
+#### `models.Update` was modified
+
+* `resourceId()` was removed
+
+#### `MaintenanceManager` was modified
+
+* `maintenanceConfigurationsForResourceGroups()` was removed
+* `publicMaintenanceConfigurations()` was removed
+* `configurationAssignmentsWithinSubscriptions()` was removed
+* `fluent.MaintenanceManagementClient serviceClient()` -> `fluent.MaintenanceClient serviceClient()`
+* `applyUpdateForResourceGroups()` was removed
+* `updates()` was removed
+* `scheduledEvents()` was removed
+
+#### `models.ApplyUpdates` was modified
+
+* `createOrUpdateParentWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `createOrUpdateWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `getWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.azure.core.util.Context)` was removed
+* `createOrUpdateOrCancel(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ApplyUpdateInner)` was removed
+* `list()` was removed
+* `createOrUpdateParent(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was removed
+* `createOrUpdate(java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was removed
+* `get(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)` was removed
+* `createOrUpdateOrCancelWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,fluent.models.ApplyUpdateInner,com.azure.core.util.Context)` was removed
+* `list(com.azure.core.util.Context)` was removed
+
+### Features Added
+
+* `models.ApplyUpdatesOperationGroups` was added
+
+* `models.ApplyUpdatesOperationGroupsCreateOrUpdateHeaders` was added
+
+* `models.MaintenanceConfigurationOperationGroups` was added
+
+* `implementation.models.ListUpdatesResult` was added
+
+* `models.ApplyUpdatesOperationGroupsCreateOrUpdateParentHeaders` was added
+
+* `models.OperationDisplay` was added
+
+* `models.ApplyUpdateOperationGroups` was added
+
+* `models.UpdatesOperationGroups` was added
+
+* `models.ActionType` was added
+
+* `implementation.models.ListMaintenanceConfigurationsResult` was added
+
+* `implementation.models.ListConfigurationAssignmentsResult` was added
+
+* `models.ConfigurationAssignmentOperationGroups` was added
+
+* `implementation.models.OperationsListResult` was added
+
+* `models.ApplyUpdatesOperationGroupsCreateOrUpdateParentResponse` was added
+
+* `models.UpdateProperties` was added
+
+* `models.ApplyUpdatesOperationGroupsCreateOrUpdateResponse` was added
+
+* `models.ScheduledEventOperationGroups` was added
+
+* `models.ApplyUpdateForResourceGroupOperationGroups` was added
+
+* `models.ConfigurationAssignmentForResourceGroupOperationGroups` was added
+
+* `implementation.models.ListApplyUpdate` was added
+
+* `models.Origin` was added
+
+#### `models.MaintenanceConfigurations` was modified
+
+* `getWithResponse(java.lang.String,com.azure.core.util.Context)` was added
+* `get(java.lang.String)` was added
+
+#### `models.Operation` was modified
+
+* `actionType()` was added
+
+#### `models.Update` was modified
+
+* `properties()` was added
+
+#### `models.ConfigurationAssignmentsForSubscriptions` was modified
+
+* `list()` was added
+* `list(com.azure.core.util.Context)` was added
+
+#### `MaintenanceManager` was modified
+
+* `applyUpdateOperationGroups()` was added
+* `applyUpdateForResourceGroupOperationGroups()` was added
+* `updatesOperationGroups()` was added
+* `scheduledEventOperationGroups()` was added
+* `configurationAssignmentForResourceGroupOperationGroups()` was added
+* `configurationAssignmentOperationGroups()` was added
+* `maintenanceConfigurationOperationGroups()` was added
+* `applyUpdatesOperationGroups()` was added
 
 ## 1.1.0-beta.2 (2024-12-04)
 
