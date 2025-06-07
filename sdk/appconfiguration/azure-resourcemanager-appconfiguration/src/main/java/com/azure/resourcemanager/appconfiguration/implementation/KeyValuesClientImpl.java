@@ -283,7 +283,10 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
         if (keyValueName == null) {
             return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
         }
-        if (keyValueParameters != null) {
+        if (keyValueParameters == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter keyValueParameters is required and cannot be null."));
+        } else {
             keyValueParameters.validate();
         }
         final String accept = "application/json";
@@ -332,7 +335,10 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
         if (keyValueName == null) {
             return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
         }
-        if (keyValueParameters != null) {
+        if (keyValueParameters == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter keyValueParameters is required and cannot be null."));
+        } else {
             keyValueParameters.validate();
         }
         final String accept = "application/json";
@@ -349,6 +355,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
      * @param configStoreName The name of the configuration store.
      * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
      * optional.
+     * @param keyValueParameters The parameters for creating a key-value.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -356,8 +363,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<KeyValueInner> createOrUpdateAsync(String resourceGroupName, String configStoreName,
-        String keyValueName) {
-        final KeyValueInner keyValueParameters = null;
+        String keyValueName, KeyValueInner keyValueParameters) {
         return createOrUpdateWithResponseAsync(resourceGroupName, configStoreName, keyValueName, keyValueParameters)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -392,14 +398,15 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
      * @param configStoreName The name of the configuration store.
      * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
      * optional.
+     * @param keyValueParameters The parameters for creating a key-value.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the key-value resource along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public KeyValueInner createOrUpdate(String resourceGroupName, String configStoreName, String keyValueName) {
-        final KeyValueInner keyValueParameters = null;
+    public KeyValueInner createOrUpdate(String resourceGroupName, String configStoreName, String keyValueName,
+        KeyValueInner keyValueParameters) {
         return createOrUpdateWithResponse(resourceGroupName, configStoreName, keyValueName, keyValueParameters,
             Context.NONE).getValue();
     }

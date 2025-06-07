@@ -25,6 +25,7 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.appconfiguration.fluent.AppConfigurationManagementClient;
 import com.azure.resourcemanager.appconfiguration.fluent.ConfigurationStoresClient;
+import com.azure.resourcemanager.appconfiguration.fluent.ExperimentationsClient;
 import com.azure.resourcemanager.appconfiguration.fluent.KeyValuesClient;
 import com.azure.resourcemanager.appconfiguration.fluent.OperationsClient;
 import com.azure.resourcemanager.appconfiguration.fluent.PrivateEndpointConnectionsClient;
@@ -228,6 +229,20 @@ public final class AppConfigurationManagementClientImpl implements AppConfigurat
     }
 
     /**
+     * The ExperimentationsClient object to access its operations.
+     */
+    private final ExperimentationsClient experimentations;
+
+    /**
+     * Gets the ExperimentationsClient object to access its operations.
+     * 
+     * @return the ExperimentationsClient object.
+     */
+    public ExperimentationsClient getExperimentations() {
+        return this.experimentations;
+    }
+
+    /**
      * Initializes an instance of AppConfigurationManagementClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -244,7 +259,7 @@ public final class AppConfigurationManagementClientImpl implements AppConfigurat
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-05-01";
+        this.apiVersion = "2025-02-01-preview";
         this.configurationStores = new ConfigurationStoresClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
@@ -252,6 +267,7 @@ public final class AppConfigurationManagementClientImpl implements AppConfigurat
         this.keyValues = new KeyValuesClientImpl(this);
         this.replicas = new ReplicasClientImpl(this);
         this.snapshots = new SnapshotsClientImpl(this);
+        this.experimentations = new ExperimentationsClientImpl(this);
     }
 
     /**

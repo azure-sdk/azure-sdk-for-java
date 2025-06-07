@@ -22,10 +22,12 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appconfiguration.fluent.AppConfigurationManagementClient;
 import com.azure.resourcemanager.appconfiguration.implementation.AppConfigurationManagementClientBuilder;
 import com.azure.resourcemanager.appconfiguration.implementation.ConfigurationStoresImpl;
+import com.azure.resourcemanager.appconfiguration.implementation.ExperimentationsImpl;
 import com.azure.resourcemanager.appconfiguration.implementation.KeyValuesImpl;
 import com.azure.resourcemanager.appconfiguration.implementation.OperationsImpl;
 import com.azure.resourcemanager.appconfiguration.implementation.PrivateEndpointConnectionsImpl;
@@ -33,6 +35,7 @@ import com.azure.resourcemanager.appconfiguration.implementation.PrivateLinkReso
 import com.azure.resourcemanager.appconfiguration.implementation.ReplicasImpl;
 import com.azure.resourcemanager.appconfiguration.implementation.SnapshotsImpl;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStores;
+import com.azure.resourcemanager.appconfiguration.models.Experimentations;
 import com.azure.resourcemanager.appconfiguration.models.KeyValues;
 import com.azure.resourcemanager.appconfiguration.models.Operations;
 import com.azure.resourcemanager.appconfiguration.models.PrivateEndpointConnections;
@@ -43,6 +46,7 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -63,6 +67,8 @@ public final class AppConfigurationManager {
     private Replicas replicas;
 
     private Snapshots snapshots;
+
+    private Experimentations experimentations;
 
     private final AppConfigurationManagementClient clientObject;
 
@@ -116,6 +122,9 @@ public final class AppConfigurationManager {
      */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private static final String SDK_VERSION = "version";
+        private static final Map<String, String> PROPERTIES
+            = CoreUtils.getProperties("azure-resourcemanager-appconfiguration.properties");
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -223,12 +232,14 @@ public final class AppConfigurationManager {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
+            String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java")
                 .append("-")
                 .append("com.azure.resourcemanager.appconfiguration")
                 .append("/")
-                .append("1.0.0");
+                .append(clientVersion);
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -357,6 +368,18 @@ public final class AppConfigurationManager {
             this.snapshots = new SnapshotsImpl(clientObject.getSnapshots(), this);
         }
         return snapshots;
+    }
+
+    /**
+     * Gets the resource collection API of Experimentations. It manages Experimentation.
+     * 
+     * @return Resource collection API of Experimentations.
+     */
+    public Experimentations experimentations() {
+        if (this.experimentations == null) {
+            this.experimentations = new ExperimentationsImpl(clientObject.getExperimentations(), this);
+        }
+        return experimentations;
     }
 
     /**
