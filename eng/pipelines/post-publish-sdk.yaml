@@ -3,22 +3,22 @@
 #
 # The typespec-java emitter lives in Azure/typespec-azure (packages/typespec-java).
 # By default (DevPackage=false) this pipeline generates using the published
-# @azure-tools/typespec-java npm package. To validate an unreleased emitter change, set
-# DevPackage=true and provide PRId pointing at a Pull Request in the Azure/typespec-azure
-# repository; the emitter dev package is then built from that PR and used for generation.
+# @azure-tools/typespec-java npm package. Set DevPackage=true to instead build the emitter
+# dev package from source: from the typespec-azure PR given by PRId, or from the default
+# branch (main) when PRId is left at 'none'.
 trigger: none
 pr: none
 
 parameters:
 # NOTE: Azure DevOps cannot conditionally show/hide runtime parameters, so both are always
-# shown. DevPackage defaults to false (a boolean toggle needs no value entered); PRId is only
-# used when DevPackage=true, in which case it must be provided.
+# shown. DevPackage defaults to false (a boolean toggle needs no value entered). PRId is only
+# used when DevPackage=true; leave it at 'none' to build the emitter from main.
 - name: DevPackage
-  displayName: 'Build emitter from a typespec-azure PR (instead of the published npm package)'
+  displayName: 'Build emitter from typespec-azure source (instead of the published npm package)'
   type: boolean
   default: false
 - name: PRId
-  displayName: 'Pull Request ID in typespec-azure, only used when DevPackage=true (e.g. 43321, or refs/pull/43321/merge)'
+  displayName: 'typespec-azure Pull Request to build the emitter from, used only when DevPackage=true (e.g. 43321 or refs/pull/43321/merge; leave as none to build from main)'
   type: string
   default: 'none'
 
@@ -37,7 +37,10 @@ jobs:
     value: $(Agent.BuildDirectory)/typespec-azure
   - name: PullRequestTitleSuffix
     ${{ if eq(parameters.DevPackage, true) }}:
-      value: " DEV (typespec-azure PR ${{ parameters.PRId }})"
+      ${{ if ne(parameters.PRId, 'none') }}:
+        value: " DEV (typespec-azure PR ${{ parameters.PRId }})"
+      ${{ else }}:
+        value: " DEV (typespec-azure main)"
     ${{ else }}:
       value: ""
 
@@ -66,8 +69,9 @@ jobs:
       registryUrl: https://pkgs.dev.azure.com/azure-sdk/public/_packaging/azure-sdk-for-js/npm/registry/
 
   # Clone the public Azure/typespec-azure repo (no service connection required). When building
-  # a dev package (DevPackage=true), fetch and check out the specified PR ref. PRId must be set
-  # in that case (a bare number is expanded to refs/pull/<id>/merge; a full ref is used as-is).
+  # a dev package (DevPackage=true) with a PRId specified, fetch and check out that PR ref
+  # (a bare number is expanded to refs/pull/<id>/merge; a full ref is used as-is). When PRId is
+  # left at 'none', the emitter is built from the default branch (main).
   - task: PowerShell@2
     displayName: 'Clone typespec-azure'
     inputs:
@@ -77,11 +81,7 @@ jobs:
         git clone https://github.com/Azure/typespec-azure.git "$(TypeSpecAzureDirectory)"
         $devPackage = [System.Convert]::ToBoolean('${{ parameters.DevPackage }}')
         $prId = '${{ parameters.PRId }}'
-        if ($devPackage) {
-          if (-not $prId -or $prId -eq 'none') {
-            Write-Error "PRId is required when DevPackage is true."
-            exit 1
-          }
+        if ($devPackage -and $prId -and $prId -ne 'none') {
           if ($prId -match '^\d+$') {
             $ref = "refs/pull/$prId/merge"
           } else {
