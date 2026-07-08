@@ -11,10 +11,7 @@ pr: none
 
 parameters:
 - name: TypeSpecJavaPRId
-  displayName: >-
-    Pull Request in the Azure/typespec-azure repo to build the typespec-java emitter from.
-    Accepts a PR number (e.g. 43312) or a full ref path (e.g. refs/pull/43312/merge).
-    Leave empty to use the published @azure-tools/typespec-java npm package.
+  displayName: 'typespec-azure PR to build emitter from (number or ref; empty = published package)'
   type: string
   default: ''
 
