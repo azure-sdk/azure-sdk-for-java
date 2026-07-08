@@ -14,11 +14,11 @@ parameters:
 # shown. DevPackage defaults to false (a boolean toggle needs no value entered). PRId is only
 # used when DevPackage=true; leave it at 'none' to build the emitter from main.
 - name: DevPackage
-  displayName: 'Build emitter from typespec-azure source (instead of the published npm package)'
+  displayName: 'DevPackage'
   type: boolean
   default: false
 - name: PRId
-  displayName: 'typespec-azure Pull Request to build the emitter from, used only when DevPackage=true (e.g. 43321 or refs/pull/43321/merge; leave as none to build from main)'
+  displayName: 'typespec-azure PR ID (e.g. 43321; used only when DevPackage=true, none = main)'
   type: string
   default: 'none'
 
