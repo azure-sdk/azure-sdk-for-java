@@ -2,18 +2,25 @@
 # then opens an automated draft PR with the results.
 #
 # The typespec-java emitter lives in Azure/typespec-azure (packages/typespec-java).
-# By default this pipeline generates using the published @azure-tools/typespec-java npm
-# package. To validate an unreleased emitter change, provide the TypeSpecJavaPRId parameter
-# pointing at a Pull Request in the Azure/typespec-azure repository; the emitter dev package
-# is then built from that PR and used for generation.
+# By default (DevPackage=false) this pipeline generates using the published
+# @azure-tools/typespec-java npm package. To validate an unreleased emitter change, set
+# DevPackage=true and provide PRId pointing at a Pull Request in the Azure/typespec-azure
+# repository; the emitter dev package is then built from that PR and used for generation.
 trigger: none
 pr: none
 
 parameters:
-- name: TypeSpecJavaPRId
-  displayName: 'Pull Request ID in typespec-azure(e.g. 43321, or refs/pull/43321/merge)'
+# NOTE: Azure DevOps cannot conditionally show/hide runtime parameters, so both are always
+# shown. DevPackage defaults to false (a boolean toggle needs no value entered); PRId is only
+# used when DevPackage=true, in which case it must be provided.
+- name: DevPackage
+  displayName: 'Build emitter from a typespec-azure PR (instead of the published npm package)'
+  type: boolean
+  default: false
+- name: PRId
+  displayName: 'Pull Request ID in typespec-azure, only used when DevPackage=true (e.g. 43321, or refs/pull/43321/merge)'
   type: string
-  default: ''
+  default: 'none'
 
 jobs:
 - job: Generate_SDK
@@ -29,8 +36,8 @@ jobs:
   - name: TypeSpecAzureDirectory
     value: $(Agent.BuildDirectory)/typespec-azure
   - name: PullRequestTitleSuffix
-    ${{ if ne(parameters.TypeSpecJavaPRId, '') }}:
-      value: " DEV (typespec-azure PR ${{ parameters.TypeSpecJavaPRId }})"
+    ${{ if eq(parameters.DevPackage, true) }}:
+      value: " DEV (typespec-azure PR ${{ parameters.PRId }})"
     ${{ else }}:
       value: ""
 
@@ -58,8 +65,9 @@ jobs:
     parameters:
       registryUrl: https://pkgs.dev.azure.com/azure-sdk/public/_packaging/azure-sdk-for-js/npm/registry/
 
-  # Clone the public Azure/typespec-azure repo (no service connection required). When a PR is
-  # specified via TypeSpecJavaPRId, fetch and check out that PR ref (number or full ref path).
+  # Clone the public Azure/typespec-azure repo (no service connection required). When building
+  # a dev package (DevPackage=true), fetch and check out the specified PR ref. PRId must be set
+  # in that case (a bare number is expanded to refs/pull/<id>/merge; a full ref is used as-is).
   - task: PowerShell@2
     displayName: 'Clone typespec-azure'
     inputs:
@@ -67,8 +75,13 @@ jobs:
       targetType: 'inline'
       script: |
         git clone https://github.com/Azure/typespec-azure.git "$(TypeSpecAzureDirectory)"
-        $prId = '${{ parameters.TypeSpecJavaPRId }}'
-        if ($prId) {
+        $devPackage = [System.Convert]::ToBoolean('${{ parameters.DevPackage }}')
+        $prId = '${{ parameters.PRId }}'
+        if ($devPackage) {
+          if (-not $prId -or $prId -eq 'none') {
+            Write-Error "PRId is required when DevPackage is true."
+            exit 1
+          }
           if ($prId -match '^\d+$') {
             $ref = "refs/pull/$prId/merge"
           } else {
@@ -87,7 +100,7 @@ jobs:
   # the .tgz next to the package.json for sync_sdk.py to pick up.
   - task: PowerShell@2
     retryCountOnTaskFailure: 1
-    condition: and(succeeded(), ne('${{ parameters.TypeSpecJavaPRId }}', ''))
+    condition: and(succeeded(), eq('${{ parameters.DevPackage }}', 'true'))
     displayName: 'Build typespec-java dev package'
     inputs:
       pwsh: true
@@ -114,7 +127,7 @@ jobs:
       workingDirectory: $(TypeSpecAzureDirectory)
 
   - script: |
-      python3 ./eng/pipelines/scripts/sync_sdk.py --sdk-root=$(Build.SourcesDirectory) --package-json-path=$(TypeSpecAzureDirectory)/packages/typespec-java/package.json --dev-package=${{ ne(parameters.TypeSpecJavaPRId, '') }}
+      python3 ./eng/pipelines/scripts/sync_sdk.py --sdk-root=$(Build.SourcesDirectory) --package-json-path=$(TypeSpecAzureDirectory)/packages/typespec-java/package.json --dev-package=${{ parameters.DevPackage }}
     displayName: 'Generate SDK'
     workingDirectory: $(Build.SourcesDirectory)
 
