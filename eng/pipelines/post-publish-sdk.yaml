@@ -11,7 +11,7 @@ pr: none
 
 parameters:
 - name: TypeSpecJavaPRId
-  displayName: 'typespec-azure PR to build emitter from (number or ref; empty = published package)'
+  displayName: 'Pull Request ID in typespec-azure(e.g. 43321, or refs/pull/43321/merge)'
   type: string
   default: ''
 
