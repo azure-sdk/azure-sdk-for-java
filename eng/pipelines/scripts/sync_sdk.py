@@ -11,6 +11,7 @@ import subprocess
 import glob
 import shutil
 import json
+import tarfile
 from typing import List
 
 sdk_root: str
@@ -52,20 +53,8 @@ def parse_args() -> argparse.Namespace:
 def update_emitter(package_json_path: str, use_dev_package: bool):
     if use_dev_package:
         # we cannot use "tsp-client generate-config-files" in dev mode, as this command also updates the lock file
-        logging.info("Update emitter-package.json")
-        subprocess.check_call(
-            [
-                "pwsh",
-                "./eng/common/scripts/typespec/New-EmitterPackageJson.ps1",
-                "-PackageJsonPath",
-                package_json_path,
-                "-OutputDirectory",
-                "eng",
-            ],
-            cwd=sdk_root,
-        )
 
-        # replace version with path to dev package
+        # Locate the dev package tarball produced by "pnpm pack".
         dev_package_path = None
         typespec_extension_path = os.path.dirname(package_json_path)
         for file in os.listdir(typespec_extension_path):
@@ -73,16 +62,41 @@ def update_emitter(package_json_path: str, use_dev_package: bool):
                 dev_package_path = os.path.abspath(os.path.join(typespec_extension_path, file))
                 logging.info(f'Found dev package at "{dev_package_path}"')
                 break
-        if dev_package_path:
-            emitter_package_path = os.path.join(sdk_root, "eng", "emitter-package.json")
-            with open(emitter_package_path, "r") as json_file:
-                package_json = json.load(json_file)
-            package_json["dependencies"]["@azure-tools/typespec-java"] = dev_package_path
-            with open(emitter_package_path, "w") as json_file:
-                logging.info(f'Update emitter-package.json to use typespec-java from "{dev_package_path}"')
-                json.dump(package_json, json_file, indent=2)
-        else:
+        if not dev_package_path:
             logging.error("Failed to locate the dev package.")
+            return
+
+        # The monorepo source package.json (typespec-azure) declares dependencies with the
+        # "catalog:" and "workspace:" protocols, which npm cannot resolve. The packed tarball
+        # contains a package.json with those protocols resolved to concrete versions, so use it
+        # as the basis for emitter-package.json instead of the source package.json.
+        resolved_package_json_path = os.path.join(typespec_extension_path, "package.resolved.json")
+        with tarfile.open(dev_package_path, "r:gz") as tar:
+            with tar.extractfile("package/package.json") as member:
+                with open(resolved_package_json_path, "wb") as f:
+                    f.write(member.read())
+
+        logging.info("Update emitter-package.json")
+        subprocess.check_call(
+            [
+                "pwsh",
+                "./eng/common/scripts/typespec/New-EmitterPackageJson.ps1",
+                "-PackageJsonPath",
+                resolved_package_json_path,
+                "-OutputDirectory",
+                "eng",
+            ],
+            cwd=sdk_root,
+        )
+
+        # replace version with path to dev package
+        emitter_package_path = os.path.join(sdk_root, "eng", "emitter-package.json")
+        with open(emitter_package_path, "r") as json_file:
+            package_json = json.load(json_file)
+        package_json["dependencies"]["@azure-tools/typespec-java"] = dev_package_path
+        with open(emitter_package_path, "w") as json_file:
+            logging.info(f'Update emitter-package.json to use typespec-java from "{dev_package_path}"')
+            json.dump(package_json, json_file, indent=2)
 
         # only enable it on dev branch
         # update_latest_dev()
