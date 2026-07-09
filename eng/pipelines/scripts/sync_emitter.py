@@ -91,8 +91,10 @@ def update_emitter(package_json_path: str, emitter_version: str):
         # Published route (post-publish): pin emitter-package.json to a published version.
         logging.info(f"Pin emitter-package.json to published typespec-java {emitter_version}")
         with tempfile.TemporaryDirectory() as tmp_dir:
-            # Download the published tarball so its package.json (with resolved dependency
-            # versions) can seed emitter-package.json, consistent with the dev route.
+            # Download the published tarball. Its package.json has the dependency versions
+            # resolved (unlike the typespec-azure monorepo source, which uses the "catalog:"/
+            # "workspace:" protocols that npm cannot resolve), so tsp-client generate-config-files
+            # can consume it directly to produce emitter-package.json and its lock file.
             subprocess.check_call(
                 ["npm", "pack", f"{EMITTER_PACKAGE_NAME}@{emitter_version}", "--pack-destination", tmp_dir],
                 cwd=sdk_root,
@@ -103,11 +105,11 @@ def update_emitter(package_json_path: str, emitter_version: str):
             resolved_package_json_path = os.path.join(tmp_dir, "package.resolved.json")
             extract_package_json_from_tgz(tgz_files[0], resolved_package_json_path)
 
-            logging.info("Update emitter-package.json")
-            generate_emitter_package_json(resolved_package_json_path)
-
-        logging.info("Update emitter-package-lock.json")
-        generate_lock_file()
+            logging.info("Update emitter-package.json and emitter-package-lock.json")
+            subprocess.check_call(
+                ["tsp-client", "generate-config-files", "--package-json", resolved_package_json_path],
+                cwd=sdk_root,
+            )
     else:
         # Dev route: build the emitter from source. We cannot use "tsp-client
         # generate-config-files" here, as it would resolve against a published version.
