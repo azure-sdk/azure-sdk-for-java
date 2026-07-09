@@ -82,6 +82,11 @@ def generate_emitter_package_json(resolved_package_json_path: str) -> None:
 
 
 def update_emitter(package_json_path: str, emitter_version: str):
+    # 'none' is the pipeline sentinel for "not specified" (Azure DevOps string parameters
+    # cannot be left truly empty in the run UI), so normalize it to empty here.
+    if emitter_version.lower() == "none":
+        emitter_version = ""
+
     if emitter_version:
         # Published route (post-publish): pin emitter-package.json to a published version.
         logging.info(f"Pin emitter-package.json to published typespec-java {emitter_version}")
