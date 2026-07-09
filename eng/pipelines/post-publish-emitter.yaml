@@ -2,18 +2,18 @@
 # then opens an automated draft PR with the results.
 #
 # The typespec-java emitter lives in Azure/typespec-azure (packages/typespec-java).
-# Published route (TypeSpecJavaVersion set): pins eng/emitter-package.json to that published
+# Published route (EmitterVersion set): pins eng/emitter-package.json to that published
 # @azure-tools/typespec-java version, then regenerates. This is the post-publish path and does
 # not touch typespec-azure sources.
-# Dev route (TypeSpecJavaVersion is 'none'): builds the emitter dev package from source instead
+# Dev route (EmitterVersion is 'none'): builds the emitter dev package from source instead
 # - from the typespec-azure PR given by PRId, or from the default branch (main) when PRId is 'none'.
 trigger: none
 pr: none
 
 parameters:
-# Set TypeSpecJavaVersion for the default (post-publish) route. Leave it as 'none' to build the
+# Set EmitterVersion for the default (post-publish) route. Leave it as 'none' to build the
 # emitter from source, in which case PRId selects the typespec-azure PR (or main).
-- name: TypeSpecJavaVersion
+- name: EmitterVersion
   displayName: 'Emitter Version — published @azure-tools/typespec-java to regenerate with (e.g. 0.45.4; none = build from source)'
   type: string
   default: 'none'
@@ -38,12 +38,12 @@ jobs:
   # For the published route this is the given version. For the dev route it is overwritten at
   # runtime from the built emitter's package.json (see 'Get Package Version').
   - name: PackageVersion
-    ${{ if ne(parameters.TypeSpecJavaVersion, 'none') }}:
-      value: ${{ parameters.TypeSpecJavaVersion }}
+    ${{ if ne(parameters.EmitterVersion, 'none') }}:
+      value: ${{ parameters.EmitterVersion }}
     ${{ else }}:
       value: ''
   - name: PullRequestTitleSuffix
-    ${{ if eq(parameters.TypeSpecJavaVersion, 'none') }}:
+    ${{ if eq(parameters.EmitterVersion, 'none') }}:
       ${{ if ne(parameters.PRId, 'none') }}:
         value: " DEV (typespec-azure PR ${{ parameters.PRId }})"
       ${{ else }}:
@@ -83,7 +83,7 @@ jobs:
   # which build:generator (Build-Generator.ps1) and tspd both require.
   - task: PowerShell@2
     displayName: 'Clone typespec-azure'
-    condition: and(succeeded(), eq('${{ parameters.TypeSpecJavaVersion }}', 'none'))
+    condition: and(succeeded(), eq('${{ parameters.EmitterVersion }}', 'none'))
     inputs:
       pwsh: true
       targetType: 'inline'
@@ -110,7 +110,7 @@ jobs:
   # the .tgz next to the package.json for sync_emitter.py to pick up.
   - task: PowerShell@2
     retryCountOnTaskFailure: 1
-    condition: and(succeeded(), eq('${{ parameters.TypeSpecJavaVersion }}', 'none'))
+    condition: and(succeeded(), eq('${{ parameters.EmitterVersion }}', 'none'))
     displayName: 'Build typespec-java dev package'
     inputs:
       pwsh: true
@@ -127,10 +127,10 @@ jobs:
     displayName: 'Install tsp-client'
 
   # Dev route only: the built emitter's version drives the PR title. For the published route
-  # PackageVersion is already the given TypeSpecJavaVersion.
+  # PackageVersion is already the given EmitterVersion.
   - task: PowerShell@2
     displayName: 'Get Package Version'
-    condition: and(succeeded(), eq('${{ parameters.TypeSpecJavaVersion }}', 'none'))
+    condition: and(succeeded(), eq('${{ parameters.EmitterVersion }}', 'none'))
     inputs:
       pwsh: true
       targetType: 'inline'
@@ -140,7 +140,7 @@ jobs:
       workingDirectory: $(TypeSpecAzureDirectory)
 
   - script: |
-      python3 ./eng/pipelines/scripts/sync_emitter.py --sdk-root=$(Build.SourcesDirectory) --emitter-version='${{ parameters.TypeSpecJavaVersion }}' --package-json-path=$(TypeSpecAzureDirectory)/packages/typespec-java/package.json
+      python3 ./eng/pipelines/scripts/sync_emitter.py --sdk-root=$(Build.SourcesDirectory) --emitter-version='${{ parameters.EmitterVersion }}' --package-json-path=$(TypeSpecAzureDirectory)/packages/typespec-java/package.json
     displayName: 'Generate SDK'
     workingDirectory: $(Build.SourcesDirectory)
 
