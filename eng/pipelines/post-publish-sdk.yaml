@@ -2,28 +2,23 @@
 # then opens an automated draft PR with the results.
 #
 # The typespec-java emitter lives in Azure/typespec-azure (packages/typespec-java).
-# Default route (DevPackage=false): pins eng/emitter-package.json to the published
-# @azure-tools/typespec-java version given by TypeSpecJavaVersion, then regenerates. This is
-# the post-publish path and does not touch typespec-azure sources.
-# Dev route (DevPackage=true): builds the emitter dev package from source instead - from the
-# typespec-azure PR given by PRId, or from the default branch (main) when PRId is 'none'.
+# Published route (TypeSpecJavaVersion set): pins eng/emitter-package.json to that published
+# @azure-tools/typespec-java version, then regenerates. This is the post-publish path and does
+# not touch typespec-azure sources.
+# Dev route (TypeSpecJavaVersion empty): builds the emitter dev package from source instead -
+# from the typespec-azure PR given by PRId, or from the default branch (main) when PRId is 'none'.
 trigger: none
 pr: none
 
 parameters:
-# NOTE: Azure DevOps cannot conditionally show/hide runtime parameters, so all are always
-# shown. For the default (post-publish) route, set TypeSpecJavaVersion and leave DevPackage
-# unchecked. DevPackage/PRId are only for building the emitter from source.
+# Set TypeSpecJavaVersion for the default (post-publish) route. Leave it empty to build the
+# emitter from source, in which case PRId selects the typespec-azure PR (or main).
 - name: TypeSpecJavaVersion
-  displayName: 'Published @azure-tools/typespec-java version to regenerate with (e.g. 0.45.4). Required unless DevPackage=true'
+  displayName: 'Published @azure-tools/typespec-java version to regenerate with (e.g. 0.45.4). Leave empty to build the emitter from source'
   type: string
   default: ''
-- name: DevPackage
-  displayName: 'DevPackage (build emitter from typespec-azure source instead of a published version)'
-  type: boolean
-  default: false
 - name: PRId
-  displayName: 'typespec-azure PR ID (e.g. 43321; used only when DevPackage=true, none = main)'
+  displayName: 'typespec-azure PR ID (e.g. 43321; used only when TypeSpecJavaVersion is empty, none = main)'
   type: string
   default: 'none'
 
@@ -40,12 +35,12 @@ jobs:
   # Local clone target for the (public) Azure/typespec-azure emitter repo (dev route only).
   - name: TypeSpecAzureDirectory
     value: $(Agent.BuildDirectory)/typespec-azure
-  # For the default route this is the published version. For the dev route it is overwritten at
+  # For the published route this is the given version. For the dev route it is overwritten at
   # runtime from the built emitter's package.json (see 'Get Package Version').
   - name: PackageVersion
     value: ${{ parameters.TypeSpecJavaVersion }}
   - name: PullRequestTitleSuffix
-    ${{ if eq(parameters.DevPackage, true) }}:
+    ${{ if eq(parameters.TypeSpecJavaVersion, '') }}:
       ${{ if ne(parameters.PRId, 'none') }}:
         value: " DEV (typespec-azure PR ${{ parameters.PRId }})"
       ${{ else }}:
@@ -77,17 +72,6 @@ jobs:
     parameters:
       registryUrl: https://pkgs.dev.azure.com/azure-sdk/public/_packaging/azure-sdk-for-js/npm/registry/
 
-  # Fail fast: the default (post-publish) route requires an explicit published version.
-  - task: PowerShell@2
-    displayName: 'Validate parameters'
-    condition: and(succeeded(), ne('${{ parameters.DevPackage }}', 'true'), eq('${{ parameters.TypeSpecJavaVersion }}', ''))
-    inputs:
-      pwsh: true
-      targetType: 'inline'
-      script: |
-        Write-Error "TypeSpecJavaVersion is required when DevPackage is false."
-        exit 1
-
   # Clone the public Azure/typespec-azure repo (dev route only; no service connection required).
   # With a PRId specified, fetch and check out that PR ref (a bare number is expanded to
   # refs/pull/<id>/merge; a full ref is used as-is). When PRId is 'none', the emitter is built
@@ -96,7 +80,7 @@ jobs:
   # which build:generator (Build-Generator.ps1) and tspd both require.
   - task: PowerShell@2
     displayName: 'Clone typespec-azure'
-    condition: and(succeeded(), eq('${{ parameters.DevPackage }}', 'true'))
+    condition: and(succeeded(), eq('${{ parameters.TypeSpecJavaVersion }}', ''))
     inputs:
       pwsh: true
       targetType: 'inline'
@@ -123,7 +107,7 @@ jobs:
   # the .tgz next to the package.json for sync_sdk.py to pick up.
   - task: PowerShell@2
     retryCountOnTaskFailure: 1
-    condition: and(succeeded(), eq('${{ parameters.DevPackage }}', 'true'))
+    condition: and(succeeded(), eq('${{ parameters.TypeSpecJavaVersion }}', ''))
     displayName: 'Build typespec-java dev package'
     inputs:
       pwsh: true
@@ -139,11 +123,11 @@ jobs:
       npm install -g @azure-tools/typespec-client-generator-cli
     displayName: 'Install tsp-client'
 
-  # Dev route only: the built emitter's version drives the PR title. For the default route
-  # PackageVersion is already the published TypeSpecJavaVersion.
+  # Dev route only: the built emitter's version drives the PR title. For the published route
+  # PackageVersion is already the given TypeSpecJavaVersion.
   - task: PowerShell@2
     displayName: 'Get Package Version'
-    condition: and(succeeded(), eq('${{ parameters.DevPackage }}', 'true'))
+    condition: and(succeeded(), eq('${{ parameters.TypeSpecJavaVersion }}', ''))
     inputs:
       pwsh: true
       targetType: 'inline'
@@ -153,7 +137,7 @@ jobs:
       workingDirectory: $(TypeSpecAzureDirectory)
 
   - script: |
-      python3 ./eng/pipelines/scripts/sync_sdk.py --sdk-root=$(Build.SourcesDirectory) --dev-package=${{ parameters.DevPackage }} --emitter-version='${{ parameters.TypeSpecJavaVersion }}' --package-json-path=$(TypeSpecAzureDirectory)/packages/typespec-java/package.json
+      python3 ./eng/pipelines/scripts/sync_sdk.py --sdk-root=$(Build.SourcesDirectory) --emitter-version='${{ parameters.TypeSpecJavaVersion }}' --package-json-path=$(TypeSpecAzureDirectory)/packages/typespec-java/package.json
     displayName: 'Generate SDK'
     workingDirectory: $(Build.SourcesDirectory)
 

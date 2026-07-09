@@ -40,22 +40,16 @@ def parse_args() -> argparse.Namespace:
         type=str,
         required=False,
         default="",
-        help="path to package.json of typespec-java. Required when --dev-package is true.",
-    )
-    parser.add_argument(
-        "--dev-package",
-        type=str,
-        required=False,
-        default="false",
-        help="build the emitter from source, instead of using a published typespec-java.",
+        help="path to package.json of typespec-java. Required when --emitter-version is empty "
+        "(the dev build route).",
     )
     parser.add_argument(
         "--emitter-version",
         type=str,
         required=False,
         default="",
-        help="published @azure-tools/typespec-java version to regenerate with. "
-        "Required (default route) unless --dev-package is true.",
+        help="published @azure-tools/typespec-java version to regenerate with. When empty, the "
+        "emitter is built from source (dev route) instead.",
     )
     return parser.parse_args()
 
@@ -87,10 +81,33 @@ def generate_emitter_package_json(resolved_package_json_path: str) -> None:
     )
 
 
-def update_emitter(package_json_path: str, use_dev_package: bool, emitter_version: str):
-    if use_dev_package:
+def update_emitter(package_json_path: str, emitter_version: str):
+    if emitter_version:
+        # Published route (post-publish): pin emitter-package.json to a published version.
+        logging.info(f"Pin emitter-package.json to published typespec-java {emitter_version}")
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            # Download the published tarball so its package.json (with resolved dependency
+            # versions) can seed emitter-package.json, consistent with the dev route.
+            subprocess.check_call(
+                ["npm", "pack", f"{EMITTER_PACKAGE_NAME}@{emitter_version}", "--pack-destination", tmp_dir],
+                cwd=sdk_root,
+            )
+            tgz_files = glob.glob(os.path.join(tmp_dir, "*.tgz"))
+            if not tgz_files:
+                raise RuntimeError(f"Failed to download typespec-java {emitter_version} from npm.")
+            resolved_package_json_path = os.path.join(tmp_dir, "package.resolved.json")
+            extract_package_json_from_tgz(tgz_files[0], resolved_package_json_path)
+
+            logging.info("Update emitter-package.json")
+            generate_emitter_package_json(resolved_package_json_path)
+
+        logging.info("Update emitter-package-lock.json")
+        generate_lock_file()
+    else:
         # Dev route: build the emitter from source. We cannot use "tsp-client
         # generate-config-files" here, as it would resolve against a published version.
+        if not package_json_path:
+            raise ValueError("--package-json-path is required when --emitter-version is empty.")
 
         # Locate the dev package tarball produced by "pnpm pack".
         dev_package_path = None
@@ -121,29 +138,6 @@ def update_emitter(package_json_path: str, use_dev_package: bool, emitter_versio
 
         logging.info("Update emitter-package-lock.json")
         generate_lock_file()
-    elif emitter_version:
-        # Default route (post-publish): pin emitter-package.json to a published version.
-        logging.info(f"Pin emitter-package.json to published typespec-java {emitter_version}")
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            # Download the published tarball so its package.json (with resolved dependency
-            # versions) can seed emitter-package.json, consistent with the dev route.
-            subprocess.check_call(
-                ["npm", "pack", f"{EMITTER_PACKAGE_NAME}@{emitter_version}", "--pack-destination", tmp_dir],
-                cwd=sdk_root,
-            )
-            tgz_files = glob.glob(os.path.join(tmp_dir, "*.tgz"))
-            if not tgz_files:
-                raise RuntimeError(f"Failed to download typespec-java {emitter_version} from npm.")
-            resolved_package_json_path = os.path.join(tmp_dir, "package.resolved.json")
-            extract_package_json_from_tgz(tgz_files[0], resolved_package_json_path)
-
-            logging.info("Update emitter-package.json")
-            generate_emitter_package_json(resolved_package_json_path)
-
-        logging.info("Update emitter-package-lock.json")
-        generate_lock_file()
-    else:
-        raise ValueError("Either --emitter-version (default route) or --dev-package must be provided.")
 
 
 def update_latest_dev():
@@ -305,7 +299,6 @@ def main():
 
     update_emitter(
         args["package_json_path"],
-        args["dev_package"].lower() == "true",
         args["emitter_version"],
     )
 
