@@ -7,9 +7,9 @@ package com.azure.developer.loadtesting;
 import com.azure.core.util.ServiceVersion;
 
 /**
- * Service version of Load TestingClient.
+ * Service version of LoadTestAdministrationClient.
  */
-public enum LoadTestingServiceVersion implements ServiceVersion {
+public enum LoadTestAdministrationServiceVersion implements ServiceVersion {
     /**
      * Enum value 2022-11-01.
      */
@@ -52,7 +52,7 @@ public enum LoadTestingServiceVersion implements ServiceVersion {
 
     private final String version;
 
-    LoadTestingServiceVersion(String version) {
+    LoadTestAdministrationServiceVersion(String version) {
         this.version = version;
     }
 
@@ -67,9 +67,9 @@ public enum LoadTestingServiceVersion implements ServiceVersion {
     /**
      * Gets the latest service version supported by this client library.
      * 
-     * @return The latest {@link LoadTestingServiceVersion}.
+     * @return The latest {@link LoadTestAdministrationServiceVersion}.
      */
-    public static LoadTestingServiceVersion getLatest() {
+    public static LoadTestAdministrationServiceVersion getLatest() {
         return V2025_11_01_PREVIEW;
     }
 }

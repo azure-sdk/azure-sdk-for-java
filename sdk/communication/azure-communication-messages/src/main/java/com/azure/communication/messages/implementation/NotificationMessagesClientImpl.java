@@ -4,7 +4,7 @@
 
 package com.azure.communication.messages.implementation;
 
-import com.azure.communication.messages.MessagesServiceVersion;
+import com.azure.communication.messages.NotificationMessagesServiceVersion;
 import com.azure.core.annotation.BodyParam;
 import com.azure.core.annotation.ExpectedResponses;
 import com.azure.core.annotation.Get;
@@ -66,14 +66,14 @@ public final class NotificationMessagesClientImpl {
     /**
      * Service version.
      */
-    private final MessagesServiceVersion serviceVersion;
+    private final NotificationMessagesServiceVersion serviceVersion;
 
     /**
      * Gets Service version.
      * 
      * @return the serviceVersion value.
      */
-    public MessagesServiceVersion getServiceVersion() {
+    public NotificationMessagesServiceVersion getServiceVersion() {
         return this.serviceVersion;
     }
 
@@ -111,7 +111,7 @@ public final class NotificationMessagesClientImpl {
      * @param endpoint The communication resource, for example https://my-resource.communication.azure.com.
      * @param serviceVersion Service version.
      */
-    public NotificationMessagesClientImpl(String endpoint, MessagesServiceVersion serviceVersion) {
+    public NotificationMessagesClientImpl(String endpoint, NotificationMessagesServiceVersion serviceVersion) {
         this(new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build(),
             JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
@@ -124,7 +124,7 @@ public final class NotificationMessagesClientImpl {
      * @param serviceVersion Service version.
      */
     public NotificationMessagesClientImpl(HttpPipeline httpPipeline, String endpoint,
-        MessagesServiceVersion serviceVersion) {
+        NotificationMessagesServiceVersion serviceVersion) {
         this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
 
@@ -137,7 +137,7 @@ public final class NotificationMessagesClientImpl {
      * @param serviceVersion Service version.
      */
     public NotificationMessagesClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
-        String endpoint, MessagesServiceVersion serviceVersion) {
+        String endpoint, NotificationMessagesServiceVersion serviceVersion) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;

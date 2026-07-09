@@ -47,7 +47,7 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.TypeReference;
-import com.azure.developer.loadtesting.LoadTestingServiceVersion;
+import com.azure.developer.loadtesting.LoadTestAdministrationServiceVersion;
 import com.azure.developer.loadtesting.models.LoadTest;
 import com.azure.developer.loadtesting.models.OperationStatus;
 import java.time.Duration;
@@ -81,14 +81,14 @@ public final class LoadTestAdministrationClientImpl {
     /**
      * Service version.
      */
-    private final LoadTestingServiceVersion serviceVersion;
+    private final LoadTestAdministrationServiceVersion serviceVersion;
 
     /**
      * Gets Service version.
      * 
      * @return the serviceVersion value.
      */
-    public LoadTestingServiceVersion getServiceVersion() {
+    public LoadTestAdministrationServiceVersion getServiceVersion() {
         return this.serviceVersion;
     }
 
@@ -126,7 +126,7 @@ public final class LoadTestAdministrationClientImpl {
      * @param endpoint
      * @param serviceVersion Service version.
      */
-    public LoadTestAdministrationClientImpl(String endpoint, LoadTestingServiceVersion serviceVersion) {
+    public LoadTestAdministrationClientImpl(String endpoint, LoadTestAdministrationServiceVersion serviceVersion) {
         this(new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build(),
             JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
@@ -139,7 +139,7 @@ public final class LoadTestAdministrationClientImpl {
      * @param serviceVersion Service version.
      */
     public LoadTestAdministrationClientImpl(HttpPipeline httpPipeline, String endpoint,
-        LoadTestingServiceVersion serviceVersion) {
+        LoadTestAdministrationServiceVersion serviceVersion) {
         this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
 
@@ -152,7 +152,7 @@ public final class LoadTestAdministrationClientImpl {
      * @param serviceVersion Service version.
      */
     public LoadTestAdministrationClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
-        String endpoint, LoadTestingServiceVersion serviceVersion) {
+        String endpoint, LoadTestAdministrationServiceVersion serviceVersion) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;

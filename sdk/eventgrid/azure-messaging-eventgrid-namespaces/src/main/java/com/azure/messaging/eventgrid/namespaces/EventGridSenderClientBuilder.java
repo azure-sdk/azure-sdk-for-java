@@ -236,19 +236,7 @@ public final class EventGridSenderClientBuilder implements HttpTrait<EventGridSe
      * Service version
      */
     @Generated
-    private EventGridServiceVersion serviceVersion;
-
-    /**
-     * Sets Service version.
-     *
-     * @param serviceVersion the serviceVersion value.
-     * @return the EventGridSenderClientBuilder.
-     */
-    @Generated
-    public EventGridSenderClientBuilder serviceVersion(EventGridServiceVersion serviceVersion) {
-        this.serviceVersion = serviceVersion;
-        return this;
-    }
+    private EventGridSenderServiceVersion serviceVersion;
 
     /*
      * The retry policy that will attempt to retry failed requests, if applicable.
@@ -290,8 +278,8 @@ public final class EventGridSenderClientBuilder implements HttpTrait<EventGridSe
     private EventGridSenderClientImpl buildInnerClient() {
         this.validateClient();
         HttpPipeline localPipeline = (pipeline != null) ? pipeline : createHttpPipeline();
-        EventGridServiceVersion localServiceVersion
-            = (serviceVersion != null) ? serviceVersion : EventGridServiceVersion.getLatest();
+        EventGridSenderServiceVersion localServiceVersion
+            = (serviceVersion != null) ? serviceVersion : EventGridSenderServiceVersion.getLatest();
         EventGridSenderClientImpl client = new EventGridSenderClientImpl(localPipeline,
             JacksonAdapter.createDefaultSerializerAdapter(), this.endpoint, localServiceVersion);
         return client;
@@ -369,5 +357,17 @@ public final class EventGridSenderClientBuilder implements HttpTrait<EventGridSe
         // This method is invoked from 'buildInnerClient'/'buildClient' method.
         // Developer can customize this method, to validate that the necessary conditions are met for the new client.
         Objects.requireNonNull(endpoint, "'endpoint' cannot be null.");
+    }
+
+    /**
+     * Sets Service version.
+     *
+     * @param serviceVersion the serviceVersion value.
+     * @return the EventGridSenderClientBuilder.
+     */
+    @Generated
+    public EventGridSenderClientBuilder serviceVersion(EventGridSenderServiceVersion serviceVersion) {
+        this.serviceVersion = serviceVersion;
+        return this;
     }
 }

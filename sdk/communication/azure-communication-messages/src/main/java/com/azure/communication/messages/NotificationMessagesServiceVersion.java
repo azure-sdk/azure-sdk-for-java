@@ -7,9 +7,9 @@ package com.azure.communication.messages;
 import com.azure.core.util.ServiceVersion;
 
 /**
- * Service version of MessagesClient.
+ * Service version of NotificationMessagesClient.
  */
-public enum MessagesServiceVersion implements ServiceVersion {
+public enum NotificationMessagesServiceVersion implements ServiceVersion {
     /**
      * Enum value 2024-02-01.
      */
@@ -27,7 +27,7 @@ public enum MessagesServiceVersion implements ServiceVersion {
 
     private final String version;
 
-    MessagesServiceVersion(String version) {
+    NotificationMessagesServiceVersion(String version) {
         this.version = version;
     }
 
@@ -42,9 +42,9 @@ public enum MessagesServiceVersion implements ServiceVersion {
     /**
      * Gets the latest service version supported by this client library.
      * 
-     * @return The latest {@link MessagesServiceVersion}.
+     * @return The latest {@link NotificationMessagesServiceVersion}.
      */
-    public static MessagesServiceVersion getLatest() {
+    public static NotificationMessagesServiceVersion getLatest() {
         return V2025_01_15_PREVIEW;
     }
 }

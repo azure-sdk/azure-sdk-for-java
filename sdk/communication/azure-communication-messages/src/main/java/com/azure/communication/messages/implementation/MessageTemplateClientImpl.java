@@ -4,7 +4,7 @@
 
 package com.azure.communication.messages.implementation;
 
-import com.azure.communication.messages.MessagesServiceVersion;
+import com.azure.communication.messages.MessageTemplateServiceVersion;
 import com.azure.core.annotation.ExpectedResponses;
 import com.azure.core.annotation.Get;
 import com.azure.core.annotation.HeaderParam;
@@ -68,14 +68,14 @@ public final class MessageTemplateClientImpl {
     /**
      * Service version.
      */
-    private final MessagesServiceVersion serviceVersion;
+    private final MessageTemplateServiceVersion serviceVersion;
 
     /**
      * Gets Service version.
      * 
      * @return the serviceVersion value.
      */
-    public MessagesServiceVersion getServiceVersion() {
+    public MessageTemplateServiceVersion getServiceVersion() {
         return this.serviceVersion;
     }
 
@@ -113,7 +113,7 @@ public final class MessageTemplateClientImpl {
      * @param endpoint The communication resource, for example https://my-resource.communication.azure.com.
      * @param serviceVersion Service version.
      */
-    public MessageTemplateClientImpl(String endpoint, MessagesServiceVersion serviceVersion) {
+    public MessageTemplateClientImpl(String endpoint, MessageTemplateServiceVersion serviceVersion) {
         this(new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build(),
             JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
@@ -126,7 +126,7 @@ public final class MessageTemplateClientImpl {
      * @param serviceVersion Service version.
      */
     public MessageTemplateClientImpl(HttpPipeline httpPipeline, String endpoint,
-        MessagesServiceVersion serviceVersion) {
+        MessageTemplateServiceVersion serviceVersion) {
         this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
 
@@ -139,7 +139,7 @@ public final class MessageTemplateClientImpl {
      * @param serviceVersion Service version.
      */
     public MessageTemplateClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, String endpoint,
-        MessagesServiceVersion serviceVersion) {
+        MessageTemplateServiceVersion serviceVersion) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;

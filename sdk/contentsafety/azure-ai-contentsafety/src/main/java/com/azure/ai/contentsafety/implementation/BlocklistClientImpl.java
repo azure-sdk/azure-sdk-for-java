@@ -4,7 +4,7 @@
 
 package com.azure.ai.contentsafety.implementation;
 
-import com.azure.ai.contentsafety.ContentSafetyServiceVersion;
+import com.azure.ai.contentsafety.BlocklistServiceVersion;
 import com.azure.core.annotation.BodyParam;
 import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
@@ -74,14 +74,14 @@ public final class BlocklistClientImpl {
     /**
      * Service version.
      */
-    private final ContentSafetyServiceVersion serviceVersion;
+    private final BlocklistServiceVersion serviceVersion;
 
     /**
      * Gets Service version.
      * 
      * @return the serviceVersion value.
      */
-    public ContentSafetyServiceVersion getServiceVersion() {
+    public BlocklistServiceVersion getServiceVersion() {
         return this.serviceVersion;
     }
 
@@ -120,7 +120,7 @@ public final class BlocklistClientImpl {
      * https://&lt;resource-name&gt;.cognitiveservices.azure.com).
      * @param serviceVersion Service version.
      */
-    public BlocklistClientImpl(String endpoint, ContentSafetyServiceVersion serviceVersion) {
+    public BlocklistClientImpl(String endpoint, BlocklistServiceVersion serviceVersion) {
         this(new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build(),
             JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
@@ -133,7 +133,7 @@ public final class BlocklistClientImpl {
      * https://&lt;resource-name&gt;.cognitiveservices.azure.com).
      * @param serviceVersion Service version.
      */
-    public BlocklistClientImpl(HttpPipeline httpPipeline, String endpoint, ContentSafetyServiceVersion serviceVersion) {
+    public BlocklistClientImpl(HttpPipeline httpPipeline, String endpoint, BlocklistServiceVersion serviceVersion) {
         this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
 
@@ -147,7 +147,7 @@ public final class BlocklistClientImpl {
      * @param serviceVersion Service version.
      */
     public BlocklistClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, String endpoint,
-        ContentSafetyServiceVersion serviceVersion) {
+        BlocklistServiceVersion serviceVersion) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;

@@ -217,19 +217,7 @@ public final class LoadTestRunClientBuilder
      * Service version
      */
     @Generated
-    private LoadTestingServiceVersion serviceVersion;
-
-    /**
-     * Sets Service version.
-     *
-     * @param serviceVersion the serviceVersion value.
-     * @return the LoadTestRunClientBuilder.
-     */
-    @Generated
-    public LoadTestRunClientBuilder serviceVersion(LoadTestingServiceVersion serviceVersion) {
-        this.serviceVersion = serviceVersion;
-        return this;
-    }
+    private LoadTestRunServiceVersion serviceVersion;
 
     /*
      * The retry policy that will attempt to retry failed requests, if applicable.
@@ -258,8 +246,8 @@ public final class LoadTestRunClientBuilder
     private LoadTestRunClientImpl buildInnerClient() {
         this.validateClient();
         HttpPipeline localPipeline = (pipeline != null) ? pipeline : createHttpPipeline();
-        LoadTestingServiceVersion localServiceVersion
-            = (serviceVersion != null) ? serviceVersion : LoadTestingServiceVersion.getLatest();
+        LoadTestRunServiceVersion localServiceVersion
+            = (serviceVersion != null) ? serviceVersion : LoadTestRunServiceVersion.getLatest();
         LoadTestRunClientImpl client = new LoadTestRunClientImpl(localPipeline,
             JacksonAdapter.createDefaultSerializerAdapter(), this.endpoint, localServiceVersion);
         return client;
@@ -331,4 +319,16 @@ public final class LoadTestRunClientBuilder
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(LoadTestRunClientBuilder.class);
+
+    /**
+     * Sets Service version.
+     *
+     * @param serviceVersion the serviceVersion value.
+     * @return the LoadTestRunClientBuilder.
+     */
+    @Generated
+    public LoadTestRunClientBuilder serviceVersion(LoadTestRunServiceVersion serviceVersion) {
+        this.serviceVersion = serviceVersion;
+        return this;
+    }
 }

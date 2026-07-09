@@ -6,9 +6,9 @@ package com.azure.messaging.eventgrid.namespaces;
 import com.azure.core.util.ServiceVersion;
 
 /**
- * Service version of EventGridClient.
+ * Service version of EventGridReceiverClient.
  */
-public enum EventGridServiceVersion implements ServiceVersion {
+public enum EventGridReceiverServiceVersion implements ServiceVersion {
 
     /**
      * Enum value 2023-11-01.
@@ -21,7 +21,7 @@ public enum EventGridServiceVersion implements ServiceVersion {
 
     private final String version;
 
-    EventGridServiceVersion(String version) {
+    EventGridReceiverServiceVersion(String version) {
         this.version = version;
     }
 
@@ -36,9 +36,9 @@ public enum EventGridServiceVersion implements ServiceVersion {
     /**
      * Gets the latest service version supported by this client library.
      *
-     * @return The latest {@link EventGridServiceVersion}.
+     * @return The latest {@link EventGridReceiverServiceVersion}.
      */
-    public static EventGridServiceVersion getLatest() {
+    public static EventGridReceiverServiceVersion getLatest() {
         return V2024_06_01;
     }
 }

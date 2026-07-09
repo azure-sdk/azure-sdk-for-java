@@ -7,7 +7,7 @@ package com.azure.developer.devcenter;
 import com.azure.core.util.ServiceVersion;
 
 /**
- * Service version of DevCenterServiceClient.
+ * Service version of DevCenterClient.
  */
 public enum DevCenterServiceVersion implements ServiceVersion {
     /**
