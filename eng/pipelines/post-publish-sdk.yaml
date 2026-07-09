@@ -14,11 +14,11 @@ parameters:
 # Set TypeSpecJavaVersion for the default (post-publish) route. Leave it as 'none' to build the
 # emitter from source, in which case PRId selects the typespec-azure PR (or main).
 - name: TypeSpecJavaVersion
-  displayName: 'Published @azure-tools/typespec-java version to regenerate with (e.g. 0.45.4). Leave as none to build the emitter from source'
+  displayName: 'Emitter Version — published @azure-tools/typespec-java to regenerate with (e.g. 0.45.4; none = build from source)'
   type: string
   default: 'none'
 - name: PRId
-  displayName: 'typespec-azure PR ID (e.g. 43321; used only when TypeSpecJavaVersion is none, none = main)'
+  displayName: 'typespec-azure PR ID — used only when Emitter Version is none (e.g. 43321; none = main)'
   type: string
   default: 'none'
 
