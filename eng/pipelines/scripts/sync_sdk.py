@@ -12,6 +12,7 @@ import glob
 import shutil
 import json
 import tarfile
+import tempfile
 from typing import List
 
 sdk_root: str
@@ -37,22 +38,59 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--package-json-path",
         type=str,
-        required=True,
-        help="path to package.json of typespec-java.",
+        required=False,
+        default="",
+        help="path to package.json of typespec-java. Required when --dev-package is true.",
     )
     parser.add_argument(
         "--dev-package",
         type=str,
         required=False,
         default="false",
-        help="use build from the branch, instead of published typespec-java.",
+        help="build the emitter from source, instead of using a published typespec-java.",
+    )
+    parser.add_argument(
+        "--emitter-version",
+        type=str,
+        required=False,
+        default="",
+        help="published @azure-tools/typespec-java version to regenerate with. "
+        "Required (default route) unless --dev-package is true.",
     )
     return parser.parse_args()
 
 
-def update_emitter(package_json_path: str, use_dev_package: bool):
+EMITTER_PACKAGE_NAME = "@azure-tools/typespec-java"
+
+
+def extract_package_json_from_tgz(tgz_path: str, dest_path: str) -> None:
+    # npm/pnpm pack tarballs place all files under a top-level "package/" directory. The
+    # package.json inside has the "catalog:"/"workspace:" protocols resolved to concrete
+    # versions, which is what emitter-package.json needs (npm cannot resolve those protocols).
+    with tarfile.open(tgz_path, "r:gz") as tar:
+        with tar.extractfile("package/package.json") as member:
+            with open(dest_path, "wb") as f:
+                f.write(member.read())
+
+
+def generate_emitter_package_json(resolved_package_json_path: str) -> None:
+    subprocess.check_call(
+        [
+            "pwsh",
+            "./eng/common/scripts/typespec/New-EmitterPackageJson.ps1",
+            "-PackageJsonPath",
+            resolved_package_json_path,
+            "-OutputDirectory",
+            "eng",
+        ],
+        cwd=sdk_root,
+    )
+
+
+def update_emitter(package_json_path: str, use_dev_package: bool, emitter_version: str):
     if use_dev_package:
-        # we cannot use "tsp-client generate-config-files" in dev mode, as this command also updates the lock file
+        # Dev route: build the emitter from source. We cannot use "tsp-client
+        # generate-config-files" here, as it would resolve against a published version.
 
         # Locate the dev package tarball produced by "pnpm pack".
         dev_package_path = None
@@ -66,48 +104,46 @@ def update_emitter(package_json_path: str, use_dev_package: bool):
             logging.error("Failed to locate the dev package.")
             return
 
-        # The monorepo source package.json (typespec-azure) declares dependencies with the
-        # "catalog:" and "workspace:" protocols, which npm cannot resolve. The packed tarball
-        # contains a package.json with those protocols resolved to concrete versions, so use it
-        # as the basis for emitter-package.json instead of the source package.json.
         resolved_package_json_path = os.path.join(typespec_extension_path, "package.resolved.json")
-        with tarfile.open(dev_package_path, "r:gz") as tar:
-            with tar.extractfile("package/package.json") as member:
-                with open(resolved_package_json_path, "wb") as f:
-                    f.write(member.read())
+        extract_package_json_from_tgz(dev_package_path, resolved_package_json_path)
 
         logging.info("Update emitter-package.json")
-        subprocess.check_call(
-            [
-                "pwsh",
-                "./eng/common/scripts/typespec/New-EmitterPackageJson.ps1",
-                "-PackageJsonPath",
-                resolved_package_json_path,
-                "-OutputDirectory",
-                "eng",
-            ],
-            cwd=sdk_root,
-        )
+        generate_emitter_package_json(resolved_package_json_path)
 
         # replace version with path to dev package
         emitter_package_path = os.path.join(sdk_root, "eng", "emitter-package.json")
         with open(emitter_package_path, "r") as json_file:
             package_json = json.load(json_file)
-        package_json["dependencies"]["@azure-tools/typespec-java"] = dev_package_path
+        package_json["dependencies"][EMITTER_PACKAGE_NAME] = dev_package_path
         with open(emitter_package_path, "w") as json_file:
             logging.info(f'Update emitter-package.json to use typespec-java from "{dev_package_path}"')
             json.dump(package_json, json_file, indent=2)
 
-        # only enable it on dev branch
-        # update_latest_dev()
+        logging.info("Update emitter-package-lock.json")
+        generate_lock_file()
+    elif emitter_version:
+        # Default route (post-publish): pin emitter-package.json to a published version.
+        logging.info(f"Pin emitter-package.json to published typespec-java {emitter_version}")
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            # Download the published tarball so its package.json (with resolved dependency
+            # versions) can seed emitter-package.json, consistent with the dev route.
+            subprocess.check_call(
+                ["npm", "pack", f"{EMITTER_PACKAGE_NAME}@{emitter_version}", "--pack-destination", tmp_dir],
+                cwd=sdk_root,
+            )
+            tgz_files = glob.glob(os.path.join(tmp_dir, "*.tgz"))
+            if not tgz_files:
+                raise RuntimeError(f"Failed to download typespec-java {emitter_version} from npm.")
+            resolved_package_json_path = os.path.join(tmp_dir, "package.resolved.json")
+            extract_package_json_from_tgz(tgz_files[0], resolved_package_json_path)
+
+            logging.info("Update emitter-package.json")
+            generate_emitter_package_json(resolved_package_json_path)
 
         logging.info("Update emitter-package-lock.json")
         generate_lock_file()
     else:
-        logging.info("Update emitter-package.json and emitter-package-lock.json")
-        subprocess.check_call(
-            ["tsp-client", "generate-config-files", "--package-json", package_json_path], cwd=sdk_root
-        )
+        raise ValueError("Either --emitter-version (default route) or --dev-package must be provided.")
 
 
 def update_latest_dev():
@@ -267,7 +303,11 @@ def main():
     args = vars(parse_args())
     sdk_root = args["sdk_root"]
 
-    update_emitter(args["package_json_path"], args["dev_package"].lower() == "true")
+    update_emitter(
+        args["package_json_path"],
+        args["dev_package"].lower() == "true",
+        args["emitter_version"],
+    )
 
     update_sdks()
 
