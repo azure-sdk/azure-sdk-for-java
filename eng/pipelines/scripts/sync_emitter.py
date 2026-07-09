@@ -13,6 +13,7 @@ import shutil
 import json
 import tarfile
 import tempfile
+import re
 from typing import List
 
 sdk_root: str
@@ -65,6 +66,26 @@ def extract_package_json_from_tgz(tgz_path: str, dest_path: str) -> None:
         with tar.extractfile("package/package.json") as member:
             with open(dest_path, "wb") as f:
                 f.write(member.read())
+
+
+def pin_exact_versions(package_json_path: str) -> None:
+    # pnpm pack resolves "workspace:^" dependencies to caret ranges (e.g. "^0.69.1") in the
+    # packed package.json. New-EmitterPackageJson.ps1 pins each peer dependency to the value in
+    # devDependencies, so those caret ranges would leak into emitter-package.json. Strip the
+    # leading range operator so peer dependencies are pinned to exact versions (matching how the
+    # emitter was published/built).
+    with open(package_json_path, "r", encoding="utf-8") as f:
+        package_json = json.load(f)
+    for section in ("dependencies", "devDependencies", "peerDependencies"):
+        deps = package_json.get(section)
+        if not deps:
+            continue
+        for name, version in deps.items():
+            if isinstance(version, str):
+                # Turn a simple caret/tilde range (e.g. "^0.69.1", "~1.2.3") into an exact version.
+                deps[name] = re.sub(r"^[\^~]\s*(?=\d)", "", version)
+    with open(package_json_path, "w", encoding="utf-8") as f:
+        json.dump(package_json, f, indent=2)
 
 
 def generate_emitter_package_json(resolved_package_json_path: str) -> None:
@@ -130,6 +151,7 @@ def update_emitter(package_json_path: str, emitter_version: str):
 
         resolved_package_json_path = os.path.join(typespec_extension_path, "package.resolved.json")
         extract_package_json_from_tgz(dev_package_path, resolved_package_json_path)
+        pin_exact_versions(resolved_package_json_path)
 
         logging.info("Update emitter-package.json")
         generate_emitter_package_json(resolved_package_json_path)
