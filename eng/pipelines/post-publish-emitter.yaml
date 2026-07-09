@@ -107,7 +107,7 @@ jobs:
   # upstream dependencies with turbo (the `^...` filter selects dependencies but excludes
   # typespec-java itself). Then Build-TypeSpec.ps1 builds and packs typespec-java (its
   # build:generator step runs Build-Generator.ps1, which needs JDK 11+ and Maven), producing
-  # the .tgz next to the package.json for sync_sdk.py to pick up.
+  # the .tgz next to the package.json for sync_emitter.py to pick up.
   - task: PowerShell@2
     retryCountOnTaskFailure: 1
     condition: and(succeeded(), eq('${{ parameters.TypeSpecJavaVersion }}', 'none'))
@@ -140,7 +140,7 @@ jobs:
       workingDirectory: $(TypeSpecAzureDirectory)
 
   - script: |
-      python3 ./eng/pipelines/scripts/sync_sdk.py --sdk-root=$(Build.SourcesDirectory) --emitter-version='${{ parameters.TypeSpecJavaVersion }}' --package-json-path=$(TypeSpecAzureDirectory)/packages/typespec-java/package.json
+      python3 ./eng/pipelines/scripts/sync_emitter.py --sdk-root=$(Build.SourcesDirectory) --emitter-version='${{ parameters.TypeSpecJavaVersion }}' --package-json-path=$(TypeSpecAzureDirectory)/packages/typespec-java/package.json
     displayName: 'Generate SDK'
     workingDirectory: $(Build.SourcesDirectory)
 
