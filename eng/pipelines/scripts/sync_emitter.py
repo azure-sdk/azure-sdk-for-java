@@ -11,8 +11,6 @@ import subprocess
 import glob
 import shutil
 import json
-import tarfile
-import tempfile
 from typing import List
 
 sdk_root: str
@@ -57,28 +55,19 @@ def parse_args() -> argparse.Namespace:
 EMITTER_PACKAGE_NAME = "@azure-tools/typespec-java"
 
 
-def extract_package_json_from_tgz(tgz_path: str, dest_path: str) -> None:
-    # npm/pnpm pack tarballs place all files under a top-level "package/" directory. The
-    # package.json inside has the "catalog:"/"workspace:" protocols resolved to concrete
-    # versions, which is what emitter-package.json needs (npm cannot resolve those protocols).
-    with tarfile.open(tgz_path, "r:gz") as tar:
-        with tar.extractfile("package/package.json") as member:
-            with open(dest_path, "wb") as f:
-                f.write(member.read())
-
-
-def generate_emitter_package_json(resolved_package_json_path: str) -> None:
-    subprocess.check_call(
-        [
-            "pwsh",
-            "./eng/common/scripts/typespec/New-EmitterPackageJson.ps1",
-            "-PackageJsonPath",
-            resolved_package_json_path,
-            "-OutputDirectory",
-            "eng",
-        ],
-        cwd=sdk_root,
-    )
+def set_emitter_dependency(emitter_ref: str) -> None:
+    # Only update the typespec-java dependency in the existing emitter-package.json. The other
+    # (peer/dev) dependency versions are managed elsewhere and updated before this pipeline runs,
+    # so we intentionally do not regenerate them from the emitter tarball (which may pin stale
+    # versions, e.g. an older typespec-client-generator-core). emitter_ref is either a published
+    # version string or a local path to the dev package tarball.
+    emitter_package_path = os.path.join(sdk_root, "eng", "emitter-package.json")
+    with open(emitter_package_path, "r") as json_file:
+        package_json = json.load(json_file)
+    package_json["dependencies"][EMITTER_PACKAGE_NAME] = emitter_ref
+    with open(emitter_package_path, "w") as json_file:
+        logging.info(f"Update emitter-package.json to use typespec-java {emitter_ref}")
+        json.dump(package_json, json_file, indent=2)
 
 
 def update_emitter(package_json_path: str, emitter_version: str):
@@ -88,35 +77,17 @@ def update_emitter(package_json_path: str, emitter_version: str):
         emitter_version = ""
 
     if emitter_version:
-        # Published route (post-publish): pin emitter-package.json to a published version.
-        logging.info(f"Pin emitter-package.json to published typespec-java {emitter_version}")
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            # Download the published tarball. Its package.json has the dependency versions
-            # resolved (unlike the typespec-azure monorepo source, which uses the "catalog:"/
-            # "workspace:" protocols that npm cannot resolve), so tsp-client generate-config-files
-            # can consume it directly to produce emitter-package.json and its lock file.
-            subprocess.check_call(
-                ["npm", "pack", f"{EMITTER_PACKAGE_NAME}@{emitter_version}", "--pack-destination", tmp_dir],
-                cwd=sdk_root,
-            )
-            tgz_files = glob.glob(os.path.join(tmp_dir, "*.tgz"))
-            if not tgz_files:
-                raise RuntimeError(f"Failed to download typespec-java {emitter_version} from npm.")
-            resolved_package_json_path = os.path.join(tmp_dir, "package.resolved.json")
-            extract_package_json_from_tgz(tgz_files[0], resolved_package_json_path)
-
-            logging.info("Update emitter-package.json and emitter-package-lock.json")
-            subprocess.check_call(
-                ["tsp-client", "generate-config-files", "--package-json", resolved_package_json_path],
-                cwd=sdk_root,
-            )
+        # Published route (post-publish): point emitter-package.json at a published version
+        # (released or unreleased/dev), then regenerate the lock file.
+        set_emitter_dependency(emitter_version)
     else:
-        # Dev route: build the emitter from source. We cannot use "tsp-client
-        # generate-config-files" here, as it would resolve against a published version.
+        # Dev route: build the emitter from source, then point emitter-package.json at the local
+        # dev package tarball.
         if not package_json_path:
             raise ValueError("--package-json-path is required when --emitter-version is empty.")
 
-        # Locate the dev package tarball produced by "pnpm pack".
+        # Locate the dev package tarball built by the "Build typespec-java dev package" step of
+        # the post-publish-emitter pipeline (pnpm pack), next to the emitter's package.json.
         dev_package_path = None
         typespec_extension_path = os.path.dirname(package_json_path)
         for file in os.listdir(typespec_extension_path):
@@ -128,23 +99,10 @@ def update_emitter(package_json_path: str, emitter_version: str):
             logging.error("Failed to locate the dev package.")
             return
 
-        resolved_package_json_path = os.path.join(typespec_extension_path, "package.resolved.json")
-        extract_package_json_from_tgz(dev_package_path, resolved_package_json_path)
+        set_emitter_dependency(dev_package_path)
 
-        logging.info("Update emitter-package.json")
-        generate_emitter_package_json(resolved_package_json_path)
-
-        # replace version with path to dev package
-        emitter_package_path = os.path.join(sdk_root, "eng", "emitter-package.json")
-        with open(emitter_package_path, "r") as json_file:
-            package_json = json.load(json_file)
-        package_json["dependencies"][EMITTER_PACKAGE_NAME] = dev_package_path
-        with open(emitter_package_path, "w") as json_file:
-            logging.info(f'Update emitter-package.json to use typespec-java from "{dev_package_path}"')
-            json.dump(package_json, json_file, indent=2)
-
-        logging.info("Update emitter-package-lock.json")
-        generate_lock_file()
+    logging.info("Update emitter-package-lock.json")
+    generate_lock_file()
 
 
 def update_latest_dev():
