@@ -143,6 +143,20 @@ def generate_config_files(emitter_package_json: str, use_npm_pinning: bool, over
     #     so the lock-generation "npm install" resolves the (unpublished) emitter from that tarball
     #     instead of the registry. --use-npm-pinning is not used, because it would "npm view" the
     #     unpublished dev emitter, which does not exist on the registry.
+    #
+    # Remove the designated libraries from any existing eng/emitter-package.json first:
+    # generate-config-files MERGES into it rather than replacing it, and it only overwrites entries
+    # that are emitter peers. A designated library left from a previous run (e.g. @typespec/openapi3,
+    # which is NOT an emitter peer) would survive the merge with its stale version and break the
+    # lock-generation "npm install" with ERESOLVE. We add the designated libraries back (from npm
+    # latest or the specs repo) after seeding, so the merge starts from only the emitter's own peers.
+    #
+    # Alternative: delete the whole eng/emitter-package.json before generating (os.remove) so it is
+    # seeded entirely from scratch. That is more robust against non-designated orphans (e.g. an
+    # emitter peer that was dropped), but it regenerates the key order from the emitter manifest,
+    # producing noisier diffs. We remove only the designated entries to keep the existing key order.
+    remove_designated_libraries()
+
     command = [
         "tsp-client",
         "generate-config-files",
@@ -176,6 +190,25 @@ def load_emitter_package_json() -> dict:
 def save_emitter_package_json(package_json: dict) -> None:
     with open(emitter_package_json_path(), "w") as json_file:
         json.dump(package_json, json_file, indent=2)
+
+
+def remove_designated_libraries() -> None:
+    # Remove the designated libraries from an existing eng/emitter-package.json before seeding.
+    # generate-config-files merges into that file and only overwrites emitter-peer entries, so a
+    # designated library carried over from a previous run (e.g. @typespec/openapi3) would keep its
+    # stale version and conflict with the freshly pinned peers. They are added back afterward by
+    # add_designated_libraries. The skipped designated libraries (still emitter peers) are re-added
+    # by generate-config-files itself from the emitter's peerDependencies.
+    path = emitter_package_json_path()
+    if not os.path.exists(path):
+        return
+    package_json = load_emitter_package_json()
+    dev_dependencies = package_json.get("devDependencies", {})
+    for library in DESIGNATED_LIBRARIES:
+        if library in dev_dependencies:
+            logging.info(f"Remove designated library {library} before seeding")
+            del dev_dependencies[library]
+    save_emitter_package_json(package_json)
 
 
 def resolve_dependency_versions_to_latest() -> None:
