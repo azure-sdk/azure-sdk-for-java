@@ -64,15 +64,28 @@ TYPESPEC_DEPENDENCY_PREFIXES = ("@azure-tools/", "@typespec/")
 # TypeSpec libraries that some specs depend on but which are intentionally NOT declared as
 # dependencies of the typespec-java emitter itself (declaring them there would force every
 # downstream emitter/repo to carry them - see discussion on Azure/typespec-azure PR 4866). We add
-# them to emitter-package.json here, versioned from the azure-rest-api-specs package.json, so that
-# generated SDKs referencing these libraries still compile.
-DESIGNATED_LIBRARIES = [
+# them to emitter-package.json here so that generated SDKs referencing these libraries compile.
+#
+# These are versioned from the azure-rest-api-specs package.json (the source of truth for the
+# versions the specs actually use), falling back to the latest published npm version if the specs
+# repo has not updated yet.
+DESIGNATED_LIBRARIES_FROM_SPECS = [
     "@azure-tools/openai-typespec",
     "@azure-tools/typespec-liftr-base",
+    "@typespec/openapi3",
+]
+
+# These designated libraries are versioned from the latest published npm version instead of the
+# specs repo, because we want to track the newest release rather than what the specs repo pins.
+DESIGNATED_LIBRARIES_FROM_NPM_LATEST = [
     "@azure-tools/typespec-azure-portal-core",
 ]
 
-# package.json of the specs repo, the source of truth for the designated library versions.
+# All designated libraries, used to exclude them from resolve_dependency_versions_to_latest (they
+# are versioned separately by add_designated_libraries).
+DESIGNATED_LIBRARIES = DESIGNATED_LIBRARIES_FROM_SPECS + DESIGNATED_LIBRARIES_FROM_NPM_LATEST
+
+# package.json of the specs repo, the source of truth for the specs-versioned designated libraries.
 SPECS_PACKAGE_JSON_URL = "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/package.json"
 
 
@@ -163,13 +176,17 @@ def fetch_specs_dev_dependencies() -> dict:
 
 
 def add_designated_libraries() -> None:
-    # Add the designated libraries (not declared by the emitter) to emitter-package.json, pinned to
-    # the exact version declared in the specs repo package.json. If a library is missing there (the
-    # specs repo may not have updated yet), fall back to its latest published npm version.
+    # Add the designated libraries (not declared by the emitter) to emitter-package.json. Two
+    # groups, versioned from different sources:
+    #   - DESIGNATED_LIBRARIES_FROM_SPECS: pinned to the exact version declared in the specs repo
+    #     package.json (the version the specs actually use). If a library is missing there (the
+    #     specs repo may not have updated yet), fall back to its latest published npm version.
+    #   - DESIGNATED_LIBRARIES_FROM_NPM_LATEST: pinned to the latest published npm version.
     specs_dev_dependencies = fetch_specs_dev_dependencies()
     package_json = load_emitter_package_json()
     dev_dependencies = package_json.setdefault("devDependencies", {})
-    for library in DESIGNATED_LIBRARIES:
+
+    for library in DESIGNATED_LIBRARIES_FROM_SPECS:
         version = specs_dev_dependencies.get(library)
         if version:
             logging.info(f"Add designated library {library}@{version} (from specs repo)")
@@ -177,6 +194,12 @@ def add_designated_libraries() -> None:
             version = npm_view_version(f"{library}@latest")
             logging.info(f"Add designated library {library}@{version} (specs repo missing it, using npm latest)")
         dev_dependencies[library] = version
+
+    for library in DESIGNATED_LIBRARIES_FROM_NPM_LATEST:
+        version = npm_view_version(f"{library}@latest")
+        logging.info(f"Add designated library {library}@{version} (from npm latest)")
+        dev_dependencies[library] = version
+
     save_emitter_package_json(package_json)
 
 
