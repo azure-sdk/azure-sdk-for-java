@@ -68,14 +68,21 @@ TYPESPEC_DEPENDENCY_PREFIXES = ("@azure-tools/", "@typespec/")
 #
 # These are versioned from the azure-rest-api-specs package.json (the source of truth for the
 # versions the specs actually use), falling back to the latest published npm version if the specs
-# repo has not updated yet.
+# repo has not updated yet. They are released independently of the TypeSpec compiler/Azure
+# libraries, so their specs-pinned version does not have to move in lockstep with the emitter's
+# other dependencies.
 DESIGNATED_LIBRARIES_FROM_SPECS = [
     "@azure-tools/openai-typespec",
     "@azure-tools/typespec-liftr-base",
 ]
 
 # These designated libraries are versioned from the latest published npm version instead of the
-# specs repo, because we want to track the newest release rather than what the specs repo pins.
+# specs repo. They belong to the same release group as the TypeSpec compiler / Azure libraries that
+# the emitter depends on (e.g. @typespec/*, @azure-tools/typespec-azure-*), which
+# resolve_dependency_versions_to_latest already pins to the latest published version. Sourcing
+# these from npm latest too keeps the whole release group on the same version, avoiding peer
+# conflicts that a lagging specs-repo pin (e.g. openapi3 requiring an older @typespec/http) would
+# otherwise cause.
 DESIGNATED_LIBRARIES_FROM_NPM_LATEST = [
     "@azure-tools/typespec-azure-portal-core",
     "@typespec/openapi3",
