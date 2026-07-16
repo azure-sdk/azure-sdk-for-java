@@ -83,29 +83,37 @@ def emitter_package_json_path() -> str:
 def extract_package_json_from_tgz(tgz_path: str, dest_path: str) -> None:
     # npm/pnpm pack tarballs place all files under a top-level "package/" directory. The
     # package.json inside has the "catalog:"/"workspace:" protocols resolved to concrete
-    # versions, which is what emitter-package.json needs (npm cannot resolve those protocols).
+    # versions, which is what tsp-client generate-config-files needs (npm cannot resolve those
+    # protocols, and generate-config-files reads the emitter's peerDependencies from this file).
     with tarfile.open(tgz_path, "r:gz") as tar:
         with tar.extractfile("package/package.json") as member:
             with open(dest_path, "wb") as f:
                 f.write(member.read())
 
 
-def generate_emitter_package_json(resolved_package_json_path: str) -> None:
-    # New-EmitterPackageJson.ps1 seeds emitter-package.json from the emitter's package.json,
-    # carrying its peer dependencies forward into devDependencies. We use it (instead of
-    # "tsp-client generate-config-files --use-npm-pinning") for the dev route, because that command
-    # resolves against a published version which does not exist for a locally built dev package.
-    subprocess.check_call(
-        [
-            "pwsh",
-            "./eng/common/scripts/typespec/New-EmitterPackageJson.ps1",
-            "-PackageJsonPath",
-            resolved_package_json_path,
-            "-OutputDirectory",
-            "eng",
-        ],
-        cwd=sdk_root,
-    )
+def generate_config_files(emitter_package_json: str, use_npm_pinning: bool, overrides_path: str = "") -> None:
+    # tsp-client generate-config-files seeds eng/emitter-package.json from an emitter package.json
+    # (its peerDependencies) and then generates the lock file (via "npm install"). Used by both
+    # routes:
+    #   - Published route: use_npm_pinning=True so peer versions are pinned from the published
+    #     emitter's dependencies (looked up with "npm view").
+    #   - Dev route: overrides_path points the emitter dependency at the locally built dev tarball,
+    #     so the lock-generation "npm install" resolves the (unpublished) emitter from that tarball
+    #     instead of the registry. --use-npm-pinning is not used, because it would "npm view" the
+    #     unpublished dev emitter, which does not exist on the registry.
+    command = [
+        "tsp-client",
+        "generate-config-files",
+        "--package-json",
+        emitter_package_json,
+        "--emitter-package-json-path",
+        emitter_package_json_path(),
+    ]
+    if use_npm_pinning:
+        command.append("--use-npm-pinning")
+    if overrides_path:
+        command.extend(["--overrides", overrides_path])
+    subprocess.check_call(command, cwd=sdk_root)
 
 
 def npm_view_version(package_ref: str) -> str:
@@ -126,15 +134,6 @@ def load_emitter_package_json() -> dict:
 def save_emitter_package_json(package_json: dict) -> None:
     with open(emitter_package_json_path(), "w") as json_file:
         json.dump(package_json, json_file, indent=2)
-
-
-def set_emitter_dependency(emitter_ref: str) -> None:
-    # Point the typespec-java dependency in emitter-package.json at emitter_ref, which for the dev
-    # route is a local path to the freshly built dev package tarball (the dev build is unpublished).
-    package_json = load_emitter_package_json()
-    package_json["dependencies"][EMITTER_PACKAGE_NAME] = emitter_ref
-    logging.info(f"Update emitter-package.json to use typespec-java {emitter_ref}")
-    save_emitter_package_json(package_json)
 
 
 def resolve_dependency_versions_to_latest() -> None:
@@ -192,8 +191,8 @@ def update_emitter(package_json_path: str, emitter_version: str):
         logging.info(f"Seed emitter-package.json from published typespec-java {emitter_version}")
         with tempfile.TemporaryDirectory() as tmp_dir:
             # "npm view --json" returns the published registry manifest (name, version, main,
-            # peerDependencies). tsp-client generate-config-files --use-npm-pinning reads its
-            # peerDependencies to seed emitter-package.json, pinning the emitter to this version.
+            # peerDependencies). generate-config-files --use-npm-pinning reads its peerDependencies
+            # to seed emitter-package.json, pinning the emitter to this published version.
             manifest = subprocess.check_output(
                 ["npm", "view", f"{EMITTER_PACKAGE_NAME}@{emitter_version}", "--json"],
                 cwd=sdk_root,
@@ -204,21 +203,13 @@ def update_emitter(package_json_path: str, emitter_version: str):
                 f.write(manifest)
 
             logging.info("Update emitter-package.json")
-            subprocess.check_call(
-                [
-                    "tsp-client",
-                    "generate-config-files",
-                    "--package-json",
-                    published_package_json_path,
-                    "--use-npm-pinning",
-                    "--emitter-package-json-path",
-                    emitter_package_json_path(),
-                ],
-                cwd=sdk_root,
-            )
+            generate_config_files(published_package_json_path, use_npm_pinning=True)
     else:
         # Dev route: build the emitter from source, then seed emitter-package.json from the local
-        # dev package via New-EmitterPackageJson.ps1 and point the emitter dependency at the tarball.
+        # dev package. The dev emitter version is unpublished, so generate-config-files consumes
+        # the emitter's (resolved) package.json extracted from the dev tarball, and an overrides
+        # file points the emitter dependency at that tarball so the lock-generation "npm install"
+        # can resolve the emitter locally instead of from the registry.
         if not package_json_path:
             raise ValueError("--package-json-path is required when --emitter-version is empty.")
 
@@ -235,16 +226,19 @@ def update_emitter(package_json_path: str, emitter_version: str):
             logging.error("Failed to locate the dev package.")
             return
 
-        # The tarball's package.json has "catalog:"/"workspace:" protocols resolved to concrete
-        # versions, which New-EmitterPackageJson.ps1 needs (npm cannot resolve those protocols).
-        resolved_package_json_path = os.path.join(typespec_extension_path, "package.resolved.json")
-        extract_package_json_from_tgz(dev_package_path, resolved_package_json_path)
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            # The tarball's package.json has "catalog:"/"workspace:" protocols resolved to concrete
+            # versions, which generate-config-files needs (npm cannot resolve those protocols).
+            resolved_package_json_path = os.path.join(tmp_dir, "package.json")
+            extract_package_json_from_tgz(dev_package_path, resolved_package_json_path)
 
-        logging.info("Update emitter-package.json")
-        generate_emitter_package_json(resolved_package_json_path)
+            # Point the (unpublished) emitter dependency at the local dev tarball.
+            overrides_path = os.path.join(tmp_dir, "overrides.json")
+            with open(overrides_path, "w") as f:
+                json.dump({EMITTER_PACKAGE_NAME: dev_package_path}, f)
 
-        # Point the emitter dependency at the local dev tarball (the dev build is unpublished).
-        set_emitter_dependency(dev_package_path)
+            logging.info("Update emitter-package.json")
+            generate_config_files(resolved_package_json_path, use_npm_pinning=False, overrides_path=overrides_path)
 
     # Both routes: pin the emitter's TypeSpec dependencies to their latest published versions and
     # add the designated libraries from the specs repo, then (re)generate the lock file so it
