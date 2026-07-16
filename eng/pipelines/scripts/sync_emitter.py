@@ -72,13 +72,13 @@ TYPESPEC_DEPENDENCY_PREFIXES = ("@azure-tools/", "@typespec/")
 DESIGNATED_LIBRARIES_FROM_SPECS = [
     "@azure-tools/openai-typespec",
     "@azure-tools/typespec-liftr-base",
-    "@typespec/openapi3",
 ]
 
 # These designated libraries are versioned from the latest published npm version instead of the
 # specs repo, because we want to track the newest release rather than what the specs repo pins.
 DESIGNATED_LIBRARIES_FROM_NPM_LATEST = [
     "@azure-tools/typespec-azure-portal-core",
+    "@typespec/openapi3",
 ]
 
 # All designated libraries, used to exclude them from resolve_dependency_versions_to_latest (they
