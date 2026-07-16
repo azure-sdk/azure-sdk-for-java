@@ -44,7 +44,7 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.TypeReference;
-import com.azure.developer.devcenter.DevCenterServiceVersion;
+import com.azure.developer.devcenter.DeploymentEnvironmentsServiceVersion;
 import com.azure.developer.devcenter.models.DevCenterEnvironment;
 import com.azure.developer.devcenter.models.DevCenterOperationDetails;
 import java.time.Duration;
@@ -79,14 +79,14 @@ public final class DeploymentEnvironmentsClientImpl {
     /**
      * Service version.
      */
-    private final DevCenterServiceVersion serviceVersion;
+    private final DeploymentEnvironmentsServiceVersion serviceVersion;
 
     /**
      * Gets Service version.
      * 
      * @return the serviceVersion value.
      */
-    public DevCenterServiceVersion getServiceVersion() {
+    public DeploymentEnvironmentsServiceVersion getServiceVersion() {
         return this.serviceVersion;
     }
 
@@ -124,7 +124,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @param endpoint The DevCenter-specific URI to operate on.
      * @param serviceVersion Service version.
      */
-    public DeploymentEnvironmentsClientImpl(String endpoint, DevCenterServiceVersion serviceVersion) {
+    public DeploymentEnvironmentsClientImpl(String endpoint, DeploymentEnvironmentsServiceVersion serviceVersion) {
         this(new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build(),
             JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
@@ -137,7 +137,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @param serviceVersion Service version.
      */
     public DeploymentEnvironmentsClientImpl(HttpPipeline httpPipeline, String endpoint,
-        DevCenterServiceVersion serviceVersion) {
+        DeploymentEnvironmentsServiceVersion serviceVersion) {
         this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
 
@@ -150,7 +150,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @param serviceVersion Service version.
      */
     public DeploymentEnvironmentsClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
-        String endpoint, DevCenterServiceVersion serviceVersion) {
+        String endpoint, DeploymentEnvironmentsServiceVersion serviceVersion) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;

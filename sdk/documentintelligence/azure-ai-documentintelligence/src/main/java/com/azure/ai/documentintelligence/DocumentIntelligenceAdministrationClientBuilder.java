@@ -242,20 +242,7 @@ public final class DocumentIntelligenceAdministrationClientBuilder
      * Service version
      */
     @Generated
-    private DocumentIntelligenceServiceVersion serviceVersion;
-
-    /**
-     * Sets Service version.
-     *
-     * @param serviceVersion the serviceVersion value.
-     * @return the DocumentIntelligenceAdministrationClientBuilder.
-     */
-    @Generated
-    public DocumentIntelligenceAdministrationClientBuilder
-        serviceVersion(DocumentIntelligenceServiceVersion serviceVersion) {
-        this.serviceVersion = serviceVersion;
-        return this;
-    }
+    private DocumentIntelligenceAdministrationServiceVersion serviceVersion;
 
     /*
      * The retry policy that will attempt to retry failed requests, if applicable.
@@ -284,8 +271,8 @@ public final class DocumentIntelligenceAdministrationClientBuilder
     private DocumentIntelligenceAdministrationClientImpl buildInnerClient() {
         this.validateClient();
         HttpPipeline localPipeline = (pipeline != null) ? pipeline : createHttpPipeline();
-        DocumentIntelligenceServiceVersion localServiceVersion
-            = (serviceVersion != null) ? serviceVersion : DocumentIntelligenceServiceVersion.getLatest();
+        DocumentIntelligenceAdministrationServiceVersion localServiceVersion
+            = (serviceVersion != null) ? serviceVersion : DocumentIntelligenceAdministrationServiceVersion.getLatest();
         DocumentIntelligenceAdministrationClientImpl client = new DocumentIntelligenceAdministrationClientImpl(
             localPipeline, JacksonAdapter.createDefaultSerializerAdapter(), this.endpoint, localServiceVersion);
         return client;
@@ -360,4 +347,17 @@ public final class DocumentIntelligenceAdministrationClientBuilder
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(DocumentIntelligenceAdministrationClientBuilder.class);
+
+    /**
+     * Sets Service version.
+     *
+     * @param serviceVersion the serviceVersion value.
+     * @return the DocumentIntelligenceAdministrationClientBuilder.
+     */
+    @Generated
+    public DocumentIntelligenceAdministrationClientBuilder
+        serviceVersion(DocumentIntelligenceAdministrationServiceVersion serviceVersion) {
+        this.serviceVersion = serviceVersion;
+        return this;
+    }
 }

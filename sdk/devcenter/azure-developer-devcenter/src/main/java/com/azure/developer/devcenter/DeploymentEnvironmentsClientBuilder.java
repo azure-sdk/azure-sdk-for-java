@@ -217,19 +217,7 @@ public final class DeploymentEnvironmentsClientBuilder
      * Service version
      */
     @Generated
-    private DevCenterServiceVersion serviceVersion;
-
-    /**
-     * Sets Service version.
-     *
-     * @param serviceVersion the serviceVersion value.
-     * @return the DeploymentEnvironmentsClientBuilder.
-     */
-    @Generated
-    public DeploymentEnvironmentsClientBuilder serviceVersion(DevCenterServiceVersion serviceVersion) {
-        this.serviceVersion = serviceVersion;
-        return this;
-    }
+    private DeploymentEnvironmentsServiceVersion serviceVersion;
 
     /*
      * The retry policy that will attempt to retry failed requests, if applicable.
@@ -258,8 +246,8 @@ public final class DeploymentEnvironmentsClientBuilder
     private DeploymentEnvironmentsClientImpl buildInnerClient() {
         this.validateClient();
         HttpPipeline localPipeline = (pipeline != null) ? pipeline : createHttpPipeline();
-        DevCenterServiceVersion localServiceVersion
-            = (serviceVersion != null) ? serviceVersion : DevCenterServiceVersion.getLatest();
+        DeploymentEnvironmentsServiceVersion localServiceVersion
+            = (serviceVersion != null) ? serviceVersion : DeploymentEnvironmentsServiceVersion.getLatest();
         DeploymentEnvironmentsClientImpl client = new DeploymentEnvironmentsClientImpl(localPipeline,
             JacksonAdapter.createDefaultSerializerAdapter(), this.endpoint, localServiceVersion);
         return client;
@@ -330,5 +318,17 @@ public final class DeploymentEnvironmentsClientBuilder
         // This method is invoked from 'buildInnerClient'/'buildClient' method.
         // Developer can customize this method, to validate that the necessary conditions are met for the new client.
         Objects.requireNonNull(endpoint, "'endpoint' cannot be null.");
+    }
+
+    /**
+     * Sets Service version.
+     *
+     * @param serviceVersion the serviceVersion value.
+     * @return the DeploymentEnvironmentsClientBuilder.
+     */
+    @Generated
+    public DeploymentEnvironmentsClientBuilder serviceVersion(DeploymentEnvironmentsServiceVersion serviceVersion) {
+        this.serviceVersion = serviceVersion;
+        return this;
     }
 }

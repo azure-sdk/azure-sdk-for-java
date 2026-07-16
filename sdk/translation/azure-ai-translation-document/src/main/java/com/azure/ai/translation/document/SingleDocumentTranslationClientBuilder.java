@@ -257,19 +257,7 @@ public final class SingleDocumentTranslationClientBuilder implements HttpTrait<S
      * Service version
      */
     @Generated
-    private DocumentTranslationServiceVersion serviceVersion;
-
-    /**
-     * Sets Service version.
-     *
-     * @param serviceVersion the serviceVersion value.
-     * @return the SingleDocumentTranslationClientBuilder.
-     */
-    @Generated
-    public SingleDocumentTranslationClientBuilder serviceVersion(DocumentTranslationServiceVersion serviceVersion) {
-        this.serviceVersion = serviceVersion;
-        return this;
-    }
+    private SingleDocumentTranslationServiceVersion serviceVersion;
 
     /*
      * The retry policy that will attempt to retry failed requests, if applicable.
@@ -298,8 +286,8 @@ public final class SingleDocumentTranslationClientBuilder implements HttpTrait<S
     private SingleDocumentTranslationClientImpl buildInnerClient() {
         this.validateClient();
         HttpPipeline localPipeline = (pipeline != null) ? pipeline : createHttpPipeline();
-        DocumentTranslationServiceVersion localServiceVersion
-            = (serviceVersion != null) ? serviceVersion : DocumentTranslationServiceVersion.getLatest();
+        SingleDocumentTranslationServiceVersion localServiceVersion
+            = (serviceVersion != null) ? serviceVersion : SingleDocumentTranslationServiceVersion.getLatest();
         SingleDocumentTranslationClientImpl client = new SingleDocumentTranslationClientImpl(localPipeline,
             JacksonAdapter.createDefaultSerializerAdapter(), this.endpoint, localServiceVersion);
         return client;
@@ -377,4 +365,17 @@ public final class SingleDocumentTranslationClientBuilder implements HttpTrait<S
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(SingleDocumentTranslationClientBuilder.class);
+
+    /**
+     * Sets Service version.
+     *
+     * @param serviceVersion the serviceVersion value.
+     * @return the SingleDocumentTranslationClientBuilder.
+     */
+    @Generated
+    public SingleDocumentTranslationClientBuilder
+        serviceVersion(SingleDocumentTranslationServiceVersion serviceVersion) {
+        this.serviceVersion = serviceVersion;
+        return this;
+    }
 }

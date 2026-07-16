@@ -217,19 +217,7 @@ public final class LoadTestAdministrationClientBuilder
      * Service version
      */
     @Generated
-    private LoadTestingServiceVersion serviceVersion;
-
-    /**
-     * Sets Service version.
-     *
-     * @param serviceVersion the serviceVersion value.
-     * @return the LoadTestAdministrationClientBuilder.
-     */
-    @Generated
-    public LoadTestAdministrationClientBuilder serviceVersion(LoadTestingServiceVersion serviceVersion) {
-        this.serviceVersion = serviceVersion;
-        return this;
-    }
+    private LoadTestAdministrationServiceVersion serviceVersion;
 
     /*
      * The retry policy that will attempt to retry failed requests, if applicable.
@@ -258,8 +246,8 @@ public final class LoadTestAdministrationClientBuilder
     private LoadTestAdministrationClientImpl buildInnerClient() {
         this.validateClient();
         HttpPipeline localPipeline = (pipeline != null) ? pipeline : createHttpPipeline();
-        LoadTestingServiceVersion localServiceVersion
-            = (serviceVersion != null) ? serviceVersion : LoadTestingServiceVersion.getLatest();
+        LoadTestAdministrationServiceVersion localServiceVersion
+            = (serviceVersion != null) ? serviceVersion : LoadTestAdministrationServiceVersion.getLatest();
         LoadTestAdministrationClientImpl client = new LoadTestAdministrationClientImpl(localPipeline,
             JacksonAdapter.createDefaultSerializerAdapter(), this.endpoint, localServiceVersion);
         return client;
@@ -331,4 +319,16 @@ public final class LoadTestAdministrationClientBuilder
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(LoadTestAdministrationClientBuilder.class);
+
+    /**
+     * Sets Service version.
+     *
+     * @param serviceVersion the serviceVersion value.
+     * @return the LoadTestAdministrationClientBuilder.
+     */
+    @Generated
+    public LoadTestAdministrationClientBuilder serviceVersion(LoadTestAdministrationServiceVersion serviceVersion) {
+        this.serviceVersion = serviceVersion;
+        return this;
+    }
 }

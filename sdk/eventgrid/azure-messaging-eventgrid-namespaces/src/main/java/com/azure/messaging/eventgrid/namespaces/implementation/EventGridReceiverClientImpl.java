@@ -32,7 +32,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
-import com.azure.messaging.eventgrid.namespaces.EventGridServiceVersion;
+import com.azure.messaging.eventgrid.namespaces.EventGridReceiverServiceVersion;
 import reactor.core.publisher.Mono;
 
 /**
@@ -61,14 +61,14 @@ public final class EventGridReceiverClientImpl {
     /**
      * Service version.
      */
-    private final EventGridServiceVersion serviceVersion;
+    private final EventGridReceiverServiceVersion serviceVersion;
 
     /**
      * Gets Service version.
      * 
      * @return the serviceVersion value.
      */
-    public EventGridServiceVersion getServiceVersion() {
+    public EventGridReceiverServiceVersion getServiceVersion() {
         return this.serviceVersion;
     }
 
@@ -106,7 +106,7 @@ public final class EventGridReceiverClientImpl {
      * @param endpoint The host name of the namespace, e.g. namespaceName1.westus-1.eventgrid.azure.net.
      * @param serviceVersion Service version.
      */
-    public EventGridReceiverClientImpl(String endpoint, EventGridServiceVersion serviceVersion) {
+    public EventGridReceiverClientImpl(String endpoint, EventGridReceiverServiceVersion serviceVersion) {
         this(new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build(),
             JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
@@ -119,7 +119,7 @@ public final class EventGridReceiverClientImpl {
      * @param serviceVersion Service version.
      */
     public EventGridReceiverClientImpl(HttpPipeline httpPipeline, String endpoint,
-        EventGridServiceVersion serviceVersion) {
+        EventGridReceiverServiceVersion serviceVersion) {
         this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
 
@@ -132,7 +132,7 @@ public final class EventGridReceiverClientImpl {
      * @param serviceVersion Service version.
      */
     public EventGridReceiverClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, String endpoint,
-        EventGridServiceVersion serviceVersion) {
+        EventGridReceiverServiceVersion serviceVersion) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;

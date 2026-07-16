@@ -37,7 +37,7 @@ import com.azure.core.util.builder.ClientBuilderUtil;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.search.documents.SearchAudience;
-import com.azure.search.documents.SearchServiceVersion;
+import com.azure.search.documents.SearchIndexerServiceVersion;
 import com.azure.search.documents.implementation.SearchIndexerClientImpl;
 import java.util.ArrayList;
 import java.util.List;
@@ -237,19 +237,7 @@ public final class SearchIndexerClientBuilder implements HttpTrait<SearchIndexer
      * Service version
      */
     @Generated
-    private SearchServiceVersion serviceVersion;
-
-    /**
-     * Sets Service version.
-     *
-     * @param serviceVersion the serviceVersion value.
-     * @return the SearchIndexerClientBuilder.
-     */
-    @Generated
-    public SearchIndexerClientBuilder serviceVersion(SearchServiceVersion serviceVersion) {
-        this.serviceVersion = serviceVersion;
-        return this;
-    }
+    private SearchIndexerServiceVersion serviceVersion;
 
     /*
      * The retry policy that will attempt to retry failed requests, if applicable.
@@ -295,8 +283,8 @@ public final class SearchIndexerClientBuilder implements HttpTrait<SearchIndexer
     private SearchIndexerClientImpl buildInnerClient() {
         this.validateClient();
         HttpPipeline localPipeline = (pipeline != null) ? pipeline : createHttpPipeline();
-        SearchServiceVersion localServiceVersion
-            = (serviceVersion != null) ? serviceVersion : SearchServiceVersion.getLatest();
+        SearchIndexerServiceVersion localServiceVersion
+            = (serviceVersion != null) ? serviceVersion : SearchIndexerServiceVersion.getLatest();
         SearchIndexerClientImpl client = new SearchIndexerClientImpl(localPipeline,
             JacksonAdapter.createDefaultSerializerAdapter(), this.endpoint, localServiceVersion);
         return client;
@@ -374,4 +362,16 @@ public final class SearchIndexerClientBuilder implements HttpTrait<SearchIndexer
 
     @Generated
     private String[] scopes = DEFAULT_SCOPES;
+
+    /**
+     * Sets Service version.
+     *
+     * @param serviceVersion the serviceVersion value.
+     * @return the SearchIndexerClientBuilder.
+     */
+    @Generated
+    public SearchIndexerClientBuilder serviceVersion(SearchIndexerServiceVersion serviceVersion) {
+        this.serviceVersion = serviceVersion;
+        return this;
+    }
 }

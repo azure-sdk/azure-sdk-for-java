@@ -236,19 +236,7 @@ public final class EventGridReceiverClientBuilder implements HttpTrait<EventGrid
      * Service version
      */
     @Generated
-    private EventGridServiceVersion serviceVersion;
-
-    /**
-     * Sets Service version.
-     *
-     * @param serviceVersion the serviceVersion value.
-     * @return the EventGridReceiverClientBuilder.
-     */
-    @Generated
-    public EventGridReceiverClientBuilder serviceVersion(EventGridServiceVersion serviceVersion) {
-        this.serviceVersion = serviceVersion;
-        return this;
-    }
+    private EventGridReceiverServiceVersion serviceVersion;
 
     /*
      * The retry policy that will attempt to retry failed requests, if applicable.
@@ -303,8 +291,8 @@ public final class EventGridReceiverClientBuilder implements HttpTrait<EventGrid
     private EventGridReceiverClientImpl buildInnerClient() {
         this.validateClient();
         HttpPipeline localPipeline = (pipeline != null) ? pipeline : createHttpPipeline();
-        EventGridServiceVersion localServiceVersion
-            = (serviceVersion != null) ? serviceVersion : EventGridServiceVersion.getLatest();
+        EventGridReceiverServiceVersion localServiceVersion
+            = (serviceVersion != null) ? serviceVersion : EventGridReceiverServiceVersion.getLatest();
         EventGridReceiverClientImpl client = new EventGridReceiverClientImpl(localPipeline,
             JacksonAdapter.createDefaultSerializerAdapter(), this.endpoint, localServiceVersion);
         return client;
@@ -388,5 +376,17 @@ public final class EventGridReceiverClientBuilder implements HttpTrait<EventGrid
         // This method is invoked from 'buildInnerClient'/'buildClient' method.
         // Developer can customize this method, to validate that the necessary conditions are met for the new client.
         Objects.requireNonNull(endpoint, "'endpoint' cannot be null.");
+    }
+
+    /**
+     * Sets Service version.
+     *
+     * @param serviceVersion the serviceVersion value.
+     * @return the EventGridReceiverClientBuilder.
+     */
+    @Generated
+    public EventGridReceiverClientBuilder serviceVersion(EventGridReceiverServiceVersion serviceVersion) {
+        this.serviceVersion = serviceVersion;
+        return this;
     }
 }

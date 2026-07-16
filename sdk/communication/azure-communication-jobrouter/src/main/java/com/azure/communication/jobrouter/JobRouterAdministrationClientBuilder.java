@@ -212,7 +212,7 @@ public final class JobRouterAdministrationClientBuilder implements HttpTrait<Job
      * Service version
      */
     @Generated
-    private JobRouterServiceVersion serviceVersion;
+    private JobRouterAdministrationServiceVersion serviceVersion;
 
     /*
      * The retry policy that will attempt to retry failed requests, if applicable.
@@ -241,8 +241,8 @@ public final class JobRouterAdministrationClientBuilder implements HttpTrait<Job
     private JobRouterAdministrationClientImpl buildInnerClient() {
         this.validateClient();
         HttpPipeline localPipeline = (pipeline != null) ? pipeline : createHttpPipeline();
-        JobRouterServiceVersion localServiceVersion
-            = (serviceVersion != null) ? serviceVersion : JobRouterServiceVersion.getLatest();
+        JobRouterAdministrationServiceVersion localServiceVersion
+            = (serviceVersion != null) ? serviceVersion : JobRouterAdministrationServiceVersion.getLatest();
         JobRouterAdministrationClientImpl client = new JobRouterAdministrationClientImpl(localPipeline,
             JacksonAdapter.createDefaultSerializerAdapter(), this.endpoint, localServiceVersion);
         return client;
@@ -334,18 +334,6 @@ public final class JobRouterAdministrationClientBuilder implements HttpTrait<Job
     }
 
     /**
-     * Sets Service version.
-     *
-     * @param serviceVersion the serviceVersion value.
-     * @return the JobRouterAdministrationClientBuilder.
-     */
-    @Generated
-    public JobRouterAdministrationClientBuilder serviceVersion(JobRouterServiceVersion serviceVersion) {
-        this.serviceVersion = serviceVersion;
-        return this;
-    }
-
-    /**
      * Set a connection string for authorization.
      *
      * @param connectionString valid connectionString as a string.
@@ -379,4 +367,16 @@ public final class JobRouterAdministrationClientBuilder implements HttpTrait<Job
 
     @Generated
     private static final String[] DEFAULT_SCOPES = new String[] { "https://communication.azure.com/.default" };
+
+    /**
+     * Sets Service version.
+     *
+     * @param serviceVersion the serviceVersion value.
+     * @return the JobRouterAdministrationClientBuilder.
+     */
+    @Generated
+    public JobRouterAdministrationClientBuilder serviceVersion(JobRouterAdministrationServiceVersion serviceVersion) {
+        this.serviceVersion = serviceVersion;
+        return this;
+    }
 }

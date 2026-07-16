@@ -217,19 +217,7 @@ public final class DevBoxesClientBuilder
      * Service version
      */
     @Generated
-    private DevCenterServiceVersion serviceVersion;
-
-    /**
-     * Sets Service version.
-     *
-     * @param serviceVersion the serviceVersion value.
-     * @return the DevBoxesClientBuilder.
-     */
-    @Generated
-    public DevBoxesClientBuilder serviceVersion(DevCenterServiceVersion serviceVersion) {
-        this.serviceVersion = serviceVersion;
-        return this;
-    }
+    private DevBoxesServiceVersion serviceVersion;
 
     /*
      * The retry policy that will attempt to retry failed requests, if applicable.
@@ -258,8 +246,8 @@ public final class DevBoxesClientBuilder
     private DevBoxesClientImpl buildInnerClient() {
         this.validateClient();
         HttpPipeline localPipeline = (pipeline != null) ? pipeline : createHttpPipeline();
-        DevCenterServiceVersion localServiceVersion
-            = (serviceVersion != null) ? serviceVersion : DevCenterServiceVersion.getLatest();
+        DevBoxesServiceVersion localServiceVersion
+            = (serviceVersion != null) ? serviceVersion : DevBoxesServiceVersion.getLatest();
         DevBoxesClientImpl client = new DevBoxesClientImpl(localPipeline,
             JacksonAdapter.createDefaultSerializerAdapter(), this.endpoint, localServiceVersion);
         return client;
@@ -330,5 +318,17 @@ public final class DevBoxesClientBuilder
         // This method is invoked from 'buildInnerClient'/'buildClient' method.
         // Developer can customize this method, to validate that the necessary conditions are met for the new client.
         Objects.requireNonNull(endpoint, "'endpoint' cannot be null.");
+    }
+
+    /**
+     * Sets Service version.
+     *
+     * @param serviceVersion the serviceVersion value.
+     * @return the DevBoxesClientBuilder.
+     */
+    @Generated
+    public DevBoxesClientBuilder serviceVersion(DevBoxesServiceVersion serviceVersion) {
+        this.serviceVersion = serviceVersion;
+        return this;
     }
 }
