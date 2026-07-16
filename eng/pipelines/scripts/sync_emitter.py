@@ -11,6 +11,8 @@ import subprocess
 import glob
 import shutil
 import json
+import tarfile
+import tempfile
 from typing import List
 
 sdk_root: str
@@ -54,13 +56,75 @@ def parse_args() -> argparse.Namespace:
 
 EMITTER_PACKAGE_NAME = "@azure-tools/typespec-java"
 
+# Extra TypeSpec libraries that some specs depend on but which are intentionally NOT declared as
+# dependencies of the typespec-java emitter itself (declaring them there would force every
+# downstream emitter/repo to carry them - see discussion on Azure/typespec-azure PR 4866). We
+# inject them into emitter-package.json here, pinned to their latest published version, so that
+# generated SDKs referencing these libraries still compile.
+DESIGNATED_LIBRARIES = [
+    "@azure-tools/openai-typespec",
+    "@azure-tools/typespec-liftr-base",
+    "@azure-tools/typespec-azure-portal-core",
+]
+
+
+def extract_package_json_from_tgz(tgz_path: str, dest_path: str) -> None:
+    # npm/pnpm pack tarballs place all files under a top-level "package/" directory. The
+    # package.json inside has the "catalog:"/"workspace:" protocols resolved to concrete
+    # versions, which is what emitter-package.json needs (npm cannot resolve those protocols).
+    with tarfile.open(tgz_path, "r:gz") as tar:
+        with tar.extractfile("package/package.json") as member:
+            with open(dest_path, "wb") as f:
+                f.write(member.read())
+
+
+def generate_emitter_package_json(resolved_package_json_path: str) -> None:
+    # New-EmitterPackageJson.ps1 seeds emitter-package.json from the emitter's package.json,
+    # pinning the emitter and its peer dependencies. We use it (instead of
+    # "tsp-client generate-config-files") for the dev route, because generate-config-files
+    # resolves against a published version which does not exist for a locally built dev package.
+    subprocess.check_call(
+        [
+            "pwsh",
+            "./eng/common/scripts/typespec/New-EmitterPackageJson.ps1",
+            "-PackageJsonPath",
+            resolved_package_json_path,
+            "-OutputDirectory",
+            "eng",
+        ],
+        cwd=sdk_root,
+    )
+
+
+def get_latest_published_version(package_name: str) -> str:
+    # "npm view <pkg>@latest version" reads the latest published version from the npm registry.
+    # Preferred over "ncu -u" (which may be unavailable) for looking up designated library versions.
+    version = subprocess.check_output(
+        ["npm", "view", f"{package_name}@latest", "version"],
+        cwd=sdk_root,
+        text=True,
+    ).strip()
+    return version
+
+
+def add_designated_libraries() -> None:
+    # Add the designated libraries (not declared by the emitter) to emitter-package.json, each
+    # pinned to its latest published version. Callers must regenerate the lock file afterwards.
+    emitter_package_path = os.path.join(sdk_root, "eng", "emitter-package.json")
+    with open(emitter_package_path, "r") as json_file:
+        package_json = json.load(json_file)
+    dev_dependencies = package_json.setdefault("devDependencies", {})
+    for library in DESIGNATED_LIBRARIES:
+        version = get_latest_published_version(library)
+        logging.info(f"Add designated library {library}@{version} to emitter-package.json")
+        dev_dependencies[library] = version
+    with open(emitter_package_path, "w") as json_file:
+        json.dump(package_json, json_file, indent=2)
+
 
 def set_emitter_dependency(emitter_ref: str) -> None:
-    # Only update the typespec-java dependency in the existing emitter-package.json. The other
-    # (peer/dev) dependency versions are managed elsewhere and updated before this pipeline runs,
-    # so we intentionally do not regenerate them from the emitter tarball (which may pin stale
-    # versions, e.g. an older typespec-client-generator-core). emitter_ref is either a published
-    # version string or a local path to the dev package tarball.
+    # Point the typespec-java dependency in emitter-package.json at emitter_ref, which for the dev
+    # route is a local path to the freshly built dev package tarball.
     emitter_package_path = os.path.join(sdk_root, "eng", "emitter-package.json")
     with open(emitter_package_path, "r") as json_file:
         package_json = json.load(json_file)
@@ -77,12 +141,31 @@ def update_emitter(package_json_path: str, emitter_version: str):
         emitter_version = ""
 
     if emitter_version:
-        # Published route (post-publish): point emitter-package.json at a published version
-        # (released or unreleased/dev), then regenerate the lock file.
-        set_emitter_dependency(emitter_version)
+        # Published route (post-publish): seed emitter-package.json from the published version.
+        logging.info(f"Pin emitter-package.json to published typespec-java {emitter_version}")
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            # Download the published tarball. Its package.json has the dependency versions
+            # resolved (unlike the typespec-azure monorepo source, which uses the "catalog:"/
+            # "workspace:" protocols that npm cannot resolve), so tsp-client generate-config-files
+            # can consume it directly to produce emitter-package.json.
+            subprocess.check_call(
+                ["npm", "pack", f"{EMITTER_PACKAGE_NAME}@{emitter_version}", "--pack-destination", tmp_dir],
+                cwd=sdk_root,
+            )
+            tgz_files = glob.glob(os.path.join(tmp_dir, "*.tgz"))
+            if not tgz_files:
+                raise RuntimeError(f"Failed to download typespec-java {emitter_version} from npm.")
+            resolved_package_json_path = os.path.join(tmp_dir, "package.resolved.json")
+            extract_package_json_from_tgz(tgz_files[0], resolved_package_json_path)
+
+            logging.info("Update emitter-package.json")
+            subprocess.check_call(
+                ["tsp-client", "generate-config-files", "--package-json", resolved_package_json_path],
+                cwd=sdk_root,
+            )
     else:
-        # Dev route: build the emitter from source, then point emitter-package.json at the local
-        # dev package tarball.
+        # Dev route: build the emitter from source, then seed emitter-package.json from the local
+        # dev package via New-EmitterPackageJson.ps1 and point the emitter dependency at the tarball.
         if not package_json_path:
             raise ValueError("--package-json-path is required when --emitter-version is empty.")
 
@@ -99,7 +182,20 @@ def update_emitter(package_json_path: str, emitter_version: str):
             logging.error("Failed to locate the dev package.")
             return
 
+        # The tarball's package.json has "catalog:"/"workspace:" protocols resolved to concrete
+        # versions, which New-EmitterPackageJson.ps1 needs (npm cannot resolve those protocols).
+        resolved_package_json_path = os.path.join(typespec_extension_path, "package.resolved.json")
+        extract_package_json_from_tgz(dev_package_path, resolved_package_json_path)
+
+        logging.info("Update emitter-package.json")
+        generate_emitter_package_json(resolved_package_json_path)
+
+        # Point the emitter dependency at the local dev tarball (the dev build is unpublished).
         set_emitter_dependency(dev_package_path)
+
+    # Add the designated libraries that the emitter does not declare, then (re)generate the lock
+    # file so it reflects both the seeded and the designated dependencies.
+    add_designated_libraries()
 
     logging.info("Update emitter-package-lock.json")
     generate_lock_file()
