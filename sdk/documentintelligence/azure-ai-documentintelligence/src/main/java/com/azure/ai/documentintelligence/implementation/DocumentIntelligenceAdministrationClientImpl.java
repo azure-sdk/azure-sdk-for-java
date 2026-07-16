@@ -4,7 +4,7 @@
 
 package com.azure.ai.documentintelligence.implementation;
 
-import com.azure.ai.documentintelligence.DocumentIntelligenceServiceVersion;
+import com.azure.ai.documentintelligence.DocumentIntelligenceAdministrationServiceVersion;
 import com.azure.ai.documentintelligence.models.DocumentClassifierBuildOperationDetails;
 import com.azure.ai.documentintelligence.models.DocumentClassifierCopyToOperationDetails;
 import com.azure.ai.documentintelligence.models.DocumentClassifierDetails;
@@ -82,14 +82,14 @@ public final class DocumentIntelligenceAdministrationClientImpl {
     /**
      * Service version.
      */
-    private final DocumentIntelligenceServiceVersion serviceVersion;
+    private final DocumentIntelligenceAdministrationServiceVersion serviceVersion;
 
     /**
      * Gets Service version.
      * 
      * @return the serviceVersion value.
      */
-    public DocumentIntelligenceServiceVersion getServiceVersion() {
+    public DocumentIntelligenceAdministrationServiceVersion getServiceVersion() {
         return this.serviceVersion;
     }
 
@@ -128,7 +128,7 @@ public final class DocumentIntelligenceAdministrationClientImpl {
      * @param serviceVersion Service version.
      */
     public DocumentIntelligenceAdministrationClientImpl(String endpoint,
-        DocumentIntelligenceServiceVersion serviceVersion) {
+        DocumentIntelligenceAdministrationServiceVersion serviceVersion) {
         this(new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build(),
             JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
@@ -141,7 +141,7 @@ public final class DocumentIntelligenceAdministrationClientImpl {
      * @param serviceVersion Service version.
      */
     public DocumentIntelligenceAdministrationClientImpl(HttpPipeline httpPipeline, String endpoint,
-        DocumentIntelligenceServiceVersion serviceVersion) {
+        DocumentIntelligenceAdministrationServiceVersion serviceVersion) {
         this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
 
@@ -154,7 +154,7 @@ public final class DocumentIntelligenceAdministrationClientImpl {
      * @param serviceVersion Service version.
      */
     public DocumentIntelligenceAdministrationClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
-        String endpoint, DocumentIntelligenceServiceVersion serviceVersion) {
+        String endpoint, DocumentIntelligenceAdministrationServiceVersion serviceVersion) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;

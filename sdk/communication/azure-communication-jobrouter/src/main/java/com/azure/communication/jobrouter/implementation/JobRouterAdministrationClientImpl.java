@@ -4,7 +4,7 @@
 
 package com.azure.communication.jobrouter.implementation;
 
-import com.azure.communication.jobrouter.JobRouterServiceVersion;
+import com.azure.communication.jobrouter.JobRouterAdministrationServiceVersion;
 import com.azure.core.annotation.BodyParam;
 import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
@@ -71,14 +71,14 @@ public final class JobRouterAdministrationClientImpl {
     /**
      * Service version.
      */
-    private final JobRouterServiceVersion serviceVersion;
+    private final JobRouterAdministrationServiceVersion serviceVersion;
 
     /**
      * Gets Service version.
      * 
      * @return the serviceVersion value.
      */
-    public JobRouterServiceVersion getServiceVersion() {
+    public JobRouterAdministrationServiceVersion getServiceVersion() {
         return this.serviceVersion;
     }
 
@@ -116,7 +116,7 @@ public final class JobRouterAdministrationClientImpl {
      * @param endpoint Uri of your Communication resource.
      * @param serviceVersion Service version.
      */
-    public JobRouterAdministrationClientImpl(String endpoint, JobRouterServiceVersion serviceVersion) {
+    public JobRouterAdministrationClientImpl(String endpoint, JobRouterAdministrationServiceVersion serviceVersion) {
         this(new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build(),
             JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
@@ -129,7 +129,7 @@ public final class JobRouterAdministrationClientImpl {
      * @param serviceVersion Service version.
      */
     public JobRouterAdministrationClientImpl(HttpPipeline httpPipeline, String endpoint,
-        JobRouterServiceVersion serviceVersion) {
+        JobRouterAdministrationServiceVersion serviceVersion) {
         this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
 
@@ -142,7 +142,7 @@ public final class JobRouterAdministrationClientImpl {
      * @param serviceVersion Service version.
      */
     public JobRouterAdministrationClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
-        String endpoint, JobRouterServiceVersion serviceVersion) {
+        String endpoint, JobRouterAdministrationServiceVersion serviceVersion) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;

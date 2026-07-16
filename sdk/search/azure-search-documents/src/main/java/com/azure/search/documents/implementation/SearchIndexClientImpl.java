@@ -39,7 +39,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
-import com.azure.search.documents.SearchServiceVersion;
+import com.azure.search.documents.SearchIndexServiceVersion;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -71,14 +71,14 @@ public final class SearchIndexClientImpl {
     /**
      * Service version.
      */
-    private final SearchServiceVersion serviceVersion;
+    private final SearchIndexServiceVersion serviceVersion;
 
     /**
      * Gets Service version.
      * 
      * @return the serviceVersion value.
      */
-    public SearchServiceVersion getServiceVersion() {
+    public SearchIndexServiceVersion getServiceVersion() {
         return this.serviceVersion;
     }
 
@@ -116,7 +116,7 @@ public final class SearchIndexClientImpl {
      * @param endpoint The endpoint URL of the search service.
      * @param serviceVersion Service version.
      */
-    public SearchIndexClientImpl(String endpoint, SearchServiceVersion serviceVersion) {
+    public SearchIndexClientImpl(String endpoint, SearchIndexServiceVersion serviceVersion) {
         this(new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build(),
             JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
@@ -128,7 +128,7 @@ public final class SearchIndexClientImpl {
      * @param endpoint The endpoint URL of the search service.
      * @param serviceVersion Service version.
      */
-    public SearchIndexClientImpl(HttpPipeline httpPipeline, String endpoint, SearchServiceVersion serviceVersion) {
+    public SearchIndexClientImpl(HttpPipeline httpPipeline, String endpoint, SearchIndexServiceVersion serviceVersion) {
         this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
 
@@ -141,7 +141,7 @@ public final class SearchIndexClientImpl {
      * @param serviceVersion Service version.
      */
     public SearchIndexClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, String endpoint,
-        SearchServiceVersion serviceVersion) {
+        SearchIndexServiceVersion serviceVersion) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;

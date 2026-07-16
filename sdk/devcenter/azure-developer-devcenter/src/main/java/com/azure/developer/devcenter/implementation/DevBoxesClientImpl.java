@@ -45,7 +45,7 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.TypeReference;
-import com.azure.developer.devcenter.DevCenterServiceVersion;
+import com.azure.developer.devcenter.DevBoxesServiceVersion;
 import com.azure.developer.devcenter.models.DevBox;
 import com.azure.developer.devcenter.models.DevCenterOperationDetails;
 import java.time.Duration;
@@ -81,14 +81,14 @@ public final class DevBoxesClientImpl {
     /**
      * Service version.
      */
-    private final DevCenterServiceVersion serviceVersion;
+    private final DevBoxesServiceVersion serviceVersion;
 
     /**
      * Gets Service version.
      * 
      * @return the serviceVersion value.
      */
-    public DevCenterServiceVersion getServiceVersion() {
+    public DevBoxesServiceVersion getServiceVersion() {
         return this.serviceVersion;
     }
 
@@ -126,7 +126,7 @@ public final class DevBoxesClientImpl {
      * @param endpoint The DevCenter-specific URI to operate on.
      * @param serviceVersion Service version.
      */
-    public DevBoxesClientImpl(String endpoint, DevCenterServiceVersion serviceVersion) {
+    public DevBoxesClientImpl(String endpoint, DevBoxesServiceVersion serviceVersion) {
         this(new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build(),
             JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
@@ -138,7 +138,7 @@ public final class DevBoxesClientImpl {
      * @param endpoint The DevCenter-specific URI to operate on.
      * @param serviceVersion Service version.
      */
-    public DevBoxesClientImpl(HttpPipeline httpPipeline, String endpoint, DevCenterServiceVersion serviceVersion) {
+    public DevBoxesClientImpl(HttpPipeline httpPipeline, String endpoint, DevBoxesServiceVersion serviceVersion) {
         this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
 
@@ -151,7 +151,7 @@ public final class DevBoxesClientImpl {
      * @param serviceVersion Service version.
      */
     public DevBoxesClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, String endpoint,
-        DevCenterServiceVersion serviceVersion) {
+        DevBoxesServiceVersion serviceVersion) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;

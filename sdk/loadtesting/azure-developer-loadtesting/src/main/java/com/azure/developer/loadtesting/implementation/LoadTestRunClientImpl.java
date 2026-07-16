@@ -47,7 +47,7 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.TypeReference;
-import com.azure.developer.loadtesting.LoadTestingServiceVersion;
+import com.azure.developer.loadtesting.LoadTestRunServiceVersion;
 import com.azure.developer.loadtesting.models.TestRunInsights;
 import java.time.Duration;
 import java.util.List;
@@ -80,14 +80,14 @@ public final class LoadTestRunClientImpl {
     /**
      * Service version.
      */
-    private final LoadTestingServiceVersion serviceVersion;
+    private final LoadTestRunServiceVersion serviceVersion;
 
     /**
      * Gets Service version.
      * 
      * @return the serviceVersion value.
      */
-    public LoadTestingServiceVersion getServiceVersion() {
+    public LoadTestRunServiceVersion getServiceVersion() {
         return this.serviceVersion;
     }
 
@@ -125,7 +125,7 @@ public final class LoadTestRunClientImpl {
      * @param endpoint
      * @param serviceVersion Service version.
      */
-    public LoadTestRunClientImpl(String endpoint, LoadTestingServiceVersion serviceVersion) {
+    public LoadTestRunClientImpl(String endpoint, LoadTestRunServiceVersion serviceVersion) {
         this(new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build(),
             JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
@@ -137,7 +137,7 @@ public final class LoadTestRunClientImpl {
      * @param endpoint
      * @param serviceVersion Service version.
      */
-    public LoadTestRunClientImpl(HttpPipeline httpPipeline, String endpoint, LoadTestingServiceVersion serviceVersion) {
+    public LoadTestRunClientImpl(HttpPipeline httpPipeline, String endpoint, LoadTestRunServiceVersion serviceVersion) {
         this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
 
@@ -150,7 +150,7 @@ public final class LoadTestRunClientImpl {
      * @param serviceVersion Service version.
      */
     public LoadTestRunClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, String endpoint,
-        LoadTestingServiceVersion serviceVersion) {
+        LoadTestRunServiceVersion serviceVersion) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;

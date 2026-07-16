@@ -235,19 +235,7 @@ public final class BlocklistClientBuilder implements HttpTrait<BlocklistClientBu
      * Service version
      */
     @Generated
-    private ContentSafetyServiceVersion serviceVersion;
-
-    /**
-     * Sets Service version.
-     *
-     * @param serviceVersion the serviceVersion value.
-     * @return the BlocklistClientBuilder.
-     */
-    @Generated
-    public BlocklistClientBuilder serviceVersion(ContentSafetyServiceVersion serviceVersion) {
-        this.serviceVersion = serviceVersion;
-        return this;
-    }
+    private BlocklistServiceVersion serviceVersion;
 
     /*
      * The retry policy that will attempt to retry failed requests, if applicable.
@@ -276,8 +264,8 @@ public final class BlocklistClientBuilder implements HttpTrait<BlocklistClientBu
     private BlocklistClientImpl buildInnerClient() {
         this.validateClient();
         HttpPipeline localPipeline = (pipeline != null) ? pipeline : createHttpPipeline();
-        ContentSafetyServiceVersion localServiceVersion
-            = (serviceVersion != null) ? serviceVersion : ContentSafetyServiceVersion.getLatest();
+        BlocklistServiceVersion localServiceVersion
+            = (serviceVersion != null) ? serviceVersion : BlocklistServiceVersion.getLatest();
         BlocklistClientImpl client = new BlocklistClientImpl(localPipeline,
             JacksonAdapter.createDefaultSerializerAdapter(), this.endpoint, localServiceVersion);
         return client;
@@ -351,5 +339,17 @@ public final class BlocklistClientBuilder implements HttpTrait<BlocklistClientBu
         // This method is invoked from 'buildInnerClient'/'buildClient' method.
         // Developer can customize this method, to validate that the necessary conditions are met for the new client.
         Objects.requireNonNull(endpoint, "'endpoint' cannot be null.");
+    }
+
+    /**
+     * Sets Service version.
+     *
+     * @param serviceVersion the serviceVersion value.
+     * @return the BlocklistClientBuilder.
+     */
+    @Generated
+    public BlocklistClientBuilder serviceVersion(BlocklistServiceVersion serviceVersion) {
+        this.serviceVersion = serviceVersion;
+        return this;
     }
 }

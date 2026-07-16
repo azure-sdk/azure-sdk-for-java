@@ -32,7 +32,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
-import com.azure.search.documents.SearchServiceVersion;
+import com.azure.search.documents.KnowledgeBaseRetrievalServiceVersion;
 import reactor.core.publisher.Mono;
 
 /**
@@ -75,14 +75,14 @@ public final class KnowledgeBaseRetrievalClientImpl {
     /**
      * Service version.
      */
-    private final SearchServiceVersion serviceVersion;
+    private final KnowledgeBaseRetrievalServiceVersion serviceVersion;
 
     /**
      * Gets Service version.
      * 
      * @return the serviceVersion value.
      */
-    public SearchServiceVersion getServiceVersion() {
+    public KnowledgeBaseRetrievalServiceVersion getServiceVersion() {
         return this.serviceVersion;
     }
 
@@ -122,7 +122,7 @@ public final class KnowledgeBaseRetrievalClientImpl {
      * @param serviceVersion Service version.
      */
     public KnowledgeBaseRetrievalClientImpl(String endpoint, String knowledgeBaseName,
-        SearchServiceVersion serviceVersion) {
+        KnowledgeBaseRetrievalServiceVersion serviceVersion) {
         this(new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build(),
             JacksonAdapter.createDefaultSerializerAdapter(), endpoint, knowledgeBaseName, serviceVersion);
     }
@@ -136,7 +136,7 @@ public final class KnowledgeBaseRetrievalClientImpl {
      * @param serviceVersion Service version.
      */
     public KnowledgeBaseRetrievalClientImpl(HttpPipeline httpPipeline, String endpoint, String knowledgeBaseName,
-        SearchServiceVersion serviceVersion) {
+        KnowledgeBaseRetrievalServiceVersion serviceVersion) {
         this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, knowledgeBaseName,
             serviceVersion);
     }
@@ -151,7 +151,7 @@ public final class KnowledgeBaseRetrievalClientImpl {
      * @param serviceVersion Service version.
      */
     public KnowledgeBaseRetrievalClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
-        String endpoint, String knowledgeBaseName, SearchServiceVersion serviceVersion) {
+        String endpoint, String knowledgeBaseName, KnowledgeBaseRetrievalServiceVersion serviceVersion) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;

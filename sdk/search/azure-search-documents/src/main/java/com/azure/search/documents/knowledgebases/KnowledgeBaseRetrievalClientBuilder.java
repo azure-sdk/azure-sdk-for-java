@@ -36,8 +36,8 @@ import com.azure.core.util.CoreUtils;
 import com.azure.core.util.builder.ClientBuilderUtil;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.serializer.JacksonAdapter;
+import com.azure.search.documents.KnowledgeBaseRetrievalServiceVersion;
 import com.azure.search.documents.SearchAudience;
-import com.azure.search.documents.SearchServiceVersion;
 import com.azure.search.documents.implementation.KnowledgeBaseRetrievalClientImpl;
 import java.util.ArrayList;
 import java.util.List;
@@ -237,19 +237,7 @@ public final class KnowledgeBaseRetrievalClientBuilder implements HttpTrait<Know
      * Service version
      */
     @Generated
-    private SearchServiceVersion serviceVersion;
-
-    /**
-     * Sets Service version.
-     *
-     * @param serviceVersion the serviceVersion value.
-     * @return the KnowledgeBaseRetrievalClientBuilder.
-     */
-    @Generated
-    public KnowledgeBaseRetrievalClientBuilder serviceVersion(SearchServiceVersion serviceVersion) {
-        this.serviceVersion = serviceVersion;
-        return this;
-    }
+    private KnowledgeBaseRetrievalServiceVersion serviceVersion;
 
     /*
      * The retry policy that will attempt to retry failed requests, if applicable.
@@ -295,8 +283,8 @@ public final class KnowledgeBaseRetrievalClientBuilder implements HttpTrait<Know
     private KnowledgeBaseRetrievalClientImpl buildInnerClient() {
         this.validateClient();
         HttpPipeline localPipeline = (pipeline != null) ? pipeline : createHttpPipeline();
-        SearchServiceVersion localServiceVersion
-            = (serviceVersion != null) ? serviceVersion : SearchServiceVersion.getLatest();
+        KnowledgeBaseRetrievalServiceVersion localServiceVersion
+            = (serviceVersion != null) ? serviceVersion : KnowledgeBaseRetrievalServiceVersion.getLatest();
         KnowledgeBaseRetrievalClientImpl client
             = new KnowledgeBaseRetrievalClientImpl(localPipeline, JacksonAdapter.createDefaultSerializerAdapter(),
                 this.endpoint, this.knowledgeBaseName, localServiceVersion);
@@ -392,6 +380,18 @@ public final class KnowledgeBaseRetrievalClientBuilder implements HttpTrait<Know
     @Generated
     public KnowledgeBaseRetrievalClientBuilder knowledgeBaseName(String knowledgeBaseName) {
         this.knowledgeBaseName = knowledgeBaseName;
+        return this;
+    }
+
+    /**
+     * Sets Service version.
+     *
+     * @param serviceVersion the serviceVersion value.
+     * @return the KnowledgeBaseRetrievalClientBuilder.
+     */
+    @Generated
+    public KnowledgeBaseRetrievalClientBuilder serviceVersion(KnowledgeBaseRetrievalServiceVersion serviceVersion) {
+        this.serviceVersion = serviceVersion;
         return this;
     }
 }

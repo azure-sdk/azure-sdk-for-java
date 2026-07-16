@@ -4,7 +4,7 @@
 
 package com.azure.ai.translation.document.implementation;
 
-import com.azure.ai.translation.document.DocumentTranslationServiceVersion;
+import com.azure.ai.translation.document.SingleDocumentTranslationServiceVersion;
 import com.azure.core.annotation.BodyParam;
 import com.azure.core.annotation.ExpectedResponses;
 import com.azure.core.annotation.HeaderParam;
@@ -62,14 +62,14 @@ public final class SingleDocumentTranslationClientImpl {
     /**
      * Service version.
      */
-    private final DocumentTranslationServiceVersion serviceVersion;
+    private final SingleDocumentTranslationServiceVersion serviceVersion;
 
     /**
      * Gets Service version.
      * 
      * @return the serviceVersion value.
      */
-    public DocumentTranslationServiceVersion getServiceVersion() {
+    public SingleDocumentTranslationServiceVersion getServiceVersion() {
         return this.serviceVersion;
     }
 
@@ -108,7 +108,8 @@ public final class SingleDocumentTranslationClientImpl {
      * https://{TranslatorResourceName}.cognitiveservices.azure.com/translator.
      * @param serviceVersion Service version.
      */
-    public SingleDocumentTranslationClientImpl(String endpoint, DocumentTranslationServiceVersion serviceVersion) {
+    public SingleDocumentTranslationClientImpl(String endpoint,
+        SingleDocumentTranslationServiceVersion serviceVersion) {
         this(new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build(),
             JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
@@ -122,7 +123,7 @@ public final class SingleDocumentTranslationClientImpl {
      * @param serviceVersion Service version.
      */
     public SingleDocumentTranslationClientImpl(HttpPipeline httpPipeline, String endpoint,
-        DocumentTranslationServiceVersion serviceVersion) {
+        SingleDocumentTranslationServiceVersion serviceVersion) {
         this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
     }
 
@@ -136,7 +137,7 @@ public final class SingleDocumentTranslationClientImpl {
      * @param serviceVersion Service version.
      */
     public SingleDocumentTranslationClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
-        String endpoint, DocumentTranslationServiceVersion serviceVersion) {
+        String endpoint, SingleDocumentTranslationServiceVersion serviceVersion) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;
