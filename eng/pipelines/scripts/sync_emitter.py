@@ -71,9 +71,13 @@ TYPESPEC_DEPENDENCY_PREFIXES = ("@azure-tools/", "@typespec/")
 # repo has not updated yet. They are released independently of the TypeSpec compiler/Azure
 # libraries, so their specs-pinned version does not have to move in lockstep with the emitter's
 # other dependencies.
+#
+# TODO: openai-typespec and typespec-liftr-base are TEMPORARILY skipped (see
+# DESIGNATED_LIBRARIES_SKIPPED below). Add them back to this list once they are removed from
+# typespec-java's peerDependencies.
 DESIGNATED_LIBRARIES_FROM_SPECS = [
-    "@azure-tools/openai-typespec",
-    "@azure-tools/typespec-liftr-base",
+    # "@azure-tools/openai-typespec",       # TODO: re-enable when removed from typespec-java peers
+    # "@azure-tools/typespec-liftr-base",   # TODO: re-enable when removed from typespec-java peers
 ]
 
 # These designated libraries are versioned from the latest published npm version instead of the
@@ -88,9 +92,27 @@ DESIGNATED_LIBRARIES_FROM_NPM_LATEST = [
     "@typespec/openapi3",
 ]
 
+# Designated libraries that are TEMPORARILY skipped: they are still declared as peer dependencies
+# of typespec-java, so generate-config-files already pins them (openai-typespec to the emitter's
+# exact peer, e.g. 1.21.0). We must NOT re-version them here - overriding the emitter's peer pin
+# with a different version (from the specs repo or npm latest) would violate the peer constraint
+# and break the lock-file "npm install" with ERESOLVE. They are listed here (rather than dropped
+# entirely) so they remain excluded from resolve_dependency_versions_to_latest, which would
+# otherwise override the emitter's pin with the latest published version.
+#
+# TODO: remove this list and move these packages back into DESIGNATED_LIBRARIES_FROM_SPECS once
+# they are removed from typespec-java's peerDependencies.
+DESIGNATED_LIBRARIES_SKIPPED = [
+    "@azure-tools/openai-typespec",
+    "@azure-tools/typespec-liftr-base",
+]
+
 # All designated libraries, used to exclude them from resolve_dependency_versions_to_latest (they
-# are versioned separately by add_designated_libraries).
-DESIGNATED_LIBRARIES = DESIGNATED_LIBRARIES_FROM_SPECS + DESIGNATED_LIBRARIES_FROM_NPM_LATEST
+# are versioned separately by add_designated_libraries, or intentionally left as the emitter's peer
+# pin for the skipped ones).
+DESIGNATED_LIBRARIES = (
+    DESIGNATED_LIBRARIES_FROM_SPECS + DESIGNATED_LIBRARIES_FROM_NPM_LATEST + DESIGNATED_LIBRARIES_SKIPPED
+)
 
 # package.json of the specs repo, the source of truth for the specs-versioned designated libraries.
 SPECS_PACKAGE_JSON_URL = "https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/package.json"

@@ -4,7 +4,7 @@
     "@azure-tools/typespec-java": "0.45.5"
   },
   "devDependencies": {
-    "@azure-tools/openai-typespec": "1.20.0",
+    "@azure-tools/openai-typespec": "1.21.0",
     "@azure-tools/typespec-autorest": "0.69.1",
     "@azure-tools/typespec-azure-core": "0.69.0",
     "@azure-tools/typespec-azure-resource-manager": "0.69.2",
