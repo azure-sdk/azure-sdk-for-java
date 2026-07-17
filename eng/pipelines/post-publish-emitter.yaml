@@ -15,7 +15,7 @@ parameters:
 # Set EmitterVersion for the default (post-publish) route. Leave it as 'none' to build the
 # emitter from source, in which case PRIdOrBranch selects the typespec-azure PR / branch (or main).
 - name: EmitterVersion
-  displayName: 'Emitter Version — published @azure-tools/typespec-java to regenerate with (e.g. 0.45.4; none = build from source)'
+  displayName: 'Emitter Version (e.g. 0.45.4; none = build from source)'
   type: string
   default: 'none'
 - name: PRIdOrBranch
