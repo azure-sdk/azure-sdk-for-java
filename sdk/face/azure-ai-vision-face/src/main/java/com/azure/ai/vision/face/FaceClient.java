@@ -5,7 +5,6 @@ package com.azure.ai.vision.face;
 
 import static com.azure.ai.vision.face.implementation.ClientUtils.addOptionalQueryParameterForDetection;
 import static com.azure.ai.vision.face.implementation.ClientUtils.addRequiredQueryParameterForDetection;
-
 import com.azure.ai.vision.face.implementation.FaceClientImpl;
 import com.azure.ai.vision.face.implementation.models.DetectFromUrlImplOptions;
 import com.azure.ai.vision.face.implementation.models.DetectFromUrlRequest;
