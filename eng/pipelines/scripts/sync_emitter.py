@@ -22,9 +22,12 @@ script_root: str = os.path.dirname(os.path.realpath(__file__))
 
 skip_artifacts: List[str] = [
     "azure-ai-anomalydetector",  # deprecated
+    # emitter generates inconsistent code for id-parameterized subclients (LargePersonGroup,
+    # LargeFaceList): wrapper clients call the removed plural getLargePersonGroups()/getLargeFaceLists()
+    # accessors and stale plural *sImpl files are left behind, so the module does not compile.
+    "azure-ai-vision-face",
     # expect failure on below
     # "azure-developer-devcenter",  # 2 breaks introduced into stable api-version
-    # "azure-ai-vision-face",  # SDK in development
 ]
 
 
